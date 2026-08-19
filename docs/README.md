@@ -2,13 +2,13 @@
 
 | ADR | Title | Primary Application | Secondary Applications | Decision Captured |
 |---|---|---|---|---|
-| ADR-001 | Establish Supplier Relationship Management as the Official Supplier Portal and Integration Hub | Supplier Relationship Management | Supplier Portal | Uses the Intelex Supplier Portal as the official supplier landing page and navigation hub for both Intelex and linked external systems. |
-| ADR-002 | Begin the Intelex Supplier Lifecycle After Supplier Award | Supplier Relationship Management | Advanced Product Quality Planning (APQP) | Defines supplier award as the boundary after which supplier onboarding and quality lifecycle management begin in Intelex. |
-| ADR-003 | Centralize External Supplier Contacts by Standardized Relationship Roles | Supplier Relationship Management | Supplier Portal, Production Part Approval Process (PPAP), Process Change Requests (PCR) | Maintains reusable supplier/depot relationship roles that support contact discovery and workflow assignment without transaction-specific role creation. |
+| ADR-001 | Establish Supplier Relationship Management as the Official Supplier Portal and Integration Hub | Supplier Relationship Management | Supplier Portal, Non-Conformance Management, Supplier Scorecard, Audit Management, Advanced Product Quality Planning (APQP), Production Part Approval Process (PPAP) | Uses Supplier Relationship Management as the supplier master and the Supplier Portal as the official landing page for Intelex and linked external systems. |
+| ADR-002 | Begin the Intelex Supplier Lifecycle After Supplier Award | Supplier Relationship Management | Advanced Product Quality Planning (APQP), Procurement / RFQ | Begins the lifecycle with an active supplier record after verified award and tracks setup completeness without a duplicate approval gate. |
+| ADR-003 | Centralize External Supplier Contacts by Standardized Relationship Roles | Supplier Relationship Management | Supplier Portal, Production Part Approval Process (PPAP), Process Change Requests (PCR) | Maintains reusable supplier/depot relationship roles while separating the broad contact repository from licensed portal-user access. |
 | ADR-004 | Centralize Internal SIA Supplier Ownership Roles with Flexible Reassignment | Supplier Relationship Management | Supplier Portal, Production Part Approval Process (PPAP), Process Change Requests (PCR) | Maintains supplier-specific internal ownership roles that populate reviewers and support shared or temporary assignments. |
-| ADR-005 | Use Supplier-Type Onboarding Templates to Generate Required Roles, Documents, Training, and Tasks | Supplier Relationship Management | Supplier Portal, Production Part Approval Process (PPAP), Process Change Requests (PCR) | Generates prescriptive onboarding and repeatable role-based training requirements from governed supplier templates. |
-| ADR-006 | Allow Supplier Self-Service Maintenance of External Roles with Periodic Confirmation | Supplier Relationship Management | Supplier Portal, Production Part Approval Process (PPAP), Process Change Requests (PCR) | Allows suppliers to maintain workflow-critical roles and periodically confirm their accuracy. |
-| ADR-007 | Deactivate Dormant Supplier Accounts After One Year of Inactivity | Supplier Relationship Management | Supplier Portal, Intelex Platform | Deactivates supplier portal accounts after one year without use, replacing the earlier short-period recertification concept. |
+| ADR-005 | Use Supplier-Type Onboarding Templates to Generate Required Roles, Documents, Training, and Tasks | Supplier Relationship Management | Supplier Portal, Production Part Approval Process (PPAP), Process Change Requests (PCR) | Generates profile-completeness work from governed supplier templates without delaying creation of the active supplier record. |
+| ADR-006 | Allow Supplier Self-Service Maintenance of External Roles with Periodic Confirmation | Supplier Relationship Management | Supplier Portal, Production Part Approval Process (PPAP), Process Change Requests (PCR) | Allows suppliers to maintain workflow-critical contacts and roles and confirm the actual maintained data through reusable campaigns. |
+| ADR-007 | Deactivate Dormant Supplier Accounts Using Role-Based Thresholds | Supplier Relationship Management | Supplier Portal, Intelex Platform, Notifications | Warns and deactivates dormant portal users through centrally managed role thresholds with a configurable global fallback. |
 | ADR-008 | Manage Supplier Audits in Audit Management and Link Them to Supplier Records | Audit Management | Supplier Relationship Management | Keeps supplier audits in Audit Management while linking them to Supplier Relationship Management. |
 | ADR-009 | Model Each APQP for a Specific Supplier and Item or Drawing Combination | Advanced Product Quality Planning (APQP) | Supplier Relationship Management | Creates a distinct APQP for each supplier and item or drawing combination. |
 | ADR-010 | Model APQP as a Parent Plan with Templated Child Task Records | Advanced Product Quality Planning (APQP) | Supplier Portal, TACT-TRI, Production Part Approval Process (PPAP), Shipping, Receiving and Inspection (Pilot Part Data) | Models APQP as a parent plan with templated tasks that can later be fulfilled by linked specialist application records. |
@@ -77,32 +77,38 @@
 | ADR-073 | Provide an Internal Part-History Workspace from Supplier NCRs | Non-Conformance Management | Product Management, Production Part Approval Process (PPAP), Shipping, Receiving and Inspection (Pilot Part Data), Advanced Product Quality Planning (APQP), Design Change Request (DCR) | Shows authorized investigators the selected part’s drawing, PPAP, inspection, APQP, and prior quality history directly from the supplier NCR. |
 | ADR-074 | Monitor Intelex File Storage as a Governed Capacity and Cost Boundary | Document Control | Intelex Platform, Production Part Approval Process (PPAP), Training Management, Shipping, Receiving and Inspection (Pilot Part Data) | Treats file storage as a monitored contractual capacity, assesses migrations and high-volume evidence, and expands storage before limits affect operations. |
 | ADR-075 | Use the Existing LMS for E-Learning Execution and Integrate Completion Results into Training Management | Training Management | SAP SuccessFactors Learning, Document Control, Employee Management | Proposes keeping SCORM e-learning in the existing LMS and feeding completion results to Intelex so Training Management can provide the broader training record. |
+| ADR-076 | Model Suppliers as Parent Companies with Child Facilities and Depots | Supplier Relationship Management | Non-Conformance Management, Supplier Scorecard, Audit Management, Product Management | Uses a corporate parent with child facility or depot records so operational activity can be attributed locally and rolled up corporately. |
+| ADR-077 | Create Awarded Suppliers Through Reviewed Manual Intake | Supplier Relationship Management | Procurement / RFQ, Data Migration | Bulk-loads the initial population and uses verified manual post-award supplier creation until an upstream integration is justified and stable. |
+| ADR-078 | Scope Supplier Portal Access Through Supplier-Entity Relationships | Supplier Relationship Management | Supplier Portal, Intelex Platform | Scopes external visibility to explicitly related facilities, with parent-company relationships inheriting access to child facilities. |
+| ADR-079 | Govern Supplier Eligibility Through Auditable Lifecycle Statuses | Supplier Relationship Management | Non-Conformance Management, Supplier Scorecard, Supplier Surveys, Audit Management, Advanced Product Quality Planning (APQP), Production Part Approval Process (PPAP), Reporting | Uses governed statuses and auditable transition events to drive downstream eligibility while preserving history and reactivation. |
+| ADR-080 | Use Reusable Campaigns for Supplier Information Requests | Supplier Relationship Management | Supplier Surveys, Supplier Portal, Notifications, Reporting | Proposes configurable, role-targeted campaigns for shutdown surveys, profile validation, reminders, and future information requests. |
+| ADR-081 | Delegate Supplier User Administration with Soft License Controls | Supplier Relationship Management | Supplier Portal, Intelex Platform, Notifications | Proposes supplier-managed contacts and access with projected allocation warnings, SIA override, and secure password-link activation. |
+| ADR-082 | Use One Profile with Supplemental Location-Group Access for Cross-Structure Internal Users | Intelex Platform | Supplier Relationship Management, Document Control, Audit Management | Proposes one primary internal profile plus supplemental location-group access instead of enterprise placement or duplicate profiles. |
 
-## Final Revision Summary
+## Latest Revision Summary
 
-- **Existing ADRs refined in this revision:** ADR-007, ADR-010, ADR-030, ADR-032, ADR-033, ADR-035, ADR-037, ADR-058, and ADR-059.
-- **New ADRs created in this revision:** ADR-060 through ADR-075.
+- **Existing ADRs refined in this revision:** ADR-001, ADR-002, ADR-003, ADR-005, ADR-006, and ADR-007.
+- **New ADRs created in this revision:** ADR-076 through ADR-082.
 - **Superseded ADRs:** None. Changed directions were incorporated into the existing ADR numbers.
-- **Status changes:** ADR-007 moved from proposed to accepted; ADR-037 moved from accepted to proposed.
-- **Total ADRs:** 75.
-- **Current status distribution:** 59 accepted and 16 proposed ADRs.
+- **Status changes:** None in this revision.
+- **Total ADRs:** 82.
+- **Current status distribution:** 63 accepted and 19 proposed ADRs.
 
 ### Material Refinements to Existing ADRs
 
-- Supplier portal accounts now deactivate after one year of inactivity rather than using a short-period recertification cycle.
-- APQP task architecture now includes an extensibility point for later specialist applications such as TACT-TRI.
-- BOMEX staging now treats drawing revision as the principal engineering context and includes richer drawing, part, and file data.
-- PCR and depot-change architecture now permits no-PPAP closure for purely logistical changes.
-- Direct-supplier DCR system-of-record selection is reopened pending confirmation of Workflow EX adoption and integration feasibility.
-- Supplier scorecard and Warranty Analysis ADRs now include the operational integration sources identified in the IT session.
+- Supplier Relationship Management is explicitly the shared supplier-data hub as well as the portal anchor.
+- Award creates an active supplier record; template-generated completeness work no longer implies an onboarding approval gate.
+- External contacts are separated from authenticated users and reviewed through actual profile data rather than a generic survey assertion.
+- Supplier portal inactivity control now uses configurable role-based thresholds and a global fallback instead of a fixed one-year rule.
 
 ### New Architectural Areas
 
-- Employee provisioning, internal SSO, external supplier authentication, and parts-master integration.
-- Incident, tooling-payment, warranty, scrap, and training integration boundaries.
-- Platform governance, internal app-builder enablement, and storage-capacity governance.
-- Management of Change subtype strategy, AAS, TACT-TRI, SPANF, and TS Request architecture.
-- Internal supplier-NCR access to integrated part and quality history.
+- Parent-company and child-facility or depot supplier modeling.
+- Reviewed manual post-award intake and initial bulk migration.
+- Supplier-entity-scoped external access.
+- Status-driven eligibility, auditable transitions, and history-preserving reactivation.
+- Reusable supplier information-request campaigns and soft license-allocation controls.
+- Cross-structure internal access through one profile and supplemental location groups.
 
 ## Source and Status Notes
 

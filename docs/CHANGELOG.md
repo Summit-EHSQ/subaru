@@ -1,6 +1,40 @@
 # ADR Revision Change Log
 
-## Fourth and Final Transcript Revision
+## Supplier-Management Design Revision
+
+### Updated Existing ADRs
+
+- **ADR-001:** Expanded Supplier Relationship Management from a portal-navigation anchor to the shared supplier-data hub for connected applications.
+- **ADR-002:** Replaced the earlier post-award onboarding state with direct active-record creation and separately tracked profile completeness.
+- **ADR-003:** Separated supplier contacts from authenticated portal users while retaining standardized relationship-role routing.
+- **ADR-005:** Reframed onboarding templates as active-profile completeness templates and added central role-library propagation to existing suppliers.
+- **ADR-006:** Connected supplier self-service and periodic confirmation to actual profile-data review through reusable campaigns.
+- **ADR-007:** Replaced the fixed one-year inactivity rule with centrally configurable role-based notification and deactivation thresholds plus a global fallback.
+
+### New ADRs
+
+- **ADR-076:** Parent-company and child-facility or shipping-depot supplier hierarchy.
+- **ADR-077:** Bulk initial migration and reviewed manual post-award supplier intake.
+- **ADR-078:** Supplier-entity-scoped external portal access with parent-to-child inheritance.
+- **ADR-079:** Status-driven downstream eligibility, auditable transitions, and history-preserving reactivation.
+- **ADR-080:** Reusable, role-targeted supplier information-request campaigns.
+- **ADR-081:** Delegated supplier user administration with projected-allocation warnings and secure activation.
+- **ADR-082:** One-profile internal access across location structures through supplemental location groups.
+
+### Open Items Not Promoted to Accepted Decisions
+
+- The direct relationship between manufacturing facilities and shipping depots beyond their shared parent remains to be designed.
+- A possible `Warranty Only` supplier status and its permitted workflow behavior remain unresolved.
+- Campaign implementation scope, license-allocation bands, warning ownership, and cross-location effective permissions require confirmation.
+
+### Status
+
+- **Total ADRs:** 82
+- **Accepted:** 63
+- **Proposed:** 19
+- **Superseded:** 0
+
+## Previous: Fourth Transcript Revision
 
 ### Updated Existing ADRs
 
