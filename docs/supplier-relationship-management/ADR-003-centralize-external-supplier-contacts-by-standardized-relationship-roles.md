@@ -1,6 +1,6 @@
 ---
 status: accepted
-date: 2026-08-18
+date: 2026-09-02
 decision-date: not-recorded-in-transcript
 deciders:
   - Jamie Dossey
@@ -30,6 +30,8 @@ secondary-applications:
 Different SIA departments currently maintain separate supplier contact lists and repeatedly search for the correct person at a supplier. Contacts may differ by facility, development phase, mass-production responsibility, and process. A simple list of people is insufficient because downstream workflows need to resolve responsibility by business function and operational location. Conversely, treating every known contact as an authenticated portal user would consume licenses and create unnecessary account-lifecycle risk.
 
 The PPAP and PCR discussions further established that role assignments must be reusable by workflows. Creating a unique assignment role for every PPAP would generate an unsustainable number of roles. The reusable boundary is the supplier or supplier depot, with process-specific responsibilities such as PPAP coordination represented as standardized relationship roles.
+
+The subsequent supplier-management discussion confirmed that these roles should be maintained as configurable relationship records rather than as a new fixed field for every responsibility. External assignments normally remain at supplier or depot level; maintaining supplier contacts separately for every part would create disproportionate administration.
 
 ## Decision Drivers
 
@@ -70,6 +72,8 @@ Expected roles include commercial, program, quality, logistics, development, mas
 
 PPAP and related supplier work will resolve recipients from these stable supplier or depot roles rather than creating a role for each transaction. A process that requires a populated role must prevent submission when no active contact is assigned. Where the workflow engine supports role-based responsibility, changing role membership should transfer access and responsibility for open and future work without manually editing each transaction.
 
+For each workflow, define whether the resolved role assigns or notifies every active member or filters a recipient selector from which one accountable person is chosen. Do not use part-level external role maintenance as the standard model; use transaction context or supplier/depot roles where supplier recipient specialization is required.
+
 ## Consequences
 
 ### Positive
@@ -95,9 +99,11 @@ PPAP and related supplier work will resolve recipients from these stable supplie
 - Define validation and escalation when a required role is empty.
 - Align role membership with Supplier Portal accounts and organization-level security.
 - Define which roles normally require portal access and which may remain notification-only.
+- Define, for each consuming workflow, whether a multi-member role uses all-recipient, first-response, or single-recipient selection behavior.
 
 ## More Information
 
 - First transcript: approximately 0:48:31–0:51:49 and 1:05:46–1:08:27.
 - Second transcript: approximately 1:26:13–1:35:58 and 2:37:07–2:39:18.
 - Latest supplier-management design transcript: approximately 0:28:46–0:33:45 and 2:04:40–2:14:49.
+- Subsequent supplier workflow transcript: approximately 1:09:17–1:31:57.

@@ -1,6 +1,6 @@
 ---
 status: proposed
-date: '2026-08-18'
+date: '2026-09-02'
 decision-date: not-recorded-in-transcript
 deciders:
 - Dave McLean
@@ -60,6 +60,8 @@ Store a projected user allocation or allocation band for each supplier. Do not a
 
 Provision a portal account only when the contact requires authentication. On activation or reactivation, send the external user an email containing a coded link to establish a password under the Intelex password policy. Do not assign a shared, known, or default initial password. Apply ADR-007 after activation to control inactivity.
 
+Keep supplier-user activation within Intelex for the initial release. This permits an authorized supplier administrator to activate a new user without waiting for the separate Microsoft guest-account request process used by the upstream SIA supplier portal. ADR-061 governs the resulting local-authentication model.
+
 ## Consequences
 
 ### Positive
@@ -85,5 +87,5 @@ Provision a portal account only when the contact requires authentication. On act
 ## More Information
 
 - Latest supplier-management design transcript: approximately 2:07:16–2:22:51 and 2:33:41–2:38:42.
+- Subsequent supplier workflow transcript: approximately 2:47:53–2:50:55.
 - The exact license quantity and warning owner were not available in the session; therefore this ADR remains proposed.
-

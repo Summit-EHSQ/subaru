@@ -1,6 +1,6 @@
 ---
 status: accepted
-date: 2026-07-25
+date: 2026-09-02
 decision-date: not-recorded-in-transcript
 deciders:
   - Luke Filippo
@@ -28,6 +28,8 @@ Suppliers and internal users need to know which SIA representatives are responsi
 
 The PCR discussion also established that cross-functional approvals should resolve reviewers from these supplier-specific internal roles. Some roles are normally filled by one person but may have multiple members. In those cases, the role represents one approval responsibility rather than requiring every member to approve.
 
+The subsequent supplier workflow discussion established that the role catalogue and assignments must be data-driven. Adding a separate employee field to the supplier form for every new responsibility would require recurring product reconfiguration and would couple workflow definitions to named individuals.
+
 ## Decision Drivers
 
 - Give suppliers and internal teams a reliable ownership directory.
@@ -35,6 +37,8 @@ The PCR discussion also established that cross-functional approvals should resol
 - Account for commodity expertise, capacity, and temporary assignments.
 - Reuse the same ownership model across supplier applications.
 - Allow a role to contain more than one eligible person without multiplying required approvals.
+- Allow administrators to introduce a supplier responsibility without adding a new form field.
+- Decouple workflow routing from named individuals and personnel changes.
 
 ## Considered Options
 
@@ -50,9 +54,15 @@ Reduces manual work but cannot fully account for capacity, judgment, and tempora
 
 Balances consistency, workflow automation, and operational flexibility.
 
+### Add a fixed employee field for every supplier responsibility
+
+Is familiar but requires form and workflow reconfiguration whenever a new responsibility is introduced.
+
 ## Decision Outcome
 
 Maintain standardized internal SIA relationship roles on each supplier or supplier-depot record. The system may suggest likely assignees based on supplier type, commodity, function, or organizational rules, but authorized managers can confirm, change, and temporarily reassign those roles.
+
+Represent the role catalogue and its supplier-specific membership as configurable records rather than fixed employee fields. Workflows resolve the selected role in the relevant supplier context instead of hard-coding a person. Supplier-wide and depot-wide responsibilities remain governed here; part-level development and production assignments are governed by ADR-042.
 
 Applications such as PPAP and PCR will use the role assignments to populate responsible engineers, buyers, supplier-management representatives, and other reviewers. A role may contain multiple people where responsibility is legitimately shared. When the role represents one approval slot, the first authorized member to complete the response satisfies that role's approval while the system records the individual who acted.
 
@@ -79,8 +89,10 @@ An internal role assignment designates operational responsibility; it does not b
 - Identify which roles are single-member, multi-member first-response, or all-member approval roles.
 - Determine whether temporary assignments need effective dates and automatic reversion.
 - Confirm how changes affect active workflow instances.
+- Define whether each multi-member role is all-recipient, first-response, or a source for selecting one accountable assignee.
 
 ## More Information
 
 - First transcript: approximately 1:26:53–1:34:24.
 - Second transcript: approximately 2:37:07–2:40:32.
+- Subsequent supplier workflow transcript: approximately 1:09:17–1:33:16.

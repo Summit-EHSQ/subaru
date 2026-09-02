@@ -1,6 +1,6 @@
 ---
 status: proposed
-date: 2026-07-25
+date: 2026-09-02
 decision-date: not-recorded-in-transcript
 deciders:
   - Luke Filippo
@@ -47,11 +47,17 @@ Provides strong control but may disrupt required planning and ordering activitie
 
 Improves control while allowing business processes to continue.
 
+### Ask each responsible engineer about every supplier each month
+
+Can collect a scorecard input without integration but creates repetitive work because an unapproved shipment is an exception rather than a routine monthly occurrence.
+
 ## Decision Outcome
 
 Design the PPAP integration boundary to accept shipment-commitment dates and actual shipment or ASN events associated with the ECS, drawing, or part scope.
 
 When a reliable shipment commitment is available, use it to propose a PPAP due date using a configurable lead-time offset. If the commitment changes while PPAP is open, notify the responsible quality users and identify the resulting schedule conflict. When a shipment event is received, compare it with PPAP approval status and trigger an exception alert when parts are shipping without approval.
+
+Until a reliable shipment-event integration is available, permit an authorized internal user to record a lightweight shipment-without-approval exception related to the supplier, part, and PPAP. Use the resulting exception as the traceable source for scorecard impact. Do not issue a recurring questionnaire asking every engineer whether the uncommon event occurred.
 
 The exact source systems, event timing, date offsets, and downstream quarantine or blocking behavior remain unresolved. The current decision establishes the integration and exception-control requirement rather than the final mechanics.
 
@@ -75,8 +81,10 @@ The exact source systems, event timing, date offsets, and downstream quarantine 
 - Define the lead-time rule and update behavior.
 - Define recipients, escalation, and response actions for conflicts.
 - Determine whether the future control is warning-only, blocking, or quarantine-triggering.
+- Define the interim exception fields, permissions, and relationship to the full supplier NCR workflow.
 
 ## More Information
 
 - Second transcript: approximately 2:59:36–3:10:43.
 - Integration mechanics were assigned for further investigation; therefore this ADR remains proposed.
+- Subsequent supplier workflow transcript: approximately 1:54:14–1:57:57.

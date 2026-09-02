@@ -1,6 +1,6 @@
 ---
 status: accepted
-date: '2026-08-18'
+date: '2026-09-02'
 decision-date: not-recorded-in-transcript
 deciders:
 - Dave McLean
@@ -52,7 +52,7 @@ Supports facility accountability and corporate aggregation within one supplier i
 
 Represent each supplier corporate entity as a parent supplier-company record. Represent each operational shipping depot or facility as a child record under that parent. Classify child records by the relevant facility or depot type rather than assuming every shipping depot is also the manufacturing location.
 
-Associate non-conformances, audits, parts, and other operational records with the applicable child facility or depot when that context is known. Make those records and facility-level measures available for aggregation and navigation at the parent-company level. Exact supplier-scorecard issuance and routing remain governed by ADR-058.
+Associate non-conformances, audits, parts, and other operational records with the applicable child facility or depot when that context is known. Make those records and facility-level measures available for aggregation and navigation at the parent-company level. Generate operational scorecards at facility or depot level where applicable and roll the results up to the parent company under the KPI aggregation rules governed by ADR-058.
 
 Allow contacts to relate to the parent company, one facility, or multiple facilities. Store the upstream parent supplier code and depot code as governed identifiers; do not generate a depot code in Intelex when Procurement is responsible for assigning it.
 
@@ -82,4 +82,4 @@ Allow contacts to relate to the parent company, one facility, or multiple facili
 
 - Latest supplier-management design transcript: approximately 0:20:56–0:30:45, 1:22:29–1:31:01.
 - The direct manufacturing-facility-to-shipping-depot relationship was deliberately deferred for downstream workflow analysis.
-
+- Subsequent supplier workflow transcript: approximately 2:12:56–2:14:15.

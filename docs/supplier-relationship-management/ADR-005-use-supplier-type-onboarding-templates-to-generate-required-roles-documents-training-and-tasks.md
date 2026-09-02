@@ -1,6 +1,6 @@
 ---
 status: accepted
-date: 2026-08-18
+date: 2026-09-02
 decision-date: not-recorded-in-transcript
 deciders:
   - Jamie Dossey
@@ -42,6 +42,8 @@ The PPAP and PCR designs require supplier users to complete more than simple rea
 - Support repeatable training when supplier personnel change.
 - Allow the central requirements and role library to evolve after suppliers have been created.
 - Keep profile completeness separate from supplier approval and lifecycle status.
+- Make operational help available in the page and workflow context where it is needed.
+- Avoid treating Intelex as a streaming-video repository by default.
 
 ## Considered Options
 
@@ -74,7 +76,11 @@ Define reusable setup templates by supplier type, facility or depot type, or ano
 
 The generated records form an auditable profile-completeness checklist on the active supplier. They guide follow-up but do not constitute another supplier-approval gate. The standard role set is maintained as a central library. When a new role or requirement is introduced, administrators must be able to apply it to existing in-scope suppliers and request completion rather than updating each profile manually.
 
-Training requirements must be capable of being reissued when a new contact joins a workflow role. The specific delivery model, content formats, and language strategy remain to be defined, but the architecture must not assume that informal live instruction is sufficient.
+Training requirements must be capable of being reissued when a new contact joins a workflow role. Supplier-facing pages and workflows will provide configurable locations for contextual job-aid links and optional embedded videos. Initial delivery may include only selected high-value content; administrators must be able to add or replace content later without redesigning the workflow.
+
+Product-operation guidance may be authored by the implementation team, while instruction about SIA business expectations requires business ownership. Large video files should normally be hosted on an approved streaming or content platform and linked or embedded in Intelex rather than stored in Intelex solely for playback. Formal LMS-managed learning remains governed by ADR-075.
+
+Expose only identified, governed supplier-document requirements generated from the applicable template. Do not enable a general catch-all supplier-document repository in the initial quality scope unless a separate lifecycle-document use case is confirmed.
 
 ## Consequences
 
@@ -92,12 +98,14 @@ Training requirements must be capable of being reissued when a new contact joins
 - Incorrect supplier classification could generate inappropriate requirements.
 - Multi-language content and workflow training may increase implementation effort.
 - Active supplier profiles may remain incomplete while follow-up work is outstanding.
+- External links and training content can become obsolete without clear ownership.
 
 ### Follow-up and Constraints
 
 - Define the supplier classification used to select templates.
 - Define the onboarding child-record structure and completion rules.
 - Establish a sustainable training-content and translation strategy.
+- Select approved hosting for video content and define link, accessibility, and localization governance.
 - Define how template revisions affect suppliers already in progress.
 - Define the campaign or task mechanism used to apply new requirements to existing suppliers.
 
@@ -106,4 +114,6 @@ Training requirements must be capable of being reissued when a new contact joins
 - First transcript: approximately 1:07:16–1:12:51.
 - Second transcript: approximately 3:15:25–3:17:18.
 - Latest supplier-management design transcript: approximately 0:49:23–1:01:22.
+- Subsequent supplier workflow transcript: approximately 0:08:10–0:21:14 and 0:59:36–1:03:33.
 - ADR-002 establishes that these requirements do not delay creation of the active supplier record.
+- ADR-074 governs file-storage capacity; ADR-075 governs formal LMS-delivered e-learning.

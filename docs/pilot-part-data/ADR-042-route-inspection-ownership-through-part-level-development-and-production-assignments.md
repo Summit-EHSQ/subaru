@@ -1,6 +1,6 @@
 ---
 status: proposed
-date: 2026-07-25
+date: 2026-09-02
 decision-date: not-recorded-in-transcript
 deciders:
   - Keith Freeman
@@ -30,6 +30,8 @@ Supplier-level ownership is usually sufficient to identify the responsible engin
 - Default assignments without preventing part-specific exceptions.
 - Support development-to-mass-production handover.
 - Avoid recalculating historical assignments whenever supplier ownership changes.
+- Support workload balancing below the supplier level.
+- Reuse part ownership for other part-scoped workflows where technically appropriate.
 
 ## Considered Options
 
@@ -51,6 +53,8 @@ Propose maintaining separate QC New Model and SQA ownership relationships on the
 
 Workflow routing will use the part-level assignment when present. Default-source changes will not silently overwrite an explicit part assignment. Handover may populate or activate the SQA assignment while preserving the development owner history.
 
+Part-level internal ownership supplements rather than replaces supplier- and depot-level roles from ADR-004. It may serve APQP, PPAP, supplier NCR, and inspection routing where each transaction already identifies the relevant part. External supplier contacts normally remain assigned through supplier or depot roles from ADR-003 rather than being maintained for every part.
+
 ## Consequences
 
 ### Positive
@@ -64,6 +68,7 @@ Workflow routing will use the part-level assignment when present. Default-source
 - Introduces another assignment dataset to govern.
 - Part-level maintenance may be significant for large part populations.
 - The handover event and overwrite rules are not yet fully defined.
+- Administration and bulk reassignment must remain practical across a part population discussed as approximately 40,000 records.
 
 ### Follow-up and Constraints
 
@@ -71,7 +76,9 @@ Workflow routing will use the part-level assignment when present. Default-source
 - Define defaulting, override, and inheritance rules.
 - Define the handover trigger and historical assignment retention.
 - Validate routing feasibility and reporting performance.
+- Define bulk assignment, workload analysis, and organizational-change handling.
 
 ## More Information
 
 - Third transcript: approximately 0:31:49–0:34:21. The structural direction was supported, but the detailed ownership and handover model remains open.
+- Subsequent supplier workflow transcript: approximately 1:21:44–1:33:16.

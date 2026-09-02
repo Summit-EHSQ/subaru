@@ -1,6 +1,6 @@
 ---
 status: proposed
-date: '2026-08-18'
+date: '2026-09-02'
 decision-date: not-recorded-in-transcript
 deciders:
 - Dave McLean
@@ -14,6 +14,7 @@ primary-application: Intelex Platform
 secondary-applications:
 - Supplier Relationship Management
 - Document Control
+- Training Management
 - Audit Management
 ---
 
@@ -21,7 +22,7 @@ secondary-applications:
 
 ## Context and Problem Statement
 
-Some internal users work primarily with supplier data but occasionally need access to records on the internal side of the location structure, including documents, policies, procedures, or audits. Assigning those users at the top enterprise location may expose more data than required. Maintaining separate profiles for each side of the structure would duplicate identity, authentication, and administration.
+Some internal users work primarily with supplier data but occasionally need access to records on the internal side of the location structure, including documents, policies, procedures, training, or audits. Assigning those users at the top enterprise location may expose more data than required. Maintaining separate profiles for each side of the structure would duplicate identity, authentication, and administration.
 
 ## Decision Drivers
 
@@ -71,8 +72,10 @@ Do not solve this requirement by creating duplicate profiles. Do not place the u
 - Test effective access across Supplier Relationship Management, Document Control, and Audit Management.
 - Confirm reporting behavior when users switch location context.
 - Replace interim regular-site test assignments during Phase 2 configuration.
+- Confirm that supplemental location groups do not expand access to unrelated supplier entities.
 
 ## More Information
 
 - Latest supplier-management design transcript: approximately 0:01:27–0:04:29.
+- Subsequent supplier workflow transcript: approximately 2:36:10–2:39:01.
 - The approach was selected directionally for Phase 2 but still requires effective-permission testing; therefore this ADR remains proposed.

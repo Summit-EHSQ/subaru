@@ -1,6 +1,6 @@
 ---
-status: accepted
-date: 2026-08-18
+status: superseded by ADR-083
+date: 2026-09-02
 decision-date: not-recorded-in-transcript
 deciders:
   - Brianne Carroll
@@ -92,3 +92,4 @@ The portal is therefore an integration and navigation hub, not a commitment to r
 - Transcript discussion: approximately 1:03:27–1:05:46.
 - Latest supplier-management design transcript: approximately 0:17:41–0:20:51.
 - The decision describes the portal's architectural role; detailed page design was not completed in this session.
+- Superseded by ADR-083 after the subsequent supplier authentication and portal-boundary discussion retained the existing SIA supplier portal as the upstream entry point.

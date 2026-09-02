@@ -1,13 +1,17 @@
 ---
 status: accepted
-date: '2026-07-25'
+date: '2026-09-02'
 decision-date: not-recorded-in-transcript
 deciders:
 - Victor Nemacheck
-consulted:
 - Dave McLean
+- Joel Frick
+consulted:
 - Brianne Carroll
 - Luke Filippo
+- Ethan Lyon
+- Isaku Nishiwaki
+- Keith Freeman
 informed:
 - Scott Bailey
 - Yolanda Reyes
@@ -23,7 +27,9 @@ secondary-applications:
 
 ## Context and Problem Statement
 
-SIA employees should use enterprise authentication, while external suppliers are not members of SIA's identity tenant. Intelex does not natively present multiple authentication methods through one application URL, but it can expose separate internal and external application URLs over the same database.
+SIA employees should use enterprise authentication. Some direct-supplier users already receive guest identities in SIA's Microsoft Entra tenant to access the existing SIA supplier portal, and the supplier code is available on those identities. Reusing those accounts for Intelex could reduce supplier sign-ins, but it would require a second identity-provider path and comprehensive synchronization of supplier contacts, entity relationships, licenses, and account lifecycle events.
+
+Intelex does not natively present multiple authentication methods through one application URL, but it can expose separate internal and external application URLs over the same database.
 
 ## Decision Drivers
 
@@ -31,6 +37,8 @@ SIA employees should use enterprise authentication, while external suppliers are
 - Avoid provisioning supplier identities in SIA's Entra tenant.
 - Present the same governed records through internal and external experiences.
 - Ensure email links direct each audience to the correct authentication endpoint.
+- Preserve timely supplier-user administration without depending on upstream guest-account provisioning.
+- Avoid disproportionate identity-integration and lifecycle complexity in the initial release.
 
 ## Considered Options
 
@@ -42,6 +50,10 @@ Simplifies URLs but weakens the internal enterprise identity model.
 
 Centralizes identity but creates unnecessary guest-account administration.
 
+### Reuse existing supplier Entra guest accounts and synchronize them into Intelex
+
+Could provide seamless supplier sign-on but requires dual identity-provider configuration, near-real-time user synchronization, supplier-code mapping, activation, deactivation, reactivation, and coordinated license handling.
+
 ### Use Entra SSO internally and a separate supplier portal URL with local authentication
 
 Matches the platform capabilities and audience boundaries.
@@ -51,6 +63,8 @@ Matches the platform capabilities and audience boundaries.
 Configure Microsoft Entra ID as the internal Intelex identity provider using SAML 2.0. Internal users authenticate through the SSO application URL.
 
 Enable a separate external supplier application URL that points to the same Intelex database but uses Intelex-managed usernames and passwords. Supplier-facing emails and links must resolve to the external URL. The external portal must remain reachable regardless of whether an SIA user is on the corporate network or VPN; access is controlled by identity and record security rather than source IP.
+
+Do not implement supplier Entra SSO or Entra-driven supplier provisioning in the initial release. Maintain supplier contacts and user accounts independently in Intelex so authorized supplier administrators can activate required users without waiting for the upstream Microsoft request process. The Entra integration remains a possible future enhancement if its benefits later justify the implementation and operating cost.
 
 ## Consequences
 
@@ -65,6 +79,8 @@ Enable a separate external supplier application URL that points to the same Inte
 - Two URLs require careful email and navigation configuration.
 - Supplier passwords and account hygiene remain outside Entra controls.
 - Support teams must understand both authentication experiences.
+- Suppliers may need to authenticate again when moving between Microsoft-hosted resources and Intelex.
+- Supplier identity and lifecycle data continue to exist in more than one system.
 
 ### Follow-up and Constraints
 
@@ -72,7 +88,10 @@ Enable a separate external supplier application URL that points to the same Inte
 - Perform the information-security review for external local authentication.
 - Test internal and external email links and off-network access.
 - Apply ADR-007 inactivity controls to external accounts.
+- Reassess supplier Entra SSO only with an end-to-end design for activation, deactivation, reactivation, license control, supplier-code quality, and multiple identity providers.
 
 ## More Information
 
 - Fourth transcript: approximately 0:14:37–0:25:49.
+- Subsequent supplier workflow transcript: approximately 0:26:00–0:38:37 and 2:39:20–2:50:55.
+- ADR-083 governs the upstream supplier portal and Intelex workspace boundary.

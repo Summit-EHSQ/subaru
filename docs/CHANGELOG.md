@@ -1,5 +1,46 @@
 # ADR Revision Change Log
 
+## Subsequent Supplier Workflow Revision
+
+### Superseded ADRs
+
+- **ADR-001:** Superseded by ADR-083 after the existing SIA supplier portal was retained as the upstream entry point and Intelex was scoped as the supplier-quality workspace rather than the general external integration hub.
+
+### Updated Existing ADRs
+
+- **ADR-003:** Clarified that external responsibilities are configurable multi-member supplier/depot relationship records and normally are not maintained at part level.
+- **ADR-004:** Made internal supplier ownership roles explicitly data-driven, reusable by workflows, and distinct from part-level assignments.
+- **ADR-005:** Added contextual training extension points, external video-hosting guidance, and the governed boundary for supplier-document requirements.
+- **ADR-008:** Added distinct internal and supplier audit entry points with supplier-entity-scoped security.
+- **ADR-031:** Added a lightweight manually recorded shipment-without-approval exception while retaining future shipment-event integration.
+- **ADR-042:** Expanded part-level internal ownership to support workload balancing and potential APQP, PPAP, and NCR routing.
+- **ADR-058:** Reframed scorecards around a versioned KPI library supporting manual and automated values, facility results, company rollups, and structured trend reporting.
+- **ADR-061:** Documented existing supplier Entra guest identities and the decision not to implement supplier Entra SSO or synchronized provisioning in the initial release.
+- **ADR-076:** Added facility/depot scorecard generation and parent-company aggregation as an explicit hierarchy consumer.
+- **ADR-081:** Added independent Intelex supplier-user activation as a benefit of the local-authentication model.
+- **ADR-082:** Added Training Management to the cross-location access scope and strengthened supplier-entity isolation testing.
+
+### New ADRs
+
+- **ADR-083:** Existing SIA supplier portal retained upstream, with an Intelex-centric supplier-quality workspace using progressive disclosure and drill-down navigation.
+- **ADR-084:** Supplier-entity access supplemented by mutable lifecycle-based visibility classifications for confidential new-model and mass-production information.
+- **ADR-085:** Supplier lot approval modeled as an event-driven supplier submission and internal review rather than a calendar recurrence.
+- **ADR-086:** Monthly scorecards orchestrated through consolidated KPI entry, completion monitoring, time-boxed internal review, and supplier publication without acknowledgement.
+
+### Open Items Not Promoted to Separate Decisions
+
+- Final visibility classifications, transition authority, and the cross-application security matrix remain to be configured under ADR-084.
+- Supplier Lot Approval applicability, fields, and reuse of the shared inspection framework remain implementation follow-up under ADR-085.
+- Exact scorecard dates, reminders, escalation, missing-value rules, and delayed-publication behavior remain configuration follow-up under ADR-086.
+- Supplier Entra integration remains a possible future enhancement but is not part of the initial release.
+
+### Status
+
+- **Total ADRs:** 86
+- **Accepted:** 66
+- **Proposed:** 19
+- **Superseded:** 1
+
 ## Supplier-Management Design Revision
 
 ### Updated Existing ADRs

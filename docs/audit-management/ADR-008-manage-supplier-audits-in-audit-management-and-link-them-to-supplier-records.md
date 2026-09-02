@@ -1,12 +1,14 @@
 ---
 status: accepted
-date: 2026-07-25
+date: 2026-09-02
 decision-date: not-recorded-in-transcript
-deciders: []
-consulted:
+deciders:
   - Dave McLean
+  - Joel Frick
+consulted:
   - Eric McGregor
   - Brianne Carroll
+  - Keith Freeman
 informed:
   - Joel Frick
   - Rick Redmond
@@ -46,6 +48,8 @@ Reuses the audit architecture while preserving supplier context.
 
 Configure supplier audits within Audit Management as an adjacent audit type or extension of the audit model. Each supplier audit will link to the relevant supplier record so that it is visible from Supplier Relationship Management and available to supplier reporting and risk processes.
 
+Provide distinct internal and supplier-oriented entry points over the shared audit capability. A supplier audit carries the security context of its related supplier entity so authorized users of that supplier can access it without exposing the audit to any other supplier. Internal audits remain available through the internal entry point and location context.
+
 Supplier-specific changes must be reviewed for their impact on compliance and other audit programs before shared audit structures are modified.
 
 ## Consequences
@@ -60,14 +64,17 @@ Supplier-specific changes must be reviewed for their impact on compliance and ot
 
 - Shared audit configuration may create coupling between supplier and compliance audit requirements.
 - Supplier Portal access to audit content will require additional permission design.
+- Two entry points require consistent classification, navigation, and regression testing over the shared audit structures.
 
 ### Follow-up and Constraints
 
-- Confirm the supplier audit object type, workflow, and security model.
+- Confirm the supplier audit object type and workflow details.
 - Identify shared versus supplier-specific fields and templates.
 - Define which audit results are exposed to suppliers and which remain internal.
+- Test entity-scoped supplier access against ADR-078 and record classifications from ADR-084.
 
 ## More Information
 
 - Transcript discussion: approximately 0:27:16–0:28:46.
 - The detailed supplier audit design was deferred to a later discussion.
+- Subsequent supplier workflow transcript: approximately 2:36:10–2:38:00.

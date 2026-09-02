@@ -59,7 +59,7 @@
 | ADR-055 | Create Audit-Driven Compliance NCRs Instead of Isolated Finding Records | Audit Management | Non-Conformance Management, Corrective Action Management | Proposes creating compliance NCRs from audit questions so internal issues roll into the enterprise NCR framework, with Findings retained only as an interim rollout fallback. |
 | ADR-056 | Use a Common Internal NCR Workflow with Source-Specific Triage and Cause-Analysis Rules | Non-Conformance Management | Audit Management, Environmental Management, Safety Management | Uses one broad internal problem-solving lifecycle while allowing audit-originated records to skip triage and elevated issues to require deeper cause analysis. |
 | ADR-057 | Link Internal NCRs to Requirements Through a Phased Compliance Relationship | Non-Conformance Management | Audit Management, Compliance Tracking, Permit Management | Uses audit-question or text references initially, then replaces them with structured Compliance Tracking and Permit relationships when Phase Three repositories are available. |
-| ADR-058 | Build Supplier Scorecards as Scheduled KPI Snapshots from Integrated Source Data | Supplier Scorecard | Supplier Relationship Management, Non-Conformance Management, Production Part Approval Process (PPAP), Warranty Claims, Scrap Data, Parts Consumption | Generates supplier-period scorecards from integrated sources, including PPM calculated from NCR dispositions and monthly parts consumption. |
+| ADR-058 | Build Supplier Scorecards as Scheduled, Versioned KPI Snapshots | Supplier Scorecard | Supplier Relationship Management, Non-Conformance Management, Production Part Approval Process (PPAP), Warranty Claims, Scrap Data, Parts Consumption | Generates facility- and company-level supplier-period snapshots from a versioned KPI library using manual and integrated source data. |
 | ADR-059 | Model Warranty Analysis Reports as a Separate Recurring Supplier Obligation | Warranty Analysis | Supplier Relationship Management, Supplier Portal, Warranty Claims, Supplier Scorecard | Proposes a separate monthly Warranty Analysis process over a daily supplier-secured warranty-claim feed. |
 | ADR-060 | Provision Employee Records Through a Resilient SuccessFactors SFTP Feed | Employee Management | SAP SuccessFactors, Intelex Platform | Uses a Subaru-hosted SFTP feed of current SuccessFactors employee states, with a rolling change window, to provision and update Intelex employees and users. |
 | ADR-061 | Use Entra ID SSO for Internal Users and a Separate Local-Authentication Supplier Portal | Intelex Platform | Supplier Portal, Employee Management | Uses Microsoft Entra ID SAML SSO for internal users and a separate external URL with local credentials over the same Intelex database for suppliers. |
@@ -83,32 +83,36 @@
 | ADR-079 | Govern Supplier Eligibility Through Auditable Lifecycle Statuses | Supplier Relationship Management | Non-Conformance Management, Supplier Scorecard, Supplier Surveys, Audit Management, Advanced Product Quality Planning (APQP), Production Part Approval Process (PPAP), Reporting | Uses governed statuses and auditable transition events to drive downstream eligibility while preserving history and reactivation. |
 | ADR-080 | Use Reusable Campaigns for Supplier Information Requests | Supplier Relationship Management | Supplier Surveys, Supplier Portal, Notifications, Reporting | Proposes configurable, role-targeted campaigns for shutdown surveys, profile validation, reminders, and future information requests. |
 | ADR-081 | Delegate Supplier User Administration with Soft License Controls | Supplier Relationship Management | Supplier Portal, Intelex Platform, Notifications | Proposes supplier-managed contacts and access with projected allocation warnings, SIA override, and secure password-link activation. |
-| ADR-082 | Use One Profile with Supplemental Location-Group Access for Cross-Structure Internal Users | Intelex Platform | Supplier Relationship Management, Document Control, Audit Management | Proposes one primary internal profile plus supplemental location-group access instead of enterprise placement or duplicate profiles. |
+| ADR-082 | Use One Profile with Supplemental Location-Group Access for Cross-Structure Internal Users | Intelex Platform | Supplier Relationship Management, Document Control, Training Management, Audit Management | Proposes one primary internal profile plus supplemental location-group access instead of enterprise placement or duplicate profiles. |
+| ADR-083 | Retain the Existing Supplier Portal as the Upstream Entry Point and Use Intelex as the Supplier Quality Workspace | Supplier Relationship Management | Supplier Portal, Intelex Platform, Advanced Product Quality Planning (APQP), Production Part Approval Process (PPAP), Non-Conformance Management, Audit Management, Supplier Scorecard | Retains the existing SIA supplier portal upstream, replaces its IntelliQuest link with Intelex, and uses a progressive-disclosure Intelex workspace for supplier-quality work. |
+| ADR-084 | Apply Mutable Visibility Classifications to Supplier-Related Records | Supplier Relationship Management | Supplier Portal, Advanced Product Quality Planning (APQP), Production Part Approval Process (PPAP), Non-Conformance Management, Audit Management | Combines supplier-entity scope with mutable lifecycle classifications and roles to protect new-model information and expand access during handover. |
+| ADR-085 | Manage Supplier Lot Approval as an Event-Driven Supplier Submission | Supplier Relationship Management | Supplier Portal, Shipping, Receiving and Inspection (Pilot Part Data) | Lets selected suppliers submit evidence for actual production lots and routes each submission for internal review instead of creating calendar-based tasks. |
+| ADR-086 | Orchestrate Monthly Supplier Scorecard Data Entry, Review, and Publication | Supplier Scorecard | Supplier Relationship Management, Supplier Portal, Intelex Platform Workflow, Reporting | Automates monthly draft creation, consolidated KPI contribution tasks, completion monitoring, time-boxed internal review, and supplier publication. |
 
 ## Latest Revision Summary
 
-- **Existing ADRs refined in this revision:** ADR-001, ADR-002, ADR-003, ADR-005, ADR-006, and ADR-007.
-- **New ADRs created in this revision:** ADR-076 through ADR-082.
-- **Superseded ADRs:** None. Changed directions were incorporated into the existing ADR numbers.
-- **Status changes:** None in this revision.
-- **Total ADRs:** 82.
-- **Current status distribution:** 63 accepted and 19 proposed ADRs.
+- **Existing ADRs refined in this revision:** ADR-003, ADR-004, ADR-005, ADR-008, ADR-031, ADR-042, ADR-058, ADR-061, ADR-076, ADR-081, and ADR-082.
+- **New ADRs created in this revision:** ADR-083 through ADR-086.
+- **Superseded ADRs:** ADR-001 is superseded by ADR-083.
+- **Status changes:** ADR-001 changed from accepted to superseded.
+- **Total ADRs:** 86.
+- **Current status distribution:** 66 accepted, 19 proposed, and 1 superseded ADR.
 
 ### Material Refinements to Existing ADRs
 
-- Supplier Relationship Management is explicitly the shared supplier-data hub as well as the portal anchor.
-- Award creates an active supplier record; template-generated completeness work no longer implies an onboarding approval gate.
-- External contacts are separated from authenticated users and reviewed through actual profile data rather than a generic survey assertion.
-- Supplier portal inactivity control now uses configurable role-based thresholds and a global fallback instead of a fixed one-year rule.
+- Supplier and internal responsibilities are represented through configurable multi-user roles rather than fixed employee fields.
+- Supplier onboarding supports contextual job aids and externally hosted video while limiting the initial document capability to governed requirements.
+- Supplier audits use distinct internal and supplier entry points over shared Audit Management capabilities.
+- PPAP compliance supports a lightweight shipment-without-approval exception while future event integration remains proposed.
+- Supplier scorecards use a versioned KPI catalogue with manual and integrated values, facility-level results, parent rollups, and structured trends.
+- Supplier Entra SSO was rejected for the initial release in favor of independent Intelex supplier-user administration.
 
 ### New Architectural Areas
 
-- Parent-company and child-facility or depot supplier modeling.
-- Reviewed manual post-award intake and initial bulk migration.
-- Supplier-entity-scoped external access.
-- Status-driven eligibility, auditable transitions, and history-preserving reactivation.
-- Reusable supplier information-request campaigns and soft license-allocation controls.
-- Cross-structure internal access through one profile and supplemental location groups.
+- Existing SIA supplier portal retained as the upstream entry point, with Intelex serving as the supplier-quality workspace.
+- Mutable record classifications for new-model and mass-production visibility.
+- Event-driven supplier lot submissions and internal approval routing.
+- Governed monthly supplier-scorecard contribution, review, and publication workflow.
 
 ## Source and Status Notes
 
