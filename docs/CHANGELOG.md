@@ -1,5 +1,87 @@
 # ADR Revision Change Log
 
+## Supplier NCR and Warranty Workflow Revision
+
+### Superseded or Removed ADRs
+
+- No ADR was removed or superseded. New discussion refined existing architectural boundaries rather than invalidating the decisions they represent.
+
+### Updated Existing ADRs
+
+- **ADR-003 and ADR-004:** Added distinct supplier warranty contacts and role-seat assignment for long-lived internal responsibilities.
+- **ADR-046:** Made the supplier NCR parent-and-typed-child object structure explicit.
+- **ADR-048:** Added problem-profile, impact-level, certified-shipment, and third-party-sort requirement activation.
+- **ADR-049:** Replaced post-release supplier transfer with cancellation or closure and creation of a correctly secured replacement NCR.
+- **ADR-050:** Defined supplier responses as typed child forms rather than internal action plans and grouped root-cause methods in one approval container.
+- **ADR-051:** Added conditional final approval, scheduled child follow-ups, delayed activation, a non-operational holding assignment, and automatic closure after the last check.
+- **ADR-052:** Separated generated 7-4 artifacts from later supplier-visit and meeting execution.
+- **ADR-053:** Replaced the distinct WCAR workflow with WCAR-specific configuration inside the shared supplier-issue workflow framework.
+- **ADR-056:** Added type-specific CAR determination and linked the environmental scoring decision.
+- **ADR-059:** Added claim-driven monthly eligibility, dedicated chart uploads, overdue and month-end incomplete handling, role routing, and concurrent API development.
+- **ADR-088:** Recorded that SQDIIR and quality-CAR initial-release scope remains subject to schedule and budget review without changing the target architecture.
+
+### New ADRs
+
+- **ADR-092:** Parts may relate to both a manufacturer and a sequencing or service supplier through role-qualified relationships.
+- **ADR-093:** RMA is a disposition-linked child workflow; third-party-sort instructions are modeled separately.
+- **ADR-094:** Supplier-issue records use simple identifiers and normalized searchable business attributes.
+- **ADR-095:** Supplier visits and 7-4 activity are proposed for Meetings Management rather than a PIR workflow branch.
+- **ADR-096:** Internal NCR types use different CAR-determination mechanisms, including scored environmental escalation.
+
+### Open Items Not Promoted to Separate Decisions
+
+- Exact environmental assessment arithmetic and threshold governance require confirmation against the controlled evaluation form.
+- The no-defect third-party-sort RMA treatment and quantity-reconciliation rules require detailed configuration design.
+- Meetings Management licensing, supplier security inheritance, and product fit require confirmation before ADR-095 can be accepted.
+- Warranty Analysis licensing, final scope allocation, source-feed contract, and exact schedule remain open under ADR-059.
+- SQDIIR and internal quality-CAR inclusion in the initial release remains subject to prioritization after detailed estimation.
+
+### Status
+
+- **Total ADRs:** 96
+- **Accepted:** 74
+- **Proposed:** 20
+- **Superseded:** 2
+
+## Non-Conformance Design Revision
+
+### Superseded ADRs
+
+- **ADR-055:** Superseded by ADR-087. Detailed design retained Audit Findings as the audit-native records and uses a related CAR when structured corrective action is required.
+
+### Updated Existing ADRs
+
+- **ADR-054:** Removed compliance NCRs from the standalone Internal NCR classifications and added explicit linked-record handling when an internal event requires supplier response.
+- **ADR-056:** Reframed the common internal architecture around type-driven NCR workflows and a shared CAR lifecycle without converting Audit Findings into NCR records.
+- **ADR-057:** Applied phased requirement references to Audit Findings, Internal NCRs, and related CARs.
+- **ADR-059:** Reconfirmed Warranty Analysis as a separate recurring supplier obligation and an IntelliQuest decommissioning dependency.
+- **ADR-061:** Classified on-site contractors with SIA-managed identities as restricted internal-authentication users rather than supplier-portal users.
+- **ADR-078:** Made supplier-data security explicitly independent of the SIA location hierarchy.
+- **ADR-082:** Limited supplemental location-group behavior to internally location-governed data and deferred supplier visibility to ADR-078 and ADR-084.
+
+### New ADRs
+
+- **ADR-087:** Audit Findings remain distinct from NCRs and may launch the shared CAR process.
+- **ADR-088:** SQDIIR uses a separate initial-investigation and containment record with sequential review and optional CAR linkage.
+- **ADR-089:** Internal CAR uses a source-linked parent with structured analysis, root-cause, action-plan, accountability, implementation, and team relationships.
+- **ADR-090:** Internal CAR actions remain inactive until plan approval, and implementation verification is separated from effectiveness verification.
+- **ADR-091:** Incidents and NCRs remain separate but may be linked when investigation identifies a distinct non-conformance.
+
+### Open Items Not Promoted to Separate Decisions
+
+- Final SQDIIR-to-CAR criteria, final-review rejection routing, and IPC-only field ownership require procedural confirmation.
+- Quality-specific CAR scope and fixed or repeated effectiveness-review intervals remain deferred for a dedicated QC session.
+- Exact CAR source cardinality, snapshot behavior, implementation-role authority, and effectiveness reactivation lead times require configuration design.
+- Detailed incident-to-NCR launch rules remain for the Incident Management workshop.
+- Training evidence for SIA-identified contractors remains unresolved beyond the authentication and security boundary.
+
+### Status
+
+- **Total ADRs:** 91
+- **Accepted:** 70
+- **Proposed:** 19
+- **Superseded:** 2
+
 ## Subsequent Supplier Workflow Revision
 
 ### Superseded ADRs

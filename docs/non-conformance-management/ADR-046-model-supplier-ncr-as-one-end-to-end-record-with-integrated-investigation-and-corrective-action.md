@@ -1,6 +1,6 @@
 ---
 status: accepted
-date: 2026-07-25
+date: 2026-09-02
 decision-date: not-recorded-in-transcript
 deciders:
   - Luke Filippo
@@ -22,7 +22,7 @@ secondary-applications:
 
 ## Context and Problem Statement
 
-The Intelex baseline separates a simple NCR problem record from an optional Corrective Action Request investigation. The current supplier-quality process treats the problem and its progressive response as one continuous record, with response depth varying by risk. Splitting the investigation into a separate CAR would create an unnatural handoff and complicate supplier collaboration.
+The Intelex baseline separates a simple NCR problem record from an optional Corrective Action Request investigation. The current supplier-quality process treats the problem and its progressive response as one continuous case, with response depth varying by risk. The case can contain multiple containments, dispositions, RMAs, response sections, cause analyses, and follow-ups. Splitting the investigation into a separate CAR would create an unnatural handoff, while placing every repeating component directly on one form would limit traceability and reporting.
 
 ## Decision Drivers
 
@@ -47,9 +47,9 @@ Matches the current process and preserves one end-to-end case.
 
 ## Decision Outcome
 
-Configure supplier NCR as the governing parent record from initial problem intake through final closure. The record includes occurrence history, risk analysis, supplier response requirements, containment, root cause, corrective action, evidence, internal approvals, tasks, returns, and follow-up or effectiveness checks as applicable.
+Configure supplier NCR as the governing parent record from initial problem intake through final closure. Use typed child records for repeating or independently routed components, including occurrences, containments, dispositions, RMAs, supplier response sections, cause-analysis content, and follow-up checks. The parent maintains the governing supplier, part, risk tier, overall state, security context, and end-to-end history.
 
-Corrective-action capabilities may be implemented through sections, child records, or workflow components, but they remain part of the supplier NCR lifecycle rather than requiring a separate user-facing CAR case.
+Corrective-action capabilities remain part of the supplier NCR lifecycle rather than requiring a separate user-facing CAR case. Child records may have their own completeness or review state, but their visibility, validation, and closure behavior are coordinated by the parent supplier NCR.
 
 ## Consequences
 
@@ -75,3 +75,4 @@ Corrective-action capabilities may be implemented through sections, child record
 ## More Information
 
 - Third transcript: approximately 1:17:33–1:19:11 and 2:03:31–2:10:32.
+- Supplier NCR and warranty workflow transcript: approximately 0:38:13–1:01:53, 1:17:40–1:23:01, and 2:40:25–2:45:39.

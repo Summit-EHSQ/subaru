@@ -18,6 +18,7 @@ secondary-applications:
   - Supplier Portal
   - Production Part Approval Process (PPAP)
   - Process Change Requests (PCR)
+  - Non-Conformance Management
 ---
 
 # ADR-004: Centralize Internal SIA Supplier Ownership Roles with Flexible Reassignment
@@ -66,6 +67,8 @@ Represent the role catalogue and its supplier-specific membership as configurabl
 
 Applications such as PPAP and PCR will use the role assignments to populate responsible engineers, buyers, supplier-management representatives, and other reviewers. A role may contain multiple people where responsibility is legitimately shared. When the role represents one approval slot, the first authorized member to complete the response satisfies that role's approval while the system records the individual who acted.
 
+Long-lived work, including supplier-NCR follow-ups, will be assigned through the supplier-specific responsibility role rather than permanently to the person occupying it when the task is created. When role membership changes, the new occupant inherits the open responsibility and the departing occupant no longer retains it.
+
 An internal role assignment designates operational responsibility; it does not by itself prevent other authorized users from viewing supplier information.
 
 ## Consequences
@@ -96,3 +99,4 @@ An internal role assignment designates operational responsibility; it does not b
 - First transcript: approximately 1:26:53–1:34:24.
 - Second transcript: approximately 2:37:07–2:40:32.
 - Subsequent supplier workflow transcript: approximately 1:09:17–1:33:16.
+- Supplier NCR and warranty workflow transcript: approximately 1:15:54–1:16:39 and 2:16:09–2:18:34.

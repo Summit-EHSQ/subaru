@@ -1,6 +1,6 @@
 ---
 status: accepted
-date: 2026-07-25
+date: 2026-09-02
 decision-date: not-recorded-in-transcript
 deciders:
   - Luke Filippo
@@ -48,7 +48,7 @@ Balances security, operational correction, and supplier collaboration.
 
 Supplier NCRs remain internal during intake, duplicate review, supplier and part confirmation, occurrence setup, and initial risk analysis. An explicit submit-to-supplier action records the release milestone, resolves authorized portal contacts, and activates the applicable supplier response.
 
-Before release, authorized users may correct the part and supplier. After release, the supplier relationship is not silently edited. A required supplier correction must use a controlled action that revokes prior access, preserves the audit trail, re-evaluates record content, and explicitly releases the case to the new supplier.
+Before release, authorized users may correct the part and supplier. After release, the responsible supplier does not change because that relationship governs record security. If investigation identifies a different responsible supplier, cancel or close the incorrectly assigned NCR and create a new NCR for the correct supplier. Relate the replacement to the prior record where useful for internal traceability; do not transfer the supplier-facing record between suppliers.
 
 ## Consequences
 
@@ -61,12 +61,12 @@ Before release, authorized users may correct the part and supplier. After releas
 ### Negative
 
 - Internal delay can slow supplier containment if intake is not timely.
-- Post-release supplier correction requires specialized logic.
+- Post-release supplier correction requires cancellation and recreation.
 - Portal membership must be accurate at release.
 
 ### Follow-up and Constraints
 
-- Define the secure supplier-correction workflow.
+- Define cancellation reasons and the relationship between an incorrectly assigned record and its replacement.
 - Define release validation and required data.
 - Define portal membership and notification behavior.
 - Define reporting on internal intake time versus supplier response time.
@@ -74,3 +74,4 @@ Before release, authorized users may correct the part and supplier. After releas
 ## More Information
 
 - Third transcript: approximately 1:20:49–1:24:51 and 1:35:44–1:38:27.
+- Supplier NCR and warranty workflow transcript: approximately 0:22:30–0:27:51.

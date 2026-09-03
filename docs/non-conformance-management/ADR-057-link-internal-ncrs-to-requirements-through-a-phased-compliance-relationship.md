@@ -1,6 +1,6 @@
 ---
 status: accepted
-date: 2026-07-25
+date: 2026-09-02
 decision-date: not-recorded-in-transcript
 deciders:
   - Eric McGregor
@@ -23,7 +23,7 @@ secondary-applications:
 
 ## Context and Problem Statement
 
-Internal environmental and compliance NCRs may relate to statutes, permits, ISO clauses, or management-system requirements. The full Compliance Tracking and Permit Management repositories are planned for a later phase. Requiring those repositories before NCR launch would delay the process, while a permanent free-text approach would limit reporting and applicability context.
+Internal environmental or safety NCRs and compliance Audit Findings may relate to statutes, permits, ISO clauses, or management-system requirements. The full Compliance Tracking and Permit Management repositories are planned for a later phase. Requiring those repositories before issue management can launch would delay the process, while a permanent free-text approach would limit reporting and applicability context.
 
 ## Decision Drivers
 
@@ -48,9 +48,9 @@ Provides immediate context and a clear migration path.
 
 ## Decision Outcome
 
-For audit-generated compliance NCRs, inherit or link the originating audit question and its cited clause or requirement. For other internal NCRs in early phases, capture a regulatory, permit, standard, or management-system reference through controlled text or a limited lookup.
+For compliance Audit Findings, inherit or link the originating audit question and its cited clause or requirement. For independently raised internal NCRs in early phases, capture a regulatory, permit, standard, or management-system reference through controlled text or a limited lookup.
 
-When Compliance Tracking and Permit Management are implemented in Phase Three, add structured relationships from Internal NCR to applicable requirement and permit records. Preserve early text references for history and migrate them where practical; do not block the early NCR rollout on full regulatory-content availability.
+When Compliance Tracking and Permit Management are implemented in Phase Three, add structured relationships from Audit Findings, Internal NCRs, and their related CARs to applicable requirement and permit records as appropriate. Preserve early text references for history and migrate them where practical; do not block the early rollout on full regulatory-content availability.
 
 ## Consequences
 
@@ -76,3 +76,5 @@ When Compliance Tracking and Permit Management are implemented in Phase Three, a
 ## More Information
 
 - Third transcript: approximately 2:39:28–2:44:25 and 2:56:39–2:58:33.
+- Subsequent non-conformance design transcript: approximately 2:18:12–2:26:41.
+- ADR-087 governs the decision to retain compliance issues as Audit Findings rather than create audit-driven compliance NCR records.

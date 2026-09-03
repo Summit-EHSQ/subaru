@@ -1,6 +1,6 @@
 ---
 status: accepted
-date: 2026-07-25
+date: 2026-09-02
 decision-date: not-recorded-in-transcript
 deciders:
   - Luke Filippo
@@ -47,9 +47,11 @@ Preserves timing control and collaborative flexibility.
 
 ## Decision Outcome
 
-Configure separate approval components for containment and subsequent root-cause or corrective-action responses, with independent due dates and supplier-submission timestamps. Required fields must be complete before a component is submitted, but suppliers may save drafts and continue working on visible later sections.
+Configure typed supplier-response child forms for containment and subsequent corrective-action responses, with independent due dates and supplier-submission timestamps. These forms collect prescribed information and are not standard internal Action Plan records; Intelex does not task-manage the supplier's internal problem-solving team. Required fields must be complete before a component is submitted, but suppliers may save drafts and continue working on visible later sections.
 
-Submitting a component activates its Subaru approval. Rejection records a required reason in an append-only history and returns the relevant response for revision without erasing prior submissions. Approval of one component does not imply approval of the others. Suppliers are not required to manage their own internal action assignments in Intelex, although SIA may assign discrete portal tasks to named supplier contacts when needed.
+Submitting a component activates its SIA approval while the supplier retains responsibility for the parent NCR and may continue other required work. Rejection records a required reason in an append-only history and returns the relevant response for revision without erasing prior submissions. Approval of one component does not imply approval of the others.
+
+For required root-cause work, create one root-cause-analysis container holding the required methods or external evidence. The initial configuration may pre-create Five Whys and optionally Fishbone or Timeline placeholders. Route the complete container through one approval rather than approving each method separately.
 
 ## Consequences
 
@@ -76,3 +78,4 @@ Submitting a component activates its Subaru approval. Rejection records a requir
 ## More Information
 
 - Third transcript: approximately 1:40:41–1:48:48 and 1:50:37–1:56:59.
+- Supplier NCR and warranty workflow transcript: approximately 1:07:29–1:48:57.

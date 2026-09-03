@@ -56,6 +56,8 @@ Derive an external portal user's supplier-data scope from the supplier entities 
 
 Portal roles and application permissions may further restrict what the user can do, but they must not expand visibility beyond the related supplier-company and facility scope. Relationship changes therefore become security-relevant changes and must be tested and auditable.
 
+Do not derive supplier-record visibility from the user's location in the SIA organization hierarchy. Where a location value is technically mandatory for a supplier user or supplier record, default it to a consistent administrative location and do not use that value as the supplier-data visibility filter. Internal access to supplier applications is likewise granted through application roles and any record classifications from ADR-084 rather than by placing suppliers beneath internal departments in the location tree.
+
 ## Consequences
 
 ### Positive
@@ -63,12 +65,14 @@ Portal roles and application permissions may further restrict what the user can 
 - Supports least-privilege facility access and legitimate corporate oversight.
 - Avoids duplicate accounts for multi-facility users.
 - Makes access scope consistent with the supplier object model.
+- Avoids introducing artificial supplier branches into the location hierarchy.
 
 ### Negative
 
 - Incorrect relationships can expose excess data or hide required records.
 - Parent-company assignments provide broad access and require deliberate governance.
 - Relationship changes may affect several downstream applications immediately.
+- Supplier applications require explicit security rules because ordinary location visibility does not provide the boundary.
 
 ### Follow-up and Constraints
 
@@ -76,9 +80,10 @@ Portal roles and application permissions may further restrict what the user can 
 - Confirm how relationship changes affect open workflow access.
 - Test permissions across Supplier Portal applications and reporting.
 - Define security-review and audit reporting for broad parent access.
+- Verify that mandatory location values do not grant or restrict supplier-record access.
 
 ## More Information
 
 - Latest supplier-management design transcript: approximately 0:28:46–0:33:45.
+- Subsequent non-conformance design transcript: approximately 0:03:14–0:17:49.
 - ADR-003 separates contact identity from portal-user provisioning; this ADR governs the resulting data scope.
-

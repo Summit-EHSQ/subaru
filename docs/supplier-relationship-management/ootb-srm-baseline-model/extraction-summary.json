@@ -1,0 +1,111 @@
+{
+  "package": {
+    "Id": "3325fc66-fd29-47a8-9d93-70a10035aba2",
+    "Name": "SIA - OOTB SRM Export",
+    "Version": "1.0.0.0",
+    "VersionId": "9d7880d0-54fd-4245-bce4-2f200a698f20"
+  },
+  "counts": {
+    "record_objects": 49,
+    "lookup_objects": 5,
+    "scalar_fields": 192,
+    "reference_fields": 133,
+    "owned_fields": 325,
+    "typed_fields": 325,
+    "inheritance_edges": 11,
+    "canonical_logical_relationships": 109,
+    "graph_relations": 2795
+  },
+  "object_type_counts": {
+    "ReferenceOnly": 4396,
+    "ApplicationTargetRequirement": 7,
+    "PlatformVersionTargetRequirement": 1,
+    "WorkflowPackageItemData": 6,
+    "BusinessObjectPackageItemData": 325,
+    "MetObjectPackageItemData": 49,
+    "MetReferencePropertyPackageItemData": 133,
+    "MetPropertyPackageItemData": 192,
+    "SysConfigurableViewPackageItemData": 85,
+    "SubGraphPackageItemData": 20
+  },
+  "unresolved": {
+    "graph_references": [],
+    "field_ownership": [],
+    "field_types": [],
+    "ownership_conflicts": [],
+    "type_conflicts": [],
+    "parent_conflicts": [],
+    "inheritance_cycles": [],
+    "duplicate_json_ids": [],
+    "duplicate_object_stable_ids": [],
+    "duplicate_field_stable_ids": []
+  },
+  "inheritance": [
+    {
+      "parent": "Abstract Lookup Value",
+      "parent_internal": "FragApplication_AbsLookupValueObject",
+      "child": "Cost of Quality",
+      "child_internal": "ComplyFramework_CoPQLookupObject"
+    },
+    {
+      "parent": "Subject",
+      "parent_internal": "SysSubjectEntity",
+      "child": "Employee",
+      "child_internal": "SysEmployeeEntity"
+    },
+    {
+      "parent": "Product Abstract",
+      "parent_internal": "FragApplication_ProductObject",
+      "child": "Item",
+      "child_internal": "ProductMgmt_ItemObject"
+    },
+    {
+      "parent": "Abstract Lookup Value",
+      "parent_internal": "FragApplication_AbsLookupValueObject",
+      "child": "Product Management - Status",
+      "child_internal": "ProductMgmt_PMStatusObject"
+    },
+    {
+      "parent": "Product Abstract",
+      "parent_internal": "FragApplication_ProductObject",
+      "child": "Provisioned Good/Service",
+      "child_internal": "SupplierMgmt_SupplierItemObject"
+    },
+    {
+      "parent": "Abstract Lookup Value",
+      "parent_internal": "FragApplication_AbsLookupValueObject",
+      "child": "Revision Type",
+      "child_internal": "ProductMgmt_RevisionTypeObject"
+    },
+    {
+      "parent": "CAR Abstract",
+      "parent_internal": "ComplyFramework_CARAbstractObject",
+      "child": "SCAR",
+      "child_internal": "CAR_SCARObject"
+    },
+    {
+      "parent": "Supplier Abstract",
+      "parent_internal": "SupplierMgmt_SupAbstractObject",
+      "child": "Supplier Facility",
+      "child_internal": "SupplierMgmt_FacilityObject"
+    },
+    {
+      "parent": "Provisioned Good/Service",
+      "parent_internal": "SupplierMgmt_SupplierItemObject",
+      "child": "Supplier Item Level N",
+      "child_internal": "SupplierMgmt_SupItemLevelNObject"
+    },
+    {
+      "parent": "Abstract Lookup Value",
+      "parent_internal": "FragApplication_AbsLookupValueObject",
+      "child": "Supplier Item Status",
+      "child_internal": "ProductMgmt_SupplItemStatusObject"
+    },
+    {
+      "parent": "Supplier Abstract",
+      "parent_internal": "SupplierMgmt_SupAbstractObject",
+      "child": "Supplier Parent Company",
+      "child_internal": "SupplierMgmt_ParentCompnyObject"
+    }
+  ]
+}

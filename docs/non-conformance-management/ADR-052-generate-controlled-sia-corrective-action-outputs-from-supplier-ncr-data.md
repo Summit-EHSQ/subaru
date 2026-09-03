@@ -1,6 +1,6 @@
 ---
 status: accepted
-date: 2026-07-25
+date: 2026-09-02
 decision-date: not-recorded-in-transcript
 deciders:
   - Luke Filippo
@@ -15,6 +15,7 @@ primary-application: Non-Conformance Management
 secondary-applications:
   - Document Generation
   - Supplier Portal
+  - Meetings Management
 ---
 
 # ADR-052: Generate Controlled SIA Corrective-Action Outputs from Supplier NCR Data
@@ -48,6 +49,8 @@ Preserves recognizable outputs while keeping one source of structured data.
 
 Use the supplier NCR as the source of truth for problem, containment, cause, corrective action, ownership, dates, and evidence metadata. Provide controlled document-generation templates that populate the SIA 7-4 and other materially overlapping outputs from the NCR.
 
+Treat the generated 7-4 artifact separately from the later supplier-visit and follow-up activity. The document remains related to the governing NCR, while meetings, visit preparation, minutes, and visit-generated actions are governed by ADR-095.
+
 Where a document contains unique fields not suitable for the NCR, the generated output may leave clearly identified completion areas or collect those fields before generation. The generated artifact is retained with the NCR and identifies the source record and generation version.
 
 ## Consequences
@@ -74,3 +77,5 @@ Where a document contains unique fields not suitable for the NCR, the generated 
 ## More Information
 
 - Third transcript: approximately 2:06:15–2:10:32.
+- Supplier NCR and warranty workflow transcript: approximately 2:18:44–2:32:22.
+- ADR-095 governs supplier visits and related meeting activity.

@@ -1,6 +1,6 @@
 ---
 status: accepted
-date: 2026-07-25
+date: 2026-09-02
 decision-date: not-recorded-in-transcript
 deciders:
   - Luke Filippo
@@ -47,9 +47,11 @@ Preserves governance while reducing manual orchestration.
 
 ## Decision Outcome
 
-When all required supplier response components and related closure prerequisites are complete, the system will automatically activate group-leader closure review where required. A rejection returns the NCR to the responsible engineer with a visible workflow status, rejection reason, and dashboard item.
+When all required supplier response components, root-cause analysis, and related closure prerequisites are complete, the system will automatically activate group-leader closure review where required. The final approval is conditional on configured risk factors, defect categories, reporting areas, or other subtype rules rather than applying to every PRC. A rejection returns the NCR to the responsible engineer with a visible workflow status, rejection reason, and dashboard item.
 
-If the NCR source, type, or governing procedure requires follow-up, the system creates the appropriate follow-up or effectiveness-check record with its target date rather than relying on manual recognition. Failed or inconclusive checks may generate another follow-up. Final closure occurs only when no further follow-up is required.
+If the NCR source, type, or governing procedure requires follow-up, the system creates the appropriate scheduled child check with its target date rather than relying on manual recognition. Prescribed CAR intervals and custom 7-4 schedules are both supported. Each check activates at a configured lead time before its due date and routes through the supplier-specific internal role.
+
+While checks remain pending, place the parent in a pending-follow-up state assigned to a non-operational holding subject so it does not remain on an engineer's active task list. The last completed check closes the parent automatically. Failed or inconclusive checks route for management determination of another check or a new escalation.
 
 ## Consequences
 
@@ -76,3 +78,4 @@ If the NCR source, type, or governing procedure requires follow-up, the system c
 ## More Information
 
 - Third transcript: approximately 1:57:07–2:03:26.
+- Supplier NCR and warranty workflow transcript: approximately 2:02:07–2:18:34.

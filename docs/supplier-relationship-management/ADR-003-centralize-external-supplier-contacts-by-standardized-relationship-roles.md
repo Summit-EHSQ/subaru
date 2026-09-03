@@ -21,6 +21,8 @@ secondary-applications:
   - Supplier Portal
   - Production Part Approval Process (PPAP)
   - Process Change Requests (PCR)
+  - Non-Conformance Management
+  - Warranty Analysis
 ---
 
 # ADR-003: Centralize External Supplier Contacts by Standardized Relationship Roles
@@ -31,7 +33,7 @@ Different SIA departments currently maintain separate supplier contact lists and
 
 The PPAP and PCR discussions further established that role assignments must be reusable by workflows. Creating a unique assignment role for every PPAP would generate an unsustainable number of roles. The reusable boundary is the supplier or supplier depot, with process-specific responsibilities such as PPAP coordination represented as standardized relationship roles.
 
-The subsequent supplier-management discussion confirmed that these roles should be maintained as configurable relationship records rather than as a new fixed field for every responsibility. External assignments normally remain at supplier or depot level; maintaining supplier contacts separately for every part would create disproportionate administration.
+The subsequent supplier-management discussion confirmed that these roles should be maintained as configurable relationship records rather than as a new fixed field for every responsibility. External assignments normally remain at supplier or depot level; maintaining supplier contacts separately for every part would create disproportionate administration. Supplier non-conformance design also confirmed that warranty work may need a different supplier contact from plant-quality work, even when one person currently performs both responsibilities.
 
 ## Decision Drivers
 
@@ -68,7 +70,7 @@ Maintain centralized external supplier contacts linked to each supplier and, whe
 
 Maintain contact identity separately from portal access. Every external portal user must originate from a supplier contact, but not every contact receives an account. A contact without portal access may receive email information or appear in the address book, but must not be assigned work that requires authentication and action in Intelex.
 
-Expected roles include commercial, program, quality, logistics, development, mass-production, and PPAP coordinator responsibilities. The role set provides expected placeholders rather than making every role mandatory for every supplier. A contact may occupy more than one role, and a role may contain multiple contacts.
+Expected roles include commercial, program, quality, warranty, logistics, development, mass-production, and PPAP coordinator responsibilities. The role set provides expected placeholders rather than making every role mandatory for every supplier. A contact may occupy more than one role, and a role may contain multiple contacts.
 
 PPAP and related supplier work will resolve recipients from these stable supplier or depot roles rather than creating a role for each transaction. A process that requires a populated role must prevent submission when no active contact is assigned. Where the workflow engine supports role-based responsibility, changing role membership should transfer access and responsibility for open and future work without manually editing each transaction.
 
@@ -107,3 +109,4 @@ For each workflow, define whether the resolved role assigns or notifies every ac
 - Second transcript: approximately 1:26:13–1:35:58 and 2:37:07–2:39:18.
 - Latest supplier-management design transcript: approximately 0:28:46–0:33:45 and 2:04:40–2:14:49.
 - Subsequent supplier workflow transcript: approximately 1:09:17–1:31:57.
+- Supplier NCR and warranty workflow transcript: approximately 1:02:30–1:07:57 and 2:34:09–2:35:48.

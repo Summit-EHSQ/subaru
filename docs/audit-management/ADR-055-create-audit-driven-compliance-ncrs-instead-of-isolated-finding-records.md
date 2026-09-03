@@ -1,6 +1,6 @@
 ---
-status: proposed
-date: 2026-07-25
+status: superseded by ADR-087
+date: 2026-09-02
 decision-date: not-recorded-in-transcript
 deciders:
   - Eric McGregor
@@ -77,3 +77,4 @@ If the phase-one audit timeline cannot accommodate the compliance NCR object, us
 ## More Information
 
 - Third transcript: approximately 2:17:04–2:29:48 and 2:44:37–2:46:20. The preferred direction was clear, but timing and stakeholder review remained open.
+- Superseded by ADR-087 after the subsequent design workshop retained Audit Findings as the audit-native record and made CAR the shared corrective-action mechanism.

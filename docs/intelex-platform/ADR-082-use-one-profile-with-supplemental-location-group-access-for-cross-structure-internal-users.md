@@ -22,7 +22,7 @@ secondary-applications:
 
 ## Context and Problem Statement
 
-Some internal users work primarily with supplier data but occasionally need access to records on the internal side of the location structure, including documents, policies, procedures, training, or audits. Assigning those users at the top enterprise location may expose more data than required. Maintaining separate profiles for each side of the structure would duplicate identity, authentication, and administration.
+Some internal users work primarily with supplier data but occasionally need access to records governed by the internal location structure, including documents, policies, procedures, training, or audits. Supplier-data access itself is location-agnostic under ADR-078. Assigning these users at the top enterprise location for their internal work may expose more data than required, while separate profiles would duplicate identity, authentication, and administration.
 
 ## Decision Drivers
 
@@ -48,7 +48,9 @@ Preserves one identity while extending only the additional location scope requir
 
 ## Decision Outcome
 
-Assign each cross-structure internal user one primary profile and location based on the person's day-to-day role. Grant access to the other side of the location hierarchy through a supplemental location group. The user will switch the active context through the Intelex location selector when moving between supplier and internal records.
+Assign each cross-structure internal user one primary profile and location based on the person's day-to-day role. Grant required access to internally location-governed records through supplemental location groups. The user may switch active location context when working with those internal records.
+
+Do not use supplemental location groups to determine which supplier entities or supplier records the user can see. Supplier application access is granted through application roles, supplier relationships where applicable, and record classifications under ADR-078 and ADR-084.
 
 Do not solve this requirement by creating duplicate profiles. Do not place the user at the top enterprise location unless that broad access is independently justified by the role.
 
@@ -63,7 +65,7 @@ Do not solve this requirement by creating duplicate profiles. Do not place the u
 ### Negative
 
 - Users must understand and operate the location selector.
-- Location-group rules may interact differently with documents, audits, and supplier data.
+- Location-group rules may interact differently with documents, audits, and other internally scoped data.
 - Misconfiguration could either overexpose internal records or hide needed information.
 
 ### Follow-up and Constraints
@@ -78,4 +80,5 @@ Do not solve this requirement by creating duplicate profiles. Do not place the u
 
 - Latest supplier-management design transcript: approximately 0:01:27–0:04:29.
 - Subsequent supplier workflow transcript: approximately 2:36:10–2:39:01.
+- Subsequent non-conformance design transcript: approximately 0:03:14–0:17:49.
 - The approach was selected directionally for Phase 2 but still requires effective-permission testing; therefore this ADR remains proposed.

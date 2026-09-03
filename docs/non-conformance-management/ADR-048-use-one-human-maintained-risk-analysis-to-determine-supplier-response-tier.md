@@ -1,6 +1,6 @@
 ---
 status: accepted
-date: 2026-07-25
+date: 2026-09-02
 decision-date: not-recorded-in-transcript
 deciders:
   - Luke Filippo
@@ -48,7 +48,9 @@ Supports one governing response tier while preserving informed updates.
 
 Each supplier NCR will have one governing risk analysis using the established four inputs, weights, and thresholds. Authorized associates complete the initial assessment; responsible engineers may revise it when new evidence or occurrences change the evaluation.
 
-The calculated result selects Quick Feedback, Containment, or PRC response requirements. Inputs are not automatically changed solely because an occurrence is added. Every revision is dated and attributable. If the response tier changes after supplier release, the system updates the required response content and notifies the supplier; implementation may require a controlled reset or migration of incompatible response data.
+The calculated result selects Quick Feedback, Containment, or PRC response requirements. The selected problem profile, impact level, and risk tier activate the applicable response forms, fields, notifications, evidence, and approvals. Three Certified Shipments requires three shipment child entries while allowing the supplier to use identifiers appropriate to its logistics model. Third-Party Sort Requested activates sort authorization, job, link, and instruction requirements.
+
+Inputs are not automatically changed solely because an occurrence is added. Every revision is dated and attributable. If the response tier changes after supplier release, the system updates the required response content and notifies the supplier; implementation may require a controlled reset or migration of incompatible response data.
 
 ## Consequences
 
@@ -74,3 +76,4 @@ The calculated result selects Quick Feedback, Containment, or PRC response requi
 ## More Information
 
 - Third transcript: approximately 1:29:34–1:40:41.
+- Supplier NCR and warranty workflow transcript: approximately 0:21:34–0:37:46.
