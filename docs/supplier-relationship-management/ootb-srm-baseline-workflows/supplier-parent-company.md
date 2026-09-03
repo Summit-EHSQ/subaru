@@ -3,8 +3,8 @@
 | Property | Value |
 |---|---|
 | Mode | Baseline documentation; no proposed changes |
-| Application/object | Supplier Management Framework / `SupplierMgmt_ParentCompnyObject` (`ca226798-b56d-49bd-93bf-d8e81398150a`) |
-| Workflow | Supplier Parent Company (`30b0a4b7-9971-46f6-8e4a-8d20907c38c1`) |
+| Application/object | Supplier Management Framework / `SupplierMgmt_ParentCompnyObject` |
+| Workflow | Supplier Parent Company |
 | Package/source | `SIA - OOTB SRM Export`, version `1.0.0.0`; `ootb_config_packages/SIA - OOTB SRM Export(v1.0.0.0).ipack`; exported 2026-09-02T20:45:59Z; platform 6.6.25.1 |
 
 ## Executive flow summary
@@ -19,46 +19,18 @@ All behavior below is **Extracted** unless marked otherwise.
 - The workflow is recurring, but interval/calendar details are not exposed. The recurrence record has `ScheduleType=1`, `RescheduleStrategyType=1`, automatic rescheduling enabled, and no grace period.
 - Empty ACL lists are not interpreted.
 
-## Swimlane diagram
-
-```mermaid
-swimlane-beta LR
-  accTitle: Supplier Parent Company workflow
-  accDescr: The calculated stage owner can submit an evaluation to complete the workflow or deactivate a suspended supplier to cancel it.
-
-  subgraph owner[Calculated stage owner]
-    OPEN[Open<br/>Status: Open]
-    EVAL{Submit Evaluation checks}
-    DEACT{Deactivate Supplier check}
-  end
-
-  subgraph system[Intelex workflow system]
-    COMPLETE((Completed<br/>Status: Closed))
-    CANCEL((Cancelled<br/>Status: Closed))
-  end
-
-  OPEN -->|Submit Evaluation| EVAL
-  EVAL -->|Evaluation exists and status Active/InActive| COMPLETE
-  EVAL -->|Validation fails| OPEN
-  OPEN -->|Deactivate Supplier| DEACT
-  DEACT -->|Status Suspended| CANCEL
-  DEACT -->|Validation fails| OPEN
-```
-
-The native diagram requires Mermaid 11.16.0 or later.
-
 ## Stage details
 
-| Stage ID | Stage name | Status | Responsible-person logic | Due-date logic | Entry condition | Exit paths | Evidence/classification | Source |
-|---|---|---|---|---|---|---|---|---|
-| `fee4a701-a8db-4a9d-a770-5b07ada41c33` | Open (system name `Approval`) | Open (`4f8a9dc5-3c33-4f99-b3a9-0d4027ca5d30`) | `IF(PersResponsible=NULL, CreatedBy.Name, PersResponsible.Name)`; evaluation timing unresolved | None configured | Initial/only stage | Submit Evaluation → Completed/Closed; Deactivate Supplier → Cancelled/Closed; failures remain Open | Extracted | Workflow package item `05c97845-3070-4bb1-8451-617b8d3defe1`; stage package item `4b3944b6-45ef-4516-80c2-957928d00583` |
+| Stage name | Status | Responsible-person logic | Due-date logic | Entry condition | Exit paths | Evidence/classification | Source |
+|---|---|---|---|---|---|---|---|
+| Open (system name `Approval`) | Open | `IF(PersResponsible=NULL, CreatedBy.Name, PersResponsible.Name)`; evaluation timing unresolved | None configured | Initial/only stage | Submit Evaluation → Completed/Closed; Deactivate Supplier → Cancelled/Closed; failures remain Open | Extracted | Workflow and stage configuration |
 
 ## Workflow action details
 
-| Stage | Order | Action ID | Action | Actor/availability | Ordered behavior | Result | Notification | Source |
-|---|---:|---|---|---|---|---|---|---|
-| Open | 1 | `ffd3de06-67e8-4881-94a1-fafd3c905853` | Submit Evaluation | Visible user action requiring Workflow Buttons (`6ea02874-00ba-46e8-bda6-1277a3abe2c7`) | Require `WFHelper<NoOfEvaluations`, else “Please add at least one Evaluation.” Then require supplier status Active/InActive, else configured status error. On success: complete Closed, then set `WFHelper=NoOfEvaluations`. | Completed/Closed (`c4becc59-eb6e-4e5e-96ac-da98802441e4`) | None | Action package item `b16de97d-6457-4da2-94c9-26df62d33f82` |
-| Open | 2 | `d16de38a-eb2a-4959-9c5d-7eb767a1ab07` | Deactivate Supplier | Visible user action requiring Workflow Buttons | Confirmation asks that associated tasks be Closed. Require `SupplierStatus.Value='Suspended'`; otherwise show the configured error. On success: cancel Closed, then set `DateClosed=TODAY`. | Cancelled/Closed | None | Action package item `7029d020-5dd6-4bfd-b72a-20aff1b4b086` |
+| Stage | Order | Action | Actor/availability | Ordered behavior | Result | Notification | Source |
+|---|---:|---|---|---|---|---|---|
+| Open | 1 | Submit Evaluation | Visible user action requiring Workflow Buttons | Require `WFHelper<NoOfEvaluations`, else “Please add at least one Evaluation.” Then require supplier status Active/InActive, else configured status error. On success: complete Closed, then set `WFHelper=NoOfEvaluations`. | Completed/Closed | None | Action configuration |
+| Open | 2 | Deactivate Supplier | Visible user action requiring Workflow Buttons | Confirmation asks that associated tasks be Closed. Require `SupplierStatus.Value='Suspended'`; otherwise show the configured error. On success: cancel Closed, then set `DateClosed=TODAY`. | Cancelled/Closed | None | Action configuration |
 
 ## Permission exceptions
 
@@ -66,7 +38,7 @@ Comparison standard: `InheritedPermission=true`, `IsStandardPermission=false`; s
 
 | Scope | Principal | Variation | Raw scope/condition | Standard | Classification/source |
 |---|---|---|---|---|---|
-| Open | Immediate supervisor | Workflow Buttons + Edit (`ApplyTo=0`); Create + Edit (`ApplyTo=1`) | None | Inherited stage permissions | Extracted; ApplyTo unresolved; stage `fee4a701-a8db-4a9d-a770-5b07ada41c33` |
+| Open | Immediate supervisor | Workflow Buttons + Edit (`ApplyTo=0`); Create + Edit (`ApplyTo=1`) | None | Inherited stage permissions | Extracted; ApplyTo unresolved; Open stage configuration |
 | Open | Person Responsible | Workflow Buttons + Edit (`ApplyTo=0`); Create + Edit (`ApplyTo=1`) | None | Inherited stage permissions | Extracted; ApplyTo unresolved; same stage |
 | Open | Supplier User | Empty Allow/Deny rows for `ApplyTo=0` and `ApplyTo=3` on Audit History, Certification Requirement, Documentation Requirement, Public Profile, and Supplier Evaluation | Runtime effect unresolved | Inherited stage permissions | Extracted/Unresolved; same stage |
 
