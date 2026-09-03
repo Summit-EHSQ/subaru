@@ -47,24 +47,6 @@ swimlane-beta LR
   subgraph system[Intelex workflow system]
     DONE((Completed<br/>Status: Closed))
   end
-
-  DRAFT -->|Assign; certification required and fields present| ASSIGNED
-  DRAFT -->|Assign validation error| DRAFT
-  DRAFT -->|Archive; CertNotRequired=true| ARCHIVE
-  DRAFT -->|Archive validation error| DRAFT
-  ARCHIVE -->|Activate Requirement; CertNotRequired=false| DRAFT
-  ARCHIVE -->|Activation validation error| ARCHIVE
-  ASSIGNED -->|Submit for Review; audit exists| REVIEW
-  ASSIGNED -->|Review validation error| ASSIGNED
-  ASSIGNED -->|Submit for Cancellation; remarks present| REVIEW
-  ASSIGNED -->|Cancellation validation error| ASSIGNED
-  REVIEW -->|Approve; criteria/audit pass| ASSIGNED
-  REVIEW -->|Approve validation error| REVIEW
-  REVIEW -->|Reject; criteria No| ASSIGNED
-  REVIEW -->|Reject validation error| REVIEW
-  REVIEW -->|Archive; CertNotRequired=true| ARCHIVE
-  REVIEW -->|Archive validation error| REVIEW
-  CLOSED -->|Close| DONE
 ```
 
 The native diagram requires Mermaid 11.16.0 or later.
