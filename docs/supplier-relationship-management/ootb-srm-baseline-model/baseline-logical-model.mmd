@@ -1,0 +1,197 @@
+classDiagram
+direction LR
+%% Extracted baseline. Display/internal-name mappings are in object-inventory.csv
+class CAR_EffectReviewLogObject
+class CAR_SCARObject
+class ComplyFramework_CARAbstractObject
+class ComplyFramework_CoPQLookupObject
+class FragApplication_AbsLookupValueObject
+class FragApplication_BusineDirectoryObject
+class FragApplication_ColorObject
+class FragApplication_CurrencyObject
+class FragApplication_CurrencyRateObject
+class FragApplication_GeographyObject
+class FragApplication_ProductObject
+class ProductMgmt_ApprovaCommentsObject
+class ProductMgmt_AttributeObject
+class ProductMgmt_AttributeValueObject
+class ProductMgmt_ItemObject
+class ProductMgmt_ItemRevisionObject
+class ProductMgmt_PMStatusObject
+class ProductMgmt_RevisionTypeObject
+class ProductMgmt_SupItemAttrValObject
+class ProductMgmt_SupItemRevisionObject
+class ProductMgmt_SupplierItemObject
+class ProductMgmt_SupplItemStatusObject
+class SupplierMgmt_AuditHisResultObject
+class SupplierMgmt_AuditHistoryObject
+class SupplierMgmt_CertCategoryObject
+class SupplierMgmt_CertLibraryObject
+class SupplierMgmt_CertRequirementObject
+class SupplierMgmt_ComponentObject
+class SupplierMgmt_DocCategoryObject
+class SupplierMgmt_DocLibraryObject
+class SupplierMgmt_DocRequirementObject
+class SupplierMgmt_EvalRatingObject
+class SupplierMgmt_FacilityObject
+class SupplierMgmt_FacilityTypeObject
+class SupplierMgmt_FacProfileObject
+class SupplierMgmt_ItemCategoryObject
+class SupplierMgmt_ItemObject
+class SupplierMgmt_ParentCompnyObject
+class SupplierMgmt_PublicProfileObject
+class SupplierMgmt_SupAbstractObject
+class SupplierMgmt_SupCategoryObject
+class SupplierMgmt_SupConResponsibObject
+class SupplierMgmt_SupEvaluationObject
+class SupplierMgmt_SupItemLevelNObject
+class SupplierMgmt_SupplierContactObject
+class SupplierMgmt_SupplierItemObject
+class SupplierMgmt_SupplierStatusObject
+class SupplierMgmt_SupplierTypeObject
+class SupplierMgmt_SupRelationshipObject
+class SysEmployeeEntity
+class SysLocationEntity
+class SysSubjectEntity
+class SysWorkflowInstanceEntity
+class SysWorkflowStageEntity
+class SupplierMgmt_FacilityFacProfilesToSupplierMgmt_FacProfileMapObject
+class SupplierMgmt_FacProfileCertificationsToSupplierMgmt_CertLibraryMapObject
+class SupplierMgmt_ItemCategoryDocumentsToSupplierMgmt_DocLibraryMapObject
+class SupplierMgmt_ItemCategoryCertificatesToSupplierMgmt_CertLibraryMapObject
+class ProductMgmt_SupItemRevisionPublicProfilesToSupplierMgmt_PublicProfileMapObject
+class SupplierMgmt_SupplierContactResponsibleForToSupplierMgmt_SupConResponsibMapObject
+class SupplierMgmt_SupplierContactSuppliersToSupplierMgmt_SupAbstractMapObject
+class ProductMgmt_SupplierItemSupplieProfilesToSupplierMgmt_PublicProfileMapObject
+class FragApplication_ProductSuppliersToFragApplication_BusineDirectoryMapObject
+class ComplyFramework_CARAbstractTeamMembersToSetup_EmployeeMapObject
+ComplyFramework_CARAbstractObject <|-- CAR_SCARObject : inherits
+FragApplication_AbsLookupValueObject <|-- ComplyFramework_CoPQLookupObject : inherits
+FragApplication_ProductObject <|-- ProductMgmt_ItemObject : inherits
+FragApplication_AbsLookupValueObject <|-- ProductMgmt_PMStatusObject : inherits
+FragApplication_AbsLookupValueObject <|-- ProductMgmt_RevisionTypeObject : inherits
+FragApplication_AbsLookupValueObject <|-- ProductMgmt_SupplItemStatusObject : inherits
+SupplierMgmt_SupAbstractObject <|-- SupplierMgmt_FacilityObject : inherits
+SupplierMgmt_SupAbstractObject <|-- SupplierMgmt_ParentCompnyObject : inherits
+SupplierMgmt_SupplierItemObject <|-- SupplierMgmt_SupItemLevelNObject : inherits
+FragApplication_ProductObject <|-- SupplierMgmt_SupplierItemObject : inherits
+SysSubjectEntity <|-- SysEmployeeEntity : inherits
+CAR_SCARObject "0..*" --> "1..1" SysEmployeeEntity : HelperAssignee
+ComplyFramework_CARAbstractObject "0..*" --> "1..1" SysEmployeeEntity : Assignee
+ComplyFramework_CARAbstractObject "0..*" --> "0..1" SysEmployeeEntity : CreateBy
+ComplyFramework_CARAbstractObject --> CAR_EffectReviewLogObject : EffectReviewLog [cardinality unresolved]
+ComplyFramework_CARAbstractObject --> ComplyFramework_CARAbstractTeamMembersToSetup_EmployeeMapObject : TeamMembers [m:n]
+ComplyFramework_CARAbstractTeamMembersToSetup_EmployeeMapObject --> SysEmployeeEntity : target [m:n]
+ComplyFramework_CARAbstractObject "0..*" --> "0..1" SysWorkflowInstanceEntity : Workflow
+FragApplication_AbsLookupValueObject "0..*" --> "0..1" FragApplication_ColorObject : BGColor
+FragApplication_AbsLookupValueObject "0..*" --> "0..1" FragApplication_ColorObject : TextColor
+FragApplication_GeographyObject "0..*" --> "0..1" FragApplication_GeographyObject : ParentGeography
+FragApplication_ProductObject "0..*" --> "1..1" SysLocationEntity : Location
+FragApplication_ProductObject --> FragApplication_ProductSuppliersToFragApplication_BusineDirectoryMapObject : Suppliers [m:n]
+FragApplication_ProductSuppliersToFragApplication_BusineDirectoryMapObject --> FragApplication_BusineDirectoryObject : target [m:n]
+ProductMgmt_AttributeValueObject "0..*" --> "0..1" ProductMgmt_AttributeObject : Attribute
+ProductMgmt_AttributeValueObject "0..*" --> "0..1" ProductMgmt_SupItemRevisionObject : SIRevHelper
+ProductMgmt_ItemObject "0..*" --> "1..1" SupplierMgmt_ItemCategoryObject : Category
+ProductMgmt_ItemObject "0..*" --> "0..1" ProductMgmt_ItemRevisionObject : CurrentRevision
+ProductMgmt_ItemRevisionObject --> ProductMgmt_AttributeValueObject : AttributeValues [cardinality unresolved]
+ProductMgmt_ItemRevisionObject "0..*" --> "0..1" ProductMgmt_ItemObject : Item
+ProductMgmt_ItemRevisionObject "0..*" --> "1..1" SysEmployeeEntity : Owner
+ProductMgmt_SupItemAttrValObject "0..*" --> "0..1" ProductMgmt_AttributeValueObject : ItemAttrVal
+ProductMgmt_SupItemRevisionObject --> ProductMgmt_ApprovaCommentsObject : Comments [cardinality unresolved]
+ProductMgmt_SupItemRevisionObject "0..*" --> "0..1" ProductMgmt_ApprovaCommentsObject : CommentsAdd
+ProductMgmt_SupItemRevisionObject "0..*" --> "0..1" SupplierMgmt_PublicProfileObject : CompPP
+ProductMgmt_SupItemRevisionObject "0..*" --> "1..1" SysEmployeeEntity : CreatedBy
+ProductMgmt_SupItemRevisionObject "0..*" --> "0..1" ProductMgmt_ItemRevisionObject : CurItemRevision
+ProductMgmt_SupItemRevisionObject "0..*" --> "0..1" ProductMgmt_SupplItemStatusObject : IsSuppPrimary
+ProductMgmt_SupItemRevisionObject "0..*" --> "0..1" ProductMgmt_ItemObject : Item
+ProductMgmt_SupItemRevisionObject "0..*" --> "0..1" ProductMgmt_ItemRevisionObject : ItemRevisions
+ProductMgmt_SupItemRevisionObject "0..*" --> "0..1" SupplierMgmt_SupplierContactObject : PersonResp
+ProductMgmt_SupItemRevisionObject "0..*" --> "0..1" ProductMgmt_SupplItemStatusObject : PrimarySupplier
+ProductMgmt_SupItemRevisionObject --> ProductMgmt_SupItemRevisionPublicProfilesToSupplierMgmt_PublicProfileMapObject : PublicProfiles [m:n]
+ProductMgmt_SupItemRevisionPublicProfilesToSupplierMgmt_PublicProfileMapObject --> SupplierMgmt_PublicProfileObject : target [m:n]
+ProductMgmt_SupItemRevisionObject "0..*" --> "0..1" ProductMgmt_SupplItemStatusObject : RemoveSupplier
+ProductMgmt_SupItemRevisionObject "0..*" --> "0..1" ProductMgmt_RevisionTypeObject : RevTypeObs
+ProductMgmt_SupItemRevisionObject "0..*" --> "0..1" ProductMgmt_RevisionTypeObject : RevTypeReAct
+ProductMgmt_SupItemRevisionObject "0..*" --> "0..1" ProductMgmt_RevisionTypeObject : RevTypeReport
+ProductMgmt_SupItemRevisionObject --> ProductMgmt_SupItemAttrValObject : SupItemAttrVals [cardinality unresolved]
+ProductMgmt_SupItemRevisionObject "0..1" --> "0..*" SupplierMgmt_PublicProfileObject : SuppClone
+ProductMgmt_SupItemRevisionObject "0..*" --> "0..1" ProductMgmt_SupplierItemObject : SupplierItem
+ProductMgmt_SupItemRevisionObject "0..*" --> "0..1" SysWorkflowInstanceEntity : Workflow
+ProductMgmt_SupplierItemObject "0..*" --> "0..1" SupplierMgmt_ItemCategoryObject : Category
+ProductMgmt_SupplierItemObject "0..*" --> "1..1" SupplierMgmt_PublicProfileObject : CompPP
+ProductMgmt_SupplierItemObject "0..*" --> "0..1" ProductMgmt_ItemObject : Item
+ProductMgmt_SupplierItemObject "0..*" --> "0..1" ProductMgmt_PMStatusObject : SupItemStatus
+ProductMgmt_SupplierItemObject "0..*" --> "0..1" ProductMgmt_SupItemRevisionObject : SuppCurrentRev
+ProductMgmt_SupplierItemObject --> ProductMgmt_SupplierItemSupplieProfilesToSupplierMgmt_PublicProfileMapObject : SupplieProfiles [m:n]
+ProductMgmt_SupplierItemSupplieProfilesToSupplierMgmt_PublicProfileMapObject --> SupplierMgmt_PublicProfileObject : target [m:n]
+SupplierMgmt_AuditHistoryObject "0..*" --> "1..1" SupplierMgmt_AuditHisResultObject : Result
+SupplierMgmt_CertCategoryObject "0..1" --> "0..*" SupplierMgmt_CertLibraryObject : Certificates
+SupplierMgmt_CertCategoryObject "0..*" --> "0..1" SupplierMgmt_CertCategoryObject : ParentCertifica
+SupplierMgmt_CertLibraryObject --> SupplierMgmt_FacProfileCertificationsToSupplierMgmt_CertLibraryMapObject : FacProfiles [m:n]
+SupplierMgmt_FacProfileCertificationsToSupplierMgmt_CertLibraryMapObject --> SupplierMgmt_FacProfileObject : target [m:n]
+SupplierMgmt_CertLibraryObject --> SupplierMgmt_ItemCategoryCertificatesToSupplierMgmt_CertLibraryMapObject : ItemCategories [m:n]
+SupplierMgmt_ItemCategoryCertificatesToSupplierMgmt_CertLibraryMapObject --> SupplierMgmt_ItemCategoryObject : target [m:n]
+SupplierMgmt_CertLibraryObject "0..*" --> "0..1" SupplierMgmt_SupConResponsibObject : Responsibility
+SupplierMgmt_CertRequirementObject "0..*" --> "0..1" SysEmployeeEntity : Approver
+SupplierMgmt_CertRequirementObject "0..*" --> "0..1" SupplierMgmt_SupplierContactObject : AssignedTo
+SupplierMgmt_CertRequirementObject "0..1" --> "0..*" SupplierMgmt_AuditHistoryObject : AuditHistories
+SupplierMgmt_CertRequirementObject "0..*" --> "1..1" SupplierMgmt_CertLibraryObject : Certificate
+SupplierMgmt_CertRequirementObject "0..*" --> "0..1" SupplierMgmt_AuditHistoryObject : LastAuditHist
+SupplierMgmt_CertRequirementObject "0..*" --> "1..1" SysLocationEntity : Location
+SupplierMgmt_CertRequirementObject "0..*" --> "0..1" SupplierMgmt_SupConResponsibObject : Responsibility
+SupplierMgmt_CertRequirementObject "0..*" --> "1..1" SupplierMgmt_SupAbstractObject : SupplierAbs
+SupplierMgmt_CertRequirementObject "0..*" --> "0..1" SysWorkflowInstanceEntity : Workflow
+SupplierMgmt_ComponentObject "0..*" --> "1..1" SupplierMgmt_ItemObject : ItemHelper
+SupplierMgmt_ComponentObject "0..*" --> "0..1" SupplierMgmt_PublicProfileObject : PublicProfile
+SupplierMgmt_ComponentObject "0..*" --> "0..1" SupplierMgmt_SupRelationshipObject : Relationship
+SupplierMgmt_ComponentObject "0..*" --> "0..1" SupplierMgmt_SupplierItemObject : SupItem
+SupplierMgmt_ComponentObject "0..*" --> "0..1" SupplierMgmt_SupItemLevelNObject : SupItemPart
+SupplierMgmt_DocCategoryObject "0..1" --> "0..*" SupplierMgmt_DocCategoryObject : ListDocumentati
+SupplierMgmt_DocLibraryObject "0..*" --> "0..1" SupplierMgmt_DocCategoryObject : DocCategory
+SupplierMgmt_DocLibraryObject --> SupplierMgmt_ItemCategoryDocumentsToSupplierMgmt_DocLibraryMapObject : ItemCategories [m:n]
+SupplierMgmt_ItemCategoryDocumentsToSupplierMgmt_DocLibraryMapObject --> SupplierMgmt_ItemCategoryObject : target [m:n]
+SupplierMgmt_DocLibraryObject "0..*" --> "0..1" SupplierMgmt_SupConResponsibObject : Responsibility
+SupplierMgmt_DocRequirementObject "0..*" --> "0..1" SysEmployeeEntity : Approver
+SupplierMgmt_DocRequirementObject "0..*" --> "1..1" SupplierMgmt_DocLibraryObject : Document
+SupplierMgmt_DocRequirementObject "0..*" --> "1..1" SysLocationEntity : Location
+SupplierMgmt_DocRequirementObject "0..*" --> "0..1" SupplierMgmt_SupplierContactObject : PersResponsible
+SupplierMgmt_DocRequirementObject "0..*" --> "0..1" SupplierMgmt_SupConResponsibObject : Responsibility
+SupplierMgmt_DocRequirementObject "0..*" --> "1..1" SupplierMgmt_SupAbstractObject : SupplierAbs
+SupplierMgmt_DocRequirementObject "0..*" --> "0..1" SysWorkflowInstanceEntity : Workflow
+SupplierMgmt_FacilityObject --> SupplierMgmt_FacilityFacProfilesToSupplierMgmt_FacProfileMapObject : FacProfiles [m:n]
+SupplierMgmt_FacilityFacProfilesToSupplierMgmt_FacProfileMapObject --> SupplierMgmt_FacProfileObject : target [m:n]
+SupplierMgmt_FacilityObject "0..*" --> "1..1" SupplierMgmt_FacilityTypeObject : FacilityType
+SupplierMgmt_ItemObject "0..*" --> "1..1" SupplierMgmt_ItemCategoryObject : Category
+SupplierMgmt_ParentCompnyObject "1..1" --> "0..*" SupplierMgmt_FacilityObject : Facilities
+SupplierMgmt_PublicProfileObject --> SupplierMgmt_SupRelationshipObject : Customers [cardinality unresolved]
+SupplierMgmt_PublicProfileObject "0..*" --> "1..1" SysLocationEntity : Location
+SupplierMgmt_PublicProfileObject "0..*" --> "0..1" SupplierMgmt_SupAbstractObject : SupplierAbs
+SupplierMgmt_PublicProfileObject "0..*" --> "0..1" SupplierMgmt_SupplierTypeObject : SupplierType
+SupplierMgmt_PublicProfileObject --> SupplierMgmt_SupRelationshipObject : Suppliers [cardinality unresolved]
+SupplierMgmt_SupAbstractObject "1..1" --> "0..*" SupplierMgmt_CertRequirementObject : CertReqs
+SupplierMgmt_SupAbstractObject "0..*" --> "1..1" SysEmployeeEntity : CreatedBy
+SupplierMgmt_SupAbstractObject "1..1" --> "0..*" SupplierMgmt_DocRequirementObject : DocReqs
+SupplierMgmt_SupAbstractObject "0..*" --> "1..1" FragApplication_GeographyObject : Geography
+SupplierMgmt_SupAbstractObject "0..*" --> "0..1" SupplierMgmt_SupEvaluationObject : LastEvaluation
+SupplierMgmt_SupAbstractObject "0..*" --> "1..1" SysLocationEntity : Location
+SupplierMgmt_SupAbstractObject "0..*" --> "0..1" SysEmployeeEntity : PersResponsible
+SupplierMgmt_SupAbstractObject "1..1" --> "0..*" CAR_SCARObject : SCARs
+SupplierMgmt_SupAbstractObject "0..*" --> "1..1" SupplierMgmt_SupCategoryObject : SupCategory
+SupplierMgmt_SupAbstractObject --> SupplierMgmt_SupplierContactSuppliersToSupplierMgmt_SupAbstractMapObject : SupContacts [m:n]
+SupplierMgmt_SupplierContactSuppliersToSupplierMgmt_SupAbstractMapObject --> SupplierMgmt_SupplierContactObject : target [m:n]
+SupplierMgmt_SupAbstractObject "0..*" --> "1..1" SupplierMgmt_SupplierStatusObject : SupplierStatus
+SupplierMgmt_SupAbstractObject "0..*" --> "0..1" SupplierMgmt_SupplierTypeObject : SupplierType
+SupplierMgmt_SupAbstractObject "0..*" --> "0..1" SysWorkflowInstanceEntity : Workflow
+SupplierMgmt_SupCategoryObject "0..*" --> "0..1" SupplierMgmt_SupCategoryObject : ParentSupplier
+SupplierMgmt_SupConResponsibObject --> SupplierMgmt_SupplierContactResponsibleForToSupplierMgmt_SupConResponsibMapObject : SupContacts [m:n]
+SupplierMgmt_SupplierContactResponsibleForToSupplierMgmt_SupConResponsibMapObject --> SupplierMgmt_SupplierContactObject : target [m:n]
+SupplierMgmt_SupEvaluationObject "0..*" --> "1..1" SysEmployeeEntity : EvaluatedBy
+SupplierMgmt_SupEvaluationObject "0..*" --> "1..1" SupplierMgmt_EvalRatingObject : Rating
+SupplierMgmt_SupEvaluationObject "0..*" --> "0..1" SupplierMgmt_SupAbstractObject : SupplierAbs
+SupplierMgmt_SupplierContactObject "0..*" --> "0..1" SysEmployeeEntity : Employee
+SupplierMgmt_SupplierContactObject "0..*" --> "0..1" SysEmployeeEntity : EmployeeHelper
+SupplierMgmt_SupplierItemObject "0..*" --> "0..1" SupplierMgmt_ItemCategoryObject : Category
+SupplierMgmt_SupplierItemObject "0..*" --> "1..1" SupplierMgmt_ItemObject : Item
+SupplierMgmt_SupplierItemObject "0..*" --> "1..1" SupplierMgmt_PublicProfileObject : PublicProfile
+SysWorkflowInstanceEntity "0..*" --> "0..1" SysWorkflowStageEntity : CurrentStage
+SysWorkflowInstanceEntity "0..*" --> "0..1" SysSubjectEntity : PersonResponsible
