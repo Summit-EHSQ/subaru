@@ -15,6 +15,8 @@ It deliberately does not expand the internal data models of Procurement/RFQ, APQ
 
 ADR-001 is superseded by ADR-083. Accordingly, the existing SIA Supplier Portal remains the upstream entry point, while Intelex provides the supplier-quality workspace and SRM remains the supplier master.
 
+> **Role-model revision:** The Group-derived [Supplier Management Role logical object model](solution_specification/object_model/supplier-management-role-logical-model.md) supersedes the standalone `EXTERNAL_ROLE_ASSIGNMENT` and `INTERNAL_ROLE_ASSIGNMENT` concepts below for supplier/depot role membership. The related [Supplier Profile Template logical object model](solution_specification/object_model/supplier-profile-template-logical-model.md) defines creation-time role generation and controlled synchronization. The diagrams below remain the earlier ADR-derived conceptual model until they are regenerated as part of a broader model revision.
+
 ## Modeling conventions
 
 - `SUPPLIER_ENTITY` is a logical supertype for a parent company, facility, or depot. A physical implementation may use separate application objects/forms while preserving the same hierarchy and relationships.
