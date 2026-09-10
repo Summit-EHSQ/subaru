@@ -174,35 +174,25 @@ Supplier_Specific_Role "0..*" --> "1" Supplier_Management_Role : SupplierManagem
 | Supplier Abstract | Modified OOTB abstract object | Stores the optional, immutable-after-create template selection inherited by parent and facility records | User selects during creation; system locks after first save | Post-create automation generates roles once |
 | Supplier Status | Modified OOTB controlled lookup object | Governs assignment-push eligibility without hard-coded status names | Existing lookup governance | Eligibility field filters push scope |
 
-## Field property conventions
-
-- **Physical required** means the record cannot be saved without the value.
-- Fields required only during Supplier Abstract creation may remain physically optional but are locked after first save.
-- `Active?` controls availability or retirement; it does not erase historical relationships.
-- Calculated or system-maintained values are read only to ordinary users.
-- Final internal names and exact Intelex expression syntax remain implementation details.
-
 ## Supplier Profile Template fields
 
 | Field | Type | Required | Default/source | Editability | Property behavior | Classification |
 |---|---|---:|---|---|---|---|
-| Id | Guid identity | Yes | System generated | System | Logical primary identity | Proposed |
 | Name | Text, maximum 255 characters | Yes | Administrator entered | SRM application administrator or system administrator | Object display field | Required/Proposed |
 | Active? | Yes/No | Yes | `Yes` | SRM application administrator or system administrator | Active records are available for new Supplier Abstract selection; inactive records remain visible on existing read-only references | Required/Proposed |
 | Sort | Number | No | Blank | SRM application administrator or system administrator | Object order property used by template selection | Required/Proposed |
-
-No applicability criteria, effective dates, versions, or template-level push action are defined.
 
 ## Supplier Template Role Assignment fields
 
 | Field | Type | Required | Default/source | Editability | Property behavior | Classification |
 |---|---|---:|---|---|---|---|
-| Id | Guid identity | Yes | System generated | System | Logical primary identity | Proposed |
 | Name | Text, maximum 255 characters | Yes | System calculated | Read only | Object display field; formula is Supplier Management Role Name + ` for ` + Supplier Profile Template Name | Required/Proposed |
 | Active? | Yes/No | Yes | `Yes` | SRM application administrator or system administrator | Retires assignment from future creation without deleting history | Required/Proposed |
 | Supplier Profile Template | M:1 reference to Supplier Profile Template | Yes | Administrator selected | SRM application administrator or system administrator | Related template; inactive template remains referenceable historically | Required/Proposed |
 | Supplier Management Role | M:1 reference to Supplier Management Role | Yes | Administrator selected | SRM application administrator or system administrator | Must reject roles where Allow Supplier-Specific Name? is Yes | Required/Proposed |
 | Mandatory? | Yes/No | Yes | No implicit default | SRM application administrator or system administrator | Copied to generated or synchronized Supplier Specific Role | Required/Proposed |
+
+<!--Need to finalize naming convention - Gillian-->
 
 ### Calculated Name
 
@@ -220,7 +210,7 @@ The pair `(Supplier Profile Template, Supplier Management Role)` is unique acros
 
 ## Supplier Abstract modification
 
-| Field | Type | Physical required | Default/source | Editability | Property behavior | Classification |
+| Field | Type | Required | Default/source | Editability | Property behavior | Classification |
 |---|---|---:|---|---|---|---|
 | Supplier Profile Template | M:1 reference to Supplier Profile Template | No | User may select one active template during initial creation | Editable only before first save; permanently read only afterward | Null is permitted and final; existing inactive reference remains visible; active selections ordered by Sort | Required/Proposed modification |
 
@@ -247,6 +237,8 @@ This rule replaces hard-coded tests for status names such as Active, Service Par
 | Supplier Specific Role | Supplier Management Role | Supplier Management Role | Many roles to one library role | Yes | Creation automation, synchronization, or direct custom creation | Required/Proposed |
 
 ## Uniqueness and custom-role rules
+
+<!--Not sure what the below uniqueness constraints mean - Gillian-->
 
 ### Standard roles
 
