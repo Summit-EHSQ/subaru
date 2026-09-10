@@ -169,8 +169,8 @@ Supplier_Specific_Role "0..*" --> "1" Supplier_Management_Role : SupplierManagem
 |---|---|---|---|---|
 | Supplier Profile Template | New configuration object | Names and orders one administrator-defined collection of role assignments available during Supplier Abstract creation | SRM application administrators and system administrators | No workflow; Active? controls new selection |
 | Supplier Template Role Assignment | New configuration child | Relates one template to one standard role and defines Mandatory? | SRM application administrators and system administrators | Exposes assignment-level synchronization action |
-| Supplier Management Role | Modified target object | Provides the role definition and custom-name eligibility | Existing target governance | Custom-name-enabled roles are excluded from templates |
-| Supplier Specific Role | Modified target object | Materialized role group with copied Mandatory?, origin, custom-name support, Members, and calculated status | Creation automation, assignment push, or direct custom-role maintenance | No lifecycle workflow; completeness is calculated |
+| Supplier Management Role | New object (Refer to Supplier Management Role Logical Model) | Provides the role definition and custom-name eligibility | Existing target governance | Custom-name-enabled roles are excluded from templates |
+| Supplier Specific Role | New object (Refer to Supplier Management Role Logical Model) | Materialized role group with copied Mandatory?, origin, custom-name support, Members, and calculated status | Creation automation, assignment push, or direct custom-role maintenance | No lifecycle workflow; completeness is calculated |
 | Supplier Abstract | Modified OOTB abstract object | Stores the optional, immutable-after-create template selection inherited by parent and facility records | User selects during creation; system locks after first save | Post-create automation generates roles once |
 | Supplier Status | Modified OOTB controlled lookup object | Governs assignment-push eligibility without hard-coded status names | Existing lookup governance | Eligibility field filters push scope |
 
@@ -233,45 +233,6 @@ The field is declared on Supplier Abstract so the same behavior is inherited by 
 | Supplier Profile Template Assignment Eligible | Yes/No | Yes | `Yes` | Existing Supplier Status administrators | Assignment synchronization includes Supplier Abstract records only when their related status has this value set to Yes | Required/Proposed modification |
 
 This rule replaces hard-coded tests for status names such as Active, Service Parts Only, or Inactive.
-
-## Supplier Management Role modification
-
-| Field | Type | Required | Default/source | Editability | Property behavior | Classification |
-|---|---|---:|---|---|---|---|
-| Allow Supplier-Specific Name? | Yes/No | Yes | `No` | SRM application administrator or system administrator | Permits direct supplier-context custom naming; when Yes, the role cannot be selected on Supplier Template Role Assignment | Required/Proposed; default is a conservative design assumption |
-
-## Supplier Specific Role modifications
-
-| Field | Type | Required | Default/source | Editability | Property behavior | Classification |
-|---|---|---:|---|---|---|---|
-| Mandatory? | Yes/No | Yes | Copied from originating assignment; direct custom creation requires user selection | System for template-generated roles; authorized maintainer for direct custom roles | Drives Assignment Status but does not affect Supplier Abstract status | Required/Proposed |
-| Supplier-Specific Name | Text, maximum 255 characters | No | Blank | Editable only when related Supplier Management Role allows supplier-specific names | Supplies custom portion of calculated inherited Name | Required/Proposed |
-| Originating Supplier Template Role Assignment | M:1 reference to Supplier Template Role Assignment | No | Set by creation or synchronization | System/read only | Blank for directly created custom roles; preserves source assignment | Required/Proposed |
-| Assignment Status | Calculated text/selection | Yes | System calculated | Read only | Values: Complete, Required - Incomplete, Optional - Unpopulated | Required/Proposed; exact physical type unresolved |
-
-### Supplier Specific Role Name
-
-Logical expression:
-
-```text
-IF(
-  SupplierSpecificName is populated,
-  SupplierSpecificName,
-  SupplierManagementRole.Name
-) + " for " + SupplierAbstract.Name
-```
-
-For standard generated roles, Supplier-Specific Name is blank and read only. For a directly created role whose library role permits supplier-specific naming, the field begins blank, so inherited Name initially uses the library role name. Entering a custom value recalculates Name. Later renaming of the library role does not change the custom portion or final Name while Supplier-Specific Name remains populated.
-
-### Assignment Status
-
-| Condition | Calculated value | Intended indicator |
-|---|---|---|
-| One or more eligible active Members | `Complete` | Positive/check indicator |
-| No eligible active Members and Mandatory? = Yes | `Required - Incomplete` | Negative/X indicator |
-| No eligible active Members and Mandatory? = No | `Optional - Unpopulated` | Neutral indicator |
-
-Removing or archiving the last eligible member recalculates the status immediately. No overall Supplier Abstract completeness value and no separate setup requirement/task record are created.
 
 ## Relationship register
 
