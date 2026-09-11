@@ -216,6 +216,8 @@ The pair `(Supplier Profile Template, Supplier Management Role)` is unique acros
 
 The field is declared on Supplier Abstract so the same behavior is inherited by Supplier Parent Company and Supplier Facility. No parent-to-child template defaulting or copying occurs.
 
+<!--Supplier Status is a Lookup. Can't really understand the purpose of this additional field. - Gillian-->
+
 ## Supplier Status modification
 
 | Field | Type | Required | Default/source | Editability | Property behavior | Classification |
