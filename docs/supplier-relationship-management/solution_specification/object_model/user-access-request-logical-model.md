@@ -189,24 +189,24 @@ Supplier_Contact_Request_Settings "0..*" --> "0..1" Subject : Approver
 
 ## Object inventory
 
-| Logical object | Kind | Direct parent | Directly declared responsibility | Creatable | Workflow |
+| Object Name | Kind | Parent | Directly declared responsibility | Creatable | Workflow |
 |---|---|---|---|---|---|
 | Abstract User Access Request | New abstract record object | None | Common person, request, access-intent, audit, and cross-request reporting properties | No | None |
 | Abstract Third-Party Access Request | New abstract record object | Abstract User Access Request | Structural classification of non-employee request types | No | None |
 | Supplier Contact Request | New concrete record object | Abstract Third-Party Access Request | Supplier context, created-contact reference, and supplier relationship synchronization behavior; approval audit fields are inherited | Yes | Supplier Contact Request workflow |
-| Contractor Access Request | New concrete record object | Abstract Third-Party Access Request | Future inheritance plumbing only; no contractor-specific responsibility is defined | Yes | Future workflow, fields, and use cases are undefined and unrequested |
-| Temporary User Access Request | New concrete record object | Abstract Third-Party Access Request | Future inheritance plumbing only; no temporary-user-specific responsibility is defined | Yes | Future workflow, fields, and use cases are undefined and unrequested |
-| Employee Access Request | New concrete record object | Abstract User Access Request | Employee, manager, location, start date, and employment-type context | Yes | Separate employee workflow; not designed in this revision |
+| Contractor Access Request <!--skipped--> | New concrete record object | Abstract Third-Party Access Request | Future inheritance plumbing only; no contractor-specific responsibility is defined | Yes | Future workflow, fields, and use cases are undefined and unrequested |
+| Temporary User Access Request <!--skipped--> | New concrete record object | Abstract Third-Party Access Request | Future inheritance plumbing only; no temporary-user-specific responsibility is defined | Yes | Future workflow, fields, and use cases are undefined and unrequested |
+| Employee Access Request <!--skipped--> | New concrete record object | Abstract User Access Request | Employee, manager, location, start date, and employment-type context | Yes | Separate employee workflow; not designed in this revision |
 | Supplier Contact Request Settings | New configuration record object | None | Current approval routing and due-date parameters fetched once when a Supplier Contact Request is created | Administrators only | None |
 | License Type | New configuration record object | None | Governed user-license choices available to inherited User License Type dropdowns | Administrators only | None |
 | User Access Request Approval Decision | New configuration record object | None | Governed approval-decision values inherited by every concrete request | Administrators only | None |
-| Supplier Contact | Modified OOTB record object | None | Existing supplier-contact profile plus one authoritative owning Supplier Abstract | Existing behavior plus request-created records | Existing OOTB behavior |
+| Supplier Contact | Modified OOTB record object <!--how is it being modified? - Gillian--> | None | Existing supplier-contact profile plus one authoritative owning Supplier Abstract | Existing behavior plus request-created records | Existing OOTB behavior |
 
 `Abstract Third-Party Access Request` intentionally declares no fields in this revision. No proposed attribute is yet demonstrably common to supplier contacts, contractors, and temporary users without also introducing exceptions. It provides inheritance grouping and a future location for genuinely common third-party properties.
 
 ## Field property conventions
 
-- **Physical required** means the record cannot be stored without the value.
+- **Required** means the record cannot be stored without the value.
 - **Required at Submit** means Draft may be saved without the value, but the Submit action must validate it.
 - **System** editability means a workflow or platform operation maintains the value.
 - Conditional requirements are enforced by the concrete workflow rather than as unconditional database requiredness.
@@ -214,13 +214,12 @@ Supplier_Contact_Request_Settings "0..*" --> "0..1" Subject : Approver
 
 ## Abstract User Access Request fields
 
-| Field | Type | Physical required | Required at Submit | Read Only | Default/source | Editability | Property behavior | Classification |
+| Field | Type | Required | Required at Submit | Read Only | Default/source | Editability | Property behavior | Classification |
 |---|---|---:|---:|---|---|---|---|---|
-| Id | Guid | Yes | N/A | Yes | System generated | System | Logical primary identity inherited by descendants; physical inheritance behavior must be confirmed | Proposed |
 | Record No. | Auto Number | Yes | N/A | Yes | System generated | System | Human-readable request identifier | Proposed |
-| Location | M:1 reference to Location | Yes | N/A | No | Field is created automatically when Abstract User Access Request is configured as Location Bound; value defaulting follows platform configuration | Platform/location-bound behavior | Directly declared immediately after Record No.; exact value defaulting and user-editability follow the platform's Location Bound configuration | Required/Proposed |
-| Created By | M:1 reference to Employee | Yes | N/A | No | Current authenticated employee record at creation | System; displayed as Employee dropdown where exposed | Replaces the earlier Requested By-to-Subject proposal; inherited by all descendants | Required/Proposed |
-| Date Created | Date/Time | Yes | N/A | No | Current date/time at creation | System | Immutable creation timestamp; replaces the earlier Request Created At name | Required/Proposed |
+| Location | M:1 reference to Location | Yes | N/A | No | Value defaulting follows platform configuration | Platform/location-bound behavior | Directly declared immediately after Record No.; exact value defaulting and user-editability follow the platform's Location Bound configuration | Field is created automatically when Abstract User Access Request is configured as Location Bound |
+| Created By | M:1 reference to Employee | Yes | N/A | No | Current authenticated employee record at creation | System; displayed as Employee dropdown where exposed | Replaces the earlier Requested By-to-Subject proposal; inherited by all descendants | System Generated |
+| Date Created | Date/Time | Yes | N/A | No | Current date/time at creation | System | Immutable creation timestamp; replaces the earlier Request Created At name | System Generated |
 | First Name | Text (255) | No | Yes | No | User entered | Requester in Draft | Trim leading/trailing whitespace | Required/Proposed |
 | Last Name | Text (255) | No | Yes | No | User entered | Requester in Draft | Trim leading/trailing whitespace | Required/Proposed |
 | Job Title | Text (255) | No | Yes | No | User entered | Requester in Draft | Common descriptive job/position value | Required/Proposed |
@@ -231,7 +230,7 @@ Supplier_Contact_Request_Settings "0..*" --> "0..1" Subject : Approver
 | Date Submitted | Date/Time with Time Zone | No | N/A | Yes | Set by Submit action | System | Immutable after first successful submission | Proposed |
 | Submitted By | M:1 reference to Employee | No | No | Yes | Set by Submit action | System | Immutable after first successful submission | Proposed |
 | Approval Decision | M:1 reference to User Access Request Approval Decision | No | No | No | Blank | Approver | Proposed values: Approved, Rejected, Returned | Proposed |
-| Approval Comments | Long Text | No | No | No | Blank | Approver | Required for Reject and Return; optional for Approve | Proposed |
+| Approval Comments | Text | No | No | No | Blank | Approver | Required for Reject and Return; optional for Approve | Proposed |
 | Date Approved | Date/Time with Time Zone                               |                No |                N/A | Yes       | Set by Approve action                                        | System                                               | Immutable after Approval                                     | Proposed                                                     |
 | Approved By            | M:1 reference to Employee                              |                No |                 No | Yes       | Set by Approve action                                        | System                                               | Immutable after Approval                                     | Proposed |
 | Username | Text (100) | No | No | No | Blank | System/administrator | Reserved for the username associated with the access request | Required/Proposed |
@@ -243,7 +242,6 @@ Supplier_Contact_Request_Settings "0..*" --> "0..1" Subject : Approver
 
 | Field | Type | Required | Default/source | Editability | Object/field property behavior | Classification |
 |---|---|---:|---|---|---|---|
-| Id | Guid identity | Yes | System generated | System | Logical primary identity | Proposed |
 | Name | Text, maximum 255 characters | Yes | Administrator entered | Administrator | Marked as the License Type object's display field | Required/Proposed |
 | Active? | Yes/No | Yes | `Yes` | Administrator | Controls whether the value is available for new User License Type selections; historical references remain valid | Required/Proposed |
 | Sort | Number | No | Blank | Administrator | Marked as the License Type object's order property | Required/Proposed |
@@ -252,18 +250,17 @@ Supplier_Contact_Request_Settings "0..*" --> "0..1" Subject : Approver
 
 | Field   | Type                         | Required | Default/source        | Editability   | Object/field property behavior                               | Classification    |
 | ------- | ---------------------------- | -------: | --------------------- | ------------- | ------------------------------------------------------------ | ----------------- |
-| Id      | Guid identity                |      Yes | System generated      | System        | Logical primary identity                                     | Proposed          |
 | Name    | Text, maximum 255 characters |      Yes | Administrator entered | Administrator | Marked as the object's display field                         | Required/Proposed |
 | Active? | Yes/No                       |      Yes | `Yes`                 | Administrator | Controls whether the value is available; historical references remain valid | Required/Proposed |
 | Sort    | Number                       |       No | Blank                 | Administrator | Marked as the object's order property                        | Required/Proposed |
 
 ## Abstract Third-Party Access Request fields
 
-No fields are directly declared at this stage. It inherits all Abstract User Access Request fields. Supplier organization, contractor firm, sponsor, site, and access-window fields remain on the applicable concrete descendants because their applicability and requiredness differ.
+No fields are directly declared at this stage. It inherits all Abstract User Access Request fields. Supplier organization, contractor firm, sponsor, site, and access-window fields remain on the applicable concrete descendants because their applicability and required-ness differ.
 
 ## Supplier Contact Request fields
 
-| Field | Type | Physical required | Required at Submit | Default/source | Editability | Property behavior | Classification |
+| Field | Type | Required | Required at Submit | Default/source | Editability | Property behavior | Classification |
 |---|---|---:|---:|---|---|---|---|
 | Supplier | Reference to OOTB Supplier Abstract | No | Yes | Selected by requester or prepopulated from launch context | Requester in Draft | May resolve to Supplier Parent Company or Supplier Facility because both inherit Supplier Abstract | Required/Proposed |
 | Created Supplier Contact | Reference to OOTB Supplier Contact | No | N/A | Set after successful contact creation | System | Remains blank until processing; prevents duplicate creation during retry | Proposed |
@@ -296,14 +293,13 @@ The fields required for the current Employee Access Request context are defined 
 
 | Field | Type | Required | Default/source | Editability | Property behavior | Classification |
 |---|---|---:|---|---|---|---|
-| Id | Guid identity | Yes | System generated | System | Logical primary identity | Proposed |
 | Name | Text | Yes | Administrator entered | Administrator | Human-readable configuration name | Proposed |
 | Active | Yes/No | Yes | `No` | Administrator | Identifies the settings record available when a Supplier Contact Request is created | Proposed |
 | Approval Required | Yes/No | Yes | `No` | Administrator | Governs routing after Submit | Required/Proposed |
 | Approver | Reference to System Subject | Conditional | Administrator selected | Administrator | Required when Approval Required is Yes | Required/Proposed |
-| Approval Due Offset | Number | Conditional | Administrator entered | Administrator | Non-negative; required when approval is required | Required/Proposed |
-| Approval Due Unit | Controlled lookup | Conditional | `Calendar Days` | Administrator | Proposed values Calendar Days and Business Days | Proposed |
-| Approval Calendar | Reference to Business Calendar | Conditional | Blank | Administrator | Required only when the selected unit or policy uses a business calendar; exact target remains unresolved | Proposed/Unresolved target |
+| Approval Due Offset | Number | Conditional | Administrator entered | Administrator | Non-negative; required when approval is required; <!--unit: days, added as tooltip so user knows--> | Required/Proposed |
+| ~~Approval Due Unit~~ | ~~Controlled lookup~~ | ~~Conditional~~ | ~~`Calendar Days`~~ | ~~Administrator~~ | ~~Proposed values Calendar Days and Business Days~~ | ~~Proposed~~ |
+| ~~Approval Calendar~~ | ~~Reference to Business Calendar~~ | ~~Conditional~~ | ~~Blank~~ | ~~Administrator~~ | ~~Required only when the selected unit or policy uses a business calendar; exact target remains unresolved~~ | ~~Proposed/Unresolved target~~ |
 
 Exactly one settings record should be Active when a Supplier Contact Request is created. The workflow fetches its approval parameters once during record creation and does not store a Settings Applied relationship or parameter snapshots on the request. Multiple active records or no active record are configuration exceptions, not implicit permission to bypass approval.
 
