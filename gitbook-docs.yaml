@@ -23,10 +23,9 @@ site:
       children:
         - type: space
           key: space-1
-          title: Subaru Documentation
+          title: Subaru Documentation Subaru Documentation
           path: subaru-documentation
           default: true
-          draft: true
           content:
             directory: ./docs
             language: en
