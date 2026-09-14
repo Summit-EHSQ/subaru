@@ -1,0 +1,2 @@
+# intelex-platform
+
