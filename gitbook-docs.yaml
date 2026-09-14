@@ -1,13 +1,32 @@
 $schema: https://api.gitbook.com/gitbook-docs.yaml
-version: 1
 site:
   title: Subaru Documentation
   structure:
-    - type: space
-      key: space-docs
+    - type: section
+      key: section-1
       title: Subaru Documentation
-      path: docs
+      path: subaru-documentation
       default: true
-      content:
-        directory: ./docs
-        language: en
+      children:
+        - type: space
+          key: space-docs
+          title: Subaru Documentation
+          path: docs
+          default: true
+          content:
+            directory: ./docs
+            language: en
+    - type: section
+      key: section-2
+      title: Supplier Relationship Management
+      path: supplier-relationship-management
+      children:
+        - type: space
+          key: space-1
+          title: Subaru Documentation
+          path: subaru-documentation
+          default: true
+          draft: true
+          content:
+            directory: ./docs
+            language: en
