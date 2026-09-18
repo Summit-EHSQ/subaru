@@ -149,7 +149,7 @@ The single `Group`-to-`Subject` Members association represents the inherited rel
 
 ## Object inventory
 
-| Logical object | State | Direct parent | Responsibility | Creation and maintenance | Workflow |
+| Object Name | State | Parent | Responsibility | Creation and maintenance | Workflow |
 |---|---|---|---|---|---|
 | Subject | Existing system object | None shown in scope | Common identity and inherited unique Name | Platform managed | May be a workflow recipient |
 | Group | Existing system object | Subject | Common group behavior and inherited Members relationship | Platform managed | Native group-recipient behavior to be verified |
@@ -209,6 +209,8 @@ Only fields directly required by the agreed design are specified. Other standard
 | `Supplier Users` | External supplier-side responsibility | Authenticated supplier user whose Supplier Contact relationship is within the Supplier Specific Role's Supplier Abstract scope |
 | `Internal Users` | SIA-side responsibility | Active eligible internal employee/user |
 
+<!--I have no clue what this rule below means - Gillian-->
+
 ### Library membership rule
 
 The inherited Members relationship on Supplier Management Role is not the operational assignment source. Default application views should hide it or render it read-only where the platform allows. If inherited-grid suppression is unavailable, validation must prevent ordinary users from adding library-level members.
@@ -217,7 +219,7 @@ This rule avoids interpreting membership in `PPAP Coordinator` as membership for
 
 ## Supplier Specific Role fields
 
-| Field | Declaration | Type | Physical required | Default/source | Editability | Behavior | Classification |
+| Field | Declaration | Type | Required | Default/source | Editability | Behavior | Classification |
 |---|---|---|---:|---|---|---|---|
 | Name | Inherited from Subject through Group | Text; inherited maximum length | Yes | System calculated | Read only | Concatenate the effective role name—Supplier-Specific Name when populated, otherwise Supplier Management Role Name—the literal ` for `, and Supplier Abstract Name | Required/Proposed; exact expression syntax unresolved |
 | Supplier Management Role | Direct | M:1 reference to Supplier Management Role | Yes | Selected by setup automation or authorized maintainer | Authorized maintainer; locked when referenced by active workflow unless governed replacement is used | Identifies the library role instantiated by the group | Required/Proposed |
@@ -227,6 +229,8 @@ This rule avoids interpreting membership in `PPAP Coordinator` as membership for
 | Assignment Status | Direct calculated/display field | Three-state value: `Complete`, `Required - Incomplete`, or `Optional - Unpopulated` | Yes | System calculated | Read only | Complete when at least one eligible member exists; otherwise derived from Mandatory? | Required/Proposed; visual icon treatment is a view concern |
 | Originating Supplier Template Role Assignment | Direct | M:1 reference to Supplier Template Role Assignment | No | Populated by template generation or assignment push | Read only | Preserves the source assignment for generated standard roles; blank for manually created custom roles | Required/Proposed |
 | Members | Inherited from Group | M:N Members relationship/grid to the platform's member-capable Subject population | No | Empty | Authorized maintainers subject to role classification and supplier scope | Holds the operational users who fill the role for the related supplier entity | Required/Proposed; exact inherited target unresolved |
+
+<!--Need to come up with better name calculation - Gillian-->
 
 ### Calculated Name rule
 
@@ -247,6 +251,8 @@ Supplier Quality Engineer for ABC Manufacturing - Toronto Depot
 ```
 
 The exact Intelex calculated-field expression must be confirmed during configuration. Name recalculates when either related display name changes. Workflows, reports, integrations, and rules must retain record references or stable identifiers and must not use the calculated text as a foreign key.
+
+<!--Need to confirm if Subject "Name" has unique rule and if error message applies nicely - Gillian-->
 
 ### Uniqueness rules
 
