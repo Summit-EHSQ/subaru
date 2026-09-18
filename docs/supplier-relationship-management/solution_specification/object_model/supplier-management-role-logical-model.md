@@ -209,7 +209,7 @@ Only fields directly required by the agreed design are specified. Other standard
 | `Supplier Users` | External supplier-side responsibility | Authenticated supplier user whose Supplier Contact relationship is within the Supplier Specific Role's Supplier Abstract scope |
 | `Internal Users` | SIA-side responsibility | Active eligible internal employee/user |
 
-<!--I have no clue what this rule below means - Gillian-->
+COMMENT: I have no clue what this rule below means - Gillian
 
 ### Library membership rule
 
@@ -229,8 +229,6 @@ This rule avoids interpreting membership in `PPAP Coordinator` as membership for
 | Assignment Status | Direct calculated/display field | Three-state value: `Complete`, `Required - Incomplete`, or `Optional - Unpopulated` | Yes | System calculated | Read only | Complete when at least one eligible member exists; otherwise derived from Mandatory? | Required/Proposed; visual icon treatment is a view concern |
 | Originating Supplier Template Role Assignment | Direct | M:1 reference to Supplier Template Role Assignment | No | Populated by template generation or assignment push | Read only | Preserves the source assignment for generated standard roles; blank for manually created custom roles | Required/Proposed |
 | Members | Inherited from Group | M:N Members relationship/grid to the platform's member-capable Subject population | No | Empty | Authorized maintainers subject to role classification and supplier scope | Holds the operational users who fill the role for the related supplier entity | Required/Proposed; exact inherited target unresolved |
-
-<!--Need to come up with better name calculation - Gillian-->
 
 ### Calculated Name rule
 
@@ -252,7 +250,7 @@ Supplier Quality Engineer for ABC Manufacturing - Toronto Depot
 
 The exact Intelex calculated-field expression must be confirmed during configuration. Name recalculates when either related display name changes. Workflows, reports, integrations, and rules must retain record references or stable identifiers and must not use the calculated text as a foreign key.
 
-<!--Need to confirm if Subject "Name" has unique rule and if error message applies nicely - Gillian-->
+COMMENT: Need to confirm if Subject "Name" has unique rule and if error message applies nicely - Gillian
 
 ### Uniqueness rules
 

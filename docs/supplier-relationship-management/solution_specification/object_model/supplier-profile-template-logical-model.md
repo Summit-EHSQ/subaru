@@ -192,8 +192,6 @@ Supplier_Specific_Role "0..*" --> "1" Supplier_Management_Role : SupplierManagem
 | Supplier Management Role | M:1 reference to Supplier Management Role | Yes | Administrator selected | SRM application administrator or system administrator | Must reject roles where Allow Supplier-Specific Name? is Yes | Required/Proposed |
 | Mandatory? | Yes/No | Yes | No implicit default | SRM application administrator or system administrator | Copied to generated or synchronized Supplier Specific Role | Required/Proposed |
 
-<!--Need to finalize naming convention - Gillian-->
-
 ### Calculated Name
 
 Logical expression:
@@ -216,7 +214,7 @@ The pair `(Supplier Profile Template, Supplier Management Role)` is unique acros
 
 The field is declared on Supplier Abstract so the same behavior is inherited by Supplier Parent Company and Supplier Facility. No parent-to-child template defaulting or copying occurs.
 
-<!--Supplier Status is a Lookup. Can't really understand the purpose of this additional field. - Gillian-->
+COMMENT: Supplier Status is a Lookup. Can't really understand the purpose of this additional field. - Gillian
 
 ## Supplier Status modification
 
@@ -240,7 +238,7 @@ This rule replaces hard-coded tests for status names such as Active, Service Par
 
 ## Uniqueness and custom-role rules
 
-<!--Not sure what the below uniqueness constraints mean - Gillian-->
+COMMENT: Not sure what the below uniqueness constraints mean - Gillian
 
 ### Standard roles
 
