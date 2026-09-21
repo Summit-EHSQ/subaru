@@ -80,6 +80,8 @@ swimlane-beta LR
 
 ## Stage details
 
+COMMENT: Is "Determine Routing" and "Create and Relate Contact" actual workflow stages	 or just a decision the system needs to make after submit in the Draft stage? - Gillian
+
 | Stage ID | Stage name | Status | Responsible-person logic | Due-date logic | Entry condition | Exit paths | Evidence/classification | Source |
 |---|---|---|---|---|---|---|---|---|
 | `SCR-DRAFT` | Draft | Draft | Created By Employee; populated at creation and unchanged | None | Initial creation or Return for Correction | Submit → Determine Routing; Cancel → Cancelled; failed validation remains Draft | Required/Proposed | User requirement plus design assumption for correction path |
@@ -105,6 +107,10 @@ Terminal outcomes are Completed, Rejected, and Cancelled. Exception is nontermin
 ### Resubmission policy
 
 Return for Correction sends the record back to Draft. On the next Submit, the workflow continues using the routing parameters fetched when the record was originally created. Settings are not fetched again and no settings snapshots are stored on the request. The Approval Decision and Approval Comments fields, together with workflow history, preserve the prior review outcome.
+
+
+
+COMMENT: Do we want a separate approval history object to track approval decision and comments history? - Gillian
 
 ## Automated operations
 
