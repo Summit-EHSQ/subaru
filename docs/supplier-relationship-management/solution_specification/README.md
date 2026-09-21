@@ -13,3 +13,7 @@ API initiation, payload, provisioning, retry, and account-result behavior are de
 
 - [Supplier Management Role logical object model](object_model/supplier-management-role-logical-model.md) — governed role-classification catalogue, Group-derived role library and supplier-specific operational groups, inherited membership, standard/custom naming, direct completeness, exact company/facility scope, member eligibility, workflow resolution, migration, traceability, and platform validation requirements.
 - [Supplier Profile Template logical object model](object_model/supplier-profile-template-logical-model.md) — optional creation-time template selection, role-assignment children, exact-supplier role generation, copied mandatory status and origin, direct completeness, custom-role exclusion, and administrator-triggered status-eligible synchronization.
+
+## Supplier Surveys design
+
+- [Supplier Surveys technical specification](supplier-surveys-technical-specification.md) — reusable campaigns and questionnaire versions, recurring runs and audience snapshots, supplier requests and typed responses, profile confirmation and governed corrections, field and relationship definitions, workflow, permissions, notifications, traceability, and implementation acceptance criteria.
