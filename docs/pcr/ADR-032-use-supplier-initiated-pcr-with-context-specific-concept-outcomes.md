@@ -58,6 +58,8 @@ PCR records are initiated by authorized supplier users. The concept workflow pro
 
 The system must label outcomes so that concept acceptance cannot be mistaken for production approval.
 
+ADR-105 permits the earlier transition increment to implement only supplier intake, clarification, rejection, and **Proceed to PPAP** under SQA ownership. The no-PPAP and broader context-specific outcomes in this ADR apply to the expanded cross-functional PCR workflow unless they are separately approved for the transition increment.
+
 ## Consequences
 
 ### Positive
@@ -83,3 +85,4 @@ The system must label outcomes so that concept acceptance cannot be mistaken for
 - Second transcript: approximately 2:01:27–2:13:59.
 - Fourth transcript: approximately 1:35:17–1:44:47.
 - This revision removes the earlier universal requirement that every accepted PCR proceed to PPAP.
+- PPAP design workshop continuation: approximately 3:02:25–3:17:56. This discussion established the narrower transition increment governed by ADR-105 without replacing the target outcome model.

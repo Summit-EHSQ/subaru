@@ -53,6 +53,8 @@ Maintain a governed PCR rule catalogue. The supplier answers stable, plain-langu
 
 The responsible SIA reviewer confirms or corrects the classification. Where PPAP is required, the responsible engineer may add further evidence requirements. The request must include affected supplier/depot, drawing or part context, change description, project timing, and supporting documentation.
 
+The full rule catalogue is part of the expanded PCR design. The minimum transition increment governed by ADR-105 may use a smaller SQA-controlled intake and decision set, but it must preserve the captured change context and an extension path to these governed rules.
+
 ## Consequences
 
 ### Positive
@@ -77,3 +79,4 @@ The responsible SIA reviewer confirms or corrects the classification. Where PPAP
 
 - Second transcript: approximately 2:03:24–2:08:13 and 2:14:17–2:15:50.
 - Fourth transcript: approximately 1:36:50–1:41:31.
+- PPAP design workshop continuation: approximately 3:02:25–3:17:56.
