@@ -174,7 +174,7 @@ Reusable identity grouping the versions of a questionnaire. No business workflow
 | Field | Type | Required | Default / behavior |
 |---|---|---|---|
 | Name | Text | Y | Administrator; display name |
-| Description | Long text | N | Business purpose |
+| Description | Text | N | Business purpose |
 | Active? | Boolean | Y | Yes; controls new selection, preserves historical references |
 | Sort | Integer | N | Dropdown order |
 
@@ -184,18 +184,19 @@ Reusable identity grouping the versions of a questionnaire. No business workflow
 |---|---|---|---|
 | Definition | Ref Survey Definition | Y | Parent context |
 | Version Number | Positive integer | Y | Next number within Definition; unique pair |
-| Name | Calculated text | Y | Definition name plus version |
+| Name | Calculated text | Y | Definition name plus version; display name |
 | State | Choice | Y | Draft; allowed Draft, Published, Retired |
-| Instructions | Long text | N | Shown to supplier |
-| Published By / Published At | Ref Employee / datetime | C | Set by Publish |
+| Instructions | Text | N | Shown to supplier |
+| Published By | Ref Employee |  | Set by Publish |
+| Published On | Datetime |  | Set by Publish |
 
 Publishing validates all questions/options and locks their content, types, order, and requiredness. Changes require a new version. Retiring prevents new selection; previously prepared/issued runs retain the published content. Profile-only versions may have zero questions, but campaign publication then requires Profile Review Enabled = Yes.
 
-### 5.3 Survey Question
+### 5.3a Survey Question
 
 | Field | Type | Required | Default / behavior |
 |---|---|---|---|
-| Version | Ref Survey Version | Y | Parent |
+| Survey Definition | Ref Survey Definition | Y | Parent |
 | Code | Text | Y | Unique within Version; stable business code may recur in later versions |
 | Question Text | Long text | Y | Supplier-facing label |
 | Help Text | Long text | N | Optional explanation |
@@ -206,6 +207,20 @@ Publishing validates all questions/options and locks their content, types, order
 | Maximum Text Length | Positive integer | N | Text validation, bounded by platform storage |
 
 Initial scope uses a flat ordered questionnaire. Conditional branching, scored surveys, and repeating answer groups require a later extension if the actual shutdown checklist needs them. Yes/No answers are nullable so unanswered and No remain distinct.
+
+### 5.3b Survey Question Version
+
+| Field               | Type               | Required | Default / behavior                                           |
+| ------------------- | ------------------ | -------- | ------------------------------------------------------------ |
+| Survey Version      | Ref Survey Version | Y        | Parent                                                       |
+| Code                | Text               | Y        | Unique within Version; stable business code may recur in later versions |
+| Question Text       | Long text          | Y        | Supplier-facing label                                        |
+| Help Text           | Long text          | N        | Optional explanation                                         |
+| Display Order       | Integer            | Y        | Unique within Version                                        |
+| Answer Type         | Choice             | Y        | Text, Long Text, Number, Date, Yes/No, Single Choice, Multiple Choice |
+| Required?           | Boolean            | Y        | Yes, administrator may change before publication             |
+| Minimum / Maximum   | Decimal            | N        | Number validation only; minimum must not exceed maximum      |
+| Maximum Text Length | Positive integer   | N        | Text validation, bounded by platform storage                 |
 
 ### 5.4 Survey Option
 
