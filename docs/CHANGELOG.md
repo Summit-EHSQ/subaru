@@ -1,5 +1,171 @@
 # ADR Revision Change Log
 
+## Supplier Scorecard Detailed Design Revision
+
+### Superseded or Removed ADRs
+
+- No ADR was removed or superseded. The proposed Supplier PPAP Request boundary may require ADR-032 through ADR-036 and ADR-068 to be superseded or rescoped, but the transcript requires a confirming discovery and scope decision before that change is final.
+
+### Updated Existing ADRs
+
+- **ADR-058:** Added configurable KPI defaults and explicit applicability, administrator-only query overrides, commodity and ranking references, detailed safety sourcing, and the proposed cadence-specific hierarchy refinement.
+- **ADR-068:** Recorded the proposed separation between a PPAP-hosted supplier request and the internal SIA Process Change Request retained in Management of Change.
+- **ADR-076:** Clarified that scorecard programs select one entity level and avoid duplicate parent-and-facility entry.
+- **ADR-084:** Added the explicit aggregate-scorecard exception to transactional new-model and mass-production visibility inheritance.
+- **ADR-086:** Confirmed a broad notification-based internal review without individual approval tasks and replaced general correction access with administrator-only overrides.
+- **ADR-105:** Resolved the preferred hosting direction to a PPAP-adjacent Supplier PPAP Request while retaining the internal PCR in MOC; status remains proposed pending discovery and scope approval.
+
+### New ADRs
+
+- **ADR-111:** KPI initialization supports no default, a static value, or prior-period carry-forward, with explicit not-applicable treatment.
+- **ADR-112:** Monthly safety rates and semiannual Safety Kaizen use separate supplier surveys and effective-dated NAICS benchmark data.
+- **ADR-113:** Proposes monthly facility scorecards and a periodic parent-company assessment instead of historical monthly back-population.
+- **ADR-114:** Snapshots commodity on each scorecard and calculates period rankings on demand.
+- **ADR-115:** Separates aggregate scorecard access from source-record security and restricts administration and overrides.
+- **ADR-116:** Uses responsive browser forms, supplier-profile history drilldown, and optional governed reporting endpoints.
+
+### Open Items Not Promoted to Accepted Decisions
+
+- Management and procurement must confirm the monthly facility and annual parent-company split under ADR-113.
+- The business must confirm whether facilities may override the parent-company commodity under ADR-114.
+- No specific Power BI deliverable was approved; ADR-116 records only the supported integration pattern.
+- Focused discovery and change-order approval are required before ADR-105 can supersede or rescope the older supplier-oriented PCR target ADRs.
+
+### Status
+
+- **Total ADRs:** 114
+- **Accepted:** 88
+- **Proposed:** 23
+- **Superseded:** 3
+
+## PPAP Design Continuation Revision
+
+### Superseded or Removed ADRs
+
+- No ADR was removed or superseded. The continuation refined evidence reuse, approval, Pilot Part Data, recurring supplier work, PCR sequencing, and storage implications.
+
+### Updated Existing ADRs
+
+- **ADR-022:** Required engineer review of every supplier and internal PPAP element, added immutable rejection history and counts, and gated parent completion on all element approvals.
+- **ADR-023:** Replaced shared or automatically retained evidence references with engineer-confirmed, immutable task-level snapshots that retain copied-from lineage and exclude unapproved concurrent submissions.
+- **ADR-025:** Added a governed eligible-approver pool, engineer selection of an available management approver, internal-only management comments, and controlled reopening of affected elements.
+- **ADR-027:** Limited concurrent-PPAP evidence reuse to the latest approved lineage and kept unapproved parallel submissions out of the reusable baseline.
+- **ADR-030:** Connected later ECS drawing reviews to open PPAP reassessment and required a new PPAP after approval unless a governed exception applies.
+- **ADR-032:** Limited the early PCR transition increment to clarification, rejection, and proceed-to-PPAP outcomes while preserving the broader target outcome model.
+- **ADR-033:** Clarified that the full governed classification catalogue belongs to the expanded PCR design and need not be completed in the transition increment.
+- **ADR-034:** Preserved configurable cross-functional review as the target workflow while documenting the temporary SQA-only sequencing exception.
+- **ADR-040:** Confirmed that build-event pilot work normally inspects every received in-scope unit, subject to controlled exclusions.
+- **ADR-041:** Clarified that PPAP sample measurement execution may remain in the shared inspection framework while PPAP holds the requirement and approval relationship.
+- **ADR-045:** Reconfirmed that one failure record may group multiple failed responses from one inspection condition.
+- **ADR-068:** Preserved MOC as the target PCR base without forcing the earlier minimum intake into an unfinished Phase Three subtype design.
+- **ADR-074:** Added immutable PPAP evidence snapshots to storage-capacity forecasting rather than weakening the approval boundary to reduce duplication.
+- **ADR-080:** Distinguished planned one-to-many campaigns from targeted tasks and aligned campaign outputs with the shared supplier-task pattern.
+- **ADR-098:** Limited Pilot Part Data to new-model PPAPs, made pilot execution concurrent with PPAP work, and added cumulative published checklist versions across build events.
+- **ADR-099:** Moved PPAP and build-event scope from the physical shipment header to part-level data logs so one consignment may support several quality contexts.
+- **ADR-101:** Added model-level build-event records, distinct from PPAP phases and manufacturing stages, as the authoritative event choices for Pilot Part Data.
+- **ADR-102:** Added configurable non-annual frequencies, post-handover operational ownership, the distinction from Safe Launch, and reuse of shared supplier-task behavior.
+
+### New ADRs
+
+- **ADR-103:** A proposed shared supplier-task model supports targeted one-off and recurring work, role assignment, notes, files, governed checklists, review rules, and versioned templates.
+- **ADR-104:** Supplemental engineering changes join an open PPAP and reopen affected elements; changes after closure create a new PPAP with approved evidence carry-forward.
+- **ADR-105:** A proposed minimum supplier PCR intake and SQA proceed-to-PPAP workflow is delivered before the later cross-functional concept-review expansion.
+
+### Open Items Not Promoted to Separate Decisions
+
+- The physical base-object design for targeted and campaign-generated supplier tasks remains open under ADR-103.
+- Recurring validation ownership, stopping rules, reviewer behavior, and escalation remain open under ADR-102.
+- The initial PCR hosting application, change order, schedule, and budget approval remain open under ADR-105.
+- Security and mobile behavior were deferred to a later discussion and were not converted into ADRs.
+
+### Status
+
+- **Total ADRs:** 105
+- **Accepted:** 80
+- **Proposed:** 22
+- **Superseded:** 3
+
+## PPAP Design Revision
+
+### Superseded or Removed ADRs
+
+- No ADR was removed or superseded. The new workshop refined existing PPAP boundaries and added decisions for model-level scheduling and recurring validation.
+
+### Updated Existing ADRs
+
+- **ADR-022:** Added the governed requirement library, versioned PPAP templates, prospective publication behavior, and prohibition on ad hoc element types.
+- **ADR-023:** Added automatic evidence-lineage resolution, unchanged-evidence carry-forward, and retained internal rejection history with supplier replacement behavior.
+- **ADR-025:** Narrowed overall group-leader approval from important-quality or important-safety PPAPs to important-safety PPAPs; important-quality classification continues to drive evidence defaults.
+- **ADR-026:** Added separate model-change, running-change, and PCR internal responsibility roles with supplier-context routing and reassignment.
+- **ADR-030:** Replaced source-linked draft PPAP creation with an initial ECS-and-drawing review gate that records PPAP required, not required, or addressed by another PPAP.
+- **ADR-039:** Aligned inspection-specification gating with the initial drawing review and conditional PPAP creation rather than draft-PPAP creation.
+- **ADR-098:** Aligned pilot-program initiation with PPAPs created after the initial drawing review rather than directly staged by the source integration.
+
+### New ADRs
+
+- **ADR-101:** Model-change summaries group related PPAPs under a shared phase-and-stage schedule with cascading dates, controlled bulk resequencing, PPAP-level overrides, and retained baseline dates.
+- **ADR-102:** Recurring quality-validation, dimensional, and material results are proposed as records outside the point-in-time PPAP evidence lifecycle, potentially collected through Supplier Surveys.
+
+### Retained Without Material Change
+
+- **ADR-021:** The new transcript reinforces the drawing-scoped PPAP and selected part context.
+- **ADR-024:** The separate but linked Pilot Part Data boundary remains consistent with the new workshop.
+- **ADR-027 through ADR-029 and ADR-031:** No new discussion invalidated or materially changed these decisions.
+
+### Open Items Not Promoted to Separate Decisions
+
+- Final names and values for model phases and manufacturing stages remain configuration work under ADR-101.
+- Supplier-scorecard treatment of PPAP timeliness requires KPI governance before implementation.
+- The hosting application, review rules, recurrence lifecycle, and stopping conditions for recurring validation remain open under ADR-102.
+
+### Status
+
+- **Total ADRs:** 102
+- **Accepted:** 79
+- **Proposed:** 20
+- **Superseded:** 3
+
+## Product Management and Pilot Part Data Design Revision
+
+### Superseded ADRs
+
+- **ADR-042:** Superseded by ADR-098. The later design routes pilot responsibility through the PPAP or pilot program and explicit receiving-team assignments. New-model versus mass-production is a security classification rather than a separate part-owner routing field.
+
+### Updated Existing ADRs
+
+- **ADR-030:** Added the BOMEX publication trigger, initial batch and later delta pattern, Intelex GUID mapping, API-limit considerations, and administrator-only integration staging.
+- **ADR-038:** Added program-context checklist versioning, copy-forward behavior, expanded response types, numeric guardrails, and instructed units without automatic conversion.
+- **ADR-039:** Clarified that source integration may stage a PPAP but does not automatically create pilot programs or events.
+- **ADR-040:** Added received-quantity-driven unit generation and unit-oriented and consolidated-grid inspection views.
+- **ADR-041:** Added independently versioned copy-forward from pilot inspection into Safe Launch.
+- **ADR-043:** Removed the earlier offline-document fallback and selected responsive connected browser forms for laptops, tablets, and phones.
+- **ADR-044:** Limited frequency plans to recurring programs such as Safe Launch; development pilot inspections use discrete PPAP build events and actual shipments.
+- **ADR-045:** Replaced automatic full supplier NCR creation with an engineer-reviewed pilot failure subtype supporting grouping, disposition, conditional supplier release, replacement, and reinspection.
+- **ADR-062:** Expanded PartsMaster integration into a composite canonical part architecture using separately retained BOMEX and PartsMaster records, field precedence, and governed depot exceptions.
+- **ADR-084:** Added PPAP-context inheritance, management-controlled model handover, and explicit supplier visibility boundaries for pilot records.
+- **ADR-092:** Expanded supplier relationships to unrestricted typed manufacturer, assembly, sequencing, and service relationships and allowed manufacturer defaulting during NCR intake.
+
+### New ADRs
+
+- **ADR-097:** Effective-dated parent-child part hierarchies with bidirectional navigation.
+- **ADR-098:** Engineer-initiated pilot programs from staged PPAP and build-event context.
+- **ADR-099:** Event-scoped supplier shipments, part-level data logs, receipt acknowledgement, and inspector assignment.
+- **ADR-100:** No historical Pilot Part Data migration, with separate rules for part bootstrap, closed PPAP import, and active-work cutover.
+
+### Open Items Not Promoted to Separate Decisions
+
+- Final field-to-source mappings, authoritative depot sources, and exception-reconciliation rules remain open under ADR-062.
+- The precise BOMEX batch-versus-delta payload strategy and integration retry ownership remain implementation decisions under ADR-030.
+- First-time PPAP assignment fallback and the authoritative build-event source require detailed design under ADR-098.
+- The management role and cascade mechanics for model handover require security-matrix confirmation under ADR-084.
+
+### Status
+
+- **Total ADRs:** 100
+- **Accepted:** 78
+- **Proposed:** 19
+- **Superseded:** 3
+
 ## Supplier NCR and Warranty Workflow Revision
 
 ### Superseded or Removed ADRs

@@ -55,6 +55,8 @@ The configuration identifies mandatory and optional reviewing roles, target time
 
 All required concept reviews must be completed before the PCR can proceed to PPAP. The detailed PPAP remains quality-managed.
 
+This is the target expanded workflow. ADR-105 defines a deliberately narrower transition increment in which SQA may proceed directly from supplier intake to PPAP before the cross-functional review is implemented. That sequencing exception does not replace the target review pattern or authorize the transition design to constrain it.
+
 ## Consequences
 
 ### Positive
@@ -81,3 +83,4 @@ All required concept reviews must be completed before the PCR can proceed to PPA
 
 - Second transcript: approximately 2:15:50–2:30:51 and 2:37:07–2:41:27.
 - The architectural pattern was agreed; the exact role matrix and final owner remain configuration decisions.
+- PPAP design workshop continuation: approximately 3:02:25–3:17:56. This discussion deferred the cross-functional layer while preserving it as the later target.

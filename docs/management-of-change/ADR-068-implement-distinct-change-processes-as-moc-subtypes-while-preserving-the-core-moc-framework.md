@@ -49,7 +49,9 @@ Balances shared architecture with process-specific behavior.
 
 ## Decision Outcome
 
-Use the Intelex Management of Change application as the common architectural base. Implement PCR and Localization as distinct Phase Three subtypes or child workflows. Treat direct-supplier DCR and AAS as Phase Four processes subject to their own ADRs and scope confirmation.
+Use the Intelex Management of Change application as the common target architectural base. Implement the expanded cross-functional PCR and Localization capabilities as distinct Phase Three subtypes or child workflows. Treat direct-supplier DCR and AAS as Phase Four processes subject to their own ADRs and scope confirmation.
+
+ADR-105 now proposes placing the minimum supplier-facing request in PPAP as a distinct Supplier PPAP Request. The later workshop retained an internal SIA Process Change Request in Management of Change for broader cross-functional change control. This proposed boundary requires confirmation before the earlier supplier-oriented PCR subtype assumptions in this ADR and ADR-032 through ADR-036 are superseded or rescoped.
 
 Each subtype may replace or hide native screening-question behavior when configured fields and conditional logic are required. Preserve the core out-of-the-box MOC capability so future internal equipment acquisition, process, document, training, calibration, safety, or environmental change use cases can be added without dismantling the supplier-oriented subtypes.
 
@@ -70,6 +72,7 @@ Each subtype may replace or hide native screening-question behavior when configu
 ### Follow-up and Constraints
 
 - Define the shared MOC base fields and subtype boundaries.
+- Confirm whether the Phase Three PCR subtype is limited to internal SIA-managed changes and, if so, remove the earlier dependency on incorporating the supplier request into that subtype.
 - Confirm Localization process owners and workflow.
 - Evaluate future equipment-acquisition MOC separately.
 - Define cross-subtype reporting and numbering.
@@ -77,3 +80,5 @@ Each subtype may replace or hide native screening-question behavior when configu
 ## More Information
 
 - Fourth transcript: approximately 1:34:34–1:52:23.
+- PPAP design workshop continuation: approximately 3:02:25–3:17:56.
+- Phase 2A design workshop day 3 afternoon: approximately 1:55:55–2:00:41. The discussion proposes separating the Supplier PPAP Request from the internal MOC PCR; ADR-105 remains proposed pending discovery and scope approval.
