@@ -197,41 +197,49 @@ Publishing validates all questions/options and locks their content, types, order
 | Field | Type | Required | Default / behavior |
 |---|---|---|---|
 | Survey Definition | Ref Survey Definition | Y | Parent |
-| Code | Text | Y | Unique within Version; stable business code may recur in later versions |
-| Question Text | Long text | Y | Supplier-facing label |
-| Help Text | Long text | N | Optional explanation |
-| Display Order | Integer | Y | Unique within Version |
-| Answer Type | Choice | Y | Text, Long Text, Number, Date, Yes/No, Single Choice, Multiple Choice |
+| Code | Text | Y | Max 150 char, Unique within Definition |
+| Question Text | Text | Y | Supplier-facing label |
+| Help Text | Text | N | Optional explanation |
+| Display Order | Number | Y | Unique within Definition |
+| Answer Type | Choice | Y | Relation to CLF - Answer Type Lookup (Text, Number, Date, Yes/No, Single Choice, Multiple Choice) |
 | Required? | Boolean | Y | Yes, administrator may change before publication |
-| Minimum / Maximum | Decimal | N | Number validation only; minimum must not exceed maximum |
-| Maximum Text Length | Positive integer | N | Text validation, bounded by platform storage |
+| Minimum / Maximum | Number | N | Number validation only; minimum must not exceed maximum |
+| Maximum Answer Text Length (in Characters) | Number | N | Text validation, bounded by ~~platform storage~~ 4000, non-negative |
 
 Initial scope uses a flat ordered questionnaire. Conditional branching, scored surveys, and repeating answer groups require a later extension if the actual shutdown checklist needs them. Yes/No answers are nullable so unanswered and No remain distinct.
 
 ### 5.3b Survey Question Version
 
-| Field               | Type               | Required | Default / behavior                                           |
-| ------------------- | ------------------ | -------- | ------------------------------------------------------------ |
-| Survey Version      | Ref Survey Version | Y        | Parent                                                       |
-| Code                | Text               | Y        | Unique within Version; stable business code may recur in later versions |
-| Question Text       | Long text          | Y        | Supplier-facing label                                        |
-| Help Text           | Long text          | N        | Optional explanation                                         |
-| Display Order       | Integer            | Y        | Unique within Version                                        |
-| Answer Type         | Choice             | Y        | Text, Long Text, Number, Date, Yes/No, Single Choice, Multiple Choice |
-| Required?           | Boolean            | Y        | Yes, administrator may change before publication             |
-| Minimum / Maximum   | Decimal            | N        | Number validation only; minimum must not exceed maximum      |
-| Maximum Text Length | Positive integer   | N        | Text validation, bounded by platform storage                 |
+| Field                                      | Type               | Required | Default / behavior                                           |
+| ------------------------------------------ | ------------------ | -------- | ------------------------------------------------------------ |
+| Survey Version                             | Ref Survey Version | Y        | Parent                                                       |
+| Code                                       | Text               | Y        | Max 150 char, Unique within Version; stable business code may recur in later versions |
+| Question Text                              | Text               | Y        | Supplier-facing label                                        |
+| Help Text                                  | Text               | N        | Optional explanation                                         |
+| Display Order                              | Number             | Y        | Unique within Version                                        |
+| Answer Type                                | Choice             | Y        | Text, Long Text, Number, Date, Yes/No, Single Choice, Multiple Choice |
+| Required?                                  | Boolean            | Y        | Yes, administrator may change before publication             |
+| Minimum / Maximum                          | Number             | N        | Number validation only; minimum must not exceed maximum      |
+| Maximum Answer Text Length (in Characters) | Number             | N        | Text validation, bounded by 4000, non-negative               |
 
-### 5.4 Survey Option
+### 5.4a Survey Choice List
 
 | Field | Type | Required | Default / behavior |
 |---|---|---|---|
-| Question | Ref Survey Question | Y | Only choice questions |
 | Code | Text | Y | Unique within Question |
 | Label | Text | Y | Display value |
-| Display Order | Integer | Y | Unique within Question |
+| Description | Text | N |  |
 
 Options are immutable after publication; historical choices never resolve through a mutable global label list.
+
+### 5.4b Survey Choice
+
+| Field         | Type                   | Required | Default / behavior                            |
+| ------------- | ---------------------- | -------- | --------------------------------------------- |
+| Choice List   | Ref Survey Choice List | Y        | To show which choice list a choice belongs to |
+| Code          | Text                   | Y        | Unique within Question                        |
+| Label         | Text                   | Y        | Display value                                 |
+| Display Order | Number                 | Y        | Unique within Question                        |
 
 ### 5.5 Survey Campaign
 
@@ -246,17 +254,16 @@ Options are immutable after publication; historical choices never resolve throug
 | Internal Owner | Ref Employee | C | Active SIA campaign owner required to activate; handles unresolved routing |
 | Review Role / Escalation Role | Ref Supplier Management Role each | C | Internal Users, standard roles; required when corresponding feature enabled |
 | Schedule Mode | Choice | Y | Manual, Once, Recurring; default Manual |
-| First Launch At | Datetime | C | Required for Once/Recurring |
-| Recurrence Definition | Validated recurrence value | C | Required for Recurring; logical type mapped to supported scheduler during build |
-| Timezone | Text, governed timezone identifier | Y | Explicit administrator selection |
+| First Launch At | Datetime with timezone | C | Required for Once/Recurring |
+| Recurrence Definition | Frequency | C | Required for Recurring; logical type mapped to supported scheduler during build |
 | Response Days | Positive integer | C | Required to activate; no business deadline invented |
 | Profile Review Enabled? | Boolean | Y | No |
 | Profile Change Policy | Choice | C | Review All when enabled; initial supported policy |
-| Visibility Classification | Ref shared classification catalogue | C | Required if survey security matrix mandates; shared metadata unresolved |
+| Visibility Classification | Ref Visibility Classification | C | Required if survey security matrix mandates; shared metadata unresolved |
 
 Campaign activation validates routing roles, audience configuration, question version, schedule, and notification rules. Future edits affect future runs only. Pausing prevents new scheduled runs, while existing requests continue. Retirement prevents further runs and preserves history.
 
-### 5.6 Campaign Audience Rule
+### 5.6 Survey Campaign Audience Rule
 
 Each row belongs to one campaign. Rules in the same group are ANDed; groups are ORed. Lifecycle eligibility is always an additional mandatory condition. Filters are restricted to governed attributes; arbitrary executable expressions are prohibited.
 
@@ -296,7 +303,7 @@ Missing rules deny new requests and are reported as configuration exceptions. Co
 | Trigger | Choice | Y | Before Due, At Due, After Due |
 | Offset Days | Nonnegative integer | Y | 0 for At Due |
 | Recipient Mode | Choice | Y | Supplier Role, Internal Escalation Role, Campaign Owner |
-| Notification Template | Ref platform notification template | Y | Exact target metadata to verify |
+| Notification Template | Ref notification template (OOTB) | Y | Exact target metadata to verify |
 | Active? | Boolean | Y | Yes |
 
 Each rule fires once per request. Multiple rows implement the approved cadence. A new due date creates a new schedule generation; previous notification history is retained. Initial design uses finite rules rather than unbounded daily notifications.
@@ -329,10 +336,10 @@ One entry per candidate supplier per run records selection, exclusion, and eligi
 
 | Field | Type | Required | Default / behavior |
 |---|---|---|---|
-| Run / Supplier | Ref Campaign Run / Supplier Abstract | Y | Unique pair |
+| Campaign Run / Supplier | Ref Campaign Run / Supplier Abstract | Y | Unique pair |
 | Selection Outcome | Choice | Y | Included, Excluded, Configuration Exception |
-| Selection Reason | Long text | Y | Matched rule group or exclusion/configuration reason |
-| Attribute Snapshot | Structured long text | Y | Evaluated identity, parent, status, and relevant filter values |
+| Selection Reason | Text | Y | Matched rule group or exclusion/configuration reason |
+| Attribute Snapshot | Text | Y | Evaluated identity, parent, status, and relevant filter values |
 | Evaluated At | Datetime | Y | Selection time |
 
 Candidate population is all supplier records at the campaign's selected entity level. Excluded entries have no request. Included entries have at most one request, even if role resolution fails. Preparation is internal and resumable; a run becomes Ready only when the population and snapshot are complete. Once issuance starts, selection evidence is locked.
