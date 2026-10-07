@@ -1,5 +1,9 @@
 # Supplier Profile Template logical object model
 
+> **Lifecycle overlay, 2026-10-06:** [Supplier Status Updates](supplier-status-updates-logical-model.md) governs status changes and supersedes direct status editing with the controlled transition action. Following the user-directed scope reduction, it does not change this document’s creation-only template generation, immutable original template selection, or status-independent assignment synchronization. Returning a supplier to Active uses the standard transition without template reapplication.
+
+> **Status object clarification:** Rename the existing lookup object **[Decommissioned] Supplier Status** and retain it only for migration/history. Lookup objects cannot accept additional fields. The replacement **Supplier Status** below is an entirely new record/configuration object with its own identity, not an extension or conversion of the lookup. The governing status-update specification defines the single Draft workflow, Save Status Transition → Completed, with no email notifications.
+
 | Property | Value |
 |---|---|
 | Mode | Target design; proposed configuration layered over the OOTB SRM baseline and Supplier Management Role target model |

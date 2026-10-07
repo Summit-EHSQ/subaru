@@ -2,6 +2,10 @@
 
 These documents describe proposed configuration layered over the separately preserved OOTB SRM baseline. They are logical designs and do not assert that the configuration has been implemented.
 
+## Supplier status updates
+
+- [Supplier Status Updates solution specification and logical model](object_model/supplier-status-updates-logical-model.md) — controlled manual transitions, replacement status catalogue, application capability matrix, parent/facility restrictions, field definitions, relationships, migration, and acceptance scenarios. This is the governing target for lifecycle editing. Returns to Active use the standard transition; dedicated reactivation automation is outside scope.
+
 ## User access request design
 
 - [User Access Request logical object model](object_model/user-access-request-logical-model.md) — inheritance, field properties, Location Bound behavior, hidden user fields, License Type configuration, Supplier Contact ownership, settings, relationships, change traceability, and validation findings for the four concrete request types and their two abstract ancestors.
