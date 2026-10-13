@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Night Shift supplier quality command center prototype">
+  <title>Supplier Quality Command Center — Night Shift</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="app-shell">
+    <main id="main" tabindex="-1">
+      <div id="view-root"></div>
+    </main>
+  </div>
+
+  <nav class="bottom-nav" aria-label="Supplier workspace navigation">
+    <button type="button" class="nav-item active" data-view="home"><span class="nav-glyph">H</span><span>Home</span></button>
+    <button type="button" class="nav-item" data-view="work"><span class="nav-glyph">W</span><span>My work</span><b class="nav-count" id="nav-work-count">8</b></button>
+    <button type="button" class="nav-item" data-view="quality"><span class="nav-glyph">Q</span><span>Quality</span></button>
+    <button type="button" class="nav-item" data-view="scorecards"><span class="nav-glyph">P</span><span>Performance</span></button>
+    <button type="button" class="nav-item" data-view="profile"><span class="nav-glyph">C</span><span>Company</span></button>
+    <button type="button" class="nav-item" id="more-nav" aria-haspopup="menu" aria-expanded="false"><span class="nav-glyph">•••</span><span>More</span></button>
+    <div class="bottom-more" id="bottom-more" role="menu" hidden>
+      <strong>More supplier tools</strong>
+      <button type="button" role="menuitem" data-view="submissions">My submissions <span>›</span></button>
+      <button type="button" role="menuitem" data-view="scrap">Scrap visibility <span>›</span></button>
+      <button type="button" role="menuitem" data-view="audits">Audits & visits <span>›</span></button>
+      <button type="button" role="menuitem" data-view="people">Contacts & users <span>›</span></button>
+      <button type="button" role="menuitem" data-view="resources">Documents & training <span>›</span></button>
+      <button type="button" role="menuitem" data-open-help>Help & support <span>›</span></button>
+    </div>
+  </nav>
+
+  <div class="modal-backdrop" id="modal-backdrop" hidden></div>
+  <section class="drawer" id="drawer" aria-modal="true" role="dialog" aria-labelledby="drawer-title" hidden>
+    <div class="drawer-header"><div><span class="eyebrow" id="drawer-eyebrow">Work item</span><h2 id="drawer-title">Details</h2></div><button class="icon-button" id="close-drawer" type="button" aria-label="Close details">×</button></div>
+    <div class="drawer-content" id="drawer-content"></div>
+  </section>
+  <section class="modal" id="action-modal" aria-modal="true" role="dialog" aria-labelledby="modal-title" hidden>
+    <div class="modal-header"><div><span class="eyebrow">New supplier submission</span><h2 id="modal-title">Start request</h2></div><button class="icon-button" id="close-modal" type="button" aria-label="Close dialog">×</button></div>
+    <form id="action-form">
+      <div class="modal-body" id="modal-body"></div>
+      <div class="modal-actions"><button class="button secondary" type="button" id="cancel-modal">Cancel</button><button class="button primary" type="submit">Create draft</button></div>
+    </form>
+  </section>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script src="app.js"></script>
+</body>
+</html>
