@@ -151,15 +151,12 @@ The single `Group`-to-`Subject` Members association represents the inherited rel
 
 | Object Name | State | Parent | Responsibility | Creation and maintenance | Workflow |
 |---|---|---|---|---|---|
-| Subject | Existing system object | None shown in scope | Common identity and inherited unique Name | Platform managed | May be a workflow recipient |
-| Group | Existing system object | Subject | Common group behavior and inherited Members relationship | Platform managed | Native group-recipient behavior to be verified |
-| Employee | Existing system object | Subject | Internal or supplier user identity represented in Intelex | Platform/user administration | Existing workflow recipient |
-| Supplier Management Role Classification | New configuration record object | None | Governed classification catalogue used to distinguish supplier-user roles from internal-user roles | Authorized SRM role administrators | None |
-| Supplier Management Role | New record object | Group | Governed library definition and user-population classification | Authorized SRM role administrators | No object workflow proposed |
-| Supplier Specific Role | New record object | Group | One operational role group in one exact supplier-company, facility, or depot context; may be standard and library-related or standalone and supplier-created; retains template requirement and completeness state | Setup automation, authorized role maintainers, or authorized supplier users for standalone roles | No lifecycle workflow proposed; consumed as a workflow recipient |
-| Supplier Template Role Assignment | New configuration record object | None | Relates one library role to one profile template and supplies the copied Mandatory? requirement | SRM application administrators and system administrators | Provides assignment-level synchronization action; detailed in the related target model |
-| Supplier Abstract | Existing OOTB abstract object | Existing baseline parent | Common supplier identity inherited by parent companies and facilities | Existing SRM processes | Existing supplier workflows |
-| Supplier Contact | Existing OOTB record object | None in extracted scope | External person record with optional Employee relationship | Existing and separately proposed contact-request processes | Existing requirement workflows reference its Employee |
+| Supplier Management Role Classification | New object | None | Governed classification catalogue used to distinguish supplier-user roles from internal-user roles | Authorized SRM role administrators | None |
+| Supplier Management Role | New object | Group | Governed library definition and user-population classification | Authorized SRM role administrators | No object workflow proposed |
+| Supplier Specific Role | New object | Group | One operational role group in one exact supplier-company, facility, or depot context; may be standard and library-related or standalone and supplier-created; retains template requirement and completeness state | Setup automation, authorized role maintainers, or authorized supplier users for standalone roles | No lifecycle workflow proposed; consumed as a workflow recipient |
+| Supplier Template Role Assignment | New object | None | Relates one library role to one profile template and supplies the copied Mandatory? requirement | SRM application administrators and system administrators | Provides assignment-level synchronization action; detailed in the related target model |
+| Supplier Abstract | OOTB | Existing baseline parent | Common supplier identity inherited by parent companies and facilities | Existing SRM processes | Existing supplier workflows |
+| Supplier Contact | OOTB | None in extracted scope | External person record with optional Employee relationship | Existing and separately proposed contact-request processes | Existing requirement workflows reference its Employee |
 
 ## Inheritance behavior
 
@@ -174,39 +171,34 @@ The single `Group`-to-`Subject` Members association represents the inherited rel
 
 No inheritance relationship exists between Supplier Management Role and Supplier Specific Role. They are sibling Group descendants. The M:1 relationship from Supplier Specific Role to Supplier Management Role represents classification/instantiation, not inheritance.
 
-## Supplier Management Role Classification fields
+## Supplier Management Role Classification - new object
 
-| Field | Type | Required | Default/source | Editability | Object/field property behavior | Classification |
-|---|---|---:|---|---|---|---|
-| Name | Text, maximum 255 characters | Yes | Administrator entered | Authorized SRM role administrator | Set as the object's display field | Required/Proposed |
-| Active? | Yes/No | Yes | `Yes` | Authorized SRM role administrator | Controls availability for new Role Classification selections; inactive records remain valid for historical references | Required/Proposed |
-| Sort | Number | No | Blank | Authorized SRM role administrator | Set as the object's order property and controls dropdown ordering | Required/Proposed |
+| Field | Type | Required | Additional Config | Additional Info |
+|---|---|---:|---|---|
+| Name | Text | Y | maximum 255 characters<br />display field |  |
+| Active? | Yes/No | N | Default: yes<br />set view settings to checkbox | Controls availability for new Role Classification selections; inactive records remain valid for historical references |
+| Sort | Number | N | order field |  |
 
 Initial records:
 
-| Name | Initial Active? | Sort |
+| Name | Active? | Sort |
 |---|---:|---:|
-| Supplier Users | Yes | To be assigned by administrator |
-| Internal Users | Yes | To be assigned by administrator |
+| Supplier Users | Yes |  |
+| Internal Users | Yes |  |
 
 No additional fields are specified for this catalogue. Final Sort values remain administrator-governed because no numeric sequence was supplied.
 
-## Supplier Management Role fields
+## Supplier Management Role - new object
+
+Parent: Group object
 
 Only fields directly required by the agreed design are specified. Other standard Group or Subject fields may be inherited but are not duplicated here.
 
-| Field | Declaration | Type | Required | Default/source | Editability | Behavior | Classification |
-|---|---|---|---:|---|---|---|---|
-| Name | Inherited from Subject through Group | Text; inherited maximum length | Yes | Administrator entered | Authorized SRM role administrator | Display name for the library role; inherited Subject Name uniqueness applies | Required/Proposed |
-| Role Classification | Direct | M:1 reference to Supplier Management Role Classification | Yes | No implicit default | Authorized SRM role administrator | Selection is filtered to Active? = Yes and ordered by Sort; the related classification controls eligible Supplier Specific Role members | Required/Proposed |
-| Members | Inherited from Group | M:N Members relationship/grid to the platform's member-capable Subject population | No | Empty | No maintenance on Supplier Management Role | Exists through inheritance but its grid is hidden on Supplier Management Role detail views; target design permits membership only on Supplier Specific Role | Required/Proposed; exact inherited target unresolved |
-
-### Initial Role Classification records
-
-| Supplier Management Role Classification record | Meaning | Eligible operational member population |
-|---|---|---|
-| `Supplier Users` | External supplier-side responsibility | Authenticated supplier user whose Supplier Contact relationship is within the Supplier Specific Role's Supplier Abstract scope |
-| `Internal Users` | SIA-side responsibility | Active eligible internal employee/user |
+| Field | Type | Required | Additional Config |
+|---|---|---:|---|
+| Role Classification (new field) | M:1 reference to Supplier Management Role Classification | Y | Filter Active?=Yes |
+| Allow Supplier-Specific Name? | Yes/No | N | set view settings to checkbox |
+| Members (existing field, additional config required) | M:N Members relationship/grid to the platform's member-capable Subject population | N | Exists through inheritance but its grid is hidden on Supplier Management Role detail views; target design permits membership only on Supplier Specific Role |
 
 ### Library membership rule
 
@@ -214,21 +206,22 @@ The inherited Members relationship on Supplier Management Role is not the operat
 
 This rule avoids interpreting membership in `PPAP Coordinator` as membership for every supplier that instantiates that role.
 
-## Supplier Specific Role fields
+## Supplier Specific Role - new object
 
-| Field | Declaration | Type | Required | Default/source | Editability | Behavior | Classification |
-|---|---|---|---:|---|---|---|---|
-| Name | Inherited from Subject through Group | Text; inherited maximum length; unique | Yes | System calculated for library-related roles; supplier user entered for standalone roles | Read only when Supplier Management Role is populated; editable by the authorized supplier creator/maintainer when it is blank | Related role: `Supplier Management Role.Name + " for " + Supplier Abstract.Name`; standalone role: manually entered unique Name | Required/Proposed |
-| Supplier Management Role | Direct | M:1 reference to Supplier Management Role | No | Selected by setup automation/authorized maintainer for a standard role; blank for a standalone role | Locked after creation and when referenced by active workflow unless governed replacement is used | Identifies the library role instantiated by a standard group; a supplier-created standalone group has no library relationship | Required/Proposed |
-| Supplier Abstract | Direct | M:1 reference to OOTB Supplier Abstract | Yes | Supplier launch context, setup automation, or authorized maintainer | Authorized maintainer; locked when referenced by active workflow unless governed replacement is used | May resolve to a Supplier Parent Company or Supplier Facility/depot | Required/Proposed |
-| Mandatory? | Direct | Yes/No | Yes | Copied from originating assignment; no implicit default for direct standalone creation | Authorized maintainer for standalone roles; assignment synchronization may overwrite generated standard roles | Drives the unpopulated completeness state | Required/Proposed |
-| Assignment Status | Direct calculated/display field | Three-state value: `Complete`, `Required - Incomplete`, or `Optional - Unpopulated` | Yes | System calculated | Read only | Complete when at least one eligible member exists; otherwise derived from Mandatory? | Required/Proposed; visual icon treatment is a view concern |
-| Originating Supplier Template Role Assignment | Direct | M:1 reference to Supplier Template Role Assignment | No | Populated by template generation or assignment push | Read only | Preserves the source assignment for generated standard roles; blank for manually created standalone roles | Required/Proposed |
-| Members | Inherited from Group | M:N Members relationship/grid to the platform's member-capable Subject population | No | Empty | Authorized maintainers subject to role classification and supplier scope | Holds the operational users who fill the role for the related supplier entity | Required/Proposed; exact inherited target unresolved |
+Parent: Group object
 
-### Calculated Name rule
+| Field | Type | Required | Additional Config |
+|---|---|---:|---|
+| Supplier Management Role | M:1 reference to Supplier Management Role | N | read-only after creation |
+| Supplier Abstract | M:1 reference to OOTB Supplier Abstract | Y | read-only after creation |
+| Supplier-Specific Name | Text | N | max 255 char |
+| Mandatory? | Yes/No | Y |  |
+| Assignment Status | Lookup | N | read-only<br />new lookup: `Complete`, `Required - Incomplete`, or `Optional - Unpopulated` |
+| Originating Supplier Template Role Assignment | M:1 reference to Supplier Template Role Assignment | N | read-only |
 
-Logical expression:
+### Action Handler: Calculated Name rule
+
+Set Supplier-Specific Name with Logical expression:
 
 ```text
 IF SupplierManagementRole is populated
@@ -245,7 +238,17 @@ Supplier Quality Engineer for ABC Manufacturing - Toronto Depot
 
 The exact Intelex conditional calculated/editable implementation must be confirmed during configuration. For a library-related role, Name recalculates when either related display name changes and cannot be overridden. For a standalone role, Supplier Management Role remains blank and an authorized supplier user enters Name manually. Workflows, reports, integrations, and rules must retain record references or stable identifiers and must not use Name as a foreign key.
 
-### Uniqueness rules
+### Action Handler: Assignment Status
+
+```
+If Members<>Null (employee has been assigned), "Complete".
+If Members=Null and Mandatory?=Yes, "Required - Incomplete"
+If Members=Null and Mandatory?=No, "Optional - Unpopulated"
+```
+
+
+
+### Business Rules
 
 1. Subject Name has an inherited unique constraint, and that constraint applies to both Supplier Management Role and Supplier Specific Role.
 2. Every library-related Supplier Specific Role uses the structured calculated Name. A duplicate `(Supplier Management Role, Supplier Abstract)` produces the same calculated Name and is rejected by the inherited unique rule.

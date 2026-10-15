@@ -1,9 +1,5 @@
 # Supplier Profile Template logical object model
 
-> **Lifecycle overlay, 2026-10-06:** [Supplier Status Updates](supplier-status-updates-logical-model.md) governs status changes and supersedes direct status editing with the controlled transition action. Following the user-directed scope reduction, it does not change this document’s creation-only template generation, immutable original template selection, or status-independent assignment synchronization. Returning a supplier to Active uses the standard transition without template reapplication.
-
-> **Status object clarification:** Rename the existing lookup object **[Decommissioned] Supplier Status** and retain it only for migration/history. Lookup objects cannot accept additional fields. The replacement **Supplier Status** below is an entirely new record/configuration object with its own identity, not an extension or conversion of the lookup. The governing status-update specification defines the single Draft workflow, Save Status Transition → Completed, with no email notifications.
-
 | Property | Value |
 |---|---|
 | Mode | Target design; proposed configuration layered over the OOTB SRM baseline and Supplier Management Role target model |
@@ -85,6 +81,10 @@ ADR-006 and ADR-080 may later use the resulting Supplier Specific Roles for prof
 ## Target logical object model
 
 All identifiers and fields marked `PROPOSED` are logical design names, not confirmed Intelex internal names or stable metadata identifiers.
+
+
+
+(The below diagram is AI-generated and may not 100% match with the tables below. If discrepancies are found, the tables are the source of truth.)
 
 ```mermaid
 classDiagram
@@ -182,33 +182,34 @@ Supplier_Specific_Role "0..*" --> "0..1" Supplier_Management_Role : SupplierMana
 
 | Logical object | State | Responsibility | Creation and maintenance | Workflow/action behavior |
 |---|---|---|---|---|
-| Supplier Profile Template | New configuration object | Names and orders one administrator-defined collection of role assignments available during Supplier Abstract creation | SRM application administrators and system administrators | No workflow; Active? controls new selection |
-| Supplier Template Role Assignment | New configuration child | Relates one template to one standard role and defines Mandatory? | SRM application administrators and system administrators | Exposes assignment-level synchronization action |
+| Supplier Profile Template | New object | Names and orders one administrator-defined collection of role assignments available during Supplier Abstract creation | SRM application administrators and system administrators | No workflow; Active? controls new selection |
+| Supplier Template Role Assignment | New object | Relates one template to one standard role and defines Mandatory? | SRM application administrators and system administrators | Exposes assignment-level synchronization action |
 | Supplier Management Role | New object (Refer to Supplier Management Role Logical Model) | Provides the governed library role definition used by template assignments | Existing target governance | Every template assignment selects one library role |
-| Supplier Specific Role | New object (Refer to Supplier Management Role Logical Model) | Materialized role group with copied Mandatory?, origin, Members, and calculated status; may instead be a supplier-created standalone role with no library relationship | Creation automation, assignment push, or direct standalone-role maintenance | No lifecycle workflow; completeness is calculated |
+| Supplier Specific Role | New object (Refer to Supplier Management Role Logical Model) | Materialized role group with copied Mandatory?, origin, Members, and calculated status; may instead be a supplier-created standalone role with no library relationship | Creation automation, assignment push, or direct standalone-role maintenance | No workflow; completeness is calculated |
 | Supplier Abstract | Modified OOTB abstract object | Stores the optional, immutable-after-create template selection inherited by parent and facility records | User selects during creation; system locks after first save | Post-create automation generates roles once |
-| Legacy Supplier Status | Existing OOTB controlled lookup object | Former target of the OOTB Supplier Status field | Existing records remain available for migration/history | OOTB field is recaptioned `[Decommisioned] Supplier Status` and removed from target views and new selection |
-| Supplier Status | New configuration object | Provides governed replacement supplier-status values | Authorized Supplier Status administrators | Active? filters new selections; Name displays values and Sort orders them |
+| Legacy Supplier Status | Existing OOTB lookup | Former target of the OOTB Supplier Status field | Existing records remain available for migration/history | Changes are captured in Supplier Status Design Document |
+| Supplier Status | New object | Provides governed replacement supplier-status values | Authorized Supplier Status administrators | Active? filters new selections; Name displays values and Sort orders them |
 
-## Supplier Profile Template fields
+## Supplier Profile Template - new object
 
-| Field | Type | Required | Default/source | Editability | Property behavior | Classification |
-|---|---|---:|---|---|---|---|
-| Name | Text, maximum 255 characters | Yes | Administrator entered | SRM application administrator or system administrator | Object display field | Required/Proposed |
-| Active? | Yes/No | Yes | `Yes` | SRM application administrator or system administrator | Active records are available for new Supplier Abstract selection; inactive records remain visible on existing read-only references | Required/Proposed |
-| Sort | Number | No | Blank | SRM application administrator or system administrator | Object order property used by template selection | Required/Proposed |
+| Field | Type | Required | Additional Config |
+|---|---|:--:|---|
+| Name | Text | Y | maximum 255 characters<br />display field |
+| Active? | Yes/No | N | Default: Yes<br />set view settings to checkbox |
+| Sort | Number | N | order field |
 
-## Supplier Template Role Assignment fields
+## Supplier Template Role Assignment - new object
 
-| Field | Type | Required | Default/source | Editability | Property behavior | Classification |
-|---|---|---:|---|---|---|---|
-| Name | Text, maximum 255 characters | Yes | System calculated | Read only | Object display field; formula is Supplier Management Role Name + ` for ` + Supplier Profile Template Name | Required/Proposed |
-| Active? | Yes/No | Yes | `Yes` | SRM application administrator or system administrator | Retires assignment from future creation without deleting history | Required/Proposed |
-| Supplier Profile Template | M:1 reference to Supplier Profile Template | Yes | Administrator selected | SRM application administrator or system administrator | Related template; inactive template remains referenceable historically | Required/Proposed |
-| Supplier Management Role | M:1 reference to Supplier Management Role | Yes | Administrator selected | SRM application administrator or system administrator | Selects the governed library role to materialize; standalone Supplier Specific Roles are not selectable because they have no library relationship | Required/Proposed |
-| Mandatory? | Yes/No | Yes | No implicit default | SRM application administrator or system administrator | Copied to generated or synchronized Supplier Specific Role | Required/Proposed |
+| Field                     | Type                                       | Required | Additional Config                                            |
+| ------------------------- | ------------------------------------------ | :------: | ------------------------------------------------------------ |
+| Name                      | text                                       |    Y     | max 255 characters<br />read-only<br />display field<br />AH to set Name to `Supplier Management Role Name` + " for " + `Supplier Profile Template Name` |
+| Active?                   | Yes/No                                     |    N     | Default: Yes<br />set view settings to checkbox              |
+| Supplier Profile Template | M:1 reference to Supplier Profile Template |    Y     | Related template; inactive template remains referenceable historically |
+| Supplier Management Role  | M:1 reference to Supplier Management Role  |    Y     | Selects the governed library role to materialize; standalone Supplier Specific Roles are not selectable because they have no library relationship |
+| Mandatory?                | Yes/No                                     |    N     | set view settings to checkbox                                |
+|                           |                                            |          |                                                              |
 
-### Calculated Name
+### Action Handler: Calculated Name
 
 Logical expression:
 
@@ -218,35 +219,17 @@ SupplierManagementRole.Name + " for " + SupplierProfileTemplate.Name
 
 Exact platform syntax is unresolved. Changes to either related Name must recalculate the assignment Name.
 
-### Assignment uniqueness
+### Business Rule
 
 The pair `(Supplier Profile Template, Supplier Management Role)` is unique across active and retired assignment records. If a retired assignment is needed again, administrators reactivate and modify that record rather than create a duplicate.
 
-## Supplier Abstract modification
+## Supplier Abstract - OOTB modification
 
-| Field | Type | Required | Default/source | Editability | Property behavior | Classification |
-|---|---|---:|---|---|---|---|
-| Supplier Profile Template | M:1 reference to Supplier Profile Template | No | User may select one active template during initial creation | Editable only before first save; permanently read only afterward | Null is permitted and final; existing inactive reference remains visible; active selections ordered by Sort | Required/Proposed modification |
+| Field | Type | Required | Additional Config |
+|---|---|---:|---|
+| Supplier Profile Template | M:1 reference to Supplier Profile Template | N | Editable in create, read-only afterwards |
 
 The field is declared on Supplier Abstract so the same behavior is inherited by Supplier Parent Company and Supplier Facility. No parent-to-child template defaulting or copying occurs.
-
-## Supplier Status replacement
-
-| Field | Type | Required | Default/source | Editability | Property behavior | Classification |
-|---|---|---:|---|---|---|---|
-| `[Decommisioned] Supplier Status` | Existing OOTB reference to legacy Supplier Status lookup | No for target operation | Existing migrated value only | Read only; removed from target detail and edit views | Recaptioned from the OOTB `Supplier Status` field and retained only for migration/history until retirement is approved | Required/Proposed decommissioning |
-| Supplier Status | M:1 reference to new Supplier Status | Yes | Migrated or administrator/user selected according to supplier lifecycle permissions | Existing authorized supplier maintainers | Replacement status field; available values filter to Active? = Yes and display/order by the target object's Name and Sort properties | Required/Proposed modification |
-
-### Supplier Status fields
-
-| Field | Type | Required | Default/source | Editability | Object/field property behavior | Classification |
-|---|---|---:|---|---|---|---|
-| Code | Text, maximum 10 characters | Yes | Administrator entered | Authorized Supplier Status administrator | Governed short code; no uniqueness rule was specified | Required/Proposed |
-| Name | Text, maximum 255 characters | Yes | Administrator entered | Authorized Supplier Status administrator | Object display field | Required/Proposed |
-| Active? | Yes/No | Yes | `Yes` | Authorized Supplier Status administrator | Controls availability for new Supplier Status selections; inactive records remain valid for historical references | Required/Proposed |
-| Sort | Number | No | Blank | Authorized Supplier Status administrator | Object order field used for Supplier Status selections | Required/Proposed |
-
-The previously proposed Supplier Profile Template Assignment Eligible field is removed. Synchronization does not use a supplier-status eligibility flag or hard-coded status name.
 
 ## Relationship register
 
@@ -255,7 +238,6 @@ The previously proposed Supplier Profile Template Assignment Eligible field is r
 | Supplier Template Role Assignment | Supplier Profile Template | Supplier Profile Template | Many assignments to one template | Yes | Administrator | Required/Proposed |
 | Supplier Template Role Assignment | Supplier Management Role | Supplier Management Role | Many assignments to one library role | Yes | Administrator; standalone unlinked Supplier Specific Roles are not selectable | Required/Proposed |
 | Supplier Abstract | Supplier Profile Template | Supplier Profile Template | Many supplier entities to zero or one template | No | User at initial creation only | Required/Proposed modification |
-| Supplier Abstract | `[Decommisioned] Supplier Status` | OOTB legacy Supplier Status | Many supplier entities to zero or one legacy status during migration | No for target operation | Read only and removed from target views | Extracted baseline relationship; proposed decommissioning |
 | Supplier Abstract | Supplier Status | New Supplier Status | Many supplier entities to one status | Yes | Authorized supplier lifecycle maintenance; selections filtered to active records and ordered by Sort | Required/Proposed replacement relationship |
 | Supplier Specific Role | Originating Supplier Template Role Assignment | Supplier Template Role Assignment | Many roles to zero or one origin assignment | No | System | Required/Proposed |
 | Supplier Specific Role | Supplier Abstract | OOTB Supplier Abstract | Many roles to one exact supplier entity | Yes | Creation automation, synchronization, or direct custom creation | Required/Proposed |
