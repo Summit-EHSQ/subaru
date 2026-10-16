@@ -1,9 +1,9 @@
 ---
 status: accepted
-date: 2026-07-25
+date: 2026-10-16
 decision-date: not-recorded-in-transcript
 deciders:
-  - Luke Filippo
+  - Luke Phillippo
   - Jamie Dossey
 consulted:
   - Dave McLean
@@ -49,13 +49,15 @@ Filters invalid requests and applies only the relevant approval matrix.
 
 ## Decision Outcome
 
-Use a two-layer PCR concept-review pattern. The designated PCR owner first reviews the supplier submission, manages clarification, and confirms that it is ready for cross-functional review. The system then activates parallel review slots generated from configurable rules.
+Use a two-layer PCR concept-review pattern. In Phase 2, SQA receives the supplier submission, manages clarification, and decides whether it may proceed to PPAP. In the expanded Phase 3 workflow, Supplier Management performs the initial intake and rejection role before the request proceeds to the applicable cross-functional review. Detailed responsibility boundaries between Supplier Management and SQA remain to be confirmed.
+
+After initial intake, the system activates child review workflows or tasks generated from configurable rules. The PCR remains the governing parent workflow through concept review and any resulting implementation activity.
 
 The configuration identifies mandatory and optional reviewing roles, target timelines, and the supplier-specific role members who may respond. Mandatory review slots cannot be removed from the transaction. Optional slots may be removed by the PCR owner when demonstrably irrelevant. Where a role has multiple eligible members, the first authorized response satisfies that role's slot unless the role is configured to require all members.
 
-All required concept reviews must be completed before the PCR can proceed to PPAP. The detailed PPAP remains quality-managed.
+All required concept reviews must be completed before the PCR can proceed to PPAP or another final outcome. A rejection or request for additional information returns control to the PCR owner for consolidation, supplier clarification, rework, or final rejection. Detailed PPAP validation remains quality-managed.
 
-This is the target expanded workflow. ADR-105 defines a deliberately narrower transition increment in which SQA may proceed directly from supplier intake to PPAP before the cross-functional review is implemented. That sequencing exception does not replace the target review pattern or authorize the transition design to constrain it.
+This is the target expanded workflow. Phase 2 deliberately permits SQA to proceed directly from supplier intake to PPAP before the cross-functional layer is implemented. That sequencing exception does not replace the target review pattern or authorize the transition design to constrain it. ADR-105's proposal to place that transition request in PPAP is rejected; both increments use the MOC-based PCR governed by ADR-068.
 
 ## Consequences
 
@@ -75,6 +77,7 @@ This is the target expanded workflow. ADR-105 defines a deliberately narrower tr
 ### Follow-up and Constraints
 
 - Confirm the default PCR owner and escalation path.
+- Confirm the Phase 3 handoff and responsibility boundary between Supplier Management and SQA.
 - Define mandatory and optional review roles by PCR type.
 - Define review deadlines, reminders, and non-response handling.
 - Define the response options, including not applicable.
@@ -84,3 +87,4 @@ This is the target expanded workflow. ADR-105 defines a deliberately narrower tr
 - Second transcript: approximately 2:15:50–2:30:51 and 2:37:07–2:41:27.
 - The architectural pattern was agreed; the exact role matrix and final owner remain configuration decisions.
 - PPAP design workshop continuation: approximately 3:02:25–3:17:56. This discussion deferred the cross-functional layer while preserving it as the later target.
+- Latest PCR architecture transcript: approximately 02:46–13:19. This discussion confirmed Supplier Management intake for Phase 3, preserved SQA intake for Phase 2, and established child workflows or tasks under one governing PCR.

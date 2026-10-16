@@ -7,7 +7,7 @@
 | Component | Supplier Tasks |
 | Operational objects | `Abstract Supplier Task`, `Supplier Task`, `Supplier Survey` |
 | Workflows | Supplier Task; Supplier Survey |
-| As of | 2026-10-15 |
+| As of | 2026-10-16 |
 | Primary sources | ADR-002, ADR-003, ADR-004, ADR-005, ADR-006, ADR-007, ADR-076, ADR-077, ADR-078, ADR-079, ADR-080, ADR-081, ADR-083, ADR-084, ADR-085, and ADR-103; user-approved inheritance and scope decisions |
 
 ## 1. Executive solution summary
@@ -33,7 +33,7 @@ Every material object, field, relationship, stage, action, and notification intr
 ## 2. Architectural findings and consequences
 
 1. **Inheritance is the reuse boundary.** Common work-item data belongs on `Abstract Supplier Task`; child-only data remains on its concrete descendant.
-2. **Workflow is not inherited as one universal lifecycle.** Supplier Task and Supplier Survey have separate workflows because their initiation, validation, review, and recovery behavior differ materially.
+2. **Workflow is not inherited as one universal lifecycle.** Supplier Task and Supplier Survey have separate workflows because their initiation, validation, completion, and recovery behavior differ materially; only Supplier Task has an optional internal Review stage.
 3. **Role references remain live.** The work item points to a Supplier Specific Role rather than permanently assigning accountability to the person occupying that role at creation. The individual actor is captured when an action occurs.
 4. **Configuration is versioned.** Active and historical work must not change when a template, checklist, campaign, or routing rule is edited later.
 5. **Recurrence produces new records.** Every due occurrence is a separate concrete task record. Completed history is never reopened or overwritten to represent a later period.
@@ -45,6 +45,7 @@ Every material object, field, relationship, stage, action, and notification intr
 11. **Recurring setup uses the Supplier Task form.** The first Supplier Task captures the one-time-versus-recurring choice and all recurrence inputs. When recurring is selected, automation creates and links the Supplier Task Obligation; users do not configure a separate obligation record.
 12. **Checklist configuration and answers are shared.** Supplier Survey and templated Supplier Task consume the same Checklist, Checklist Version, Checklist Question, Checklist Question Version, Checklist Choice List, Checklist Choice, Checklist Question Choice, Checklist Question Choice Version, and Supplier Question Answer objects. Checklist and Checklist Question are the editable authoring records; Publish creates immutable checklist, question, and question-choice version snapshots. Choice/Choices questions select a reusable Choice List and generate question-scoped choices. The answer points to `Abstract Supplier Task`; survey revisions remain a conditional relationship used only when the work item is a Supplier Survey.
 13. **Profile assignments select stable templates, not versions.** A Supplier Profile Task Assignment points to a Supplier Task Template. When supplier creation generates a task, automation resolves the template's most recent current published version and snapshots that version on the new Supplier Task.
+14. **Survey-enabled profile changes are direct master-data edits.** Eligible supplier users edit only approved fields and relationships on their owning records while the Supplier Survey is Assigned. Native audit trails provide the change evidence; no survey proposal, approval, or deferred-apply object is introduced.
 
 ## 3. Requirements interpretation
 
@@ -52,7 +53,7 @@ Every material object, field, relationship, stage, action, and notification intr
 |---|---|---|---|
 | ST-001 | User-approved architecture | Supplier Task and Supplier Survey directly inherit from Abstract Supplier Task | Required |
 | ST-002 | User-approved architecture | The two descendants use different objects and different workflows | Required |
-| ST-003 | ADR-103 | Reuse assignment, due dates, completion, review, reminders, recurrence, and reporting through a shared task model | Required |
+| ST-003 | ADR-103 | Reuse assignment, due dates, completion, applicable review, reminders, recurrence, and reporting through a shared task model | Required |
 | ST-004 | ADR-103 | Every concrete work item relates to a supplier and resolves an accountable maintained supplier role | Required |
 | ST-005 | ADR-103 and user clarification | Supplier Task may require a note, file upload, a governed checklist, or a combination; checklist configuration is available only through a selected task template | Required |
 | ST-006 | ADR-103 | A Supplier Task may complete on supplier submission or route to an internal role for review | Required |
@@ -60,7 +61,7 @@ Every material object, field, relationship, stage, action, and notification intr
 | ST-008 | ADR-103 | Snapshot the effective configuration and checklist version on creation | Required |
 | ST-009 | ADR-080 | A campaign defines common survey properties and generates one Supplier Survey for each included supplier | Required |
 | ST-010 | ADR-005, ADR-002, ADR-077 | Governed supplier setup rules may generate Supplier Tasks after supplier creation without delaying supplier activation | Required |
-| ST-011 | ADR-006 | Periodic supplier-profile confirmation uses campaign-generated Supplier Surveys and affirmative review | Required |
+| ST-011 | ADR-006; refined by ST-030 | Periodic supplier-profile confirmation uses campaign-generated Supplier Surveys, direct governed profile maintenance, and affirmative confirmation | Required |
 | ST-012 | ADR-003, ADR-004 | Assignment and review use standardized supplier-specific external and internal roles; action history records the individual actor | Required |
 | ST-013 | ADR-003, ADR-007, ADR-081 | Only eligible authenticated contacts may perform supplier actions; missing or inactive membership is an owned exception | Required |
 | ST-014 | ADR-076, ADR-078 | Work is scoped to the exact supplier company or facility and cannot expand portal access beyond supplier-entity relationships | Required |
@@ -77,6 +78,9 @@ Every material object, field, relationship, stage, action, and notification intr
 | ST-025 | User clarification | A Supplier Profile Task Assignment selects a Supplier Task Template; supplier-creation generation resolves and snapshots the most recent current published Supplier Task Template Version | Required |
 | ST-026 | User clarification | Checklist Questions use Guidance, conditionally require a Choice List, generate guarded question-scoped choices, and carry scoring and color metadata on choice values | Required |
 | ST-027 | User clarification | Checklist Publish creates immutable Checklist Question Choice Version records for every published Checklist Question Choice under each Checklist Question Version | Required |
+| ST-028 | User clarification; superseded in part by ST-030 | The shared Survey Campaign retains Escalation Role and selects an active Survey Recurrence Definition through a conditional Frequency relationship when Schedule Mode is Recurring; its previously requested Review Role is removed | Required |
+| ST-029 | User clarification | The shared Survey Campaign dependency exposes inverse 1:M grids for Survey Campaign Audience Rules and Campaign Runs | Required |
+| ST-030 | User clarification | Profile-change-enabled Supplier Surveys permit direct edits to approved master-object fields and relationships with native audit trails; no Profile Change Policy, proposal objects, profile-change review, or deferred writeback is used | Required |
 
 ## 4. Baseline and target boundary
 
@@ -316,6 +320,15 @@ class Color {
 class Survey_Campaign {
   <<existing target>>
 }
+class Campaign_Audience_Rule {
+  <<existing target>>
+}
+class Survey_Recurrence_Definition {
+  <<shared survey configuration>>
+}
+class Supplier_Management_Role {
+  <<existing target>>
+}
 class Campaign_Run {
   <<existing target>>
 }
@@ -333,12 +346,6 @@ class Survey_Response_Revision {
 }
 class Supplier_Question_Answer {
   <<shared target>>
-}
-class Profile_Review_Snapshot {
-  <<existing target>>
-}
-class Profile_Change_Proposal {
-  <<existing target>>
 }
 
 Checklist "1" --> "0..*" Checklist_Version : Versions_grid
@@ -360,6 +367,11 @@ Checklist_Question_Choice_Version "0..*" --> "0..1" Color : BackgroundColor
 Checklist_Question_Choice_Version "0..*" --> "0..1" Color : TextColor
 Abstract_Supplier_Task <|-- Supplier_Survey
 Survey_Campaign "0..*" --> "1" Checklist : Checklist
+Survey_Campaign "0..*" --> "0..1" Survey_Recurrence_Definition : Frequency_required_when_Recurring
+Survey_Campaign "0..*" --> "0..1" Supplier_Management_Role : EscalationRole
+Survey_Campaign "1" --> "0..*" Campaign_Audience_Rule : AudienceRules_grid
+Survey_Campaign "1" --> "0..*" Campaign_Run : CampaignRuns_grid
+Campaign_Audience_Rule "0..*" --> "1" Survey_Campaign : Campaign
 Campaign_Run "0..*" --> "1" Survey_Campaign : Campaign
 Campaign_Run "0..*" --> "1" Checklist_Version : IssuedChecklistVersion
 Campaign_Audience_Entry "0..*" --> "1" Campaign_Run : Run
@@ -372,11 +384,9 @@ Supplier_Question_Answer "0..*" --> "0..1" Survey_Response_Revision : SurveyRevi
 Supplier_Question_Answer "0..*" --> "1" Checklist_Question_Version : QuestionVersion
 Supplier_Question_Answer "0..*" --> "0..1" Checklist_Question_Choice_Version : Answer - Choice
 Supplier_Question_Answer "0..*" --> "0..*" Checklist_Question_Choice_Version : Answer - Choices
-Profile_Review_Snapshot "0..*" --> "1" Survey_Response_Revision : Revision
-Profile_Change_Proposal "0..*" --> "1" Profile_Review_Snapshot : BaselineSnapshot
 ```
 
-The earlier operational name `Supplier Survey Request` is replaced by `Supplier Survey`. Its common work-item fields move to the abstract parent. Supplier Surveys and templated Supplier Tasks share the neutral Checklist configuration and answer families. Survey-specific campaign, response-revision, and profile-review relationships remain on the concrete survey child or its survey children.
+The earlier operational name `Supplier Survey Request` is replaced by `Supplier Survey`. Its common work-item fields move to the abstract parent. Supplier Surveys and templated Supplier Tasks share the neutral Checklist configuration and answer families. Survey-specific campaign and response-revision relationships remain on the concrete survey child or its survey children. Approved profile changes are written directly to their owning audited records rather than staged in survey-specific proposal objects.
 
 ## 6. Object inventory
 
@@ -393,9 +403,8 @@ The earlier operational name `Supplier Survey Request` is replaced by `Supplier 
 | Supplier Question Answer | Shared operational child | Abstract Supplier Task relationship | Typed answer to one shared Checklist Question Version for either Supplier Task or Supplier Survey, including single- and multiple-choice relationships | Proposed |
 | Supplier Task Event | Operational child | Abstract Supplier Task relationship | Append-only shared action, delivery, due-date, exception, and state evidence | Proposed |
 | Supplier Task Reminder Rule | Configuration child | Supplier Task Template Version relationship | Finite reminder/escalation schedule for Supplier Tasks | Proposed |
-| Survey Campaign, Run, and Audience Entry | Configuration/operational | Existing survey target model | Audience selection, launch snapshot, and issuance evidence | Existing target dependency |
+| Survey Campaign, Survey Recurrence Definition, Run, and Audience Entry | Configuration/operational | Existing survey target model | Audience selection, governed recurring frequency, launch snapshot, and issuance evidence | Existing target dependency |
 | Survey Response Revision | Operational child | Supplier Survey relationship | Survey-only submission revision and profile-confirmation envelope referenced conditionally by shared question answers | Existing target revised |
-| Profile Review Snapshot and proposals | Operational children | Survey Response Revision relationship | Profile confirmation, review, and governed writeback | Existing target dependency |
 
 ## 7. Field specifications
 
@@ -410,7 +419,7 @@ These fields are declared once on the abstract parent and inherited by both conc
 | Name | Text, maximum 255 | Yes | Generated or entered before issue | Read only after issue; display field | Proposed |
 | Supplier | M:1 Supplier Abstract | Yes | Creator/generator | Immutable after workflow starts; exact company or facility security anchor | Required/Proposed |
 | Assigned Role | M:1 Supplier Specific Role | Conditional | Resolved for exact Supplier and configured external library role | Required before issue; live group membership controls supplier action eligibility | Required/Proposed |
-| Review Role | M:1 Supplier Specific Role | Conditional | Resolved for exact Supplier and configured internal library role | Required before submission when review is enabled | Required/Proposed |
+| Review Role | M:1 Supplier Specific Role | Conditional | Resolved for exact Supplier and configured internal library role | Used only by Supplier Task; required before submission when Supplier Task.Review Required? is Yes; null and unused for Supplier Survey | Required/Proposed |
 | Internal Owner | M:1 Employee | Yes | Template, campaign, source process, or creator | Owns Draft/Preparing/Exception administration; must be an active authorized internal user | Proposed |
 | Visibility Classification | M:1 shared visibility classification | Conditional | Configuration/source context | Required where security matrix applies; may change without changing workflow state or owner | Required/Proposed; physical target unresolved |
 | Origin Type | Choice | Yes | Manual Targeted, Template, Onboarding, Recurring Obligation, Campaign, Source Process | Read only after issue | Proposed |
@@ -435,7 +444,7 @@ These fields are declared once on the abstract parent and inherited by both conc
 | Closure Reason | Long text | Conditional | Authorized actor | Required for cancellation, withdrawal, and no-response closure | Proposed |
 | Workflow | M:1 Workflow Instance | No | Platform | Platform-managed workflow relationship | Proposed |
 
-`Assigned Role` and `Review Role` point to operational Supplier Specific Roles, not library roles and not copied member lists. The corresponding library-role identifiers are retained in `Configuration Snapshot` for traceability.
+`Assigned Role` and `Review Role` point to operational Supplier Specific Roles, not library roles and not copied member lists. Review Role is a Supplier Task workflow feature and is not used by Supplier Survey. The corresponding library-role identifiers are retained in `Configuration Snapshot` for traceability.
 
 ### 7.2 Supplier Task
 
@@ -468,8 +477,7 @@ The initial Supplier Task is also the setup form for recurrence. Selecting Recur
 |---|---|---:|---|---|---|
 | Audience Entry | M:1 Campaign Audience Entry | Yes | Campaign issuance | Unique; at most one Supplier Survey per included entry | Required/Proposed |
 | Campaign Run | M:1 Campaign Run | Yes | Audience Entry.Run | Immutable and must equal Audience Entry.Run | Required/Proposed |
-| Profile Review Enabled Snapshot | Yes/No | Yes | Campaign snapshot | Immutable | Required/Proposed |
-| Profile Change Policy Snapshot | Choice | Conditional | Campaign snapshot | Required when profile review is enabled | Required/Proposed |
+| Supplier Profile Change Enabled Snapshot | Yes/No | Yes | Campaign snapshot | Immutable; when Yes, expose governed direct-edit controls for approved profile fields and relationships | Required/Proposed |
 | Response Revision Number | Calculated positive integer | No | Latest related revision | Read only convenience; revisions remain authoritative | Proposed |
 
 Supplier, roles, owner, classification, dates, state, workflow, exception, and closure fields are inherited and must not be redeclared on Supplier Survey.
@@ -512,9 +520,9 @@ Publishing validates all conditional fields, role classifications, that any sele
 
 Supplier Tasks do not define an independent checklist catalogue. They consume the shared `Checklist`, `Checklist Version`, `Checklist Question`, `Checklist Question Version`, `Checklist Choice List`, `Checklist Choice`, `Checklist Question Choice`, and `Checklist Question Choice Version` objects specified in [Supplier Surveys technical specification](supplier-surveys-technical-specification.md). `Checklist` exposes inverse 1:M grids to its Checklist Versions and Checklist Questions; Checklist Version and Checklist Question each expose an inverse 1:M grid to Checklist Question Versions. Checklist Question also exposes its generated Checklist Question Choices. The child-side M:1 fields implement those grids. `Guidance` is the configured explanatory-text field. Choice/Choices questions require a Choice List on both the authoring Question and its mirrored Question Version. Initial question save copies every source Checklist Choice into a Checklist Question Choice; the Choice List remains locked until all generated rows are manually deleted. Choice metadata includes not-applicable, points, calculated max points, weight, and existing Color references. Publish creates the next Checklist Version, defaults each Checklist Question Version from its Checklist Question, and creates one immutable Checklist Question Choice Version from every current Checklist Question Choice for the corresponding Question Version. Supplier answers select these published choice instances. A Supplier Task Template Version may select one Active? = True published Checklist Version; that reference is copied to each generated Supplier Task and frozen at issue.
 
-Survey Campaign uses an M:1 Checklist dropdown rather than a Checklist Version field. Campaign Run preparation resolves that Checklist's single Active? = True Checklist Version, stores it as Issued Checklist Version, and preserves it for all generated Supplier Surveys and retries.
+Survey Campaign uses an M:1 Checklist dropdown rather than a Checklist Version field. Campaign Run preparation resolves that Checklist's single Active? = True Checklist Version, stores it as Issued Checklist Version, and preserves it for all generated Supplier Surveys and retries. Campaign Escalation Role remains available, but the campaign Review Role and Profile Change Policy are removed. When Schedule Mode is Recurring, the campaign also requires an M:1 Frequency relationship to an active Survey Recurrence Definition; Frequency is hidden and cleared for Manual or Once. Survey Campaign exposes inverse 1:M Survey Campaign Audience Rules and Campaign Runs grids backed by the existing child Campaign fields. The recurrence catalogue, grids, direct profile-maintenance behavior, and their authoritative field definitions are defined by the Supplier Surveys specification.
 
-The shared answer model does not combine the two work-item workflows. Supplier Surveys retain Survey Response Revision as a survey-only submission and profile-review envelope, while both concrete work-item types store their typed question responses in `Supplier Question Answer` as specified in §7.9.
+The shared answer model does not combine the two work-item workflows. Supplier Surveys retain Survey Response Revision as a survey-only submission and profile-confirmation envelope, while both concrete work-item types store their typed question responses in `Supplier Question Answer` as specified in §7.9.
 
 ### 7.7 Supplier Task Obligation
 
@@ -595,7 +603,7 @@ Finite reminder rows are used instead of unbounded daily reminders. An authorize
 | Field | Type | Required | Behavior | Classification |
 |---|---|---:|---|---|
 | Work Item | M:1 Abstract Supplier Task | Yes | Accepts either concrete descendant | Required/Proposed |
-| Event Type | Choice | Yes | Create, Prepare, Issue, Save, Submit, Approve, Return, Apply, Retry, Extend Due, Withdraw, Cancel, Close No Response, Notify, Exception, Complete | Proposed |
+| Event Type | Choice | Yes | Create, Prepare, Issue, Save, Submit, Approve, Return, Retry, Extend Due, Withdraw, Cancel, Close No Response, Notify, Exception, Complete | Proposed |
 | Occurred At | Datetime | Yes | Server time | Proposed |
 | Actor | M:1 Employee | No | Required for human action; blank for scheduler/service event | Proposed |
 | Origin | Choice | Yes | User, Scheduler, Automation | Proposed |
@@ -618,12 +626,18 @@ Business event records are append-only. Notification delivery outcome may be upd
 | Supplier Survey | inheritance | Abstract Supplier Task | Direct inheritance | Yes | Required/Proposed |
 | Abstract Supplier Task | Supplier | Supplier Abstract | Many work items to exactly one supplier | Yes | Required/Proposed |
 | Abstract Supplier Task | Assigned Role | Supplier Specific Role | Many to zero/one; required before issue | Conditional | Required/Proposed |
-| Abstract Supplier Task | Review Role | Supplier Specific Role | Many to zero/one; required when review enabled | Conditional | Required/Proposed |
+| Abstract Supplier Task | Review Role | Supplier Specific Role | Many to zero/one; required only for Supplier Task when review is enabled; null for Supplier Survey | Conditional | Required/Proposed |
 | Abstract Supplier Task | Internal Owner | Employee | Many to one | Yes | Proposed |
 | Abstract Supplier Task | Visibility Classification | Shared classification | Many to zero/one | Conditional | Required/Proposed; target unresolved |
 | Abstract Supplier Task | Workflow | Workflow Instance | Many to zero/one | Platform conditional | Proposed |
 | Abstract Supplier Task | Checklist Version | Shared Checklist Version | Many to zero/one; subtype-conditional requiredness | Conditional | Required/Proposed |
 | Survey Campaign | Checklist | Shared Checklist | Many campaigns to one Checklist | Yes | Required/Proposed |
+| Survey Campaign | Frequency | Survey Recurrence Definition | Many campaigns to zero/one definition; exactly one when Schedule Mode is Recurring | Conditional | Required/Proposed |
+| Survey Campaign | Escalation Role | Supplier Management Role | Many campaigns to zero/one escalation role; required when native escalation is enabled | Conditional | Required/Proposed |
+| Survey Campaign | Survey Campaign Audience Rules grid | Survey Campaign Audience Rule | Inverse one-to-many through Survey Campaign Audience Rule.Campaign | No | Required/Proposed |
+| Survey Campaign | Campaign Runs grid | Campaign Run | Inverse one-to-many through Campaign Run.Campaign | No | Required/Proposed |
+| Survey Campaign Audience Rule | Campaign | Survey Campaign | Many rules to one campaign; inverse grid on campaign | Yes | Existing target/Proposed inverse |
+| Campaign Run | Campaign | Survey Campaign | Many runs to one campaign; inverse grid on campaign | Yes | Existing target/Proposed inverse |
 | Campaign Run | Issued Checklist Version | Shared Checklist Version | Many runs to one resolved version | Yes | Required/Proposed |
 | Checklist Question | Choice List | Shared Checklist Choice List | Many questions to zero/one list | Required when Answer Type is Choice or Choices | Required/Proposed |
 | Checklist Question Version | Choice List | Shared Checklist Choice List | Many question versions to zero/one list | Required when Answer Type is Choice or Choices | Required/Proposed |
@@ -818,19 +832,16 @@ Exact notification templates, To/CC/BCC treatment, delivery retry policy, and mu
 
 ### 11.1 Executive flow summary
 
-Supplier Surveys are generated only after a Campaign Run freezes its configuration and audience. Preparing validates the exact supplier route and issues the survey. Supplier role members save and submit a versioned response. Ordinary responses complete immediately. Profile corrections route to internal Review and then Applying Changes. Technical, routing, or writeback failure enters Exception with an explicit resume state. Cancellation, eligibility withdrawal, and closure without response remain distinct outcomes.
+Supplier Surveys are generated only after a Campaign Run freezes its configuration and audience. Preparing validates the exact supplier route and issues the survey. Supplier role members save and submit a versioned response and, when enabled, directly edit approved profile fields and relationships on their owning audited records. Valid submissions complete immediately without profile-change Review or Applying Changes stages. Technical or routing failure enters Exception with an explicit resume state. Cancellation, eligibility withdrawal, and closure without response remain distinct outcomes.
 
 ```mermaid
 swimlane-beta LR
   accTitle: Supplier Survey workflow
-  accDescr: Campaign-generated surveys are routed to supplier roles, submitted as immutable response revisions, optionally reviewed for profile corrections, and completed or recovered through owned exception paths.
+  accDescr: Campaign-generated surveys are routed to supplier roles, allow governed direct profile maintenance with native audit trails, and complete on valid submission or recover through owned exception paths.
 
   subgraph system[Intelex automation]
     sv_preparing["Preparing<br/>Status: Preparing"]
     sv_route{"Routing valid?"}
-    sv_changes{"Profile corrections proposed?"}
-    sv_applying["Applying Changes<br/>Status: Applying"]
-    sv_applied{"All approved changes applied?"}
     sv_completed([Completed])
     sv_cancelled([Cancelled])
     sv_withdrawn([Withdrawn])
@@ -842,8 +853,7 @@ swimlane-beta LR
     sv_submit{"Response valid?"}
   end
 
-  subgraph internal[Campaign owner and review role]
-    sv_review["Review<br/>Status: In Review"]
+  subgraph internal[Campaign owner]
     sv_exception["Exception<br/>Status: Exception"]
   end
 
@@ -852,23 +862,14 @@ swimlane-beta LR
   sv_route -->|Invalid| sv_exception
   sv_assigned -->|Submit| sv_submit
   sv_submit -->|Invalid: display error| sv_assigned
-  sv_submit -->|Valid| sv_changes
-  sv_changes -->|No| sv_completed
-  sv_changes -->|Yes| sv_review
-  sv_review -->|Return with reason| sv_assigned
-  sv_review -->|Approve| sv_applying
-  sv_applying --> sv_applied
-  sv_applied -->|Yes| sv_completed
-  sv_applied -->|Conflict or failure| sv_exception
+  sv_submit -->|Valid| sv_completed
   sv_exception -->|Retry recorded resume state| sv_preparing
   sv_preparing -->|Eligibility withdrawn| sv_withdrawn
   sv_assigned -->|Eligibility withdrawn| sv_withdrawn
-  sv_review -->|Eligibility withdrawn| sv_withdrawn
   sv_assigned -->|Authorized overdue closure| sv_noresponse
   sv_preparing -->|Cancel with reason| sv_cancelled
   sv_assigned -->|Cancel with reason| sv_cancelled
-  sv_review -->|Cancel with reason| sv_cancelled
-  sv_exception -->|Cancel after reconciliation| sv_cancelled
+  sv_exception -->|Cancel with reason| sv_cancelled
 ```
 
 ### 11.2 Stage details
@@ -876,11 +877,9 @@ swimlane-beta LR
 | Stage ID | Stage | Status | Responsible-person logic | Due-date logic | Entry | Exit paths | Classification/source |
 |---|---|---|---|---|---|---|---|
 | `sv_preparing` | Preparing | Preparing | Internal Owner copied from Campaign Run owner; automation issues | None | Initial generated record | Valid → Assigned; failure → Exception; ineligible → Withdrawn; cancel | Proposed; ST-009, ST-011 |
-| `sv_assigned` | Assigned | Assigned | Current eligible members of exact-supplier Assigned Role | Inherited Due At from frozen campaign response-days calculation | Successful issue or Return | Submit → Completed/Review; no response/cancel/withdraw | Required/Proposed; ST-009, ST-012–ST-015 |
-| `sv_review` | Review | In Review | Current eligible members of exact-supplier Review Role | No review SLA assumed; elapsed time reported | Submitted response with profile corrections | Approve → Applying Changes; Return → Assigned; cancel/withdraw | Required/Proposed; ST-011, ST-012 |
-| `sv_applying` | Applying Changes | Applying | Internal Owner accountable; automation executes approved operations | None | Review approval | Success → Completed; conflict/failure → Exception | Proposed; ST-011 |
-| `sv_exception` | Exception | Exception | Internal Owner; support may assist | Exception age reported | Routing, validation, security, or writeback failure | Retry → recorded state; cancel after reconciliation | Proposed; ST-013, ST-021 |
-| `sv_completed` | Completed | Completed | Terminal | None | Valid ordinary response or successful application | None | Required/Proposed |
+| `sv_assigned` | Assigned | Assigned | Current eligible members of exact-supplier Assigned Role | Inherited Due At from frozen campaign response-days calculation | Successful issue | Direct profile edits where enabled; Submit → Completed; no response/cancel/withdraw | Required/Proposed; ST-009, ST-011–ST-015, ST-030 |
+| `sv_exception` | Exception | Exception | Internal Owner; support may assist | Exception age reported | Routing, validation, or security failure | Retry → recorded state; cancel | Proposed; ST-013, ST-021 |
+| `sv_completed` | Completed | Completed | Terminal | None | Valid submitted response and required profile confirmation | None | Required/Proposed |
 | `sv_cancelled` | Cancelled | Cancelled | Terminal | None | Authorized cancellation | None | Proposed |
 | `sv_withdrawn` | Withdrawn | Withdrawn | Terminal | None | Capability policy withdrawal | None | Required/Proposed; ST-015 |
 | `sv_noresponse` | Closed No Response | Closed No Response | Terminal | None | Authorized overdue closure without submitted revision | None | Required/Proposed; ADR-080 |
@@ -890,27 +889,22 @@ swimlane-beta LR
 | Stage | Sort | Action ID | Action | Actor | Ordered behavior | Validation/error behavior | Result | Notification | Classification/source |
 |---|---:|---|---|---|---|---|---|---|---|
 | Preparing | 1 | `SV-A01` | Issue | Automation | Validate run and entry → recheck capability → resolve roles → secure record → set inherited issue/due fields → create draft revision → enable native Intelex reminders → transition | Failure preserves record and resume state | Assigned or Exception; ineligible → Withdrawn | `SV-N1` / `SV-N6` | Proposed; ST-009, ST-013–ST-015 |
-| Assigned | 1 | `SV-A02` | Save Draft | Eligible Assigned Role member | Recheck authorization → validate supplied types → save current draft revision | Type or scope error remains Assigned | Assigned | None | Proposed |
-| Assigned | 2 | `SV-A03` | Submit | Eligible Assigned Role member | Lock → validate Supplier Question Answers for the draft Survey Response Revision, typed-field/choice exclusivity, version, role, scope, profile tokens, and affirmation → stamp actor/time → freeze revision and answer iteration → branch on proposed changes | Specific missing answer, incompatible `Answer - …` field, invalid choice, or stale-profile error; only one concurrent submit succeeds | Completed or Review; route failure → Exception | `SV-N2` or `SV-N3` | Required/Proposed; ST-011–ST-014, ST-023, ST-024 |
+| Assigned | 1 | `SV-A02` | Save Draft | Eligible Assigned Role member | Recheck authorization → validate supplied answer types → save current draft revision; approved profile edits save directly to their owning audited records | Type or scope error remains Assigned | Assigned | None | Proposed |
+| Assigned | 2 | `SV-A03` | Submit | Eligible Assigned Role member | Lock → validate Supplier Question Answers for the draft Survey Response Revision, typed-field/choice exclusivity, version, role, scope, and required profile confirmation → stamp actor/time → freeze revision and answer iteration | Specific missing answer, incompatible `Answer - …` field, invalid choice, authorization error, or missing confirmation; only one concurrent submit succeeds | Completed | `SV-N3` | Required/Proposed; ST-011–ST-014, ST-023, ST-024, ST-030 |
 | Assigned | 3 | `SV-A04` | Extend Due | Internal Owner | Require later date/reason → event → inherited Due At update → increment generation → allow native Intelex reminder schedule to recalculate | Block invalid date or missing reason | Assigned | `SV-N5` | Proposed |
 | Assigned | 90 | `SV-A05` | Close No Response | Internal Owner | Require overdue/no submitted revision/reason → stop native reminders → terminal event | Block otherwise | Closed No Response | `SV-N7` | Required/Proposed |
-| Review | 1 | `SV-A06` | Approve | Eligible Review Role member | Validate proposals/tokens → capture decision → mark approved → transition → invoke application | Conflict enters Exception; never overwrite current master unconditionally | Applying Changes | None until apply result | Required/Proposed; ST-011 |
-| Review | 2 | `SV-A07` | Return | Eligible Review Role member | Require reason → freeze return → create new draft/rebaseline profile → transition | Due At retained unless separately extended | Assigned | `SV-N4` | Required/Proposed |
-| Applying | 1 | `SV-A08` | Apply | Automation | Recheck tokens/eligibility → apply approved allowlisted operations with idempotency keys → verify writes → complete | Partial failure records applied operations and enters Exception | Completed or Exception | `SV-N3` / `SV-N6` | Required/Proposed; ST-011, ST-021 |
-| Exception | 1 | `SV-A09` | Retry | Internal Owner/support | Require defect correction → revalidate → resume exact recorded processing state using prior operation keys | No duplicate survey, response, master update, or notification | Recorded state | Only newly applicable notification | Proposed; ST-021 |
-| Nonterminal | 90 | `SV-A10` | Cancel | Internal Owner | Require reason → reconcile any applied changes → stop native reminders/delivery → terminal event | Cancel during application waits for safe boundary | Cancelled | `SV-N7` if issued | Proposed |
-| Nonterminal | 91 | `SV-A11` | Withdraw | Status automation/authorized owner | Verify capability rule → reconcile processing → retain evidence → stop actions/native reminders | Never deletes submitted response | Withdrawn | `SV-N7` if issued | Required/Proposed; ST-015 |
+| Exception | 1 | `SV-A09` | Retry | Internal Owner/support | Require defect correction → revalidate → resume exact recorded processing state | No duplicate survey, response, or notification | Recorded state | Only newly applicable notification | Proposed; ST-021 |
+| Nonterminal | 90 | `SV-A10` | Cancel | Internal Owner | Require reason → stop native reminders/delivery → terminal event; previously saved direct profile edits remain effective and audited | Cancellation does not roll back master-object edits | Cancelled | `SV-N7` if issued | Proposed |
+| Nonterminal | 91 | `SV-A11` | Withdraw | Status automation/authorized owner | Verify capability rule → retain evidence → stop actions/native reminders; previously saved direct profile edits remain effective and audited | Never deletes submitted response or master-object audit history | Withdrawn | `SV-N7` if issued | Required/Proposed; ST-015 |
 
 ### 11.4 Supplier Survey notifications
 
 | ID | Trigger | Condition | Template name | Recipient logic | Timing | Classification |
 |---|---|---|---|---|---|---|
 | `SV-N1` | Issue | Valid eligible route | Supplier survey assigned — Proposed | Current eligible Assigned Role members | After Assigned transition | Proposed |
-| `SV-N2` | Submit with profile corrections | Review route valid | Supplier survey submitted for review — Proposed | Current eligible Review Role members | After Review transition | Proposed |
-| `SV-N3` | Completion | Ordinary submission or successful writeback | Supplier survey completed — Proposed | Supplier submitter and Internal Owner | After terminal transition | Proposed |
-| `SV-N4` | Return | Reason captured | Supplier survey returned — Proposed | Current eligible Assigned Role members | After Assigned transition | Proposed |
+| `SV-N3` | Completion | Valid submission | Supplier survey completed — Proposed | Supplier submitter and Internal Owner | After terminal transition | Proposed |
 | `SV-N5` | Due-date extension | Due At changed | Supplier survey due date changed — Proposed | Current eligible Assigned Role members | After durable update | Proposed |
-| `SV-N6` | Exception | Route or writeback failure | Supplier survey exception — Proposed | Internal Owner | On Exception entry | Proposed |
+| `SV-N6` | Exception | Routing, validation, or security failure | Supplier survey exception — Proposed | Internal Owner | On Exception entry | Proposed |
 | `SV-N7` | Cancel/Withdraw/No Response | Survey was issued | Supplier survey closed — Proposed | Current Assigned Role members and Internal Owner | After terminal transition | Proposed |
 | `SV-N8` | Native Intelex reminder | Platform reminder condition and open survey | Platform-configured template | Platform-configured eligible assigned/escalation recipients or Internal Owner | Per native platform configuration | Required/Proposed; ADR-080 |
 
@@ -922,11 +916,10 @@ Comparison standard: application-level permission grants object access; supplier
 |---|---|---|---|---|---|
 | Abstract Supplier Task descendants | Supplier portal user | View only within related supplier entities and allowed classification | Contact/user scope under ADR-078 plus classification under ADR-084 | Application access | Required |
 | Supplier Task / Assigned | Current eligible Assigned Role members | Edit allowed supplier completion fields and perform Submit/Request Due-Date Change | Exact-supplier role membership and active authenticated account | View-only supplier access | Required/Proposed |
-| Supplier Survey / Assigned | Current eligible Assigned Role members | Edit draft response/profile proposals and perform Save/Submit | Exact-supplier role membership and active authenticated account | View-only supplier access | Required/Proposed |
+| Supplier Survey / Assigned | Current eligible Assigned Role members | Edit draft responses, directly edit approved profile fields/relationships on their owning records, and perform Save/Submit | Exact-supplier role membership, active authenticated account, owning-object permission, allowlist, and native audit trail | View-only supplier access | Required/Proposed |
 | Supplier Question Answer | Current eligible Assigned Role members | Edit only the current Response Iteration while the owning concrete work item is Assigned | Parent work-item scope, classification, role membership, and subtype workflow state | Child-record inherited access | Required/Proposed |
-| Review | Current eligible Review Role members | View supplier submission; perform Approve/Return | Exact-supplier internal role membership | Internal application access | Required/Proposed |
+| Supplier Task / Review | Current eligible Review Role members | View the Supplier Task submission and perform Approve/Return | Exact-supplier internal role membership and Supplier Task workflow state | Internal application access | Required/Proposed |
 | Draft/Preparing/Exception | Internal Owner | Configure, issue, retry, close, and view technical exception details | Current owner and application permission | Internal application access | Proposed |
-| Applying Changes | Automation identity | Apply only allowlisted, approved operations | Correlation key, current tokens, and service permission | No human direct edit | Proposed |
 | Terminal stages | All authorized viewers | Read only | Record-retention policy | Stage edit access | Proposed |
 | Templates/checklists/campaigns | SRM application administrators | Create/version/publish checklists and maintain campaign configuration/Active? | Configuration role | Operational-user access | Proposed |
 
@@ -970,9 +963,10 @@ Derived calculations:
 | ST-C08 | Add | Supplier Task Event | Earlier survey design had survey-only event | Common append-only event related to abstract parent | ST-021 | Shared audit and notification evidence | Medium; performance validation required |
 | ST-C09 | Modify | Survey Response Revision relationship | Related to standalone request | Relates to Supplier Survey descendant | ST-001, ST-009 | Aligns response with inheritance decision | High |
 | ST-C10 | Add | Supplier Task workflow | No matching extracted workflow | Separate targeted-task workflow | ST-002–ST-008 | Task-specific creation and validation | High |
-| ST-C11 | Modify | Supplier Survey workflow | Standalone earlier target workflow | Separate child workflow using inherited common fields | ST-002, ST-009, ST-011 | Preserves campaign-specific generation and profile writeback | High |
+| ST-C11 | Modify | Supplier Survey workflow | Earlier target routed profile corrections through Review and Applying Changes with proposal records and deferred writeback | Separate child workflow using inherited common fields; valid submissions complete directly while approved profile edits are made immediately on audited owning records | ST-002, ST-009, ST-011, ST-030 | Preserves campaign-specific generation and direct governed profile maintenance without redundant review machinery | High |
 | ST-C12 | Add | Abstract-parent work queue | Separate task-like lists | Consolidated query with child drill-through | ST-016 | One supplier experience without conflating lifecycles | High |
 | ST-C13 | Modify | Supplier Profile Task Assignment task-template relationship | Assignment selected a specific Supplier Task Template Version | Assignment selects Supplier Task Template; generation resolves and snapshots the most recent current published version | ST-025 | Administrators configure the stable business template while generated tasks retain immutable version history | High |
+| ST-C14 | Modify/Reuse | Shared Survey Campaign dependency | Earlier target used a combined Review Role / Escalation Role field, a Profile Change Policy, a free-form recurrence definition, and no inverse child grids | Retain Escalation Role, remove campaign Review Role and Profile Change Policy, select active Survey Recurrence Definition through Frequency for recurring campaigns, and expose inverse Audience Rules and Campaign Runs grids | ST-009, ST-028–ST-030 | Keeps campaign-generated Supplier Survey routing, scheduling, navigation, and profile behavior aligned with the authoritative survey model | High |
 
 ## 15. Requirement traceability
 
@@ -988,7 +982,7 @@ Derived calculations:
 | ST-008 | Snapshot fields, immutable versions | Freeze effective template/checklist configuration | Satisfied |
 | ST-009 | Supplier Survey, campaign run/audience | One child survey per included audience entry | Satisfied |
 | ST-010 | Profile Task Assignment, generation | One-time task or obligation after supplier creation; no activation gate | Satisfied |
-| ST-011 | Survey profile snapshot/proposals/workflow | Affirmative review with governed correction review/writeback | Satisfied |
+| ST-011 | Supplier Profile Change Enabled Snapshot, direct master-object editing, native audit trails, and survey workflow | Governed direct maintenance with affirmative confirmation and no separate review/writeback | Satisfied at logical design level; security and audit configuration require validation |
 | ST-012 | Assigned/Review Role and actor events | Live role ownership with individual action audit | Satisfied |
 | ST-013 | Preparing/Exception and permissions | Validate authenticated eligible membership; owned recovery | Satisfied |
 | ST-014 | Supplier reference/security | Exact entity is required security anchor | Satisfied |
@@ -1005,6 +999,9 @@ Derived calculations:
 | ST-025 | Profile Task Assignment.Task Template, supplier-creation generator, Supplier Task.Template Version | Assignment stores the stable Template; generator resolves the most recent current Published Version and snapshots it on the task | Satisfied |
 | ST-026 | Checklist Question, Question Version, Choice List, Checklist Choice, Checklist Question Choice | Shared design defines Guidance, conditional Choice List mirroring, guarded choice generation, scoring fields, calculated Max Points, and Color relationships | Satisfied at logical design level; generation/deletion and published snapshot behavior require validation |
 | ST-027 | Checklist Question Choice Version, Publish, Supplier Question Answer | Publish copies each current Question Choice into an immutable choice version for its Question Version; answers relate to those issued choice instances | Satisfied at logical design level; transactional and retry behavior requires validation |
+| ST-028 | Survey Campaign Escalation Role and Frequency; Survey Recurrence Definition | Shared campaign dependency retains escalation routing and governed conditional recurrence selection; obsolete profile Review Role is removed under ST-030 | Satisfied at logical design level; recurrence rendering and scheduler interpretation require platform validation |
+| ST-029 | Survey Campaign Audience Rules and Campaign Runs grids | Shared campaign dependency exposes both existing child Campaign relationships as inverse 1:M grids without duplicating relationship storage | Satisfied at logical design level; related-record grid configuration requires platform validation |
+| ST-030 | Supplier Survey workflow, campaign/survey fields, profile security, and audit trails | Removes policy/proposal/snapshot/review/apply machinery and permits only allowlisted direct edits on owning audited records | Satisfied at logical design level; object and relationship audit behavior requires implementation validation |
 
 ## 16. Validation findings and unresolved decisions
 
@@ -1038,6 +1035,9 @@ Derived calculations:
 | Event volume | Unresolved performance | Validate indexes, retention, delivery updates, and reporting performance for shared event history |
 | Scheduler idempotency | Proposed; validation required | Enforce obligation-occurrence and campaign-entry uniqueness under concurrent retries |
 | Profile-assignment version resolution | Required/Proposed | Verify assignment forms expose Task Template rather than Template Version; generation selects exactly one current Published version, snapshots it on first task creation, and preserves it across retries after task creation |
+| Shared campaign recurrence | Required/Proposed | Verify Survey Campaign Frequency is visible and required only for Recurring, selects only active Survey Recurrence Definitions in Sort order, is cleared otherwise, and its `displayas="recurrence"` value is interpreted correctly by scheduling |
+| Shared campaign inverse grids | Required/Proposed | Verify the Survey Campaign Audience Rules and Campaign Runs grids are inverse views of the existing child Campaign fields, are read only, and return only children of the selected campaign |
+| Direct survey profile maintenance | Required/Proposed | Verify every allowlisted field and relationship can be edited only by an eligible exact-supplier user while the Supplier Survey is Assigned, every direct edit produces sufficient native audit evidence, prohibited fields remain inaccessible, and cancellation or failed submission does not imply rollback |
 | Migration | Proposed | No baseline record is automatically migrated; earlier target survey requests require mapping only if implemented before this design |
 | ADR status | Source limitation | ADR-006, ADR-080, ADR-081, and ADR-103 remain proposed until governance changes their status |
 | Mermaid compatibility | Tooling limitation | Native diagrams require Mermaid 11.16.0 or later |
@@ -1051,7 +1051,7 @@ Derived calculations:
 5. Configure automatic Supplier Task Obligation creation from the initial Supplier Task form, plus scheduling and idempotent later-occurrence generation.
 6. Add Supplier Profile Task Assignment with its Task Template relationship and post-create generation that resolves the most recent current published Template Version, snapshots it on the generated task, and handles missing or ambiguous versions as recoverable exceptions.
 7. Reparent and rename the target survey operational request as Supplier Survey; move common fields to the abstract parent without duplicating them.
-8. Configure the Supplier Survey workflow and reconnect response revisions, profile-review records, campaign issuance, events, and notifications.
+8. Configure the simplified Supplier Survey workflow and reconnect response revisions, campaign issuance, the seeded Survey Recurrence Definition catalogue, escalation routing, inverse campaign grids, events, and notifications. Configure direct-edit profile permissions and native audit trails on every approved field and relationship; do not configure profile proposal, review, or deferred-apply records.
 9. Build the abstract-parent consolidated work queue and verify concrete drill-through.
 10. Execute security, lifecycle, concurrency, scheduler, notification, attachment, reporting, and performance tests before production rollout.
 
@@ -1087,8 +1087,12 @@ Derived calculations:
 | Create supplier with required profile task | Supplier creation succeeds; task is generated and appears in completeness reporting |
 | Profile-task generation failure | Supplier remains created; exception is visible and retry cannot duplicate successful records |
 | Launch survey campaign | Active campaign resolves its selected Checklist's single active version into Campaign Run.Issued Checklist Version; one Supplier Survey is created for each Included audience entry and exclusions create no work item |
-| Supplier Survey with no profile corrections | Valid immutable response completes directly |
-| Supplier Survey with profile corrections | Survey routes to Review, applies only approved allowlisted operations, and completes after verified writeback |
+| Configure shared recurring campaign | Frequency appears and is required only for Schedule Mode = Recurring, selects an active Survey Recurrence Definition in the specified Sort order, and is hidden and cleared for Manual or Once; Escalation Role remains available and no campaign Review Role or Profile Change Policy exists |
+| Open shared Survey Campaign | The Audience Rules and Campaign Runs grids show all and only child records whose existing Campaign field references that campaign; no duplicate relationship field is introduced on either child |
+| Supplier Survey without profile edits | Valid immutable response and required affirmative profile confirmation complete directly |
+| Supplier Survey with an approved profile edit | Eligible supplier user edits the owning master record directly while Assigned; the change is immediately effective and auditable, and valid survey submission completes without Review or Applying Changes |
+| Supplier Survey attempts a prohibited profile edit | Non-allowlisted or out-of-scope data remains read only or inaccessible and the attempted change is rejected |
+| Cancel Supplier Survey after direct profile edit | The survey is cancelled, while the already saved master-data edit remains effective and auditable; no proposal, approval, deferred apply, or automatic rollback occurs |
 | Concurrent survey submissions | One submission succeeds; the second actor sees that submission already occurred |
 | Supplier becomes ineligible | Capability policy prevents new issue and continues or withdraws existing work according to governed rule; history remains |
 | Visibility reclassification | Authorized classification change alters visibility without changing state, roles, due date, or workflow responsibility |

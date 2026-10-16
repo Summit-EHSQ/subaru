@@ -1,9 +1,9 @@
 ---
 status: accepted
-date: '2026-07-25'
+date: '2026-10-16'
 decision-date: not-recorded-in-transcript
 deciders:
-- Luke Filippo
+- Luke Phillippo
 - Jamie Dossey
 consulted:
 - Dave McLean
@@ -58,7 +58,11 @@ PCR records are initiated by authorized supplier users. The concept workflow pro
 
 The system must label outcomes so that concept acceptance cannot be mistaken for production approval.
 
-ADR-105 permits the earlier transition increment to implement only supplier intake, clarification, rejection, and **Proceed to PPAP** under SQA ownership. The no-PPAP and broader context-specific outcomes in this ADR apply to the expanded cross-functional PCR workflow unless they are separately approved for the transition increment.
+Expose one PCR initiation action and one supplier-facing entry form regardless of which internal reviews or downstream validation processes apply. The supplier does not select between a Phase 2 request, a Phase 3 MOC process, or a depot-change process. Internal classification and workflow rules determine the applicable path. If internal review requires more information, return the existing request to the supplier through its clarification and revision cycle rather than requiring a new process initiation.
+
+ADR-033 defines the minimum supplier-entry data and the governed classification inputs used by this form.
+
+The Phase 2 increment implements supplier intake, clarification, rejection, and **Proceed to PPAP** under SQA ownership. Phase 3 expands the same PCR record and workflow with Supplier Management intake and cross-functional outcomes. The no-PPAP and broader context-specific outcomes in this ADR apply to the expanded workflow unless separately approved for the transition increment. ADR-105's proposal for a distinct PPAP-adjacent supplier request is rejected.
 
 ## Consequences
 
@@ -67,6 +71,7 @@ ADR-105 permits the earlier transition increment to implement only supplier inta
 - Supports the actual variation in PCR and depot-change scenarios.
 - Avoids unnecessary PPAP for purely logistical changes.
 - Maintains supplier ownership and clear resubmission paths.
+- Keeps the supplier entry point stable while internal processing expands.
 
 ### Negative
 
@@ -85,4 +90,5 @@ ADR-105 permits the earlier transition increment to implement only supplier inta
 - Second transcript: approximately 2:01:27–2:13:59.
 - Fourth transcript: approximately 1:35:17–1:44:47.
 - This revision removes the earlier universal requirement that every accepted PCR proceed to PPAP.
-- PPAP design workshop continuation: approximately 3:02:25–3:17:56. This discussion established the narrower transition increment governed by ADR-105 without replacing the target outcome model.
+- PPAP design workshop continuation: approximately 3:02:25–3:17:56. This earlier discussion established a narrower transition increment and led to the application boundary proposed in ADR-105; the latest PCR review rejected that boundary without replacing the target outcome model.
+- Latest PCR architecture transcript: approximately 00:00–16:40. This discussion established one stable supplier entry point and one PCR lifecycle across the Phase 2 and Phase 3 increments, replacing the separate request boundary proposed in ADR-105.

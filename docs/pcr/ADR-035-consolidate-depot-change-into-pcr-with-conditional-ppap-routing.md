@@ -1,9 +1,9 @@
 ---
-status: proposed
-date: '2026-07-25'
+status: accepted
+date: '2026-10-16'
 decision-date: not-recorded-in-transcript
 deciders:
-- Luke Filippo
+- Luke Phillippo
 consulted:
 - Dave McLean
 - Shao Ngoi
@@ -50,7 +50,7 @@ Combines the process and uses change-impact rules to decide the downstream path.
 
 ## Decision Outcome
 
-Propose representing depot change as a PCR type. Selecting this type adds depot-specific approvals to the PCR review matrix and consolidates overlapping approvers.
+Represent depot change as a PCR type rather than as a separate supplier initiation path. Selecting or deriving this type adds depot-specific approvals to the PCR review matrix and consolidates overlapping approvers.
 
 The request is classified during review:
 
@@ -85,3 +85,4 @@ A different initial owner may be used if the business determines that SQA should
 - Second transcript: approximately 2:19:57–2:27:55 and 2:35:44–2:36:55.
 - Fourth transcript: approximately 1:35:17–1:44:47.
 - The conditional PPAP path is now clear, but final process-owner approval remains outstanding.
+- Latest PCR architecture transcript: approximately 00:48–01:48 and 08:40–10:58. This discussion confirmed that depot change will be integrated into the expanded PCR and will not appear to suppliers as a separate button or process.

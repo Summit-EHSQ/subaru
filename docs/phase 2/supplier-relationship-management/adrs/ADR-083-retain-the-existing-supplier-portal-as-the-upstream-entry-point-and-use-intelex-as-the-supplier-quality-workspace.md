@@ -1,6 +1,6 @@
 ---
 status: accepted
-date: '2026-09-02'
+date: '2026-10-16'
 decision-date: not-recorded-in-transcript
 deciders:
 - Dave McLean
@@ -61,7 +61,11 @@ Retain the existing SIA supplier portal as the upstream supplier entry point. Re
 
 Within Intelex, provide an Intelex-centric supplier workspace that exposes assigned tasks, authorized supplier companies and facilities, navigation to supplier-quality applications, selected current scorecard measures, and status summaries such as overdue non-conformances or PPAPs. Selecting a summary count must open the filtered records that support it.
 
+Design the Intelex landing page as a task-first command centre and navigation concierge rather than as the complete user interface for every supplier application. Surface priority tasks, items awaiting SIA action, and selected performance information first. A supplier must be able to open a surfaced task directly in its application-specific form and search for other assigned tasks. Provide one initiation action for each supplier process, including one PCR action governed by ADR-032.
+
 Use progressive disclosure rather than placing every list and KPI on the first page. Detailed module summaries may appear on their respective application pages when placing them on the landing page would create excessive query or page-load cost.
+
+Treat the initial page as a phased skeleton that establishes Subaru-recognizable branding, the shared page structure, and navigation principles. Revise it as later phases add capabilities. Complex programs such as APQP may receive dedicated navigation or module pages without turning the common landing page into the entire APQP experience.
 
 Supplier entity scope remains governed by ADR-078. Internal and supplier authentication remain governed by ADR-061.
 
@@ -73,6 +77,8 @@ Supplier entity scope remains governed by ADR-078. Internal and supplier authent
 - Concentrates the Intelex scope on replacement quality capabilities.
 - Provides a more usable front end than a long supplier form containing many embedded lists.
 - Allows summary measures to remain traceable to their underlying records.
+- Gives suppliers a stable, action-oriented starting point as new applications are introduced.
+- Allows application-specific experiences to evolve behind a consistent landing page.
 
 ### Negative
 
@@ -80,12 +86,15 @@ Supplier entity scope remains governed by ADR-078. Internal and supplier authent
 - The existing SIA portal remains a dependency for upstream navigation.
 - Portal summaries require carefully selected and optimized queries.
 - Navigation ownership must be coordinated across the SIA portal and Intelex.
+- Cross-application task aggregation and direct links require consistent permissions and status semantics.
 
 ### Follow-up and Constraints
 
 - Define ownership for the upstream Intelex link and the Intelex supplier workspace.
 - Produce portal mockups and test page-load performance with representative supplier data.
 - Define the initial task, status, and scorecard summaries shown on the landing page.
+- Define priority ordering, awaiting-SIA semantics, and task-search behavior.
+- Determine whether APQP requires a dedicated menu item or module landing page in Phase 3.
 - Test parent-company and multi-facility navigation against ADR-078.
 - Apply the record-level confidentiality model from ADR-084.
 
@@ -93,3 +102,4 @@ Supplier entity scope remains governed by ADR-078. Internal and supplier authent
 
 - Subsequent supplier workflow transcript: approximately 0:21:24–0:59:17 and 2:39:20–2:50:55.
 - This ADR supersedes ADR-001.
+- Latest PCR and supplier-portal transcript: approximately 08:02–10:58 and 21:02–25:48. This discussion confirmed the one-action PCR entry point and the landing page's task-first concierge role.
