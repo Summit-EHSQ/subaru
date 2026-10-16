@@ -484,37 +484,50 @@ Supplier, roles, owner, classification, dates, state, workflow, exception, and c
 
 ### 7.4 Supplier Task Template
 
-| Field | Type | Required | Default/source | Behavior | Classification |
-|---|---|---:|---|---|---|
-| Id | Guid identity | Yes | Platform | Read only | Proposed |
-| Name | Text, maximum 255 | Yes | Administrator | Unique display identity across active and retired records | Proposed |
-| Description | Long text | No | Administrator | Administrative purpose | Proposed |
-| Active? | Yes/No | Yes | Yes | Controls creation of new versions and selection; history retained | Proposed |
-| Reporting Classification | Controlled choice/reference | Yes | Administrator | Cross-template reporting category; final catalogue TBD | Proposed/Unresolved |
-| Owner | M:1 Employee | Yes | Administrator | Configuration steward, not runtime stage owner | Proposed |
+| Field | Type | Required | Additional Config |
+|---|---|---:|---|
+| Name | Text | Y | maximum 255<br />display field |
+| Description | Text | N |  |
+| Active? | Yes/No | N | Default: `Yes`<br />view settings: checkbox |
+| Reporting Classification | Lookup | Y | Cross-template reporting category; final catalogue TBD |
+| Owner | M:1 Employee | Y |  |
+| [Helper] Current Version | Number | N | Default: `0` |
+
+**Business Rules**
+
+- Name must be unique
 
 ### 7.5 Supplier Task Template Version
 
-| Field | Type | Required | Default/source | Behavior | Classification |
-|---|---|---:|---|---|---|
-| Template | M:1 Supplier Task Template | Yes | Parent | Immutable after save | Proposed |
-| Version Number | Positive integer | Yes | System sequence within Template | Unique with Template | Proposed |
-| State | Choice | Yes | Draft | Draft, Published, Retired; one Published version per Template | Proposed |
-| Effective From / To | Datetime each | No | Administrator | Non-overlapping published intervals; To must follow From | Proposed |
-| Task Title Pattern | Text | Yes | Administrator | Generates work-item Name using allowlisted tokens | Proposed |
-| Instructions | Long text | Yes | Administrator | Copied to Instructions Snapshot | Proposed |
-| External Recipient Role | M:1 Supplier Management Role | Yes | Administrator | Must be an active standard external role | Required/Proposed |
-| Review Required? | Yes/No | Yes | No | Drives workflow branch | Required/Proposed |
-| Internal Review Role | M:1 Supplier Management Role | Conditional | Administrator | Active standard internal role required when review is enabled | Required/Proposed |
-| Internal Owner Role or Owner | Governed selector | Yes | Administrator | Final choice between role-based or Employee owner requires implementation confirmation | Proposed/Unresolved |
-| Default Response Days | Positive integer | Conditional | Administrator | Required for automatic issue; omitted only for approved no-due-date type | Proposed |
-| Note Required? | Yes/No | Yes | No | At least one of Note Required, File Upload Required, or Checklist Version must be enabled | Required/Proposed |
-| File Upload Required? | Yes/No | Yes | No | When copied to a task as Yes, submission requires at least one native file | Required/Proposed |
-| Checklist Version | M:1 shared Checklist Version | No | Administrator | Optional Active? = True published governed checklist; copied automatically to tasks using this template | Required/Proposed |
-| Visibility Classification | M:1 shared classification | Conditional | Administrator | Default copied to task; source context may supply a stricter value | Required/Proposed |
-| Snapshot Schema Version | Positive integer | Yes | `1` | Identifies serialization contract | Proposed |
+| Field | Type | Required | Additional Config | Behavior |
+|---|---|---:|---|---|
+| Template | M:1 Supplier Task Template | Y | Read-Only after Create |  |
+| Version Number | Number | Y | read-only |  |
+| State | Lookup | Y | Default: `Draft`<br />Lookup Values:  Draft, Published, Retired |  |
+| Instructions | Text | Y |  |  |
+| Assigned Role | M:1 Supplier Management Role | Y |  | Must be an active standard external role |
+| Review Required? | Yes/No | N | Default: `No`<br />view settings: checkbox |  |
+| Review Role | M:1 Supplier Management Role | N | view action: shown and mandatory if Review Required?=TRUE, otherwise hide, non-mandatory and clear field |  |
+| Internal Owner | M:1 Subject | Y |  |  |
+| Default Response Days | Number | N |  |  |
+| Note Required? | Yes/No | N | Default: `No`<br />view settings: checkbox |  |
+| File Upload Required? | Yes/No | N | Default: `No`<br />view settings: checkbox |  |
+| Checklist Version | M:1 shared Checklist Version | N | TBD |  |
+| Visibility Classification | M:1 Visibility Classification | N |  |  |
+| Business Hierarchy | M:1 Business Hierarchy | N |  |  |
+
+**Business Rules**
+
+- Version Number must be unique
+- Default Response Days must be positive
+
+**Action Handlers**
+
+- On Create, increment Template's version number helper by 1, then set the Version Number to the helper. E.g. helper starts at 0, we do helper = helper + 1 = 1 and the current version number is 1.
 
 Publishing validates all conditional fields, role classifications, that any selected Checklist Version is Active? = True, at least one enabled completion control, title tokens, due-date rule, and reminder rules. Published versions are immutable. Changes require a new version.
+
+At least one of Note Required, File Upload Required, or Checklist Version must be enabled
 
 ### 7.6 Shared Checklist configuration
 
@@ -548,21 +561,25 @@ Supplier Task Obligation has no ordinary end-user creation form. It is created i
 
 ### 7.8 Supplier Profile Task Assignment
 
-| Field | Type | Required | Behavior | Classification |
-|---|---|---:|---|---|
-| Name | Text | Yes | Calculated from profile template and task template | Proposed |
-| Supplier Profile Template | M:1 Supplier Profile Template | Yes | Existing target configuration | Required/Proposed |
-| Task Template | M:1 Supplier Task Template | Yes | User selects the active stable template; no version is selected or stored on the assignment | Required/Proposed |
-| Active? | Yes/No | Yes | Yes; inactive excludes future supplier creation | Proposed |
-| Target Days | Nonnegative integer | Yes | Due date offset from successful supplier creation | Required/Proposed |
-| Required for Completeness? | Yes/No | Yes | Controls completeness reporting only; never supplier activation | Required/Proposed |
-| Schedule Type | Choice | Yes | One Time or Recurring | Required/Proposed |
-| Recurrence Definition | Governed frequency | Conditional | Required when Schedule Type is Recurring; copied through the initial task to its obligation | Required/Proposed |
-| Applies to Entity Type | Choice | Yes | Parent Company, Facility, or Both | Proposed |
+| Field | Type | Required | Additional Config |
+|---|---|---:|---|
+| Name | Text | Y | visible after create<br />calculation: Profile Template.Name + " - " +  Task Template.Name |
+| Supplier Profile Template | M:1 Supplier Profile Template | Y |  |
+| Task Template | M:1 Supplier Task Template | Y | filter for Active?=TRUE |
+| Active? | Yes/No | N | Default: `Yes`<br />view settings: checkbox |
+| Required for Completeness? | Yes/No | N | view settings: checkbox<br />Controls completeness reporting only; never supplier activation |
+| Frequency | Frequency | Y | OOTB frequency selector to set up as one-time or recurring task |
+| Applies to Entity Type | Lookup | Y | Values: Parent Company, Facility, or Both |
 
-The active unique key is `(Supplier Profile Template, Task Template, Applies to Entity Type)`. At generation time, automation resolves the selected Task Template to exactly one most recent current published Supplier Task Template Version: the eligible version with the greatest Version Number whose State is Published and whose effective interval includes the generation timestamp, treating a blank Effective From or Effective To as an unbounded endpoint. Because §7.5 permits only one current Published version per Template, zero matches or multiple matches are configuration errors and enter the recoverable generation-exception path. The resolved version is stored on the generated Supplier Task and included in its immutable configuration snapshot; the assignment continues to reference only the stable Task Template.
+**Business Rules**
+
+- `(Supplier Profile Template, Task Template, Applies to Entity Type)` must be unique
+
+At generation time, automation resolves the selected Task Template to exactly one most recent current published Supplier Task Template Version: the eligible version with the greatest Version Number whose State is Published and whose effective interval includes the generation timestamp, treating a blank Effective From or Effective To as an unbounded endpoint. Because §7.5 permits only one current Published version per Template, zero matches or multiple matches are configuration errors and enter the recoverable generation-exception path. The resolved version is stored on the generated Supplier Task and included in its immutable configuration snapshot; the assignment continues to reference only the stable Task Template.
 
 Version resolution occurs when the idempotent generation operation first creates the Supplier Task. A retry after that task exists resumes the same record and retained Template Version. A retry where no task was created resolves the most recent current published version again. Supplier creation succeeds even if task generation fails. Failures must create an internally visible generation exception with a safe retry key; they must not silently disappear.
+
+An inactive Profile Task Assignment means the task is no longer being generated for a given Supplier Profile.
 
 ### 7.9 Supplier Question Answer
 
