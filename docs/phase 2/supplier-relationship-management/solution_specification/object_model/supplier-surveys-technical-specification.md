@@ -12,9 +12,9 @@
 
 ## 1. Solution overview and evidence boundaries
 
-SIA configures a campaign describing the checklist, eligible audience, responsible supplier role, schedule, deadlines, reminders, and optional supplier profile maintenance. Each launch creates an auditable campaign run and one request per eligible supplier entity. Suppliers answer through Intelex and, when enabled, directly maintain approved profile fields on their owning records. Valid submissions complete without a separate profile-change review or writeback process.
+SIA configures a campaign describing the checklist, eligible audience, responsible supplier role, schedule, deadlines, reminders, and optional supplier profile maintenance. Each launch creates an auditable campaign run and one Supplier Survey per eligible supplier entity. Suppliers answer through Intelex and, when enabled, directly maintain approved profile fields on their owning records. Valid submissions complete without a separate profile-change review or writeback process.
 
-The first business use case is the twice-yearly shutdown survey. Periodic facility/contact/role confirmation uses the same campaign and request mechanism. The exact shutdown checklist and business calendar have not been supplied and are not invented in this specification.
+The first business use case is the twice-yearly shutdown survey. Periodic facility/contact/role confirmation uses the same campaign and Supplier Survey mechanism. The exact shutdown checklist and business calendar have not been supplied and are not invented in this specification.
 
 **Extracted** means supported by the existing baseline documentation and registers. **Required** means stated by an ADR or the agreed overview. **Proposed** means a new design choice made here. **Unresolved** means platform behavior or business policy needs verification. Every new object, field, relationship, state, and operation below is Proposed unless explicitly described otherwise. Logical names are not confirmed Intelex internal names, metadata identifiers, database keys, or physical table names.
 
@@ -30,7 +30,7 @@ Primary source decisions: [ADR-080 — reusable information campaigns](../../adr
 | Supplier Contact has an Employee reference and OOTB supplier M:N associations | Reuse contact identity and authenticated-user bridge; apply the later ownership target described below |
 | Supplier Evaluation captures evaluation description, rating, date, evaluator, and comments | Retain for evaluations; shared supplier checklist answers use their own question structure and work-item lifecycle |
 | Parent Company and Facility workflows perform evaluation submission and deactivation | Survey issuance does not complete, restart, or repurpose those workflows |
-| Six exported workflows contain no campaign/request survey lifecycle | New campaign scheduling, request workflow, notifications, and views are required |
+| Six exported workflows contain no campaign/Supplier Survey lifecycle | New campaign scheduling, Supplier Survey workflow, notifications, and views are required |
 | OOTB supplier status expressions refer to Active, InActive, and Suspended; complete lookup values are not exported | ADR-079 lifecycle rollout is a dependency. Do not infer accepted status semantics from old expressions or change those workflows implicitly |
 
 ### Alignment with existing target specifications
@@ -50,15 +50,15 @@ Primary source decisions: [ADR-080 — reusable information campaigns](../../adr
 | SS-01 | ADR-080; shared checklist decision | Reuse versioned checklist configuration and operational answers for one-time and recurring information requests; allow the same published checklist versions and answer model to be used by templated Supplier Tasks |
 | SS-02 | ADR-079, ADR-080; refined by SS-21 | Select suppliers using governed Campaign Audience Rules, including explicit Supplier Status criteria where status eligibility is required |
 | SS-03 | ADR-003, ADR-080; role target | Resolve authenticated recipients from the exact supplier's standard operational role |
-| SS-04 | ADR-080; agreed overview | Preserve the issued audience and create traceable requests, including routing exceptions |
+| SS-04 | ADR-080; agreed overview | Preserve the issued audience and create traceable Supplier Surveys, including Owner-visible evidence for pre-Open routing failures |
 | SS-05 | ADR-080 | Support deadlines, reminders, escalation visibility, and overdue/completion reporting |
 | SS-06 | ADR-006, ADR-080; refined by SS-20 | Show maintained profile data, allow direct edits to approved fields and relationships, and require affirmative confirmation |
 | SS-07 | ADR-076, ADR-078, ADR-084 | Respect entity scope and applicable record confidentiality across forms, children, reports, and attachments |
 | SS-08 | ADR-083 | Expose assigned work through the Intelex workspace within the retained SIA portal arrangement |
 | SS-09 | Agreed overview | Default to notify all eligible members and first authorized response; preserve actor identity |
 | SS-10 | Proposed | Freeze published checklist/question versions and run configuration; preserve submitted answers and confirmation evidence on the completed Supplier Survey |
-| SS-11 | Proposed | Use explicit run/request uniqueness, retry-safe issuance, and delivery deduplication |
-| SS-12 | Proposed | Route missing recipients, concurrency conflicts, and processing failures to owned exception work |
+| SS-11 | Proposed | Use explicit Campaign Run/Supplier Survey uniqueness, retry-safe issuance, and delivery deduplication |
+| SS-12 | Proposed; refined by SS-29 and SS-32 | Keep pre-Open Supplier Survey routing and processing failures in the Campaign Run Issuing batch with native diagnostic evidence and retry-safe continuation; do not create a Supplier Survey Exception stage |
 | SS-13 | Superseded by SS-20 | Do not create a separate review path for supplier profile changes made through a survey |
 | SS-14 | Proposed; refined by SS-20 | Valid survey submission completes without mandatory SIA approval |
 | SS-15 | User clarification | Supplier Question Answer uses named Text, Float, File, and Date fields plus M:1 `Answer - Choice` and M:N `Answer - Choices` relationships to the published choice instances for its Question Version |
@@ -75,8 +75,13 @@ Primary source decisions: [ADR-080 — reusable information campaigns](../../adr
 | SS-26 | User clarification | Remove Campaign Audience Entry's matched-group and evaluation-detail helpers; Selection Outcome branches only on `[Helper] Audience Rule Match?`, Selection Reason is populated only for TRUE, Boolean conditions use TRUE/FALSE, and null checks use `ISNULL` |
 | SS-27 | User clarification | Supplier Question Answer uses unprefixed Work Item, Response Iteration, Question Version, Responded By, and Responded At field names; an Update Action Handler sets Responded By and timezone-enabled Responded At whenever any `Answer -` field changes |
 | SS-28 | User clarification | Do not configure a dedicated survey-event object or related fields; use native workflow history, object audit, execution logs, and platform notification evidence instead |
+| SS-29 | User clarification | Campaign Run has only Preparing, Ready, Issuing, and Open workflow stages; Closed and Cancelled are termination states, the Exception stage is removed, Survey Preparation Complete branches immediately to Issuing when Start Date / Time is not in the future and otherwise to Ready, and a 15-minute Event Service advances due Ready runs to Issuing |
+| SS-30 | User clarification | In Ready, the hidden Issue Supplier Surveys action rejects a future Start Date / Time and otherwise moves the Campaign Run to Issuing; in Issuing, a separate batch process performs Supplier Survey issuance and invokes the hidden Move to Open action, whose only behavior is the transition to Open; workflow terminology uses Supplier Survey rather than request |
+| SS-31 | User clarification | Campaign Run.Owner is the responsible person throughout Preparing, Ready, Issuing, and Open; cancelling an Open Campaign Run first cancels every remaining nonterminal Supplier Survey in that run and terminates the Campaign Run only after the cascade succeeds |
+| SS-32 | User clarification | Supplier Survey has exactly one workflow stage, Open, whose responsible person is the current eligible membership of Assigned Role; Completed and Cancelled are termination states rather than stages, and all other previously modelled Supplier Survey stages/outcomes are removed |
+| SS-33 | User clarification | The Supplier Survey Open stage exposes exactly two workflow actions: Submit and Cancel Campaign; Save Draft, Extend Due, individual Cancel, and all other Supplier Survey workflow actions are removed |
 
-SS-20 supersedes the earlier proposed Review All policy and the Review Role portion of SS-18. SS-21 supersedes the proposed Survey Status Eligibility object and its global new-request and existing-request policies. The initial recipient behavior remains fixed to SS-09; all-member response and individual-assignee modes are future extensions requiring additional completion semantics.
+SS-20 supersedes the earlier proposed Review All policy and the Review Role portion of SS-18. SS-21 supersedes the proposed Survey Status Eligibility object and its global new-Supplier-Survey and existing-Supplier-Survey policies. The initial recipient behavior remains fixed to SS-09; all-member response and individual-assignee modes are future extensions requiring additional completion semantics.
 
 ## 3. Target logical model
 
@@ -434,7 +439,7 @@ Checklist Question Choice Version records are immutable. Publication validation 
 | First Launch At | Datetime with timezone | C | Required for Once/Recurring |
 | Frequency | Ref Survey Recurrence Definition | C | M:1 dropdown; visible and required only when Schedule Mode = Recurring; hidden and cleared otherwise; selectable records must have Active? = TRUE |
 | Response Days | Positive integer | C | Required before run preparation; no business deadline invented |
-| Supplier Profile Change Enabled? | Boolean | Y | No; when Yes, authorized supplier users may edit approved profile fields and relationships directly on their owning records while the survey is Assigned |
+| Supplier Profile Change Enabled? | Boolean | Y | No; when Yes, authorized supplier users may edit approved profile fields and relationships directly on their owning records while the Supplier Survey is Open |
 | Visibility Classification | Ref Visibility Classification | C | Required if survey security matrix mandates; shared metadata unresolved |
 | Survey Campaign Audience Rules | 1:M relationship grid to Survey Campaign Audience Rule | N | Inverse, read-only related-record grid of Survey Campaign Audience Rule.Campaign |
 | Campaign Runs | 1:M relationship grid to Campaign Run | N | Inverse, read-only related-record grid of Campaign Run.Campaign |
@@ -450,7 +455,7 @@ Checklist Question Choice Version records are immutable. Publication validation 
 | [Helper] Profile Change | Calculated text | Y | `CONCATENATE("Supplier Profile Change Enabled=", [Supplier Profile Change Enabled?])` |
 | [Helper] Audience Rules | Calculated long text | N | `JOIN([Survey Campaign Audience Rules].[[Helper] Rule Snapshot], "<br><br>", [Group Number], [Order])`; rows are sorted by Group Number then Order before joining |
 
-Run preparation validates that the campaign is Active? = TRUE, routing roles and audience configuration are valid, the selected Checklist has exactly one Active? = TRUE Checklist Version, and schedule and notification rules are complete. Future edits affect future runs only. Setting Active? = FALSE prevents new manual or scheduled runs while existing requests and run history continue unchanged.
+Run preparation validates that the campaign is Active? = TRUE, routing roles and audience configuration are valid, the selected Checklist has exactly one Active? = TRUE Checklist Version, and schedule and notification rules are complete. Future edits affect future runs only. Setting Active? = FALSE prevents new manual or scheduled runs while existing Supplier Surveys and run history continue unchanged.
 
 ### 5.6 Survey Recurrence Definition
 
@@ -496,7 +501,7 @@ Each row belongs to one campaign. Rules in the same group are ANDed; groups are 
 
 Exactly one operand appropriate to Attribute is populated. Invalid attribute/entity-level combinations block run preparation. A campaign may use one or more Supplier Status rules and the standard AND-within-group/OR-between-groups semantics to define its eligible statuses. If no Supplier Status rule exists, status does not filter that campaign's audience; there is no hidden global status test. The administrator must see the resulting preview count and applied criteria before launch. Null source values do not satisfy Equals or Not Equals. Audience rules never override record security, and survey code may not edit Supplier Status.
 
-Survey reminders and escalations use native Intelex platform functionality. No Campaign Reminder Rule business object is configured. Native reminder configuration must stop when the request leaves the applicable open stage, respect due-date changes, resolve currently authorized recipients, and retain available platform delivery/audit evidence.
+Survey reminders and escalations use native Intelex platform functionality. No Campaign Reminder Rule business object is configured. Native reminder configuration must stop when the Supplier Survey leaves the applicable open stage, respect due-date changes, resolve currently authorized recipients, and retain available platform delivery/audit evidence.
 
 ## 6. New operational objects and fields
 
@@ -514,9 +519,9 @@ A separate run preserves each recurrence. Reusing a previous run would incorrect
 | Campaign Audience Entries | 1:M relationship grid to Campaign Audience Entry | N | Inverse, read-only related-record grid of Campaign Audience Entry.Campaign Run |
 | Launched At / Closed At | Datetime each | N | Set by successful launch / closure |
 | Launched By | Ref Employee | N | Human launch actor; automated initiation is identified through native workflow history and scheduler metadata |
-| Owner | Ref Employee | Y | Copied from campaign; explicit reassignment is audited |
+| Owner | Ref Employee | Y | Copied from campaign; responsible person for Preparing, Ready, Issuing, and Open; explicit reassignment is audited |
 
-Campaign Run has no separate State field. Its lifecycle is represented by the Campaign Run workflow stages Preparing, Ready, Issuing, Open, Exception, Closed, and Cancelled. Exception diagnostics use native workflow history, platform execution logs, and object audit rather than a mutable Last Error field or dedicated operational-log object. Configuration Snapshot is materialized and locked when Preparing completes so later Campaign or Audience Rule edits cannot recalculate historical evidence. References include stable record identifiers plus readable labels. Before concatenation, every interpolated text value must be HTML-encoded; only the literal `<br>` elements defined by the formulas may remain as markup. Native Intelex reminder configuration is not included because it is platform configuration rather than a Survey Campaign record field; platform notification logs retain the available delivery evidence. Run creation fails if the complete snapshot cannot be stored. Counts are derived from Campaign Audience Entries and Supplier Surveys; do not maintain competing manually editable totals.
+Campaign Run has no separate State field. Its workflow stages are Preparing, Ready, Issuing, and Open; Closed and Cancelled are workflow termination states, not stages. There is no Campaign Run Exception stage. Failed preparation remains in Preparing and failed issuance remains in Issuing, with native workflow history, platform execution logs, and object audit providing diagnostic evidence rather than a mutable Last Error field or dedicated operational-log object. Configuration Snapshot is materialized and locked when Preparing completes so later Campaign or Audience Rule edits cannot recalculate historical evidence. References include stable record identifiers plus readable labels. Before concatenation, every interpolated text value must be HTML-encoded; only the literal `<br>` elements defined by the formulas may remain as markup. Native Intelex reminder configuration is not included because it is platform configuration rather than a Survey Campaign record field; platform notification logs retain the available delivery evidence. Run creation fails if the complete snapshot cannot be stored. Counts are derived from Campaign Audience Entries and Supplier Surveys; do not maintain competing manually editable totals.
 
 ### 6.2 Selection Outcome
 
@@ -558,11 +563,11 @@ The two guarded defaults compare the selected Supplier's inherited `Type of Supp
 
 The run-preparation handler creates the Campaign Audience Entry, lets the platform apply every create-time default above, and then evaluates each rule row against the corresponding immutable entry field using the rule's Attribute, Operator, and typed operand. For each Group Number, `GroupMatch = AND(all ordered row results in that group)`. Across groups, `AudienceRuleMatch = OR(all GroupMatch values)`; when the campaign has no rules, AudienceRuleMatch is TRUE. Campaign and rule configuration is assumed to be clean. No matched-group or evaluation-detail helper fields are stored on Campaign Audience Entry.
 
-Candidate population is all supplier records at the campaign's selected entity level. The create-time property fields preserve the initial evaluation evidence and are never refreshed from Supplier. Issuance uses Selection Outcome (Calculated) and reporting displays Selection Reason (Calculated). Excluded entries have no request. Included entries have at most one request, even if role resolution fails. Preparation is internal and resumable; a run enters Ready only when the population and snapshot are complete. Once issuance starts, the base evaluation and overrides are locked. Validate that the platform fires the Evaluated At handler after a calculated relationship changes; if it does not, the run-preparation handler must explicitly stamp Evaluated At after recalculation.
+Candidate population is all supplier records at the campaign's selected entity level. The create-time property fields preserve the initial evaluation evidence and are never refreshed from Supplier. Issuance uses Selection Outcome (Calculated) and reporting displays Selection Reason (Calculated). Excluded entries have no Supplier Survey. Included entries have at most one Supplier Survey, even if role resolution fails. Preparation is internal and resumable; Survey Preparation Complete may leave Preparing only after the population and snapshot are complete, then routes the run to Ready or Issuing according to Start Date / Time. Once issuance starts, the base evaluation and overrides are locked. Validate that the platform fires the Evaluated At handler after a calculated relationship changes; if it does not, the run-preparation handler must explicitly stamp Evaluated At after recalculation.
 
 ### 6.4 Supplier Survey
 
-`Supplier Survey` is the survey-specific descendant of `Abstract Supplier Task` defined in the [Supplier Tasks component specification](supplier-tasks-technical-specification.md). Supplier, Assigned Role, internal owner, Checklist Version, workflow state, issue and due dates, completion metadata, source, classification, exception, and closure fields are inherited and are not redeclared here. The inherited Review Role is unused by Supplier Survey. Checklist Version is required for Supplier Survey and copied from Campaign Run.Checklist Version.
+`Supplier Survey` is the survey-specific descendant of `Abstract Supplier Task` defined in the [Supplier Tasks component specification](supplier-tasks-technical-specification.md). Supplier, Assigned Role, internal owner, Checklist Version, workflow state, issue and due dates, completion metadata, source, classification, exception, and closure fields are inherited and are not redeclared here. The inherited Review Role and Exception Resume State are unused by Supplier Survey because its workflow has only Open plus Completed/Cancelled termination states. Closure Reason is used for Cancelled. Checklist Version is required for Supplier Survey and copied from Campaign Run.Checklist Version.
 
 | Field | Type | Required | Default / behavior |
 |---|---|---|---|
@@ -574,7 +579,7 @@ Candidate population is all supplier records at the campaign's selected entity l
 | Profile Confirmed At | Datetime | C | Server timestamp captured when the required affirmative confirmation is submitted |
 | Declaration | Long text | C | Frozen confirmation wording captured on Supplier Survey at Submit |
 
-There is no separate manually maintained Completed? flag or intermediate submission child. While Assigned, the survey's iteration-1 Supplier Question Answers remain editable. Submit validates and freezes those answers, stores confirmation evidence directly on Supplier Survey, and uses inherited Last Submitted At, Completed At, and Completed By for submission metadata. Completed surveys are not overwritten; a new follow-up request/run captures later responses. Overdue is derived for issued, nonterminal requests with Due At earlier than now. Due-date changes require a reason and notification; native workflow history and audit preserve the original and updated dates.
+There is no separate manually maintained Completed? flag or intermediate submission child. While Open, the Supplier Survey's iteration-1 Supplier Question Answers remain editable. Submit validates and freezes those answers, stores confirmation evidence directly on Supplier Survey, and uses inherited Last Submitted At, Completed At, and Completed By for submission metadata. Completed Supplier Surveys are not overwritten; a new follow-up Supplier Survey/run captures later responses. Overdue is derived for Open Supplier Surveys with Due At earlier than now. Due-date changes require a reason and notification; native workflow history and audit preserve the original and updated dates.
 
 ### 6.5 Supplier Question Answer
 
@@ -601,7 +606,7 @@ Exactly one answer mechanism corresponding to the question may be populated. A r
 
 ### 6.6 Direct supplier profile maintenance and audit
 
-When Supplier Profile Change Enabled? is TRUE, the Assigned survey form exposes secured direct-edit controls for the exact target supplier's approved profile fields and relationships. Changes are saved immediately to the owning Supplier Abstract, Supplier Contact, Supplier Specific Role, or governed membership relationship; they are not staged as survey proposals and do not wait for survey submission or internal approval.
+When Supplier Profile Change Enabled? is TRUE, the Open Supplier Survey form exposes secured direct-edit controls for the exact target supplier's approved profile fields and relationships. Changes are saved immediately to the owning Supplier Abstract, Supplier Contact, Supplier Specific Role, or governed membership relationship; they are not staged as survey proposals and do not wait for survey submission or internal approval.
 
 Initial direct-edit allowlist: supplier phone/address information, contact phone/position, and explicit external role-member additions/removals. Contact email, supplier/contact ownership, supplier identifiers, lifecycle status, access rights, account flags, internal role membership, and library-role configuration remain read only and require their governed maintenance processes. New contacts continue through Supplier Contact Request unless a separate approved self-service design explicitly permits direct creation.
 
@@ -624,93 +629,139 @@ Existing role/contact/template modifications described by other target specifica
 ## 8. Scheduling, selection, and issuance
 
 1. Require Campaign.Active? = TRUE. When Schedule Mode = Recurring, use Campaign.Frequency's `displayas="recurrence"` value; for Manual or Once, Campaign.Frequency is null. Resolve the campaign's assumed-clean Checklist configuration to its single Active? = TRUE Checklist Version. Create or retrieve the run using the unique `(Campaign, Start Date / Time)` pair. A scheduler retry returns the same run and its already resolved version.
-2. Store the resolved version as Campaign Run.Checklist Version, evaluate and store Configuration Snapshot from the named helper fields, and evaluate the candidate population. Store one Campaign Audience Entry for each candidate through its separate Campaign Run and Supplier fields. Complete interrupted preparation idempotently before transitioning the Campaign Run workflow to Ready.
-3. Present Included and Excluded counts using Selection Outcome (Calculated). An authorized launch begins issuance. Scheduled launches execute the same process without a human preview approval step; a processing failure transitions the Campaign Run workflow to Exception.
-4. For every effectively Included entry, create or retrieve its unique request. Immediately before issue, reevaluate the campaign's Audience Rules against the related Supplier's current rule-addressable properties, including Supplier Status; do not overwrite the entry's immutable create-time property fields. Refresh the base Selection Outcome and Selection Reason, preserve any authorized override, stamp Evaluated At, and rely on the updated Campaign Audience Entry values plus native audit history as the reevaluation evidence. If the effective outcome is no longer Included, retain the entry and withdraw any already-prepared but unissued request without assigning it to the supplier.
-5. Resolve the exact supplier operational role and eligible active members. No role, duplicate role, or no eligible authenticated member leaves the request in Exception under Run.Owner. Other suppliers can still be issued.
-6. Start the request workflow, set issue/deadline timestamps, and enqueue one issue notification per eligible member. A request is not considered issued until the workflow assignment and security context are valid. Retry resumes partial processing without duplicate requests.
-7. Transition the Campaign Run workflow to Open after issuance has processed its population. Outstanding request exceptions remain visible. A run-level failure concerns processing itself and transitions the run to Exception.
+2. Store the resolved version as Campaign Run.Checklist Version, evaluate and store Configuration Snapshot from the named helper fields, and evaluate the candidate population. Store one Campaign Audience Entry for each candidate through its separate Campaign Run and Supplier fields. Complete interrupted preparation idempotently before the Owner can successfully run Survey Preparation Complete.
+3. Survey Preparation Complete executes all preparation-completion validation and persistence, then compares Start Date / Time with the current server date/time. If Start Date / Time is not in the future, transition immediately to Issuing. If it is in the future, transition to Ready. An Event Service runs every 15 minutes and invokes the hidden Issue Supplier Surveys workflow action for Ready Campaign Runs. That action throws an error while Start Date / Time remains in the future and otherwise moves the Campaign Run to Issuing.
+4. Immediately before creating or opening a Supplier Survey, reevaluate the campaign's Audience Rules against the related Supplier's current rule-addressable properties, including Supplier Status; do not overwrite the entry's immutable create-time property fields. Refresh the base Selection Outcome and Selection Reason, preserve any authorized override, stamp Evaluated At, and rely on the updated Campaign Audience Entry values plus native audit history as the reevaluation evidence. If the effective outcome is no longer Included, retain the entry and do not create a Supplier Survey. If a retry finds an existing nonterminal Supplier Survey record that has not entered Open, terminate it as Cancelled with an audience-mismatch Closure Reason. Otherwise, create or retrieve the unique Supplier Survey and continue issuance.
+5. Resolve the exact supplier operational role and eligible active members before starting the Supplier Survey workflow. No role, duplicate role, or no eligible authenticated member records an Issuing-batch failure under Campaign Run.Owner and prevents that Supplier Survey from entering Open. Other valid suppliers may be processed, but the Campaign Run remains Issuing until every included entry is resolved.
+6. After routing and security are valid, start the Supplier Survey directly in Open, set issue/deadline timestamps, create its iteration-1 answers, and enqueue one issue notification per eligible member. A Supplier Survey is not considered issued until Open-stage ownership and security context are valid. Retry resumes partial batch processing without duplicate Supplier Surveys.
+7. A separate batch process selects only Campaign Runs in the Issuing stage and performs the issuance logic. After the entire population is processed without unresolved issuance failures, the batch invokes the hidden Move to Open workflow action, which contains no issuance logic and only transitions the Campaign Run to Open. A run-level preparation or issuance failure does not change stage: preparation failures remain Preparing and issuance failures remain Issuing, with the failed operation visible to the Owner through native workflow/execution evidence and retry resuming idempotently.
 
 Membership is live for authorization, while platform notification logs preserve who was notified. A replaced member may act only after current membership, account activity, supplier scope, and classification checks pass. If the platform snapshots individuals instead of assigning the group dynamically, controlled reassignment automation is required and must be verified before release.
 
-Audience membership is frozen at issue. A Supplier Status change after issue does not automatically continue or withdraw the request because the removed Survey Status Eligibility object no longer supplies an existing-request policy. An authorized internal owner may still withdraw a request for a documented operational reason; withdrawal stops further supplier actions/reminders while retaining responses and audit history. A later campaign run evaluates the supplier's then-current status against that campaign's Audience Rules. No survey action regenerates profile templates.
+Audience membership is frozen at issue. A Supplier Status change after issue does not automatically transition the Supplier Survey because the removed Survey Status Eligibility object no longer supplies an existing-Supplier-Survey policy. The Supplier Survey remains Open unless it is submitted or an authorized internal owner cancels it with a documented reason. Cancellation stops further supplier actions/reminders while retaining responses and audit history. A later campaign run evaluates the supplier's then-current status against that campaign's Audience Rules. No survey action regenerates profile templates.
 
 ### 8.1 Campaign Run workflow
 
-The removed Campaign Run.State choice is replaced by workflow stages. Stage history is the authoritative lifecycle record.
-
-| Workflow stage | Entry / responsibility | Permitted exits |
-|---|---|---|
-| Preparing | Initial stage; automation resolves Checklist Version, stores Configuration Snapshot, evaluates candidates, and creates Campaign Audience Entries | Ready when complete; Exception on failure; Cancelled by authorized owner |
-| Ready | Frozen population awaits manual launch or the scheduled launch action | Issuing; Cancelled |
-| Issuing | Automation creates or retrieves surveys for effectively Included entries | Open after all entries are processed; Exception on run-level failure |
-| Open | Issuance completed; request-level work and exceptions remain reportable | Closed when every Included request is terminal and no issuance failure remains; Cancelled only under the approved operational policy |
-| Exception | Owner-visible run-processing failure; diagnostic evidence is in native workflow/execution logs | Retry returns to the recorded resume stage; Cancelled |
-| Closed | Terminal successful/handled completion | None |
-| Cancelled | Terminal authorized cancellation | None |
-
-## 9. Request workflow
-
-All stages/actions below are Proposed. Due-date evaluation and native Group recipient behavior require platform verification. The diagram uses native Mermaid `swimlane-beta`, requiring a compatible renderer (11.16.0 or later).
+The removed Campaign Run.State choice is replaced by four workflow stages. Closed and Cancelled are termination states rather than workflow stages, and stage history is the authoritative lifecycle record. The diagram uses native Mermaid `swimlane-beta`, requiring a compatible renderer (11.16.0 or later).
 
 ```mermaid
 swimlane-beta LR
-  accTitle: Supplier survey request workflow
-  accDescr: Requests are prepared and assigned, suppliers directly maintain approved profile data with audit trails, valid submissions complete, and exceptions retain owned recovery paths.
-  subgraph system[Intelex automation]
+  accTitle: Campaign Run workflow
+  accDescr: The Owner completes preparation; runs due now issue immediately, future runs wait in Ready for the 15-minute Event Service, and Closed and Cancelled are terminal outcomes rather than stages.
+  subgraph owner[Campaign Run Owner]
     preparing[Preparing]
-    route{Routing valid?}
+    prepcomplete{Survey Preparation Complete}
+    ready[Ready]
+    issuing[Issuing]
+    open[Open]
+    closeaction[Close]
+    cancelaction[Cancel]
+    cancelopen[Cancel Campaign]
+  end
+  subgraph system[Intelex workflow and automation]
+    startdecision{Start Date / Time is in the future?}
+    closed([Closed termination])
+    cancelled([Cancelled termination])
+  end
+  subgraph service[Background services]
+    issueaction{Issue Supplier Surveys<br/>Hidden workflow action}
+    issuancebatch[Issuing-stage batch process]
+    moveopen[Move to Open<br/>Hidden workflow action]
+    cancelsurveys[Cancel remaining open Supplier Surveys]
+  end
+  preparing -->|Owner action after completion logic| prepcomplete
+  prepcomplete --> startdecision
+  startdecision -->|No: start time is now or past| issuing
+  startdecision -->|Yes: future start time| ready
+  ready -->|Event Service invokes every 15 minutes| issueaction
+  issueaction -->|Future: throw error| ready
+  issueaction -->|Current or past| issuing
+  issuing -->|Batch selects Issuing records only| issuancebatch
+  issuancebatch -->|Incomplete or failed: retain stage| issuing
+  issuancebatch -->|Complete: invoke hidden action| moveopen
+  moveopen --> open
+  open -->|All closure criteria satisfied| closeaction
+  closeaction --> closed
+  preparing -.->|Owner cancellation| cancelaction
+  ready -.->|Owner cancellation| cancelaction
+  issuing -.->|Owner cancellation| cancelaction
+  cancelaction --> cancelled
+  open -.->|Owner cancellation| cancelopen
+  cancelopen --> cancelsurveys
+  cancelsurveys -->|All remaining open Supplier Surveys cancelled| cancelled
+  cancelsurveys -->|Any cancellation fails: retain Open| open
+```
+
+| Workflow stage | Status / responsibility | Entry condition | Permitted exits and failure behavior |
+|---|---|---|---|
+| Preparing | Campaign Run.Owner is the responsible person; automation performs preparation on the Owner's record | Campaign Run created or retrieved | Survey Preparation Complete → Issuing when Start Date / Time is not in the future; → Ready when it is in the future; Owner cancellation → Cancelled termination. Validation or persistence failure blocks the action and leaves the run in Preparing. |
+| Ready | Campaign Run.Owner remains the responsible person; the 15-minute Event Service invokes the hidden action | Successful Survey Preparation Complete with Start Date / Time in the future | Event Service invokes hidden Issue Supplier Surveys. A future Start Date / Time throws the configured error and leaves the run Ready; a current/past value transitions to Issuing; Owner cancellation → Cancelled termination. |
+| Issuing | Campaign Run.Owner remains the responsible person; a separate batch process performs Supplier Survey issuance | Immediate branch from Preparing or successful Issue Supplier Surveys action from Ready | The batch invokes hidden Move to Open after the entire population is processed; Owner cancellation → Cancelled termination. A processing failure leaves the run in Issuing and retry resumes idempotently. |
+| Open | Campaign Run.Owner remains the responsible person; Open, Completed, and Cancelled Supplier Surveys plus any run-level issuance evidence remain reportable | Hidden Move to Open action invoked by the completed issuance batch | Close → Closed termination when every effectively Included Supplier Survey is terminal and no unresolved issuance failure remains. Owner cancellation first cancels every Open Supplier Survey in the Campaign Run, then → Cancelled termination only when the cascade succeeds. |
+
+| Termination state | Meaning | Entry |
+|---|---|---|
+| Closed | Successful or otherwise handled completion of the run | Close from Open after closure validation succeeds |
+| Cancelled | Authorized cancellation of a nonterminal run | Cancel from Preparing, Ready, or Issuing with the required reason; from Open, only after every remaining nonterminal Supplier Survey in the run is successfully cancelled |
+
+| Stage / order | Action or trigger | Actor / cadence | Visibility | Ordered behavior and decision | Result / error |
+|---|---|---|---|---|---|
+| Preparing / 1 | Survey Preparation Complete | Campaign Run.Owner | Visible to Owner | Validate preparation completion; resolve and persist Checklist Version; store Configuration Snapshot; finish the retry-safe candidate population and Campaign Audience Entries; validate required preparation configuration; then evaluate whether Start Date / Time is later than the current server date/time | Future → Ready; now or past → Issuing; any failed completion operation leaves the run in Preparing with no partial transition |
+| Ready / 1 | Issue Supplier Surveys | Event Service, every 15 minutes | Hidden | Compare Start Date / Time with the current server date/time | If future, remain Ready and throw `Supplier Surveys cannot be issued before the Campaign Run Start Date / Time.` Otherwise transition to Issuing |
+| Issuing / 1 | Move to Open | Issuing-stage batch process after successful processing | Hidden | None. This workflow action contains no issuance, audience, routing, creation, notification, or validation logic; all such behavior belongs to the separate batch process that selects only Campaign Runs in Issuing. | Transition to Open |
+| Open / 1 | Close | Campaign Run.Owner | Visible to Owner | Validate that every effectively Included Supplier Survey is terminal and no unresolved issuance failure remains | Closed termination; failed validation leaves the run Open |
+| Preparing, Ready, or Issuing / 90 | Cancel | Campaign Run.Owner | Visible to Owner | Require a cancellation reason, stop pending scheduled or issuance work where safe, and retain history | Cancelled termination |
+| Open / 90 | Cancel Campaign | Campaign Run.Owner | Visible to Owner | Require a cancellation reason; identify every related Supplier Survey currently in Open; transition each to Cancelled with the campaign cancellation reason, stop its reminders/actions, and retain its history; transition the Campaign Run only after all cancellations succeed | All Open Supplier Surveys → Cancelled, then Campaign Run → Cancelled. If any Supplier Survey cancellation fails, retain the Campaign Run in Open, record the failure in native execution evidence, and allow an idempotent retry without recancelling already terminal Supplier Surveys |
+
+The Issuing-stage batch process is separate from the Campaign Run workflow action configuration. It may select only Campaign Runs whose current stage is Issuing. It performs audience reevaluation, creates or retrieves each unique Supplier Survey, applies routing and security, records execution evidence, and invokes Move to Open only after the complete population has been processed. Move to Open must remain hidden and must not duplicate any batch logic.
+
+Campaign Run.Owner is the configured responsible person in all four Campaign Run stages. Event Service and batch-process identities invoke automation but never replace the stage responsible person. For Open-stage cancellation, a remaining open Supplier Survey means a related Supplier Survey whose sole workflow stage is Open; Completed and Cancelled records are already terminal and are not changed.
+
+## 9. Supplier Survey workflow
+
+The Supplier Survey workflow contains exactly one workflow stage: Open. Completed and Cancelled are termination states, not stages. Audience reevaluation, routing, security, initial answer creation, issue timestamps, and notification preparation occur in the Campaign Run's Issuing-stage batch before the Supplier Survey enters Open. A failure in that batch does not create a Supplier Survey workflow Exception stage and keeps the Campaign Run in Issuing for retry. Due-date evaluation and native Group recipient behavior require platform verification. The diagram uses native Mermaid `swimlane-beta`, requiring a compatible renderer (11.16.0 or later).
+
+```mermaid
+swimlane-beta LR
+  accTitle: Supplier Survey workflow
+  accDescr: Current eligible Assigned Role members own the single Open stage; Submit completes the Supplier Survey and Cancel Campaign cancels the campaign and its Open Supplier Surveys.
+  subgraph supplier[Current eligible Assigned Role members]
+    open[Open]
+    submit{Submission valid?}
+  end
+  subgraph internal[Campaign Run.Owner]
+    cancel[Cancel Campaign]
+  end
+  subgraph system[Intelex workflow]
     completed([Completed])
-    withdrawn([Withdrawn])
     cancelled([Cancelled])
-    noresponse([Closed No Response])
   end
-  subgraph supplier[Supplier role members]
-    assigned[Assigned]
-  end
-  subgraph sia[SIA authorized owners]
-    exception[Exception]
-  end
-  preparing --> route
-  route -->|Valid: issue| assigned
-  route -->|Missing or invalid route| exception
-  assigned -->|Submit valid answers and profile confirmation| completed
-  exception -->|Retry initial routing| preparing
-  exception -->|Restore supplier assignment| assigned
-  assigned -->|Authorized close after deadline| noresponse
-  preparing -->|Cancel with reason| cancelled
-  assigned -->|Cancel with reason| cancelled
-  exception -->|Cancel with reason| cancelled
-  assigned -->|Authorized withdrawal| withdrawn
-  preparing -->|Audience no longer matches before issue| withdrawn
+  open -->|Submit| submit
+  submit -->|Invalid: display error| open
+  submit -->|Valid| completed
+  open -->|Cancel Campaign| cancel
+  cancel --> cancelled
 ```
 
 ### Stage details
 
 | Stage | Owner | Due-date logic | Entry and exits |
 |---|---|---|---|
-| Preparing | Run.Owner; automation performs issue | None | Initial; issue → Assigned, failure → Exception, cancel → Cancelled, current audience-rule mismatch → Withdrawn |
-| Assigned | Assigned Role, current eligible Members | Inherited Due At | Issue; authorized users may edit answers and approved profile fields directly; valid submit → Completed; routing failure → Exception; cancel, withdraw, or authorized no-response closure |
-| Exception | Run.Owner | No exception SLA assumed; report age | Retains intended resume state; Retry → Preparing/Assigned; cancel/withdraw |
-| Completed | Terminal | None | Valid submitted response and, when enabled, affirmative profile confirmation |
-| Cancelled | Terminal | None | Authorized cancellation with reason |
-| Withdrawn | Terminal | None | Pre-issue audience-rule mismatch or authorized operational withdrawal; reason retained |
-| Closed No Response | Terminal | None | Explicit owner decision after deadline; not a completed response |
+| Open | Assigned Role: current eligible members for the exact Supplier; eligibility is evaluated on every view and action | Inherited Due At, calculated at issue from the frozen campaign response-days configuration | Initial and only stage after successful Issuing-batch validation; valid Submit → Completed termination; Cancel Campaign → associated Campaign Run cancellation and Cancelled termination for every related Open Supplier Survey |
+
+| Termination state | Meaning | Entry |
+|---|---|---|
+| Completed | Valid Supplier Survey submission | Submit from Open after all answer, version, authorization, and profile-confirmation validation succeeds |
+| Cancelled | Termination without completion | Cancel Campaign from Open, which applies the required campaign cancellation reason to every related Open Supplier Survey; or retry-safe pre-Open cleanup by issuance automation before the record becomes supplier-actionable |
 
 ### Ordered actions and validation
 
 | Stage / order | Action and actor | Ordered behavior | Outcome / notification |
 |---|---|---|---|
-| Preparing / 1 | Issue — automation | Validate run and current Audience Rules → resolve group → secure record → set timestamps → assign workflow → enqueue notifications | Assigned; N1. Rule mismatch withdraws the unissued request; other failure preserves it in Exception |
-| Assigned / 1 | Save Draft — eligible supplier member | Check current authorization → validate supplied answer types → save the iteration-1 Supplier Question Answers related directly to the survey; approved profile edits are saved directly to their owning audited records | Remains Assigned; no completion notification |
-| Assigned / 2 | Submit — eligible supplier member | Lock submission → validate required iteration-1 Supplier Question Answers, exact question version, typed field/relationship exclusivity, current role/scope, and required profile confirmation → set Responding Contact, confirmation fields, inherited Last Submitted At, Completed At, and Completed By → freeze answers and transition | Completed with N3; invalid answers, authorization, or missing confirmation leave the survey Assigned |
-| Exception / 1 | Retry — Run.Owner/support | Require defect correction → revalidate Audience Rules and authorization → resume recorded processing state | Intended stage; no duplicate survey, response, or notification |
-| Assigned / 3 | Extend Due — Run.Owner | Require reason and later date → record previous date → set new date/increment generation → allow native Intelex reminders to recalculate from the new due date | Assigned; N5 |
-| Assigned / 4 | Close No Response — Run.Owner | Require overdue request with no completed submission and a reason → stop reminders → terminal transition | Closed No Response; N7 |
-| Nonterminal / 90 | Cancel — authorized internal owner | Require reason → stop pending delivery → terminal transition; previously saved profile edits remain in the owning objects' audit trails | Cancelled; N7 where already issued |
-| Nonterminal / 91 | Withdraw — authorized internal owner | Require a documented operational reason → retain evidence → stop actions/reminders; previously saved profile edits are not rolled back | Withdrawn; N7 where already issued |
+| Open / 1 | Submit — current eligible Assigned Role member | Lock submission → recheck authorization → validate required iteration-1 Supplier Question Answers, exact question version, typed-field/relationship exclusivity, and required profile confirmation → set Responding Contact, confirmation fields, inherited Last Submitted At, Completed At, and Completed By → freeze answers | Completed termination with N3; invalid answers, authorization, or missing confirmation leave the Supplier Survey Open |
+| Open / 2 | Cancel Campaign — Campaign Run.Owner | Execute against the associated Campaign Run → require a campaign cancellation reason → identify every related Supplier Survey in Open → transition each to Cancelled with that reason → stop their reminders and supplier actions → preserve answers and previously saved direct profile edits → transition the Campaign Run to Cancelled only after the full cascade succeeds | Every related Open Supplier Survey reaches Cancelled and N7 is issued where applicable; Completed and already-Cancelled Supplier Surveys remain unchanged. If any child cancellation fails, the Campaign Run remains Open and the action can be retried idempotently. |
 
-Submission validation failure keeps the survey and its iteration-1 answers editable and displays the question-specific or profile-confirmation error. Validation precedes completion. Concurrent submissions are serialized; only the first valid completion succeeds, and the second user sees that the survey has already been submitted. Direct profile edits use the owning objects' normal concurrency behavior and are not rolled back when survey submission fails, is cancelled, or is withdrawn.
+Submit and Cancel Campaign are the only Supplier Survey workflow actions. Standard form persistence may save answer or approved profile-field edits while the survey remains Open, but it is not configured as a workflow action. There are no Save Draft, Extend Due, individual Cancel, Issue, Retry, Withdraw, or Close No Response actions, and no Preparing, Assigned, Exception, Withdrawn, or Closed No Response stages or termination states. Pre-Open routing or issuance failures remain Campaign Run Issuing-batch failures. Submission validation failure keeps the Supplier Survey Open and its iteration-1 answers editable and displays the question-specific or profile-confirmation error. Validation precedes completion. Concurrent submissions are serialized; only the first valid completion succeeds, and the second user sees that the Supplier Survey has already been submitted. Direct profile edits use the owning objects' normal concurrency behavior and are not rolled back when submission fails or the campaign is cancelled.
 
 ## 10. Notifications, permissions, and reporting
 
@@ -720,14 +771,13 @@ Template names below are proposed logical names. Each requires a configured plat
 
 | ID | Trigger | Proposed template | Recipients / condition |
 |---|---|---|---|
-| N1 | Successful issue | Supplier information request assigned | All current eligible Assigned Role members; authenticated link |
-| N3 | Request completes | Supplier information request completed | Submitting individual if still authorized; completion remains visible in supplier workspace |
-| N5 | Deadline extension | Supplier information request due date changed | Current eligible Assigned Role members |
-| N6 | Processing/routing exception | Supplier information request exception | Run.Owner; approved escalation role when resolvable |
-| N7 | Cancellation, withdrawal, no-response closure | Supplier information request closed | Current eligible supplier members when previously issued; internal owner |
+| N1 | Successful issue | Supplier Survey open | All current eligible Assigned Role members; authenticated link |
+| N3 | Supplier Survey completes | Supplier Survey completed | Submitting individual if still authorized; completion remains visible in supplier workspace |
+| N6 | Issuing-batch failure | Supplier Survey issuance failure | Campaign Run.Owner; approved escalation role when resolvable; not a Supplier Survey workflow transition |
+| N7 | Cancel Campaign | Supplier Survey cancelled through its Campaign Run | Current eligible supplier members when previously issued; Campaign Run.Owner |
 | N8 | Native Intelex reminder becomes due | Platform-configured reminder/escalation template | Current eligible assigned or escalation role members, or Run.Owner |
 
-N8 supplier reminders are implemented with native Intelex functionality and apply only while awaiting supplier response; they stop on submission, withdrawal, cancellation, or terminal closure. Revalidate scope before each email and omit sensitive answer/profile content. If no recipient resolves, log failure and notify Run.Owner; never select an arbitrary person. Retry delivery with the same correlation key where the platform supports it; test provider deduplication boundaries because exact-once external email cannot be presumed.
+N8 supplier reminders are implemented with native Intelex functionality and apply only while the Supplier Survey is Open; they stop on Completed or Cancelled termination. Revalidate scope before each email and omit sensitive answer/profile content. If no recipient resolves, log the Issuing-batch failure and notify Campaign Run.Owner; never select an arbitrary person. Retry delivery with the same correlation key where the platform supports it; test provider deduplication boundaries because exact-once external email cannot be presumed.
 
 ### Permission exceptions and security standard
 
@@ -737,10 +787,10 @@ Comparison standard: ADR-078 entity scope, ADR-084 applicable classification, an
 |---|---|---|
 | Checklist/version/questions/choices and campaign/rules | SRM campaign administrators | Checklist and question authoring, publication, campaign Active? maintenance, and launch; generated version snapshots are read only |
 | Run/audience entries/global counts | Authorized internal owners | Manage assigned campaigns; create-time Supplier property snapshots are read only; may set Override Selection Outcome only with Override Reason before issuance; supplier users cannot browse other suppliers or audience entries |
-| Supplier Survey and current Supplier Question Answer iteration | Current eligible Assigned Role members within entity/classification scope | Edit answers and submit only while Assigned |
-| Approved profile fields and relationships | Current eligible Assigned Role members within the exact supplier scope | Edit directly on owning Supplier Abstract, Supplier Contact, Supplier Specific Role, or membership relationship while the survey is Assigned; native object/relationship audit trails required |
+| Supplier Survey and current Supplier Question Answer iteration | Current eligible Assigned Role members within entity/classification scope | Responsible for the Open stage; edit answers and submit only while Open |
+| Approved profile fields and relationships | Current eligible Assigned Role members within the exact supplier scope | Edit directly on owning Supplier Abstract, Supplier Contact, Supplier Specific Role, or membership relationship while the Supplier Survey is Open; native object/relationship audit trails required |
 | Completed surveys, submitted answers, shared Supplier Task Events, workflow history, and audit evidence | Authorized readers of associated survey | Read only; internal diagnostic and execution details hidden externally |
-| Exception and administrative closure | Run.Owner and scoped support administrators | Retry, cancel, extend, and close no response; all actions audited |
+| Failed processing and campaign cancellation | Campaign Run.Owner; scoped support administrators may assist with diagnostics | Campaign Run.Owner remains responsible in every run stage and performs run retry and Cancel Campaign actions; support access does not replace the responsible person. There is no individual Supplier Survey cancellation or due-date-extension workflow action. |
 
 Child records enforce the owning Abstract Supplier Task's supplier/classification boundary, including direct URLs, exports, search, and `Answer - File`. The same Supplier Question Answer object must evaluate the concrete parent's workflow state before allowing edits. Parent campaign/run access is not granted just because a supplier can read one survey. A technical Location value, if required by the platform, must not become the supplier isolation boundary. Actual Location Bound settings remain platform verification items.
 
@@ -748,14 +798,14 @@ The initial shared classification implementation is not defined by the inspected
 
 ### Operational views and calculations
 
-- Campaign run dashboard: candidate, excluded, selected, issued, routing exception, awaiting supplier, completed, overdue, withdrawn, cancelled, and closed-no-response counts, each linking to its filtered records.
-- Supplier workspace: authorized open requests and due dates; completed-response history. The upstream SIA portal retains its Intelex navigation link.
-- SIA supplier record: related requests, profile confirmations, and outstanding role/contact issues.
+- Campaign run dashboard: candidate, excluded, selected, issued, issuance failure, Open, Completed, overdue, and Cancelled counts, with Cancelled grouped by Closure Reason such as campaign cancellation or pre-Open audience mismatch; each count links to its filtered records.
+- Supplier workspace: authorized open Supplier Surveys and due dates; completed-response history. The upstream SIA portal retains its Intelex navigation link.
+- SIA supplier record: related Supplier Surveys, profile confirmations, and outstanding role/contact issues.
 - Shutdown analysis: answers by question code/version and facility/company; no combining differently worded versions without an approved mapping.
-- Completion rate: Completed divided by effectively Included requests using Selection Outcome (Calculated), with Cancelled/Withdrawn exclusions explicitly reported and a gross effectively Included count retained. Closed No Response and routing exceptions never count as Completed.
-- Response timeliness: first successful submission versus original due date, plus revised-date reporting.
+- Completion rate: Completed divided by effectively Included Supplier Surveys using Selection Outcome (Calculated), with Cancelled exclusions explicitly reported and a gross effectively Included count retained. Issuance failures and Cancelled reasons never count as Completed.
+- Response timeliness: first successful submission versus the issued due date.
 
-Closing a run requires all entries whose Selection Outcome (Calculated) is Included to have terminal requests and no unresolved issuance failure. Closed No Response is an explicit disposition; merely passing a deadline does not auto-complete or auto-close requests. A run can close with non-response or cancellation outcomes, which remain visible in the summary.
+Closing a run requires all entries whose Selection Outcome (Calculated) is Included to have Completed or Cancelled Supplier Surveys and no unresolved issuance failure. Merely passing a deadline does not auto-complete or auto-cancel a Supplier Survey. A nonresponding Supplier Survey remains Open unless it is submitted or Campaign Run.Owner invokes Cancel Campaign, which cancels the complete Campaign Run and every related Open Supplier Survey.
 
 ## 11. Change summary and traceability
 
@@ -764,7 +814,7 @@ Closing a run requires all entries whose Selection Outcome (Calculated) is Inclu
 | SS-C01 | Add/Modify | No exported shared checklist structure; earlier target named the root Checklist Definition and maintained version state | Checklist authoring root with inverse version/question grids; Publish-generated immutable checklist, question, and question-choice versions; Guidance and conditional Choice List; question-scoped choices with scoring/color metadata; system-maintained single-active-version flag | SS-01, SS-10, SS-16, SS-17 |
 | SS-C02 | Add/Modify | No exported campaign scheduling structure; earlier target used Name/Description together, State, Purpose, a Checklist Version reference, one combined Review Role / Escalation Role field, a free-form recurrence definition, and a custom Campaign Reminder Rule | Campaign with separate required Name and optional Description, Active? default Yes, stable Checklist dropdown, Escalation Role, conditional Frequency relationship to a governed Survey Recurrence Definition catalogue, inverse Audience Rules and Campaign Runs grids, typed audience filters including Supplier Status, Supplier Profile Change Enabled?, and native Intelex reminders; each run resolves the active Checklist Version | SS-01, SS-02, SS-05, SS-18–SS-21 |
 | SS-C03 | Add | Earlier conceptual campaign had no distinct recurrence run | Campaign Run and Audience Entry preserve each occurrence and candidate decision | SS-04, SS-10, SS-11 |
-| SS-C04 | Add/Reparent/Merge/Modify | No exported survey request workflow; earlier target separated survey and task answers and used a selected-choice junction | Supplier Survey descendant and shared Supplier Question Answer with typed `Answer - …`, M:1 `Answer - Choice`, and M:N `Answer - Choices` | SS-03, SS-04, SS-09, SS-15, shared answer decision |
+| SS-C04 | Add/Reparent/Merge/Modify | No exported Supplier Survey workflow; earlier target separated survey and task answers and used a selected-choice junction | Supplier Survey descendant and shared Supplier Question Answer with typed `Answer - …`, M:1 `Answer - Choice`, and M:N `Answer - Choices` | SS-03, SS-04, SS-09, SS-15, shared answer decision |
 | SS-C05 | Remove/Modify | Earlier target introduced Profile Review Snapshot, Profile Change Proposal, Profile Change Member, Review, Applying Changes, and deferred writeback | Remove proposal/snapshot objects and review/writeback stages; suppliers edit approved fields and relationships directly on their owning audited records | SS-06, SS-13, SS-14, SS-20 |
 | SS-C06 | Reuse | Shared Supplier Task Event plus platform audit, workflow, execution-log, and notification infrastructure | Use the shared work-item event model for Supplier Survey actions and native evidence for Campaign Run processing without adding a dedicated survey event object | SS-05, SS-11, SS-12, SS-28 |
 | SS-C07 | Modify views | Supplier Abstract shared by company/facility | Related survey navigation and workspace lists, inherited by both supplier descendants | SS-07, SS-08 |
@@ -777,21 +827,26 @@ Closing a run requires all entries whose Selection Outcome (Calculated) is Inclu
 | SS-C14 | Remove/Modify | An intermediate survey-submission child stored confirmation evidence and Supplier Question Answer referenced it | Eliminate the child object and relationship; store Responding Contact and confirmation evidence directly on Supplier Survey, use inherited submission/completion metadata, and keep survey answers directly under the work item at iteration 1 | SS-10, SS-25 |
 | SS-C15 | Remove/Modify | Campaign Audience Entry stored matched-group and evaluation-detail helpers and used unsupported Boolean/null formula syntax | Remove both helpers; calculate the base outcome only from Audience Rule Match?, return a reason only for TRUE, use TRUE/FALSE Boolean literals, and use `ISNULL` for override checks | SS-22, SS-26 |
 | SS-C16 | Rename/Modify | Five Supplier Question Answer fields used an unnecessary `Answer.` prefix and response metadata relied on general save behavior | Rename them to Work Item, Response Iteration, Question Version, Responded By, and Responded At; use an Update Action Handler to stamp actor and timezone-aware timestamp when any `Answer -` field changes | SS-15, SS-27 |
+| SS-C17 | Modify/Remove | Campaign Run treated Closed, Cancelled, and Exception as workflow stages and routed completed preparation to Ready before a separate launch | Retain only Preparing, Ready, Issuing, and Open as stages; model Closed and Cancelled as termination states; remove Exception; have Survey Preparation Complete branch directly to Issuing when due or to Ready when future; use a 15-minute Event Service to advance due Ready runs | SS-11, SS-12, SS-22, SS-29 |
+| SS-C18 | Rename/Modify | Ready used a scheduled due-check action and Issuing used an Issue Included Surveys workflow action containing issuance logic; workflow prose used request for the Supplier Survey record | Rename the hidden Ready action to Issue Supplier Surveys with a future-date error; rename the hidden Issuing action to Move to Open and remove all business logic from it; perform issuance only in the separate Issuing-stage batch process; use Supplier Survey terminology in workflow content | SS-11, SS-22, SS-29, SS-30 |
+| SS-C19 | Modify | Campaign Run stage responsibility was associated with service activity, and Open-stage run cancellation did not explicitly disposition remaining open Supplier Surveys | Keep Campaign Run.Owner as responsible person in all four stages; when cancelling from Open, cancel all related nonterminal Supplier Surveys before terminating the run and retain Open on cascade failure | SS-11, SS-12, SS-31 |
+| SS-C20 | Remove/Modify | Supplier Survey used Preparing, Assigned, Exception, Withdrawn, and Closed No Response in addition to Completed/Cancelled | Use Open as the only workflow stage, owned by current eligible Assigned Role members; retain only Completed and Cancelled as termination states; move all routing/issuance failures to the Campaign Run Issuing batch | SS-03–SS-05, SS-09, SS-12, SS-20, SS-31, SS-32 |
+| SS-C21 | Remove/Rename | Supplier Survey Open exposed Save Draft, Submit, Extend Due, and individual Cancel actions | Retain Submit, rename the campaign-wide cancellation control to Cancel Campaign, and remove every other Supplier Survey workflow action; ordinary form persistence is not a workflow action | SS-31–SS-33 |
 
 | Requirement | Design response | Design status |
 |---|---|---|
 | SS-01 | Shared Checklist/Version → campaign → independent run → work item, with one Supplier Question Answer model reused by surveys and templated tasks | Satisfied at logical design level |
 | SS-02 | Campaign-specific typed audience rules can select Supplier Status; selection and pre-issue reevaluation are preserved as evidence | Satisfied at logical design level; status data and rule evaluation require implementation validation |
 | SS-03 | Exact entity + standard library role; eligible authenticated membership validation | Satisfied at logical level; Group runtime validation required |
-| SS-04 | Immutable audience entries and unique supplier request per run | Satisfied at logical level |
+| SS-04 | Immutable audience entries and one unique Supplier Survey per included supplier/run pair | Satisfied at logical level |
 | SS-05 | Due dates, native Intelex reminders, shared Supplier Task Events, workflow/audit evidence, escalation, and drilldown reporting | Requires platform reminder cadence/template and evidence-retention configuration |
 | SS-06 | Current profile data, governed direct editing, native object audit trails, and affirmative confirmation | Partially satisfied; final allowlist, audit configuration, and ownership/security reconciliation require implementation validation |
 | SS-07 | Child permission propagation and current entity/classification checks | Requires target security implementation/testing |
-| SS-08 | Task views and request history inside Intelex workspace | Satisfied at design level |
+| SS-08 | Task views and Supplier Survey history inside Intelex workspace | Satisfied at design level |
 | SS-09 | Notify all eligible members, first authorized response, immutable actor identity | Satisfied at design level |
 | SS-10 | Publish-generated immutable Checklist and Question Version snapshots, run snapshots, immutable completed Supplier Survey evidence, and frozen submitted answers | Satisfied at design level |
-| SS-11 | Occurrence/request/answer uniqueness and operation keys | Requires transactional/concurrency verification |
-| SS-12 | Owned exceptions and explicit resume states | Satisfied at design level |
+| SS-11 | Campaign Run/Supplier Survey/answer uniqueness and operation keys | Requires transactional/concurrency verification |
+| SS-12 | Supplier Survey has no Exception stage; pre-Open routing or issuance failures remain owned by Campaign Run.Owner in Issuing with native diagnostics and retry-safe continuation | Satisfied at design level as refined by SS-29 and SS-32 |
 | SS-13, SS-14 | No profile-change review path; every valid survey submission completes directly | Satisfied; earlier Review All policy superseded by SS-20 |
 | SS-15 | Supplier Question Answer typed fields and choice relationships | Satisfied at logical design level; platform File and M:N relationship behavior requires implementation validation |
 | SS-16 | Checklist Question, Question Version, Choice List, Checklist Choice, and Checklist Question Choice specify the Guidance rename, conditional Choice List, guarded generation, mirrored version field, scoring metadata, calculated Max Points, and Color relationships | Satisfied at logical design level; generation and deletion controls require validation |
@@ -807,6 +862,11 @@ Closing a run requires all entries whose Selection Outcome (Calculated) is Inclu
 | SS-26 | Campaign Audience Entry retains only Audience Rule Match?; it drives Included/Excluded, Selection Reason is `Included` for TRUE and null otherwise, and override formulas use `ISNULL` | Satisfied at logical design level; calculated M:1 lookup and null-return behavior require implementation validation |
 | SS-27 | Supplier Question Answer uses the five unprefixed field names; an Update handler stamps authenticated actor and timezone-aware server time when any `Answer -` field changes | Satisfied at logical design level; multi-field update and M:N relationship-change triggers require implementation validation |
 | SS-28 | No dedicated survey event object or relationships are present; Supplier Survey uses shared Supplier Task Event while Campaign Run relies on native workflow history, object audit, execution logs, and notification logs | Satisfied at logical design level; shared-event and native evidence retention/reporting require implementation validation |
+| SS-29 | Campaign Run workflow diagram, stage table, termination table, and action table define the four stages, two terminal results, Survey Preparation Complete decision, 15-minute Ready check, and same-stage failure behavior | Satisfied at logical design level; Event Service scheduling, server-time comparison, concurrent execution, and retry behavior require implementation validation |
+| SS-30 | Campaign Run action table and diagram define hidden Issue Supplier Surveys and Move to Open actions, the future-date error, the separate Issuing-only batch process, and Supplier Survey workflow terminology | Satisfied at logical design level; hidden-action invocation, batch cadence, batch completion detection, and error logging require implementation validation |
+| SS-31 | Campaign Run stage table and diagram retain Campaign Run.Owner across all four stages; the Open cancellation action cascades to every Open Supplier Survey before run termination and defines retry behavior for partial failure | Satisfied at logical design level; bulk child-action execution, transaction boundaries, reminder cancellation, concurrency, and retry behavior require implementation validation |
+| SS-32 | Supplier Survey diagram, stage table, termination table, actions, permissions, notifications, and reporting define Open as the sole stage owned by current eligible Assigned Role members and Completed/Cancelled as the only termination states | Satisfied at logical design level; stage ownership, dynamic role eligibility, termination configuration, and migration of in-flight legacy stages require implementation validation |
+| SS-33 | Supplier Survey action table contains only Submit and Cancel Campaign; the diagram, notifications, permissions, validation, and acceptance criteria remove Save Draft, Extend Due, and individual Cancel as workflow actions | Satisfied at logical design level; campaign-wide cancellation transaction and standard non-workflow form persistence require implementation validation |
 
 ## 12. Deployment, migration, and validation
 
@@ -815,11 +875,11 @@ Closing a run requires all entries whose Selection Outcome (Calculated) is Inclu
 1. Verify the target platform's Group inheritance/assignment behavior, audit metadata, record security, scheduler, notification templates, child creation, uniqueness, and transaction semantics. The inspected export targets platform 6.6.25.1; it does not prove available runtime capabilities in the deployment environment.
 2. Establish shared dependencies: add and backfill Supplier Abstract.Type of Supplier Entity, configure the two concrete descendant creation defaults and read-only behavior, then verify governed supplier hierarchy/status transitions, role groups and eligible membership, contact ownership/security, and classification rules where needed.
 3. Configure checklist/version publishing, Survey Recurrence Definition and Selection Outcome seed records, campaign/audience management including inverse grids, Campaign and Audience Rule helper calculations, and typed Supplier Status operands, plus native Intelex reminder functionality. Load the approved shutdown checklist, audience including explicit eligible statuses where required, schedule, escalation role, and reminder policy.
-4. Implement the Campaign Run workflow, `(Campaign, Start Date / Time)` uniqueness, stored Configuration Snapshot action, Campaign Audience Entry create-time supplier-property defaults/read-only controls, audience evaluation and override calculations, Evaluated At handlers, idempotent issuance, request workflow, answer validation, the Supplier Question Answer Update Action Handler for Responded By/Responded At, shared Supplier Task Event usage for survey work-item actions, native Campaign Run evidence, and reporting. Pilot with representative parent/facility suppliers, null/not-applicable properties, overrides, and missing-recipient cases.
+4. Implement the Campaign Run workflow with Preparing, Ready, Issuing, and Open stages owned throughout by Campaign Run.Owner; Closed and Cancelled termination states; Survey Preparation Complete due-time decision; hidden Ready/Issuing actions; the 15-minute Ready Event Service; the separate Issuing-stage batch process; and the Open-stage Cancel Campaign cascade that cancels every related Open Supplier Survey before terminating the run. Configure the Supplier Survey workflow with Open as its sole stage, current eligible Assigned Role members as responsible person, Completed/Cancelled as termination states, and exactly two workflow actions: Submit and Cancel Campaign. Also configure `(Campaign, Start Date / Time)` uniqueness, the stored Configuration Snapshot action, Campaign Audience Entry create-time supplier-property defaults/read-only controls, audience evaluation and override calculations, Evaluated At handlers, idempotent issuance and cancellation, answer validation, the Supplier Question Answer Update Action Handler for Responded By/Responded At, shared Supplier Task Event usage for survey work-item actions, native Campaign Run evidence, and reporting. Pilot with representative parent/facility suppliers, null/not-applicable properties, overrides, future/current/past start times, Event Service timing boundaries, partial cancellation failures, and missing-recipient cases.
 5. Configure the approved direct-edit profile allowlist, exact-supplier permissions, relationship security, and native audit trails on every editable object and relationship. Add profile-change-enabled campaigns only after audit and scope testing succeeds.
 6. Transition future survey occurrences from the existing Forms/email process. Import historical survey data only with a separate mapping that preserves original dates, question wording, source identifiers, and provenance; no automatic history migration is assumed.
 
-Pause campaign scheduling to roll back issuance. Preserve issued requests and published versions. Disabling the new feature must not remove existing supplier/profile records or cancel unrelated OOTB workflows. Configuration changes to Supplier Abstract views affect both concrete descendants; regression-test both and existing requirements/contact navigation.
+Pause campaign scheduling to roll back issuance. Preserve issued Supplier Surveys and published versions. Disabling the new feature must not remove existing supplier/profile records or cancel unrelated OOTB workflows. Configuration changes to Supplier Abstract views affect both concrete descendants; regression-test both and existing requirements/contact navigation.
 
 ### Validation findings and unresolved choices
 
@@ -835,12 +895,12 @@ Pause campaign scheduling to roll back issuance. Preserve issued requests and pu
 | Contact model conflict | Later single-owner target does not fully implement ADR-078 arbitrary multi-facility associations; resolve centrally before enabling affected users, never broaden survey permissions implicitly |
 | Reactivation conflict | Profile Template target explicitly diverges from ADR-079 automatic template reapplication; survey design follows the later target and does not regenerate templates |
 | Supplier Status audience rules | Configure campaign-specific Supplier Status criteria against the governed replacement status object; do not infer mappings from OOTB Suspended/InActive labels and do not apply a hidden global status filter |
-| Workflow completeness | Initial, direct completion, exception recovery, withdrawal, cancellation, and no-response outcomes are defined; no Review or Applying Changes stage remains |
+| Supplier Survey workflow completeness | Open is the sole stage; Submit and Cancel Campaign are its only workflow actions; Completed and Cancelled are the only termination states; routing/issuance failures remain in the Campaign Run batch; no Save Draft, Extend Due, individual Cancel, Preparing, Assigned, Exception, Withdrawn, Closed No Response, Review, or Applying Changes action/stage/outcome remains |
 | Notifications | Trigger/recipient contracts defined; native Intelex reminder/template configuration, delivery behavior, audit evidence, and business cadence require environment validation |
 | Survey event consolidation | Confirm the dedicated survey event object and all its relationships are absent; Supplier Survey work-item actions use shared Supplier Task Event, while Campaign Run processing uses native workflow, audit, execution, and notification evidence |
-| Native reminder dependency | Confirm Intelex can recalculate reminders after a due-date change, stop them on every terminal/withdrawal path, resolve current eligible recipients, and expose sufficient delivery evidence without a custom Campaign Reminder Rule object |
-| Direct profile maintenance | Verify each allowlisted field and relationship is editable only by an eligible exact-supplier user while Assigned, every edit produces sufficient native audit evidence, and cancellation or failed submission does not imply rollback |
-| Concurrent edits | Verify publish locking, one-draft/one-submit constraints, unique run/request creation, native master-record concurrency, action idempotency, and notification deduplication under races |
+| Native reminder dependency | Confirm Intelex can recalculate reminders after a due-date change, stop them on Completed or Cancelled, resolve current eligible recipients, and expose sufficient delivery evidence without a custom Campaign Reminder Rule object |
+| Direct profile maintenance | Verify each allowlisted field and relationship is editable only by an eligible exact-supplier user while the Supplier Survey is Open, every edit produces sufficient native audit evidence, and cancellation or failed submission does not imply rollback |
+| Concurrent edits | Verify publish locking, one-draft/one-submit constraints, unique Campaign Run/Supplier Survey creation, native master-record concurrency, action idempotency, and notification deduplication under races |
 | Checklist publication atomicity | Verify that Publish creates the Checklist Version, all Checklist Question Versions, and all Checklist Question Choice Versions, evaluates every default-value expression, sets exactly the newest version Active? = TRUE, and deactivates older versions in one recoverable transaction |
 | Generated choice lifecycle | Verify initial-save generation is idempotent, Choice List cannot change while any generated Checklist Question Choice exists, deliberate deletion is permission-controlled and audited, and replacement-list save regenerates exactly once |
 | Published choice snapshot | Checklist Question Choice Versions provide immutable version-scoped copies; validate uniqueness per `(Checklist Question Version, Checklist Question Choice)` and prohibit modification after Publish |
@@ -854,7 +914,9 @@ Pause campaign scheduling to roll back issuance. Preserve issued requests and pu
 | Selection calculation | Validate exactly one Included and Excluded Selection Outcome record; `[Helper] Audience Rule Match? = TRUE` resolves Included and FALSE resolves Excluded; Selection Reason is `Included` only for TRUE and null otherwise; no matched-group/evaluation-detail helpers exist; override formulas use `ISNULL`; verify override precedence, conditional Override Reason, effective outcome usage, and Evaluated At updates |
 | Supplier entity discriminator | Validate every Supplier Facility stores `Supplier Facility`, every Supplier Parent Company stores `Supplier Parent Company`, no other dropdown value can be stored, existing records are backfilled, and the inherited value is read only after creation |
 | Audience property snapshot | Validate Supplier identity plus Type of Supplier Entity, Parent Company, Supplier Category, Supplier Type, Facility Type, and Supplier Status preserve the evaluated properties; each added field defaults from the related Supplier on Create, permits null where the source is null/not applicable, is read only afterward, and is not refreshed during pre-issue reevaluation |
-| Campaign Run workflow | Validate Preparing, Ready, Issuing, Open, Exception, Closed, and Cancelled as workflow stages and confirm no duplicate State field remains |
+| Campaign Run workflow | Validate that Preparing, Ready, Issuing, and Open are the only stages and Campaign Run.Owner is responsible in every stage; Closed and Cancelled are termination states; no Exception stage or duplicate State field remains; Survey Preparation Complete runs all completion logic before comparing Start Date / Time with current server time; a current/past value transitions directly to Issuing; a future value transitions to Ready; the hidden Issue Supplier Surveys action throws the specified error while Start Date / Time is future and otherwise transitions to Issuing; the separate batch selects only Issuing records; and hidden Move to Open contains no business logic beyond its transition |
+| Open Campaign Run cancellation | With related Supplier Surveys in Open, Completed, and Cancelled, validate that the Owner's Cancel Campaign action requires a reason, cancels every Open Supplier Survey, leaves terminal Supplier Surveys unchanged, stops cancelled-survey reminders/actions, and moves the run to Cancelled only after the cascade succeeds; force one child failure and confirm the run remains Open and retry does not recancel terminal children |
+| Supplier Survey workflow | Validate Open is the only stage and its responsible person is the current eligible membership of Assigned Role; validate Submit and Cancel Campaign are its only workflow actions; validate Completed and Cancelled are termination states rather than stages; confirm all other actions and stages are absent and routing/issuance failure remains a Campaign Run Issuing-batch condition |
 | Storage/performance | Validate structured snapshot capacity, `Answer - File` controls and volume, candidate population size, batch limits, rule evaluation, report indexes, and security-filtered queries |
 | Retention | Retention period remains governed by SIA policy; prohibit ordinary deletion of referenced versions and submitted evidence; retain native master-object audit history according to the approved audit policy |
 | ADR status | ADR-006/080 still Proposed; final campaign ownership, calendar, role taxonomy, direct-edit allowlist, and audit-retention policy remain business configuration choices |
@@ -870,7 +932,10 @@ Pause campaign scheduling to roll back issuance. Preserve issued requests and pu
 | Configure campaign routing | Recipient Role and Escalation Role remain available as specified; no campaign Review Role or Profile Change Policy field exists |
 | Configure a recurring Survey Campaign | Frequency appears and is mandatory; its dropdown shows active Survey Recurrence Definitions in Sort order: Monthly, Quarterly, Semi Annually, Annually, Every 2 Years, Every 5 Years |
 | Change Schedule Mode from Recurring | For Manual or Once, Frequency is hidden and cleared so a stale recurrence definition cannot drive scheduling |
-| Prepare a Campaign Run | Display Field concatenates Campaign Name, ` - `, and timezone-aware Start Date / Time; the campaign's single Active? = TRUE version is stored in Checklist Version; Configuration Snapshot is stored from the named helper fields with HTML-encoded values and renders its literal `<br>` separators as line breaks; workflow advances from Preparing to Ready |
+| Prepare a Campaign Run | Display Field concatenates Campaign Name, ` - `, and timezone-aware Start Date / Time; the campaign's single Active? = TRUE version is stored in Checklist Version; Configuration Snapshot is stored from the named helper fields with HTML-encoded values and renders its literal `<br>` separators as line breaks; Survey Preparation Complete advances directly to Issuing when Start Date / Time is current/past and to Ready when it is future |
+| Wait for a future Campaign Run | The Event Service invokes hidden Issue Supplier Surveys every 15 minutes; while Start Date / Time is future the action throws `Supplier Surveys cannot be issued before the Campaign Run Start Date / Time.` and the run remains Ready; on the first current/past check the action advances it to Issuing |
+| Process an Issuing Campaign Run | Only the separate Issuing-stage batch performs audience reevaluation, Supplier Survey creation/routing, and execution logging; after successful population processing it invokes hidden Move to Open, whose only behavior is the transition to Open |
+| Cancel Campaign | From an Open Campaign Run, the Owner supplies a reason; every related Supplier Survey in Open is cancelled; Completed and already-Cancelled Supplier Surveys remain unchanged; the Campaign Run reaches Cancelled only after the cascade succeeds, otherwise remains Open for retry |
 | Open a Campaign Run | Campaign Audience Entries shows all and only entries whose Campaign Run field references the open run |
 | Calculate an audience entry | The action handler writes only `[Helper] Audience Rule Match?`; TRUE resolves Included and writes Selection Reason `Included`, while FALSE resolves Excluded and leaves Selection Reason null; effective calculated fields initially match the base fields; Evaluated At is stamped; no matched-group, evaluation-detail, or configuration-error helper exists |
 | Create Supplier Facility and Supplier Parent Company records | Their inherited Type of Supplier Entity values default respectively to `Supplier Facility` and `Supplier Parent Company`, contain no other value, and cannot be changed after creation |
@@ -890,7 +955,7 @@ Pause campaign scheduling to roll back issuance. Preserve issued requests and pu
 | Selection rule changes after launch | Historical audience and run settings remain unchanged |
 | Campaign includes a Supplier Status rule | Only suppliers whose current status satisfies the grouped Audience Rules are Included; excluded entries have a null Selection Reason and receive no assignment |
 | Campaign has no Supplier Status rule | Supplier Status does not filter the campaign audience; other Audience Rules and record security still apply |
-| Missing or ambiguous supplier role | Request retained in owned Exception; other requests continue; no parent-role fallback |
+| Missing or ambiguous supplier role | The affected Supplier Survey does not enter Open; the Campaign Run remains Issuing with an Owner-visible batch failure, other valid suppliers may be processed idempotently, and no parent-role fallback is used |
 | Role includes notification-only contact | Contact receives no authenticated work assignment |
 | Two eligible members submit together | One accepted submission; actor retained; second receives already-submitted feedback |
 | Role membership changes after issue | Removed user loses action access; eligible replacement can act; original notification history remains |
@@ -898,18 +963,17 @@ Pause campaign scheduling to roll back issuance. Preserve issued requests and pu
 | Answer references another version's question/choice | Save/submit blocked; no cross-version contamination |
 | Ordinary survey submits | Completes without mandatory internal approval; response becomes immutable |
 | Confirm profile without changes | Supplier reviews current governed profile data, records affirmative confirmation, and the valid survey completes without internal review |
-| Edit profile through an Assigned survey | An eligible exact-supplier user changes an allowlisted field or relationship directly on its owning record; the change is immediately effective and its native audit trail records the actor, time, and prior/new value where supported |
+| Edit profile through an Open Supplier Survey | An eligible exact-supplier user changes an allowlisted field or relationship directly on its owning record; the change is immediately effective and its native audit trail records the actor, time, and prior/new value where supported |
 | Attempt a prohibited profile edit | Ownership, identifiers, lifecycle status, access rights, account flags, internal roles, and other non-allowlisted data remain read only or inaccessible |
 | Cancel after a direct profile edit | The survey is cancelled but the already saved master-data change remains effective and auditable; no proposal, approval, deferred apply, or automatic rollback occurs |
 | Create a new contact during profile maintenance | The existing Supplier Contact Request process governs creation unless a separately approved direct-create design is implemented |
-| Supplier Status changes before issue | Audience Rules are reevaluated; a supplier that no longer matches is excluded and any prepared unissued request is withdrawn with evidence retained |
-| Supplier Status changes after issue | The issued survey remains in its current workflow stage; no automatic continuation or withdrawal policy is inferred, although an authorized owner may withdraw it with a documented reason |
-| Deadline passes without response | Overdue remains visible; no false completion; explicit no-response closure required |
-| Due date extended | Old/new dates and reason retained; native Intelex reminders recalculate without duplicate historical sends |
+| Supplier Status changes before issue | Audience Rules are reevaluated; a supplier that no longer matches is excluded and no Supplier Survey is created or enters Open; an existing nonterminal pre-Open retry record is Cancelled with an audience-mismatch Closure Reason |
+| Supplier Status changes after issue | The issued Supplier Survey remains Open with no automatic status-driven transition; there is no individual Cancel action, although Campaign Run.Owner may invoke Cancel Campaign for the complete run |
+| Deadline passes without response | The Supplier Survey remains Open and overdue; there is no individual no-response closure or Extend Due workflow action |
 | Inspect survey operational evidence | No dedicated survey event object or relationships exist; Supplier Survey work-item actions use Supplier Task Event and Campaign Run processing evidence is available through native workflow, audit, execution, and notification logs |
 | Facility user opens another supplier's answer or profile URL/export | Access denied, including direct-edit profile controls and related records |
 | User has parent access but no facility role | May read only as permitted by security; cannot substitute parent role for facility assignment |
-| Run closes with non-response | Terminal outcome retained and excluded from completion numerator |
+| Run has a nonresponding Supplier Survey | The run cannot close while that Supplier Survey remains Open; Campaign Run.Owner may instead invoke Cancel Campaign, cancelling every related Open Supplier Survey and the run |
 | Survey feature disabled | Existing SRM supplier, evaluation, document, certification, and role records remain intact |
 
 These are build acceptance criteria, not claims of executed tests. Final internal names, stable IDs, formulas, workflow operations, permissions, and physical constraint mechanisms will be assigned and validated during implementation.
