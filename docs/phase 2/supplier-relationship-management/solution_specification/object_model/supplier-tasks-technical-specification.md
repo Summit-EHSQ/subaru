@@ -7,7 +7,7 @@
 | Component | Supplier Tasks |
 | Operational objects | `Abstract Supplier Task`, `Supplier Task`, `Supplier Survey` |
 | Workflows | Supplier Task; Supplier Survey |
-| As of | 2026-10-16 |
+| As of | 2026-10-19 |
 | Primary sources | ADR-002, ADR-003, ADR-004, ADR-005, ADR-006, ADR-007, ADR-076, ADR-077, ADR-078, ADR-079, ADR-080, ADR-081, ADR-083, ADR-084, ADR-085, and ADR-103; user-approved inheritance and scope decisions |
 
 ## 1. Executive solution summary
@@ -40,7 +40,7 @@ Every material object, field, relationship, stage, action, and notification intr
 6. **Campaigns produce Supplier Surveys.** Campaign configuration, audience evaluation, and campaign runs remain survey-specific and do not create generic Supplier Task records.
 7. **One work experience does not mean one workflow.** The portal may query the abstract parent to display both descendants in one work queue while opening the correct child form and enforcing the correct child workflow.
 8. **Supplier activation and task completeness are separate.** Incomplete setup work remains visible and actionable but does not create a second supplier-approval gate.
-9. **Lifecycle and security are independent controls.** Supplier status governs whether new work may be issued and whether existing work continues or is withdrawn. Supplier-entity scope and visibility classification govern who can see each record.
+9. **Lifecycle and security are independent controls.** For Supplier Tasks, supplier status capability rules govern whether new work may be issued and whether existing work continues or is withdrawn. For Supplier Surveys, campaign-specific Audience Rules may filter by Supplier Status before issue; the issued audience is then frozen. Supplier-entity scope and visibility classification govern who can see each record.
 10. **No automatic inheritance of parent-company responsibility is assumed.** A role must resolve for the exact Supplier Abstract referenced by the work item unless a future governed routing rule explicitly permits another behavior.
 11. **Recurring setup uses the Supplier Task form.** The first Supplier Task captures the one-time-versus-recurring choice and all recurrence inputs. When recurring is selected, automation creates and links the Supplier Task Obligation; users do not configure a separate obligation record.
 12. **Checklist configuration and answers are shared.** Supplier Survey and templated Supplier Task consume the same Checklist, Checklist Version, Checklist Question, Checklist Question Version, Checklist Choice List, Checklist Choice, Checklist Question Choice, Checklist Question Choice Version, and Supplier Question Answer objects. Checklist and Checklist Question are the editable authoring records; Publish creates immutable checklist, question, and question-choice version snapshots. Choice/Choices questions select a reusable Choice List and generate question-scoped choices. The answer points to `Abstract Supplier Task`; survey revisions remain a conditional relationship used only when the work item is a Supplier Survey.
@@ -65,7 +65,7 @@ Every material object, field, relationship, stage, action, and notification intr
 | ST-012 | ADR-003, ADR-004 | Assignment and review use standardized supplier-specific external and internal roles; action history records the individual actor | Required |
 | ST-013 | ADR-003, ADR-007, ADR-081 | Only eligible authenticated contacts may perform supplier actions; missing or inactive membership is an owned exception | Required |
 | ST-014 | ADR-076, ADR-078 | Work is scoped to the exact supplier company or facility and cannot expand portal access beyond supplier-entity relationships | Required |
-| ST-015 | ADR-079 | Supplier status and capability rules govern creation and continuation of work; history is retained | Required |
+| ST-015 | ADR-079; refined for surveys by ST-031 | Supplier status and capability rules govern creation and continuation of Supplier Tasks; survey status eligibility follows ST-031; history is retained | Required |
 | ST-016 | ADR-083 | Both descendants appear in a consolidated supplier work experience with drill-through to underlying records | Required |
 | ST-017 | ADR-084 | Visibility classification restricts records within supplier scope and may change without changing workflow ownership | Required |
 | ST-018 | ADR-085, ADR-103 | Distinct domain lifecycles and event-driven submissions are not replaced by Supplier Tasks | Required |
@@ -81,6 +81,10 @@ Every material object, field, relationship, stage, action, and notification intr
 | ST-028 | User clarification; superseded in part by ST-030 | The shared Survey Campaign retains Escalation Role and selects an active Survey Recurrence Definition through a conditional Frequency relationship when Schedule Mode is Recurring; its previously requested Review Role is removed | Required |
 | ST-029 | User clarification | The shared Survey Campaign dependency exposes inverse 1:M grids for Survey Campaign Audience Rules and Campaign Runs | Required |
 | ST-030 | User clarification | Profile-change-enabled Supplier Surveys permit direct edits to approved master-object fields and relationships with native audit trails; no Profile Change Policy, proposal objects, profile-change review, or deferred writeback is used | Required |
+| ST-031 | User clarification | Remove the Survey Status Eligibility dependency; Supplier Survey status eligibility is expressed through Survey Campaign Audience Rules with a typed Supplier Status operand, without an automatic post-issue status continuation/withdrawal policy | Required |
+| ST-032 | User clarification | The shared Campaign Run and Campaign Audience Entry model uses the revised display/start/checklist/snapshot/grid fields, Campaign Run workflow stages, governed Included/Excluded Selection Outcome records, base/override/effective selection calculations, and Evaluated At handlers defined by the Supplier Surveys specification; campaign configuration is assumed clean and no per-entry configuration-error field or outcome is used | Required |
+| ST-033 | User clarification | The shared Campaign Audience Entry snapshots every audience-evaluation Supplier property through read-only fields defaulted from Supplier when the entry is created | Required |
+| ST-034 | User clarification | Supplier Abstract exposes a required inherited `Type of Supplier Entity` dropdown with only `Supplier Facility` and `Supplier Parent Company`; shared audience formulas reference that field directly and use supported `IF` expressions for fallback behavior | Required |
 
 ## 4. Baseline and target boundary
 
@@ -103,7 +107,7 @@ This specification consumes, without redefining:
 
 - Supplier Management Role and Supplier Specific Role from the Supplier Management Role target model;
 - Supplier Profile Template from the Supplier Profile Template target model;
-- the replacement Supplier Status and capability rules from the Supplier Status Updates target model;
+- the replacement Supplier Status and capability rules from the Supplier Status Updates target model for Supplier Tasks, plus the Supplier Status lookup consumed by survey Campaign Audience Rules;
 - Supplier Contact ownership and authenticated-user linkage from the User Access Request target model; and
 - shared checklist definition/versioning, campaign audience, survey response, and profile-change concepts from the Supplier Surveys target design, as revised by this specification.
 
@@ -149,6 +153,7 @@ class Supplier_Survey {
 
 class Supplier_Abstract {
   <<OOTB abstract>>
+  +Dropdown TypeOfSupplierEntity [REQ] [SHARED TARGET]
 }
 class Supplier_Parent_Company
 class Supplier_Facility
@@ -265,6 +270,7 @@ class Supplier_Profile_Template {
 }
 class Supplier_Abstract {
   <<OOTB abstract>>
+  +Dropdown TypeOfSupplierEntity [REQ] [SHARED TARGET]
 }
 
 Supplier_Task_Template_Version "0..*" --> "1" Supplier_Task_Template : Template
@@ -323,6 +329,25 @@ class Survey_Campaign {
 class Campaign_Audience_Rule {
   <<existing target>>
 }
+class Supplier_Status {
+  <<existing target>>
+}
+class Supplier_Abstract {
+  <<existing abstract supplier>>
+  +Dropdown TypeOfSupplierEntity [REQ] [SHARED TARGET]
+}
+class Supplier_Parent_Company {
+  <<existing target>>
+}
+class Supplier_Category {
+  <<existing target>>
+}
+class Supplier_Type {
+  <<existing target>>
+}
+class Facility_Type {
+  <<existing target>>
+}
 class Survey_Recurrence_Definition {
   <<shared survey configuration>>
 }
@@ -334,6 +359,9 @@ class Campaign_Run {
 }
 class Campaign_Audience_Entry {
   <<existing target>>
+}
+class Selection_Outcome {
+  <<shared survey configuration>>
 }
 class Supplier_Survey {
   <<proposed descendant>>
@@ -372,9 +400,20 @@ Survey_Campaign "0..*" --> "0..1" Supplier_Management_Role : EscalationRole
 Survey_Campaign "1" --> "0..*" Campaign_Audience_Rule : AudienceRules_grid
 Survey_Campaign "1" --> "0..*" Campaign_Run : CampaignRuns_grid
 Campaign_Audience_Rule "0..*" --> "1" Survey_Campaign : Campaign
+Campaign_Audience_Rule "0..*" --> "0..1" Supplier_Status : SupplierStatusValue
 Campaign_Run "0..*" --> "1" Survey_Campaign : Campaign
-Campaign_Run "0..*" --> "1" Checklist_Version : IssuedChecklistVersion
-Campaign_Audience_Entry "0..*" --> "1" Campaign_Run : Run
+Campaign_Run "0..*" --> "1" Checklist_Version : ChecklistVersion
+Campaign_Run "1" --> "0..*" Campaign_Audience_Entry : CampaignAudienceEntries_grid
+Campaign_Audience_Entry "0..*" --> "1" Campaign_Run : CampaignRun
+Campaign_Audience_Entry "0..*" --> "1" Supplier_Abstract : Supplier
+Campaign_Audience_Entry "0..*" --> "0..1" Supplier_Parent_Company : ParentCompany
+Campaign_Audience_Entry "0..*" --> "0..1" Supplier_Category : SupplierCategory
+Campaign_Audience_Entry "0..*" --> "0..1" Supplier_Type : SupplierType
+Campaign_Audience_Entry "0..*" --> "0..1" Facility_Type : FacilityType
+Campaign_Audience_Entry "0..*" --> "0..1" Supplier_Status : SupplierStatus
+Campaign_Audience_Entry "0..*" --> "1" Selection_Outcome : SelectionOutcome
+Campaign_Audience_Entry "0..*" --> "0..1" Selection_Outcome : OverrideSelectionOutcome
+Campaign_Audience_Entry "0..*" --> "1" Selection_Outcome : SelectionOutcomeCalculated
 Supplier_Survey "0..1" --> "1" Campaign_Audience_Entry : AudienceEntry
 Supplier_Survey "0..*" --> "1" Campaign_Run : CampaignRun
 Abstract_Supplier_Task "0..*" --> "0..1" Checklist_Version : ChecklistVersion
@@ -403,7 +442,7 @@ The earlier operational name `Supplier Survey Request` is replaced by `Supplier 
 | Supplier Question Answer | Shared operational child | Abstract Supplier Task relationship | Typed answer to one shared Checklist Question Version for either Supplier Task or Supplier Survey, including single- and multiple-choice relationships | Proposed |
 | Supplier Task Event | Operational child | Abstract Supplier Task relationship | Append-only shared action, delivery, due-date, exception, and state evidence | Proposed |
 | Supplier Task Reminder Rule | Configuration child | Supplier Task Template Version relationship | Finite reminder/escalation schedule for Supplier Tasks | Proposed |
-| Survey Campaign, Survey Recurrence Definition, Run, and Audience Entry | Configuration/operational | Existing survey target model | Audience selection, governed recurring frequency, launch snapshot, and issuance evidence | Existing target dependency |
+| Survey Campaign, Survey Recurrence Definition, Campaign Run, Campaign Audience Entry, and Selection Outcome | Configuration/operational | Existing survey target model | Audience selection, governed recurring frequency, helper-driven launch snapshot, run workflow, effective selection outcomes/overrides, and issuance evidence | Existing target dependency revised by ST-032 |
 | Survey Response Revision | Operational child | Supplier Survey relationship | Survey-only submission revision and profile-confirmation envelope referenced conditionally by shared question answers | Existing target revised |
 
 ## 7. Field specifications
@@ -476,7 +515,7 @@ The initial Supplier Task is also the setup form for recurrence. Selecting Recur
 | Field | Type | Required | Default/source | Behavior | Classification |
 |---|---|---:|---|---|---|
 | Audience Entry | M:1 Campaign Audience Entry | Yes | Campaign issuance | Unique; at most one Supplier Survey per included entry | Required/Proposed |
-| Campaign Run | M:1 Campaign Run | Yes | Audience Entry.Run | Immutable and must equal Audience Entry.Run | Required/Proposed |
+| Campaign Run | M:1 Campaign Run | Yes | Audience Entry.Campaign Run | Immutable and must equal Audience Entry.Campaign Run | Required/Proposed |
 | Supplier Profile Change Enabled Snapshot | Yes/No | Yes | Campaign snapshot | Immutable; when Yes, expose governed direct-edit controls for approved profile fields and relationships | Required/Proposed |
 | Response Revision Number | Calculated positive integer | No | Latest related revision | Read only convenience; revisions remain authoritative | Proposed |
 
@@ -533,7 +572,7 @@ At least one of Note Required, File Upload Required, or Checklist Version must b
 
 Supplier Tasks do not define an independent checklist catalogue. They consume the shared `Checklist`, `Checklist Version`, `Checklist Question`, `Checklist Question Version`, `Checklist Choice List`, `Checklist Choice`, `Checklist Question Choice`, and `Checklist Question Choice Version` objects specified in [Supplier Surveys technical specification](supplier-surveys-technical-specification.md). `Checklist` exposes inverse 1:M grids to its Checklist Versions and Checklist Questions; Checklist Version and Checklist Question each expose an inverse 1:M grid to Checklist Question Versions. Checklist Question also exposes its generated Checklist Question Choices. The child-side M:1 fields implement those grids. `Guidance` is the configured explanatory-text field. Choice/Choices questions require a Choice List on both the authoring Question and its mirrored Question Version. Initial question save copies every source Checklist Choice into a Checklist Question Choice; the Choice List remains locked until all generated rows are manually deleted. Choice metadata includes not-applicable, points, calculated max points, weight, and existing Color references. Publish creates the next Checklist Version, defaults each Checklist Question Version from its Checklist Question, and creates one immutable Checklist Question Choice Version from every current Checklist Question Choice for the corresponding Question Version. Supplier answers select these published choice instances. A Supplier Task Template Version may select one Active? = True published Checklist Version; that reference is copied to each generated Supplier Task and frozen at issue.
 
-Survey Campaign uses an M:1 Checklist dropdown rather than a Checklist Version field. Campaign Run preparation resolves that Checklist's single Active? = True Checklist Version, stores it as Issued Checklist Version, and preserves it for all generated Supplier Surveys and retries. Campaign Escalation Role remains available, but the campaign Review Role and Profile Change Policy are removed. When Schedule Mode is Recurring, the campaign also requires an M:1 Frequency relationship to an active Survey Recurrence Definition; Frequency is hidden and cleared for Manual or Once. Survey Campaign exposes inverse 1:M Survey Campaign Audience Rules and Campaign Runs grids backed by the existing child Campaign fields. The recurrence catalogue, grids, direct profile-maintenance behavior, and their authoritative field definitions are defined by the Supplier Surveys specification.
+Survey Campaign uses an M:1 Checklist dropdown rather than a Checklist Version field. Campaign Run preparation resolves that Checklist's single Active? = True Checklist Version, stores it as Checklist Version, and preserves it for all generated Supplier Surveys and retries. Campaign Run uses a calculated Display Field, timezone-aware Start Date / Time, a stored helper-driven Configuration Snapshot rendered as HTML with literal `<br>` line breaks and HTML-encoded interpolated values, workflow stages rather than a State field, and an inverse Campaign Audience Entries grid. Campaign Audience Entry has separate Campaign Run and Supplier fields, immutable create-time defaults for Parent Company, Supplier Category, Supplier Type, Facility Type, and Supplier Status, and governed base, override, and effective Selection Outcome fields. Campaign Escalation Role remains available, but the campaign Review Role and Profile Change Policy are removed. When Schedule Mode is Recurring, the campaign also requires an M:1 Frequency relationship to an active Survey Recurrence Definition; Frequency is hidden and cleared for Manual or Once. Survey Campaign exposes inverse 1:M Survey Campaign Audience Rules and Campaign Runs grids backed by the existing child Campaign fields. Supplier Status is a typed Audience Rule attribute and replaces the removed Survey Status Eligibility object; no status rule means status does not filter that campaign, and post-issue status changes have no automatic workflow effect. The recurrence catalogue, helpers, grids, property snapshots, selection calculations, direct profile-maintenance behavior, audience-rule fields, and their authoritative definitions are defined by the Supplier Surveys specification.
 
 The shared answer model does not combine the two work-item workflows. Supplier Surveys retain Survey Response Revision as a survey-only submission and profile-confirmation envelope, while both concrete work-item types store their typed question responses in `Supplier Question Answer` as specified in §7.9.
 
@@ -635,6 +674,14 @@ Finite reminder rows are used instead of unbounded daily reminders. An authorize
 
 Business event records are append-only. Notification delivery outcome may be updated only by the dispatcher with platform audit enabled. Transport acceptance is not proof that a recipient read the message.
 
+### 7.12 Shared Supplier entity discriminator
+
+This shared change is declared on Supplier Abstract and inherited by both concrete Supplier descendants. It supports the Supplier Surveys audience-entry defaults and any task/survey logic that must distinguish the two supplier entity types without runtime subtype inspection.
+
+| Object | Field | Type | Required | Default / behavior | Classification |
+|---|---|---|---:|---|---|
+| Supplier Abstract | Type of Supplier Entity | Dropdown | Yes | Allowed values only: `Supplier Facility`, `Supplier Parent Company`. Supplier Facility creation sets `Supplier Facility`; Supplier Parent Company creation sets `Supplier Parent Company`. Configure those literal defaults independently on the concrete create forms or create handlers, make the inherited field read only after creation, and backfill existing records before dependent logic is enabled. | Required/Proposed shared dependency |
+
 ## 8. Relationship register
 
 | Source object | Declaring field | Target object | Cardinality | Required | Evidence/classification |
@@ -654,8 +701,14 @@ Business event records are append-only. Notification delivery outcome may be upd
 | Survey Campaign | Survey Campaign Audience Rules grid | Survey Campaign Audience Rule | Inverse one-to-many through Survey Campaign Audience Rule.Campaign | No | Required/Proposed |
 | Survey Campaign | Campaign Runs grid | Campaign Run | Inverse one-to-many through Campaign Run.Campaign | No | Required/Proposed |
 | Survey Campaign Audience Rule | Campaign | Survey Campaign | Many rules to one campaign; inverse grid on campaign | Yes | Existing target/Proposed inverse |
+| Survey Campaign Audience Rule | Supplier Status Value | Supplier Status | Many rules to zero/one status; required when Attribute = Supplier Status | Conditional | Required/Proposed shared survey dependency |
 | Campaign Run | Campaign | Survey Campaign | Many runs to one campaign; inverse grid on campaign | Yes | Existing target/Proposed inverse |
-| Campaign Run | Issued Checklist Version | Shared Checklist Version | Many runs to one resolved version | Yes | Required/Proposed |
+| Campaign Run | Checklist Version | Shared Checklist Version | Many runs to one resolved version | Yes | Required/Proposed |
+| Campaign Run | Campaign Audience Entries grid | Campaign Audience Entry | Inverse one-to-many through Campaign Audience Entry.Campaign Run | No | Required/Proposed |
+| Campaign Audience Entry | Campaign Run | Campaign Run | Many entries to one run; unique with Supplier | Yes | Required/Proposed |
+| Campaign Audience Entry | Supplier | Supplier Abstract | Many entries to one candidate Supplier; unique with Campaign Run and read only after creation | Yes | Required/Proposed shared survey dependency |
+| Campaign Audience Entry | Type of Supplier Entity / Parent Company / Supplier Category / Supplier Type / Facility Type / Supplier Status | Supplier Abstract dropdown / Supplier Parent Company / Supplier Category / Supplier Type / Facility Type / Supplier Status | Type is required; each relationship is many-to-zero/one; all are copied from Supplier on Create and read only afterward | Conditional | Required/Proposed shared survey dependency |
+| Campaign Audience Entry | Selection Outcome / Override Selection Outcome / Selection Outcome (Calculated) | Selection Outcome | Base and effective calculated relations required; override optional | Conditional | Required/Proposed |
 | Checklist Question | Choice List | Shared Checklist Choice List | Many questions to zero/one list | Required when Answer Type is Choice or Choices | Required/Proposed |
 | Checklist Question Version | Choice List | Shared Checklist Choice List | Many question versions to zero/one list | Required when Answer Type is Choice or Choices | Required/Proposed |
 | Checklist Choice | Choice List | Shared Checklist Choice List | Many choices to one list | Yes | Required/Proposed |
@@ -728,11 +781,11 @@ The `Required for Completeness?` flag affects onboarding reports only. It does n
 
 ### 9.4 Supplier Survey
 
-1. The campaign scheduler or authorized owner creates a Campaign Run and freezes configuration.
-2. Audience evaluation creates one entry for every candidate supplier, including exclusions and configuration exceptions.
-3. Each included entry produces at most one Supplier Survey.
+1. The campaign scheduler or authorized owner creates or retrieves the Campaign Run by `(Campaign, Start Date / Time)`; Preparing resolves Checklist Version, stores the helper-driven Configuration Snapshot, and freezes configuration.
+2. Audience evaluation creates one entry for every candidate supplier. Supplier identity and every rule-addressable property default from Supplier into read-only structured fields at creation; action-handler inputs then calculate an Included or Excluded base outcome/reason and Evaluated At, while authorized overrides determine the effective calculated values. Campaign configuration is assumed clean, so no per-entry configuration-error branch exists.
+3. Each entry whose Selection Outcome (Calculated) is Included produces at most one Supplier Survey.
 4. The generator copies common work-item data to inherited fields and survey-specific data to Supplier Survey.
-5. The checklist version, audience evidence, roles, dates, applicable native Intelex reminder configuration, classification, and profile policy are frozen for that issued record.
+5. The checklist version, effective audience evidence, roles, dates, applicable native Intelex reminder configuration, classification, and direct-profile-change setting are frozen for that issued record.
 6. A routing failure retains the Supplier Survey in Exception; other suppliers in the run continue.
 
 ## 10. Supplier Task workflow
@@ -849,7 +902,7 @@ Exact notification templates, To/CC/BCC treatment, delivery retry policy, and mu
 
 ### 11.1 Executive flow summary
 
-Supplier Surveys are generated only after a Campaign Run freezes its configuration and audience. Preparing validates the exact supplier route and issues the survey. Supplier role members save and submit a versioned response and, when enabled, directly edit approved profile fields and relationships on their owning audited records. Valid submissions complete immediately without profile-change Review or Applying Changes stages. Technical or routing failure enters Exception with an explicit resume state. Cancellation, eligibility withdrawal, and closure without response remain distinct outcomes.
+Supplier Surveys are generated only after a Campaign Run freezes its configuration and audience. Preparing reevaluates the campaign's Audience Rules, including any Supplier Status criterion, validates the exact supplier route, and issues the survey. Supplier role members save and submit a versioned response and, when enabled, directly edit approved profile fields and relationships on their owning audited records. Valid submissions complete immediately without profile-change Review or Applying Changes stages. Technical or routing failure enters Exception with an explicit resume state. Pre-issue audience mismatch, authorized withdrawal, cancellation, and closure without response remain distinct outcomes. A status change after issue has no automatic workflow effect.
 
 ```mermaid
 swimlane-beta LR
@@ -881,8 +934,8 @@ swimlane-beta LR
   sv_submit -->|Invalid: display error| sv_assigned
   sv_submit -->|Valid| sv_completed
   sv_exception -->|Retry recorded resume state| sv_preparing
-  sv_preparing -->|Eligibility withdrawn| sv_withdrawn
-  sv_assigned -->|Eligibility withdrawn| sv_withdrawn
+  sv_preparing -->|Audience no longer matches before issue| sv_withdrawn
+  sv_assigned -->|Authorized withdrawal| sv_withdrawn
   sv_assigned -->|Authorized overdue closure| sv_noresponse
   sv_preparing -->|Cancel with reason| sv_cancelled
   sv_assigned -->|Cancel with reason| sv_cancelled
@@ -893,26 +946,26 @@ swimlane-beta LR
 
 | Stage ID | Stage | Status | Responsible-person logic | Due-date logic | Entry | Exit paths | Classification/source |
 |---|---|---|---|---|---|---|---|
-| `sv_preparing` | Preparing | Preparing | Internal Owner copied from Campaign Run owner; automation issues | None | Initial generated record | Valid → Assigned; failure → Exception; ineligible → Withdrawn; cancel | Proposed; ST-009, ST-011 |
-| `sv_assigned` | Assigned | Assigned | Current eligible members of exact-supplier Assigned Role | Inherited Due At from frozen campaign response-days calculation | Successful issue | Direct profile edits where enabled; Submit → Completed; no response/cancel/withdraw | Required/Proposed; ST-009, ST-011–ST-015, ST-030 |
+| `sv_preparing` | Preparing | Preparing | Internal Owner copied from Campaign Run owner; automation issues | None | Initial generated record | Valid → Assigned; failure → Exception; current audience-rule mismatch → Withdrawn; cancel | Proposed; ST-009, ST-011, ST-031 |
+| `sv_assigned` | Assigned | Assigned | Current eligible members of exact-supplier Assigned Role | Inherited Due At from frozen campaign response-days calculation | Successful issue | Direct profile edits where enabled; Submit → Completed; no response/cancel/authorized withdrawal | Required/Proposed; ST-009, ST-011–ST-014, ST-030, ST-031 |
 | `sv_exception` | Exception | Exception | Internal Owner; support may assist | Exception age reported | Routing, validation, or security failure | Retry → recorded state; cancel | Proposed; ST-013, ST-021 |
 | `sv_completed` | Completed | Completed | Terminal | None | Valid submitted response and required profile confirmation | None | Required/Proposed |
 | `sv_cancelled` | Cancelled | Cancelled | Terminal | None | Authorized cancellation | None | Proposed |
-| `sv_withdrawn` | Withdrawn | Withdrawn | Terminal | None | Capability policy withdrawal | None | Required/Proposed; ST-015 |
+| `sv_withdrawn` | Withdrawn | Withdrawn | Terminal | None | Pre-issue audience-rule mismatch or authorized operational withdrawal | None | Required/Proposed; ST-031 |
 | `sv_noresponse` | Closed No Response | Closed No Response | Terminal | None | Authorized overdue closure without submitted revision | None | Required/Proposed; ADR-080 |
 
 ### 11.3 Workflow actions
 
 | Stage | Sort | Action ID | Action | Actor | Ordered behavior | Validation/error behavior | Result | Notification | Classification/source |
 |---|---:|---|---|---|---|---|---|---|---|
-| Preparing | 1 | `SV-A01` | Issue | Automation | Validate run and entry → recheck capability → resolve roles → secure record → set inherited issue/due fields → create draft revision → enable native Intelex reminders → transition | Failure preserves record and resume state | Assigned or Exception; ineligible → Withdrawn | `SV-N1` / `SV-N6` | Proposed; ST-009, ST-013–ST-015 |
+| Preparing | 1 | `SV-A01` | Issue | Automation | Validate run and entry → reevaluate campaign Audience Rules → resolve roles → secure record → set inherited issue/due fields → create draft revision → enable native Intelex reminders → transition | Rule mismatch retains evidence and prevents assignment; other failure preserves record and resume state | Assigned or Exception; audience mismatch → Withdrawn | `SV-N1` / `SV-N6` | Proposed; ST-009, ST-013, ST-014, ST-031 |
 | Assigned | 1 | `SV-A02` | Save Draft | Eligible Assigned Role member | Recheck authorization → validate supplied answer types → save current draft revision; approved profile edits save directly to their owning audited records | Type or scope error remains Assigned | Assigned | None | Proposed |
 | Assigned | 2 | `SV-A03` | Submit | Eligible Assigned Role member | Lock → validate Supplier Question Answers for the draft Survey Response Revision, typed-field/choice exclusivity, version, role, scope, and required profile confirmation → stamp actor/time → freeze revision and answer iteration | Specific missing answer, incompatible `Answer - …` field, invalid choice, authorization error, or missing confirmation; only one concurrent submit succeeds | Completed | `SV-N3` | Required/Proposed; ST-011–ST-014, ST-023, ST-024, ST-030 |
 | Assigned | 3 | `SV-A04` | Extend Due | Internal Owner | Require later date/reason → event → inherited Due At update → increment generation → allow native Intelex reminder schedule to recalculate | Block invalid date or missing reason | Assigned | `SV-N5` | Proposed |
 | Assigned | 90 | `SV-A05` | Close No Response | Internal Owner | Require overdue/no submitted revision/reason → stop native reminders → terminal event | Block otherwise | Closed No Response | `SV-N7` | Required/Proposed |
 | Exception | 1 | `SV-A09` | Retry | Internal Owner/support | Require defect correction → revalidate → resume exact recorded processing state | No duplicate survey, response, or notification | Recorded state | Only newly applicable notification | Proposed; ST-021 |
 | Nonterminal | 90 | `SV-A10` | Cancel | Internal Owner | Require reason → stop native reminders/delivery → terminal event; previously saved direct profile edits remain effective and audited | Cancellation does not roll back master-object edits | Cancelled | `SV-N7` if issued | Proposed |
-| Nonterminal | 91 | `SV-A11` | Withdraw | Status automation/authorized owner | Verify capability rule → retain evidence → stop actions/native reminders; previously saved direct profile edits remain effective and audited | Never deletes submitted response or master-object audit history | Withdrawn | `SV-N7` if issued | Required/Proposed; ST-015 |
+| Nonterminal | 91 | `SV-A11` | Withdraw | Authorized internal owner | Require a documented operational reason → retain evidence → stop actions/native reminders; previously saved direct profile edits remain effective and audited | Never deletes submitted response or master-object audit history; Supplier Status change alone does not invoke this action | Withdrawn | `SV-N7` if issued | Required/Proposed; ST-031 |
 
 ### 11.4 Supplier Survey notifications
 
@@ -964,7 +1017,7 @@ Derived calculations:
 - `Days Overdue` uses the approved business/calendar convention, currently unresolved;
 - role-based action eligibility uses current role membership, not snapshotted recipient names;
 - completion counts use terminal Completed only, excluding Cancelled, Withdrawn, and Closed No Response; and
-- campaign rates use the frozen run audience and distinguish Excluded, Configuration Exception, Issued, Completed, and Closed No Response.
+- campaign rates use the frozen run audience and distinguish Excluded, Issued, Completed, and Closed No Response.
 
 ## 14. Change summary
 
@@ -983,7 +1036,10 @@ Derived calculations:
 | ST-C11 | Modify | Supplier Survey workflow | Earlier target routed profile corrections through Review and Applying Changes with proposal records and deferred writeback | Separate child workflow using inherited common fields; valid submissions complete directly while approved profile edits are made immediately on audited owning records | ST-002, ST-009, ST-011, ST-030 | Preserves campaign-specific generation and direct governed profile maintenance without redundant review machinery | High |
 | ST-C12 | Add | Abstract-parent work queue | Separate task-like lists | Consolidated query with child drill-through | ST-016 | One supplier experience without conflating lifecycles | High |
 | ST-C13 | Modify | Supplier Profile Task Assignment task-template relationship | Assignment selected a specific Supplier Task Template Version | Assignment selects Supplier Task Template; generation resolves and snapshots the most recent current published version | ST-025 | Administrators configure the stable business template while generated tasks retain immutable version history | High |
-| ST-C14 | Modify/Reuse | Shared Survey Campaign dependency | Earlier target used a combined Review Role / Escalation Role field, a Profile Change Policy, a free-form recurrence definition, and no inverse child grids | Retain Escalation Role, remove campaign Review Role and Profile Change Policy, select active Survey Recurrence Definition through Frequency for recurring campaigns, and expose inverse Audience Rules and Campaign Runs grids | ST-009, ST-028–ST-030 | Keeps campaign-generated Supplier Survey routing, scheduling, navigation, and profile behavior aligned with the authoritative survey model | High |
+| ST-C14 | Modify/Reuse | Shared Survey Campaign dependency | Earlier target used a combined Review Role / Escalation Role field, a Profile Change Policy, a free-form recurrence definition, no inverse child grids, and a separate Survey Status Eligibility object | Retain Escalation Role, remove campaign Review Role, Profile Change Policy, and Survey Status Eligibility, select active Survey Recurrence Definition through Frequency for recurring campaigns, expose inverse Audience Rules and Campaign Runs grids, and add typed Supplier Status audience criteria | ST-009, ST-028–ST-031 | Keeps campaign-generated Supplier Survey routing, scheduling, navigation, profile behavior, and status selection aligned with the authoritative survey model | High |
+| ST-C15 | Modify/Add/Remove | Shared Campaign Run and Campaign Audience Entry dependencies | Earlier target exposed occurrence/state/error fields and choice-based selection without override/effective calculations | Reuse the revised Display Field, Start Date / Time, Checklist Version, helper-driven snapshot, Campaign Run workflow, inverse audience-entry grid, Selection Outcome catalogue, override/effective calculations, and Evaluated At handlers; remove obsolete run fields | ST-009, ST-032 | Keeps Supplier Survey generation aligned with the authoritative shared campaign model | High |
+| ST-C16 | Add/Reuse | Shared Campaign Audience Entry supplier-property snapshot | Entry retained Supplier and unstructured attribute evidence only | Reuse Supplier plus read-only create-time Type of Supplier Entity, Parent Company, Supplier Category, Supplier Type, Facility Type, and Supplier Status fields | ST-009, ST-033 | Preserves structured evidence for audience evaluation | High |
+| ST-C17 | Add/Reuse | Supplier Abstract.Type of Supplier Entity | No explicit inherited discriminator usable by supported formulas | Add the two-value required dropdown, concrete-descendant literal defaults, read-only enforcement, and audience-entry snapshot; use direct field comparisons in Facility-only default expressions | ST-009, ST-033, ST-034 | Provides a supported and auditable entity-type discriminator for shared survey logic | High |
 
 ## 15. Requirement traceability
 
@@ -997,13 +1053,13 @@ Derived calculations:
 | ST-006 | Supplier Task.Review Required, Review Role, workflow | Configurable immediate completion or internal review | Satisfied |
 | ST-007 | Supplier Task.Part/Drawing, base source fields | Optional context and source trace | Partially satisfied; exact Drawing and typed source relationships require confirmation |
 | ST-008 | Snapshot fields, immutable versions | Freeze effective template/checklist configuration | Satisfied |
-| ST-009 | Supplier Survey, campaign run/audience | One child survey per included audience entry | Satisfied |
+| ST-009 | Supplier Survey, campaign run/audience | One child survey per effectively Included audience entry using Selection Outcome (Calculated) | Satisfied |
 | ST-010 | Profile Task Assignment, generation | One-time task or obligation after supplier creation; no activation gate | Satisfied |
 | ST-011 | Supplier Profile Change Enabled Snapshot, direct master-object editing, native audit trails, and survey workflow | Governed direct maintenance with affirmative confirmation and no separate review/writeback | Satisfied at logical design level; security and audit configuration require validation |
 | ST-012 | Assigned/Review Role and actor events | Live role ownership with individual action audit | Satisfied |
 | ST-013 | Preparing/Exception and permissions | Validate authenticated eligible membership; owned recovery | Satisfied |
 | ST-014 | Supplier reference/security | Exact entity is required security anchor | Satisfied |
-| ST-015 | Capability evaluation and Withdraw | New-work deny and governed existing-work policy with retained history | Satisfied |
+| ST-015 | Supplier Task capability evaluation and Withdraw | New-task deny and governed existing-task policy with retained history; Supplier Survey behavior is refined separately by ST-031 | Satisfied |
 | ST-016 | Abstract-parent views | Consolidated work queue and concrete drill-through | Satisfied |
 | ST-017 | Base classification | Shared optional/conditional classification independent of ownership | Partially satisfied; physical shared classification target unresolved |
 | ST-018 | Component scope | No replacement of distinct domain lifecycles | Satisfied |
@@ -1019,6 +1075,10 @@ Derived calculations:
 | ST-028 | Survey Campaign Escalation Role and Frequency; Survey Recurrence Definition | Shared campaign dependency retains escalation routing and governed conditional recurrence selection; obsolete profile Review Role is removed under ST-030 | Satisfied at logical design level; recurrence rendering and scheduler interpretation require platform validation |
 | ST-029 | Survey Campaign Audience Rules and Campaign Runs grids | Shared campaign dependency exposes both existing child Campaign relationships as inverse 1:M grids without duplicating relationship storage | Satisfied at logical design level; related-record grid configuration requires platform validation |
 | ST-030 | Supplier Survey workflow, campaign/survey fields, profile security, and audit trails | Removes policy/proposal/snapshot/review/apply machinery and permits only allowlisted direct edits on owning audited records | Satisfied at logical design level; object and relationship audit behavior requires implementation validation |
+| ST-031 | Survey Campaign Audience Rule.Supplier Status Value and Supplier Survey issue workflow | Removes Survey Status Eligibility; evaluates campaign-specific status criteria before issue, freezes the issued audience, and applies no implicit post-issue status policy | Satisfied at logical design level; audience evaluation and snapshot behavior require implementation validation |
+| ST-032 | Shared Campaign Run, Campaign Audience Entry, Selection Outcome, and Campaign helper fields | Reuses the authoritative revised fields, Included/Excluded formulas without a configuration-error branch, workflow-stage ownership, relationships, overrides, effective selection results, and timestamp behavior | Satisfied at logical design level; Intelex calculation and handler behavior require platform validation |
+| ST-033 | Campaign Audience Entry.Supplier and structured supplier-property fields | Reuses all audience-evaluation create-time values as immutable structured evidence while pre-issue reevaluation may read current Supplier values without overwriting them | Satisfied at logical design level; source field names and default expressions require platform validation |
+| ST-034 | Supplier Abstract.Type of Supplier Entity and shared Campaign Audience Entry defaults | Defines the two allowed values, concrete-descendant initialization, read-only behavior, backfill, and direct `IF` comparisons used before Facility-only relationship access | Satisfied at logical design level; inherited-field access and descendant defaults require implementation validation |
 
 ## 16. Validation findings and unresolved decisions
 
@@ -1054,6 +1114,10 @@ Derived calculations:
 | Profile-assignment version resolution | Required/Proposed | Verify assignment forms expose Task Template rather than Template Version; generation selects exactly one current Published version, snapshots it on first task creation, and preserves it across retries after task creation |
 | Shared campaign recurrence | Required/Proposed | Verify Survey Campaign Frequency is visible and required only for Recurring, selects only active Survey Recurrence Definitions in Sort order, is cleared otherwise, and its `displayas="recurrence"` value is interpreted correctly by scheduling |
 | Shared campaign inverse grids | Required/Proposed | Verify the Survey Campaign Audience Rules and Campaign Runs grids are inverse views of the existing child Campaign fields, are read only, and return only children of the selected campaign |
+| Shared campaign status eligibility | Required/Proposed | Verify Supplier Status is a typed Audience Rule criterion with exactly one matching Supplier Status Value, is included in preview evidence and pre-issue reevaluation, and that no Survey Status Eligibility object or hidden global survey-status filter remains |
+| Shared campaign run and selection model | Required/Proposed | Verify `(Campaign, Start Date / Time)` uniqueness, Display Field formatting, timezone behavior, helper/JOIN snapshot materialization, HTML-encoded values with literal `<br>` separators and `displayas="html"`, Campaign Run workflow stages, inverse entry grid, governed Selection Outcomes, override precedence, effective-field use, and Evaluated At action handlers; confirm obsolete run fields are absent |
+| Shared Supplier entity discriminator | Required/Proposed | Verify every Supplier Facility stores `Supplier Facility`, every Supplier Parent Company stores `Supplier Parent Company`, no other value can be stored, existing records are backfilled, and the inherited field is read only after creation |
+| Shared audience property snapshot | Required/Proposed | Verify Type of Supplier Entity, Parent Company, Supplier Category, Supplier Type, Facility Type, and Supplier Status default from Supplier on entry creation, remain read only and unchanged afterward, allow null when the source is null/not applicable, and preserve the audience-evaluation properties together with Supplier identity; Facility-only defaults must branch directly on Supplier.Type of Supplier Entity |
 | Direct survey profile maintenance | Required/Proposed | Verify every allowlisted field and relationship can be edited only by an eligible exact-supplier user while the Supplier Survey is Assigned, every direct edit produces sufficient native audit evidence, prohibited fields remain inaccessible, and cancellation or failed submission does not imply rollback |
 | Migration | Proposed | No baseline record is automatically migrated; earlier target survey requests require mapping only if implemented before this design |
 | ADR status | Source limitation | ADR-006, ADR-080, ADR-081, and ADR-103 remain proposed until governance changes their status |
@@ -1061,14 +1125,14 @@ Derived calculations:
 
 ## 17. Implementation sequence
 
-1. Confirm the shared visibility-classification target, supplier lifecycle capability rules, exact role-resolution behavior, and external-user eligibility check.
+1. Add and backfill Supplier Abstract.Type of Supplier Entity, configure the two concrete descendant literal defaults and read-only behavior, then confirm the shared visibility-classification target, Supplier Task lifecycle capability rules, governed Supplier Status lookup, exact role-resolution behavior, and external-user eligibility check.
 2. Configure `Abstract Supplier Task` and validate inheritance with empty concrete descendants.
 3. Configure the shared Checklist authoring/version family and Supplier Question Answer object defined across the two component specifications, including inverse relationship grids, publication default expressions, single-active-version enforcement, and the answer model's M:1 and M:N choice relationships; then configure Supplier Task Template, Version, reminder, and event objects against them.
 4. Configure Supplier Task fields, forms, workflow, permissions, views, notifications, and ad hoc creation.
 5. Configure automatic Supplier Task Obligation creation from the initial Supplier Task form, plus scheduling and idempotent later-occurrence generation.
 6. Add Supplier Profile Task Assignment with its Task Template relationship and post-create generation that resolves the most recent current published Template Version, snapshots it on the generated task, and handles missing or ambiguous versions as recoverable exceptions.
 7. Reparent and rename the target survey operational request as Supplier Survey; move common fields to the abstract parent without duplicating them.
-8. Configure the simplified Supplier Survey workflow and reconnect response revisions, campaign issuance, the seeded Survey Recurrence Definition catalogue, escalation routing, inverse campaign grids, events, and notifications. Configure direct-edit profile permissions and native audit trails on every approved field and relationship; do not configure profile proposal, review, or deferred-apply records.
+8. Configure the simplified Supplier Survey workflow and reconnect response revisions, campaign issuance, the seeded Survey Recurrence Definition and Selection Outcome catalogues, escalation routing, campaign helper calculations, Campaign Run workflow and inverse entry grid, Campaign Audience Entry create-time supplier-property defaults/read-only controls, direct Supplier.Type of Supplier Entity comparisons for Facility-only defaults, base/override/effective audience calculations, Evaluated At handlers, typed Supplier Status audience rules, events, and notifications. Configure direct-edit profile permissions and native audit trails on every approved field and relationship; do not configure obsolete Campaign Run fields, Survey Status Eligibility, profile proposal, review, or deferred-apply records.
 9. Build the abstract-parent consolidated work queue and verify concrete drill-through.
 10. Execute security, lifecycle, concurrency, scheduler, notification, attachment, reporting, and performance tests before production rollout.
 
@@ -1103,15 +1167,22 @@ Derived calculations:
 | Retry profile-task generation after task creation | Retry resumes the existing task and retained Template Version rather than resolving a newer version or creating a duplicate |
 | Create supplier with required profile task | Supplier creation succeeds; task is generated and appears in completeness reporting |
 | Profile-task generation failure | Supplier remains created; exception is visible and retry cannot duplicate successful records |
-| Launch survey campaign | Active campaign resolves its selected Checklist's single active version into Campaign Run.Issued Checklist Version; one Supplier Survey is created for each Included audience entry and exclusions create no work item |
+| Launch survey campaign | Active campaign resolves its selected Checklist's single active version into Campaign Run.Checklist Version; Display Field and Configuration Snapshot use the specified formulas; one Supplier Survey is created for each entry whose Selection Outcome (Calculated) is Included |
 | Configure shared recurring campaign | Frequency appears and is required only for Schedule Mode = Recurring, selects an active Survey Recurrence Definition in the specified Sort order, and is hidden and cleared for Manual or Once; Escalation Role remains available and no campaign Review Role or Profile Change Policy exists |
 | Open shared Survey Campaign | The Audience Rules and Campaign Runs grids show all and only child records whose existing Campaign field references that campaign; no duplicate relationship field is introduced on either child |
+| Open shared Campaign Run | Campaign Audience Entries shows all and only entries whose Campaign Run field references the run; lifecycle is shown by workflow stage and no State field exists |
+| Create Supplier Facility and Supplier Parent Company records | Their inherited Type of Supplier Entity values default respectively to `Supplier Facility` and `Supplier Parent Company`, contain no other value, and cannot be changed after creation |
+| Create shared Campaign Audience Entry | Supplier is retained and Type of Supplier Entity, Parent Company, Supplier Category, Supplier Type, Facility Type, and Supplier Status default from it; Facility-only values use direct `IF` comparisons to Supplier.Type of Supplier Entity and all preserved values are read only after creation |
+| Override shared campaign selection | Active Override Selection Outcome plus required Override Reason replaces the base values in the two effective calculated fields and refreshes Evaluated At |
+| Configure shared campaign Supplier Status eligibility | Supplier Status is available as an Audience Rule attribute and requires its typed Supplier Status Value; grouped rule semantics determine the included audience and no Survey Status Eligibility record is used |
 | Supplier Survey without profile edits | Valid immutable response and required affirmative profile confirmation complete directly |
 | Supplier Survey with an approved profile edit | Eligible supplier user edits the owning master record directly while Assigned; the change is immediately effective and auditable, and valid survey submission completes without Review or Applying Changes |
 | Supplier Survey attempts a prohibited profile edit | Non-allowlisted or out-of-scope data remains read only or inaccessible and the attempted change is rejected |
 | Cancel Supplier Survey after direct profile edit | The survey is cancelled, while the already saved master-data edit remains effective and auditable; no proposal, approval, deferred apply, or automatic rollback occurs |
 | Concurrent survey submissions | One submission succeeds; the second actor sees that submission already occurred |
-| Supplier becomes ineligible | Capability policy prevents new issue and continues or withdraws existing work according to governed rule; history remains |
+| Supplier Task supplier becomes ineligible | Supplier Task capability policy prevents new issue and continues or withdraws existing task work according to its governed rule; history remains |
+| Supplier Survey status changes before issue | Campaign Audience Rules are reevaluated; a supplier that no longer matches is excluded and any prepared unissued survey is withdrawn with evidence retained |
+| Supplier Survey status changes after issue | The issued survey remains in its current workflow stage; no automatic continuation or withdrawal policy is inferred, although an authorized owner may withdraw it with a documented reason |
 | Visibility reclassification | Authorized classification change alters visibility without changing state, roles, due date, or workflow responsibility |
 | Consolidated work queue | Authorized user sees both concrete types through the abstract query and opens the correct child form |
 | Terminal reporting | Completed is not conflated with Cancelled, Withdrawn, or Closed No Response |
