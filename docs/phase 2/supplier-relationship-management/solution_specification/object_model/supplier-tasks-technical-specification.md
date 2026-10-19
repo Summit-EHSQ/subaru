@@ -5,95 +5,85 @@
 | Mode | Target design layered over the separately preserved OOTB SRM baseline |
 | Application | Supplier Relationship Management |
 | Component | Supplier Tasks |
-| Operational objects | `Abstract Supplier Task`, `Supplier Task`, `Supplier Survey` |
-| Workflows | Supplier Task; Supplier Survey |
+| Operational objects | `Abstract Supplier Task`, `Supplier Task` |
+| Workflows | Supplier Task |
 | As of | 2026-10-19 |
 | Primary sources | ADR-002, ADR-003, ADR-004, ADR-005, ADR-006, ADR-007, ADR-076, ADR-077, ADR-078, ADR-079, ADR-080, ADR-081, ADR-083, ADR-084, ADR-085, and ADR-103; user-approved inheritance and scope decisions |
 
 ## 1. Executive solution summary
 
-The Supplier Tasks component introduces one abstract operational parent and two concrete descendants:
+The Supplier Tasks component introduces one abstract operational parent and one concrete task object:
 
 ```text
 Abstract Supplier Task
-├── Supplier Task
-└── Supplier Survey
+└── Supplier Task
 ```
 
-This is direct Intelex object inheritance. It is not a parent-child record association. Shared fields are declared once on `Abstract Supplier Task` and inherited by both descendants. Each concrete descendant has its own workflow and generation logic.
+This is direct Intelex object inheritance. It is not a parent-child record association. Common task fields are declared once on `Abstract Supplier Task` and inherited by `Supplier Task`.
 
 - **Supplier Task** represents a targeted, onboarding, training, access, evidence, checklist, or recurring supplier obligation created for one supplier context.
-- **Supplier Survey** represents a checklist request generated through survey campaign preparation and audience selection.
-- **Abstract Supplier Task** provides the shared work-item contract: supplier scope, role-based ownership, workflow state, due dates, source context, visibility, exception handling, completion metadata, and common event history.
+- **Abstract Supplier Task** provides the reusable task contract: supplier scope, role-based ownership, due dates, visibility, completion metadata, and checklist version.
 
-Supplier Task generation and Supplier Survey generation remain separate. A campaign creates Supplier Survey records. A targeted request, onboarding rule, or supplier-scoped recurring obligation creates Supplier Task records. Both descendants can be queried through the abstract parent for a consolidated supplier workspace and cross-type reporting.
+A targeted request, onboarding rule, or supplier-scoped recurring obligation creates Supplier Task records. The `Supplier Survey` object and its workflow are documented only in the Supplier Surveys technical specification and are outside this document's object inventory, diagrams, field lists, workflow, permissions, reporting, and acceptance criteria.
 
 Every material object, field, relationship, stage, action, and notification introduced by this specification is **Proposed** unless explicitly classified as **Extracted**, **Required**, or **Unresolved**. Logical names are not confirmed internal names, stable metadata identifiers, database keys, or physical table names. This document does not claim that the proposed configuration has been implemented.
 
 ## 2. Architectural findings and consequences
 
-1. **Inheritance is the reuse boundary.** Common work-item data belongs on `Abstract Supplier Task`; child-only data remains on its concrete descendant.
-2. **Workflow is not inherited as one universal lifecycle.** Supplier Task and Supplier Survey have separate workflows because their initiation, validation, completion, and recovery behavior differ materially; only Supplier Task has an optional internal Review stage.
+1. **Inheritance is the reuse boundary.** Common task data belongs on `Abstract Supplier Task`; task-only data remains on `Supplier Task`.
+2. **Workflow is platform managed.** The Supplier Task workflow is configured on the concrete object, but no custom Workflow or State relationship/display field is declared in the logical field model.
 3. **Role references remain live.** The work item points to a Supplier Specific Role rather than permanently assigning accountability to the person occupying that role at creation. The individual actor is captured when an action occurs.
-4. **Configuration is versioned.** Active and historical work must not change when a template, checklist, campaign, or routing rule is edited later.
+4. **Configuration is versioned.** Active and historical tasks retain their selected Template Version, resolved Checklist Version, and task-level control values when template or checklist configuration changes later; no Configuration Snapshot field is used.
 5. **Recurrence produces new records.** Every due occurrence is a separate concrete task record. Completed history is never reopened or overwritten to represent a later period.
-6. **Campaigns produce Supplier Surveys.** Campaign configuration, audience evaluation, and campaign runs remain survey-specific and do not create generic Supplier Task records.
-7. **One work experience does not mean one workflow.** The portal may query the abstract parent to display both descendants in one work queue while opening the correct child form and enforcing the correct child workflow.
-8. **Supplier activation and task completeness are separate.** Incomplete setup work remains visible and actionable but does not create a second supplier-approval gate.
-9. **Lifecycle and security are independent controls.** For Supplier Tasks, supplier status capability rules govern whether new work may be issued and whether existing work continues or is withdrawn. For Supplier Surveys, campaign-specific Audience Rules may filter by Supplier Status before issue; the issued audience is then frozen. Supplier-entity scope and visibility classification govern who can see each record.
-10. **No automatic inheritance of parent-company responsibility is assumed.** A role must resolve for the exact Supplier Abstract referenced by the work item unless a future governed routing rule explicitly permits another behavior.
-11. **Recurring setup uses the Supplier Task form.** The first Supplier Task captures the one-time-versus-recurring choice and all recurrence inputs. When recurring is selected, automation creates and links the Supplier Task Obligation; users do not configure a separate obligation record.
-12. **Checklist configuration and answers are shared.** Supplier Survey and templated Supplier Task consume the same Checklist, Checklist Version, Checklist Question, Checklist Question Version, Checklist Choice List, Checklist Choice, Checklist Question Choice, Checklist Question Choice Version, and Supplier Question Answer objects. Checklist and Checklist Question are the editable authoring records; Publish creates immutable checklist, question, and question-choice version snapshots. Choice/Choices questions select a reusable Choice List and generate question-scoped choices. The answer points only to `Abstract Supplier Task`; Supplier Surveys use response iteration 1 without an intermediate submission relationship.
-13. **Profile assignments select stable templates, not versions.** A Supplier Profile Task Assignment points to a Supplier Task Template. When supplier creation generates a task, automation resolves the template's most recent current published version and snapshots that version on the new Supplier Task.
-14. **Survey-enabled profile changes are direct master-data edits.** Eligible supplier users edit only approved fields and relationships on their owning records while the Supplier Survey is Open. Native audit trails provide the change evidence; no survey proposal, approval, or deferred-apply object is introduced.
+6. **Supplier activation and task completeness are separate.** Incomplete setup work remains visible and actionable but does not create a second supplier-approval gate.
+7. **Lifecycle and security are independent controls.** Supplier status capability rules govern whether new Supplier Tasks may be issued and whether existing tasks continue or are withdrawn. Supplier-entity scope and visibility classification govern who can see each record.
+8. **No automatic inheritance of parent-company responsibility is assumed.** A role must resolve for the exact Supplier Abstract referenced by the task unless a future governed routing rule explicitly permits another behavior.
+9. **Every initial task creates an obligation.** On initial save of a Supplier Task that does not already have an Obligation, an Action Handler creates and links exactly one Supplier Task Obligation and sets its Initial Task to the saved task. A One Time task uses the shared `One Time` Recurrence Definition and has no next occurrence; a Recurring task uses the selected recurrence and may generate later tasks under the same Obligation.
+10. **Checklist configuration is reused.** Templated Supplier Tasks consume the neutral Checklist authoring/version family defined in the Supplier Surveys technical specification. Checklist and Checklist Question are editable authoring records; Publish creates immutable checklist, question, and question-choice version snapshots.
+11. **Profile assignments select stable templates, not versions.** A Supplier Profile Task Assignment points to a Supplier Task Template. When supplier creation generates a task, automation stores the related Publish-created version with the greatest Version Number on the new Supplier Task.
+12. **Task templates select stable Checklists.** Supplier Task Template and its published versions reference Checklist rather than Checklist Version. Each new Supplier Task resolves and freezes the Checklist's single current Active? = TRUE Checklist Version, so later checklist publication affects only later tasks.
 
 ## 3. Requirements interpretation
 
 | Requirement ID | Source | Interpreted requirement | Classification |
 |---|---|---|---|
-| ST-001 | User-approved architecture | Supplier Task and Supplier Survey directly inherit from Abstract Supplier Task | Required |
-| ST-002 | User-approved architecture | The two descendants use different objects and different workflows | Required |
+| ST-001 | User-approved architecture; refined by ST-046 | Supplier Task directly inherits from Abstract Supplier Task | Required |
+| ST-002 | User-approved architecture; refined by ST-046 | This specification defines only the Supplier Task workflow; Supplier Survey is documented exclusively in the Supplier Surveys technical specification | Required |
 | ST-003 | ADR-103 | Reuse assignment, due dates, completion, applicable review, reminders, recurrence, and reporting through a shared task model | Required |
 | ST-004 | ADR-103 | Every concrete work item relates to a supplier and resolves an accountable maintained supplier role | Required |
 | ST-005 | ADR-103 and user clarification | Supplier Task may require a note, file upload, a governed checklist, or a combination; checklist configuration is available only through a selected task template | Required |
 | ST-006 | ADR-103 | A Supplier Task may complete on supplier submission or route to an internal role for review | Required |
-| ST-007 | ADR-103 | Preserve optional part, drawing, and originating-process traceability | Required |
-| ST-008 | ADR-103 | Snapshot the effective configuration and checklist version on creation | Required |
-| ST-009 | ADR-080 | A campaign defines common survey properties and generates one Supplier Survey for each included supplier | Required |
+| ST-007 | ADR-103; refined by ST-044 | Preserve optional part and drawing context; generic origin/source trace fields are removed | Required |
+| ST-008 | ADR-103; refined by ST-044 | Preserve the selected Template Version, Checklist Version, and copied task control values without a Configuration Snapshot field | Required |
 | ST-010 | ADR-005, ADR-002, ADR-077 | Governed supplier setup rules may generate Supplier Tasks after supplier creation without delaying supplier activation | Required |
-| ST-011 | ADR-006; refined by ST-030 | Periodic supplier-profile confirmation uses campaign-generated Supplier Surveys, direct governed profile maintenance, and affirmative confirmation | Required |
 | ST-012 | ADR-003, ADR-004 | Assignment and review use standardized supplier-specific external and internal roles; action history records the individual actor | Required |
 | ST-013 | ADR-003, ADR-007, ADR-081 | Only eligible authenticated contacts may perform supplier actions; missing or inactive membership is an owned exception | Required |
 | ST-014 | ADR-076, ADR-078 | Work is scoped to the exact supplier company or facility and cannot expand portal access beyond supplier-entity relationships | Required |
-| ST-015 | ADR-079; refined for surveys by ST-031 | Supplier status and capability rules govern creation and continuation of Supplier Tasks; survey status eligibility follows ST-031; history is retained | Required |
-| ST-016 | ADR-083 | Both descendants appear in a consolidated supplier work experience with drill-through to underlying records | Required |
+| ST-015 | ADR-079 | Supplier status and capability rules govern creation and continuation of Supplier Tasks; history is retained | Required |
+| ST-016 | ADR-083; refined by ST-046 | Supplier Tasks appear in the supplier work experience with drill-through to the task record | Required |
 | ST-017 | ADR-084 | Visibility classification restricts records within supplier scope and may change without changing workflow ownership | Required |
 | ST-018 | ADR-085, ADR-103 | Distinct domain lifecycles and event-driven submissions are not replaced by Supplier Tasks | Required |
 | ST-019 | User-approved scope | The excluded baseline requirement objects are outside this document and have no design dependency here | Required |
-| ST-020 | User clarification | The same Supplier Task form configures one-time and recurring work; recurring setup automatically creates a related Supplier Task Obligation and each occurrence is a separate Supplier Task | Required |
-| ST-021 | Design assumption | Common append-only events support audit, notification idempotency, due-date history, and consolidated reporting | Proposed |
+| ST-020 | User clarification; refined by ST-051 | The same Supplier Task form configures one-time and recurring work; every initial Task automatically creates a related Supplier Task Obligation, and each later recurring occurrence is a separate Supplier Task under that Obligation | Required |
+| ST-021 | Design assumption; superseded by ST-053 | Use native workflow history, object audit, execution logs, and platform notification evidence instead of a custom task-event object | Required |
 | ST-022 | User clarification | File validation is controlled only by `File Upload Required?`; no configurable minimum file count is used | Required |
-| ST-023 | User clarification | Supplier Survey and templated Supplier Task reuse one neutral checklist configuration and operational answer family; neither maintains an independent checklist or answer model | Required |
+| ST-023 | User clarification; refined by ST-046 | Templated Supplier Tasks reuse the neutral checklist configuration and answer family defined by the Supplier Surveys specification rather than maintaining a task-specific checklist catalogue | Required |
 | ST-024 | User clarification, refined by ST-027 | Supplier Question Answer provides `Answer - Text`, `Answer - Float`, `Answer - File`, and `Answer - Date`, plus M:1 `Answer - Choice` and M:N `Answer - Choices` relationships to the published Checklist Question Choice Version | Required |
-| ST-025 | User clarification | A Supplier Profile Task Assignment selects a Supplier Task Template; supplier-creation generation resolves and snapshots the most recent current published Supplier Task Template Version | Required |
+| ST-025 | User clarification; refined by ST-049 | A Supplier Profile Task Assignment selects a Supplier Task Template; supplier-creation generation resolves and stores its Publish-created Supplier Task Template Version with the greatest Version Number | Required |
 | ST-026 | User clarification | Checklist Questions use Guidance, conditionally require a Choice List, generate guarded question-scoped choices, and carry scoring and color metadata on choice values | Required |
 | ST-027 | User clarification | Checklist Publish creates immutable Checklist Question Choice Version records for every published Checklist Question Choice under each Checklist Question Version | Required |
-| ST-028 | User clarification; superseded in part by ST-030 | The shared Survey Campaign retains Escalation Role and selects an active Survey Recurrence Definition through a conditional Frequency relationship when Schedule Mode is Recurring; its previously requested Review Role is removed | Required |
-| ST-029 | User clarification | The shared Survey Campaign dependency exposes inverse 1:M grids for Survey Campaign Audience Rules and Campaign Runs | Required |
-| ST-030 | User clarification | Profile-change-enabled Supplier Surveys permit direct edits to approved master-object fields and relationships with native audit trails; no Profile Change Policy, proposal objects, profile-change review, or deferred writeback is used | Required |
-| ST-031 | User clarification | Remove the Survey Status Eligibility dependency; Supplier Survey status eligibility is expressed through Survey Campaign Audience Rules with a typed Supplier Status operand, without an automatic post-issue status continuation/withdrawal policy | Required |
-| ST-032 | User clarification | The shared Campaign Run and Campaign Audience Entry model uses the revised display/start/checklist/snapshot/grid fields, Campaign Run workflow stages, governed Included/Excluded Selection Outcome records, base/override/effective selection calculations, and Evaluated At handlers defined by the Supplier Surveys specification; campaign configuration is assumed clean and no per-entry configuration-error field or outcome is used | Required |
-| ST-033 | User clarification | The shared Campaign Audience Entry snapshots every audience-evaluation Supplier property through read-only fields defaulted from Supplier when the entry is created | Required |
-| ST-034 | User clarification | Supplier Abstract exposes a required inherited `Type of Supplier Entity` dropdown with only `Supplier Facility` and `Supplier Parent Company`; shared audience formulas reference that field directly and use supported `IF` expressions for fallback behavior | Required |
-| ST-035 | User clarification | Supplier Survey owns submission/profile-confirmation evidence directly; Supplier Question Answer relates only to the work item, and no intermediate survey-submission child or relationship is used | Required |
-| ST-036 | User clarification | The shared Campaign Audience Entry retains only Audience Rule Match? as its rule-evaluation helper; selection formulas use TRUE/FALSE and `ISNULL`, and Selection Reason is populated only when the helper is TRUE | Required |
-| ST-037 | User clarification | Supplier Question Answer uses unprefixed Work Item, Response Iteration, Question Version, Responded By, and Responded At field names; an Update Action Handler sets Responded By and timezone-enabled Responded At whenever any `Answer -` field changes | Required |
-| ST-038 | User clarification | Remove the Survey Event object and its survey-specific dependencies while retaining the separately defined Supplier Task Event model | Required |
-| ST-039 | User clarification | The shared Campaign Run workflow has only Preparing, Ready, Issuing, and Open stages; Closed and Cancelled are termination states; Exception is removed; Survey Preparation Complete branches by whether Start Date / Time is future; and a 15-minute Event Service advances due Ready runs to Issuing | Required |
-| ST-040 | User clarification | The shared Campaign Run uses hidden Issue Supplier Surveys and Move to Open actions; the former rejects future Start Date / Time values and otherwise enters Issuing, while the latter contains no issuance logic because a separate batch process operates only on Issuing Campaign Runs; workflow terminology uses Supplier Survey rather than request | Required |
-| ST-041 | User clarification | Campaign Run.Owner remains the responsible person throughout Preparing, Ready, Issuing, and Open; cancelling an Open Campaign Run cancels every related nonterminal Supplier Survey before the Campaign Run terminates | Required |
-| ST-042 | User clarification | Supplier Survey has exactly one workflow stage, Open, owned by the current eligible members of Assigned Role; Completed and Cancelled are termination states rather than stages, and all other Supplier Survey stages/outcomes are removed | Required |
-| ST-043 | User clarification | The Supplier Survey Open stage exposes exactly two workflow actions: Submit and Cancel Campaign; Save Draft, Extend Due, individual Cancel, and all other Supplier Survey workflow actions are removed | Required |
+| ST-037 | User clarification; refined by ST-054 | Supplier Question Answer uses unprefixed Work Item, Question Version, Responded By, and Responded At field names; an Update Action Handler sets Responded By and timezone-enabled Responded At whenever any `Answer -` field changes | Required |
+| ST-044 | User clarification | Remove Origin Type, Origin Display, Source Application, Source Record Key, Source Record URL, Configuration Snapshot, Snapshot Schema Version, State, Schedule Generation, Exception Resume State, Exception Result Reason (previously documented as Exception Reason), and Workflow; rename and retype the due/submission/completion fields as specified | Required |
+| ST-045 | User clarification | Supplier Task.Schedule Type is an M:1 relationship to Task Schedule Type; Supplier Task.Recurrence Definition is an M:1 relationship to the shared Recurrence Definition object; remove Occurrence Number; task completion flags default from Template Version and are user-editable only when no Task Template is populated | Required |
+| ST-046 | User clarification | Rename Survey Recurrence Definition to Recurrence Definition and remove all Supplier Survey object/workflow documentation from this specification | Required |
+| ST-047 | User clarification | Remove Period Start and Period End from Supplier Task; recurring work is identified by its linked obligation and scheduling fields rather than task-level period boundaries | Required |
+| ST-048 | User clarification; refined by ST-049 | Supplier Task Template carries every retained Supplier Task Template Version configuration field except Template and Version Number, exposes an inverse Versions grid, and has no Reporting Classification or Owner field; Template Version relates to Checklist, and each new task resolves the Checklist's latest active version | Required |
+| ST-049 | User clarification | Remove State from Supplier Task Template and Supplier Task Template Version; a Template Version exists only when created by Publish, and the latest published version is the record with the greatest Version Number for that Template | Required |
+| ST-050 | User clarification | Supplier Task Template Version.Version Number is assigned automatically as one greater than the maximum Version Number in the related Template.Versions grid; the first version is 1 and no template-level counter helper is used | Required |
+| ST-051 | User clarification | Every initial Supplier Task creates and links a Supplier Task Obligation on initial save; the Action Handler sets Initial Task, One Time obligations use the shared One Time Recurrence Definition and a null Next Occurrence At, recurring occurrences reuse the original Obligation, and Generation Exception is removed | Required |
+| ST-052 | User clarification | Remove Supplier Profile Task Assignment.Applies to Entity Type; an assignment applies to every supplier entity created from its Supplier Profile Template | Required |
+| ST-053 | User clarification | Remove Supplier Task Reminder Rule and Supplier Task Event entirely; task reminders use native Intelex platform functionality and task evidence uses native workflow history, object audit, execution logs, and notification logs | Required |
+| ST-054 | User clarification | Remove Supplier Question Answer.Response Iteration and its dependencies; enforce one answer per Work Item and Question Version, and reopen the same audited answer records when a reviewed task is returned | Required |
 
 ## 4. Baseline and target boundary
 
@@ -108,7 +98,7 @@ The verified baseline supplies the following elements used by this target design
 - system Subject, Employee, Group, Workflow Instance, and Workflow Stage concepts; and
 - the platform workflow, notification, attachment, configurable-view, and My Tasks capabilities.
 
-The baseline contains no extracted generic supplier-task inheritance family and no extracted Supplier Task or Supplier Survey workflow matching this specification. All component objects and workflow behavior below are therefore target configuration.
+The baseline contains no extracted generic supplier-task inheritance family or Supplier Task workflow matching this specification. All component objects and workflow behavior below are therefore target configuration.
 
 ### 4.2 Existing target-design dependencies
 
@@ -116,11 +106,11 @@ This specification consumes, without redefining:
 
 - Supplier Management Role and Supplier Specific Role from the Supplier Management Role target model;
 - Supplier Profile Template from the Supplier Profile Template target model;
-- the replacement Supplier Status and capability rules from the Supplier Status Updates target model for Supplier Tasks, plus the Supplier Status lookup consumed by survey Campaign Audience Rules;
+- the replacement Supplier Status and capability rules from the Supplier Status Updates target model;
 - Supplier Contact ownership and authenticated-user linkage from the User Access Request target model; and
-- shared checklist definition/versioning, campaign audience, survey response, and profile-change concepts from the Supplier Surveys target design, as revised by this specification.
+- the shared Checklist configuration family and renamed Recurrence Definition catalogue from the Supplier Surveys target design.
 
-Where this document conflicts with the earlier survey target design, this document governs the operational work-item inheritance, the `Supplier Survey` name and parent, fields moved to the abstract parent, and the Supplier Survey workflow. Survey-specific configuration and response structures not changed here remain governed by the Supplier Surveys specification.
+The Supplier Surveys technical specification is authoritative for the Supplier Survey object, its workflow, campaign structures, and survey-specific use of shared objects. This document does not duplicate that content.
 
 ## 5. Target logical object model
 
@@ -138,39 +128,30 @@ class Abstract_Supplier_Task {
   +SupplierSpecificRole AssignedRole [REF] [PROPOSED]
   +SupplierSpecificRole ReviewRole [REF] [PROPOSED]
   +Employee InternalOwner [REF] [REQ] [PROPOSED]
-  +DateTime DueAt [PROPOSED]
-  +Text State [WORKFLOW] [PROPOSED]
+  +Date OriginalDueDate [PROPOSED]
+  +Date DueDate [PROPOSED]
+  +DateTime DateTimeSubmitted [PROPOSED]
+  +DateTime DateTimeCompleted [PROPOSED]
   +VisibilityClassification VisibilityClassification [REF] [PROPOSED]
   +ChecklistVersion ChecklistVersion [REF] [PROPOSED]
-  +WorkflowInstance Workflow [REF] [PROPOSED]
 }
 
 class Supplier_Task {
   <<proposed>>
   +SupplierTaskTemplateVersion TemplateVersion [REF] [PROPOSED]
-  +SupplierTaskObligation Obligation [REF] [PROPOSED]
+  +SupplierTaskObligation Obligation [REF] [REQ] [PROPOSED]
+  +TaskScheduleType ScheduleType [REF] [REQ] [PROPOSED]
+  +RecurrenceDefinition RecurrenceDefinition [REF] [PROPOSED]
   +Part Part [REF] [PROPOSED]
   +Drawing Drawing [REF] [PROPOSED]
   +LongText CompletionNote [PROPOSED]
 }
-class Supplier_Survey {
-  <<proposed>>
-  +CampaignAudienceEntry AudienceEntry [REF] [REQ] [PROPOSED]
-  +CampaignRun CampaignRun [REF] [REQ] [PROPOSED]
-  +Boolean ProfileChangeEnabledSnapshot [REQ] [PROPOSED]
-  +SupplierContact RespondingContact [REF] [PROPOSED]
-  +Boolean ProfileConfirmed [PROPOSED]
-  +DateTime ProfileConfirmedAt [PROPOSED]
-  +LongText Declaration [PROPOSED]
-}
 
 class Supplier_Abstract {
   <<OOTB abstract>>
-  +Dropdown TypeOfSupplierEntity [REQ] [SHARED TARGET]
 }
 class Supplier_Parent_Company
 class Supplier_Facility
-class Supplier_Contact
 class Supplier_Specific_Role {
   <<existing target>>
 }
@@ -183,15 +164,14 @@ class Visibility_Classification {
 class Checklist_Version {
   <<shared target>>
 }
-class Workflow_Instance {
-  <<system>>
-}
-class Supplier_Task_Event {
+class Task_Schedule_Type {
   <<proposed>>
+}
+class Recurrence_Definition {
+  <<shared target>>
 }
 
 Abstract_Supplier_Task <|-- Supplier_Task : inherits
-Abstract_Supplier_Task <|-- Supplier_Survey : inherits
 Supplier_Abstract <|-- Supplier_Parent_Company : OOTB inheritance
 Supplier_Abstract <|-- Supplier_Facility : OOTB inheritance
 
@@ -201,12 +181,11 @@ Abstract_Supplier_Task "0..*" --> "0..1" Supplier_Specific_Role : ReviewRole
 Abstract_Supplier_Task "0..*" --> "1" Employee : InternalOwner
 Abstract_Supplier_Task "0..*" --> "0..1" Visibility_Classification : VisibilityClassification
 Abstract_Supplier_Task "0..*" --> "0..1" Checklist_Version : ChecklistVersion
-Abstract_Supplier_Task "0..*" --> "0..1" Workflow_Instance : Workflow
-Supplier_Survey "0..*" --> "0..1" Supplier_Contact : RespondingContact
-Supplier_Task_Event "0..*" --> "1" Abstract_Supplier_Task : WorkItem
+Supplier_Task "0..*" --> "1" Task_Schedule_Type : ScheduleType
+Supplier_Task "0..*" --> "0..1" Recurrence_Definition : RecurrenceDefinition
 ```
 
-`Supplier Task` and `Supplier Survey` are the only direct descendants introduced by this specification. Fields declared on `Abstract Supplier Task` are not redeclared on either child.
+`Supplier Task` is the only concrete object documented by this specification. Fields declared on `Abstract Supplier Task` are not redeclared on it. The Supplier Surveys specification separately owns the Supplier Survey model.
 
 ### 5.2 Supplier Task configuration and execution
 
@@ -219,18 +198,28 @@ class Supplier_Task_Template {
   +Guid Id [PK] [PROPOSED]
   +Text Name [REQ] [PROPOSED]
   +Boolean Active [REQ] [PROPOSED]
+  +SupplierTaskTemplateVersion Versions [1:M] [PROPOSED]
+  +LongText Instructions [REQ] [PROPOSED]
+  +SupplierManagementRole AssignedRole [REF] [REQ] [PROPOSED]
+  +Boolean ReviewRequired [PROPOSED]
+  +SupplierManagementRole ReviewRole [REF] [PROPOSED]
+  +Subject InternalOwner [REF] [REQ] [PROPOSED]
+  +Number DefaultResponseDays [PROPOSED]
+  +Boolean NoteRequired [PROPOSED]
+  +Boolean FileUploadRequired [PROPOSED]
+  +Checklist Checklist [REF] [PROPOSED]
 }
 class Supplier_Task_Template_Version {
   <<proposed>>
   +Guid Id [PK] [PROPOSED]
   +SupplierTaskTemplate Template [REF] [REQ] [PROPOSED]
   +Number VersionNumber [REQ] [PROPOSED]
-  +Text State [REQ] [PROPOSED]
   +Boolean NoteRequired [REQ] [PROPOSED]
   +Boolean FileUploadRequired [REQ] [PROPOSED]
   +Boolean ReviewRequired [REQ] [PROPOSED]
+  +Checklist Checklist [REF] [PROPOSED]
 }
-class Checklist_Version {
+class Checklist {
   <<shared target>>
 }
 class Checklist_Question_Version {
@@ -245,7 +234,7 @@ class Supplier_Task_Obligation {
   +SupplierTask InitialTask [REF] [REQ] [PROPOSED]
   +SupplierAbstract Supplier [REF] [REQ] [PROPOSED]
   +SupplierTaskTemplateVersion TemplateVersion [REF] [PROPOSED]
-  +Text RecurrenceDefinition [REQ] [PROPOSED]
+  +RecurrenceDefinition RecurrenceDefinition [REF] [REQ] [PROPOSED]
   +Boolean Active [REQ] [PROPOSED]
 }
 class Supplier_Profile_Task_Assignment {
@@ -261,17 +250,30 @@ class Abstract_Supplier_Task {
 }
 class Supplier_Task {
   <<proposed descendant>>
-  +Text ScheduleType [REQ] [PROPOSED]
-  +Text RecurrenceDefinition [PROPOSED]
+  +TaskScheduleType ScheduleType [REF] [REQ] [PROPOSED]
+  +RecurrenceDefinition RecurrenceDefinition [REF] [PROPOSED]
   +Boolean NoteRequired [REQ] [PROPOSED]
   +Boolean FileUploadRequired [REQ] [PROPOSED]
+  +Boolean ReviewRequired [REQ] [PROPOSED]
+}
+class Task_Schedule_Type {
+  <<proposed>>
+  +Text Name [REQ] [PROPOSED]
+  +Boolean Active [REQ] [PROPOSED]
+  +Float Sort [REQ] [PROPOSED]
+}
+class Recurrence_Definition {
+  <<shared target>>
+  +Text Name [REQ] [PROPOSED]
+  +Boolean Active [REQ] [PROPOSED]
+  +Float Sort [REQ] [PROPOSED]
+  +Text Frequency [PROPOSED]
 }
 class Supplier_Question_Answer {
   <<proposed>>
   +Guid Id [PK] [PROPOSED]
   +AbstractSupplierTask WorkItem [REF] [REQ] [PROPOSED]
   +ChecklistQuestionVersion QuestionVersion [REF] [REQ] [PROPOSED]
-  +Number ResponseIteration [REQ] [PROPOSED]
   +Text AnswerText [PROPOSED]
   +Float AnswerFloat [PROPOSED]
   +File AnswerFile [PROPOSED]
@@ -290,16 +292,20 @@ class Supplier_Abstract {
   +Dropdown TypeOfSupplierEntity [REQ] [SHARED TARGET]
 }
 
-Supplier_Task_Template_Version "0..*" --> "1" Supplier_Task_Template : Template
+Supplier_Task_Template_Version "0..*" --> "1" Supplier_Task_Template : Template / Versions
+Supplier_Task_Template "0..*" --> "0..1" Checklist : Checklist
 Abstract_Supplier_Task <|-- Supplier_Task
-Supplier_Task_Template_Version "0..*" --> "0..1" Checklist_Version : ChecklistVersion
+Supplier_Task_Template_Version "0..*" --> "0..1" Checklist : Checklist
 Supplier_Task_Obligation "0..1" --> "1" Supplier_Task : InitialTask
 Supplier_Task_Obligation "0..*" --> "1" Supplier_Abstract : Supplier
 Supplier_Task_Obligation "0..*" --> "0..1" Supplier_Task_Template_Version : TemplateVersion
 Supplier_Profile_Task_Assignment "0..*" --> "1" Supplier_Profile_Template : SupplierProfileTemplate
 Supplier_Profile_Task_Assignment "0..*" --> "1" Supplier_Task_Template : TaskTemplate
 Supplier_Task "0..*" --> "0..1" Supplier_Task_Template_Version : TemplateVersion
-Supplier_Task "0..*" --> "0..1" Supplier_Task_Obligation : Obligation
+Supplier_Task "0..*" --> "1" Supplier_Task_Obligation : Obligation
+Supplier_Task "0..*" --> "1" Task_Schedule_Type : ScheduleType
+Supplier_Task "0..*" --> "0..1" Recurrence_Definition : RecurrenceDefinition
+Supplier_Task_Obligation "0..*" --> "1" Recurrence_Definition : RecurrenceDefinition
 Abstract_Supplier_Task "0..*" --> "0..1" Checklist_Version : ChecklistVersion
 Supplier_Question_Answer "0..*" --> "1" Abstract_Supplier_Task : WorkItem
 Supplier_Question_Answer "0..*" --> "1" Checklist_Question_Version : QuestionVersion
@@ -307,170 +313,26 @@ Supplier_Question_Answer "0..*" --> "0..1" Checklist_Choice : Answer - Choice
 Supplier_Question_Answer "0..*" --> "0..*" Checklist_Choice : Answer - Choices
 ```
 
-### 5.3 Supplier Survey configuration and execution
-
-```mermaid
-classDiagram
-direction LR
-
-class Checklist {
-  <<existing target>>
-}
-class Checklist_Version {
-  <<existing target>>
-}
-class Checklist_Question {
-  <<existing target>>
-}
-class Checklist_Question_Version {
-  <<existing target>>
-}
-class Checklist_Choice {
-  <<existing target>>
-}
-class Checklist_Choice_List {
-  <<existing target>>
-}
-class Checklist_Question_Choice {
-  <<shared target>>
-}
-class Checklist_Question_Choice_Version {
-  <<shared target>>
-}
-class Color {
-  <<existing object>>
-}
-class Survey_Campaign {
-  <<existing target>>
-}
-class Campaign_Audience_Rule {
-  <<existing target>>
-}
-class Supplier_Status {
-  <<existing target>>
-}
-class Supplier_Abstract {
-  <<existing abstract supplier>>
-  +Dropdown TypeOfSupplierEntity [REQ] [SHARED TARGET]
-}
-class Supplier_Parent_Company {
-  <<existing target>>
-}
-class Supplier_Contact {
-  <<existing target>>
-}
-class Supplier_Category {
-  <<existing target>>
-}
-class Supplier_Type {
-  <<existing target>>
-}
-class Facility_Type {
-  <<existing target>>
-}
-class Survey_Recurrence_Definition {
-  <<shared survey configuration>>
-}
-class Supplier_Management_Role {
-  <<existing target>>
-}
-class Campaign_Run {
-  <<existing target>>
-}
-class Campaign_Audience_Entry {
-  <<existing target>>
-}
-class Selection_Outcome {
-  <<shared survey configuration>>
-}
-class Supplier_Survey {
-  <<proposed descendant>>
-  +SupplierContact RespondingContact [REF] [PROPOSED]
-  +Boolean ProfileConfirmed [PROPOSED]
-  +DateTime ProfileConfirmedAt [PROPOSED]
-  +LongText Declaration [PROPOSED]
-}
-class Abstract_Supplier_Task {
-  <<proposed abstract; detailed in 5.1>>
-}
-class Supplier_Question_Answer {
-  <<shared target>>
-  +Employee RespondedBy [REF] [PROPOSED]
-  +DateTimeTZ RespondedAt [PROPOSED]
-}
-
-Checklist "1" --> "0..*" Checklist_Version : Versions_grid
-Checklist "1" --> "0..*" Checklist_Question : Questions_grid
-Checklist_Version "1" --> "0..*" Checklist_Question_Version : QuestionVersions_grid
-Checklist_Question "1" --> "0..*" Checklist_Question_Version : Versions_grid
-Checklist_Question "0..*" --> "0..1" Checklist_Choice_List : ChoiceList
-Checklist_Question_Version "0..*" --> "0..1" Checklist_Choice_List : ChoiceList
-Checklist_Choice_List "1" --> "0..*" Checklist_Choice : Choices
-Checklist_Question "1" --> "0..*" Checklist_Question_Choice : GeneratedChoices_grid
-Checklist_Question_Choice "0..*" --> "1" Checklist_Choice_List : ChoiceList
-Checklist_Question_Version "1" --> "0..*" Checklist_Question_Choice_Version : PublishedChoices_grid
-Checklist_Question_Choice "1" --> "0..*" Checklist_Question_Choice_Version : PublishedVersions_grid
-Checklist_Choice "0..*" --> "0..1" Color : BackgroundColor
-Checklist_Choice "0..*" --> "0..1" Color : TextColor
-Checklist_Question_Choice "0..*" --> "0..1" Color : BackgroundColor
-Checklist_Question_Choice "0..*" --> "0..1" Color : TextColor
-Checklist_Question_Choice_Version "0..*" --> "0..1" Color : BackgroundColor
-Checklist_Question_Choice_Version "0..*" --> "0..1" Color : TextColor
-Abstract_Supplier_Task <|-- Supplier_Survey
-Survey_Campaign "0..*" --> "1" Checklist : Checklist
-Survey_Campaign "0..*" --> "0..1" Survey_Recurrence_Definition : Frequency_required_when_Recurring
-Survey_Campaign "0..*" --> "0..1" Supplier_Management_Role : EscalationRole
-Survey_Campaign "1" --> "0..*" Campaign_Audience_Rule : AudienceRules_grid
-Survey_Campaign "1" --> "0..*" Campaign_Run : CampaignRuns_grid
-Campaign_Audience_Rule "0..*" --> "1" Survey_Campaign : Campaign
-Campaign_Audience_Rule "0..*" --> "0..1" Supplier_Status : SupplierStatusValue
-Campaign_Run "0..*" --> "1" Survey_Campaign : Campaign
-Campaign_Run "0..*" --> "1" Checklist_Version : ChecklistVersion
-Campaign_Run "1" --> "0..*" Campaign_Audience_Entry : CampaignAudienceEntries_grid
-Campaign_Audience_Entry "0..*" --> "1" Campaign_Run : CampaignRun
-Campaign_Audience_Entry "0..*" --> "1" Supplier_Abstract : Supplier
-Campaign_Audience_Entry "0..*" --> "0..1" Supplier_Parent_Company : ParentCompany
-Campaign_Audience_Entry "0..*" --> "0..1" Supplier_Category : SupplierCategory
-Campaign_Audience_Entry "0..*" --> "0..1" Supplier_Type : SupplierType
-Campaign_Audience_Entry "0..*" --> "0..1" Facility_Type : FacilityType
-Campaign_Audience_Entry "0..*" --> "0..1" Supplier_Status : SupplierStatus
-Campaign_Audience_Entry "0..*" --> "1" Selection_Outcome : SelectionOutcome
-Campaign_Audience_Entry "0..*" --> "0..1" Selection_Outcome : OverrideSelectionOutcome
-Campaign_Audience_Entry "0..*" --> "1" Selection_Outcome : SelectionOutcomeCalculated
-Supplier_Survey "0..1" --> "1" Campaign_Audience_Entry : AudienceEntry
-Supplier_Survey "0..*" --> "1" Campaign_Run : CampaignRun
-Supplier_Survey "0..*" --> "0..1" Supplier_Contact : RespondingContact
-Abstract_Supplier_Task "0..*" --> "0..1" Checklist_Version : ChecklistVersion
-Supplier_Question_Answer "0..*" --> "1" Abstract_Supplier_Task : WorkItem
-Supplier_Question_Answer "0..*" --> "1" Checklist_Question_Version : QuestionVersion
-Supplier_Question_Answer "0..*" --> "0..1" Checklist_Question_Choice_Version : Answer - Choice
-Supplier_Question_Answer "0..*" --> "0..*" Checklist_Question_Choice_Version : Answer - Choices
-```
-
-The earlier operational name `Supplier Survey Request` is replaced by `Supplier Survey`. Its common work-item fields move to the abstract parent. Supplier Surveys and templated Supplier Tasks share the neutral Checklist configuration and answer families. Survey-specific campaign relationships and submission/profile-confirmation fields remain on the concrete survey child. Approved profile changes are written directly to their owning audited records rather than staged in survey-specific proposal objects.
-
 ## 6. Object inventory
 
 | Object | Kind | Parent | Responsibility | Classification |
 |---|---|---|---|---|
-| Abstract Supplier Task | Abstract record | None | Shared supplier work-item identity, scope, ownership, dates, workflow, security, source, exception, and completion contract | Required/Proposed |
+| Abstract Supplier Task | Abstract record | None | Reusable supplier-task identity, scope, ownership, dates, security, checklist, and completion contract | Required/Proposed |
 | Supplier Task | Record | Abstract Supplier Task | Targeted and recurring supplier obligations with note, file, or checklist completion | Required/Proposed |
-| Supplier Survey | Record | Abstract Supplier Task | Campaign-generated checklist request and profile-confirmation work | Required/Proposed |
-| Supplier Task Template | Configuration | None | Stable administrative identity for reusable targeted-task configuration | Proposed |
-| Supplier Task Template Version | Configuration | Supplier Task Template relationship | Immutable published task controls and routing defaults | Proposed |
-| Checklist, Checklist Version, Checklist Question, Checklist Question Version, Checklist Choice List, Checklist Choice, Checklist Question Choice, and Checklist Question Choice Version | Shared configuration family | Relationships defined in Supplier Surveys specification | Governed authoring records, reusable choice libraries, generated question choices, and immutable published question/choice snapshots used by both Supplier Survey and templated Supplier Task | Existing target revised/shared |
-| Supplier Task Obligation | System-managed operational configuration | None | Supplier-scoped series controller created from the initial Supplier Task and used to generate later occurrences | Required/Proposed |
-| Supplier Profile Task Assignment | Configuration child | Supplier Profile Template relationship | Selects a stable task template whose most recent current published version is resolved during supplier creation | Required/Proposed |
-| Supplier Question Answer | Shared operational child | Abstract Supplier Task relationship | Typed answer to one shared Checklist Question Version for either Supplier Task or Supplier Survey, including single- and multiple-choice relationships | Proposed |
-| Supplier Task Event | Operational child | Abstract Supplier Task relationship | Append-only shared action, delivery, due-date, exception, and state evidence | Proposed |
-| Supplier Task Reminder Rule | Configuration child | Supplier Task Template Version relationship | Finite reminder/escalation schedule for Supplier Tasks | Proposed |
-| Survey Campaign, Survey Recurrence Definition, Campaign Run, Campaign Audience Entry, and Selection Outcome | Configuration/operational | Existing survey target model | Audience selection, governed recurring frequency, helper-driven launch snapshot, run workflow, effective selection outcomes/overrides, and issuance evidence | Existing target dependency revised by ST-032 |
+| Task Schedule Type | Configuration | None | Governed active catalogue selected by Supplier Task.Schedule Type | Required/Proposed |
+| Recurrence Definition | Shared configuration | None | Governed schedule definitions reused by Supplier Tasks and Survey Campaigns, including a task-obligation-only One Time record | Required/Proposed; authoritative field list in Supplier Surveys specification |
+| Supplier Task Template | Configuration | None | Editable authoring record for reusable targeted-task configuration, with an inverse Versions grid | Required/Proposed |
+| Supplier Task Template Version | Configuration | Supplier Task Template relationship | Immutable published snapshot of task controls, routing defaults, and selected stable Checklist | Required/Proposed |
+| Checklist, Checklist Version, Checklist Question, Checklist Question Version, Checklist Choice List, Checklist Choice, Checklist Question Choice, and Checklist Question Choice Version | Shared configuration family | Relationships defined in Supplier Surveys specification | Governed authoring records, reusable choice libraries, generated question choices, and immutable published question/choice snapshots consumed by templated Supplier Tasks | Existing target revised/shared |
+| Supplier Task Obligation | System-managed operational configuration | None | Supplier-scoped obligation created for every initial Supplier Task; One Time obligations retain grouping/history only, while recurring obligations generate later occurrences | Required/Proposed |
+| Supplier Profile Task Assignment | Configuration child | Supplier Profile Template relationship | Applies a stable task template to every supplier entity using the related Supplier Profile Template; generation resolves its Publish-created version with the greatest Version Number | Required/Proposed |
+| Supplier Question Answer | Operational child | Abstract Supplier Task relationship | Typed Supplier Task answer to one Checklist Question Version, including single- and multiple-choice relationships | Proposed |
 
 ## 7. Field specifications
 
 ### 7.1 Abstract Supplier Task
 
-These fields are declared once on the abstract parent and inherited by both concrete descendants.
+These fields are declared once on the abstract parent and inherited by Supplier Task. The Supplier Surveys specification governs any separate reuse by Supplier Survey.
 
 | Field | Type | Required | Default/source | Editability and behavior | Classification |
 |---|---|---:|---|---|---|
@@ -479,148 +341,139 @@ These fields are declared once on the abstract parent and inherited by both conc
 | Name | Text, maximum 255 | Yes | Generated or entered before issue | Read only after issue; display field | Proposed |
 | Supplier | M:1 Supplier Abstract | Yes | Creator/generator | Immutable after workflow starts; exact company or facility security anchor | Required/Proposed |
 | Assigned Role | M:1 Supplier Specific Role | Conditional | Resolved for exact Supplier and configured external library role | Required before issue; live group membership controls supplier action eligibility | Required/Proposed |
-| Review Role | M:1 Supplier Specific Role | Conditional | Resolved for exact Supplier and configured internal library role | Used only by Supplier Task; required before submission when Supplier Task.Review Required? is Yes; null and unused for Supplier Survey | Required/Proposed |
-| Internal Owner | M:1 Employee | Yes | Template, campaign, source process, or creator | Owns applicable Supplier Task Draft/Preparing/Exception administration and may perform authorized Supplier Survey administrative actions, but does not replace Assigned Role as responsible person for Supplier Survey.Open; must be an active authorized internal user | Proposed |
-| Visibility Classification | M:1 shared visibility classification | Conditional | Configuration/source context | Required where security matrix applies; may change without changing workflow state or owner | Required/Proposed; physical target unresolved |
-| Origin Type | Choice | Yes | Manual Targeted, Template, Onboarding, Recurring Obligation, Campaign, Source Process | Read only after issue | Proposed |
-| Origin Display | Text, maximum 255 | No | Generator | Frozen readable source label | Proposed |
-| Source Application | Text/controlled choice | No | Generator | Identifies originating application; not an executable object name | Proposed |
-| Source Record Key | Text | No | Generator | Stable source identifier when a typed relationship is unavailable | Proposed |
-| Source Record URL | URL | No | Generator | Authorized drill-through; never grants access | Proposed |
-| Instructions Snapshot | Long text | Yes | Template/campaign/manual configuration | Frozen at issue; plain-language instructions actually shown | Required/Proposed |
-| Configuration Snapshot | Structured long text | Yes | Generator | Canonical non-executable snapshot of routing, completion, review, reminders, classification, and configuration identifiers | Required/Proposed |
-| Checklist Version | M:1 shared Checklist Version | Conditional | Template Version or Campaign Run | Inherited by both descendants; required for Supplier Survey and templated checklist tasks, otherwise null; frozen at issue | Required/Proposed |
-| Snapshot Schema Version | Positive integer | Yes | `1` | Read only | Proposed |
-| State | Workflow-backed display | Yes | Child workflow | Never independently editable | Proposed |
+| Review Role | M:1 Supplier Specific Role | Conditional | Resolved for exact Supplier and configured internal library role | Required before submission when Supplier Task.Review Required? is Yes | Required/Proposed |
+| Internal Owner | M:1 Employee | Yes | Template, generator, or creator | Owns Supplier Task Draft/Preparing/Exception administration; must be an active authorized internal user | Proposed |
+| Visibility Classification | M:1 shared visibility classification | Conditional | Template or manual configuration | Required where security matrix applies; may change without changing workflow stage or owner | Required/Proposed; physical target unresolved |
+| Instructions Snapshot | Long text | Yes | Template or manual configuration | Frozen at issue; plain-language instructions actually shown | Required/Proposed |
+| Checklist Version | M:1 shared Checklist Version | Conditional | Resolved from Template Version.Checklist when the task is generated | Require exactly one Active? = TRUE version for the selected Checklist; store that version on the task and never recalculate it; null for non-checklist tasks | Required/Proposed |
 | Issued At | Datetime | Conditional | Server time on successful issue | Read only | Proposed |
-| Original Due At | Datetime | Conditional | Calculated on first issue | Read only and never overwritten | Proposed |
-| Due At | Datetime | Conditional | First issue or authorized extension | Drives Assigned-stage due date; null only where approved configuration permits no due date | Required/Proposed |
-| Schedule Generation | Positive integer | Yes | `1` | Increment on each authorized due-date change so obsolete reminders cannot fire | Proposed |
-| Last Submitted At | Datetime | No | Server time on supplier submission | Read only | Proposed |
-| Completed At | Datetime | No | Server time on terminal completion | Read only | Proposed |
+| Original Due Date | Date | Conditional | Calculated on first issue | Read only and never overwritten | Required/Proposed |
+| Due Date | Date | Conditional | First issue or authorized extension | Drives Assigned-stage due date; null only where approved configuration permits no due date | Required/Proposed |
+| Date / Time Submitted | Datetime with timezone enabled | No | Server date/time on supplier submission | Read only | Required/Proposed |
+| Date / Time Completed | Datetime with timezone enabled | No | Server date/time on terminal completion | Read only | Required/Proposed |
 | Completed By | M:1 Employee | No | Authenticated action actor or automation identity | Read only | Proposed |
-| Exception Resume State | Choice | No | Automation | Used only by Supplier Task and required there in Exception; always null for Supplier Survey, which has no Exception stage | Proposed |
-| Exception Reason | Long text | No | Automation/internal owner | Used only by Supplier Task workflow exceptions; Supplier Survey pre-Open failures remain Campaign Run Issuing-batch evidence and do not populate this field | Proposed |
-| Closure Reason | Long text | Conditional | Authorized actor | Required for Supplier Task cancellation, withdrawal, and no-response closure; for Supplier Survey, populated from the Cancel Campaign reason or retry-safe pre-Open cleanup reason | Proposed |
-| Workflow | M:1 Workflow Instance | No | Platform | Platform-managed workflow relationship | Proposed |
+| Closure Reason | Long text | Conditional | Authorized actor | Required for Supplier Task cancellation, withdrawal, and no-response closure | Proposed |
 
-`Assigned Role` and `Review Role` point to operational Supplier Specific Roles, not library roles and not copied member lists. Review Role is a Supplier Task workflow feature and is not used by Supplier Survey. The corresponding library-role identifiers are retained in `Configuration Snapshot` for traceability.
+`Assigned Role` and `Review Role` point to operational Supplier Specific Roles, not library roles and not copied member lists. Workflow identity and current stage are platform-managed and are not duplicated as custom `Workflow` or `State` fields.
 
 ### 7.2 Supplier Task
 
 | Field | Type | Required | Default/source | Behavior | Classification |
 |---|---|---:|---|---|---|
 | Template Version | M:1 Supplier Task Template Version | No | Creator/generator | Required for templated work; null permitted for controlled ad hoc work | Required/Proposed |
-| Obligation | M:1 Supplier Task Obligation | No | System created from the initial recurring task or copied by the recurrence generator | Required for every recurring-series occurrence; read only to the setup user | Required/Proposed |
+| Obligation | M:1 Supplier Task Obligation | Yes after Create | Initial-save Action Handler creates and links one when this field is null; recurrence generator copies the existing Obligation to later occurrences | Required after the create handler completes for every Supplier Task; read only; generated recurring occurrences do not create another Obligation | Required/Proposed |
 | Profile Task Assignment | M:1 Supplier Profile Task Assignment | No | Supplier creation generator | Identifies onboarding origin | Proposed |
-| Part | M:1 canonical Part | No | Creator/source process | Optional business context; exact target object supplied by Product Management design | Required/Proposed |
-| Drawing | M:1 drawing/revision context | No | Creator/source process | Allowed only when Part is populated and the drawing belongs to that part; exact target object unresolved | Required/Proposed |
-| Period Start / Period End | Date each | No | Obligation generator | Required as a pair for period-based obligations; end cannot precede start | Proposed |
-| Schedule Type | Choice | Yes | User selection on initial task; copied on generated occurrences | One Time or Recurring; Recurring is editable only during initial setup | Required/Proposed |
-| Recurrence Definition | Governed frequency | Conditional | User selection on initial recurring task | Required when Schedule Type is Recurring; copied to the system-created obligation and read only after issue | Required/Proposed |
-| Recurrence End At | Datetime | No | User selection on initial recurring task | Optional series boundary; copied to obligation | Proposed |
-| Occurrence Number | Positive integer | Yes | `1` on initial task; system sequence thereafter | Read only | Proposed |
-| Note Required? | Yes/No | Yes | Template/ad hoc configuration | Frozen at issue | Required/Proposed |
-| File Upload Required? | Yes/No | Yes | Template/ad hoc configuration | Frozen at issue; when Yes, at least one native file must exist at submission | Required/Proposed |
-| Review Required? | Yes/No | Yes | Template/ad hoc configuration | Frozen at issue; if Yes, Review Role is mandatory before submission | Required/Proposed |
+| Part | M:1 canonical Part | No | Creator or authorized automation | Optional business context; exact target object supplied by Product Management design | Required/Proposed |
+| Drawing | M:1 drawing/revision context | No | Creator or authorized automation | Allowed only when Part is populated and the drawing belongs to that part; exact target object unresolved | Required/Proposed |
+| Schedule Type | M:1 Task Schedule Type | Yes | User selection on initial task; copied on generated occurrences | Select active records in Sort order; the `Recurring` record enables recurrence fields; read only after issue | Required/Proposed |
+| Recurrence Definition | M:1 Recurrence Definition | Conditional | User selection on initial recurring task | Required when Schedule Type.Name = `Recurring`; selectable records must have Active? = TRUE and Name must not equal `One Time`; copied to the system-created obligation and read only after issue | Required/Proposed |
+| Recurrence End On | Date | No | User selection on initial recurring task | Optional series boundary; copied to obligation | Proposed |
+| Note Required? | Yes/No | Yes | Default expression: `[Template Version].[Note Required?]` when Template Version is populated; otherwise user entry | Read only when Template Version is populated; user editable during ad hoc task setup when Template Version is null; frozen at issue | Required/Proposed |
+| File Upload Required? | Yes/No | Yes | Default expression: `[Template Version].[File Upload Required?]` when Template Version is populated; otherwise user entry | Read only when Template Version is populated; user editable during ad hoc task setup when Template Version is null; frozen at issue; when TRUE, at least one native file must exist at submission | Required/Proposed |
+| Review Required? | Yes/No | Yes | Default expression: `[Template Version].[Review Required?]` when Template Version is populated; otherwise user entry | Read only when Template Version is populated; user editable during ad hoc task setup when Template Version is null; frozen at issue; if TRUE, Review Role is mandatory before submission | Required/Proposed |
 | Completion Note | Long text | Conditional | Supplier actor | Required at submission when Note Required is Yes; supplier editable only in Assigned | Required/Proposed |
 | Submitted File Count | Calculated number | Yes | Native attachment query | Read only; used for submission validation | Proposed |
 | Review Comments | Long text | No | Reviewer | Required on Return; optional on Approve | Proposed |
 
-An ad hoc Supplier Task may use any combination of the note and file-upload controls. If no Template Version is selected, the Checklist Version field is hidden, cleared, and unavailable. A checklist may be used only when it is supplied by the selected Template Version; users cannot select a separate checklist or create checklist questions directly on a live task. At least one completion control must be enabled before issue.
+When Template Version is populated, Note Required?, File Upload Required?, and Review Required? default from the corresponding Template Version fields and are read only. When Template Version is null, those three fields accept user entry during task setup. An ad hoc Supplier Task may use any combination of the note and file-upload controls. If no Template Version is selected, Checklist Version is hidden, cleared, and unavailable. A checklist may be used only when the selected Template Version supplies a Checklist; users cannot select a separate Checklist or Checklist Version or create checklist questions directly on a live task. Task generation resolves the selected Checklist's single current Active? = TRUE Checklist Version and freezes it on the task. At least one completion control must be enabled before issue.
 
-The initial Supplier Task is also the setup form for recurrence. Selecting Recurring reveals the recurrence fields. Successful issue creates and links the Supplier Task Obligation automatically and records the initial Supplier Task as occurrence 1. Generated later occurrences display the recurrence and obligation fields as read only.
+In this specification, the selected Template Version is the related Task Template configuration available on the live task. Because the corresponding control fields are versioned, the default expressions reference Template Version rather than the stable Supplier Task Template parent.
 
-### 7.3 Supplier Survey
+The initial Supplier Task is also the setup form for its Obligation and any recurrence. On initial save, when Obligation is null, the create Action Handler creates and links exactly one Supplier Task Obligation and sets that Obligation's Initial Task to the saved Supplier Task. Selecting the active Task Schedule Type named `Recurring` reveals Recurrence Definition and the optional end boundary; selecting `One Time` keeps those task fields hidden while the handler assigns the shared Recurrence Definition named `One Time` to the Obligation. Generated later occurrences receive the existing Obligation during creation and do not trigger a new Obligation. Schedule, recurrence, and Obligation fields are read only after issue.
 
-| Field | Type | Required | Default/source | Behavior | Classification |
-|---|---|---:|---|---|---|
-| Audience Entry | M:1 Campaign Audience Entry | Yes | Campaign issuance | Unique; at most one Supplier Survey per included entry | Required/Proposed |
-| Campaign Run | M:1 Campaign Run | Yes | Audience Entry.Campaign Run | Immutable and must equal Audience Entry.Campaign Run | Required/Proposed |
-| Supplier Profile Change Enabled Snapshot | Yes/No | Yes | Campaign snapshot | Immutable; when TRUE, expose governed direct-edit controls for approved profile fields and relationships | Required/Proposed |
-| Responding Contact | M:1 Supplier Contact | Conditional | Authenticated submitter's authorized supplier contact | Set at Submit and read only afterward | Required/Proposed |
-| Profile Confirmed? | Nullable Yes/No | Conditional | Supplier submitter | Must equal TRUE at Submit when Supplier Profile Change Enabled Snapshot = TRUE; frozen at completion | Required/Proposed |
-| Profile Confirmed At | Datetime | Conditional | Server timestamp | Set with affirmative confirmation and frozen at completion | Required/Proposed |
-| Declaration | Long text | Conditional | Campaign/form confirmation text | Copied at Submit and frozen at completion | Required/Proposed |
+### 7.3 Task Schedule Type
 
-Supplier, roles, owner, classification, dates, state, workflow, exception, and closure fields are inherited and must not be redeclared on Supplier Survey.
+| Field | Type | Required | Default / behavior | Classification |
+|---|---|---:|---|---|
+| Name | Text, maximum 255 | Yes | Display field; unique | Required/Proposed |
+| Active? | Yes/No | Yes | Default Yes; inactive records remain available to history but cannot be newly selected | Required/Proposed |
+| Sort | Float | Yes | Controls dropdown order; lower values appear first | Required/Proposed |
+
+Seed active records `One Time` with Sort `1.0` and `Recurring` with Sort `2.0`. Recurrence fields appear only when Schedule Type.Name = `Recurring`.
 
 ### 7.4 Supplier Task Template
 
-| Field | Type | Required | Additional Config |
-|---|---|---:|---|
-| Name | Text | Y | maximum 255<br />display field |
-| Description | Text | N |  |
-| Active? | Yes/No | N | Default: `Yes`<br />view settings: checkbox |
-| Reporting Classification | Lookup | Y | Cross-template reporting category; final catalogue TBD |
-| Owner | M:1 Employee | Y |  |
-| [Helper] Current Version | Number | N | Default: `0` |
+| Field | Type | Required | Additional Config | Behavior |
+|---|---|---:|---|---|
+| Name | Text | Y | Maximum 255; display field | Must be unique |
+| Description | Text | N |  | Administrative description |
+| Active? | Yes/No | N | Default: `Yes`; view settings: checkbox | Inactive templates cannot be selected for new assignments or manual tasks; history remains available |
+| Versions | 1:M relationship grid to Supplier Task Template Version | N | Inverse of Supplier Task Template Version.Template | Read-only relationship grid showing every Publish-created version |
+| Instructions | Text | Y |  | Editable authoring value copied on Publish |
+| Assigned Role | M:1 Supplier Management Role | Y |  | Must be an active standard external role; copied on Publish |
+| Review Required? | Yes/No | N | Default: `No`; view settings: checkbox | Editable authoring value copied on Publish |
+| Review Role | M:1 Supplier Management Role | N | Shown and mandatory if Review Required? = TRUE; otherwise hidden, non-mandatory, and cleared | Copied on Publish |
+| Internal Owner | M:1 Subject | Y |  | Editable authoring value copied on Publish |
+| Default Response Days | Number | N |  | Must be positive when populated; copied on Publish |
+| Note Required? | Yes/No | N | Default: `No`; view settings: checkbox | Editable authoring value copied on Publish |
+| File Upload Required? | Yes/No | N | Default: `No`; view settings: checkbox | Editable authoring value copied on Publish |
+| Checklist | M:1 shared Checklist | N | Select the stable Checklist authoring record | Copied on Publish; each generated task resolves the Checklist's current Active? = TRUE Checklist Version |
+| Visibility Classification | M:1 Visibility Classification | N |  | Editable authoring value copied on Publish |
+| Business Hierarchy | M:1 Business Hierarchy | N |  | Editable authoring value copied on Publish |
 
 **Business Rules**
 
 - Name must be unique
+
+The Template is the editable authoring record. It intentionally carries every field declared on Supplier Task Template Version except the child-side `Template` relationship and system-assigned `Version Number`. `Reporting Classification` and `Owner` are not configured on Supplier Task Template.
 
 ### 7.5 Supplier Task Template Version
 
 | Field | Type | Required | Additional Config | Behavior |
 |---|---|---:|---|---|
 | Template | M:1 Supplier Task Template | Y | Read-Only after Create |  |
-| Version Number | Number | Y | read-only |  |
-| State | Lookup | Y | Default: `Draft`<br />Lookup Values:  Draft, Published, Retired |  |
-| Instructions | Text | Y |  |  |
-| Assigned Role | M:1 Supplier Management Role | Y |  | Must be an active standard external role |
-| Review Required? | Yes/No | N | Default: `No`<br />view settings: checkbox |  |
-| Review Role | M:1 Supplier Management Role | N | view action: shown and mandatory if Review Required?=TRUE, otherwise hide, non-mandatory and clear field |  |
-| Internal Owner | M:1 Subject | Y |  |  |
-| Default Response Days | Number | N |  |  |
-| Note Required? | Yes/No | N | Default: `No`<br />view settings: checkbox |  |
-| File Upload Required? | Yes/No | N | Default: `No`<br />view settings: checkbox |  |
-| Checklist Version | M:1 shared Checklist Version | N | TBD |  |
-| Visibility Classification | M:1 Visibility Classification | N |  |  |
-| Business Hierarchy | M:1 Business Hierarchy | N |  |  |
+| Version Number | Number | Y | Action Handler calculation: `IF(ISNULL(MAX([Template].[Versions].[Version Number])), 1, MAX([Template].[Versions].[Version Number]) + 1)` | Set automatically during Publish; read only and immutable after Create |
+| Instructions | Text | Y | Default expression: `[Template].[Instructions]` | Read only after Create |
+| Assigned Role | M:1 Supplier Management Role | Y | Default expression: `[Template].[Assigned Role]` | Must be an active standard external role; read only after Create |
+| Review Required? | Yes/No | N | Default expression: `[Template].[Review Required?]`; view settings: checkbox | Read only after Create |
+| Review Role | M:1 Supplier Management Role | N | Default expression: `[Template].[Review Role]` | Required if Review Required? = TRUE; otherwise null; read only after Create |
+| Internal Owner | M:1 Subject | Y | Default expression: `[Template].[Internal Owner]` | Read only after Create |
+| Default Response Days | Number | N | Default expression: `[Template].[Default Response Days]` | Read only after Create |
+| Note Required? | Yes/No | N | Default expression: `[Template].[Note Required?]`; view settings: checkbox | Read only after Create |
+| File Upload Required? | Yes/No | N | Default expression: `[Template].[File Upload Required?]`; view settings: checkbox | Read only after Create |
+| Checklist | M:1 shared Checklist | N | Default expression: `[Template].[Checklist]` | Stable Checklist reference; read only after Create |
+| Visibility Classification | M:1 Visibility Classification | N | Default expression: `[Template].[Visibility Classification]` | Read only after Create |
+| Business Hierarchy | M:1 Business Hierarchy | N | Default expression: `[Template].[Business Hierarchy]` | Read only after Create |
 
 **Business Rules**
 
-- Version Number must be unique
+- Version Number must be unique within Template
 - Default Response Days must be positive
 
 **Action Handlers**
 
-- On Create, increment Template's version number helper by 1, then set the Version Number to the helper. E.g. helper starts at 0, we do helper = helper + 1 = 1 and the current version number is 1.
+- Publish creates the Supplier Task Template Version from the selected Template. After setting Template and before saving the new Version, the Action Handler calculates Version Number as `IF(ISNULL(MAX([Template].[Versions].[Version Number])), 1, MAX([Template].[Versions].[Version Number]) + 1)` and populates every configuration field through the documented `[Template]` default-value expression. The calculation and child creation must execute atomically for that Template so concurrent Publish requests cannot receive the same Version Number. A retry must return or complete the already-created Version rather than allocate another number.
 
-Publishing validates all conditional fields, role classifications, that any selected Checklist Version is Active? = TRUE, at least one enabled completion control, title tokens, due-date rule, and reminder rules. Published versions are immutable. Changes require a new version.
+Publishing validates all conditional fields, role classifications, that any selected Checklist has exactly one Active? = TRUE Checklist Version, at least one enabled completion control, title tokens, and the due-date rule. Supplier Task Template Version records are created only by this Publish action and are immutable; there is no State field. Changes are made on Supplier Task Template and require publishing a new version. Reminders are configured through native Intelex platform functionality rather than a related business object.
 
-At least one of Note Required, File Upload Required, or Checklist Version must be enabled
+At least one of Note Required, File Upload Required, or Checklist must be enabled.
 
 ### 7.6 Shared Checklist configuration
 
-Supplier Tasks do not define an independent checklist catalogue. They consume the shared `Checklist`, `Checklist Version`, `Checklist Question`, `Checklist Question Version`, `Checklist Choice List`, `Checklist Choice`, `Checklist Question Choice`, and `Checklist Question Choice Version` objects specified in [Supplier Surveys technical specification](supplier-surveys-technical-specification.md). `Checklist` exposes inverse 1:M grids to its Checklist Versions and Checklist Questions; Checklist Version and Checklist Question each expose an inverse 1:M grid to Checklist Question Versions. Checklist Question also exposes its generated Checklist Question Choices. The child-side M:1 fields implement those grids. `Guidance` is the configured explanatory-text field. Choice/Choices questions require a Choice List on both the authoring Question and its mirrored Question Version. Initial question save copies every source Checklist Choice into a Checklist Question Choice; the Choice List remains locked until all generated rows are manually deleted. Choice metadata includes not-applicable, points, calculated max points, weight, and existing Color references. Publish creates the next Checklist Version, defaults each Checklist Question Version from its Checklist Question, and creates one immutable Checklist Question Choice Version from every current Checklist Question Choice for the corresponding Question Version. Supplier answers select these published choice instances. A Supplier Task Template Version may select one Active? = TRUE published Checklist Version; that reference is copied to each generated Supplier Task and frozen at issue.
+Supplier Tasks do not define an independent checklist catalogue. They consume the shared `Checklist`, `Checklist Version`, `Checklist Question`, `Checklist Question Version`, `Checklist Choice List`, `Checklist Choice`, `Checklist Question Choice`, and `Checklist Question Choice Version` objects specified in [Supplier Surveys technical specification](supplier-surveys-technical-specification.md). `Checklist` exposes inverse 1:M grids to its Checklist Versions and Checklist Questions; Checklist Version and Checklist Question each expose an inverse 1:M grid to Checklist Question Versions. Checklist Question also exposes its generated Checklist Question Choices. The child-side M:1 fields implement those grids. `Guidance` is the configured explanatory-text field. Choice/Choices questions require a Choice List on both the authoring Question and its mirrored Question Version. Initial question save copies every source Checklist Choice into a Checklist Question Choice; the Choice List remains locked until all generated rows are manually deleted. Choice metadata includes not-applicable, points, calculated max points, weight, and existing Color references. Publish creates the next Checklist Version, defaults each Checklist Question Version from its Checklist Question, and creates one immutable Checklist Question Choice Version from every current Checklist Question Choice for the corresponding Question Version. Supplier answers select these published choice instances. Supplier Task Template and Supplier Task Template Version select the stable Checklist. When a Supplier Task is generated, automation resolves that Checklist's single current Active? = TRUE Checklist Version, stores it on the task, and never changes that stored version. A later Checklist publication therefore applies to later generated tasks without changing existing tasks or requiring a new Task Template Version.
 
-Survey Campaign uses an M:1 Checklist dropdown rather than a Checklist Version field. Campaign Run preparation resolves that Checklist's single Active? = TRUE Checklist Version, stores it as Checklist Version, and preserves it for all generated Supplier Surveys and retries. Campaign Run uses a calculated Display Field, timezone-aware Start Date / Time, a stored helper-driven Configuration Snapshot rendered as HTML with literal `<br>` line breaks and HTML-encoded interpolated values, workflow stages rather than a State field, and an inverse Campaign Audience Entries grid. Its only stages are Preparing, Ready, Issuing, and Open; Campaign Run.Owner is the responsible person throughout all four stages. Closed and Cancelled are termination states and there is no Exception stage. After completing all preparation logic, Survey Preparation Complete transitions directly to Issuing when Start Date / Time is not future or to Ready when it is future. Every 15 minutes, an Event Service invokes the hidden Issue Supplier Surveys action for Ready records; the action throws an error while Start Date / Time is future and otherwise transitions to Issuing. A separate batch process selects only Issuing records and performs all Supplier Survey issuance logic before invoking hidden Move to Open, which contains no logic beyond the Open transition. Each Supplier Survey enters its sole Open stage only after routing/security validation succeeds; current eligible Assigned Role members own Open, while Completed and Cancelled are its only termination states. Cancelling an Open Campaign Run first cancels every related Open Supplier Survey; Completed and already-Cancelled Supplier Surveys remain unchanged, and the run terminates only after the cascade succeeds. Campaign Audience Entry has separate Campaign Run and Supplier fields, immutable create-time defaults for Type of Supplier Entity, Parent Company, Supplier Category, Supplier Type, Facility Type, and Supplier Status, and governed base, override, and effective Selection Outcome fields. Audience Rule Match? is its only rule-evaluation helper: TRUE resolves Included and writes Selection Reason `Included`; FALSE resolves Excluded and leaves Selection Reason null. Override formulas use `ISNULL`. Campaign Escalation Role remains available, but the campaign Review Role and Profile Change Policy are removed. When Schedule Mode is Recurring, the campaign also requires an M:1 Frequency relationship to an active Survey Recurrence Definition; Frequency is hidden and cleared for Manual or Once. Survey Campaign exposes inverse 1:M Survey Campaign Audience Rules and Campaign Runs grids backed by the existing child Campaign fields. Supplier Status is a typed Audience Rule attribute and replaces the removed Survey Status Eligibility object; no status rule means status does not filter that campaign, and post-issue status changes have no automatic workflow effect. The recurrence catalogue, helpers, grids, property snapshots, selection calculations, direct profile-maintenance behavior, audience-rule fields, and their authoritative definitions are defined by the Supplier Surveys specification.
-
-The shared answer model does not combine the two work-item workflows. Supplier Survey stores submission and profile-confirmation evidence directly and uses inherited submission/completion metadata. Both concrete work-item types store typed question responses in `Supplier Question Answer` as specified in §7.9; Supplier Survey always uses response iteration 1.
+The Supplier Surveys technical specification remains authoritative for the shared Checklist object's authoring/publishing behavior and for any survey-specific use of that configuration. This specification defines how Supplier Task Template and Supplier Task Template Version reference Checklist, how Supplier Task resolves and freezes the active Checklist Version, and how Supplier Question Answer consumes its published question and choice records.
 
 ### 7.7 Supplier Task Obligation
 
 | Field | Type | Required | Behavior | Classification |
 |---|---|---:|---|---|
 | Name | Text | Yes | Generated from the initial task; display field | Proposed |
-| Initial Task | M:1 Supplier Task | Yes | The user-created or automatically generated occurrence 1; unique and immutable | Required/Proposed |
+| Initial Task | M:1 Supplier Task | Yes | Set by the Action Handler that creates the Obligation on initial save of the first Task; unique and immutable | Required/Proposed |
 | Supplier | M:1 Supplier Abstract | Yes | Exact company or facility | Required/Proposed |
-| Template Version | M:1 Supplier Task Template Version | No | Copied from Initial Task when present; null for untemplated recurring work | Required/Proposed |
+| Template Version | M:1 Supplier Task Template Version | No | Copied from Initial Task when present; null for untemplated work | Required/Proposed |
 | Assigned Role Override | M:1 Supplier Specific Role | No | Must belong to exact Supplier and match required external classification | Proposed |
 | Review Role Override | M:1 Supplier Specific Role | No | Must belong to exact Supplier and be internal | Proposed |
 | Part / Drawing | References | No | Same integrity rules as Supplier Task | Required/Proposed |
-| Recurrence Definition | Governed frequency | Yes | Copied from Initial Task; mapped to supported scheduler | Required/Proposed |
-| Schedule Anchor | Datetime with timezone | Yes | Derived from the initial task's issue/period context | Required/Proposed |
+| Recurrence Definition | M:1 Recurrence Definition | Yes | If Initial Task.Schedule Type.Name = `One Time`, set to the active shared record named `One Time`; otherwise copy Initial Task.Recurrence Definition. The scheduler does not interpret the One Time frequency as a recurring expression | Required/Proposed |
+| Schedule Anchor | Datetime with timezone | Conditional | Derived from the initial task's issue and recurrence configuration; required before scheduling a recurring Obligation and may be null for One Time | Required/Proposed |
 | Response Days Override | Positive integer | No | Overrides template for future occurrences | Proposed |
 | Effective To | Datetime | No | Copied from Initial Task.Recurrence End At; bounds future generation | Proposed |
 | Active? | Yes/No | Yes | Defaults to Yes; disabling stops future occurrences only | Proposed |
-| Next Occurrence At | Datetime | No | Scheduler maintained | Proposed |
+| Next Occurrence At | Datetime | No | Calculation returns null when Recurrence Definition.Name = `One Time`; otherwise the scheduler calculates and maintains the next occurrence from Schedule Anchor and the recurrence Frequency | Required/Proposed |
 | Last Generated At | Datetime | No | Scheduler maintained | Proposed |
-| Generation Exception | Long text | No | Internal diagnostics | Proposed |
 
-Supplier Task Obligation has no ordinary end-user creation form. It is created idempotently as part of issuing the initial recurring Supplier Task. Its setup values are copied from that task. Series-management controls may be embedded on the Supplier Task page, while direct obligation access is restricted to administrators and support. Occurrence uniqueness is `(Obligation, Scheduled Occurrence)`. A retry returns the existing occurrence or completes its generation; it never creates a duplicate task.
+Supplier Task Obligation has no ordinary end-user creation form. An after-create Action Handler on Supplier Task runs on initial save when Obligation is null, creates or reuses exactly one Obligation for that initial Task, sets Obligation.Initial Task to the saved Task, copies the applicable setup values, and updates Task.Obligation. The operation is idempotent and must enforce uniqueness of Initial Task so a retry cannot create a second Obligation. A later recurring occurrence is created with the existing Obligation already populated, so the handler does not create another. One Time Obligations remain as the grouping and configuration record for their single Task, with Recurrence Definition = `One Time` and Next Occurrence At = null. Series-management controls may be embedded on the Supplier Task page, while direct obligation access is restricted to administrators and support. For recurring Obligations, occurrence uniqueness is `(Obligation, Scheduled Occurrence)`. A retry returns the existing occurrence or completes its generation; it never creates a duplicate task. Failures use native Action Handler, workflow, and execution-log evidence; no Generation Exception field is configured.
 
 ### 7.8 Supplier Profile Task Assignment
 
@@ -632,15 +485,15 @@ Supplier Task Obligation has no ordinary end-user creation form. It is created i
 | Active? | Yes/No | N | Default: `Yes`<br />view settings: checkbox |
 | Required for Completeness? | Yes/No | N | view settings: checkbox<br />Controls completeness reporting only; never supplier activation |
 | Frequency | Frequency | Y | OOTB frequency selector to set up as one-time or recurring task |
-| Applies to Entity Type | Lookup | Y | Values: Parent Company, Facility, or Both |
 
 **Business Rules**
 
-- `(Supplier Profile Template, Task Template, Applies to Entity Type)` must be unique
+- `(Supplier Profile Template, Task Template)` must be unique
+- Each active assignment applies to every Supplier Parent Company and Supplier Facility created with the related Supplier Profile Template; there is no entity-type filter.
 
-At generation time, automation resolves the selected Task Template to exactly one most recent current published Supplier Task Template Version: the eligible version with the greatest Version Number whose State is Published and whose effective interval includes the generation timestamp, treating a blank Effective From or Effective To as an unbounded endpoint. Because §7.5 permits only one current Published version per Template, zero matches or multiple matches are configuration errors and enter the recoverable generation-exception path. The resolved version is stored on the generated Supplier Task and included in its immutable configuration snapshot; the assignment continues to reference only the stable Task Template.
+At generation time, automation resolves the selected Task Template to its latest published Supplier Task Template Version: the related Version record with the greatest Version Number. Because Version records can be created only by Publish and Version Number is unique within Template, no State or effective-date filter is required. No related Version, or multiple records tied for the greatest Version Number, is a configuration error and enters the recoverable generation-exception path. The resolved version is stored on the generated Supplier Task; the assignment continues to reference only the stable Task Template.
 
-Version resolution occurs when the idempotent generation operation first creates the Supplier Task. A retry after that task exists resumes the same record and retained Template Version. A retry where no task was created resolves the most recent current published version again. Supplier creation succeeds even if task generation fails. Failures must create an internally visible generation exception with a safe retry key; they must not silently disappear.
+Version resolution occurs when the idempotent generation operation first creates the Supplier Task. A retry after that task exists resumes the same record and retained Template Version. A retry where no task was created again resolves the Publish-created version with the greatest Version Number. Supplier creation succeeds even if task generation fails. Failures must create internally visible native execution evidence with a safe retry key; they must not silently disappear.
 
 An inactive Profile Task Assignment means the task is no longer being generated for a given Supplier Profile.
 
@@ -648,9 +501,8 @@ An inactive Profile Task Assignment means the task is no longer being generated 
 
 | Object / field | Type | Required | Behavior | Classification |
 |---|---|---:|---|---|
-| Work Item | M:1 Abstract Supplier Task | Yes | Parent Supplier Task or Supplier Survey | Required/Proposed |
-| Response Iteration | Positive integer | Yes | Always `1` for Supplier Survey; for Supplier Task starts at `1` and increments when a returned submission creates a correction answer set | Proposed |
-| Question Version | M:1 Checklist Question Version | Yes | Must belong to Work Item.Checklist Version; unique with Work Item and Response Iteration | Proposed |
+| Work Item | M:1 Abstract Supplier Task | Yes | Parent work item; this specification defines Supplier Task usage and the Supplier Surveys specification defines any survey usage | Required/Proposed |
+| Question Version | M:1 Checklist Question Version | Yes | Must belong to Work Item.Checklist Version; unique with Work Item | Proposed |
 | Answer - Text | Text / long text | No | Populated only for Text questions; maximum length comes from Question Version | Required/Proposed |
 | Answer - Float | Float/decimal | No | Populated only for Float questions; `0` is valid and minimum/maximum validation applies | Required/Proposed |
 | Answer - File | File | No | Populated only for File questions; file storage, malware scanning, size, and retention use approved platform controls | Required/Proposed |
@@ -663,70 +515,31 @@ An inactive Profile Task Assignment means the task is no longer being generated 
 
 Configure one Action Handler triggered on Update. Its condition is that at least one `Answer -` field changed in the update transaction. The handler sets Responded By and Responded At together; updates limited to metadata or handler-maintained fields do not retrigger it. Confirm that changes to the M:1 Answer - Choice and M:N Answer - Choices relationships invoke the same handler in the deployed platform.
 
-Exactly one answer mechanism appropriate to the shared Question Version may be populated. A required Choice question requires `Answer - Choice`; a required Choices question requires one or more values in `Answer - Choices`. The two choice relationships are mutually exclusive. The M:N relationship uses platform relationship/map metadata and does not require a separate business answer object. The active answer set is scoped by `(Work Item, Response Iteration)`. Supplier Survey uses iteration 1 only and freezes it at completion. Supplier Task answers become immutable when the task leaves its supplier-editable stage; a review return creates a new response iteration by copying prior values so submitted evidence remains immutable and auditable.
+Exactly one answer mechanism appropriate to the shared Question Version may be populated. A required Choice question requires `Answer - Choice`; a required Choices question requires one or more values in `Answer - Choices`. The two choice relationships are mutually exclusive. The M:N relationship uses platform relationship/map metadata and does not require a separate business answer object. `(Work Item, Question Version)` is unique. Supplier Task answers are editable only in the supplier-editable stage, locked during Review and after termination, and reopened on the same records when Review returns the task. Object audit preserves the prior submitted values; no Response Iteration field or copied correction set is configured.
 
-### 7.10 Supplier Task Reminder Rule
+Supplier Task reminders and escalations use native Intelex platform functionality. No Supplier Task Reminder Rule business object is configured. Native reminder configuration must stop outside applicable open stages, recalculate after an authorized Due Date change, resolve current eligible recipients, and retain available platform delivery/audit evidence. Supplier Task actions rely on native workflow history, object audit, Action Handler/execution logs, and platform notification logs; no Supplier Task Event business object is configured.
 
-| Field | Type | Required | Behavior | Classification |
-|---|---|---:|---|---|
-| Template Version | M:1 Supplier Task Template Version | Yes | Parent | Proposed |
-| Order | Positive integer | Yes | Unique within version | Proposed |
-| Trigger | Choice | Yes | Before Due, At Due, After Due | Proposed |
-| Offset Days | Nonnegative integer | Yes | `0` for At Due | Proposed |
-| Recipient Mode | Choice | Yes | Assigned Role, Review Role, Internal Owner | Proposed |
-| Notification Template | M:1 platform notification template | Yes | Exact metadata type to verify | Proposed/Unresolved |
-| Active? | Yes/No | Yes | Yes | Proposed |
-
-Finite reminder rows are used instead of unbounded daily reminders. An authorized due-date change increments Schedule Generation and recalculates unsent reminders without deleting prior delivery evidence.
-
-### 7.11 Supplier Task Event
-
-| Field | Type | Required | Behavior | Classification |
-|---|---|---:|---|---|
-| Work Item | M:1 Abstract Supplier Task | Yes | Accepts either concrete descendant | Required/Proposed |
-| Event Type | Choice | Yes | Create, Prepare, Issue, Save, Submit, Approve, Return, Retry, Extend Due, Withdraw, Cancel, Close No Response, Notify, Exception, Complete | Proposed |
-| Occurred At | Datetime | Yes | Server time | Proposed |
-| Actor | M:1 Employee | No | Required for human action; blank for scheduler/service event | Proposed |
-| Origin | Choice | Yes | User, Scheduler, Automation | Proposed |
-| Correlation Key | Text | Yes | Idempotency token | Proposed |
-| Prior State / New State | Text each | No | Frozen workflow labels | Proposed |
-| Prior Due At / New Due At | Datetime each | No | Required for due-date change | Proposed |
-| Recipient | M:1 Employee | No | One row per notification recipient | Proposed |
-| Notification Rule Key | Text | No | Frozen rule identifier | Proposed |
-| Schedule Generation | Positive integer | No | Required for scheduled reminders | Proposed |
-| Outcome | Choice | Yes | Pending, Succeeded, Failed, Suppressed | Proposed |
-| Reason / Details | Long text / structured long text | No | Business reason and technical delivery details | Proposed |
-
-Business event records are append-only. Notification delivery outcome may be updated only by the dispatcher with platform audit enabled. Transport acceptance is not proof that a recipient read the message.
-
-### 7.12 Shared Supplier entity discriminator
-
-This shared change is declared on Supplier Abstract and inherited by both concrete Supplier descendants. It supports the Supplier Surveys audience-entry defaults and any task/survey logic that must distinguish the two supplier entity types without runtime subtype inspection.
-
-| Object | Field | Type | Required | Default / behavior | Classification |
-|---|---|---|---:|---|---|
-| Supplier Abstract | Type of Supplier Entity | Dropdown | Yes | Allowed values only: `Supplier Facility`, `Supplier Parent Company`. Supplier Facility creation sets `Supplier Facility`; Supplier Parent Company creation sets `Supplier Parent Company`. Configure those literal defaults independently on the concrete create forms or create handlers, make the inherited field read only after creation, and backfill existing records before dependent logic is enabled. | Required/Proposed shared dependency |
-
-## 8. Generation and snapshot rules
+## 8. Generation rules
 
 ### 8.1 Targeted Supplier Task
 
 1. An authorized internal user selects the exact Supplier Abstract.
-2. The user selects a published Supplier Task Template Version or creates a controlled ad hoc task.
-3. On the same Supplier Task form, the user selects One Time or Recurring. Recurring reveals the recurrence definition and optional end boundary.
-4. The user supplies any allowed part, drawing, source, due-date, routing, note, and file-upload controls. Checklist configuration appears only when the selected template supplies a checklist.
-5. The system validates supplier lifecycle eligibility, exact-supplier role resolution, portal-action eligibility, classification, completion controls, due date, template/checklist consistency, and recurrence.
-6. The system stores the canonical configuration snapshot and starts the Supplier Task workflow. Preparing automatically creates and links the obligation when the initial task is recurring.
-7. Validation failure retains Draft or enters Exception; it never creates an apparently assigned task with no eligible actor or a partially configured series.
+2. The user selects a Publish-created Supplier Task Template Version or creates a controlled ad hoc task.
+3. On the same Supplier Task form, the user selects an active Task Schedule Type. Selecting `Recurring` reveals the Recurrence Definition and optional end boundary.
+4. The user supplies any allowed part, drawing, Due Date, routing, note, and file-upload controls. Checklist configuration appears only when the selected template supplies a checklist.
+5. On initial save, the Action Handler idempotently creates and links the Supplier Task Obligation, sets Initial Task to the saved Task, and assigns either the shared `One Time` Recurrence Definition or the Task's selected recurring definition.
+6. The system validates supplier lifecycle eligibility, exact-supplier role resolution, portal-action eligibility, classification, completion controls, due date, template/checklist consistency, recurrence, and the linked Obligation. When Template Version.Checklist is populated, it must resolve to exactly one Active? = TRUE Checklist Version.
+7. The system stores the selected Template Version, the Checklist Version resolved from Template Version.Checklist, and the task-level completion controls, then starts the Supplier Task workflow. Issue finalizes recurring schedule values; it does not create the Obligation.
+8. Validation failure retains Draft or enters Exception; it never creates an apparently assigned task with no eligible actor or a partially configured series.
 
 ### 8.2 Supplier creation and onboarding
 
 After a Supplier Abstract is successfully created with a Supplier Profile Template:
 
-1. Evaluate active Supplier Profile Task Assignments for the exact entity type.
-2. For each assignment, resolve its selected Task Template to exactly one most recent current published Supplier Task Template Version using the rule in §7.8. Treat no eligible version or ambiguous eligible versions as a recoverable configuration exception.
-3. Create the initial Supplier Task using supplier-created-at as the due-date anchor, store the resolved Template Version on the task, and freeze that version's configuration and checklist in the task snapshot.
-4. When Schedule Type is Recurring, populate its recurrence setup and automatically create and link the Supplier Task Obligation as part of the same generation operation; copy the resolved Template Version from the initial task to the obligation.
+1. Evaluate every active Supplier Profile Task Assignment related to the Supplier Profile Template. Each assignment applies to the created supplier entity regardless of whether it is a Supplier Parent Company or Supplier Facility.
+2. For each assignment, resolve its selected Task Template to the single Publish-created Supplier Task Template Version with the greatest Version Number using the rule in §7.8. Treat no related version or a greatest-number tie as a recoverable configuration exception.
+3. If the resolved Template Version has a Checklist, resolve that Checklist's single current Active? = TRUE Checklist Version. Create the initial Supplier Task using the supplier-created date as the due-date anchor, store the resolved Template Version and resolved Checklist Version on the task, and default the three completion flags from the Template Version.
+4. The Supplier Task initial-save Action Handler creates and links the Obligation for both One Time and Recurring schedules. It sets Initial Task and copies the resolved Template Version. For One Time it assigns the shared `One Time` Recurrence Definition and leaves Next Occurrence At null; for Recurring it assigns the Task's Recurrence Definition and calculates the next occurrence when scheduling is finalized.
 5. Record a deterministic generation key for each `(Supplier, Profile Task Assignment)` operation.
 6. Do not roll back or change supplier lifecycle status if generation fails.
 7. Surface each failure to the internal owner with a retry action that cannot duplicate a successful task or obligation.
@@ -735,29 +548,20 @@ The `Required for Completeness?` flag affects onboarding reports only. It does n
 
 ### 8.3 Recurring Supplier Task
 
-1. The user creates the initial Supplier Task through the standard Supplier Task form and selects Recurring.
-2. The form reveals the recurrence definition and optional end boundary; no separate obligation setup is shown.
-3. During issue, automation validates the recurrence and creates or reuses one Supplier Task Obligation, copies the series configuration, links the initial task as occurrence 1, and calculates the next occurrence.
+1. The user creates the initial Supplier Task through the standard Supplier Task form and selects the active Task Schedule Type named `Recurring`.
+2. The form reveals the M:1 Recurrence Definition and optional end boundary; no separate obligation setup is shown.
+3. The initial-save Action Handler has already created and linked the Supplier Task Obligation and set Initial Task. During issue, automation validates and finalizes its recurrence configuration and calculates the next occurrence.
 4. The scheduler selects active obligations whose next occurrence is due and within effective bounds.
 5. It validates current supplier capability and the effective template version when one exists.
 6. It resolves current exact-supplier roles, freezes the occurrence configuration, and creates one later Supplier Task using the unique occurrence key.
-7. It advances `Next Occurrence At` only after durable creation or records a generation exception.
+7. It advances `Next Occurrence At` only after durable creation; failures are retained in native Action Handler, workflow, or execution-log evidence rather than a Generation Exception field.
 8. Later governed series changes affect future occurrences only; completed or already-issued occurrences remain unchanged.
-
-### 8.4 Supplier Survey
-
-1. The campaign scheduler or authorized owner creates or retrieves the Campaign Run by `(Campaign, Start Date / Time)`; Campaign Run.Owner remains responsible in Preparing, Ready, Issuing, and Open. Preparing resolves Checklist Version, stores the helper-driven Configuration Snapshot, evaluates the audience, and freezes configuration. When the Owner selects Survey Preparation Complete, current/past runs enter Issuing immediately and future runs enter Ready. Every 15 minutes, the Event Service invokes hidden Issue Supplier Surveys for Ready runs; future values throw the configured error and current/past values enter Issuing. The separate batch process operates only on Issuing runs, validates routing/security before starting each Supplier Survey directly in Open, and invokes hidden Move to Open after it completes all issuance work. If the Owner cancels the Campaign Run from Open, every related Open Supplier Survey is cancelled before the Campaign Run reaches Cancelled.
-2. Audience evaluation creates one entry for every candidate supplier. Supplier identity and every rule-addressable property default from Supplier into read-only structured fields at creation; action-handler inputs then calculate an Included or Excluded base outcome/reason and Evaluated At, while authorized overrides determine the effective calculated values. Campaign configuration is assumed clean, so no per-entry configuration-error branch exists.
-3. Each entry whose Selection Outcome (Calculated) is Included produces at most one Supplier Survey.
-4. The generator copies common work-item data to inherited fields and survey-specific data to Supplier Survey.
-5. The checklist version, effective audience evidence, roles, dates, applicable native Intelex reminder configuration, classification, and direct-profile-change setting are frozen for that issued record.
-6. A routing failure prevents the affected Supplier Survey from entering Open, records an Owner-visible Issuing-batch failure, and keeps the Campaign Run in Issuing for retry; other valid suppliers may be processed idempotently.
 
 ## 9. Supplier Task workflow
 
 ### 9.1 Executive flow summary
 
-Supplier Tasks may be created manually, from a profile assignment, from a recurring obligation, or from an authorized source process. Manual work begins in Draft; generated work begins in Preparing. The same Supplier Task form captures one-time or recurring setup; Preparing automatically creates the series obligation for an initial recurring task. Preparing also validates eligibility and routing before assignment. The supplier completes the configured note, file, and templated-checklist controls. Submission either completes immediately or routes to the configured internal Review Role. Review may approve or return the task. Technical or routing failures enter Exception with an explicit resume state. Cancellation, withdrawal, and no-response closure are distinct terminal outcomes.
+Supplier Tasks may be created manually, from a profile assignment, or from a recurring Obligation. Manual work begins in Draft; generated work begins in Preparing. The same Supplier Task form selects a governed Task Schedule Type and, for recurring work, a shared Recurrence Definition. The initial-save Action Handler ensures every initial Task has an Obligation before workflow processing; Preparing validates that Obligation plus eligibility and routing before assignment and finalizes recurring scheduling where applicable. The supplier completes the configured note, file, and templated-checklist controls. Submission either completes immediately or routes to the configured internal Review Role. Review may approve or return the task. Technical or routing failures enter Exception; retry always re-enters Preparing and relies on native workflow/execution evidence rather than custom exception-resume or obligation Generation Exception fields. Cancellation, withdrawal, and no-response closure are distinct terminal outcomes.
 
 The diagram uses native Mermaid `swimlane-beta` and requires Mermaid 11.16.0 or later.
 
@@ -803,7 +607,7 @@ swimlane-beta LR
   st_review --> st_decide
   st_decide -->|Approve| st_completed
   st_decide -->|Return with reason| st_assigned
-  st_exception -->|Retry recorded resume state| st_preparing
+  st_exception -->|Retry| st_preparing
   st_draft -->|Cancel with reason| st_cancelled
   st_assigned -->|Authorized cancel| st_cancelled
   st_review -->|Authorized cancel| st_cancelled
@@ -820,9 +624,9 @@ swimlane-beta LR
 |---|---|---|---|---|---|---|---|---|
 | `st_draft` | Draft | Draft | Internal Owner; manual creator defaults only if authorized | None | Manual targeted creation | Issue → Preparing; Cancel → Cancelled | Proposed | ST-003–ST-008 |
 | `st_preparing` | Preparing | Preparing | Internal Owner accountable; automation performs validation | None | Generated task or Issue | Valid → Assigned; invalid → Exception; ineligible → Withdrawn | Proposed | ST-003, ST-012–ST-015 |
-| `st_assigned` | Assigned | Assigned | Current eligible members of Assigned Role for exact Supplier; no named-person fallback | `Due At`, evaluated on entry and authorized change; calendar/timezone from snapshot | Successful preparation or Return | Submit → Review/Completed; cancel/withdraw/no response terminal paths | Proposed | ST-004–ST-006, ST-012–ST-015 |
+| `st_assigned` | Assigned | Assigned | Current eligible members of Assigned Role for exact Supplier; no named-person fallback | `Due Date`, evaluated on entry and authorized change using date-only semantics | Successful preparation or Return | Submit → Review/Completed; cancel/withdraw/no response terminal paths | Proposed | ST-004–ST-006, ST-012–ST-015 |
 | `st_review` | Review | In Review | Current eligible members of Review Role; first authorized response satisfies one review slot | No review SLA invented; elapsed time reported | Valid submission when Review Required is Yes | Approve → Completed; Return → Assigned; cancel/withdraw | Proposed | ST-006, ST-012 |
-| `st_exception` | Exception | Exception | Internal Owner; support may assist without becoming business owner | None; exception age reported | Generation, routing, security, or automation failure | Retry → recorded resume state; Cancel → Cancelled | Proposed | ST-013, ST-021 |
+| `st_exception` | Exception | Exception | Internal Owner; support may assist without becoming business owner | None; exception age reported | Generation, routing, security, or automation failure | Retry → Preparing; Cancel → Cancelled | Proposed | ST-013, ST-021 |
 | `st_completed` | Completed | Completed | Terminal | None | Valid no-review submission or approval | None | Proposed | ST-003–ST-006 |
 | `st_cancelled` | Cancelled | Cancelled | Terminal | None | Authorized cancellation with reason | None | Proposed | Design assumption |
 | `st_withdrawn` | Withdrawn | Withdrawn | Terminal | None | Capability rule removes eligibility | None | Required/Proposed | ST-015 |
@@ -832,18 +636,18 @@ swimlane-beta LR
 
 | Stage | Sort | Action ID | Action | Actor/availability | Ordered behavior | Validation/error behavior | Result | Notification | Classification/source |
 |---|---:|---|---|---|---|---|---|---|---|
-| Draft | 1 | `ST-A01` | Issue | Internal Owner | Freeze input → set origin/snapshot → transition Preparing → invoke preparation | Require Supplier, owner, at least one completion control, due-date configuration, valid recurrence, and Template Version whenever a checklist is present | Preparing | None until successful assignment | Proposed; ST-003–ST-008, ST-020, ST-022 |
-| Draft | 90 | `ST-A02` | Cancel | Internal Owner | Require reason → event → terminal transition | Block without reason | Cancelled | `ST-N6` where stakeholders were already notified | Proposed |
-| Preparing | 1 | `ST-A03` | Prepare and Assign | Automation | Recheck capability → validate classification → create/reuse obligation when initial Schedule Type is Recurring → resolve exact supplier roles → validate eligible portal actor → calculate dates → create responses/reminders → set Issued At → transition | Obligation, routing, or other failure records resume state and internal diagnostic; no partial duplicate series | Assigned or Exception; ineligible → Withdrawn | `ST-N1`, or `ST-N5` on exception | Proposed; ST-012–ST-015, ST-020 |
-| Assigned | 1 | `ST-A04` | Submit | Eligible current Assigned Role member | Lock submission → validate current authorization → validate required note/file presence and current Supplier Question Answer iteration → stamp actor/time → freeze supplier input → branch on Review Required | Show specific missing note, required file, missing answer, incompatible `Answer - …` field, invalid choice relationship, stale-role, or access error; remain Assigned | Completed when no review; otherwise Review | `ST-N2` to reviewer; `ST-N4` on immediate completion | Required/Proposed; ST-004–ST-006, ST-022–ST-024 |
-| Assigned | 2 | `ST-A05` | Request Due-Date Change | Eligible current Assigned Role member | Require proposed later date and reason → record request event → notify Internal Owner | Does not change Due At automatically | Remains Assigned | `ST-N7` | Proposed; policy unresolved |
-| Assigned | 3 | `ST-A06` | Extend Due | Internal Owner | Require later date and reason → event prior/new date → set Due At → increment Schedule Generation → rebuild unsent reminders | Cannot precede current date or reduce due date through this action | Remains Assigned | `ST-N8` | Proposed |
-| Assigned | 90 | `ST-A07` | Close No Response | Internal Owner | Verify overdue/no submitted response → require reason → stop reminders → event → terminal transition | Block when not overdue or a submission exists | Closed No Response | `ST-N6` | Proposed |
-| Review | 1 | `ST-A08` | Approve | Eligible current Review Role member | Validate current authorization → record actor/comments → set completion metadata → event → terminal transition | Block if role/scope changed or underlying submission is not frozen | Completed | `ST-N4` | Required/Proposed; ST-006, ST-012 |
-| Review | 2 | `ST-A09` | Return | Eligible current Review Role member | Require reason → event → preserve submitted evidence → create/open editable response set → transition | Block without reason | Assigned; due date unchanged unless separately extended | `ST-N3` | Required/Proposed; ST-006 |
-| Exception | 1 | `ST-A10` | Retry | Internal Owner/support | Require correction → revalidate capability/security/routing → reuse correlation key → resume recorded state | No duplicate task, responses, or notifications | Preparing or recorded state | `ST-N1` only if first successful issue | Proposed; ST-021 |
-| Nonterminal | 90 | `ST-A11` | Cancel | Authorized Internal Owner | Require reason → reconcile pending operations → stop future reminders → event → terminal transition | Supplier actor cannot cancel unless future policy explicitly grants it | Cancelled | `ST-N6` if already issued | Proposed |
-| Nonterminal | 91 | `ST-A12` | Withdraw | Status automation/authorized owner | Verify capability policy → retain evidence → stop supplier actions/reminders → event → terminal transition | Status change alone does not delete record | Withdrawn | `ST-N6` if already issued | Required/Proposed; ST-015 |
+| Draft | 1 | `ST-A01` | Issue | Internal Owner | Validate and freeze task inputs → transition Preparing → invoke preparation | Require Supplier, owner, at least one completion control, valid Due Date configuration, active Task Schedule Type, valid Recurrence Definition when recurring, and Template Version whenever a checklist is present | Preparing | None until successful assignment | Proposed; ST-003–ST-008, ST-020, ST-022, ST-044, ST-045 |
+| Draft | 90 | `ST-A02` | Cancel | Internal Owner | Require reason → retain it in native workflow/audit history → terminal transition | Block without reason | Cancelled | `ST-N6` where stakeholders were already notified | Proposed |
+| Preparing | 1 | `ST-A03` | Prepare and Assign | Automation | Recheck capability → validate the initial-save Obligation → finalize recurring schedule when applicable → resolve exact supplier roles → validate eligible portal actor → calculate dates → create responses/reminders → set Issued At → transition | Missing/invalid Obligation, routing, or other failure writes native workflow/execution diagnostics; no partial duplicate series | Assigned or Exception; ineligible → Withdrawn | `ST-N1`, or `ST-N5` on exception | Proposed; ST-012–ST-015, ST-020, ST-044, ST-045, ST-051 |
+| Assigned | 1 | `ST-A04` | Submit | Eligible current Assigned Role member | Lock submission → validate current authorization → validate required note/file presence and the Supplier Question Answers → set Date / Time Submitted → freeze supplier input → branch on Review Required → when FALSE, also set Date / Time Completed and Completed By | Show specific missing note, required file, missing answer, incompatible `Answer - …` field, invalid choice relationship, stale-role, or access error; remain Assigned | Completed when no review; otherwise Review | `ST-N2` to reviewer; `ST-N4` on immediate completion | Required/Proposed; ST-004–ST-006, ST-022–ST-024, ST-044, ST-054 |
+| Assigned | 2 | `ST-A05` | Request Due-Date Change | Eligible current Assigned Role member | Require proposed later date and reason → preserve the request through native workflow/object audit → notify Internal Owner | Does not change Due Date automatically | Remains Assigned | `ST-N7` | Proposed; policy unresolved |
+| Assigned | 3 | `ST-A06` | Extend Due | Internal Owner | Require later date and reason → set Due Date with native audit preserving prior/new values → let native reminders recalculate | Cannot precede current date or reduce Due Date through this action | Remains Assigned | `ST-N8` | Proposed; ST-044, ST-053 |
+| Assigned | 90 | `ST-A07` | Close No Response | Internal Owner | Verify overdue/no submitted response → require reason → stop native reminders → retain native workflow/audit evidence → terminal transition | Block when not overdue or a submission exists | Closed No Response | `ST-N6` | Proposed |
+| Review | 1 | `ST-A08` | Approve | Eligible current Review Role member | Validate current authorization → record actor/comments in native workflow/audit history → set Date / Time Completed and Completed By → terminal transition | Block if role/scope changed or underlying submission is not frozen | Completed | `ST-N4` | Required/Proposed; ST-006, ST-012, ST-044, ST-053 |
+| Review | 2 | `ST-A09` | Return | Eligible current Review Role member | Require reason → retain native workflow/audit evidence → reopen the existing Supplier Question Answer records → transition | Block without reason | Assigned; due date unchanged unless separately extended | `ST-N3` | Required/Proposed; ST-006, ST-054 |
+| Exception | 1 | `ST-A10` | Retry | Internal Owner/support | Require correction → revalidate capability/security/routing → reuse correlation key → transition to Preparing | No duplicate task, responses, or notifications | Preparing | `ST-N1` only if first successful issue | Proposed; ST-021, ST-044 |
+| Nonterminal | 90 | `ST-A11` | Cancel | Authorized Internal Owner | Require reason → reconcile pending operations → stop native reminders → retain native workflow/audit evidence → terminal transition | Supplier actor cannot cancel unless future policy explicitly grants it | Cancelled | `ST-N6` if already issued | Proposed |
+| Nonterminal | 91 | `ST-A12` | Withdraw | Status automation/authorized owner | Verify capability policy → retain native evidence → stop supplier actions/reminders → terminal transition | Status change alone does not delete record | Withdrawn | `ST-N6` if already issued | Required/Proposed; ST-015, ST-053 |
 
 The Request Due-Date Change action is a proposed convenience based on the broader task interaction. Whether it is included in the first implementation and which internal role approves it remain **Unresolved**.
 
@@ -857,261 +661,200 @@ The Request Due-Date Change action is a proposed convenience based on the broade
 | `ST-N4` | Completion | Immediate completion or approval | Supplier task completed — Proposed | Supplier submitter, Assigned Role according to policy, and Internal Owner | After terminal transition | Proposed |
 | `ST-N5` | Exception | Issuance or routing failure | Supplier task exception — Proposed | Internal Owner | On Exception entry | Proposed |
 | `ST-N6` | Cancel/Withdraw/No Response | Record was issued | Supplier task closed without completion — Proposed | Current Assigned Role members and Internal Owner | After terminal transition | Proposed |
-| `ST-N7` | Due-date request | Valid supplier request | Supplier task due-date change requested — Proposed | Internal Owner | After request event | Proposed |
-| `ST-N8` | Due-date extension | Due At changed | Supplier task due date changed — Proposed | Current Assigned Role members | After durable date update | Proposed |
-| `ST-N9` | Reminder scheduler | Active snapshotted rule, current generation, work item open | Template selected by rule | Rule recipient mode resolved through current eligible membership | Once per rule/recipient/generation | Proposed |
+| `ST-N7` | Due-date request | Valid supplier request | Supplier task due-date change requested — Proposed | Internal Owner | After the request and reason are stored | Proposed |
+| `ST-N8` | Due-date extension | Due Date changed | Supplier task due date changed — Proposed | Current Assigned Role members | After durable date update | Proposed |
+| `ST-N9` | Native reminder scheduler | Platform-configured reminder is due and work item remains in an applicable open stage | Platform-configured template | Current eligible recipients defined by the native reminder configuration | Platform-managed cadence and deduplication | Required/Proposed; ST-053 |
 
 Exact notification templates, To/CC/BCC treatment, delivery retry policy, and multi-member recipient behavior require configuration confirmation.
 
-## 10. Supplier Survey workflow
-
-### 10.1 Executive flow summary
-
-Supplier Surveys enter a single Open stage only after the Campaign Run's Issuing-stage batch has reevaluated the audience, validated the exact supplier route and security, set issue/due fields, and created the iteration-1 answers. The current eligible members of the exact-Supplier Assigned Role are responsible for Open. Submit terminates the Supplier Survey as Completed; Cancel Campaign cancels the associated Campaign Run and every related Open Supplier Survey. Completed and Cancelled are termination states, not stages. There are no other Supplier Survey workflow actions, stages, or outcomes. Routing and issuance failures remain Campaign Run batch failures while the run is Issuing.
-
-```mermaid
-swimlane-beta LR
-  accTitle: Supplier Survey workflow
-  accDescr: Current eligible Assigned Role members own the single Open stage; Submit completes the Supplier Survey and Cancel Campaign cancels the campaign and its Open Supplier Surveys.
-
-  subgraph supplier[Current eligible Assigned Role members]
-    sv_open["Open<br/>Status: Open"]
-    sv_submit{"Submission valid?"}
-  end
-
-  subgraph internal[Campaign Run.Owner]
-    sv_cancel[Cancel Campaign]
-  end
-
-  subgraph system[Intelex workflow]
-    sv_completed([Completed])
-    sv_cancelled([Cancelled])
-  end
-
-  sv_open -->|Submit| sv_submit
-  sv_submit -->|Invalid: display error| sv_open
-  sv_submit -->|Valid| sv_completed
-  sv_open -->|Cancel Campaign| sv_cancel
-  sv_cancel --> sv_cancelled
-```
-
-### 10.2 Stage details
-
-| Stage ID | Stage | Status | Responsible-person logic | Due-date logic | Entry | Exit paths | Classification/source |
-|---|---|---|---|---|---|---|---|
-| `sv_open` | Open | Open | Current eligible members of the exact-Supplier Assigned Role; recalculate eligibility on every view and action | Inherited Due At set by the Issuing batch from the frozen campaign response-days calculation | Successful batch validation and issue | Valid Submit → Completed termination; Cancel Campaign → associated Campaign Run cancellation and Cancelled termination for every related Open Supplier Survey | Required/Proposed; ST-009, ST-011–ST-014, ST-030, ST-031, ST-042, ST-043 |
-
-| Termination state | Meaning | Entry | Classification/source |
-|---|---|---|---|
-| Completed | Valid Supplier Survey submission | Submit from Open after all answer, version, authorization, and profile-confirmation validation succeeds | Required/Proposed; ST-011, ST-030, ST-035, ST-042 |
-| Cancelled | Termination without completion | Cancel Campaign from Open, applying the required campaign cancellation reason to every related Open Supplier Survey; or retry-safe pre-Open cleanup by issuance automation | Required/Proposed; ST-031, ST-041–ST-043 |
-
-### 10.3 Workflow actions
-
-| Stage | Sort | Action ID | Action | Actor | Ordered behavior | Validation/error behavior | Result | Notification | Classification/source |
-|---|---:|---|---|---|---|---|---|---|---|
-| Open | 1 | `SV-A03` | Submit | Current eligible Assigned Role member | Lock → recheck authorization → validate iteration-1 Supplier Question Answers, typed-field/choice exclusivity, version, and required profile confirmation → set Responding Contact, confirmation fields, inherited Last Submitted At, Completed At, and Completed By → freeze answers | Specific missing answer, incompatible `Answer - …` field, invalid choice, authorization error, or missing confirmation; only one concurrent submit succeeds | Completed termination | `SV-N3` | Required/Proposed; ST-011–ST-014, ST-023, ST-024, ST-030, ST-035, ST-042, ST-043 |
-| Open | 2 | `SV-A10` | Cancel Campaign | Campaign Run.Owner | Execute against the associated Campaign Run → require a campaign cancellation reason → identify every related Supplier Survey in Open → transition each to Cancelled with that reason → stop reminders and supplier actions → preserve answers and previously saved direct profile edits → transition the Campaign Run to Cancelled only after the full cascade succeeds | Completed and already-Cancelled Supplier Surveys remain unchanged; any child failure leaves the Campaign Run Open and permits idempotent retry | Every related Open Supplier Survey → Cancelled, then Campaign Run → Cancelled | `SV-N7` for each previously issued survey | Required/Proposed; ST-031, ST-041–ST-043 |
-
-Submit and Cancel Campaign are the only Supplier Survey workflow actions. Standard form persistence may save answer or approved profile-field edits while the survey remains Open, but it is not a workflow action. There are no Save Draft, Extend Due, individual Cancel, Issue, Retry, Withdraw, or Close No Response actions. Issuing-batch failures remain outside the Supplier Survey workflow.
-
-### 10.4 Supplier Survey notifications
-
-| ID | Trigger | Condition | Template name | Recipient logic | Timing | Classification |
-|---|---|---|---|---|---|---|
-| `SV-N1` | Issue | Valid eligible route | Supplier survey open — Proposed | Current eligible Assigned Role members | After Open-stage entry | Proposed |
-| `SV-N3` | Completion | Valid submission | Supplier survey completed — Proposed | Supplier submitter and Internal Owner | After terminal transition | Proposed |
-| `SV-N6` | Issuing-batch failure | Routing, validation, or security failure before Open-stage entry | Supplier survey issuance failure — Proposed | Campaign Run.Owner | When the Campaign Run batch records the failure; not a Supplier Survey workflow transition | Proposed |
-| `SV-N7` | Cancel Campaign | Supplier Survey was Open when its Campaign Run was cancelled | Supplier survey cancelled — Proposed | Current Assigned Role members and Campaign Run.Owner | After Cancelled termination | Proposed |
-| `SV-N8` | Native Intelex reminder | Platform reminder condition and open survey | Platform-configured template | Platform-configured eligible assigned/escalation recipients or Internal Owner | Per native platform configuration | Required/Proposed; ADR-080 |
-
-## 11. Permissions and security
+## 10. Permissions and security
 
 Comparison standard: application-level permission grants object access; supplier-entity scope, visibility classification, current stage, and current role membership further restrict record visibility and actions. Role assignment never broadens a user's supplier-entity scope.
 
 | Scope | Principal | Permission variation | Condition | Standard compared against | Classification/source |
 |---|---|---|---|---|---|
-| Abstract Supplier Task descendants | Supplier portal user | View only within related supplier entities and allowed classification | Contact/user scope under ADR-078 plus classification under ADR-084 | Application access | Required |
+| Abstract Supplier Task and Supplier Task | Supplier portal user | View only within related supplier entities and allowed classification | Contact/user scope under ADR-078 plus classification under ADR-084 | Application access | Required |
 | Supplier Task / Assigned | Current eligible Assigned Role members | Edit allowed supplier completion fields and perform Submit/Request Due-Date Change | Exact-supplier role membership and active authenticated account | View-only supplier access | Required/Proposed |
-| Supplier Survey / Open | Current eligible Assigned Role members | Own the sole workflow stage; edit responses, directly edit approved profile fields/relationships on their owning records, and perform Submit | Exact-supplier role membership, active authenticated account, owning-object permission, allowlist, and native audit trail | View-only supplier access | Required/Proposed |
-| Campaign Run / Open | Campaign Run.Owner | Perform Cancel Campaign, supplying the required reason and initiating cancellation of every related Open Supplier Survey | Current Campaign Run ownership and application permission | Internal application access | Required/Proposed |
-| Supplier Question Answer | Current eligible Assigned Role members | Edit only the current Response Iteration while a Supplier Task is Assigned or the Supplier Survey is Open | Parent work-item scope, classification, role membership, and subtype workflow state | Child-record inherited access | Required/Proposed |
+| Supplier Question Answer | Current eligible Assigned Role members | Edit the task's answer records only while its Supplier Task is Assigned | Parent task scope, classification, role membership, and workflow stage | Child-record inherited access | Required/Proposed |
 | Supplier Task / Review | Current eligible Review Role members | View the Supplier Task submission and perform Approve/Return | Exact-supplier internal role membership and Supplier Task workflow state | Internal application access | Required/Proposed |
 | Draft/Preparing/Exception | Internal Owner | Configure, issue, retry, close, and view technical exception details | Current owner and application permission | Internal application access | Proposed |
 | Terminal stages | All authorized viewers | Read only | Record-retention policy | Stage edit access | Proposed |
-| Templates/checklists/campaigns | SRM application administrators | Create/version/publish checklists and maintain campaign configuration/Active? | Configuration role | Operational-user access | Proposed |
+| Templates, Task Schedule Types, Recurrence Definitions, and checklists | SRM application administrators | Create/version/publish templates and checklists and maintain active configuration catalogues | Configuration role | Operational-user access | Proposed |
 
-Portal users must not see internal exception diagnostics, unpublished configuration, internal-only checklist administration, audience exclusions for other suppliers, or internal review comments not deliberately exposed.
+Portal users must not see internal exception diagnostics, unpublished configuration, internal-only checklist administration, or internal review comments not deliberately exposed.
 
-## 12. Portal, reporting, and calculated views
+## 11. Portal, reporting, and calculated views
 
-The consolidated supplier work queue queries `Abstract Supplier Task` and therefore returns both descendants. Each row includes at least record number, concrete type, name, supplier, assigned role, due date, derived overdue flag, state, origin, and permitted context. Opening a row navigates to the concrete child form.
+The supplier work queue queries `Abstract Supplier Task` and opens the concrete Supplier Task record. Each row includes at least record number, name, supplier, assigned role, Due Date, derived overdue flag, current platform workflow stage, and permitted task context. Removed Origin and custom State fields are not displayed.
 
 Required views:
 
 - My open supplier work, filtered by current eligible role membership;
-- overdue work by supplier, concrete type, role, template/campaign, and age band;
+- overdue work by supplier, role, template, and age band;
 - internal review queue;
-- exceptions by owner, resume state, and age;
+- exceptions by owner and age, with diagnostic detail obtained from native workflow/execution evidence;
 - onboarding completeness using required profile task assignments;
-- recurring-obligation history and missed-generation exceptions;
-- campaign completion, overdue/nonresponse, cancellation, and exclusion populations;
-- completed work by supplier, part, drawing, origin, and reporting classification; and
+- recurring-obligation history and missed-generation failures;
+- completed work by supplier, part, drawing, template, and visibility classification; and
 - notification delivery failures without treating delivery success as response completion.
 
 Derived calculations:
 
-- `Overdue = nonterminal AND DueAt < NOW`;
+- `Overdue = nonterminal AND Due Date < current date` using date-only comparison;
 - `Days Overdue` uses the approved business/calendar convention, currently unresolved;
 - role-based action eligibility uses current role membership, not snapshotted recipient names;
-- completion counts use terminal Completed only, exclude Cancelled, and group cancellation by Campaign Run cancellation or pre-Open cleanup reason; and
-- campaign rates use the frozen run audience and distinguish Excluded, Issued/Open, Completed, and Cancelled.
+- completion counts use terminal Completed only and report Cancelled, Withdrawn, and Closed No Response separately.
 
-## 13. Change summary
+## 12. Change summary
 
 | Change ID | Action | Element | Baseline/current target | Proposed | Requirement | Rationale | Confidence |
 |---|---|---|---|---|---|---|---|
-| ST-C01 | Add | Abstract Supplier Task | No generic abstract supplier work item | New abstract base with common work-item fields | ST-001–ST-004 | One reporting and security contract without one universal workflow | High |
-| ST-C02 | Add | Supplier Task | No target generic task object | Concrete descendant for targeted/onboarding/recurring work | ST-003–ST-010 | Supports flexible completion and review | High |
-| ST-C03 | Reparent/Rename | Supplier Survey | Earlier target used standalone Supplier Survey Request | Concrete descendant of Abstract Supplier Task named Supplier Survey | ST-001, ST-002, ST-009, user decision | Shares common work-item contract while preserving survey lifecycle | High |
-| ST-C04 | Add | Supplier Task Template and Version | No target task template version model | Versioned publishable task configuration | ST-005, ST-006, ST-008 | Prevents mutable configuration from changing history | High |
-| ST-C05 | Merge/Reuse/Modify | Shared Checklist configuration and operational answers | Survey and task designs had separate answer objects, an explicit selected-choice junction, and a Checklist Definition root with stateful versions | Use one authoring `Checklist` root with inverse grids and Publish-generated immutable checklist/question/choice versions; use Guidance, conditional Choice Lists, generated question choices with scoring/color metadata, and one `Supplier Question Answer` related to Abstract Supplier Task | ST-005, ST-008, ST-023, ST-024, ST-026, ST-027 | One governed checklist and answer model while retaining distinct work-item workflows | High |
-| ST-C06 | Add | Supplier Task Obligation | No supplier-scoped recurring task generator | System-created series controller generated from the initial Supplier Task | ST-003, ST-020 | Preserves one record per period without a separate user setup process | High |
-| ST-C07 | Add | Supplier Profile Task Assignment | Profile template currently generates roles only | Profile-template child that creates task or obligation | ST-010 | Completes onboarding-task portion without gating activation | High |
-| ST-C08 | Add | Supplier Task Event | Earlier survey design had survey-only event | Common append-only event related to abstract parent | ST-021 | Shared audit and notification evidence | Medium; performance validation required |
-| ST-C09 | Remove/Modify | Intermediate survey-submission child and conditional Supplier Question Answer relationship | Separate submission child and conditional answer relationship | Eliminate the child object and relationship; store confirmation evidence directly on Supplier Survey and keep survey answers at iteration 1 under the work item | ST-001, ST-009, ST-035 | Simplifies submission persistence while retaining immutable completion evidence | High |
-| ST-C10 | Add | Supplier Task workflow | No matching extracted workflow | Separate targeted-task workflow | ST-002–ST-008 | Task-specific creation and validation | High |
-| ST-C11 | Modify | Supplier Survey workflow | Earlier target routed profile corrections through Review and Applying Changes with proposal records and deferred writeback | Separate child workflow using inherited common fields; valid submissions complete directly while approved profile edits are made immediately on audited owning records | ST-002, ST-009, ST-011, ST-030 | Preserves campaign-specific generation and direct governed profile maintenance without redundant review machinery | High |
-| ST-C12 | Add | Abstract-parent work queue | Separate task-like lists | Consolidated query with child drill-through | ST-016 | One supplier experience without conflating lifecycles | High |
-| ST-C13 | Modify | Supplier Profile Task Assignment task-template relationship | Assignment selected a specific Supplier Task Template Version | Assignment selects Supplier Task Template; generation resolves and snapshots the most recent current published version | ST-025 | Administrators configure the stable business template while generated tasks retain immutable version history | High |
-| ST-C14 | Modify/Reuse | Shared Survey Campaign dependency | Earlier target used a combined Review Role / Escalation Role field, a Profile Change Policy, a free-form recurrence definition, no inverse child grids, and a separate Survey Status Eligibility object | Retain Escalation Role, remove campaign Review Role, Profile Change Policy, and Survey Status Eligibility, select active Survey Recurrence Definition through Frequency for recurring campaigns, expose inverse Audience Rules and Campaign Runs grids, and add typed Supplier Status audience criteria | ST-009, ST-028–ST-031 | Keeps campaign-generated Supplier Survey routing, scheduling, navigation, profile behavior, and status selection aligned with the authoritative survey model | High |
-| ST-C15 | Modify/Add/Remove | Shared Campaign Run and Campaign Audience Entry dependencies | Earlier target exposed occurrence/state/error fields and choice-based selection without override/effective calculations | Reuse the revised Display Field, Start Date / Time, Checklist Version, helper-driven snapshot, four-stage Campaign Run workflow, Closed/Cancelled termination states, preparation decision, 15-minute Ready Event Service, inverse audience-entry grid, Selection Outcome catalogue, override/effective calculations, and Evaluated At handlers; remove obsolete run fields and the Campaign Run Exception stage | ST-009, ST-032, ST-039 | Keeps Supplier Survey generation aligned with the authoritative shared campaign model | High |
-| ST-C16 | Add/Reuse | Shared Campaign Audience Entry supplier-property snapshot | Entry retained Supplier and unstructured attribute evidence only | Reuse Supplier plus read-only create-time Type of Supplier Entity, Parent Company, Supplier Category, Supplier Type, Facility Type, and Supplier Status fields | ST-009, ST-033 | Preserves structured evidence for audience evaluation | High |
-| ST-C17 | Add/Reuse | Supplier Abstract.Type of Supplier Entity | No explicit inherited discriminator usable by supported formulas | Add the two-value required dropdown, concrete-descendant literal defaults, read-only enforcement, and audience-entry snapshot; use direct field comparisons in Facility-only default expressions | ST-009, ST-033, ST-034 | Provides a supported and auditable entity-type discriminator for shared survey logic | High |
-| ST-C18 | Remove/Modify | Shared Campaign Audience Entry evaluation helpers and formulas | Matched Rule Groups and Evaluation Detail were stored and formulas used unsupported Boolean/null syntax | Retain only Audience Rule Match?; branch TRUE to Included and FALSE to Excluded, populate Selection Reason only for TRUE, and use `ISNULL` for override checks | ST-032, ST-036 | Aligns the shared dependency with supported Intelex formulas and the simplified evidence model | High |
-| ST-C19 | Rename/Modify | Supplier Question Answer response metadata fields | Five fields used an unnecessary `Answer.` prefix and response metadata relied on general save behavior | Use Work Item, Response Iteration, Question Version, Responded By, and Responded At; an Update Action Handler stamps actor and timezone-aware timestamp when any `Answer -` field changes | ST-024, ST-037 | Uses the requested field names and deterministic response metadata behavior | High |
-| ST-C20 | Remove/Reuse | Dedicated survey event model | Survey specification defined a second event object alongside shared Supplier Task Event | Remove the survey-specific object and relationships; use Supplier Task Event for work-item actions and native workflow/audit/execution/notification evidence for Campaign Run processing | ST-021, ST-038 | Eliminates duplicated event structures while preserving operational evidence | High |
-| ST-C21 | Rename/Modify | Shared Campaign Run Ready and Issuing actions | Scheduling and issuance behavior were combined in workflow actions, and workflow prose used request for Supplier Survey | Reuse hidden Issue Supplier Surveys with future-date validation, hidden transition-only Move to Open, and a separate batch process restricted to Issuing Campaign Runs; use Supplier Survey workflow terminology | ST-009, ST-039, ST-040 | Keeps the shared dependency aligned with the authoritative Campaign Run workflow | High |
-| ST-C22 | Modify | Shared Campaign Run responsibility and cancellation | Stage responsibility and the disposition of Open Supplier Surveys during run cancellation were not explicit | Keep Campaign Run.Owner responsible through all four stages and cascade Open-stage cancellation to all related Open Supplier Surveys before run termination | ST-009, ST-039, ST-041, ST-042 | Preserves clear ownership and prevents Supplier Surveys from remaining actionable after their Open Campaign Run is cancelled | High |
-| ST-C23 | Remove/Modify | Supplier Survey workflow stages and outcomes | Earlier target used Preparing, Assigned, Exception, Withdrawn, Closed No Response, Completed, and Cancelled | Use Open as the only stage, owned by current eligible Assigned Role members; retain Completed and Cancelled only as termination states; keep routing/issuance failures in the Campaign Run Issuing batch | ST-002, ST-009, ST-011–ST-014, ST-030, ST-035, ST-041, ST-042 | Aligns the concrete Supplier Survey lifecycle with the requested minimal workflow without changing the separate Supplier Task workflow | High |
-| ST-C24 | Remove/Rename | Supplier Survey workflow actions | Open exposed Save Draft, Submit, Extend Due, and individual Cancel actions | Retain Submit, rename the campaign-wide cancellation control to Cancel Campaign, and remove every other Supplier Survey workflow action; ordinary form persistence is not a workflow action | ST-041–ST-043 | Keeps the shared workflow definition synchronized with the authoritative Supplier Surveys specification | High |
+| ST-C01 | Add | Abstract Supplier Task | No generic abstract supplier work item | Abstract base with the retained common Supplier Task fields | ST-001–ST-004 | Centralizes the reusable task contract | High |
+| ST-C02 | Add | Supplier Task | No target generic task object | Concrete descendant for targeted, onboarding, and recurring work | ST-003–ST-010 | Supports flexible completion and review | High |
+| ST-C03 | Remove/Rename/Retype | Abstract Supplier Task fields | Earlier target contained origin/source/snapshot/state/schedule-generation/exception/workflow fields and datetime due fields | Remove the listed fields; use Original Due Date and Due Date as Date fields; rename submission/completion timestamps | ST-044 | Aligns the field model with the requested platform-managed workflow and simpler task record | High |
+| ST-C04 | Add/Modify | Task scheduling catalogues | Schedule Type was a Choice and Recurrence Definition was an untyped governed frequency | Add Task Schedule Type; reuse renamed Recurrence Definition through M:1 relationships; remove Occurrence Number | ST-045, ST-046 | Uses governed reusable scheduling records | High |
+| ST-C05 | Modify | Supplier Task completion controls | Completion flags were editable task configuration regardless of template | Default all three flags from Template Version and make them read only when templated; permit entry only for ad hoc setup | ST-045 | Prevents task records from diverging from selected template configuration | High |
+| ST-C06 | Add | Supplier Task Template and Version | No target task template version model | Versioned publishable task configuration | ST-005, ST-006, ST-008 | Prevents mutable configuration from changing history | High |
+| ST-C07 | Reuse/Modify | Shared Checklist configuration and operational answers | Task design required governed checklist completion | Consume the shared Checklist family and one Supplier Question Answer model without duplicating catalogue objects | ST-005, ST-008, ST-023, ST-024, ST-026, ST-027 | Reuses governed published configuration | High |
+| ST-C08 | Add/Modify | Supplier Task Obligation | No supplier-scoped obligation; earlier target created one only for recurring work and stored Generation Exception | Initial-save Action Handler creates one for every initial Supplier Task, sets Initial Task, uses One Time/null next occurrence for nonrecurring work, reuses it for later recurring occurrences, and omits Generation Exception | ST-003, ST-020, ST-051 | Provides a consistent obligation anchor for every task without a separate user setup process | High |
+| ST-C09 | Add/Modify | Supplier Profile Task Assignment | Profile template currently generates roles only | Select stable Task Template; generation resolves and stores its Publish-created version with the greatest Version Number | ST-010, ST-025, ST-049 | Supports onboarding task creation without a snapshot field | High |
+| ST-C10 | Remove | Supplier Task Event | Earlier target introduced a shared append-only event object | Remove the object and all relationships; use native workflow history, object audit, execution logs, and notification logs | ST-021, ST-053 | Avoids duplicating platform evidence | High |
+| ST-C11 | Add/Modify | Supplier Task workflow | No matching extracted workflow | Task-specific workflow using platform-managed workflow/stage state and native failure evidence | ST-002–ST-008, ST-044 | Avoids redundant State, Workflow, and exception-resume fields | High |
+| ST-C12 | Remove from specification | Supplier Survey object and workflow | Earlier target duplicated survey object, campaign, workflow, permission, reporting, and acceptance content | Supplier Surveys technical specification is the sole authority for Supplier Survey | ST-046 | Eliminates conflicting duplicate documentation | High |
+| ST-C13 | Remove | Supplier Task.Period Start and Period End | Earlier target stored optional period-boundary dates on each recurring task occurrence | Remove both fields and rely on Obligation plus recurrence scheduling metadata | ST-047 | Avoids redundant task-level period boundaries | High |
+| ST-C14 | Modify/Remove | Supplier Task Template and Supplier Task Template Version | Template held only identity fields plus Reporting Classification and Owner; Template Version selected a Checklist Version | Remove Reporting Classification and Owner; mirror every retained Version configuration field except Template and Version Number onto the editable Template; add inverse Versions grid; make Template and Version select Checklist; resolve its active Checklist Version when each task is generated | ST-048 | Separates editable authoring data from immutable versions while allowing future tasks to use the latest published Checklist | High |
+| ST-C15 | Remove | Supplier Task Template.State and Supplier Task Template Version.State | Earlier target used Draft, Published, and Retired lookup values | Remove both State fields; allow only Publish to create immutable Version records and resolve the latest published version by greatest Version Number | ST-049 | Removes redundant lifecycle metadata while retaining deterministic version resolution | High |
+| ST-C16 | Modify/Remove | Supplier Task Template Version.Version Number and Template.[Helper] Current Version | Earlier target incremented and stored a counter helper on Template | Remove the helper; calculate the new Version Number as one greater than the maximum value in Template.Versions, defaulting the first version to 1 | ST-050 | Derives numbering directly from the authoritative related version records | High |
+| ST-C17 | Remove/Modify | Supplier Profile Task Assignment.Applies to Entity Type | Earlier target filtered assignments to Parent Company, Facility, or Both | Remove the field and apply each assignment to every supplier entity using the related Supplier Profile Template; change uniqueness to `(Supplier Profile Template, Task Template)` | ST-052 | Makes profile assignment scope follow profile usage rather than an additional entity discriminator | High |
+| ST-C18 | Remove | Supplier Task Reminder Rule | Earlier target used child records under Template Version for finite reminder/escalation schedules | Remove the object and relationships; configure Supplier Task reminders through native Intelex platform functionality | ST-053 | Uses the platform capability without maintaining duplicate business configuration | High |
+| ST-C19 | Remove/Modify | Supplier Question Answer.Response Iteration | Earlier target separated correction answer sets by iteration and copied answers on Return | Remove the field; enforce `(Work Item, Question Version)` uniqueness and reopen the same audited answers on Return | ST-054 | Simplifies answers to one current record per issued question | High |
 
-## 14. Requirement traceability
+## 13. Requirement traceability
 
 | Requirement | Affected elements | Design response | Status |
 |---|---|---|---|
-| ST-001 | Abstract Supplier Task, Supplier Task, Supplier Survey | Direct inheritance shown in complete model | Satisfied |
-| ST-002 | Both child workflows | Separate complete workflow specifications | Satisfied |
-| ST-003 | Base, task templates, obligation, events | Shared fields and services with task-specific workflow | Satisfied |
+| ST-001 | Abstract Supplier Task, Supplier Task | Direct inheritance shown in the task model | Satisfied |
+| ST-002 | Supplier Task workflow and scope boundary | Complete Supplier Task workflow retained; Supplier Survey documentation removed and delegated to its own specification | Satisfied |
+| ST-003 | Base, task templates, obligation, native evidence | Shared fields and services with task-specific workflow and platform audit/history | Satisfied |
 | ST-004 | Abstract Supplier Task.Assigned Role | Exact-supplier operational role required before issue | Satisfied |
 | ST-005 | Supplier Task fields, template, shared checklist model | Notes and file controls support ad hoc or templated tasks; checklist is available only through the selected Template Version | Satisfied |
 | ST-006 | Supplier Task.Review Required, Review Role, workflow | Configurable immediate completion or internal review | Satisfied |
-| ST-007 | Supplier Task.Part/Drawing, base source fields | Optional context and source trace | Partially satisfied; exact Drawing and typed source relationships require confirmation |
-| ST-008 | Snapshot fields, immutable versions | Freeze effective template/checklist configuration | Satisfied |
-| ST-009 | Supplier Survey, campaign run/audience | One child survey per effectively Included audience entry using Selection Outcome (Calculated) | Satisfied |
+| ST-007 | Supplier Task.Part/Drawing | Optional typed context remains; generic source fields are removed by ST-044 | Partially satisfied; exact Drawing relationship requires confirmation and generic source trace is superseded |
+| ST-008 | Template Version, Checklist Version, and task completion-control fields | Preserve effective configuration without Configuration Snapshot or Snapshot Schema Version | Satisfied |
 | ST-010 | Profile Task Assignment, generation | One-time task or obligation after supplier creation; no activation gate | Satisfied |
-| ST-011 | Supplier Profile Change Enabled Snapshot, direct master-object editing, native audit trails, and survey workflow | Governed direct maintenance with affirmative confirmation and no separate review/writeback | Satisfied at logical design level; security and audit configuration require validation |
-| ST-012 | Assigned/Review Role and actor events | Live role ownership with individual action audit | Satisfied |
+| ST-012 | Assigned/Review Role and actor audit | Live role ownership with individual actors retained through workflow and object audit | Satisfied |
 | ST-013 | Preparing/Exception and permissions | Validate authenticated eligible membership; owned recovery | Satisfied |
 | ST-014 | Supplier reference/security | Exact entity is required security anchor | Satisfied |
-| ST-015 | Supplier Task capability evaluation and Withdraw | New-task deny and governed existing-task policy with retained history; Supplier Survey behavior is refined separately by ST-031 | Satisfied |
-| ST-016 | Abstract-parent views | Consolidated work queue and concrete drill-through | Satisfied |
+| ST-015 | Supplier Task capability evaluation and Withdraw | New-task deny and governed existing-task policy with retained history | Satisfied |
+| ST-016 | Abstract-parent views | Supplier Task work queue and concrete drill-through | Satisfied |
 | ST-017 | Base classification | Shared optional/conditional classification independent of ownership | Partially satisfied; physical shared classification target unresolved |
 | ST-018 | Component scope | No replacement of distinct domain lifecycles | Satisfied |
 | ST-019 | Documentation scope | Excluded material omitted from model, workflows, comparison, and dependencies | Satisfied |
-| ST-020 | Supplier Task form, obligation, occurrence uniqueness | Initial task captures recurrence and automatically creates the obligation; every later occurrence is a new Supplier Task | Satisfied |
-| ST-021 | Supplier Task Event | Append-only, idempotent common event model | Satisfied subject to platform performance validation |
+| ST-020 | Supplier Task form, obligation, occurrence uniqueness | Initial task captures schedule configuration and automatically creates the obligation; every later recurring occurrence is a new Supplier Task under that same Obligation | Satisfied as refined by ST-051 |
+| ST-021 | Native platform evidence | Custom Supplier Task Event is removed; workflow, audit, execution, and notification evidence satisfy the refined requirement | Satisfied as superseded by ST-053 |
 | ST-022 | File Upload Required, attachment validation | Boolean configuration only; Yes requires at least one file and No imposes no file-presence validation | Satisfied |
-| ST-023 | Shared Checklist family and Supplier Question Answer | Both descendants reference the same Active? = TRUE published Checklist Version, whose Question Versions mirror the authoring Questions, and persist typed responses through one answer object with single- and multiple-choice relationships | Satisfied |
+| ST-023 | Shared Checklist family and Supplier Question Answer | Supplier Task consumes the published Checklist Version and persists typed responses through Supplier Question Answer without duplicating the catalogue | Satisfied |
 | ST-024 | Supplier Question Answer fields and choice relationships | Requested field names and cardinalities are defined; answer-type validation makes them mutually exclusive | Satisfied |
-| ST-025 | Profile Task Assignment.Task Template, supplier-creation generator, Supplier Task.Template Version | Assignment stores the stable Template; generator resolves the most recent current Published Version and snapshots it on the task | Satisfied |
+| ST-025 | Profile Task Assignment.Task Template, supplier-creation generator, Supplier Task.Template Version | Assignment stores the stable Template; generator resolves and stores its Publish-created Version with the greatest Version Number on the task | Satisfied |
 | ST-026 | Checklist Question, Question Version, Choice List, Checklist Choice, Checklist Question Choice | Shared design defines Guidance, conditional Choice List mirroring, guarded choice generation, scoring fields, calculated Max Points, and Color relationships | Satisfied at logical design level; generation/deletion and published snapshot behavior require validation |
 | ST-027 | Checklist Question Choice Version, Publish, Supplier Question Answer | Publish copies each current Question Choice into an immutable choice version for its Question Version; answers relate to those issued choice instances | Satisfied at logical design level; transactional and retry behavior requires validation |
-| ST-028 | Survey Campaign Escalation Role and Frequency; Survey Recurrence Definition | Shared campaign dependency retains escalation routing and governed conditional recurrence selection; obsolete profile Review Role is removed under ST-030 | Satisfied at logical design level; recurrence rendering and scheduler interpretation require platform validation |
-| ST-029 | Survey Campaign Audience Rules and Campaign Runs grids | Shared campaign dependency exposes both existing child Campaign relationships as inverse 1:M grids without duplicating relationship storage | Satisfied at logical design level; related-record grid configuration requires platform validation |
-| ST-030 | Supplier Survey workflow, campaign/survey fields, profile security, and audit trails | Removes policy/proposal/snapshot/review/apply machinery and permits only allowlisted direct edits on owning audited records | Satisfied at logical design level; object and relationship audit behavior requires implementation validation |
-| ST-031 | Survey Campaign Audience Rule.Supplier Status Value and Supplier Survey issue workflow | Removes Survey Status Eligibility; evaluates campaign-specific status criteria before issue, freezes the issued audience, and applies no implicit post-issue status policy | Satisfied at logical design level; audience evaluation and snapshot behavior require implementation validation |
-| ST-032 | Shared Campaign Run, Campaign Audience Entry, Selection Outcome, and Campaign helper fields | Reuses the authoritative revised fields, Included/Excluded formulas without a configuration-error branch, workflow-stage ownership, relationships, overrides, effective selection results, and timestamp behavior | Satisfied at logical design level; Intelex calculation and handler behavior require platform validation |
-| ST-033 | Campaign Audience Entry.Supplier and structured supplier-property fields | Reuses all audience-evaluation create-time values as immutable structured evidence while pre-issue reevaluation may read current Supplier values without overwriting them | Satisfied at logical design level; source field names and default expressions require platform validation |
-| ST-034 | Supplier Abstract.Type of Supplier Entity and shared Campaign Audience Entry defaults | Defines the two allowed values, concrete-descendant initialization, read-only behavior, backfill, and direct `IF` comparisons used before Facility-only relationship access | Satisfied at logical design level; inherited-field access and descendant defaults require implementation validation |
-| ST-035 | Supplier Survey fields, Supplier Question Answer, diagrams, relationships, and workflow | Confirmation evidence is stored directly on Supplier Survey, submission metadata uses inherited fields, survey answers use iteration 1, and no intermediate submission child or relationship exists | Satisfied at logical design level; submit-time field locking and audit behavior require implementation validation |
-| ST-036 | Shared Campaign Audience Entry formulas | Reuses the authoritative simplified helper model, TRUE/FALSE comparisons, null Selection Reason for exclusions, and `ISNULL` override checks | Satisfied at logical design level; calculated relationship and null-return behavior require implementation validation |
-| ST-037 | Supplier Question Answer field names and response metadata handler | Uses the five unprefixed field names and a non-recursive Update Action Handler that stamps authenticated actor and timezone-aware server time for changes to any `Answer -` field | Satisfied at logical design level; relationship-change triggers require implementation validation |
-| ST-038 | Survey operational evidence and shared Supplier Task Event | Removes the dedicated survey event model while retaining shared work-item events and native Campaign Run workflow/audit/execution/notification evidence | Satisfied at logical design level; shared-event and native evidence retention require implementation validation |
-| ST-039 | Shared Campaign Run workflow | Reuses the authoritative four stages, two termination states, Survey Preparation Complete due-time branch, 15-minute Ready check, and same-stage processing-failure behavior | Satisfied at logical design level; Event Service cadence, server-time comparisons, concurrency, and retry behavior require implementation validation |
-| ST-040 | Shared Campaign Run actions and Issuing batch | Reuses the hidden Issue Supplier Surveys and Move to Open actions, future-date error, Issuing-only batch boundary, and Supplier Survey terminology | Satisfied at logical design level; hidden-action execution, error logging, batch cadence, and completion detection require implementation validation |
-| ST-041 | Shared Campaign Run Owner and cancellation cascade | Reuses Campaign Run.Owner as responsible person in all four stages and cancels every Open Supplier Survey before an Open run reaches Cancelled | Satisfied at logical design level; child-action execution, transaction boundaries, reminder cancellation, concurrency, and retry behavior require implementation validation |
-| ST-042 | Supplier Survey workflow | Defines Open as the sole stage owned by current eligible Assigned Role members and Completed/Cancelled as the only termination states; removes all other survey stages/actions/outcomes and keeps pre-Open failure in Campaign Run Issuing | Satisfied at logical design level; dynamic group ownership, termination configuration, and migration of in-flight legacy stages require implementation validation |
-| ST-043 | Supplier Survey actions | Defines Submit and Cancel Campaign as the only workflow actions and removes Save Draft, Extend Due, and individual Cancel from the action contract | Satisfied at logical design level; campaign-wide cancellation transaction and standard non-workflow form persistence require implementation validation |
+| ST-037 | Supplier Question Answer field names and response metadata handler | Uses the four retained unprefixed field names and a non-recursive Update Action Handler that stamps authenticated actor and timezone-aware server time for changes to any `Answer -` field | Satisfied at logical design level; relationship-change triggers require implementation validation |
+| ST-044 | Abstract Supplier Task fields, workflow, reporting | Removes the requested origin/source/snapshot/state/schedule-generation/exception/workflow fields; uses Date-only due fields and renamed submission/completion timestamps | Satisfied at logical design level; migration of any previously configured fields requires implementation planning |
+| ST-045 | Supplier Task, Task Schedule Type, Recurrence Definition, Template Version defaults | Adds both M:1 schedule relationships, removes Occurrence Number, and makes the three task flags template-defaulted/read-only or ad-hoc editable | Satisfied at logical design level; default-expression and form-read-only behavior require platform validation |
+| ST-046 | Recurrence Definition and specification boundary | Renames the shared recurrence catalogue and removes Supplier Survey object/workflow content from this document | Satisfied; cross-specification link and renamed references retained |
+| ST-047 | Supplier Task.Period Start and Period End | Removes both fields and revises obligation scheduling language so it does not depend on task-level period boundaries | Satisfied |
+| ST-048 | Supplier Task Template, Supplier Task Template Version, Checklist resolution | Removes Reporting Classification and Owner, adds Versions plus all retained mirrored configuration fields to Template, changes Template Version.Checklist Version to Checklist, and resolves/fixes the current active Checklist Version on each new task | Satisfied at logical design level; default expressions, publish atomicity, and active-version resolution require platform validation |
+| ST-049 | Supplier Task Template.State, Supplier Task Template Version.State, version resolution | Removes both State fields and defines the latest published Template Version as the Publish-created record with the greatest Version Number | Satisfied at logical design level; Publish-only creation and uniqueness must be enforced |
+| ST-050 | Supplier Task Template Version.Version Number, Template.Versions | Uses the documented `IF(ISNULL(MAX(...)), 1, MAX(...) + 1)` Action Handler calculation, removes the counter helper, and requires atomic allocation plus retry safety | Satisfied at logical design level; concurrent Publish behavior requires platform validation |
+| ST-051 | Supplier Task.Obligation, Supplier Task Obligation, initial-save Action Handler, shared Recurrence Definition | Creates one Obligation for every initial Task, sets Initial Task in the handler, assigns One Time/null next occurrence for nonrecurring work, reuses the Obligation for later recurring tasks, and removes Generation Exception | Satisfied at logical design level; create-handler transactionality and idempotency require platform validation |
+| ST-052 | Supplier Profile Task Assignment, supplier-creation generation | Removes Applies to Entity Type, changes the uniqueness rule, and evaluates every active assignment for every entity using the related Supplier Profile Template | Satisfied |
+| ST-053 | Supplier Task Reminder Rule, Supplier Task Event, notifications and evidence | Removes both objects and their dependencies; native Intelex reminder, workflow, audit, execution-log, and notification capabilities provide the retained behavior | Satisfied at logical design level; native configuration and evidence retention require platform validation |
+| ST-054 | Supplier Question Answer, Review Return, validation and permissions | Removes Response Iteration, makes Work Item plus Question Version unique, and reopens the same audited answer records after Return | Satisfied at logical design level; audit completeness and stage-based locking require validation |
 
-## 15. Validation findings and unresolved decisions
+## 14. Validation findings and unresolved decisions
 
 | Finding | Classification | Result / required action |
 |---|---|---|
-| Direct inheritance | Required/Proposed | Exactly one abstract parent and two direct descendants; no cycle or redundant transitive edge |
+| Direct inheritance | Required/Proposed | Exactly one abstract parent and one documented direct descendant; no cycle or redundant transitive edge |
 | Field ownership | Proposed | Common fields occur only on Abstract Supplier Task; child-specific fields are not duplicated |
-| Workflow ownership | Required/Proposed | Each concrete child has one initial stage and separate workflow; abstract parent has no workflow |
-| Reachability | Proposed | All nonterminal stages in both workflows are reachable and have exit paths |
-| Supplier Survey lifecycle | Required | Open is the sole stage; Submit and Cancel Campaign are its only workflow actions; Completed and Cancelled are termination states |
-| Action order | Proposed | Sort values are unique within each stage; Supplier Survey uses Submit = 1 and Cancel Campaign = 2, with no additional actions |
+| Workflow ownership | Required/Proposed | Supplier Task owns its workflow; Abstract Supplier Task has no custom Workflow or State field and relies on platform-managed workflow metadata |
+| Reachability | Proposed | All nonterminal Supplier Task stages are reachable and have exit paths |
+| Action order | Proposed | Sort values are unique within each Supplier Task stage |
 | Role resolution | Unresolved platform behavior | Verify that current Group membership can drive stage access and reassignment without rewriting each open record |
 | Multi-member behavior | Unresolved business rule | Confirm all-recipient notification and first-authorized-response behavior for each external/internal role type |
 | Internal Owner selector | Unresolved design | Confirm whether templates point directly to Employee, to an internal Supplier Management Role, or support both through a governed selector |
-| Due-date calendar | Unresolved | Confirm timezone, business-day versus calendar-day rules, DST behavior, and no-due-date exceptions |
+| Due-date calendar | Unresolved | Confirm business-day versus calendar-day rules and no-due-date exceptions for Date-only Original Due Date and Due Date |
 | Due-date requests | Proposed/Unresolved | Confirm first-release inclusion and approving internal role |
-| Checklist return | Proposed; validation required | Create a new Response Iteration by copying the prior answer set; do not overwrite submitted evidence |
-| Shared checklist reuse | Required/Proposed | No duplicated checklist or answer objects remain; validate that both forms can render and persist through Supplier Question Answer while enforcing child-workflow-specific editability |
+| Checklist return | Required/Proposed | Reopen the existing Supplier Question Answer records on Return; object audit must preserve prior submitted values because no Response Iteration or copied answer set exists |
+| Shared checklist reuse | Required/Proposed | No task-specific checklist catalogue is introduced; validate Supplier Task can render and persist through Supplier Question Answer |
 | Checklist publication | Required/Proposed | Validate inverse relationship grids, default-value expressions for every mirrored question and choice field, atomic creation of Checklist/Question/Question Choice Versions, atomic deactivation of older Checklist Versions, and exactly one Active? = TRUE version per Checklist after publication |
 | Choice relationship exclusivity | Required/Proposed | Validate that Choice uses only `Answer - Choice`, Choices uses only `Answer - Choices`, all choices belong to the same Question Version, and duplicate M:N selections are prevented |
-| Answer response metadata | Required/Proposed | Verify Work Item, Response Iteration, Question Version, Responded By, and Responded At have no `Answer.` prefix; an Update Action Handler stamps the authenticated actor and timezone-aware server time only when an `Answer -` field changes, including M:1 and M:N choice changes, without recursively retriggering |
+| Answer response metadata | Required/Proposed | Verify Work Item, Question Version, Responded By, and Responded At have no `Answer.` prefix; an Update Action Handler stamps the authenticated actor and timezone-aware server time only when an `Answer -` field changes, including M:1 and M:N choice changes, without recursively retriggering |
 | Generated question choices | Required/Proposed | Validate idempotent initial-save copying, conditional Choice List visibility/requiredness, list locking while generated rows exist, audited manual deletion, and exact regeneration after a permitted replacement |
 | Published question choices | Required/Proposed | Validate one immutable Checklist Question Choice Version per `(Checklist Question Version, Checklist Question Choice)`, complete field copying, and answer selection only from the owning Question Version |
 | Choice scoring and colors | Required/Proposed | Validate Max Points equals Points unless Is Not Applicable = TRUE and that Background/Text Color references resolve to the existing Color object |
 | Answer - File | Required/Unresolved platform behavior | Confirm the physical File field type, upload limits, malware scanning, security inheritance, retention, download authorization, and immutability after submission |
 | Native attachments | Unresolved platform behavior | Verify reliable required-file presence validation, attachment immutability after submission, and security inheritance; no minimum-count configuration is permitted |
 | Drawing relationship | Unresolved target | Confirm the governed drawing/revision object and part-integrity rule |
-| Typed source relationships | Partially unresolved | Add explicit typed references for each approved consuming application; retain generic source trace only as fallback |
 | Visibility classification | Unresolved shared dependency | Confirm physical object, defaulting, inheritance, and reclassification permissions |
 | Notification templates | Unresolved configuration | Create and verify template metadata, recipient policy, and idempotent delivery keys |
-| Abstract-parent queries | Unresolved platform behavior | Validate configurable views, reports, and security filtering across inherited descendants at expected volume |
-| Event volume | Unresolved performance | Validate indexes, retention, delivery updates, and reporting performance for shared event history |
-| Survey event consolidation | Required/Proposed | Confirm no dedicated survey event object or relationship remains; Supplier Survey actions use Supplier Task Event and Campaign Run diagnostics/evidence use native workflow, audit, execution, and notification logs |
-| Scheduler idempotency | Proposed; validation required | Enforce obligation-occurrence and campaign-entry uniqueness under concurrent retries |
-| Profile-assignment version resolution | Required/Proposed | Verify assignment forms expose Task Template rather than Template Version; generation selects exactly one current Published version, snapshots it on first task creation, and preserves it across retries after task creation |
-| Shared campaign recurrence | Required/Proposed | Verify Survey Campaign Frequency is visible and required only for Recurring, selects only active Survey Recurrence Definitions in Sort order, is cleared otherwise, and its `displayas="recurrence"` value is interpreted correctly by scheduling |
-| Shared campaign inverse grids | Required/Proposed | Verify the Survey Campaign Audience Rules and Campaign Runs grids are inverse views of the existing child Campaign fields, are read only, and return only children of the selected campaign |
-| Shared campaign status eligibility | Required/Proposed | Verify Supplier Status is a typed Audience Rule criterion with exactly one matching Supplier Status Value, is included in preview evidence and pre-issue reevaluation, and that no Survey Status Eligibility object or hidden global survey-status filter remains |
-| Shared campaign run and selection model | Required/Proposed | Verify `(Campaign, Start Date / Time)` uniqueness, Display Field formatting, timezone behavior, helper/JOIN snapshot materialization, HTML-encoded values with literal `<br>` separators and `displayas="html"`, Preparing/Ready/Issuing/Open as the only Campaign Run stages with Campaign Run.Owner responsible throughout, Closed/Cancelled as termination states, no Exception stage, the Survey Preparation Complete time decision, hidden Issue Supplier Surveys future-date validation, the 15-minute Ready Event Service, an Issuing-only batch process, hidden transition-only Move to Open, Open-stage cancellation of all Open Supplier Surveys before run termination, inverse entry grid, and governed Selection Outcomes; confirm Audience Rule Match? is the only entry evaluation helper, TRUE/FALSE drive Included/Excluded, exclusions have null Selection Reason, override checks use `ISNULL`, effective-field precedence works, Evaluated At handlers fire, and obsolete fields are absent |
-| Shared Supplier entity discriminator | Required/Proposed | Verify every Supplier Facility stores `Supplier Facility`, every Supplier Parent Company stores `Supplier Parent Company`, no other value can be stored, existing records are backfilled, and the inherited field is read only after creation |
-| Shared audience property snapshot | Required/Proposed | Verify Type of Supplier Entity, Parent Company, Supplier Category, Supplier Type, Facility Type, and Supplier Status default from Supplier on entry creation, remain read only and unchanged afterward, allow null when the source is null/not applicable, and preserve the audience-evaluation properties together with Supplier identity; Facility-only defaults must branch directly on Supplier.Type of Supplier Entity |
-| Supplier Survey submission persistence | Required/Proposed | Verify no intermediate submission child or answer relationship exists; iteration-1 answers relate directly to Supplier Survey, confirmation evidence is stored and frozen on Supplier Survey, and inherited submission/completion metadata is populated atomically |
-| Direct survey profile maintenance | Required/Proposed | Verify every allowlisted field and relationship can be edited only by an eligible exact-supplier user while the Supplier Survey is Open, every direct edit produces sufficient native audit evidence, prohibited fields remain inaccessible, and cancellation or failed submission does not imply rollback |
-| Migration | Proposed | No baseline record is automatically migrated; earlier target survey requests require mapping only if implemented before this design |
-| ADR status | Source limitation | ADR-006, ADR-080, ADR-081, and ADR-103 remain proposed until governance changes their status |
+| Abstract-parent queries | Unresolved platform behavior | Validate configurable views, reports, and security filtering for Supplier Task through the abstract parent at expected volume |
+| Native task evidence | Required/Proposed | Verify workflow history, object audit, execution logs, and notification logs retain sufficient actor, timestamp, prior/new due-date, reason, outcome, and delivery evidence without Supplier Task Event |
+| Scheduler idempotency | Proposed; validation required | Enforce obligation-occurrence uniqueness under concurrent retries |
+| Initial-save obligation creation | Required/Proposed | Verify every initial Supplier Task creates exactly one Obligation, the handler sets the saved Task as Initial Task and links Task.Obligation atomically, and generated recurring occurrences reuse their supplied Obligation without creating another |
+| One Time obligation behavior | Required/Proposed | Verify the shared active Recurrence Definition named `One Time` is assigned, Next Occurrence At remains null, and the scheduler never selects the Obligation for generation |
+| Obligation diagnostic field removal | Required | Verify Supplier Task Obligation has no Generation Exception field and failures remain available through native Action Handler, workflow, audit, and execution-log evidence |
+| Profile-assignment version resolution | Required/Proposed | Verify assignment forms expose Task Template rather than Template Version; generation selects the single Publish-created version with the greatest Version Number, stores it on first task creation, and preserves it across retries |
+| Task schedule catalogue | Required/Proposed | Verify Schedule Type is an M:1 relationship filtered to active Task Schedule Type records in Sort order and that the seeded One Time/Recurring values behave as specified |
+| Shared recurrence catalogue | Required/Proposed | Verify Recurrence Definition is the renamed shared object; the Task selector appears only when Schedule Type.Name = `Recurring`, excludes `One Time`, and interprets the selected `displayas="recurrence"` Frequency correctly; the obligation handler may assign the reserved One Time record directly |
+| Template-controlled flags | Required/Proposed | Verify Note Required?, File Upload Required?, and Review Required? default from Template Version and are read only when templated, but accept user entry when Template Version is null |
+| Template authoring/version parity | Required/Proposed | Verify Supplier Task Template contains every retained Supplier Task Template Version configuration field except Template and Version Number, its Versions grid is the inverse of Version.Template, and Publish evaluates every documented default-value expression |
+| Task checklist resolution | Required/Proposed | Verify Template and Template Version store Checklist rather than Checklist Version; each new task resolves exactly one Active? = TRUE Checklist Version, retry preserves an already stored version, and later Checklist publication affects only later tasks |
+| Removed template fields | Required | Verify Supplier Task Template has no Reporting Classification, standalone Owner, or State field; Supplier Task Template Version also has no State field; Internal Owner remains because it is a retained mirrored configuration field |
+| Template version resolution | Required/Proposed | Verify Version records can be created only by Publish, Version Number is unique within Template, and generation selects the single related Version with the greatest Version Number without a State or effective-date filter |
+| Template version-number allocation | Required/Proposed | Verify Publish calculates Version Number from `MAX([Template].[Versions].[Version Number]) + 1`, assigns 1 when no related Version exists, serializes concurrent allocation per Template, and does not allocate another number on retry |
+| Profile assignment scope | Required | Verify Applies to Entity Type is absent, `(Supplier Profile Template, Task Template)` is unique, and the assignment generates work for every Parent Company and Facility created with that profile |
+| Removed fields | Required | Verify no Origin Type, Origin Display, Source Application, Source Record Key, Source Record URL, Configuration Snapshot, Snapshot Schema Version, State, Schedule Generation, Occurrence Number, Period Start, Period End, Exception Resume State, Exception Result Reason/Exception Reason, or Workflow field remains on the task model |
+| Renamed date fields | Required/Proposed | Verify Original Due Date and Due Date are Date fields and Date / Time Submitted and Date / Time Completed are timezone-enabled date/time fields populated by workflow actions |
+| Native task reminders | Required/Proposed | Verify reminders require no Supplier Task Reminder Rule records, recalculate after Due Date changes, stop outside applicable open stages, resolve current eligible recipients, and retain available delivery evidence |
+| Removed task objects and answer field | Required | Verify Supplier Task Reminder Rule and Supplier Task Event objects and relationships are absent and Supplier Question Answer has no Response Iteration field |
+| Specification boundary | Required | Confirm Supplier Survey object, workflow, permissions, reporting, validation, and acceptance content appears only in the Supplier Surveys technical specification |
+| Migration | Proposed | Map or remove any previously configured deleted fields; convert due datetimes to dates using the approved business timezone before cutover; preserve platform workflow history |
+| ADR status | Source limitation | ADR-081 and ADR-103 remain proposed until governance changes their status |
 | Mermaid compatibility | Tooling limitation | Native diagrams require Mermaid 11.16.0 or later |
 
-## 16. Implementation sequence
+## 15. Implementation sequence
 
-1. Add and backfill Supplier Abstract.Type of Supplier Entity, configure the two concrete descendant literal defaults and read-only behavior, then confirm the shared visibility-classification target, Supplier Task lifecycle capability rules, governed Supplier Status lookup, exact role-resolution behavior, and external-user eligibility check.
-2. Configure `Abstract Supplier Task` and validate inheritance with empty concrete descendants.
-3. Configure the shared Checklist authoring/version family and Supplier Question Answer object defined across the two component specifications, including inverse relationship grids, publication default expressions, single-active-version enforcement, the answer model's M:1 and M:N choice relationships, and the non-recursive Update Action Handler for Responded By and timezone-enabled Responded At; then configure Supplier Task Template, Version, reminder, and event objects against them.
-4. Configure Supplier Task fields, forms, workflow, permissions, views, notifications, and ad hoc creation.
-5. Configure automatic Supplier Task Obligation creation from the initial Supplier Task form, plus scheduling and idempotent later-occurrence generation.
-6. Add Supplier Profile Task Assignment with its Task Template relationship and post-create generation that resolves the most recent current published Template Version, snapshots it on the generated task, and handles missing or ambiguous versions as recoverable exceptions.
-7. Reparent and rename the target survey operational request as Supplier Survey; move common fields to the abstract parent without duplicating them.
-8. Configure the single-stage Supplier Survey workflow with Open owned by current eligible Assigned Role members, Completed/Cancelled as termination states, and exactly two workflow actions: Submit and Cancel Campaign; direct submission/profile-confirmation fields; iteration-1 Supplier Question Answers; campaign issuance; the seeded Survey Recurrence Definition and Selection Outcome catalogues; escalation routing; campaign helper calculations; the four-stage Campaign Run workflow with Campaign Run.Owner responsible throughout; two run termination states; Survey Preparation Complete decision; hidden Issue Supplier Surveys action; 15-minute Ready Event Service; Issuing-only batch process; hidden transition-only Move to Open action; Open-stage Supplier Survey cancellation cascade; inverse entry grid; Campaign Audience Entry create-time supplier-property defaults/read-only controls; direct Supplier.Type of Supplier Entity comparisons for Facility-only defaults; the single Audience Rule Match? helper; TRUE/FALSE and `ISNULL` selection formulas; Evaluated At handlers; typed Supplier Status audience rules; shared Supplier Task Events for work-item actions; and native Campaign Run/notification evidence. Configure direct-edit profile permissions and native audit trails on every approved field and relationship; do not configure Save Draft, Extend Due, individual Cancel, or any other Supplier Survey workflow action, Supplier Survey Preparing, Assigned, Exception, Withdrawn, or Closed No Response states, a Campaign Run Exception stage, an intermediate survey-submission child, a dedicated survey event object, obsolete Campaign Run fields, Survey Status Eligibility, profile proposal, review, or deferred-apply records.
-9. Build the abstract-parent consolidated work queue and verify concrete drill-through.
+1. Confirm the shared visibility-classification target, Supplier Task lifecycle capability rules, exact role-resolution behavior, and external-user eligibility check.
+2. Configure `Abstract Supplier Task` and `Supplier Task` with only the retained fields. Do not configure custom Origin, source, snapshot, State, Schedule Generation, Period Start, Period End, exception-resume/reason, or Workflow fields.
+3. Configure Task Schedule Type, seed One Time and Recurring, update the shared recurrence catalogue display name from Survey Recurrence Definition to Recurrence Definition, and add the active shared `One Time` Recurrence Definition reserved for Supplier Task Obligations.
+4. Configure the shared Checklist authoring/version family and Supplier Question Answer without Response Iteration, including `(Work Item, Question Version)` uniqueness, answer choice relationships, audit, stage-based editability, and the Responded By/Responded At Update Action Handler. Configure Supplier Task Template as the editable authoring record with its inverse Versions grid and mirrored version fields; configure Publish to create Supplier Task Template Version with default-value expressions, including its stable Checklist relationship, and atomically calculate Version Number from the maximum existing number in Template.Versions.
+5. Configure Supplier Task M:1 schedule relationships, template-controlled default expressions/read-only rules, forms, workflow, permissions, views, native notifications/reminders, and ad hoc creation. Do not configure Supplier Task Reminder Rule or Supplier Task Event.
+6. Configure the idempotent Supplier Task initial-save Action Handler to create and link one Obligation for every initial Task, set Initial Task, assign One Time or recurring configuration, leave One Time.Next Occurrence At null, and ensure later recurring occurrences reuse the existing Obligation. Do not configure Generation Exception.
+7. Add Supplier Profile Task Assignment with its Task Template relationship and no entity-type field; apply it to every supplier entity using the profile, and configure post-create generation to resolve and store the greatest-numbered Publish-created Template Version while handling missing or ambiguous versions as recoverable exceptions.
+8. Build the Supplier Task work queue through Abstract Supplier Task and verify concrete drill-through.
+9. Migrate any earlier target configuration: remove deprecated fields including Supplier Task Template.Reporting Classification, Owner, State, and [Helper] Current Version, Supplier Task Template Version.State, Supplier Task Obligation.Generation Exception, Supplier Profile Task Assignment.Applies to Entity Type, and Supplier Question Answer.Response Iteration; remove Supplier Task Reminder Rule and Supplier Task Event only after required native reminder/evidence configuration is verified; populate the Template authoring fields from the approved source version; retain and validate existing Version Numbers before enabling MAX-based allocation; create/backfill one Obligation for every existing initial Task that lacks one; replace Template Version.Checklist Version with Checklist; convert due datetimes to Date values using the approved business timezone; preserve platform workflow and audit history; and confirm no Supplier Survey object/workflow content remains in this specification.
 10. Execute security, lifecycle, concurrency, scheduler, notification, attachment, reporting, and performance tests before production rollout.
 
-## 17. Acceptance scenarios
+## 16. Acceptance scenarios
 
 | Scenario | Expected result |
 |---|---|
-| Inspect model metadata | Supplier Task and Supplier Survey directly inherit Abstract Supplier Task; neither duplicates inherited fields |
-| Create controlled ad hoc task without template | Authorized user can configure note and/or file work; checklist controls are hidden, cleared, and unavailable |
-| Select task template with checklist | Checklist Version is copied from the template and is read only on the task |
+| Inspect model metadata | Supplier Task directly inherits Abstract Supplier Task; Supplier Survey is absent from this specification's object model and workflow sections |
+| Inspect removed fields | Origin Type, Origin Display, Source Application, Source Record Key, Source Record URL, Configuration Snapshot, Snapshot Schema Version, State, Schedule Generation, Exception Resume State, Exception Result Reason/Exception Reason, Workflow, Occurrence Number, Period Start, and Period End do not exist in the Supplier Task model |
+| Inspect renamed fields | Original Due Date and Due Date are Date fields; Date / Time Submitted and Date / Time Completed are timezone-enabled date/time fields |
+| Open Schedule Type selector | Supplier Task uses an M:1 Task Schedule Type relationship filtered to active records and ordered by Sort |
+| Save an initial One Time Supplier Task | Task recurrence controls remain hidden/cleared; the Action Handler creates exactly one linked Obligation, sets Initial Task to the saved Task, assigns the shared `One Time` Recurrence Definition, and leaves Next Occurrence At null |
+| Save an initial Recurring Supplier Task | Recurrence Definition is visible and mandatory; the Action Handler creates exactly one linked Obligation, sets Initial Task, and copies the selected active Recurrence Definition |
+| Configure templated task | Note Required?, File Upload Required?, and Review Required? default from Template Version and do not allow task-level user entry |
+| Create controlled ad hoc task without template | Note Required?, File Upload Required?, and Review Required? allow user entry during setup; checklist controls are hidden, cleared, and unavailable |
+| Inspect Supplier Task Template | Reporting Classification, standalone Owner, and State are absent; Versions shows the inverse Template relationship; every retained Supplier Task Template Version configuration field except Template and Version Number is available for authoring, including Internal Owner and Checklist |
+| Inspect Supplier Task Template Version | State is absent; Template, Version Number, and the immutable configuration snapshot fields remain |
+| Publish the first Supplier Task Template Version | With no related Versions, the Action Handler assigns Version Number 1; every configuration field defaults from its corresponding Template field and the created Version is immutable |
+| Publish another Supplier Task Template Version | The Action Handler assigns `MAX([Template].[Versions].[Version Number]) + 1`; gaps are not reused and the new Version appears in the Versions grid |
+| Submit concurrent Publish requests | Version-number calculation and creation are serialized for the Template; each successful Version receives a distinct number and a retry does not create an additional Version |
+| Select task template with checklist | Template Version supplies the stable Checklist; task generation resolves and stores its single current Active? = TRUE Checklist Version, which is read only on the task |
 | Publish shared Checklist configuration | A new Active Checklist Version, one mirrored Checklist Question Version per current Question, and one Checklist Question Choice Version per current choice are created atomically; older versions and issued work remain unchanged |
-| Use the same Checklist content in a survey campaign and task template | Campaign Run resolves the Checklist's active version and the task template selects that published version; both records render the same Question Versions and Choices and persist through Supplier Question Answer |
 | Save a Choice or Choices question | Choice List is visible and mandatory; its values generate Checklist Question Choices without duplicates and lock the selected list while rows remain |
 | Replace a question's Choice List | Replacement is blocked until every generated Checklist Question Choice is manually deleted; the next permitted save generates the replacement values once |
 | Calculate choice metadata | Max Points equals Points unless Is Not Applicable = TRUE; optional Weight and background/text Color relationships are retained |
@@ -1119,41 +862,27 @@ Derived calculations:
 | Answer Choices question | `Answer - Choices` contains one or more valid Checklist Question Choice Versions belonging to the issued Question Version and `Answer - Choice` is empty |
 | Answer Text, Float, File, or Date question | Only the matching `Answer - …` field is populated; incompatible fields and choice relationships are empty |
 | Update any Supplier Question Answer value | The Update Action Handler sets Responded By to the authenticated actor and Responded At to the current timezone-aware server timestamp; metadata-only updates do not retrigger it |
-| Publish new template version | Existing tasks retain original snapshot and checklist; new tasks use the new version |
+| Publish new template version | Existing tasks retain their stored Template Version, Checklist Version, and copied control flags; new tasks use the new current version |
+| Publish a newer Checklist Version | Existing tasks retain their stored Checklist Version; a later task generated from the same Supplier Task Template Version resolves and stores the newly Active? = TRUE Checklist Version |
 | Change supplier role membership | Departing member loses action access; eligible replacement can act on the same open record; history retains prior actors |
 | Missing external role | Work item remains in owned Exception; it is not assigned to a named fallback or parent-company role |
 | Contact has no active portal account | Contact receives no authenticated work assignment; issue is blocked or excepted according to routing policy |
 | Submit incomplete Supplier Task | Specific missing note, required-file, or checklist validation displays; task remains Assigned |
-| Submit no-review Supplier Task | Task completes once; actor and completion time are recorded |
-| Return reviewed Supplier Task | Submitted Supplier Question Answers remain auditable; supplier receives a copied correction iteration and unchanged due date unless separately extended |
-| Configure recurring task | User enters recurrence on the initial Supplier Task form; one obligation is created and linked automatically with no separate setup form |
-| Generate recurring occurrence twice | Exactly one Supplier Task exists for the obligation occurrence; retry resumes safely |
+| Submit no-review Supplier Task | Task completes once; Date / Time Submitted, Date / Time Completed, and Completed By are populated |
+| Return reviewed Supplier Task | The existing Supplier Question Answer records become editable again; no copied correction iteration is created, Due Date remains unchanged unless separately extended, and object audit preserves prior submitted values |
+| Change Due Date | Object audit preserves the prior and new Date-only values; native Intelex reminders recalculate without Supplier Task Reminder Rule or Schedule Generation |
+| Inspect removed task configuration | Supplier Task Reminder Rule and Supplier Task Event objects and relationships are absent; Supplier Question Answer has no Response Iteration field |
+| Configure recurring task | User selects Recurring and an active Recurrence Definition on the initial Supplier Task form; initial save creates and links one Obligation with no separate setup form, and issue finalizes its next occurrence |
+| Generate recurring occurrence twice | Exactly one Supplier Task exists for the obligation occurrence; retry resumes safely without Occurrence Number |
+| Save a generated recurring occurrence | The existing Obligation is supplied on create; the initial-save handler does not create another Obligation or change Initial Task |
 | Edit obligation after issue | Existing occurrence remains unchanged; future occurrences use prospective configuration |
-| Configure profile task assignment | Administrator selects an active Supplier Task Template; no Supplier Task Template Version selector or assignment relationship is available |
-| Create supplier from profile assignment | Generator resolves the selected template's greatest currently effective Published Version Number, stores that Template Version on the generated Supplier Task, and snapshots its configuration and checklist |
-| Publish a newer version before later supplier creation | The later supplier's generated task uses the newer current Published Template Version; previously generated tasks retain their original Template Version and snapshot |
+| Configure profile task assignment | Administrator selects an active Supplier Task Template; no Supplier Task Template Version selector, Applies to Entity Type field, or assignment relationship to a version is available |
+| Use one profile for both entity types | Every active assignment for the Supplier Profile Template generates its task for both Supplier Parent Companies and Supplier Facilities using that profile |
+| Create supplier from profile assignment | Generator resolves and stores the selected template's single Version with the greatest Version Number, without a State or effective-date filter, and defaults task controls from it |
+| Publish a newer version before later supplier creation | The later supplier's generated task uses the newer current Published Template Version; previously generated tasks retain their original Template Version, Checklist Version, and task controls |
 | Retry profile-task generation after task creation | Retry resumes the existing task and retained Template Version rather than resolving a newer version or creating a duplicate |
 | Create supplier with required profile task | Supplier creation succeeds; task is generated and appears in completeness reporting |
 | Profile-task generation failure | Supplier remains created; exception is visible and retry cannot duplicate successful records |
-| Launch survey campaign | Active campaign resolves its selected Checklist's single active version into Campaign Run.Checklist Version; Display Field and Configuration Snapshot use the specified formulas; one Supplier Survey is created for each entry whose Selection Outcome (Calculated) is Included |
-| Configure shared recurring campaign | Frequency appears and is required only for Schedule Mode = Recurring, selects an active Survey Recurrence Definition in the specified Sort order, and is hidden and cleared for Manual or Once; Escalation Role remains available and no campaign Review Role or Profile Change Policy exists |
-| Open shared Survey Campaign | The Audience Rules and Campaign Runs grids show all and only child records whose existing Campaign field references that campaign; no duplicate relationship field is introduced on either child |
-| Open shared Campaign Run | Campaign Audience Entries shows all and only entries whose Campaign Run field references the run; lifecycle is shown by workflow stage and no State field exists |
-| Create Supplier Facility and Supplier Parent Company records | Their inherited Type of Supplier Entity values default respectively to `Supplier Facility` and `Supplier Parent Company`, contain no other value, and cannot be changed after creation |
-| Create shared Campaign Audience Entry | Supplier is retained and Type of Supplier Entity, Parent Company, Supplier Category, Supplier Type, Facility Type, and Supplier Status default from it; Facility-only values use direct `IF` comparisons to Supplier.Type of Supplier Entity and all preserved values are read only after creation |
-| Calculate shared Campaign Audience Entry selection | Audience Rule Match? is the only evaluation helper; TRUE resolves Included and Selection Reason `Included`, FALSE resolves Excluded and a null Selection Reason, and override checks use `ISNULL` |
-| Override shared campaign selection | Active Override Selection Outcome plus required Override Reason replaces the base values in the two effective calculated fields and refreshes Evaluated At |
-| Configure shared campaign Supplier Status eligibility | Supplier Status is available as an Audience Rule attribute and requires its typed Supplier Status Value; grouped rule semantics determine the included audience and no Survey Status Eligibility record is used |
-| Supplier Survey without profile edits | Valid immutable response and required affirmative profile confirmation complete directly |
-| Submit Supplier Survey | Iteration-1 Supplier Question Answers are frozen, Responding Contact and confirmation evidence are stored directly on Supplier Survey, inherited submission/completion fields are stamped, and no intermediate submission record or relationship exists |
-| Inspect Supplier Survey operational evidence | No dedicated survey event object or relationship exists; work-item actions appear through Supplier Task Event and Campaign Run processing evidence remains available through native workflow, audit, execution, and notification logs |
-| Supplier Survey with an approved profile edit | Eligible supplier user edits the owning master record directly while the Supplier Survey is Open; the change is immediately effective and auditable, and valid survey submission terminates as Completed without Review or Applying Changes |
-| Supplier Survey attempts a prohibited profile edit | Non-allowlisted or out-of-scope data remains read only or inaccessible and the attempted change is rejected |
-| Cancel Campaign after a direct profile edit | Every related Open Supplier Survey is cancelled, while already saved master-data edits remain effective and auditable; no proposal, approval, deferred apply, or automatic rollback occurs |
-| Concurrent survey submissions | One submission succeeds; the second actor sees that submission already occurred |
 | Supplier Task supplier becomes ineligible | Supplier Task capability policy prevents new issue and continues or withdraws existing task work according to its governed rule; history remains |
-| Supplier Survey status changes before issue | Campaign Audience Rules are reevaluated; a supplier that no longer matches is excluded and no Supplier Survey enters Open; if a record was already created, it terminates as Cancelled with the reason retained |
-| Supplier Survey status changes after issue | The issued Supplier Survey remains Open with no automatic status-driven transition; there is no individual Cancel action, although Campaign Run.Owner may invoke Cancel Campaign for the complete run |
-| Visibility reclassification | Authorized classification change alters visibility without changing state, roles, due date, or workflow responsibility |
-| Consolidated work queue | Authorized user sees both concrete types through the abstract query and opens the correct child form |
-| Supplier Survey terminal reporting | Completed is not conflated with Cancelled; campaign cancellation and pre-Open cleanup reasons remain reportable through Closure Reason |
+| Visibility reclassification | Authorized classification change alters visibility without changing roles, Due Date, or platform workflow responsibility |
+| Supplier Task work queue | Authorized user sees Supplier Tasks through the abstract query and opens the concrete task form |
