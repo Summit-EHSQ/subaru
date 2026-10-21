@@ -2,6 +2,7 @@
 
 - [Supplier Status Updates — solution specification and logical object model](supplier-status-updates-logical-model.md)
 - [Supplier Scorecard — technical specification](supplier-scorecard-technical-specification.md)
+- [Supplier Scorecard — technical implementation plan](supplier-scorecard-implementation-plan.md)
 - [Supplier Tasks component — solution specification](supplier-tasks-technical-specification.md)
 - [Supplier Surveys — technical specification](supplier-surveys-technical-specification.md)
 

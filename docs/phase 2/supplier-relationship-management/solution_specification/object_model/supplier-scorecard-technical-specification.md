@@ -30,7 +30,8 @@ The following boundaries are fundamental:
 10. **Source security remains authoritative.** Aggregate scorecard results are secured by scorecard authorization and supplier scope. Opening source transactions re-applies the source application's security.
 11. **A generation delay belongs to the stable Program.** An occurrence-specific child record can defer Run creation while users finish and publish configuration; it does not require republishing the Program and does not move the recurrence anchor for later periods.
 12. **Selection domains are governed records, not embedded lists.** KPI, Program, benchmark, provenance, and exception selections use M:1 catalogue relationships. Automation evaluates stable catalogue Codes while localizable Names remain presentation labels.
-13. **Scorecard catalogues share one abstract definition.** `Supplier Scorecard Abstract Catalog Record` declares Code, Name, Active?, and Sort once. Every catalogue object owned by this specification inherits those fields and declares only its domain-specific additions. The externally owned Recurrence Definition remains outside this scorecard-specific hierarchy.
+13. **Scorecard catalogues share one abstract definition.** `Supplier Scorecard Abstract Catalog Record` declares Code, Name, Active?, and Sort once. Every catalogue object owned by this specification inherits those fields and declares only its domain-specific additions.
+14. **Participation determines entity scope; Cadence owns recurrence.** A Program is not restricted to a supplier subtype. Each Participation selects the exact Supplier Abstract record to score. Scorecard Cadence contains the recurrence expression used by the scheduler, so Program and Program Version do not reference the shared Recurrence Definition.
 
 All new objects, fields, relationships, workflow behavior, and automation below are **Proposed** unless identified as **Extracted**, **Required**, or **Unresolved**. Logical names are not confirmed Intelex internal names, stable metadata identifiers, or physical table names.
 
@@ -67,9 +68,10 @@ All new objects, fields, relationships, workflow behavior, and automation below 
 | SC-027 | User clarification | An authorized user can create a Generation Delay from a grid on the stable Scorecard Program, identify one scheduled occurrence, and defer its Run generation until a specified date without changing Program versioning or the recurrence anchor | Required |
 | SC-028 | User clarification | Model every defined selection list as an M:1 relationship to a governed catalogue object; define and seed each previously inline value set using standard catalogue composition | Required |
 | SC-029 | User clarification | M:1 relationships whose target is a catalogue object must not activate an inverse relationship or expose a target-side inverse grid | Required |
-| SC-030 | User clarification | All Supplier Scorecard catalogue objects inherit from one abstract `Supplier Scorecard Abstract Catalog Record` containing Code, Name, Active?, and Sort; child catalogues declare only additional fields | Required |
+| SC-030 | User clarification; refined by SC-031 | All Supplier Scorecard catalogue objects inherit from one abstract `Supplier Scorecard Abstract Catalog Record` containing Code, Name, Active?, and Sort; child catalogues declare only additional fields | Required |
+| SC-031 | User clarification | Remove Scorecard Program.Entity Level and Scorecard Program.Recurrence Definition; exact entity scope comes from Supplier Scorecard Participation.Supplier, and Scorecard Cadence directly stores the recurrence expression | Required |
 
-ADR-113 remains proposed. This specification supports its monthly-facility/periodic-parent pattern but does not make that pattern mandatory. Scorecard Program configuration selects the exact entity level and cadence so implementation can begin at another approved level without redesigning the object model.
+ADR-113 remains proposed. This specification supports its monthly-facility/periodic-parent pattern but does not make that pattern mandatory. Scorecard Cadence defines timing, while each Supplier Scorecard Participation selects the exact parent-company or facility record to which the Program applies.
 
 ## 3. Baseline and target boundary
 
@@ -103,7 +105,7 @@ No baseline object or workflow is silently removed. Deprecation means removal fr
 
 - `Supplier Management Role`, `Supplier Specific Role`, and their inherited Group behavior remain authoritative for supplier-scoped roles. Scorecard contribution tasks use internal platform Groups because they consolidate values across suppliers.
 - `Supplier Status`, `Process Capability`, and `Status Capability Rule` remain authoritative for lifecycle eligibility. This specification adds required capability seed decisions but does not duplicate the status model.
-- `Recurrence Definition` remains authoritative in the Supplier Surveys specification. Scorecard Program references it rather than creating another recurrence object.
+- `Recurrence Definition` remains authoritative for Supplier Surveys and Supplier Tasks. Supplier Scorecard no longer consumes it; Scorecard Cadence owns the scorecard-specific recurrence expression.
 - `Supplier Survey` and its checklist/answer model remain authoritative for monthly safety submissions and semiannual Safety Kaizen evidence.
 - The generic Supplier Task component is not required for scorecard contribution work. ADR-103's scorecard applicability question remains open.
 
@@ -181,8 +183,10 @@ class KPI_Contribution_Source { <<proposed catalogue child>> }
 class KPI_Collection_Method { <<proposed catalogue child>> }
 class KPI_Initialization_Method { <<proposed catalogue child>> }
 class Safety_Benchmark_Metric { <<proposed catalogue child>> }
-class Scorecard_Entity_Level { <<proposed catalogue child>> }
-class Scorecard_Cadence { <<proposed catalogue child>> }
+class Scorecard_Cadence {
+  <<proposed catalogue child>>
+  +Text Frequency [REQ] [PROPOSED]
+}
 class KPI_Value_Origin { <<proposed catalogue child>> }
 class Publication_Exception_Treatment { <<proposed catalogue child>> }
 
@@ -195,13 +199,12 @@ Supplier_Scorecard_Abstract_Catalog_Record <|-- KPI_Contribution_Source : inheri
 Supplier_Scorecard_Abstract_Catalog_Record <|-- KPI_Collection_Method : inherits
 Supplier_Scorecard_Abstract_Catalog_Record <|-- KPI_Initialization_Method : inherits
 Supplier_Scorecard_Abstract_Catalog_Record <|-- Safety_Benchmark_Metric : inherits
-Supplier_Scorecard_Abstract_Catalog_Record <|-- Scorecard_Entity_Level : inherits
 Supplier_Scorecard_Abstract_Catalog_Record <|-- Scorecard_Cadence : inherits
 Supplier_Scorecard_Abstract_Catalog_Record <|-- KPI_Value_Origin : inherits
 Supplier_Scorecard_Abstract_Catalog_Record <|-- Publication_Exception_Treatment : inherits
 ```
 
-The abstract object is not selectable and must not be instantiated directly. Each child is a distinct relationship target and catalogue administration surface. The shared Recurrence Definition is governed by its authoritative specification and does not inherit from this Supplier Scorecard-specific base.
+The abstract object is not selectable and must not be instantiated directly. Each child is a distinct relationship target and catalogue administration surface. Supplier Scorecard does not use the separately governed shared Recurrence Definition.
 
 ### 4.3 Published configuration
 
@@ -219,8 +222,10 @@ class KPI_Contribution_Source { <<proposed catalogue child>> }
 class KPI_Collection_Method { <<proposed catalogue child>> }
 class KPI_Initialization_Method { <<proposed catalogue child>> }
 class Safety_Benchmark_Metric { <<proposed catalogue child>> }
-class Scorecard_Entity_Level { <<proposed catalogue child>> }
-class Scorecard_Cadence { <<proposed catalogue child>> }
+class Scorecard_Cadence {
+  <<proposed catalogue child>>
+  +Text Frequency [REQ] [PROPOSED]
+}
 class Supplier_Scorecard_KPI {
   +Text Code [REQ] [UNIQUE] [PROPOSED]
   +Text Name [REQ] [PROPOSED]
@@ -255,7 +260,6 @@ class Scorecard_Program_KPI_Version {
   +Float DisplayOrder [REQ] [PROPOSED]
   +Boolean RequiredForPublication [PROPOSED]
 }
-class Recurrence_Definition { <<shared target>> }
 class Group { <<platform/shared target>> }
 class Supplier_Management_Role { <<shared target>> }
 
@@ -275,16 +279,13 @@ Supplier_Scorecard_KPI_Version "0..*" --> "1" KPI_Initialization_Method : Initia
 Supplier_Scorecard_KPI_Version "0..*" --> "0..1" Safety_Benchmark_Metric : SafetyBenchmarkMetric
 
 Scorecard_Program "1" --> "1..*" Scorecard_Program_KPI : ProgramKPIs
-Scorecard_Program "0..*" --> "1" Scorecard_Entity_Level : EntityLevel
 Scorecard_Program "0..*" --> "1" Scorecard_Cadence : Cadence
 Scorecard_Program "1" --> "0..*" Scorecard_Program_Generation_Delay : GenerationDelays
 Scorecard_Program_KPI "0..*" --> "1" Supplier_Scorecard_KPI : KPI
 Scorecard_Program "1" --> "0..*" Scorecard_Program_Version : Versions
 Scorecard_Program_Version "1" --> "1..*" Scorecard_Program_KPI_Version : ProgramKPIVersions
-Scorecard_Program_Version "0..*" --> "1" Scorecard_Entity_Level : EntityLevel
 Scorecard_Program_Version "0..*" --> "1" Scorecard_Cadence : Cadence
 Scorecard_Program_KPI_Version "0..*" --> "1" Supplier_Scorecard_KPI : KPI
-Scorecard_Program_Version "0..*" --> "1" Recurrence_Definition : RecurrenceDefinition
 Scorecard_Program_Version "0..*" --> "1" Group : CoordinatorGroup
 Scorecard_Program_Version "0..*" --> "1" Group : ReviewGroup
 Scorecard_Program_Version "0..*" --> "0..*" Supplier_Management_Role : SupplierRecipientRoles
@@ -398,13 +399,12 @@ Safety_Benchmark_Version "0..*" --> "1" Safety_Benchmark_Metric : Metric
 | KPI Collection Method | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed mechanism used to collect a KPI value | No workflow; audited administration |
 | KPI Initialization Method | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed method used to initialize a new period value | No workflow; audited administration |
 | Safety Benchmark Metric | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed safety metric identity shared by KPIs and benchmark records | No workflow; audited administration |
-| Scorecard Entity Level | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed supplier hierarchy level at which a Program operates | No workflow; audited administration |
-| Scorecard Cadence | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed reporting cadence for a Program | No workflow; audited administration |
+| Scorecard Cadence | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed reporting cadence and recurrence expression for a Program; directly declares Frequency | No workflow; audited administration |
 | KPI Value Origin | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed provenance classification for an operational KPI result | No workflow; audited administration |
 | Publication Exception Treatment | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed scoring treatment for a publication exception | No workflow; audited administration |
 | Supplier Scorecard KPI | New authoring object | None | Editable stable KPI identity and next publishable definition | Publish action creates immutable version |
 | Supplier Scorecard KPI Version | New immutable version | None | Exact KPI definition effective for a date range | Created only by Publish; read only thereafter |
-| Scorecard Program | New authoring object | None | Stable methodology, cadence, entity level, routing, schedule, and KPI membership | Publish action creates a complete version graph |
+| Scorecard Program | New authoring object | None | Stable methodology, cadence, routing, schedule, and KPI membership | Publish action creates a complete version graph |
 | Scorecard Program Generation Delay | New operational control | None | Defers one scheduled Program occurrence until a specified date without changing recurrence or version configuration | No workflow; created from Program.Generation Delays grid; audited and read only after application |
 | Scorecard Program KPI | New authoring child | None | Includes a stable KPI in one Program with order and requiredness | Editable through Program authoring only |
 | Scorecard Program Version | New immutable version | None | Exact Program configuration effective for a date range | Created only by Publish; read only thereafter |
@@ -437,7 +437,7 @@ No new object inherits Supplier Abstract. Supplier Parent Company and Supplier F
 
 ### 7.1 Supplier Scorecard Abstract Catalog Record
 
-This proposed abstract object is the direct parent of every Supplier Scorecard-owned catalogue in Sections 7.2 through 7.14. It cannot be instantiated, selected by an M:1 field, or exposed as an administration form. Its fields are inherited by each concrete child and are not redeclared on those children.
+This proposed abstract object is the direct parent of every Supplier Scorecard-owned catalogue in Sections 7.2 through 7.13. It cannot be instantiated, selected by an M:1 field, or exposed as an administration form. Its fields are inherited by each concrete child and are not redeclared on those children.
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
@@ -542,33 +542,25 @@ Initial values:
 | `LTIR` | LTIR | `TRUE` | 10 |
 | `TRIR` | TRIR | `TRUE` | 20 |
 
-### 7.11 Scorecard Entity Level
+### 7.11 Scorecard Cadence
 
 **Parent:** Supplier Scorecard Abstract Catalog Record  
-**Directly declared fields:** None. Code, Name, Active?, and Sort are inherited.
+**Inherited fields:** Code, Name, Active?, and Sort.
+
+| Directly declared field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
+|---|---|---:|---|---|---|
+| Frequency | Text with `displayas="recurrence"` | Y | None | Scorecard administrator editable before the Cadence is referenced by a published Program Version; thereafter stable | Recurrence expression interpreted by the scorecard scheduler; create a new Cadence record for a materially different schedule; exact platform storage and evaluation require tenant validation |
 
 Initial values:
 
-| Code | Name | Active? | Sort |
-|---|---|---:|---:|
-| `SUPPLIER_PARENT_COMPANY` | Supplier Parent Company | `TRUE` | 10 |
-| `SUPPLIER_FACILITY` | Supplier Facility | `TRUE` | 20 |
+| Code | Name | Active? | Sort | Frequency |
+|---|---|---:|---:|---|
+| `MONTHLY` | Monthly | `TRUE` | 10 | Monthly |
+| `FISCAL_YEAR` | Fiscal Year | `TRUE` | 20 | Annually |
 
-### 7.12 Scorecard Cadence
+Adding a cadence record alone does not implement reporting-period boundary semantics. Program Publish must reject an active Cadence whose Frequency is blank or invalid, and release validation must confirm the mapping from Cadence.Code to reporting-period start/end behavior.
 
-**Parent:** Supplier Scorecard Abstract Catalog Record  
-**Directly declared fields:** None. Code, Name, Active?, and Sort are inherited.
-
-Initial values:
-
-| Code | Name | Active? | Sort |
-|---|---|---:|---:|
-| `MONTHLY` | Monthly | `TRUE` | 10 |
-| `FISCAL_YEAR` | Fiscal Year | `TRUE` | 20 |
-
-Adding a cadence record alone does not implement its scheduler semantics. Program Publish must reject any active cadence whose Code has no approved period-boundary and recurrence mapping.
-
-### 7.13 KPI Value Origin
+### 7.12 KPI Value Origin
 
 **Parent:** Supplier Scorecard Abstract Catalog Record  
 **Directly declared fields:** None. Code, Name, Active?, and Sort are inherited.
@@ -587,7 +579,7 @@ Initial values:
 | `NOT_APPLICABLE` | Not Applicable | `TRUE` | 80 |
 | `PUBLICATION_EXCEPTION` | Publication Exception | `TRUE` | 90 |
 
-### 7.14 Publication Exception Treatment
+### 7.13 Publication Exception Treatment
 
 **Parent:** Supplier Scorecard Abstract Catalog Record  
 **Directly declared fields:** None. Code, Name, Active?, and Sort are inherited.
@@ -686,15 +678,13 @@ KPI Version records cannot be edited, deleted, imported over, or re-dated after 
 | Name | Text, max 255 | Y | None; display field | Scorecard administrator editable | Copied to Version |
 | Description | Long Text | N | `NULL` | Scorecard administrator editable | Copied to Version |
 | Active? | Yes/No | Y | `TRUE` | Scorecard administrator editable | Prevents new participation/generation without invalidating history |
-| Entity Level | M:1 to Scorecard Entity Level; inverse disabled | Y | None; filter `Active?=TRUE` for new selection | Scorecard administrator editable | Validated by Entity Level.Code against Supplier Abstract.Type of Supplier Entity during participation and generation |
-| Cadence | M:1 to Scorecard Cadence; inverse disabled | Y | `MONTHLY` catalogue record; filter `Active?=TRUE` for new selection | Scorecard administrator editable | Initial values reflect current ADRs; future cadence is added as governed catalogue configuration plus supported scheduler logic |
-| Recurrence Definition | M:1 to shared Recurrence Definition catalogue; inverse disabled | Y | None; filter to Scorecard-supported active values | Scorecard administrator editable | Supplies schedule expression; exact Event Service interpretation must be verified |
+| Cadence | M:1 to Scorecard Cadence; inverse disabled | Y | `MONTHLY` catalogue record; filter `Active?=TRUE` for new selection | Scorecard administrator editable | Supplies both the recurrence expression and reporting-period basis; copied to Version |
 | Entry Window Days | Integer | Y | None; greater than or equal to zero | Scorecard administrator editable | Run service calculates Entry Due At from Generation At |
 | Review Window Days | Integer | Y | None; greater than zero | Scorecard administrator editable | Run service calculates Review Closes At when review opens |
 | Coordinator Group | M:1 to Group | Y | None | Scorecard administrator editable | Owns the Run stages and exception follow-up; does not expand record access |
 | Review Group | M:1 to Group | Y | None | Scorecard administrator editable | Receives one internal review notification |
 | Supplier Recipient Roles | M:N to Supplier Management Role | Y | None | Scorecard administrator editable | Publish copies the stable role references to Program Version; operational notification resolves exact supplier roles |
-| Rollup Source Program | M:1 self-reference to Scorecard Program | Conditional | `NULL` | Visible/required for a parent periodic program that derives child results; hidden and cleared otherwise | Must have a compatible child entity level and cadence |
+| Rollup Source Program | M:1 self-reference to Scorecard Program | Conditional | `NULL` | Visible/required for a periodic Program that derives child results; hidden and cleared otherwise | Source Program must have a compatible cadence; destination/source entity compatibility is validated from their Participations during generation |
 | Effective From | Date | Y | None | Scorecard administrator editable for next Publish | Copied to Version |
 | Effective To | Date | N | `NULL` | Scorecard administrator editable for next Publish | Copied to Version |
 | Program KPIs | Inverse 1:M grid from Scorecard Program KPI.Program | Y | None | Authoring grid editable by scorecard administrators | At least one active row required to Publish |
@@ -718,9 +708,7 @@ KPI Version records cannot be edited, deleted, imported over, or re-dated after 
 | Version Number | Integer | Y | One greater than maximum Version Number in Program.Versions; first is 1 | Read only | Atomic uniqueness `(Program, Version Number)` |
 | Name | Text | Y | Copy Program.Name | Read only | Publish mapping |
 | Description | Long Text | N | Copy Program.Description | Read only | Publish mapping |
-| Entity Level | M:1 to Scorecard Entity Level; inverse disabled | Y | Copy Program.Entity Level | Read only | Publish mapping preserves the exact catalogue record |
 | Cadence | M:1 to Scorecard Cadence; inverse disabled | Y | Copy Program.Cadence | Read only | Publish mapping preserves the exact catalogue record |
-| Recurrence Definition | M:1 to Recurrence Definition catalogue; inverse disabled | Y | Copy Program.Recurrence Definition | Read only | Publish mapping |
 | Entry Window Days | Integer | Y | Copy Program.Entry Window Days | Read only | Publish mapping |
 | Review Window Days | Integer | Y | Copy Program.Review Window Days | Read only | Publish mapping |
 | Coordinator Group | M:1 to Group | Y | Copy Program.Coordinator Group | Read only | Publish mapping |
@@ -751,8 +739,8 @@ Program Publish must validate the complete authoring graph, create the Program V
 - duplicate KPI membership;
 - missing or inactive configuration targets;
 - overlapping Program Version effective ranges;
-- an unsupported cadence/recurrence combination;
-- an entity-level conflict with Rollup Source Program;
+- a missing, inactive, or invalid Cadence/Frequency configuration;
+- a cadence conflict with Rollup Source Program;
 - a rollup cycle; or
 - missing coordinator, reviewer, or supplier recipient routing.
 
@@ -766,7 +754,7 @@ A Generation Delay applies to one scheduled occurrence of the stable Program. It
 |---|---|---:|---|---|---|
 | Display Field | Calculated Text | Y | Program.Name plus Scheduled Generation Date; exact syntax unresolved | Read only | Configured display value |
 | Program | M:1 to Scorecard Program; inverse `Generation Delays` 1:M | Y | Default from the Program grid context | Read only from creation | Declaring relationship; the New action is initiated from the Program.Generation Delays grid |
-| Scheduled Generation Date | Date | Y | User selects the original recurrence occurrence being delayed | Scorecard administrator editable until an Applied Run exists | Must be a valid occurrence for Program.Recurrence Definition and must not already have a Run |
+| Scheduled Generation Date | Date | Y | User selects the original occurrence produced from the applicable published Program Version.Cadence.Frequency | Scorecard administrator editable until an Applied Run exists | Must be a valid occurrence for the Program's published Cadence and must not already have a Run |
 | Delay Until | Date | Y | None | Scorecard administrator editable until an Applied Run exists | Must be later than Scheduled Generation Date; generation may occur on the first scheduler execution on or after this date |
 | Reason | Long Text | Y | None | Scorecard administrator editable until an Applied Run exists; internal only | Native object audit preserves creation and changes |
 | Applied Run | M:1 to Supplier Scorecard Run; inverse `Generation Delay` 0..1 | N | `NULL` | Read only | Generation service sets after the unique delayed Run is created successfully |
@@ -785,7 +773,7 @@ The delay does not itself select or reserve a Program Version. On or after Delay
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
 | Display Field | Calculated Text | Y | `Supplier.Name + " - " + Program.Name`; exact syntax unresolved | Read only | Configured display value |
-| Supplier | M:1 to Supplier Abstract; inverse `Scorecard Participations` 1:M | Y | Supplier context | Scorecard administrator editable only on creation; then read only | Must match Program.Entity Level at generation |
+| Supplier | M:1 to Supplier Abstract; inverse `Scorecard Participations` 1:M | Y | Supplier context | Scorecard administrator editable only on creation; then read only | Exact entity to be scored; may be a Supplier Parent Company or Supplier Facility without a Program-level entity restriction |
 | Program | M:1 to Scorecard Program; inverse `Participations` 1:M | Y | None; filter `Active?=TRUE` | Scorecard administrator editable only on creation; then read only | Stable Program identity; generation resolves effective Program Version |
 | Active? | Yes/No | Y | `TRUE` | Scorecard administrator editable | Inactive stops future generation only |
 | Effective From | Date | Y | None | Scorecard administrator editable | Inclusive participation start |
@@ -805,7 +793,7 @@ These fields are declared once on Supplier Abstract and inherited by Supplier Pa
 | Scorecard Participations | Inverse 1:M grid | N | Derived from Participation.Supplier | Read only to ordinary users | Navigation only |
 | Scorecards | Inverse 1:M grid | N | Derived from Supplier Scorecard.Supplier | Read only | Supplier profile/history navigation; no duplicate relationship |
 
-`Type of Supplier Entity`, already proposed in the Supplier Surveys target specification, is reused for entity-level validation. This specification does not create another discriminator.
+`Type of Supplier Entity`, already proposed in the Supplier Surveys target specification, is reused for rollup participation-subtype validation and reporting. It does not restrict ordinary Program participation, and this specification does not create another discriminator.
 
 Initial release policy inherits Commodity from Parent Company to Facility and keeps the facility field read only. ADR-114's pending facility-override decision can later change editability without changing the field or historical scorecard snapshots.
 
@@ -870,8 +858,8 @@ Benchmark Publish validates non-overlapping effective ranges for the stable Benc
 | Display Field | Calculated Text | Y | Program Version.Name plus Reporting Period End; exact syntax unresolved | Read only | Configured display value |
 | Program | M:1 to Scorecard Program; inverse `Runs` 1:M | Y | Stable Program that produced the scheduled occurrence | Read only | Supports occurrence uniqueness independently of the resolved Version |
 | Program Version | M:1 to Scorecard Program Version; inverse `Runs` 1:M | Y | Resolved from Program and reporting period | Read only after creation | Exact immutable configuration used by this occurrence |
-| Scheduled Generation Date | Date | Y | Original due occurrence calculated from Program recurrence | Read only | Preserves the recurrence anchor even when actual generation is delayed; uniqueness `(Program, Scheduled Generation Date)` |
-| Reporting Period Start | Date | Y | Calculated by scheduler from recurrence/cadence | Read only | Stored period boundary |
+| Scheduled Generation Date | Date | Y | Original due occurrence calculated from Program Version.Cadence.Frequency | Read only | Preserves the cadence anchor even when actual generation is delayed; uniqueness `(Program, Scheduled Generation Date)` |
+| Reporting Period Start | Date | Y | Calculated by scheduler from Program Version.Cadence | Read only | Stored period boundary |
 | Reporting Period End | Date | Y | Calculated by scheduler | Read only | Stored period boundary; end must not precede start |
 | Generated At | Date/Time with timezone | Y | Current server timestamp | Read only | Set on Run creation |
 | Entry Due At | Date/Time with timezone | Y | Generated At plus Program Version.Entry Window Days in configured business calendar | Read only | Exact calendar and time-of-day require deployment configuration |
@@ -991,9 +979,9 @@ No custom status field is declared. Overdue state is derived from the Assigned w
 
 ### 13.1 Scheduled Run generation
 
-An Event Service or scheduled batch evaluates active Scorecard Programs. Its exact cadence follows the related Recurrence Definition and configured scheduler timezone. For each due stable Program occurrence:
+An Event Service or scheduled batch evaluates active Scorecard Programs. Its exact recurrence follows the applicable published Program Version.Cadence.Frequency and the configured scheduler timezone; unpublished authoring edits do not change the live schedule. For each due stable Program occurrence:
 
-1. calculate and retain the original Scheduled Generation Date and its reporting-period boundaries from the Program recurrence and cadence;
+1. calculate and retain the original Scheduled Generation Date from the applicable published Program Version.Cadence.Frequency and calculate reporting-period boundaries from that Cadence.Code;
 2. look for the unique Generation Delay for `(Program, Scheduled Generation Date)`;
 3. when a delay exists and the local scheduler date is earlier than Delay Until, create no Run, record the skipped execution in native service evidence, and leave the occurrence due for reevaluation;
 4. on or after Delay Until—or immediately when no delay exists—resolve the Program Version effective on the reporting period end;
@@ -1001,17 +989,18 @@ An Event Service or scheduled batch evaluates active Scorecard Programs. Its exa
 6. create or reuse the unique Run for Program and Scheduled Generation Date, storing both the stable Program and exact resolved Program Version;
 7. select active Participations whose effective range includes the period end;
 8. recheck the status capability and parent restriction for each supplier immediately before creation;
-9. validate participation entity type against Program Version.Entity Level;
-10. create one unique Scorecard per eligible participation;
-11. snapshot supplier name/code, parent context, Commodity, NAICS Classification, and period;
-12. create one KPI Value for every Program KPI Version;
-13. resolve the exact KPI Version effective on the reporting period end;
-14. initialize each KPI Value;
-15. create one Contribution Task per unique internal Direct Entry Contributor Group and link all applicable values;
-16. transition the complete Run and child graph into Data Entry only after generation succeeds; and
-17. when a Generation Delay was used, set its Applied Run and Applied At only after successful Run creation.
+9. use Participation.Supplier as the exact entity to score, without applying a Program-level entity-type filter;
+10. for a rollup Program, require the destination Participation.Supplier to be the applicable Supplier Parent Company and select source Scorecards only from child-facility Participations of Rollup Source Program;
+11. create one unique Scorecard per eligible participation;
+12. snapshot supplier name/code, parent context, Commodity, NAICS Classification, and period;
+13. create one KPI Value for every Program KPI Version;
+14. resolve the exact KPI Version effective on the reporting period end;
+15. initialize each KPI Value;
+16. create one Contribution Task per unique internal Direct Entry Contributor Group and link all applicable values;
+17. transition the complete Run and child graph into Data Entry only after generation succeeds; and
+18. when a Generation Delay was used, set its Applied Run and Applied At only after successful Run creation.
 
-Generated At records the actual delayed creation timestamp. Entry Due At is calculated from that actual timestamp, so the delay buys the requested contribution time. Scheduled Generation Date remains the original recurrence occurrence, and the recurrence engine continues to calculate later years from its original anchor rather than from Generated At or Delay Until.
+Generated At records the actual delayed creation timestamp. Entry Due At is calculated from that actual timestamp, so the delay buys the requested contribution time. Scheduled Generation Date remains the original Cadence.Frequency occurrence, and the cadence engine continues to calculate later occurrences from its original anchor rather than from Generated At or Delay Until.
 
 Generation is retry-safe. Required uniqueness keys are:
 
@@ -1209,7 +1198,7 @@ Recipient resolution rechecks current membership, account eligibility, supplier 
 Each Query KPI Version must identify and validate:
 
 - authoritative source application/dataset;
-- exact supplier matching key and entity level;
+- exact supplier matching key and participation-supplier subtype handling;
 - reporting-period start/end treatment and timezone;
 - included/excluded record types and dispositions;
 - aggregation and scoring logic;
@@ -1233,7 +1222,7 @@ Specific constraints include:
 | SC-C02 | Modify | Supplier Abstract | No governed Commodity/NAICS references in extracted baseline | Add Commodity and NAICS Classification M:1 relationships with their inverse options disabled | SC-013, SC-016, SC-029 | High design; migration mapping unresolved |
 | SC-C03 | Deprecate from scorecard use | OOTB score-like fields | Scalar Score/Facility Score/Last Score Date/demerits | Do not write from target; retain until dependency review and migration | SC-001 | High |
 | SC-C04 | Add | KPI authoring/version family | No versioned KPI model | Editable KPI plus immutable effective-dated versions | SC-001–SC-005, SC-011–SC-012 | High |
-| SC-C05 | Add | Scorecard Program/version family | No governed methodology/schedule/KPI membership | Editable Program, publishable complete version graph, configurable entity level/cadence | SC-007, SC-015 | High |
+| SC-C05 | Add | Scorecard Program/version family | No governed methodology/schedule/KPI membership | Editable Program, publishable complete version graph, configurable cadence, and supplier scope supplied by Participation | SC-007, SC-015, SC-031 | High |
 | SC-C06 | Add | Participation | No supplier/program participation model | Effective-dated exact-supplier participation controlled by administrators and status capability | SC-018, SC-021 | High |
 | SC-C07 | Add | Run, Scorecard, KPI Value | No period scorecard records | Retry-safe generated period graph and immutable publication history | SC-001, SC-007–SC-010 | High |
 | SC-C08 | Add | Contribution Task | Earlier conceptual model attached a task to one Scorecard | One Run/group task consolidates KPI Values across suppliers | SC-007–SC-008 | High |
@@ -1248,6 +1237,7 @@ Specific constraints include:
 | SC-C17 | Add/modify | Selection catalogues and former list fields | Value Type and eight other selection domains were described as dropdown/choice fields with some values embedded inline | Add nine standard catalogue objects, seed the stated values, and replace each authoring, version, benchmark, Program, and operational field with an M:1 relationship governed by stable Code | SC-028 | High |
 | SC-C18 | Refine | Catalogue-targeting M:1 relationships | Earlier target wording named inverse grids for several catalogue references, implying that the Intelex inverse option was enabled | Keep each source-owned M:1 reference but disable its inverse relationship; configure no catalogue-side consumer grids | SC-029 | High |
 | SC-C19 | Add/reparent | Supplier Scorecard catalogue inheritance | Thirteen independent catalogue objects each defined or implied the same Code, Name, Active?, and Sort fields | Add non-instantiable Supplier Scorecard Abstract Catalog Record; reparent all thirteen scorecard-owned catalogues; retain Description directly on KPI Aggregation Method | SC-030 | High |
+| SC-C20 | Remove/modify | Program entity scope and recurrence | Program and Program Version stored Entity Level and Recurrence Definition; Scorecard Entity Level existed only to support that field | Remove both fields from Program and Version; remove the orphaned Scorecard Entity Level catalogue; make Participation.Supplier authoritative for exact entity scope; add Frequency directly to Scorecard Cadence | SC-031 | High |
 
 ## 19. Requirement traceability
 
@@ -1267,7 +1257,7 @@ Specific constraints include:
 | SC-012 | KPI Value applicability | Explicit Not Applicable and denominator behavior | Satisfied |
 | SC-013 | Supplier Survey integration | Monthly safety query and Kaizen carry-forward | Satisfied at design level; survey schedules/content remain configuration |
 | SC-014 | Safety Benchmark versions | Effective-dated NAICS/metric version selection | Satisfied |
-| SC-015 | Program entity/cadence, rollup | Supports facility monthly and parent periodic without duplicate entry | Requires confirmation because ADR-113 remains proposed |
+| SC-015 | Program Cadence, Participation supplier scope, rollup | Supports facility monthly and parent periodic through exact Participations without a Program-level entity restriction or duplicate entry | Requires confirmation because ADR-113 remains proposed |
 | SC-016 | Commodity snapshot/ranking | Shared supplier Commodity, Scorecard snapshot, on-demand rank | Satisfied; tie/exclusion behavior unresolved |
 | SC-017 | Security contract | Aggregate authorization separated from source drilldown authorization | Satisfied at design level; runtime penetration testing required |
 | SC-018 | Admin permission contract | Configuration/publishing/versioning/override restricted | Satisfied; group membership must be named |
@@ -1282,7 +1272,8 @@ Specific constraints include:
 | SC-027 | Program.Generation Delays, generation service, Run identity | Child delay form, occurrence-specific hold, deferred retry, original recurrence anchor, and applied-Run evidence | Satisfied at design level |
 | SC-028 | Catalogue objects; KPI, KPI Version, Program, Program Version, Safety Benchmark, Safety Benchmark Version, KPI Value | All former dropdown/choice domains are governed M:1 relationships; inline values are normalized into matching seed-data tables; rules use stable Code rather than localizable Name | Satisfied at design level |
 | SC-029 | Every M:1 field targeting a catalogue object | Field contracts explicitly state `inverse disabled`; catalogue forms expose no inverse consumer grid; diagrams are source-to-target associations only | Satisfied at design level |
-| SC-030 | Supplier Scorecard Abstract Catalog Record and thirteen catalogue children | Common fields are declared once on the abstract parent; every concrete scorecard catalogue inherits them; KPI Aggregation Method alone retains its additional Description field | Satisfied at design level |
+| SC-030 | Supplier Scorecard Abstract Catalog Record and catalogue children | Satisfied as refined by SC-031: common fields are declared once on the abstract parent; twelve concrete scorecard catalogues inherit them; KPI Aggregation Method adds Description and Scorecard Cadence adds Frequency | Satisfied at design level |
+| SC-031 | Scorecard Program, Program Version, Participation, Scorecard Cadence, generation service | Entity Level and Recurrence Definition are absent from Program/Version; Participation.Supplier is the exact scored entity; Cadence.Frequency drives occurrence scheduling; orphaned Scorecard Entity Level is removed | Satisfied at design level; recurrence rendering and scheduler interpretation require tenant validation |
 
 ## 20. Impact analysis, migration, and implementation sequence
 
@@ -1296,28 +1287,29 @@ Specific constraints include:
 - **Portal/workspace:** add selected current measures and profile drilldown without loading all KPI history on the landing page.
 - **Reporting:** replace use of scalar OOTB score fields with Scorecard/KPI Value datasets after reconciliation.
 - **Integrations:** map supplier/depot codes, reporting periods, source corrections, and consumed-parts data; never write external rows directly into KPI Values.
-- **Configuration governance:** configure the abstract catalogue parent first, create the thirteen concrete catalogue children beneath it, seed approved Code records only on those children, and update forms, imports, reports, and rules to resolve concrete relationships by Code.
+- **Configuration governance:** configure the abstract catalogue parent first, create the twelve concrete catalogue children beneath it, seed approved Code records only on those children, and update forms, imports, reports, and rules to resolve concrete relationships by Code.
 - **Relationship configuration:** leave the Intelex inverse-relationship option disabled on every catalogue-targeting M:1 field. Do not add consumer grids to catalogue forms; usage reporting must originate from the consuming object.
-- **Shared recurrence boundary:** do not reparent the externally governed Recurrence Definition under the Supplier Scorecard abstract catalogue; its ownership and inherited model remain unchanged.
+- **Shared recurrence boundary:** remove the Supplier Scorecard dependency on the externally governed Recurrence Definition. Supplier Surveys and Supplier Tasks retain their existing use and ownership of that object.
 
 ### 20.2 Migration
 
 1. Inventory every current dependency on OOTB Score, Last Score Date, Facility Score, Average Goods & Service Score, and Latest Parent Company Demerits.
-2. Configure Supplier Scorecard Abstract Catalog Record, then create every scorecard-owned catalogue as its direct child. Declare Description only on KPI Aggregation Method; do not duplicate Code, Name, Active?, or Sort on any child.
-3. Configure and migrate governed Commodity and NAICS Classification values; review facility inheritance and exceptions.
-4. Configure application groups, source reports, recipient roles, status capabilities, and all approved catalogue seed values; load records into the concrete child catalogues, map any pre-existing textual selections by Code, and confirm every catalogue-targeting M:1 has its inverse option disabled.
-5. Build KPI and Program authoring/versioning and validate Publish atomicity before operational generation.
-6. Configure the Program.Generation Delays grid, contextual New form, audit, occurrence validation, and scheduler delay gate.
-7. Load and publish the initial KPI catalogue, direct-entry first.
-8. Configure Participations only after entity level, status eligibility, contributor routing, and recipient routing are validated.
-9. Decide whether historical spreadsheet scorecards will be imported as published operational snapshots. If approved, use a controlled migration process that creates Run, Scorecard, and KPI Value records with explicit source provenance; do not backfill OOTB scalar score fields.
-10. Run at least one parallel period against the current spreadsheet process and reconcile every supplier/category/KPI total.
-11. Enable supplier publication only after entity-scope, facility access, source links, and recipient resolution pass security testing.
-12. Deprecate legacy score fields from new reports/forms only after reconciliation and dependency removal.
+2. Configure Supplier Scorecard Abstract Catalog Record, then create every scorecard-owned catalogue as its direct child. Declare Description on KPI Aggregation Method and Frequency on Scorecard Cadence; do not duplicate Code, Name, Active?, or Sort on any child.
+3. If an earlier target build exists, map each Program's recurrence choice into its selected Scorecard Cadence.Frequency. Where Programs sharing a Cadence require different schedules, create separately coded Cadence records before migration. Then remove Program/Version Entity Level and Recurrence Definition and remove Scorecard Entity Level records/configuration.
+4. Configure and migrate governed Commodity and NAICS Classification values; review facility inheritance and exceptions.
+5. Configure application groups, source reports, recipient roles, status capabilities, and all approved catalogue seed values; load records into the concrete child catalogues, map any pre-existing textual selections by Code, and confirm every catalogue-targeting M:1 has its inverse option disabled.
+6. Build KPI and Program authoring/versioning and validate Publish atomicity before operational generation.
+7. Configure the Program.Generation Delays grid, contextual New form, audit, occurrence validation, and scheduler delay gate.
+8. Load and publish the initial KPI catalogue, direct-entry first.
+9. Configure Participations only after exact supplier identity/subtype, status eligibility, contributor routing, and recipient routing are validated.
+10. Decide whether historical spreadsheet scorecards will be imported as published operational snapshots. If approved, use a controlled migration process that creates Run, Scorecard, and KPI Value records with explicit source provenance; do not backfill OOTB scalar score fields.
+11. Run at least one parallel period against the current spreadsheet process and reconcile every supplier/category/KPI total.
+12. Enable supplier publication only after entity-scope, facility access, source links, and recipient resolution pass security testing.
+13. Deprecate legacy score fields from new reports/forms only after reconciliation and dependency removal.
 
 ### 20.3 Recommended implementation sequence
 
-1. Supplier Scorecard Abstract Catalog Record, its thirteen concrete catalogue children, seed data, and Supplier Abstract catalogue relationships.
+1. Supplier Scorecard Abstract Catalog Record, its twelve concrete catalogue children, Scorecard Cadence recurrence configuration, seed data, and Supplier Abstract catalogue relationships.
 2. KPI authoring/versioning and Publish.
 3. Program authoring/versioning, KPI membership, and Publish.
 4. Generation Delay form, Program grid, and scheduled-occurrence gate.
@@ -1336,11 +1328,13 @@ Specific constraints include:
 | Check | Result / required execution |
 |---|---|
 | Baseline preservation | OOTB model/workflow artifacts remain unchanged; target is a separate specification |
-| Inheritance | Supplier Abstract → Parent Company/Facility is retained. Supplier Scorecard Abstract Catalog Record directly parents exactly thirteen concrete scorecard catalogues; no child redeclares the inherited fields, no multiple parent exists, and no inheritance cycle is introduced |
+| Inheritance | Supplier Abstract → Parent Company/Facility is retained. Supplier Scorecard Abstract Catalog Record directly parents exactly twelve concrete scorecard catalogues; no child redeclares the inherited fields, no multiple parent exists, and no inheritance cycle is introduced |
 | Relationship ownership | Every 1:M grid is the inverse of one child M:1 field; no duplicate stored parent grid |
 | Catalogue normalization | No dropdown, governed-dropdown, or choice field remains; each selection domain is an M:1 relationship to a standard Code/Name/Active?/Sort catalogue and rules branch on Code |
 | Catalogue inverse suppression | Every field-table row targeting a catalogue states `inverse disabled`; no catalogue object defines or exposes a consumer-side inverse grid |
-| Catalogue field ownership | Code, Name, Active?, and Sort are declared only on Supplier Scorecard Abstract Catalog Record; KPI Aggregation Method declares only Description; every other concrete catalogue declares no local fields |
+| Catalogue field ownership | Code, Name, Active?, and Sort are declared only on Supplier Scorecard Abstract Catalog Record; KPI Aggregation Method declares Description, Scorecard Cadence declares Frequency, and every other concrete catalogue declares no local fields |
+| Removed Program fields | Entity Level and Recurrence Definition are absent from Scorecard Program, Scorecard Program Version, diagrams, Publish mappings, generation rules, forms, and reports; Scorecard Entity Level has no remaining current-target dependency |
+| Cadence immutability | Frequency becomes stable when its Cadence is first referenced by a published Program Version; unpublished Program edits do not change live scheduling, and a materially different recurrence requires a new Cadence record |
 | Inherited Code uniqueness | Validate that inherited Code uniqueness can be enforced per concrete catalogue child. Seed data cannot be loaded until repeated cross-catalogue codes are proven valid or replaced with approved globally distinct codes |
 | M:N use | Supplier Recipient Roles and Source Scorecards require simultaneous multi-selection and no business attributes; native M:N is appropriate |
 | Version mirroring | KPI and Program publishable fields are mapped to immutable versions; Program Publish copies all child membership and recipient roles |
@@ -1362,16 +1356,18 @@ Specific constraints include:
 | Publish KPI | Complete immutable KPI Version created with next version number; overlapping effective dates or incomplete conditional configuration block without partial record |
 | Catalogue-backed selection | New selections show only active catalogue records; published and historical records retain inactive references; changing a localizable Name does not alter behavior because rules resolve stable Code |
 | Catalogue relationship configuration | A consuming record can select one catalogue record through its M:1 field, while the catalogue record exposes no inverse field or consumer grid; source-object queries still support usage reporting |
-| Catalogue inheritance | A record created in each concrete catalogue exposes inherited Code, Name, Active?, and Sort; the abstract parent cannot be instantiated or selected; KPI Aggregation Method additionally exposes Description |
+| Catalogue inheritance | A record created in each concrete catalogue exposes inherited Code, Name, Active?, and Sort; the abstract parent cannot be instantiated or selected; KPI Aggregation Method additionally exposes Description and Scorecard Cadence exposes Frequency |
+| Cadence-owned scheduling | Program exposes Cadence but no Recurrence Definition; selecting Monthly uses the Monthly Frequency, selecting Fiscal Year uses the Annually Frequency, and invalid/blank recurrence expressions block Program Publish or generation |
+| Revise a used Cadence | Frequency cannot be changed after the Cadence is referenced by a published Program Version; administrator creates a new active Cadence and republishes the affected Program instead |
 | Publish Program | Program Version, all Program KPI Versions, and all recipient-role links are created atomically |
 | Create Generation Delay from Program | New form defaults and locks Program, accepts one valid future Scheduled Generation Date, requires a later Delay Until and Reason, and rejects a duplicate or an occurrence with an existing Run |
-| Delayed occurrence before Delay Until | Scheduler creates no Run or Scorecards, preserves the occurrence for retry, and does not alter the Program recurrence anchor |
+| Delayed occurrence before Delay Until | Scheduler creates no Run or Scorecards, preserves the occurrence for retry, and does not alter the Program Cadence.Frequency anchor |
 | Delayed occurrence on or after Delay Until | Scheduler resolves the Program Version by reporting period, creates exactly one Run with original Scheduled Generation Date and actual Generated At, then links the Delay to that Run |
 | Delay expires without applicable Program Version | No Run is created; coordinator receives an owned configuration exception; later retries can succeed after publication without duplicating the occurrence |
 | Revise pending delay | Administrator changes Delay Until before application; native audit preserves the change; applied Delay is read only |
 | Generate monthly Run twice | Second execution finds the existing Run/Scorecards/values/tasks and creates no duplicates |
 | Ineligible supplier | Capability denial prevents a new Scorecard but does not change historical Scorecards |
-| Facility generation | Supplier type matches Program entity level; parent context, Commodity, and NAICS are snapshotted |
+| Participation-scoped generation | Each eligible Participation generates for its exact Supplier record, whether Parent Company or Facility; parent context, Commodity, and NAICS are snapshotted without a Program entity-level filter |
 | Static default | Points initialize but manual KPI remains incomplete until contributor confirmation |
 | Prior-period default | Latest earlier published effective points are copied as current Entered Points; old override rationale is not copied |
 | Not Applicable | Entry controls disable, values remain preserved but ignored, effective maximum becomes zero, no comment required |
@@ -1400,7 +1396,7 @@ The following decisions do not prevent the logical model from being reviewed, bu
 2. Approve the first KPI catalogue, Value Types, categories, maximum points, initialization, applicability, missing-value behavior, aggregation methods, feedback contacts, and effective dates.
 3. Approve SC-024's publication-exception treatments or replace them with a different explicit policy.
 4. Name the Supplier Scorecard Application Administrator, coordinator, review, correction, and contributor groups and separation-of-duty rules.
-5. Approve monthly generation, entry cutoff, review cutoff, publication schedule, scheduler timezone, business calendar, reminders, and escalation behavior.
+5. Approve Scorecard Cadence Frequency expressions and reporting-period boundary mappings, monthly generation, entry cutoff, review cutoff, publication schedule, scheduler timezone, business calendar, reminders, and escalation behavior.
 6. Approve overall/commodity ranking tie, exclusion, null, and population-count rules.
 7. Confirm whether a Facility may override Parent Company Commodity; initial design keeps it inherited and read only.
 8. Define NAICS ownership, missing-code handling, benchmark source, benchmark update procedure, and exact LTIR/TRIR scoring rules.
@@ -1421,3 +1417,5 @@ The following decisions do not prevent the logical model from being reviewed, bu
 2026-10-20 — Refined catalogue relationship configuration following user clarification. All M:1 fields targeting catalogue objects now explicitly disable the Intelex inverse relationship; earlier proposed catalogue-side inverse names and grids are superseded. Parent-child and operational inverse grids remain enabled only where the specification explicitly requires navigation.
 
 2026-10-20 — Added Supplier Scorecard catalogue inheritance following user clarification. Supplier Scorecard Abstract Catalog Record now owns Code, Name, Active?, and Sort; all thirteen scorecard-owned catalogue objects inherit those fields without redeclaration, while KPI Aggregation Method retains its directly declared Description. The shared Recurrence Definition remains outside this scorecard-specific inheritance family.
+
+2026-10-20 — Removed Program-level entity scope and recurrence configuration following user clarification. Scorecard Program and Program Version no longer contain Entity Level or Recurrence Definition; Supplier Scorecard Participation.Supplier supplies the exact scored entity, Scorecard Entity Level is removed as orphaned configuration, and Scorecard Cadence now directly declares the recurrence-expression Frequency used by generation.
