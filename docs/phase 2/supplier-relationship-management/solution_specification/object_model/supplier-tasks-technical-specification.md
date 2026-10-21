@@ -7,8 +7,8 @@
 | Component | Supplier Tasks |
 | Operational objects | `Abstract Supplier Task`, `Supplier Task` |
 | Workflows | Supplier Task |
-| As of | 2026-10-19 |
-| Primary sources | ADR-002, ADR-003, ADR-004, ADR-005, ADR-006, ADR-007, ADR-076, ADR-077, ADR-078, ADR-079, ADR-080, ADR-081, ADR-083, ADR-084, ADR-085, and ADR-103; user-approved inheritance and scope decisions |
+| As of | 2026-10-21 |
+| Primary sources | ADR-002, ADR-003, ADR-004, ADR-005, ADR-006, ADR-007, ADR-058, ADR-076, ADR-077, ADR-078, ADR-079, ADR-080, ADR-081, ADR-083, ADR-084, ADR-085, ADR-086, ADR-095, ADR-103, and ADR-112; user-approved inheritance and scope decisions |
 
 ## 1. Executive solution summary
 
@@ -24,7 +24,7 @@ This is direct Intelex object inheritance. It is not a parent-child record assoc
 - **Supplier Task** represents a targeted, onboarding, training, access, evidence, checklist, or recurring supplier obligation created for one supplier context.
 - **Abstract Supplier Task** provides the reusable task contract: supplier scope, role-based ownership, due dates, visibility, completion metadata, and checklist version.
 
-A targeted request, onboarding rule, or supplier-scoped recurring obligation creates Supplier Task records. The `Supplier Survey` object and its workflow are documented only in the Supplier Surveys technical specification and are outside this document's object inventory, diagrams, field lists, workflow, permissions, reporting, and acceptance criteria.
+A targeted request, onboarding rule, supplier-scoped recurring obligation, or meeting follow-up creates Supplier Task records. A meeting-generated task retains a typed relationship to its source Meeting. The `Supplier Survey` object and its workflow are documented only in the Supplier Surveys technical specification and are outside this document's object inventory, diagrams, field lists, workflow, permissions, reporting, and acceptance criteria.
 
 Every material object, field, relationship, stage, action, and notification introduced by this specification is **Proposed** unless explicitly classified as **Extracted**, **Required**, or **Unresolved**. Logical names are not confirmed internal names, stable metadata identifiers, database keys, or physical table names. This document does not claim that the proposed configuration has been implemented.
 
@@ -42,6 +42,8 @@ Every material object, field, relationship, stage, action, and notification intr
 10. **Checklist configuration is reused.** Templated Supplier Tasks consume the neutral Checklist authoring/version family defined in the Supplier Surveys technical specification. Checklist and Checklist Question are editable authoring records; Publish creates immutable checklist, question, and question-choice version snapshots.
 11. **Profile assignments select stable templates, not versions.** A Supplier Profile Task Assignment points to a Supplier Task Template. When supplier creation generates a task, automation stores the related Publish-created version with the greatest Version Number on the new Supplier Task.
 12. **Task templates select stable Checklists.** Supplier Task Template and its published versions reference Checklist rather than Checklist Version. Each new Supplier Task resolves and freezes the Checklist's single current Active? = TRUE Checklist Version, so later checklist publication affects only later tasks.
+13. **Meeting context is explicit.** A task created from Meetings Management stores the exact source Meeting in a typed M:1 field. This is a governed business relationship, not a return of the removed generic Origin Type, Origin Display, Source Application, Source Record Key, or Source Record URL fields.
+14. **Scorecard work keeps its own operating model.** Scorecard Contribution Tasks consolidate internal KPI entry across suppliers and are not Supplier Tasks. Supplier-provided LTIR/TRIR and Safety Kaizen evidence are collected through Supplier Surveys, not through this component.
 
 ## 3. Requirements interpretation
 
@@ -53,7 +55,7 @@ Every material object, field, relationship, stage, action, and notification intr
 | ST-004 | ADR-103 | Every concrete work item relates to a supplier and resolves an accountable maintained supplier role | Required |
 | ST-005 | ADR-103 and user clarification | Supplier Task may require a note, file upload, a governed checklist, or a combination; checklist configuration is available only through a selected task template | Required |
 | ST-006 | ADR-103 | A Supplier Task may complete on supplier submission or route to an internal role for review | Required |
-| ST-007 | ADR-103; refined by ST-044 | Preserve optional part and drawing context; generic origin/source trace fields are removed | Required |
+| ST-007 | ADR-103; refined by ST-044 and ST-055 | Preserve optional part, drawing, and typed Meeting context; generic origin/source trace fields remain removed | Required |
 | ST-008 | ADR-103; refined by ST-044 | Preserve the selected Template Version, Checklist Version, and copied task control values without a Configuration Snapshot field | Required |
 | ST-010 | ADR-005, ADR-002, ADR-077 | Governed supplier setup rules may generate Supplier Tasks after supplier creation without delaying supplier activation | Required |
 | ST-012 | ADR-003, ADR-004 | Assignment and review use standardized supplier-specific external and internal roles; action history records the individual actor | Required |
@@ -84,6 +86,8 @@ Every material object, field, relationship, stage, action, and notification intr
 | ST-052 | User clarification | Remove Supplier Profile Task Assignment.Applies to Entity Type; an assignment applies to every supplier entity created from its Supplier Profile Template | Required |
 | ST-053 | User clarification | Remove Supplier Task Reminder Rule and Supplier Task Event entirely; task reminders use native Intelex platform functionality and task evidence uses native workflow history, object audit, execution logs, and notification logs | Required |
 | ST-054 | User clarification | Remove Supplier Question Answer.Response Iteration and its dependencies; enforce one answer per Work Item and Question Version, and reopen the same audited answer records when a reviewed task is returned | Required |
+| ST-055 | Updated ADR-103; ADR-095 | A Supplier Task created from Meetings Management retains its exact source Meeting; recurring occurrences created from that task preserve the same Meeting context, while task access does not grant access to the Meeting | Required |
+| ST-056 | ADR-058, ADR-086, ADR-112 | Do not use Supplier Task for Scorecard Contribution Tasks or safety-data campaigns: Scorecard owns consolidated internal contribution work, and Supplier Surveys collect monthly LTIR/TRIR and semiannual Safety Kaizen evidence | Required |
 
 ## 4. Baseline and target boundary
 
@@ -108,7 +112,9 @@ This specification consumes, without redefining:
 - Supplier Profile Template from the Supplier Profile Template target model;
 - the replacement Supplier Status and capability rules from the Supplier Status Updates target model;
 - Supplier Contact ownership and authenticated-user linkage from the User Access Request target model; and
-- the shared Checklist configuration family and renamed Recurrence Definition catalogue from the Supplier Surveys target design.
+- the shared Checklist configuration family and renamed Recurrence Definition catalogue from the Supplier Surveys target design;
+- the Meeting object and supplier context governed by Meetings Management and ADR-095; and
+- Scorecard Contribution Task and Scorecard KPI Value behavior governed exclusively by the Supplier Scorecard specification.
 
 The Supplier Surveys technical specification is authoritative for the Supplier Survey object, its workflow, campaign structures, and survey-specific use of shared objects. This document does not duplicate that content.
 
@@ -144,6 +150,7 @@ class Supplier_Task {
   +RecurrenceDefinition RecurrenceDefinition [REF] [PROPOSED]
   +Part Part [REF] [PROPOSED]
   +Drawing Drawing [REF] [PROPOSED]
+  +Meeting Meeting [REF] [PROPOSED]
   +LongText CompletionNote [PROPOSED]
 }
 
@@ -170,6 +177,9 @@ class Task_Schedule_Type {
 class Recurrence_Definition {
   <<shared target>>
 }
+class Meeting {
+  <<external target; Meetings Management authority>>
+}
 
 Abstract_Supplier_Task <|-- Supplier_Task : inherits
 Supplier_Abstract <|-- Supplier_Parent_Company : OOTB inheritance
@@ -183,6 +193,7 @@ Abstract_Supplier_Task "0..*" --> "0..1" Visibility_Classification : VisibilityC
 Abstract_Supplier_Task "0..*" --> "0..1" Checklist_Version : ChecklistVersion
 Supplier_Task "0..*" --> "1" Task_Schedule_Type : ScheduleType
 Supplier_Task "0..*" --> "0..1" Recurrence_Definition : RecurrenceDefinition
+Supplier_Task "0..*" --> "0..1" Meeting : Meeting
 ```
 
 `Supplier Task` is the only concrete object documented by this specification. Fields declared on `Abstract Supplier Task` are not redeclared on it. The Supplier Surveys specification separately owns the Supplier Survey model.
@@ -252,6 +263,7 @@ class Supplier_Task {
   <<proposed descendant>>
   +TaskScheduleType ScheduleType [REF] [REQ] [PROPOSED]
   +RecurrenceDefinition RecurrenceDefinition [REF] [PROPOSED]
+  +Meeting Meeting [REF] [PROPOSED]
   +Boolean NoteRequired [REQ] [PROPOSED]
   +Boolean FileUploadRequired [REQ] [PROPOSED]
   +Boolean ReviewRequired [REQ] [PROPOSED]
@@ -291,6 +303,9 @@ class Supplier_Abstract {
   <<OOTB abstract>>
   +Dropdown TypeOfSupplierEntity [REQ] [SHARED TARGET]
 }
+class Meeting {
+  <<external target; Meetings Management authority>>
+}
 
 Supplier_Task_Template_Version "0..*" --> "1" Supplier_Task_Template : Template / Versions
 Supplier_Task_Template "0..*" --> "0..1" Checklist : Checklist
@@ -305,6 +320,7 @@ Supplier_Task "0..*" --> "0..1" Supplier_Task_Template_Version : TemplateVersion
 Supplier_Task "0..*" --> "1" Supplier_Task_Obligation : Obligation
 Supplier_Task "0..*" --> "1" Task_Schedule_Type : ScheduleType
 Supplier_Task "0..*" --> "0..1" Recurrence_Definition : RecurrenceDefinition
+Supplier_Task "0..*" --> "0..1" Meeting : Meeting
 Supplier_Task_Obligation "0..*" --> "1" Recurrence_Definition : RecurrenceDefinition
 Abstract_Supplier_Task "0..*" --> "0..1" Checklist_Version : ChecklistVersion
 Supplier_Question_Answer "0..*" --> "1" Abstract_Supplier_Task : WorkItem
@@ -365,6 +381,7 @@ These fields are declared once on the abstract parent and inherited by Supplier 
 | Profile Task Assignment | M:1 Supplier Profile Task Assignment | No | Supplier creation generator | Identifies onboarding origin | Proposed |
 | Part | M:1 canonical Part | No | Creator or authorized automation | Optional business context; exact target object supplied by Product Management design | Required/Proposed |
 | Drawing | M:1 drawing/revision context | No | Creator or authorized automation | Allowed only when Part is populated and the drawing belongs to that part; exact target object unresolved | Required/Proposed |
+| Meeting | M:1 Meeting; no inverse configured by this specification | Conditional | Meetings Management creation handler supplies the exact source Meeting; recurring generation copies `Obligation.Initial Task.Meeting` | Required and read only when Meetings Management creates the task; otherwise null and not user-editable; visible as read-only navigation when populated; Meeting.Supplier must equal Supplier Task.Supplier | Required/Proposed |
 | Schedule Type | M:1 Task Schedule Type | Yes | User selection on initial task; copied on generated occurrences | Select active records in Sort order; the `Recurring` record enables recurrence fields; read only after issue | Required/Proposed |
 | Recurrence Definition | M:1 Recurrence Definition | Conditional | User selection on initial recurring task | Required when Schedule Type.Name = `Recurring`; selectable records must have Active? = TRUE and Name must not equal `One Time`; copied to the system-created obligation and read only after issue | Required/Proposed |
 | Recurrence End On | Date | No | User selection on initial recurring task | Optional series boundary; copied to obligation | Proposed |
@@ -523,10 +540,10 @@ Supplier Task reminders and escalations use native Intelex platform functionalit
 
 ### 8.1 Targeted Supplier Task
 
-1. An authorized internal user selects the exact Supplier Abstract.
-2. The user selects a Publish-created Supplier Task Template Version or creates a controlled ad hoc task.
+1. An authorized internal user selects the exact Supplier Abstract, or an authorized source process supplies it. Meetings Management must supply the same Supplier referenced by the source Meeting.
+2. The user or source process selects a Publish-created Supplier Task Template Version or creates a controlled ad hoc task. A Meetings Management creation handler also sets the typed Meeting relationship and makes it read only.
 3. On the same Supplier Task form, the user selects an active Task Schedule Type. Selecting `Recurring` reveals the Recurrence Definition and optional end boundary.
-4. The user supplies any allowed part, drawing, Due Date, routing, note, and file-upload controls. Checklist configuration appears only when the selected template supplies a checklist.
+4. The user or source process supplies any allowed part, drawing, Due Date, routing, note, and file-upload controls. Checklist configuration appears only when the selected template supplies a checklist. Meeting-derived work preserves Meeting as additional context rather than populating generic source fields.
 5. On initial save, the Action Handler idempotently creates and links the Supplier Task Obligation, sets Initial Task to the saved Task, and assigns either the shared `One Time` Recurrence Definition or the Task's selected recurring definition.
 6. The system validates supplier lifecycle eligibility, exact-supplier role resolution, portal-action eligibility, classification, completion controls, due date, template/checklist consistency, recurrence, and the linked Obligation. When Template Version.Checklist is populated, it must resolve to exactly one Active? = TRUE Checklist Version.
 7. The system stores the selected Template Version, the Checklist Version resolved from Template Version.Checklist, and the task-level completion controls, then starts the Supplier Task workflow. Issue finalizes recurring schedule values; it does not create the Obligation.
@@ -553,7 +570,7 @@ The `Required for Completeness?` flag affects onboarding reports only. It does n
 3. The initial-save Action Handler has already created and linked the Supplier Task Obligation and set Initial Task. During issue, automation validates and finalizes its recurrence configuration and calculates the next occurrence.
 4. The scheduler selects active obligations whose next occurrence is due and within effective bounds.
 5. It validates current supplier capability and the effective template version when one exists.
-6. It resolves current exact-supplier roles, freezes the occurrence configuration, and creates one later Supplier Task using the unique occurrence key.
+6. It resolves current exact-supplier roles, freezes the occurrence configuration, copies the source Meeting from `Obligation.Initial Task.Meeting` when populated, and creates one later Supplier Task using the unique occurrence key.
 7. It advances `Next Occurrence At` only after durable creation; failures are retained in native Action Handler, workflow, or execution-log evidence rather than a Generation Exception field.
 8. Later governed series changes affect future occurrences only; completed or already-issued occurrences remain unchanged.
 
@@ -695,8 +712,10 @@ Required views:
 - exceptions by owner and age, with diagnostic detail obtained from native workflow/execution evidence;
 - onboarding completeness using required profile task assignments;
 - recurring-obligation history and missed-generation failures;
-- completed work by supplier, part, drawing, template, and visibility classification; and
+- completed work by supplier, part, drawing, Meeting, template, and visibility classification; and
 - notification delivery failures without treating delivery success as response completion.
+
+The task form may link to a populated Meeting only for users already authorized to that Meeting. Access to the Supplier Task does not grant Meeting access, and Meeting access does not grant access to the task. Scorecard Contribution Tasks remain outside these views because their cross-supplier internal workflow is governed by the Supplier Scorecard specification.
 
 Derived calculations:
 
@@ -728,6 +747,8 @@ Derived calculations:
 | ST-C17 | Remove/Modify | Supplier Profile Task Assignment.Applies to Entity Type | Earlier target filtered assignments to Parent Company, Facility, or Both | Remove the field and apply each assignment to every supplier entity using the related Supplier Profile Template; change uniqueness to `(Supplier Profile Template, Task Template)` | ST-052 | Makes profile assignment scope follow profile usage rather than an additional entity discriminator | High |
 | ST-C18 | Remove | Supplier Task Reminder Rule | Earlier target used child records under Template Version for finite reminder/escalation schedules | Remove the object and relationships; configure Supplier Task reminders through native Intelex platform functionality | ST-053 | Uses the platform capability without maintaining duplicate business configuration | High |
 | ST-C19 | Remove/Modify | Supplier Question Answer.Response Iteration | Earlier target separated correction answer sets by iteration and copied answers on Return | Remove the field; enforce `(Work Item, Question Version)` uniqueness and reopen the same audited answers on Return | ST-054 | Simplifies answers to one current record per issued question | High |
+| ST-C20 | Add | Supplier Task.Meeting | Earlier target removed generic origin/source fields and had no typed meeting context | Add an optional typed M:1 Meeting relationship populated by Meetings Management; require exact-supplier integrity and copy it to later recurring occurrences | ST-007, ST-055 | Preserves visit/preparation/follow-up context without restoring ambiguous generic source metadata | High |
+| ST-C21 | No structural change | Supplier Scorecard contribution and safety collection | ADR-103 listed Supplier Scorecard as a possible consumer without selecting a task use case | Keep consolidated internal contribution work in Supplier Scorecard and collect LTIR/TRIR and Safety Kaizen through Supplier Surveys; do not create Supplier Tasks for either use case | ST-056 | Preserves the operating models selected by ADR-086 and ADR-112 | High |
 
 ## 13. Requirement traceability
 
@@ -739,7 +760,7 @@ Derived calculations:
 | ST-004 | Abstract Supplier Task.Assigned Role | Exact-supplier operational role required before issue | Satisfied |
 | ST-005 | Supplier Task fields, template, shared checklist model | Notes and file controls support ad hoc or templated tasks; checklist is available only through the selected Template Version | Satisfied |
 | ST-006 | Supplier Task.Review Required, Review Role, workflow | Configurable immediate completion or internal review | Satisfied |
-| ST-007 | Supplier Task.Part/Drawing | Optional typed context remains; generic source fields are removed by ST-044 | Partially satisfied; exact Drawing relationship requires confirmation and generic source trace is superseded |
+| ST-007 | Supplier Task.Part, Drawing, and Meeting | Optional typed business context remains; generic source fields are removed by ST-044, while ST-055 adds the specific governed Meeting relationship | Partially satisfied; exact Drawing target requires confirmation and Meeting integration requires implementation validation |
 | ST-008 | Template Version, Checklist Version, and task completion-control fields | Preserve effective configuration without Configuration Snapshot or Snapshot Schema Version | Satisfied |
 | ST-010 | Profile Task Assignment, generation | One-time task or obligation after supplier creation; no activation gate | Satisfied |
 | ST-012 | Assigned/Review Role and actor audit | Live role ownership with individual actors retained through workflow and object audit | Satisfied |
@@ -770,6 +791,8 @@ Derived calculations:
 | ST-052 | Supplier Profile Task Assignment, supplier-creation generation | Removes Applies to Entity Type, changes the uniqueness rule, and evaluates every active assignment for every entity using the related Supplier Profile Template | Satisfied |
 | ST-053 | Supplier Task Reminder Rule, Supplier Task Event, notifications and evidence | Removes both objects and their dependencies; native Intelex reminder, workflow, audit, execution-log, and notification capabilities provide the retained behavior | Satisfied at logical design level; native configuration and evidence retention require platform validation |
 | ST-054 | Supplier Question Answer, Review Return, validation and permissions | Removes Response Iteration, makes Work Item plus Question Version unique, and reopens the same audited answer records after Return | Satisfied at logical design level; audit completeness and stage-based locking require validation |
+| ST-055 | Supplier Task.Meeting, targeted generation, recurrence generation, permissions, reporting | Adds the typed Meeting relationship, exact-supplier validation, read-only source population, recurring copy behavior, and independent source-record security | Satisfied at logical design level; Meetings Management object metadata and creation-handler transactionality require implementation validation |
+| ST-056 | Component boundary, portal/reporting, validation | Explicitly excludes Scorecard Contribution Tasks and Scorecard safety campaigns from Supplier Task; their authoritative specifications remain Supplier Scorecard and Supplier Surveys | Satisfied; no Supplier Task model change required |
 
 ## 14. Validation findings and unresolved decisions
 
@@ -777,6 +800,7 @@ Derived calculations:
 |---|---|---|
 | Direct inheritance | Required/Proposed | Exactly one abstract parent and one documented direct descendant; no cycle or redundant transitive edge |
 | Field ownership | Proposed | Common fields occur only on Abstract Supplier Task; child-specific fields are not duplicated |
+| Field-contract reconciliation | Incomplete pre-existing contract | The new Meeting relationship appears once in the Supplier Task diagram and once in its field table, and no Scorecard field is added here. The specification's older field tables still use legacy schemas and some combined rows, so a separate full conversion to the current six-column canonical implementation contract is required before implementation sign-off. |
 | Workflow ownership | Required/Proposed | Supplier Task owns its workflow; Abstract Supplier Task has no custom Workflow or State field and relies on platform-managed workflow metadata |
 | Reachability | Proposed | All nonterminal Supplier Task stages are reachable and have exit paths |
 | Action order | Proposed | Sort values are unique within each Supplier Task stage |
@@ -796,6 +820,7 @@ Derived calculations:
 | Answer - File | Required/Unresolved platform behavior | Confirm the physical File field type, upload limits, malware scanning, security inheritance, retention, download authorization, and immutability after submission |
 | Native attachments | Unresolved platform behavior | Verify reliable required-file presence validation, attachment immutability after submission, and security inheritance; no minimum-count configuration is permitted |
 | Drawing relationship | Unresolved target | Confirm the governed drawing/revision object and part-integrity rule |
+| Meeting relationship | Required/Proposed | Confirm the Meetings Management object identifier and Supplier relationship; validate exact-supplier matching, creation-handler authorization, read-only behavior, recurrence copying, deletion/retention behavior, and independent source/task security |
 | Visibility classification | Unresolved shared dependency | Confirm physical object, defaulting, inheritance, and reclassification permissions |
 | Notification templates | Unresolved configuration | Create and verify template metadata, recipient policy, and idempotent delivery keys |
 | Abstract-parent queries | Unresolved platform behavior | Validate configurable views, reports, and security filtering for Supplier Task through the abstract parent at expected volume |
@@ -819,22 +844,24 @@ Derived calculations:
 | Native task reminders | Required/Proposed | Verify reminders require no Supplier Task Reminder Rule records, recalculate after Due Date changes, stop outside applicable open stages, resolve current eligible recipients, and retain available delivery evidence |
 | Removed task objects and answer field | Required | Verify Supplier Task Reminder Rule and Supplier Task Event objects and relationships are absent and Supplier Question Answer has no Response Iteration field |
 | Specification boundary | Required | Confirm Supplier Survey object, workflow, permissions, reporting, validation, and acceptance content appears only in the Supplier Surveys technical specification |
+| Scorecard boundary | Required | Confirm Scorecard Contribution Task does not inherit Abstract Supplier Task and no LTIR/TRIR or Safety Kaizen collection creates Supplier Tasks; Supplier Surveys and Supplier Scorecard retain authority for those records |
 | Migration | Proposed | Map or remove any previously configured deleted fields; convert due datetimes to dates using the approved business timezone before cutover; preserve platform workflow history |
-| ADR status | Source limitation | ADR-081 and ADR-103 remain proposed until governance changes their status |
+| ADR status | Source limitation | ADR-081, ADR-095, and ADR-103 remain proposed until governance changes their status |
 | Mermaid compatibility | Tooling limitation | Native diagrams require Mermaid 11.16.0 or later |
 
 ## 15. Implementation sequence
 
 1. Confirm the shared visibility-classification target, Supplier Task lifecycle capability rules, exact role-resolution behavior, and external-user eligibility check.
-2. Configure `Abstract Supplier Task` and `Supplier Task` with only the retained fields. Do not configure custom Origin, source, snapshot, State, Schedule Generation, Period Start, Period End, exception-resume/reason, or Workflow fields.
+2. Configure `Abstract Supplier Task` and `Supplier Task` with only the retained fields, including the typed Meeting relationship on Supplier Task. Do not configure generic Origin, source metadata, snapshot, State, Schedule Generation, Period Start, Period End, exception-resume/reason, or Workflow fields.
 3. Configure Task Schedule Type, seed One Time and Recurring, update the shared recurrence catalogue display name from Survey Recurrence Definition to Recurrence Definition, and add the active shared `One Time` Recurrence Definition reserved for Supplier Task Obligations.
 4. Configure the shared Checklist authoring/version family and Supplier Question Answer without Response Iteration, including `(Work Item, Question Version)` uniqueness, answer choice relationships, audit, stage-based editability, and the Responded By/Responded At Update Action Handler. Configure Supplier Task Template as the editable authoring record with its inverse Versions grid and mirrored version fields; configure Publish to create Supplier Task Template Version with default-value expressions, including its stable Checklist relationship, and atomically calculate Version Number from the maximum existing number in Template.Versions.
 5. Configure Supplier Task M:1 schedule relationships, template-controlled default expressions/read-only rules, forms, workflow, permissions, views, native notifications/reminders, and ad hoc creation. Do not configure Supplier Task Reminder Rule or Supplier Task Event.
 6. Configure the idempotent Supplier Task initial-save Action Handler to create and link one Obligation for every initial Task, set Initial Task, assign One Time or recurring configuration, leave One Time.Next Occurrence At null, and ensure later recurring occurrences reuse the existing Obligation. Do not configure Generation Exception.
 7. Add Supplier Profile Task Assignment with its Task Template relationship and no entity-type field; apply it to every supplier entity using the profile, and configure post-create generation to resolve and store the greatest-numbered Publish-created Template Version while handling missing or ambiguous versions as recoverable exceptions.
-8. Build the Supplier Task work queue through Abstract Supplier Task and verify concrete drill-through.
-9. Migrate any earlier target configuration: remove deprecated fields including Supplier Task Template.Reporting Classification, Owner, State, and [Helper] Current Version, Supplier Task Template Version.State, Supplier Task Obligation.Generation Exception, Supplier Profile Task Assignment.Applies to Entity Type, and Supplier Question Answer.Response Iteration; remove Supplier Task Reminder Rule and Supplier Task Event only after required native reminder/evidence configuration is verified; populate the Template authoring fields from the approved source version; retain and validate existing Version Numbers before enabling MAX-based allocation; create/backfill one Obligation for every existing initial Task that lacks one; replace Template Version.Checklist Version with Checklist; convert due datetimes to Date values using the approved business timezone; preserve platform workflow and audit history; and confirm no Supplier Survey object/workflow content remains in this specification.
-10. Execute security, lifecycle, concurrency, scheduler, notification, attachment, reporting, and performance tests before production rollout.
+8. Configure the Meetings Management creation handler to populate Supplier Task.Supplier and Supplier Task.Meeting atomically, reject a supplier mismatch, and preserve Meeting on later recurring occurrences through `Obligation.Initial Task.Meeting`.
+9. Build the Supplier Task work queue through Abstract Supplier Task and verify concrete drill-through, typed Meeting navigation, and independent Meeting/task security.
+10. Migrate any earlier target configuration: remove deprecated fields including Supplier Task Template.Reporting Classification, Owner, State, and [Helper] Current Version, Supplier Task Template Version.State, Supplier Task Obligation.Generation Exception, Supplier Profile Task Assignment.Applies to Entity Type, and Supplier Question Answer.Response Iteration; remove Supplier Task Reminder Rule and Supplier Task Event only after required native reminder/evidence configuration is verified; populate the Template authoring fields from the approved source version; retain and validate existing Version Numbers before enabling MAX-based allocation; create/backfill one Obligation for every existing initial Task that lacks one; replace Template Version.Checklist Version with Checklist; convert due datetimes to Date values using the approved business timezone; preserve platform workflow and audit history; and confirm no Supplier Survey object/workflow content remains in this specification. Do not attempt to reconstruct Meeting links for historical tasks without authoritative source evidence.
+11. Execute security, lifecycle, concurrency, scheduler, notification, attachment, reporting, and performance tests before production rollout.
 
 ## 16. Acceptance scenarios
 
@@ -843,6 +870,9 @@ Derived calculations:
 | Inspect model metadata | Supplier Task directly inherits Abstract Supplier Task; Supplier Survey is absent from this specification's object model and workflow sections |
 | Inspect removed fields | Origin Type, Origin Display, Source Application, Source Record Key, Source Record URL, Configuration Snapshot, Snapshot Schema Version, State, Schedule Generation, Exception Resume State, Exception Result Reason/Exception Reason, Workflow, Occurrence Number, Period Start, and Period End do not exist in the Supplier Task model |
 | Inspect renamed fields | Original Due Date and Due Date are Date fields; Date / Time Submitted and Date / Time Completed are timezone-enabled date/time fields |
+| Create a Supplier Task from a Meeting | The handler sets the exact Meeting and matching Supplier atomically; Meeting is read only on the task, no generic source field is populated, and a supplier mismatch blocks creation without a partial task |
+| Generate a recurring Meeting-derived task | The new occurrence reuses the Obligation and retains the Initial Task's Meeting; later changes to or deletion restrictions on the Meeting do not rewrite historical task context |
+| Open a Meeting link from a Supplier Task | Authorized users can navigate to the source Meeting; task access alone does not bypass Meetings Management security |
 | Open Schedule Type selector | Supplier Task uses an M:1 Task Schedule Type relationship filtered to active records and ordered by Sort |
 | Save an initial One Time Supplier Task | Task recurrence controls remain hidden/cleared; the Action Handler creates exactly one linked Obligation, sets Initial Task to the saved Task, assigns the shared `One Time` Recurrence Definition, and leaves Next Occurrence At null |
 | Save an initial Recurring Supplier Task | Recurrence Definition is visible and mandatory; the Action Handler creates exactly one linked Obligation, sets Initial Task, and copies the selected active Recurrence Definition |
@@ -886,3 +916,4 @@ Derived calculations:
 | Supplier Task supplier becomes ineligible | Supplier Task capability policy prevents new issue and continues or withdraws existing task work according to its governed rule; history remains |
 | Visibility reclassification | Authorized classification change alters visibility without changing roles, Due Date, or platform workflow responsibility |
 | Supplier Task work queue | Authorized user sees Supplier Tasks through the abstract query and opens the concrete task form |
+| Inspect Scorecard work boundaries | Scorecard Contribution Tasks are not Supplier Tasks, and monthly LTIR/TRIR or semiannual Safety Kaizen campaigns create Supplier Surveys rather than Supplier Tasks |
