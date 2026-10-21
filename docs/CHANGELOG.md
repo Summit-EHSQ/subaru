@@ -1,5 +1,43 @@
 # ADR Revision Change Log
 
+## Supplier NCR Coverage and Adjacent Workflow Revision
+
+### Superseded or Removed ADRs
+
+- No ADR was removed or superseded. The new discussion refined existing supplier NCR, warranty-analysis, meeting, and supplier-task decisions.
+
+### Updated Existing ADRs
+
+- **ADR-046:** Made NCR type and subtype governed configuration selectors for active stages, roles, timing, fields, instructions, notifications, validations, and supplier visibility; added a minimal common intake followed by progressive form activation.
+- **ADR-053:** Added WCAR stage-specific guidance, conditional no-trouble-found requirements, Parts Collection Center notification, and tracking-number-controlled supplier release.
+- **ADR-059:** Replaced the proposed dedicated Warranty Analysis application or object with a recurring Supplier Survey over the supplier-secured daily claim feed; added direct claim access and automatic no-claim closure for scorecard consistency.
+- **ADR-071:** Resolved the previously open supplier-reported SAP-part scenario outside SPANF and linked it to ADR-117.
+- **ADR-095:** Confirmed Meetings Management licensing and added supplier defaulting, related NCR agenda items, constrained invitees, individually scheduled visits, externally hosted recording links, and centralized Supplier Task follow-up.
+- **ADR-103:** Added meeting-generated preparation and follow-up work as a consumer of the shared Supplier Tasks model.
+
+### New ADRs
+
+- **ADR-117:** Supplier-reported SAP-part problems use a supplier-visible NCR intake type, internal triage, and a linked downstream PIR against the responsible manufacturer; the process remains distinct from SPANF.
+
+### Retained Without Material Change
+
+- **ADR-093:** The latest discussion reconfirmed that RMA remains a supplier-NCR child workflow separate from disposition and that third-party sort instructions are not a true RMA.
+
+### Open Items Not Promoted to Separate Decisions
+
+- Current-system field samples are still required to complete the type, subtype, WCAR, and Supplier-Reported Problem configuration matrices.
+- Warranty Analysis survey fit, exact monthly timing, automatic no-claim closure, data-feed monitoring, and scorecard rules require detailed confirmation under ADR-059.
+- Meetings Management product fit and any required change order must be confirmed before ADR-095 can be accepted.
+- The physical base-object design for the shared Supplier Tasks capability remains open under ADR-103.
+
+### Status
+
+- **Total ADRs:** 115
+- **Accepted:** 90
+- **Proposed:** 21
+- **Rejected:** 1
+- **Superseded:** 3
+
 ## Supplier Scorecard Detailed Design Revision
 
 ### Superseded or Removed ADRs

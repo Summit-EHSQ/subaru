@@ -18,6 +18,7 @@ secondary-applications:
   - Advanced Product Quality Planning (APQP)
   - Product Management
   - Supplier Scorecard
+  - Meetings Management
 ---
 
 # ADR-103: Use a Shared Configurable Model for Targeted Supplier Tasks
@@ -64,6 +65,8 @@ When a task instance is created, snapshot the applicable template and checklist 
 
 PPAP child elements remain governed by ADR-022. A PPAP may create a related supplier task for an ongoing obligation, but that task is not part of the PPAP completion structure.
 
+Meetings Management may create related Supplier Tasks for preparation or follow-up work. Each generated task retains the source meeting so that the action is visible in the centralized supplier-task inventory without losing its meeting context. Meeting-derived tasks use the same template, checklist, note, file, assignment, due-date, review, and recurrence controls as other targeted supplier tasks.
+
 The shared task pattern does not replace domain records whose business lifecycle is already distinct, including Warranty Analysis under ADR-059 and event-driven Supplier Lot Approval under ADR-085. Those applications may reuse task behavior only where their own ADRs permit it. Likewise, ADR-017 does not require native recurrence inside APQP merely because a shared supplier-task capability exists.
 
 ## Consequences
@@ -93,5 +96,7 @@ The shared task pattern does not replace domain records whose business lifecycle
 ## More Information
 
 - PPAP design workshop transcript: approximately 0:07:04–0:42:46.
+- "Summit EHSQ | SIA | Revisit PIR Requirements + WCAR" transcript, 21 Oct 2026, 10:30 AM–12:00 PM ET: approximately 1:22:59–1:24:45; this discussion selected Supplier Tasks rather than a meeting-specific follow-up object for supplier-visit actions.
 - ADR-080 governs multi-supplier information-request campaigns.
 - ADR-102 governs the boundary between PPAP evidence and recurring validation obligations.
+- ADR-095 governs supplier visits and meeting-to-task creation.

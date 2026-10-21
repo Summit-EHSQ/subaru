@@ -63,15 +63,17 @@ Classify the notification by impact type. Quality notifications route to SQA or 
 
 - Routing rules and ownership vary by issue type.
 - High daily volume requires efficient triage.
-- A separate supplier-owned-part RMA use case still needs detailed design.
+- Supplier-reported SAP-part quality problems require a separate intake path because they concern a one-off quality issue with a part supplied to the reporting supplier rather than an advance operational-impact notification.
 
 ### Follow-up and Constraints
 
 - Define categories, routing, due dates, and closure criteria.
 - Define NCR creation and linkage rules.
-- Assess whether supplier-owned-part RMA is a SPANF subtype or separate process.
+- Keep Supplier-Reported Problem intake governed by ADR-117 and do not expose it as a SPANF subtype.
 - Confirm custom-app licensing.
 
 ## More Information
 
 - Fourth transcript: approximately 2:20:07–2:31:21.
+- "Summit EHSQ | SIA | Revisit PIR Requirements + WCAR" transcript, 21 Oct 2026, 10:30 AM–12:00 PM ET: approximately 0:15:41–0:21:11; this discussion resolved the supplier-reported SAP-part quality scenario outside SPANF under ADR-117.
+- ADR-117 governs supplier-reported SAP-part quality problems and linked downstream PIR creation.

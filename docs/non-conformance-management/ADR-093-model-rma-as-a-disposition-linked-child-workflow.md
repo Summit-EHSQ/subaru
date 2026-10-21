@@ -81,4 +81,5 @@ When a third-party sort is requested, activate dedicated sort-instruction fields
 ## More Information
 
 - Supplier NCR and warranty workflow transcript: approximately 0:43:29–1:01:53.
+- "Summit EHSQ | SIA | Revisit PIR Requirements + WCAR" transcript, 21 Oct 2026, 10:30 AM–12:00 PM ET: approximately 0:18:19–0:19:20; this discussion reconfirmed the separate child-workflow design and the need to keep third-party sort instructions distinct from a true RMA.
 - ADR-046 governs the supplier NCR parent-and-child architecture.
