@@ -4,7 +4,7 @@
 |---|---|
 | Mode | Target design layered over the separately preserved OOTB SRM baseline |
 | Application | Supplier Scorecard, integrated with Supplier Relationship Management |
-| As of | 2026-10-20 |
+| As of | 2026-10-23 |
 | Status | Technical design for review; configuration has not been implemented |
 | Baseline authority | [OOTB SRM logical model](../../ootb-srm-baseline-model/README.md), its field/relationship/inheritance registers, and the six [OOTB SRM workflow documents](../../ootb-srm-baseline-workflows/) extracted from SIA OOTB SRM Export 1.0.0.0 |
 | Primary requirements | ADR-058, ADR-086, and ADR-111 through ADR-116 |
@@ -18,7 +18,7 @@ The OOTB SRM package contains the supplier master and hierarchy needed by Suppli
 
 The following boundaries are fundamental:
 
-1. **Supplier identity is reused, not copied.** Every scorecard relates to one existing `Supplier Abstract` record. Parent Company and Facility remain direct descendants of Supplier Abstract, and their separate parent-child record relationship remains intact.
+1. **Supplier identity is reused, not copied.** Every scorecard relates to one existing `Supplier Abstract` record. Parent Company and Facility remain direct descendants of Supplier Abstract, and their separate Facility.ParentCompany relationship and inverse Parent Company.Facilities grid remain intact.
 2. **The OOTB supplier workflows remain supplier workflows.** The Parent Company and Facility workflows continue to govern supplier evaluation submission and deactivation. They are not extended into monthly scorecard workflows.
 3. **Existing scalar score fields are not the scorecard record.** OOTB `Score`, `Last Score Date`, `Facility Score`, `Average Goods & Service Score`, and `Latest Parent Company Demerits` cannot preserve KPI versions, source results, overrides, applicability, or reporting periods. They are not authoritative in the target.
 4. **Configuration is authored, then published.** Editable KPI and Scorecard Program records publish immutable versions. Operational scorecards retain the exact versions used for their reporting period.
@@ -53,7 +53,7 @@ All new objects, fields, relationships, workflow behavior, and automation below 
 | SC-012 | ADR-111 | Treat Not Applicable explicitly, set effective maximum points to zero, and never interpret blank as Not Applicable | Required |
 | SC-013 | ADR-112 | Use monthly Supplier Surveys for LTIR/TRIR and semiannual Supplier Surveys plus internal scoring for Safety Kaizen | Required |
 | SC-014 | ADR-112 | Use effective-dated, versioned safety benchmarks by NAICS classification and metric | Required |
-| SC-015 | ADR-113 | Support facility/depot monthly scorecards and parent-company periodic assessment without duplicate parent monthly entry | Proposed ADR; Requires confirmation |
+| SC-015 | ADR-113 | Support facility/depot monthly scorecards and Supplier Parent Company periodic assessment without duplicate company monthly entry | Proposed ADR; Requires confirmation |
 | SC-016 | ADR-114 | Snapshot commodity at scorecard creation and calculate overall and commodity rank on demand | Required |
 | SC-017 | ADR-115 | Authorize complete aggregate scorecard access within supplier scope while preserving source-record security on drilldown | Required |
 | SC-018 | ADR-115 | Restrict KPI setup, participation, benchmark maintenance, publishing, versioning, and overrides to Supplier Scorecard Application Administrators or system administrators | Required |
@@ -70,8 +70,9 @@ All new objects, fields, relationships, workflow behavior, and automation below 
 | SC-029 | User clarification | M:1 relationships whose target is a catalogue object must not activate an inverse relationship or expose a target-side inverse grid | Required |
 | SC-030 | User clarification; refined by SC-031 | All Supplier Scorecard catalogue objects inherit from one abstract `Supplier Scorecard Abstract Catalog Record` containing Code, Name, Active?, and Sort; child catalogues declare only additional fields | Required |
 | SC-031 | User clarification | Remove Scorecard Program.Entity Level and Scorecard Program.Recurrence Definition; exact entity scope comes from Supplier Scorecard Participation.Supplier, and Scorecard Cadence directly stores the recurrence expression | Required |
+| SC-032 | User clarification, 2026-10-23 | Reserve parent terminology for inheritance, preserve exact Parent object/field names, and use concise object-specific wording for associations and Commodity value synchronization | Required |
 
-ADR-113 remains proposed. This specification supports its monthly-facility/periodic-parent pattern but does not make that pattern mandatory. Scorecard Cadence defines timing, while each Supplier Scorecard Participation selects the exact parent-company or facility record to which the Program applies.
+ADR-113 remains proposed. This specification supports its monthly Facility / periodic Supplier Parent Company pattern but does not make that pattern mandatory. Scorecard Cadence defines timing, while each Supplier Scorecard Participation selects the exact Supplier Parent Company or Supplier Facility record to which the Program applies.
 
 ## 3. Baseline and target boundary
 
@@ -80,9 +81,9 @@ ADR-113 remains proposed. This specification supports its monthly-facility/perio
 | Baseline element | Target use |
 |---|---|
 | `SupplierMgmt_SupAbstractObject` / Supplier Abstract | Authoritative supplier identity referenced by participation and scorecards |
-| `SupplierMgmt_ParentCompnyObject` / Supplier Parent Company | Parent supplier identity and aggregation context |
+| `SupplierMgmt_ParentCompnyObject` / Supplier Parent Company | Company supplier identity and aggregation context |
 | `SupplierMgmt_FacilityObject` / Supplier Facility | Facility/depot operational scoring context |
-| Parent Company `Facilities` ↔ Facility `ParentCompany` | Existing hierarchy used for parent navigation and governed rollup selection |
+| Parent Company `Facilities` ↔ Facility `ParentCompany` | Existing hierarchy used for company/facility navigation and governed rollup selection |
 | Supplier Contact, Employee, Subject, Group concepts | Recipient, actor, contributor, feedback-contact, and administrator identities |
 | Public Profile | Supplier-context navigation; detailed scorecard history is presented through related views |
 | Workflow Instance and Workflow Stage concepts | Native process state and history; no custom State or Workflow field is introduced |
@@ -358,7 +359,7 @@ Scorecard_KPI_Value "0..*" --> "0..1" Employee : FeedbackContact
 Supplier_Scorecard "0..*" --> "0..*" Supplier_Scorecard : SourceScorecards
 ```
 
-The Scorecard self-relationship is a native M:N relationship used only when a periodic parent assessment freezes the exact child scorecards included in a rollup. It has no business attributes and therefore does not require a custom junction record.
+The Scorecard self-relationship is a native M:N relationship used only when a periodic Supplier Parent Company assessment freezes the exact source Scorecards included in a rollup. It has no business attributes and therefore does not require a custom junction record.
 
 ### 4.5 Safety benchmark configuration
 
@@ -387,13 +388,13 @@ Safety_Benchmark_Version "0..*" --> "1" Safety_Benchmark_Metric : Metric
 
 ## 5. Object inventory
 
-| Object | State | Parent | Responsibility | Workflow/lifecycle |
+| Object | State | Inheritance parent | Responsibility | Workflow/lifecycle |
 |---|---|---|---|---|
 | Supplier Scorecard Abstract Catalog Record | New abstract catalogue base | None | Declares the common Code, Name, Active?, and Sort fields for scorecard-owned catalogue objects | Abstract and non-instantiable; no forms, workflow, records, or direct relationships |
 | Supplier Commodity | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed commodity classification used for period peer groups | No workflow; audited administration |
 | NAICS Classification | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed NAICS identity used by supplier profiles and safety benchmarks | No workflow; audited administration |
 | KPI Category | New catalogue child | Supplier Scorecard Abstract Catalog Record | Stable grouping and display order for KPI values | No workflow; audited administration |
-| KPI Aggregation Method | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed set of supported parent/period rollup algorithms; directly declares Description | No workflow; audited administration |
+| KPI Aggregation Method | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed set of supported company/period rollup algorithms; directly declares Description | No workflow; audited administration |
 | KPI Value Type | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed typed-value presentation and validation domain | No workflow; audited administration |
 | KPI Contribution Source | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed business-source classification for KPI contributions | No workflow; audited administration |
 | KPI Collection Method | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed mechanism used to collect a KPI value | No workflow; audited administration |
@@ -406,15 +407,15 @@ Safety_Benchmark_Version "0..*" --> "1" Safety_Benchmark_Metric : Metric
 | Supplier Scorecard KPI Version | New immutable version | None | Exact KPI definition effective for a date range | Created only by Publish; read only thereafter |
 | Scorecard Program | New authoring object | None | Stable methodology, cadence, routing, schedule, and KPI membership | Publish action creates a complete version graph |
 | Scorecard Program Generation Delay | New operational control | None | Defers one scheduled Program occurrence until a specified date without changing recurrence or version configuration | No workflow; created from Program.Generation Delays grid; audited and read only after application |
-| Scorecard Program KPI | New authoring child | None | Includes a stable KPI in one Program with order and requiredness | Editable through Program authoring only |
+| Scorecard Program KPI | New authoring membership | None | Includes a stable KPI in one Program with order and requiredness | Editable through Program authoring only |
 | Scorecard Program Version | New immutable version | None | Exact Program configuration effective for a date range | Created only by Publish; read only thereafter |
-| Scorecard Program KPI Version | New immutable version child | None | Frozen copy of one Program KPI membership row | Created atomically with Program Version |
+| Scorecard Program KPI Version | New immutable membership version | None | Frozen copy of one Program KPI membership row | Created atomically with Program Version |
 | Supplier Scorecard Participation | New governed configuration | None | Activates one exact supplier entity for one Program and date range | No workflow; admin-only audited maintenance |
 | Safety Benchmark | New authoring object | None | Stable NAICS/metric benchmark identity | Publish action creates immutable version |
 | Safety Benchmark Version | New immutable version | None | Effective-dated reference value used by safety scoring | Created only by Publish; read only thereafter |
-| Supplier Scorecard Run | New operational parent | None | Coordinates one Program Version and reporting period across suppliers | Preparing → Data Entry → Internal Review → Publication Ready; Published/Cancelled termination |
+| Supplier Scorecard Run | New operational coordinator | None | Coordinates one Program Version and reporting period across suppliers | Preparing → Data Entry → Internal Review → Publication Ready; Published/Cancelled termination |
 | Supplier Scorecard | New operational snapshot | None | One supplier/program/period result and publication record | Data Entry → Internal Review → Publication Ready; Published/Cancelled termination |
-| Scorecard KPI Value | New operational child | None | One instantiated KPI Version, its captured result, applicability, exception, override, and source evidence | No object workflow; governed by parent stage and privileged actions |
+| Scorecard KPI Value | New operational detail record | None | One instantiated KPI Version, its captured result, applicability, exception, override, and source evidence | No object workflow; governed by the related Scorecard stage and privileged actions |
 | Scorecard Contribution Task | New operational work record | None | Consolidates internal direct-entry KPI values for one Run and contributor group | Assigned; Completed/Cancelled termination |
 
 No new object inherits Supplier Abstract. Supplier Parent Company and Supplier Facility retain their extracted direct inheritance from Supplier Abstract. The new catalogue inheritance family is separate and rooted only at Supplier Scorecard Abstract Catalog Record.
@@ -424,7 +425,7 @@ No new object inherits Supplier Abstract. Supplier Parent Company and Supplier F
 - `Text` lengths are 100 characters for stable codes and 255 characters for ordinary names unless otherwise stated.
 - All Date/Time fields enable timezone capture.
 - All Yes/No fields use checkbox presentation and compare to `TRUE` or `FALSE` in verified expressions.
-- Relationship cardinality is stated from the declaring field. Parent grids are inverse views of the child-side relationship and do not create duplicate storage.
+- Relationship cardinality is stated from the declaring field. Inverse grids navigate the declaring M:1 relationship; they do not create duplicate storage. Reserve parent terminology for inheritance; preserve exact object and field names containing Parent.
 - `Display Field` is the configured calculated record label. Exact concatenation syntax must be verified in the target tenant and is not presented here as deployable formula syntax.
 - A field described as a snapshot is populated once by a default-value expression or generation service and then remains read only.
 - Published version objects are immutable. Configuration changes require a new version.
@@ -452,22 +453,26 @@ Seed-data tables below repeat the inherited field columns so they can be used di
 
 ### 7.2 Supplier Commodity
 
-**Parent:** Supplier Scorecard Abstract Catalog Record  
+**Inheritance parent:** Supplier Scorecard Abstract Catalog Record
+
 **Directly declared fields:** None. Code, Name, Active?, and Sort are inherited. Historical Scorecards retain Commodity code/name snapshots, so later inherited Name changes do not rewrite published history.
 
 ### 7.3 NAICS Classification
 
-**Parent:** Supplier Scorecard Abstract Catalog Record  
+**Inheritance parent:** Supplier Scorecard Abstract Catalog Record
+
 **Directly declared fields:** None. Code, Name, Active?, and Sort are inherited. Historical Scorecards retain NAICS code/name snapshots.
 
 ### 7.4 KPI Category
 
-**Parent:** Supplier Scorecard Abstract Catalog Record  
+**Inheritance parent:** Supplier Scorecard Abstract Catalog Record
+
 **Directly declared fields:** None. Code, Name, Active?, and Sort are inherited. Inherited Sort supplies the default category presentation order.
 
 ### 7.5 KPI Aggregation Method
 
-**Parent:** Supplier Scorecard Abstract Catalog Record  
+**Inheritance parent:** Supplier Scorecard Abstract Catalog Record
+
 **Inherited fields:** Code, Name, Active?, and Sort.
 
 | Directly declared field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
@@ -478,7 +483,8 @@ Initial method codes and exact algorithms are release configuration, not univers
 
 ### 7.6 KPI Value Type
 
-**Parent:** Supplier Scorecard Abstract Catalog Record  
+**Inheritance parent:** Supplier Scorecard Abstract Catalog Record
+
 **Directly declared fields:** None. Code, Name, Active?, and Sort are inherited.
 
 Initial values:
@@ -494,7 +500,8 @@ Initial values:
 
 ### 7.7 KPI Contribution Source
 
-**Parent:** Supplier Scorecard Abstract Catalog Record  
+**Inheritance parent:** Supplier Scorecard Abstract Catalog Record
+
 **Directly declared fields:** None. Code, Name, Active?, and Sort are inherited.
 
 Initial values:
@@ -507,7 +514,8 @@ Initial values:
 
 ### 7.8 KPI Collection Method
 
-**Parent:** Supplier Scorecard Abstract Catalog Record  
+**Inheritance parent:** Supplier Scorecard Abstract Catalog Record
+
 **Directly declared fields:** None. Code, Name, Active?, and Sort are inherited.
 
 Initial values:
@@ -519,7 +527,8 @@ Initial values:
 
 ### 7.9 KPI Initialization Method
 
-**Parent:** Supplier Scorecard Abstract Catalog Record  
+**Inheritance parent:** Supplier Scorecard Abstract Catalog Record
+
 **Directly declared fields:** None. Code, Name, Active?, and Sort are inherited.
 
 Initial values:
@@ -532,7 +541,8 @@ Initial values:
 
 ### 7.10 Safety Benchmark Metric
 
-**Parent:** Supplier Scorecard Abstract Catalog Record  
+**Inheritance parent:** Supplier Scorecard Abstract Catalog Record
+
 **Directly declared fields:** None. Code, Name, Active?, and Sort are inherited.
 
 Initial values:
@@ -544,7 +554,8 @@ Initial values:
 
 ### 7.11 Scorecard Cadence
 
-**Parent:** Supplier Scorecard Abstract Catalog Record  
+**Inheritance parent:** Supplier Scorecard Abstract Catalog Record
+
 **Inherited fields:** Code, Name, Active?, and Sort.
 
 | Directly declared field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
@@ -562,7 +573,8 @@ Adding a cadence record alone does not implement reporting-period boundary seman
 
 ### 7.12 KPI Value Origin
 
-**Parent:** Supplier Scorecard Abstract Catalog Record  
+**Inheritance parent:** Supplier Scorecard Abstract Catalog Record
+
 **Directly declared fields:** None. Code, Name, Active?, and Sort are inherited.
 
 Initial values:
@@ -581,7 +593,8 @@ Initial values:
 
 ### 7.13 Publication Exception Treatment
 
-**Parent:** Supplier Scorecard Abstract Catalog Record  
+**Inheritance parent:** Supplier Scorecard Abstract Catalog Record
+
 **Directly declared fields:** None. Code, Name, Active?, and Sort are inherited.
 
 Initial values:
@@ -691,11 +704,11 @@ KPI Version records cannot be edited, deleted, imported over, or re-dated after 
 | Versions | Inverse 1:M grid from Scorecard Program Version.Program | N | None | Read only | Navigation only |
 | Generation Delays | Inverse 1:M grid from Scorecard Program Generation Delay.Program | N | None | Scorecard administrators may initiate a new Generation Delay form from this grid; existing applied rows are read only | Operational control outside the published version graph |
 
-### 9.2 Scorecard Program KPI — authoring child
+### 9.2 Scorecard Program KPI — authoring membership
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
-| Program | M:1 to Scorecard Program; inverse `Program KPIs` 1:M | Y | Parent context | Read only after creation | Declaring relationship; unique pair `(Program, KPI)` |
+| Program | M:1 to Scorecard Program; inverse `Program KPIs` 1:M | Y | Creating Program | Read only after creation | Declaring relationship; unique pair `(Program, KPI)` |
 | KPI | M:1 to Supplier Scorecard KPI | Y | None; filter `Active?=TRUE` | Scorecard administrator editable until Program Publish | Stable authoring identity; exact KPI Version resolves at operational generation |
 | Display Order | Float | Y | None | Scorecard administrator editable | Copied to Program KPI Version |
 | Required for Publication? | Yes/No | Y | `TRUE` | Scorecard administrator editable | Copied to Program KPI Version; drives publication validation |
@@ -721,7 +734,7 @@ KPI Version records cannot be edited, deleted, imported over, or re-dated after 
 | Published By | M:1 to Employee | Y | Authenticated actor | Read only | Set by Publish |
 | Program KPI Versions | Inverse 1:M grid from Scorecard Program KPI Version.Program Version | Y | Generated set | Read only | Complete child graph created by Publish |
 
-### 9.4 Scorecard Program KPI Version — immutable child
+### 9.4 Scorecard Program KPI Version — immutable membership version
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
@@ -788,21 +801,21 @@ These fields are declared once on Supplier Abstract and inherited by Supplier Pa
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
-| Commodity | M:1 to Supplier Commodity; inverse disabled | N globally; conditionally required for ranked participants | `NULL` on parent; Facility defaults from Parent Company.Commodity | Authorized supplier-master maintainers; Facility read only in initial release | Parent change synchronizes participating child facilities while facility override remains unapproved; scorecards snapshot the value at creation |
+| Commodity | M:1 to Supplier Commodity; inverse disabled | N globally; conditionally required for ranked participants | `NULL` on Supplier Parent Company; Facility copies related Parent Company.Commodity | Authorized supplier-master maintainers; Facility read only in initial release | Parent Company.Commodity changes synchronize related Facilities through the handlers below while facility override remains unapproved; scorecards snapshot the value at creation |
 | NAICS Classification | M:1 to NAICS Classification; inverse disabled | N globally; conditionally required for benchmarked safety KPIs | `NULL` | Authorized supplier-master maintainers | Scorecards snapshot the value at creation; missing classification blocks only benchmark-dependent capture unless an authorized publication exception is used |
 | Scorecard Participations | Inverse 1:M grid | N | Derived from Participation.Supplier | Read only to ordinary users | Navigation only |
 | Scorecards | Inverse 1:M grid | N | Derived from Supplier Scorecard.Supplier | Read only | Supplier profile/history navigation; no duplicate relationship |
 
 `Type of Supplier Entity`, already proposed in the Supplier Surveys target specification, is reused for rollup participation-subtype validation and reporting. It does not restrict ordinary Program participation, and this specification does not create another discriminator.
 
-Initial release policy inherits Commodity from Parent Company to Facility and keeps the facility field read only. ADR-114's pending facility-override decision can later change editability without changing the field or historical scorecard snapshots.
+Supplier Facility inherits the Commodity field definition from Supplier Abstract. Initial release Action Handlers copy and synchronize its value from the related Supplier Parent Company and keep the Facility field read only. ADR-114's pending facility-override decision can later change editability without changing the field or historical scorecard snapshots.
 
 Commodity synchronization uses two explicit Action Handlers in the initial release:
 
 1. A Facility Create/Update handler watches `Parent Company`. When the relationship is populated, it copies `Parent Company.Commodity` to the inherited Facility.Commodity field. It does not use runtime type inspection; the concrete Facility form/handler supplies the entity context.
-2. A Parent Company Update handler watches `Commodity`. When it changes, it updates Commodity on each related Facility because facility override is not initially permitted. The handler is idempotent, records ordinary object audit history, reports partial child-update failures to SRM administration, and does not retrigger itself from metadata-only changes.
+2. A Parent Company Update handler watches `Commodity`. When it changes, it updates Commodity on each related Facility because facility override is not initially permitted. The handler is idempotent, records ordinary object audit history, reports partial Facility-update failures to SRM administration, and does not retrigger itself from metadata-only changes.
 
-If facility-level override is later approved, these handlers and field permissions require a coordinated revision. The design must then distinguish inherited from overridden Commodity explicitly rather than silently continuing to overwrite facility choices.
+If facility-level override is later approved, these handlers and field permissions require a coordinated revision. The design must then distinguish company-synchronized from overridden Commodity values explicitly rather than silently continuing to overwrite facility choices.
 
 ### 10.3 Status capability integration
 
@@ -811,7 +824,7 @@ Add or confirm these Process Capability decisions in the Supplier Status target:
 - `GENERATE_MONTHLY_SUPPLIER_SCORECARD` — initially Allow for Active, Deny for Service Parts Only and Inactive, subject to final matrix approval.
 - `GENERATE_PERIODIC_PARENT_ASSESSMENT` — required only if ADR-113 is approved; seed decisions require business confirmation.
 
-The scheduled generator rechecks the applicable capability immediately before creating each Scorecard. A parent restriction applies to a facility under the status target. Historical Scorecards remain visible under ordinary security even when generation becomes ineligible.
+The scheduled generator rechecks the applicable capability immediately before creating each Scorecard. A Supplier Parent Company restriction applies to a related Facility under the status target. Historical Scorecards remain visible under ordinary security even when generation becomes ineligible.
 
 ## 11. Safety benchmark configuration
 
@@ -882,7 +895,7 @@ No custom State or Workflow field is declared. Current state is the native workf
 | Run | M:1 to Supplier Scorecard Run; inverse `Scorecards` 1:M | Y | Generating Run | Read only | Uniqueness `(Run, Supplier)` |
 | Program Version | M:1 to Scorecard Program Version | Y | Copy Run.Program Version | Read only | Denormalized immutable reporting reference |
 | Supplier | M:1 to Supplier Abstract; inverse `Scorecards` 1:M | Y | Participation.Supplier | Read only | Exact scored entity |
-| Parent Company | M:1 to Supplier Parent Company | Y | For a Facility, snapshot current Facility.Parent Company; for a Parent Company Scorecard, copy the scored Supplier itself | Read only | Historical hierarchy context and consistent parent-level reporting |
+| Parent Company | M:1 to Supplier Parent Company | Y | For a Facility, snapshot current Facility.Parent Company; for a Parent Company Scorecard, copy the scored Supplier itself | Read only | Historical hierarchy context and consistent Supplier Parent Company reporting |
 | Supplier Name Snapshot | Text, max 255 | Y | Copy Supplier.Name at creation | Read only | Historical display evidence |
 | Supplier Code Snapshot | Text, max 100 | Y | Copy Supplier.Supplier ID at creation | Read only | Historical supplier/depot code evidence |
 | Commodity | M:1 to Supplier Commodity; inverse disabled | N | Copy Supplier.Commodity | Read only | Historical peer-group relationship |
@@ -893,15 +906,15 @@ No custom State or Workflow field is declared. Current state is the native workf
 | NAICS Name Snapshot | Text, max 255 | N | Copy NAICS Classification.Name | Read only | Historical presentation |
 | Reporting Period Start | Date | Y | Copy Run.Reporting Period Start | Read only | Stored snapshot |
 | Reporting Period End | Date | Y | Copy Run.Reporting Period End | Read only | Stored snapshot |
-| Total Configured Maximum Points | Decimal | Y | Sum child Configured Maximum Points | Read only | Recalculated by parent-total handler |
-| Total Effective Maximum Points | Decimal | Y | Sum child Effective Maximum Points | Read only | Recalculated by parent-total handler |
-| Total Effective Points | Decimal | N | Sum non-null child Effective Points | Read only | Recalculated by parent-total handler |
-| Overall Score Percentage | Decimal | N | `Total Effective Points / Total Effective Maximum Points * 100`; return `NULL` when denominator is zero | Read only | Recalculated by parent-total handler; executable expression unresolved |
-| Last Calculated At | Date/Time with timezone | N | Current server timestamp after successful recalculation | Read only | Parent-total handler metadata |
+| Total Configured Maximum Points | Decimal | Y | Sum KPI Values.Configured Maximum Points | Read only | Recalculated by Scorecard totals recalculation handler |
+| Total Effective Maximum Points | Decimal | Y | Sum KPI Values.Effective Maximum Points | Read only | Recalculated by Scorecard totals recalculation handler |
+| Total Effective Points | Decimal | N | Sum non-null KPI Values.Effective Points | Read only | Recalculated by Scorecard totals recalculation handler |
+| Overall Score Percentage | Decimal | N | `Total Effective Points / Total Effective Maximum Points * 100`; return `NULL` when denominator is zero | Read only | Recalculated by Scorecard totals recalculation handler; executable expression unresolved |
+| Last Calculated At | Date/Time with timezone | N | Current server timestamp after successful recalculation | Read only | Scorecard totals recalculation handler metadata |
 | Published At | Date/Time with timezone | N | `NULL` | Read only | Set by publication batch |
 | Published By | M:1 to Employee | N | `NULL` | Read only | Set by publication batch |
 | KPI Values | Inverse 1:M grid from Scorecard KPI Value.Scorecard | Y | Generated children | Editable only through child permissions and stage rules | At least one generated row |
-| Source Scorecards | M:N self relationship | N | Empty except parent rollup scorecards | Read only after generation | Stores exact monthly/facility source snapshots used for a periodic parent assessment |
+| Source Scorecards | M:N self relationship | N | Empty except Supplier Parent Company rollup Scorecards | Read only after generation | Stores exact monthly/facility source snapshots used for a periodic Supplier Parent Company assessment |
 | Rolled Up Into | Inverse M:N self grid | N | Derived | Read only | Navigation only |
 
 Overall and commodity ranks are intentionally not fields. They are calculated on demand from authorized published scorecards for the same Program/period and, for commodity rank, the same Commodity snapshot.
@@ -911,7 +924,7 @@ Overall and commodity ranks are intentionally not fields. They are calculated on
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
 | Display Field | Calculated Text | Y | Scorecard.Display Field plus KPI Version.Name; exact syntax unresolved | Read only | Configured display value |
-| Scorecard | M:1 to Supplier Scorecard; inverse `KPI Values` 1:M | Y | Parent Scorecard | Read only | Declaring relationship |
+| Scorecard | M:1 to Supplier Scorecard; inverse `KPI Values` 1:M | Y | Generating Scorecard | Read only | Declaring relationship |
 | Program KPI Version | M:1 to Scorecard Program KPI Version | Y | Generating membership row | Read only | Uniqueness `(Scorecard, Program KPI Version)` |
 | KPI | M:1 to Supplier Scorecard KPI | Y | Program KPI Version.KPI | Read only | Stable identity |
 | KPI Version | M:1 to Supplier Scorecard KPI Version | Y | Version effective on Scorecard.Reporting Period End | Read only | Exact historical definition |
@@ -988,11 +1001,11 @@ An Event Service or scheduled batch evaluates active Scorecard Programs. Its exa
 5. if no applicable published Program Version exists, create no Run, report the owned configuration exception to the Program coordinator, and retry on the next scheduled service execution rather than silently using an older version;
 6. create or reuse the unique Run for Program and Scheduled Generation Date, storing both the stable Program and exact resolved Program Version;
 7. select active Participations whose effective range includes the period end;
-8. recheck the status capability and parent restriction for each supplier immediately before creation;
+8. recheck the status capability and Supplier Parent Company restriction for each supplier immediately before creation;
 9. use Participation.Supplier as the exact entity to score, without applying a Program-level entity-type filter;
-10. for a rollup Program, require the destination Participation.Supplier to be the applicable Supplier Parent Company and select source Scorecards only from child-facility Participations of Rollup Source Program;
+10. for a rollup Program, require the destination Participation.Supplier to be the applicable Supplier Parent Company and select source Scorecards only from related Facility Participations of Rollup Source Program;
 11. create one unique Scorecard per eligible participation;
-12. snapshot supplier name/code, parent context, Commodity, NAICS Classification, and period;
+12. snapshot supplier name/code, Parent Company context, Commodity, NAICS Classification, and period;
 13. create one KPI Value for every Program KPI Version;
 14. resolve the exact KPI Version effective on the reporting period end;
 15. initialize each KPI Value;
@@ -1034,10 +1047,10 @@ The targeted `Refresh KPI Result` action:
 - re-executes the stored KPI Version source configuration for the same supplier and period;
 - updates the typed source value, Queried Points, source survey/benchmark/link where applicable, and refresh metadata;
 - does not clear an administrator Override Points value;
-- recalculates Effective Points and parent totals; and
+- recalculates Effective Points and Scorecard totals; and
 - writes native audit/execution evidence.
 
-Ordinary authorized contributors may execute the action while the Scorecard is open. After publication, access is limited to the approved internal correction role or application administrators. Tenant support for changing a child of a workflow-completed parent through a privileged action must be proven before release.
+Ordinary authorized contributors may execute the action while the Scorecard is open. After publication, access is limited to the approved internal correction role or application administrators. Tenant support for changing a KPI Value on a Published Scorecard through a privileged action must be proven before release.
 
 ### 13.4 Safety capture
 
@@ -1047,18 +1060,18 @@ Ordinary authorized contributors may execute the action while the Scorecard is o
 - Semiannual Safety Kaizen is reviewed and scored in the Supplier Survey process. The resulting score is carried forward through the KPI Initialization Method with Code `PRIOR_PERIOD` until the next applicable assessment.
 - Survey nonresponse follows the KPI's Supplier Nonresponse Sets Zero? rule at cutoff; it is not treated as Not Applicable.
 
-### 13.5 Parent rollup generation
+### 13.5 Supplier Parent Company rollup generation
 
 When a Program Version has Rollup Source Program:
 
-1. select published source Scorecards for child facilities under the exact parent and approved source periods;
+1. select published source Scorecards for Facilities related to the exact Supplier Parent Company and approved source periods;
 2. store those records in Source Scorecards;
 3. group source KPI Values by stable KPI;
 4. apply the KPI Version's governed Aggregation Method;
-5. write the rolled result as the parent KPI Value's Queried Points and source evidence; and
-6. keep direct-entry or independently queried parent-period KPIs separate.
+5. write the rolled result as the destination Scorecard KPI Value's Queried Points and source evidence; and
+6. keep direct-entry or independently queried Supplier Parent Company KPIs for the period separate.
 
-Do not create duplicate parent monthly values for KPIs already captured at facilities. Do not reopen historical facility scorecards to distribute a later parent result.
+Do not create duplicate Supplier Parent Company monthly values for KPIs already captured at facilities. Do not reopen historical facility scorecards to distribute a later Supplier Parent Company result.
 
 ## 14. Workflow and automation contract
 
@@ -1095,20 +1108,20 @@ Terminal outcomes are `Published` and `Cancelled`. Suppliers do not execute work
 
 | Stage | Responsible person | Due date | Entry | Exit |
 |---|---|---|---|---|
-| Assigned | Current eligible Contributor Group members | Due At | Generated task | `Complete Contribution` → Completed; parent cancellation → Cancelled |
+| Assigned | Current eligible Contributor Group members | Due At | Generated task | `Complete Contribution` → Completed; Run cancellation → Cancelled |
 
-`Complete Contribution` validates that each linked required KPI Value is Input Complete or has an authorized Publication Exception, stamps Completed By/At, and completes the workflow. Administrators may reopen the task only while the parent Run remains in Data Entry. Native reminders apply while Assigned and stop on Completed or Cancelled.
+`Complete Contribution` validates that each linked required KPI Value is Input Complete or has an authorized Publication Exception, stamps Completed By/At, and completes the workflow. Administrators may reopen the task only while the related Run remains in Data Entry. Native reminders apply while Assigned and stop on Completed or Cancelled.
 
 ### 14.4 KPI Value Action Handlers
 
 | Handler/action | Trigger/watched fields | Behavior |
 |---|---|---|
-| Input recalculation | Is Not Applicable?, typed `Value -` fields, Entered Points, Queried Points, Entry Confirmed?, Publication Exception?, Publication Exception Treatment, Override Points | Recalculate Effective Maximum Points, Effective Points, Value Origin, and Input Complete?; invoke parent-total recalculation without recursive self-trigger |
-| Confirmation metadata | Entry Confirmed? | When changed to true, stamp actor/time; when reopened while parent is open, clear stamps |
+| Input recalculation | Is Not Applicable?, typed `Value -` fields, Entered Points, Queried Points, Entry Confirmed?, Publication Exception?, Publication Exception Treatment, Override Points | Recalculate Effective Maximum Points, Effective Points, Value Origin, and Input Complete?; invoke Scorecard totals recalculation without recursive self-trigger |
+| Confirmation metadata | Entry Confirmed? | When changed to true, stamp actor/time; when reopened while the related Scorecard is open, clear stamps |
 | Query metadata | Refresh/query capture | Stamp Last Query Refresh By/At and preserve execution evidence |
 | Publication exception | Publication Exception?, Treatment, Rationale | Require complete fields, stamp actor/time, and prevent ordinary contributors from setting them |
 | Override | Override Points, Override Rationale | Require administrator, non-null rationale, and applicable scoring range; stamp actor/time; do not overwrite Queried Points |
-| Parent totals | Child Effective Points/Effective Maximum Points/Configured Maximum Points changes | Recalculate Scorecard totals and Last Calculated At; define recursion guard and retry behavior |
+| Scorecard totals recalculation | Related KPI Value Effective Points/Effective Maximum Points/Configured Maximum Points changes | Recalculate totals and Last Calculated At on KPI Value.Scorecard using its KPI Values grid; define recursion guard and retry behavior |
 
 ## 15. Cutoff, publication, correction, and scoring rules
 
@@ -1140,7 +1153,7 @@ Override Points changes the awarded outcome but does not replace Queried Points.
 - Overall totals are stored on Scorecard for ranking and responsive-page performance.
 - If Total Effective Maximum Points is zero, Overall Score Percentage is null.
 - Category results may be calculated by governed reports/views rather than a custom Category Result object because they have no independent lifecycle.
-- Any corrected KPI Value recalculates its parent Scorecard totals. It does not update other Scorecards.
+- Any corrected KPI Value recalculates its related Scorecard totals. It does not update other Scorecards.
 
 ### 15.5 Ranking
 
@@ -1169,7 +1182,7 @@ Rank is not persisted. Initial implementation must define tie handling, excluded
 | Override or publication exception | Supplier Scorecard Application Administrator; system administrator | Internal-only controls with rationale and actor/time evidence |
 | Native imports | System administrator only | Never exposed as a general contributor mechanism; direct import into governed KPI Values prohibited |
 
-Parent-company access may include child facilities under ADR-078. Facility access does not include siblings. Group assignment never expands supplier scope. Test forms, direct URLs, exports, search, child grids, attachments, source links, and relationship navigation.
+Supplier Parent Company access may include related Facilities under ADR-078. Facility access does not include siblings. Group assignment never expands supplier scope. Test forms, direct URLs, exports, search, child grids, attachments, source links, and relationship navigation.
 
 ### 16.2 Notifications
 
@@ -1230,7 +1243,7 @@ Specific constraints include:
 | SC-C10 | Add | Safety Benchmark authoring/version family | No benchmark model | Immutable effective-dated NAICS/metric versions | SC-013–SC-014 | High |
 | SC-C11 | Add | Query refresh/override fields and actions | No distinction among source, override, effective outcome | Preserve queried, overridden, effective points and governed corrections | SC-004–SC-005 | High |
 | SC-C12 | No structural change | Source applications/security | Source data lives in specialist applications | Query governed data; source drilldown re-applies source security | SC-017, SC-023 | High |
-| SC-C13 | No structural change | OOTB Parent/Facility workflows | Recurring evaluation/deactivation workflows | Do not repurpose for scorecard lifecycle | Baseline boundary | High |
+| SC-C13 | No structural change | OOTB Parent Company/Facility workflows | Recurring evaluation/deactivation workflows | Do not repurpose for scorecard lifecycle | Baseline boundary | High |
 | SC-C14 | Defer | Bulk staging dataset | Earlier option discussed | No staging object until operating model is approved | SC-006 | High |
 | SC-C15 | Add | Scorecard Program Generation Delay | Program recurrence generated a due occurrence without a user-controlled delay record | New child form from Program.Generation Delays defers one scheduled occurrence until Delay Until without changing the recurrence anchor | SC-027 | High |
 | SC-C16 | Modify | Supplier Scorecard Run identity | Run uniqueness used Program Version and reporting period | Store stable Program and Scheduled Generation Date; enforce one Run per stable Program occurrence while retaining exact Program Version used | SC-027 | High |
@@ -1238,6 +1251,7 @@ Specific constraints include:
 | SC-C18 | Refine | Catalogue-targeting M:1 relationships | Earlier target wording named inverse grids for several catalogue references, implying that the Intelex inverse option was enabled | Keep each source-owned M:1 reference but disable its inverse relationship; configure no catalogue-side consumer grids | SC-029 | High |
 | SC-C19 | Add/reparent | Supplier Scorecard catalogue inheritance | Thirteen independent catalogue objects each defined or implied the same Code, Name, Active?, and Sort fields | Add non-instantiable Supplier Scorecard Abstract Catalog Record; reparent all thirteen scorecard-owned catalogues; retain Description directly on KPI Aggregation Method | SC-030 | High |
 | SC-C20 | Remove/modify | Program entity scope and recurrence | Program and Program Version stored Entity Level and Recurrence Definition; Scorecard Entity Level existed only to support that field | Remove both fields from Program and Version; remove the orphaned Scorecard Entity Level catalogue; make Participation.Supplier authoritative for exact entity scope; add Frequency directly to Scorecard Cadence | SC-031 | High |
+| SC-C21 | No structural change | Inheritance and relationship terminology | Parent wording also described operational associations and copied Commodity values | Label inheritance parents explicitly; name related Programs, Runs, Scorecards, and Supplier Parent Company records; distinguish inherited fields from synchronized values | SC-032 | High |
 
 ## 19. Requirement traceability
 
@@ -1246,7 +1260,7 @@ Specific constraints include:
 | SC-001 | KPI/Program versions; Scorecard/KPI Value | Immutable effective configuration and period snapshots | Satisfied at design level |
 | SC-002 | KPI, KPI Value | Direct Entry and Query use one typed operational object | Satisfied |
 | SC-003 | KPI.Collection Method | Defaults to Direct Entry; controlled later version converts to Query | Satisfied |
-| SC-004 | KPI Value actions/selection | Open refresh plus privileged targeted post-publication refresh | Partially satisfied; tenant completed-parent behavior must be proven |
+| SC-004 | KPI Value actions/selection | Open refresh plus privileged targeted post-publication refresh | Partially satisfied; tenant Published Scorecard correction behavior must be proven |
 | SC-005 | KPI Value override fields/security | Separate Queried, Override, Effective points with internal rationale evidence | Satisfied |
 | SC-006 | Source integration | Direct imports prohibited; staging deferred | Satisfied |
 | SC-007 | Run generation, Contribution Task | Scheduled preceding-period graph and one task per Run/group | Satisfied |
@@ -1257,7 +1271,7 @@ Specific constraints include:
 | SC-012 | KPI Value applicability | Explicit Not Applicable and denominator behavior | Satisfied |
 | SC-013 | Supplier Survey integration | Monthly safety query and Kaizen carry-forward | Satisfied at design level; survey schedules/content remain configuration |
 | SC-014 | Safety Benchmark versions | Effective-dated NAICS/metric version selection | Satisfied |
-| SC-015 | Program Cadence, Participation supplier scope, rollup | Supports facility monthly and parent periodic through exact Participations without a Program-level entity restriction or duplicate entry | Requires confirmation because ADR-113 remains proposed |
+| SC-015 | Program Cadence, Participation supplier scope, rollup | Supports Facility monthly and Supplier Parent Company periodic assessments through exact Participations without a Program-level entity restriction or duplicate entry | Requires confirmation because ADR-113 remains proposed |
 | SC-016 | Commodity snapshot/ranking | Shared supplier Commodity, Scorecard snapshot, on-demand rank | Satisfied; tie/exclusion behavior unresolved |
 | SC-017 | Security contract | Aggregate authorization separated from source drilldown authorization | Satisfied at design level; runtime penetration testing required |
 | SC-018 | Admin permission contract | Configuration/publishing/versioning/override restricted | Satisfied; group membership must be named |
@@ -1267,21 +1281,22 @@ Specific constraints include:
 | SC-022 | Workspace/profile | Selected measures and drill-through views | Satisfied at design level |
 | SC-023 | Scrap integration | Query source only; settlement remains external | Satisfied |
 | SC-024 | Publication exception | Explicit Set to Zero/Exclude treatment | Requires confirmation; proposed design choice |
-| SC-025 | Totals | Stored parent totals maintained by handler/service | Requires tenant mechanism validation |
+| SC-025 | Totals | Stored Scorecard totals maintained by handler/service | Requires tenant mechanism validation |
 | SC-026 | Contributor Group | Cross-supplier Group assignment without access expansion | Satisfied at design level; target group model verification required |
 | SC-027 | Program.Generation Delays, generation service, Run identity | Child delay form, occurrence-specific hold, deferred retry, original recurrence anchor, and applied-Run evidence | Satisfied at design level |
 | SC-028 | Catalogue objects; KPI, KPI Version, Program, Program Version, Safety Benchmark, Safety Benchmark Version, KPI Value | All former dropdown/choice domains are governed M:1 relationships; inline values are normalized into matching seed-data tables; rules use stable Code rather than localizable Name | Satisfied at design level |
 | SC-029 | Every M:1 field targeting a catalogue object | Field contracts explicitly state `inverse disabled`; catalogue forms expose no inverse consumer grid; diagrams are source-to-target associations only | Satisfied at design level |
 | SC-030 | Supplier Scorecard Abstract Catalog Record and catalogue children | Satisfied as refined by SC-031: common fields are declared once on the abstract parent; twelve concrete scorecard catalogues inherit them; KPI Aggregation Method adds Description and Scorecard Cadence adds Frequency | Satisfied at design level |
 | SC-031 | Scorecard Program, Program Version, Participation, Scorecard Cadence, generation service | Entity Level and Recurrence Definition are absent from Program/Version; Participation.Supplier is the exact scored entity; Cadence.Frequency drives occurrence scheduling; orphaned Scorecard Entity Level is removed | Satisfied at design level; recurrence rendering and scheduler interpretation require tenant validation |
+| SC-032 | Inventory, field conventions, relationship defaults, Commodity synchronization, rollup, workflow, totals, security, and validation | Inheritance parents are explicit; association wording names the related object; Commodity field inheritance is separated from value synchronization | Satisfied at design level |
 
 ## 20. Impact analysis, migration, and implementation sequence
 
 ### 20.1 Cross-component impact
 
-- **SRM supplier forms:** add Commodity, NAICS Classification, related Participations, and related Scorecards. Facility Commodity is initially inherited/read only.
-- **Supplier status:** add/confirm scorecard-generation capabilities and test parent restriction behavior.
-- **Supplier roles:** ensure supplier publication recipient roles exist for each exact supplier entity; no parent-role fallback is assumed.
+- **SRM supplier forms:** add Commodity, NAICS Classification, related Participations, and related Scorecards. Facility Commodity values are initially synchronized from the related Supplier Parent Company and read only.
+- **Supplier status:** add/confirm scorecard-generation capabilities and test Supplier Parent Company restriction behavior.
+- **Supplier roles:** ensure supplier publication recipient roles exist for each exact supplier entity; no Supplier Parent Company role fallback is assumed.
 - **Supplier Surveys:** configure monthly LTIR/TRIR and semiannual Safety Kaizen campaigns; expose exact completed survey references to scorecard capture.
 - **Source applications:** publish governed reports with supplier/period parameters and preserve source security.
 - **Portal/workspace:** add selected current measures and profile drilldown without loading all KPI history on the landing page.
@@ -1296,7 +1311,7 @@ Specific constraints include:
 1. Inventory every current dependency on OOTB Score, Last Score Date, Facility Score, Average Goods & Service Score, and Latest Parent Company Demerits.
 2. Configure Supplier Scorecard Abstract Catalog Record, then create every scorecard-owned catalogue as its direct child. Declare Description on KPI Aggregation Method and Frequency on Scorecard Cadence; do not duplicate Code, Name, Active?, or Sort on any child.
 3. If an earlier target build exists, map each Program's recurrence choice into its selected Scorecard Cadence.Frequency. Where Programs sharing a Cadence require different schedules, create separately coded Cadence records before migration. Then remove Program/Version Entity Level and Recurrence Definition and remove Scorecard Entity Level records/configuration.
-4. Configure and migrate governed Commodity and NAICS Classification values; review facility inheritance and exceptions.
+4. Configure and migrate governed Commodity and NAICS Classification values; review Facility Commodity synchronization and exceptions.
 5. Configure application groups, source reports, recipient roles, status capabilities, and all approved catalogue seed values; load records into the concrete child catalogues, map any pre-existing textual selections by Code, and confirm every catalogue-targeting M:1 has its inverse option disabled.
 6. Build KPI and Program authoring/versioning and validate Publish atomicity before operational generation.
 7. Configure the Program.Generation Delays grid, contextual New form, audit, occurrence validation, and scheduler delay gate.
@@ -1329,7 +1344,8 @@ Specific constraints include:
 |---|---|
 | Baseline preservation | OOTB model/workflow artifacts remain unchanged; target is a separate specification |
 | Inheritance | Supplier Abstract → Parent Company/Facility is retained. Supplier Scorecard Abstract Catalog Record directly parents exactly twelve concrete scorecard catalogues; no child redeclares the inherited fields, no multiple parent exists, and no inheritance cycle is introduced |
-| Relationship ownership | Every 1:M grid is the inverse of one child M:1 field; no duplicate stored parent grid |
+| Structural terminology | Parent terminology denotes inheritance except in exact business object/field names and stable codes; operational associations name the related object; Commodity value copying is documented separately from field inheritance |
+| Relationship ownership | Every 1:M grid is the inverse of one declaring M:1 field; no duplicate stored relationship |
 | Catalogue normalization | No dropdown, governed-dropdown, or choice field remains; each selection domain is an M:1 relationship to a standard Code/Name/Active?/Sort catalogue and rules branch on Code |
 | Catalogue inverse suppression | Every field-table row targeting a catalogue states `inverse disabled`; no catalogue object defines or exposes a consumer-side inverse grid |
 | Catalogue field ownership | Code, Name, Active?, and Sort are declared only on Supplier Scorecard Abstract Catalog Record; KPI Aggregation Method declares Description, Scorecard Cadence declares Frequency, and every other concrete catalogue declares no local fields |
@@ -1367,7 +1383,7 @@ Specific constraints include:
 | Revise pending delay | Administrator changes Delay Until before application; native audit preserves the change; applied Delay is read only |
 | Generate monthly Run twice | Second execution finds the existing Run/Scorecards/values/tasks and creates no duplicates |
 | Ineligible supplier | Capability denial prevents a new Scorecard but does not change historical Scorecards |
-| Participation-scoped generation | Each eligible Participation generates for its exact Supplier record, whether Parent Company or Facility; parent context, Commodity, and NAICS are snapshotted without a Program entity-level filter |
+| Participation-scoped generation | Each eligible Participation generates for its exact Supplier record, whether Parent Company or Facility; Parent Company context, Commodity, and NAICS are snapshotted without a Program entity-level filter |
 | Static default | Points initialize but manual KPI remains incomplete until contributor confirmation |
 | Prior-period default | Latest earlier published effective points are copied as current Entered Points; old override rationale is not copied |
 | Not Applicable | Entry controls disable, values remain preserved but ignored, effective maximum becomes zero, no comment required |
@@ -1380,10 +1396,10 @@ Specific constraints include:
 | Query refresh after publication | Only privileged targeted action can update one KPI; no background refresh selects the Scorecard |
 | Override | Queried Points remain visible; Override Points becomes effective; internal rationale and actor/time are retained and supplier-hidden |
 | Safety query | Exact Supplier Survey and effective Safety Benchmark Version are stored; missing NAICS/benchmark is reported rather than guessed |
-| Parent rollup | Exact child Source Scorecards are frozen and aggregation follows the KPI method; no child record is reopened |
+| Supplier Parent Company rollup | Exact Source Scorecards are frozen and aggregation follows the KPI method; no source Scorecard is reopened |
 | Ranking | View returns current overall/commodity ranks from published authorized population without persisting rank |
 | Source drilldown | User without source-record permission cannot open restricted detail even when aggregate score is visible |
-| Facility-scoped supplier user | User sees only related facility Scorecards, not sibling facilities; parent-authorized user sees permitted children |
+| Facility-scoped supplier user | User sees only related facility Scorecards, not sibling facilities; Supplier Parent Company-authorized user sees permitted related Facilities |
 | Cancellation | Open children cancel, reminders stop, audit/history remains, and partial cascade failure is retryable |
 
 These are design acceptance scenarios, not claims of successful tenant testing.
@@ -1392,13 +1408,13 @@ These are design acceptance scenarios, not claims of successful tenant testing.
 
 The following decisions do not prevent the logical model from being reviewed, but they prevent production release of the affected behavior:
 
-1. Approve or reject ADR-113's facility-monthly/parent-periodic operating model.
+1. Approve or reject ADR-113's monthly Facility / periodic Supplier Parent Company operating model.
 2. Approve the first KPI catalogue, Value Types, categories, maximum points, initialization, applicability, missing-value behavior, aggregation methods, feedback contacts, and effective dates.
 3. Approve SC-024's publication-exception treatments or replace them with a different explicit policy.
 4. Name the Supplier Scorecard Application Administrator, coordinator, review, correction, and contributor groups and separation-of-duty rules.
 5. Approve Scorecard Cadence Frequency expressions and reporting-period boundary mappings, monthly generation, entry cutoff, review cutoff, publication schedule, scheduler timezone, business calendar, reminders, and escalation behavior.
 6. Approve overall/commodity ranking tie, exclusion, null, and population-count rules.
-7. Confirm whether a Facility may override Parent Company Commodity; initial design keeps it inherited and read only.
+7. Confirm whether a Facility may override Parent Company Commodity; initial design keeps the value company-synchronized and read only.
 8. Define NAICS ownership, missing-code handling, benchmark source, benchmark update procedure, and exact LTIR/TRIR scoring rules.
 9. Validate Group responsibility, M:N version-copy behavior, aggregate recalculation, privileged post-publication child updates, and report/query binding in the target Intelex tenant.
 10. Confirm that inherited Code uniqueness is enforceable per concrete catalogue child, or approve globally distinct replacement codes before loading seed data.
@@ -1414,8 +1430,10 @@ The following decisions do not prevent the logical model from being reviewed, bu
 
 2026-10-20 — Normalized all specified selection fields into governed M:1 catalogue relationships following user clarification. Added nine standard catalogue objects and seed-data tables, propagated the relationships through authoring, immutable versions, benchmarks, Programs, and operational KPI values, and required automation to evaluate stable catalogue Codes rather than localizable Names.
 
-2026-10-20 — Refined catalogue relationship configuration following user clarification. All M:1 fields targeting catalogue objects now explicitly disable the Intelex inverse relationship; earlier proposed catalogue-side inverse names and grids are superseded. Parent-child and operational inverse grids remain enabled only where the specification explicitly requires navigation.
+2026-10-20 — Refined catalogue relationship configuration following user clarification. All M:1 fields targeting catalogue objects now explicitly disable the Intelex inverse relationship; earlier proposed catalogue-side inverse names and grids are superseded. Company/Facility and operational inverse grids remain enabled only where the specification explicitly requires navigation.
 
 2026-10-20 — Added Supplier Scorecard catalogue inheritance following user clarification. Supplier Scorecard Abstract Catalog Record now owns Code, Name, Active?, and Sort; all thirteen scorecard-owned catalogue objects inherit those fields without redeclaration, while KPI Aggregation Method retains its directly declared Description. The shared Recurrence Definition remains outside this scorecard-specific inheritance family.
 
 2026-10-20 — Removed Program-level entity scope and recurrence configuration following user clarification. Scorecard Program and Program Version no longer contain Entity Level or Recurrence Definition; Supplier Scorecard Participation.Supplier supplies the exact scored entity, Scorecard Entity Level is removed as orphaned configuration, and Scorecard Cadence now directly declares the recurrence-expression Frequency used by generation.
+
+2026-10-23 — Clarified inheritance and relationship terminology under SC-032. Supersedes earlier use of parent for operational associations and inheritance for Commodity value copying. Inventory and catalogue labels now identify inheritance parents; concise defaults use Creating Program and Generating Scorecard; workflow, totals, rollup, security, and validation wording names the related object. Supplier Parent Company and existing Parent field names/codes are retained. Commodity synchronization follows the existing Action Handler scope of each related Facility. No object, field, relationship, inheritance edge, or baseline is changed.
