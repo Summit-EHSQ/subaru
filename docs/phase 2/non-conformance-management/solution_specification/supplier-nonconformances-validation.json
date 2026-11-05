@@ -1,0 +1,19 @@
+{
+  "objects": 68,
+  "field_rows": 285,
+  "baseline_fields": 91,
+  "duplicate_fields": [
+    [
+      "Event",
+      "Event Type"
+    ]
+  ],
+  "invalid_requiredness": [],
+  "missing_parents": [],
+  "deployment_ready": false,
+  "reason": "Business and tenant verification gates G-01 through G-12 remain open; see main specification.",
+  "known_extracted_caption_collision": "Event Type is separately declared as EventType (Text) and TypeOfEvent (reference); stable IDs and internal names distinguish them.",
+  "object_section_coverage": 68,
+  "baseline_field_coverage": 91,
+  "proposed_catalogue_inverse_violations": []
+}

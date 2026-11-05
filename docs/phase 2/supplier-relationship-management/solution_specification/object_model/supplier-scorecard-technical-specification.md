@@ -4,7 +4,7 @@
 |---|---|
 | Mode | Target design layered over the separately preserved OOTB SRM baseline |
 | Application | Supplier Scorecard, integrated with Supplier Relationship Management |
-| As of | 2026-10-23 |
+| As of | 2026-11-04 |
 | Status | Technical design for review; configuration has not been implemented |
 | Baseline authority | [OOTB SRM logical model](../../ootb-srm-baseline-model/README.md), its field/relationship/inheritance registers, and the six [OOTB SRM workflow documents](../../ootb-srm-baseline-workflows/) extracted from SIA OOTB SRM Export 1.0.0.0 |
 | Primary requirements | ADR-058, ADR-086, and ADR-111 through ADR-116 |
@@ -32,6 +32,8 @@ The following boundaries are fundamental:
 12. **Selection domains are governed records, not embedded lists.** KPI, Program, benchmark, provenance, and exception selections use M:1 catalogue relationships. Automation evaluates stable catalogue Codes while localizable Names remain presentation labels.
 13. **Scorecard catalogues share one abstract definition.** `Supplier Scorecard Abstract Catalog Record` declares Code, Name, Active?, and Sort once. Every catalogue object owned by this specification inherits those fields and declares only its domain-specific additions.
 14. **Participation determines entity scope; Cadence owns recurrence.** A Program is not restricted to a supplier subtype. Each Participation selects the exact Supplier Abstract record to score. Scorecard Cadence contains the recurrence expression used by the scheduler, so Program and Program Version do not reference the shared Recurrence Definition.
+15. **Generation timing is an explicit lag from the reporting schedule.** Cadence.Frequency generates reporting-period occurrences from Effective From. Generation Lag Time and its governed increment shift each occurrence to its Scheduled Generation Date. Schedule Anchor is the calculated first generation occurrence, and a Generation Delay changes only actual creation timing.
+16. **A generation delay is created once for the next ungenerated reporting cycle.** The controlled New action calculates and stores that cycle's period boundaries and Scheduled Generation Date. Administrators revise the same unapplied record when its Delay Until changes; they cannot create a second delay for the same Program cycle or pre-stage a delay for a later cycle.
 
 All new objects, fields, relationships, workflow behavior, and automation below are **Proposed** unless identified as **Extracted**, **Required**, or **Unresolved**. Logical names are not confirmed Intelex internal names, stable metadata identifiers, or physical table names.
 
@@ -65,12 +67,14 @@ All new objects, fields, relationships, workflow behavior, and automation below 
 | SC-024 | Design assumption | An authorized publication exception for missing internal data must explicitly select the Publication Exception Treatment with Code `SET_TO_ZERO` or `EXCLUDE_FROM_DENOMINATOR`; it cannot silently invent a result | Proposed |
 | SC-025 | Design assumption | Category and overall totals are stored and recalculated by an Action Handler/service because executable cross-grid formula support has not been verified | Proposed/Unresolved mechanism |
 | SC-026 | Design assumption | Contributor assignment uses an internal platform Group because one contribution task spans many suppliers; assignment never broadens the contributor's supplier or application access | Proposed |
-| SC-027 | User clarification | An authorized user can create a Generation Delay from a grid on the stable Scorecard Program, identify one scheduled occurrence, and defer its Run generation until a specified date without changing Program versioning or the recurrence anchor | Required |
+| SC-027 | User clarification; refined by SC-034 | An authorized user can create a Generation Delay from a grid on the stable Scorecard Program and defer one reporting cycle's Run generation until a specified date without changing Program versioning or the recurrence anchor | Required |
 | SC-028 | User clarification | Model every defined selection list as an M:1 relationship to a governed catalogue object; define and seed each previously inline value set using standard catalogue composition | Required |
 | SC-029 | User clarification | M:1 relationships whose target is a catalogue object must not activate an inverse relationship or expose a target-side inverse grid | Required |
 | SC-030 | User clarification; refined by SC-031 | All Supplier Scorecard catalogue objects inherit from one abstract `Supplier Scorecard Abstract Catalog Record` containing Code, Name, Active?, and Sort; child catalogues declare only additional fields | Required |
 | SC-031 | User clarification | Remove Scorecard Program.Entity Level and Scorecard Program.Recurrence Definition; exact entity scope comes from Supplier Scorecard Participation.Supplier, and Scorecard Cadence directly stores the recurrence expression | Required |
 | SC-032 | User clarification, 2026-10-23 | Reserve parent terminology for inheritance, preserve exact Parent object/field names, and use concise object-specific wording for associations and Commodity value synchronization | Required |
+| SC-033 | User clarification, 2026-11-04 | Configure a numeric Generation Lag Time and an M:1 Generation Lag Time Increment with exact Code `d` or `M`; calculate Schedule Anchor with `DATEADD`, and apply the same lag independently to every cadence-generated reporting occurrence | Required |
+| SC-034 | User clarification, 2026-11-04 | Generation Delay creation targets only the next ungenerated reporting cycle, system-stamps its reporting boundaries and Scheduled Generation Date, permits revision of that one unapplied record, and prevents a second delay for the same Program cycle | Required |
 
 ADR-113 remains proposed. This specification supports its monthly Facility / periodic Supplier Parent Company pattern but does not make that pattern mandatory. Scorecard Cadence defines timing, while each Supplier Scorecard Participation selects the exact Supplier Parent Company or Supplier Facility record to which the Program applies.
 
@@ -188,6 +192,7 @@ class Scorecard_Cadence {
   <<proposed catalogue child>>
   +Text Frequency [REQ] [PROPOSED]
 }
+class Generation_Lag_Time_Increment { <<proposed catalogue child>> }
 class KPI_Value_Origin { <<proposed catalogue child>> }
 class Publication_Exception_Treatment { <<proposed catalogue child>> }
 
@@ -201,6 +206,7 @@ Supplier_Scorecard_Abstract_Catalog_Record <|-- KPI_Collection_Method : inherits
 Supplier_Scorecard_Abstract_Catalog_Record <|-- KPI_Initialization_Method : inherits
 Supplier_Scorecard_Abstract_Catalog_Record <|-- Safety_Benchmark_Metric : inherits
 Supplier_Scorecard_Abstract_Catalog_Record <|-- Scorecard_Cadence : inherits
+Supplier_Scorecard_Abstract_Catalog_Record <|-- Generation_Lag_Time_Increment : inherits
 Supplier_Scorecard_Abstract_Catalog_Record <|-- KPI_Value_Origin : inherits
 Supplier_Scorecard_Abstract_Catalog_Record <|-- Publication_Exception_Treatment : inherits
 ```
@@ -227,6 +233,7 @@ class Scorecard_Cadence {
   <<proposed catalogue child>>
   +Text Frequency [REQ] [PROPOSED]
 }
+class Generation_Lag_Time_Increment { <<proposed catalogue child>> }
 class Supplier_Scorecard_KPI {
   +Text Code [REQ] [UNIQUE] [PROPOSED]
   +Text Name [REQ] [PROPOSED]
@@ -242,8 +249,12 @@ class Scorecard_Program {
   +Text Code [REQ] [UNIQUE] [PROPOSED]
   +Text Name [REQ] [PROPOSED]
   +Boolean Active [DEFAULT TRUE] [PROPOSED]
+  +Integer GenerationLagTime [REQ] [PROPOSED]
+  +Date ScheduleAnchor [CALCULATED] [REQ] [PROPOSED]
 }
 class Scorecard_Program_Generation_Delay {
+  +Date ReportingPeriodStart [REQ] [PROPOSED]
+  +Date ReportingPeriodEnd [REQ] [PROPOSED]
   +Date ScheduledGenerationDate [REQ] [PROPOSED]
   +Date DelayUntil [REQ] [PROPOSED]
   +Text Reason [REQ] [PROPOSED]
@@ -256,6 +267,8 @@ class Scorecard_Program_Version {
   +Integer VersionNumber [REQ] [PROPOSED]
   +Date EffectiveFrom [REQ] [PROPOSED]
   +Date EffectiveTo [PROPOSED]
+  +Integer GenerationLagTime [REQ] [PROPOSED]
+  +Date ScheduleAnchor [REQ] [PROPOSED]
 }
 class Scorecard_Program_KPI_Version {
   +Float DisplayOrder [REQ] [PROPOSED]
@@ -281,11 +294,13 @@ Supplier_Scorecard_KPI_Version "0..*" --> "0..1" Safety_Benchmark_Metric : Safet
 
 Scorecard_Program "1" --> "1..*" Scorecard_Program_KPI : ProgramKPIs
 Scorecard_Program "0..*" --> "1" Scorecard_Cadence : Cadence
+Scorecard_Program "0..*" --> "1" Generation_Lag_Time_Increment : GenerationLagTimeIncrement
 Scorecard_Program "1" --> "0..*" Scorecard_Program_Generation_Delay : GenerationDelays
 Scorecard_Program_KPI "0..*" --> "1" Supplier_Scorecard_KPI : KPI
 Scorecard_Program "1" --> "0..*" Scorecard_Program_Version : Versions
 Scorecard_Program_Version "1" --> "1..*" Scorecard_Program_KPI_Version : ProgramKPIVersions
 Scorecard_Program_Version "0..*" --> "1" Scorecard_Cadence : Cadence
+Scorecard_Program_Version "0..*" --> "1" Generation_Lag_Time_Increment : GenerationLagTimeIncrement
 Scorecard_Program_KPI_Version "0..*" --> "1" Supplier_Scorecard_KPI : KPI
 Scorecard_Program_Version "0..*" --> "1" Group : CoordinatorGroup
 Scorecard_Program_Version "0..*" --> "1" Group : ReviewGroup
@@ -401,6 +416,7 @@ Safety_Benchmark_Version "0..*" --> "1" Safety_Benchmark_Metric : Metric
 | KPI Initialization Method | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed method used to initialize a new period value | No workflow; audited administration |
 | Safety Benchmark Metric | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed safety metric identity shared by KPIs and benchmark records | No workflow; audited administration |
 | Scorecard Cadence | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed reporting cadence and recurrence expression for a Program; directly declares Frequency | No workflow; audited administration |
+| Generation Lag Time Increment | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed `DATEADD` interval used to shift reporting occurrences to scheduled generation dates | No workflow; audited administration |
 | KPI Value Origin | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed provenance classification for an operational KPI result | No workflow; audited administration |
 | Publication Exception Treatment | New catalogue child | Supplier Scorecard Abstract Catalog Record | Governed scoring treatment for a publication exception | No workflow; audited administration |
 | Supplier Scorecard KPI | New authoring object | None | Editable stable KPI identity and next publishable definition | Publish action creates immutable version |
@@ -438,7 +454,7 @@ No new object inherits Supplier Abstract. Supplier Parent Company and Supplier F
 
 ### 7.1 Supplier Scorecard Abstract Catalog Record
 
-This proposed abstract object is the direct parent of every Supplier Scorecard-owned catalogue in Sections 7.2 through 7.13. It cannot be instantiated, selected by an M:1 field, or exposed as an administration form. Its fields are inherited by each concrete child and are not redeclared on those children.
+This proposed abstract object is the direct parent of every Supplier Scorecard-owned catalogue in Sections 7.2 through 7.14. It cannot be instantiated, selected by an M:1 field, or exposed as an administration form. Its fields are inherited by each concrete child and are not redeclared on those children.
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
@@ -571,7 +587,22 @@ Initial values:
 
 Adding a cadence record alone does not implement reporting-period boundary semantics. Program Publish must reject an active Cadence whose Frequency is blank or invalid, and release validation must confirm the mapping from Cadence.Code to reporting-period start/end behavior.
 
-### 7.12 KPI Value Origin
+### 7.12 Generation Lag Time Increment
+
+**Inheritance parent:** Supplier Scorecard Abstract Catalog Record
+
+**Directly declared fields:** None. Code, Name, Active?, and Sort are inherited.
+
+Initial values:
+
+| Code | Name | Active? | Sort |
+|---|---|---:|---:|
+| `d` | Days | `TRUE` | 10 |
+| `M` | Months | `TRUE` | 20 |
+
+The Code values are case-sensitive and are the only supported interval arguments for the Program Schedule Anchor `DATEADD` calculation. Automation evaluates the exact Code rather than the localizable Name. Program Publish rejects any other value.
+
+### 7.13 KPI Value Origin
 
 **Inheritance parent:** Supplier Scorecard Abstract Catalog Record
 
@@ -591,7 +622,7 @@ Initial values:
 | `NOT_APPLICABLE` | Not Applicable | `TRUE` | 80 |
 | `PUBLICATION_EXCEPTION` | Publication Exception | `TRUE` | 90 |
 
-### 7.13 Publication Exception Treatment
+### 7.14 Publication Exception Treatment
 
 **Inheritance parent:** Supplier Scorecard Abstract Catalog Record
 
@@ -700,6 +731,9 @@ KPI Version records cannot be edited, deleted, imported over, or re-dated after 
 | Rollup Source Program | M:1 self-reference to Scorecard Program | Conditional | `NULL` | Visible/required for a periodic Program that derives child results; hidden and cleared otherwise | Source Program must have a compatible cadence; destination/source entity compatibility is validated from their Participations during generation |
 | Effective From | Date | Y | None | Scorecard administrator editable for next Publish | Copied to Version |
 | Effective To | Date | N | `NULL` | Scorecard administrator editable for next Publish | Copied to Version |
+| Generation Lag Time | Integer | Y | `0`; must be greater than or equal to zero | Scorecard administrator editable for next Publish | Number of selected increments applied independently to each reporting occurrence; copied to Version |
+| Generation Lag Time Increment | M:1 to Generation Lag Time Increment; inverse disabled | Y | None; filter `Active?=TRUE` and Code in (`d`, `M`) | Scorecard administrator editable for next Publish | Supplies the exact case-sensitive `DATEADD` interval Code; copied to Version |
+| Schedule Anchor | Date, calculated | Y | `DATEADD(Generation Lag Time Increment.Code, Generation Lag Time, Effective From)` | Read only | First scheduled generation occurrence; recalculates while authoring inputs change and is copied to Version at Publish; exact tenant formula syntax must be validated |
 | Program KPIs | Inverse 1:M grid from Scorecard Program KPI.Program | Y | None | Authoring grid editable by scorecard administrators | At least one active row required to Publish |
 | Versions | Inverse 1:M grid from Scorecard Program Version.Program | N | None | Read only | Navigation only |
 | Generation Delays | Inverse 1:M grid from Scorecard Program Generation Delay.Program | N | None | Scorecard administrators may initiate a new Generation Delay form from this grid; existing applied rows are read only | Operational control outside the published version graph |
@@ -730,6 +764,9 @@ KPI Version records cannot be edited, deleted, imported over, or re-dated after 
 | Rollup Source Program | M:1 to Scorecard Program | Conditional | Copy Program.Rollup Source Program | Read only | Publish mapping |
 | Effective From | Date | Y | Copy Program.Effective From | Read only | Publish mapping |
 | Effective To | Date | N | Copy Program.Effective To | Read only | Publish mapping |
+| Generation Lag Time | Integer | Y | Copy Program.Generation Lag Time | Read only | Immutable generation-offset value used for every reporting occurrence in the Version's effective range |
+| Generation Lag Time Increment | M:1 to Generation Lag Time Increment; inverse disabled | Y | Copy Program.Generation Lag Time Increment | Read only | Publish mapping preserves the exact catalogue record and case-sensitive Code `d` or `M` |
+| Schedule Anchor | Date | Y | Copy calculated Program.Schedule Anchor | Read only | Immutable first scheduled generation occurrence for this Version |
 | Published At | Date/Time with timezone | Y | Current server timestamp | Read only | Set by Publish |
 | Published By | M:1 to Employee | Y | Authenticated actor | Read only | Set by Publish |
 | Program KPI Versions | Inverse 1:M grid from Scorecard Program KPI Version.Program Version | Y | Generated set | Read only | Complete child graph created by Publish |
@@ -753,29 +790,35 @@ Program Publish must validate the complete authoring graph, create the Program V
 - missing or inactive configuration targets;
 - overlapping Program Version effective ranges;
 - a missing, inactive, or invalid Cadence/Frequency configuration;
+- a negative Generation Lag Time, a missing/inactive Generation Lag Time Increment, or an increment whose exact Code is not `d` or `M`;
+- a Schedule Anchor that does not equal `DATEADD(Generation Lag Time Increment.Code, Generation Lag Time, Effective From)`;
 - a cadence conflict with Rollup Source Program;
 - a rollup cycle; or
 - missing coordinator, reviewer, or supplier recipient routing.
 
-Failure must leave no partial Program Version. Published versions and their child rows are immutable.
+Publish copies the Generation Lag Time, Generation Lag Time Increment, and calculated Schedule Anchor into the immutable Program Version. A Program Version's Effective To limits the reporting occurrences it governs, not their lagged generation dates; the final valid occurrence may therefore be generated after Effective To. Failure must leave no partial Program Version. Published versions and their child rows are immutable.
 
 ### 9.6 Scorecard Program Generation Delay — operational control
 
-A Generation Delay applies to one scheduled occurrence of the stable Program. It is deliberately not copied into Program Version: users must be able to delay generation while a new version is still being authored and before that version can be published.
+A Generation Delay applies to exactly one reporting cycle of the stable Program. It is deliberately not copied into Program Version: users must be able to delay the next generation while a new version is still being authored and before that version can be published. Delay creation is sequential: the controlled New action targets only the earliest reporting cycle that does not already have a Run. It cannot pre-stage a delay for a later cycle while an earlier cycle remains ungenerated.
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
 | Display Field | Calculated Text | Y | Program.Name plus Scheduled Generation Date; exact syntax unresolved | Read only | Configured display value |
 | Program | M:1 to Scorecard Program; inverse `Generation Delays` 1:M | Y | Default from the Program grid context | Read only from creation | Declaring relationship; the New action is initiated from the Program.Generation Delays grid |
-| Scheduled Generation Date | Date | Y | User selects the original occurrence produced from the applicable published Program Version.Cadence.Frequency | Scorecard administrator editable until an Applied Run exists | Must be a valid occurrence for the Program's published Cadence and must not already have a Run |
+| Reporting Period Start | Date | Y | Controlled New action calculates the next ungenerated reporting cycle from the Program's published Cadence and effective schedule | Read only from creation | Stored cycle identity; must match the period later stored on the Run |
+| Reporting Period End | Date | Y | Controlled New action calculates the boundary from Cadence.Code | Read only from creation | Stored cycle identity; must not precede Reporting Period Start |
+| Scheduled Generation Date | Date | Y | Controlled New action applies the published Generation Lag Time and exact Increment Code to the next reporting occurrence | Read only from creation | Stored original due date for this cycle; must match the date later stored on the Run |
 | Delay Until | Date | Y | None | Scorecard administrator editable until an Applied Run exists | Must be later than Scheduled Generation Date; generation may occur on the first scheduler execution on or after this date |
 | Reason | Long Text | Y | None | Scorecard administrator editable until an Applied Run exists; internal only | Native object audit preserves creation and changes |
 | Applied Run | M:1 to Supplier Scorecard Run; inverse `Generation Delay` 0..1 | N | `NULL` | Read only | Generation service sets after the unique delayed Run is created successfully |
 | Applied At | Date/Time with timezone | N | `NULL` | Read only | Generation service stamps when Applied Run is set |
 
-Enforce uniqueness on `(Program, Scheduled Generation Date)`. The form blocks creation when a Run already exists for that Program occurrence. Before Applied Run is populated, an administrator may extend or shorten Delay Until; native audit history preserves the original and revised dates. Setting Delay Until to the current or next permitted generation date provides early release without a separate workflow or custom status field.
+The controlled `New Delay for Next Generation` action must calculate the earliest reporting cycle without a Run, reject creation when that cycle already has a Generation Delay, and populate Program, Reporting Period Start, Reporting Period End, and Scheduled Generation Date atomically before the form accepts Delay Until and Reason. The user cannot select another cycle or edit the stored cycle fields. Enforce uniqueness on `(Program, Reporting Period Start, Reporting Period End)` and retain `(Program, Scheduled Generation Date)` as a secondary safeguard. A concurrent Run or duplicate Delay causes the complete creation to fail without a partial record.
 
-The Generation Delays grid shows Scheduled Generation Date, Delay Until, Reason, Created By/At, Applied Run, and Applied At. Platform-provided Created By/At fields are used rather than duplicating custom actor/timestamp fields. Applied records are immutable and cannot be deleted through ordinary administration.
+Before Applied Run is populated, an administrator may extend or shorten Delay Until and revise Reason on the existing record; native audit history preserves the original and revised values. The administrator cannot create a second record for that reporting cycle. Setting Delay Until to the current or next permitted generation date provides early release without a separate workflow or custom status field.
+
+The Generation Delays grid shows Reporting Period Start, Reporting Period End, Scheduled Generation Date, Delay Until, Reason, Created By/At, Applied Run, and Applied At. Platform-provided Created By/At fields are used rather than duplicating custom actor/timestamp fields. Applied records are immutable and cannot be deleted through ordinary administration. After the related Run succeeds, the next reporting cycle becomes eligible for its own Generation Delay record.
 
 The delay does not itself select or reserve a Program Version. On or after Delay Until, generation still resolves the Version whose effective range covers the reporting period. If the previous Version remains intentionally effective for that period, it may be used; if the revised Version is required, the Program Version effective ranges must make that requirement explicit. When no Version covers the period, generation remains blocked and reported rather than falling back by publication recency.
 
@@ -871,7 +914,7 @@ Benchmark Publish validates non-overlapping effective ranges for the stable Benc
 | Display Field | Calculated Text | Y | Program Version.Name plus Reporting Period End; exact syntax unresolved | Read only | Configured display value |
 | Program | M:1 to Scorecard Program; inverse `Runs` 1:M | Y | Stable Program that produced the scheduled occurrence | Read only | Supports occurrence uniqueness independently of the resolved Version |
 | Program Version | M:1 to Scorecard Program Version; inverse `Runs` 1:M | Y | Resolved from Program and reporting period | Read only after creation | Exact immutable configuration used by this occurrence |
-| Scheduled Generation Date | Date | Y | Original due occurrence calculated from Program Version.Cadence.Frequency | Read only | Preserves the cadence anchor even when actual generation is delayed; uniqueness `(Program, Scheduled Generation Date)` |
+| Scheduled Generation Date | Date | Y | Original due occurrence calculated by applying Program Version.Generation Lag Time and Increment to the cadence-generated reporting occurrence | Read only | Preserves the published generation schedule even when actual generation is delayed; uniqueness `(Program, Scheduled Generation Date)` |
 | Reporting Period Start | Date | Y | Calculated by scheduler from Program Version.Cadence | Read only | Stored period boundary |
 | Reporting Period End | Date | Y | Calculated by scheduler | Read only | Stored period boundary; end must not precede start |
 | Generated At | Date/Time with timezone | Y | Current server timestamp | Read only | Set on Run creation |
@@ -992,32 +1035,34 @@ No custom status field is declared. Overdue state is derived from the Assigned w
 
 ### 13.1 Scheduled Run generation
 
-An Event Service or scheduled batch evaluates active Scorecard Programs. Its exact recurrence follows the applicable published Program Version.Cadence.Frequency and the configured scheduler timezone; unpublished authoring edits do not change the live schedule. For each due stable Program occurrence:
+An Event Service or scheduled batch evaluates active Scorecard Programs in the configured scheduler timezone. For each applicable published Program Version, Cadence.Frequency generates reporting occurrences from Effective From. Each reporting occurrence is shifted independently by `DATEADD(Generation Lag Time Increment.Code, Generation Lag Time, Reporting Occurrence Date)` to produce its Scheduled Generation Date. Schedule Anchor is the first such result and provides a visible, immutable Version-level reference; unpublished authoring edits do not change the live schedule.
 
-1. calculate and retain the original Scheduled Generation Date from the applicable published Program Version.Cadence.Frequency and calculate reporting-period boundaries from that Cadence.Code;
-2. look for the unique Generation Delay for `(Program, Scheduled Generation Date)`;
-3. when a delay exists and the local scheduler date is earlier than Delay Until, create no Run, record the skipped execution in native service evidence, and leave the occurrence due for reevaluation;
-4. on or after Delay Until—or immediately when no delay exists—resolve the Program Version effective on the reporting period end;
-5. if no applicable published Program Version exists, create no Run, report the owned configuration exception to the Program coordinator, and retry on the next scheduled service execution rather than silently using an older version;
-6. create or reuse the unique Run for Program and Scheduled Generation Date, storing both the stable Program and exact resolved Program Version;
-7. select active Participations whose effective range includes the period end;
-8. recheck the status capability and Supplier Parent Company restriction for each supplier immediately before creation;
-9. use Participation.Supplier as the exact entity to score, without applying a Program-level entity-type filter;
-10. for a rollup Program, require the destination Participation.Supplier to be the applicable Supplier Parent Company and select source Scorecards only from related Facility Participations of Rollup Source Program;
-11. create one unique Scorecard per eligible participation;
-12. snapshot supplier name/code, Parent Company context, Commodity, NAICS Classification, and period;
-13. create one KPI Value for every Program KPI Version;
-14. resolve the exact KPI Version effective on the reporting period end;
-15. initialize each KPI Value;
-16. create one Contribution Task per unique internal Direct Entry Contributor Group and link all applicable values;
-17. transition the complete Run and child graph into Data Entry only after generation succeeds; and
-18. when a Generation Delay was used, set its Applied Run and Applied At only after successful Run creation.
+1. generate the reporting occurrence and its reporting-period boundaries from Program Version.Effective From, Effective To, Cadence.Frequency, and Cadence.Code;
+2. calculate and retain the original Scheduled Generation Date by applying the Program Version's Generation Lag Time and exact increment Code `d` or `M` to that reporting occurrence;
+3. look for the unique Generation Delay for `(Program, Reporting Period Start, Reporting Period End)` and verify that its stored Scheduled Generation Date matches the calculated date;
+4. when a delay exists and the local scheduler date is earlier than Delay Until, create no Run for that cycle or any later cycle of the same Program, record the skipped execution in native service evidence, and leave the occurrence due for reevaluation;
+5. on or after Delay Until—or immediately when no delay exists—resolve the Program Version effective on the reporting period end;
+6. if no applicable published Program Version exists, create no Run, report the owned configuration exception to the Program coordinator, and retry on the next scheduled service execution rather than silently using an older version;
+7. create or reuse the unique Run for Program and Scheduled Generation Date, storing both the stable Program and exact resolved Program Version;
+8. select active Participations whose effective range includes the period end;
+9. recheck the status capability and Supplier Parent Company restriction for each supplier immediately before creation;
+10. use Participation.Supplier as the exact entity to score, without applying a Program-level entity-type filter;
+11. for a rollup Program, require the destination Participation.Supplier to be the applicable Supplier Parent Company and select source Scorecards only from related Facility Participations of Rollup Source Program;
+12. create one unique Scorecard per eligible participation;
+13. snapshot supplier name/code, Parent Company context, Commodity, NAICS Classification, and period;
+14. create one KPI Value for every Program KPI Version;
+15. resolve the exact KPI Version effective on the reporting period end;
+16. initialize each KPI Value;
+17. create one Contribution Task per unique internal Direct Entry Contributor Group and link all applicable values;
+18. transition the complete Run and child graph into Data Entry only after generation succeeds; and
+19. when a Generation Delay was used, set its Applied Run and Applied At only after successful Run creation.
 
-Generated At records the actual delayed creation timestamp. Entry Due At is calculated from that actual timestamp, so the delay buys the requested contribution time. Scheduled Generation Date remains the original Cadence.Frequency occurrence, and the cadence engine continues to calculate later occurrences from its original anchor rather than from Generated At or Delay Until.
+Generated At records the actual delayed creation timestamp. Entry Due At is calculated from that actual timestamp, so the delay buys the requested contribution time. Scheduled Generation Date remains the original lagged occurrence. Cadence continues to generate later reporting occurrences from the published Effective From, and the generation service applies the published lag to each occurrence independently; neither Generated At nor Delay Until shifts later occurrences.
 
 Generation is retry-safe. Required uniqueness keys are:
 
-- Generation Delay: `(Program, Scheduled Generation Date)`;
+- Generation Delay reporting cycle: `(Program, Reporting Period Start, Reporting Period End)`;
+- Generation Delay scheduled-date safeguard: `(Program, Scheduled Generation Date)`;
 - Run: `(Program, Scheduled Generation Date)`;
 - Scorecard: `(Run, Supplier)`;
 - KPI Value: `(Scorecard, Program KPI Version)`; and
@@ -1171,7 +1216,7 @@ Rank is not persisted. Initial implementation must define tie handling, excluded
 | Surface | Principal | Proposed permission and condition |
 |---|---|---|
 | KPI, Program, participation, catalogue, and benchmark configuration | Supplier Scorecard Application Administrator; system administrator | Create/edit/publish within assigned administration scope; published versions read only |
-| Program Generation Delay form/grid | Supplier Scorecard Application Administrator; system administrator | Create or revise an unapplied occurrence-specific delay from the Program grid; applied records read only and not ordinarily deletable |
+| Program Generation Delay form/grid | Supplier Scorecard Application Administrator; system administrator | Use the controlled New action to delay only the next ungenerated reporting cycle; revise Delay Until/Reason on that one unapplied cycle record; applied records read only and not ordinarily deletable |
 | Run | Coordinator Group | View and execute allowed run actions; no configuration or override access |
 | Contribution Task and linked manual KPI Values | Current Contributor Group members | View/edit only values assigned to their task and otherwise authorized by application/entity scope; Complete Contribution while Assigned |
 | Aggregate internal Scorecard | Authorized internal Supplier Scorecard users | Complete aggregate view within supplier-entity scope, independent of source new-model/mass-production classification |
@@ -1245,13 +1290,14 @@ Specific constraints include:
 | SC-C12 | No structural change | Source applications/security | Source data lives in specialist applications | Query governed data; source drilldown re-applies source security | SC-017, SC-023 | High |
 | SC-C13 | No structural change | OOTB Parent Company/Facility workflows | Recurring evaluation/deactivation workflows | Do not repurpose for scorecard lifecycle | Baseline boundary | High |
 | SC-C14 | Defer | Bulk staging dataset | Earlier option discussed | No staging object until operating model is approved | SC-006 | High |
-| SC-C15 | Add | Scorecard Program Generation Delay | Program recurrence generated a due occurrence without a user-controlled delay record | New child form from Program.Generation Delays defers one scheduled occurrence until Delay Until without changing the recurrence anchor | SC-027 | High |
+| SC-C15 | Add | Scorecard Program Generation Delay | Program recurrence generated a due occurrence without a user-controlled delay record | Controlled New action stamps the next ungenerated cycle and original Scheduled Generation Date; one editable-until-applied Delay per Program cycle defers generation without changing later schedule dates | SC-027, SC-034 | High |
 | SC-C16 | Modify | Supplier Scorecard Run identity | Run uniqueness used Program Version and reporting period | Store stable Program and Scheduled Generation Date; enforce one Run per stable Program occurrence while retaining exact Program Version used | SC-027 | High |
 | SC-C17 | Add/modify | Selection catalogues and former list fields | Value Type and eight other selection domains were described as dropdown/choice fields with some values embedded inline | Add nine standard catalogue objects, seed the stated values, and replace each authoring, version, benchmark, Program, and operational field with an M:1 relationship governed by stable Code | SC-028 | High |
 | SC-C18 | Refine | Catalogue-targeting M:1 relationships | Earlier target wording named inverse grids for several catalogue references, implying that the Intelex inverse option was enabled | Keep each source-owned M:1 reference but disable its inverse relationship; configure no catalogue-side consumer grids | SC-029 | High |
-| SC-C19 | Add/reparent | Supplier Scorecard catalogue inheritance | Thirteen independent catalogue objects each defined or implied the same Code, Name, Active?, and Sort fields | Add non-instantiable Supplier Scorecard Abstract Catalog Record; reparent all thirteen scorecard-owned catalogues; retain Description directly on KPI Aggregation Method | SC-030 | High |
+| SC-C19 | Add/reparent | Supplier Scorecard catalogue inheritance | Twelve independent catalogue objects each defined or implied the same Code, Name, Active?, and Sort fields | Add non-instantiable Supplier Scorecard Abstract Catalog Record; reparent all twelve then-current scorecard-owned catalogues; retain Description directly on KPI Aggregation Method | SC-030 | High |
 | SC-C20 | Remove/modify | Program entity scope and recurrence | Program and Program Version stored Entity Level and Recurrence Definition; Scorecard Entity Level existed only to support that field | Remove both fields from Program and Version; remove the orphaned Scorecard Entity Level catalogue; make Participation.Supplier authoritative for exact entity scope; add Frequency directly to Scorecard Cadence | SC-031 | High |
 | SC-C21 | No structural change | Inheritance and relationship terminology | Parent wording also described operational associations and copied Commodity values | Label inheritance parents explicitly; name related Programs, Runs, Scorecards, and Supplier Parent Company records; distinguish inherited fields from synchronized values | SC-032 | High |
+| SC-C22 | Add/modify | Program generation scheduling | Cadence Frequency identified recurrence but no explicit operand or configurable generation offset existed | Add governed Generation Lag Time Increment Codes `d` and `M`; add Program/Version lag fields and calculated Schedule Anchor; generate reporting occurrences from Effective From and apply the lag independently to each occurrence | SC-033 | High |
 
 ## 19. Requirement traceability
 
@@ -1283,12 +1329,14 @@ Specific constraints include:
 | SC-024 | Publication exception | Explicit Set to Zero/Exclude treatment | Requires confirmation; proposed design choice |
 | SC-025 | Totals | Stored Scorecard totals maintained by handler/service | Requires tenant mechanism validation |
 | SC-026 | Contributor Group | Cross-supplier Group assignment without access expansion | Satisfied at design level; target group model verification required |
-| SC-027 | Program.Generation Delays, generation service, Run identity | Child delay form, occurrence-specific hold, deferred retry, original recurrence anchor, and applied-Run evidence | Satisfied at design level |
+| SC-027 | Program.Generation Delays, generation service, Run identity | Child delay form, cycle-specific hold, deferred retry, original generation schedule, and applied-Run evidence | Satisfied at design level |
 | SC-028 | Catalogue objects; KPI, KPI Version, Program, Program Version, Safety Benchmark, Safety Benchmark Version, KPI Value | All former dropdown/choice domains are governed M:1 relationships; inline values are normalized into matching seed-data tables; rules use stable Code rather than localizable Name | Satisfied at design level |
 | SC-029 | Every M:1 field targeting a catalogue object | Field contracts explicitly state `inverse disabled`; catalogue forms expose no inverse consumer grid; diagrams are source-to-target associations only | Satisfied at design level |
-| SC-030 | Supplier Scorecard Abstract Catalog Record and catalogue children | Satisfied as refined by SC-031: common fields are declared once on the abstract parent; twelve concrete scorecard catalogues inherit them; KPI Aggregation Method adds Description and Scorecard Cadence adds Frequency | Satisfied at design level |
+| SC-030 | Supplier Scorecard Abstract Catalog Record and catalogue children | Satisfied as refined by SC-031 and extended by SC-033: common fields are declared once on the abstract parent; thirteen concrete scorecard catalogues inherit them; KPI Aggregation Method adds Description and Scorecard Cadence adds Frequency | Satisfied at design level |
 | SC-031 | Scorecard Program, Program Version, Participation, Scorecard Cadence, generation service | Entity Level and Recurrence Definition are absent from Program/Version; Participation.Supplier is the exact scored entity; Cadence.Frequency drives occurrence scheduling; orphaned Scorecard Entity Level is removed | Satisfied at design level; recurrence rendering and scheduler interpretation require tenant validation |
 | SC-032 | Inventory, field conventions, relationship defaults, Commodity synchronization, rollup, workflow, totals, security, and validation | Inheritance parents are explicit; association wording names the related object; Commodity field inheritance is separated from value synchronization | Satisfied at design level |
+| SC-033 | Generation Lag Time Increment, Program, Program Version, Generation Delay, Run, generation service | Exact Codes `d` and `M`, calculated Schedule Anchor, immutable published lag, lagged occurrence validation, and generation after Effective To for an in-range reporting period | Satisfied at design level; exact `DATEADD` formula syntax requires tenant validation |
+| SC-034 | Program.Generation Delays controlled New action, cycle fields, uniqueness, generation service | Only the next ungenerated cycle can be stamped; reporting boundaries and Scheduled Generation Date are read-only snapshots; duplicate cycle delays and later-cycle pre-staging are blocked; the existing unapplied record remains editable | Satisfied at design level; transactional defaulting/action syntax requires tenant validation |
 
 ## 20. Impact analysis, migration, and implementation sequence
 
@@ -1302,19 +1350,19 @@ Specific constraints include:
 - **Portal/workspace:** add selected current measures and profile drilldown without loading all KPI history on the landing page.
 - **Reporting:** replace use of scalar OOTB score fields with Scorecard/KPI Value datasets after reconciliation.
 - **Integrations:** map supplier/depot codes, reporting periods, source corrections, and consumed-parts data; never write external rows directly into KPI Values.
-- **Configuration governance:** configure the abstract catalogue parent first, create the twelve concrete catalogue children beneath it, seed approved Code records only on those children, and update forms, imports, reports, and rules to resolve concrete relationships by Code.
+- **Configuration governance:** configure the abstract catalogue parent first, create the thirteen concrete catalogue children beneath it, seed approved Code records only on those children, and update forms, imports, reports, and rules to resolve concrete relationships by Code.
 - **Relationship configuration:** leave the Intelex inverse-relationship option disabled on every catalogue-targeting M:1 field. Do not add consumer grids to catalogue forms; usage reporting must originate from the consuming object.
 - **Shared recurrence boundary:** remove the Supplier Scorecard dependency on the externally governed Recurrence Definition. Supplier Surveys and Supplier Tasks retain their existing use and ownership of that object.
 
 ### 20.2 Migration
 
 1. Inventory every current dependency on OOTB Score, Last Score Date, Facility Score, Average Goods & Service Score, and Latest Parent Company Demerits.
-2. Configure Supplier Scorecard Abstract Catalog Record, then create every scorecard-owned catalogue as its direct child. Declare Description on KPI Aggregation Method and Frequency on Scorecard Cadence; do not duplicate Code, Name, Active?, or Sort on any child.
+2. Configure Supplier Scorecard Abstract Catalog Record, then create every scorecard-owned catalogue as its direct child. Declare Description on KPI Aggregation Method and Frequency on Scorecard Cadence; create Generation Lag Time Increment with exact Codes `d` and `M`; do not duplicate Code, Name, Active?, or Sort on any child.
 3. If an earlier target build exists, map each Program's recurrence choice into its selected Scorecard Cadence.Frequency. Where Programs sharing a Cadence require different schedules, create separately coded Cadence records before migration. Then remove Program/Version Entity Level and Recurrence Definition and remove Scorecard Entity Level records/configuration.
 4. Configure and migrate governed Commodity and NAICS Classification values; review Facility Commodity synchronization and exceptions.
 5. Configure application groups, source reports, recipient roles, status capabilities, and all approved catalogue seed values; load records into the concrete child catalogues, map any pre-existing textual selections by Code, and confirm every catalogue-targeting M:1 has its inverse option disabled.
-6. Build KPI and Program authoring/versioning and validate Publish atomicity before operational generation.
-7. Configure the Program.Generation Delays grid, contextual New form, audit, occurrence validation, and scheduler delay gate.
+6. Build KPI and Program authoring/versioning, Generation Lag fields, calculated Schedule Anchor, and immutable Publish mappings; validate Publish atomicity before operational generation.
+7. Configure the Program.Generation Delays grid, controlled `New Delay for Next Generation` action, atomic next-cycle stamping, audit, dual uniqueness constraints, and scheduler delay gate.
 8. Load and publish the initial KPI catalogue, direct-entry first.
 9. Configure Participations only after exact supplier identity/subtype, status eligibility, contributor routing, and recipient routing are validated.
 10. Decide whether historical spreadsheet scorecards will be imported as published operational snapshots. If approved, use a controlled migration process that creates Run, Scorecard, and KPI Value records with explicit source provenance; do not backfill OOTB scalar score fields.
@@ -1324,7 +1372,7 @@ Specific constraints include:
 
 ### 20.3 Recommended implementation sequence
 
-1. Supplier Scorecard Abstract Catalog Record, its twelve concrete catalogue children, Scorecard Cadence recurrence configuration, seed data, and Supplier Abstract catalogue relationships.
+1. Supplier Scorecard Abstract Catalog Record, its thirteen concrete catalogue children, Scorecard Cadence recurrence configuration, Generation Lag Time Increment seed data, and Supplier Abstract catalogue relationships.
 2. KPI authoring/versioning and Publish.
 3. Program authoring/versioning, KPI membership, and Publish.
 4. Generation Delay form, Program grid, and scheduled-occurrence gate.
@@ -1343,19 +1391,20 @@ Specific constraints include:
 | Check | Result / required execution |
 |---|---|
 | Baseline preservation | OOTB model/workflow artifacts remain unchanged; target is a separate specification |
-| Inheritance | Supplier Abstract → Parent Company/Facility is retained. Supplier Scorecard Abstract Catalog Record directly parents exactly twelve concrete scorecard catalogues; no child redeclares the inherited fields, no multiple parent exists, and no inheritance cycle is introduced |
+| Inheritance | Supplier Abstract → Parent Company/Facility is retained. Supplier Scorecard Abstract Catalog Record directly parents exactly thirteen concrete scorecard catalogues; no child redeclares the inherited fields, no multiple parent exists, and no inheritance cycle is introduced |
 | Structural terminology | Parent terminology denotes inheritance except in exact business object/field names and stable codes; operational associations name the related object; Commodity value copying is documented separately from field inheritance |
 | Relationship ownership | Every 1:M grid is the inverse of one declaring M:1 field; no duplicate stored relationship |
 | Catalogue normalization | No dropdown, governed-dropdown, or choice field remains; each selection domain is an M:1 relationship to a standard Code/Name/Active?/Sort catalogue and rules branch on Code |
 | Catalogue inverse suppression | Every field-table row targeting a catalogue states `inverse disabled`; no catalogue object defines or exposes a consumer-side inverse grid |
-| Catalogue field ownership | Code, Name, Active?, and Sort are declared only on Supplier Scorecard Abstract Catalog Record; KPI Aggregation Method declares Description, Scorecard Cadence declares Frequency, and every other concrete catalogue declares no local fields |
+| Catalogue field ownership | Code, Name, Active?, and Sort are declared only on Supplier Scorecard Abstract Catalog Record; KPI Aggregation Method declares Description, Scorecard Cadence declares Frequency, and every other concrete catalogue, including Generation Lag Time Increment, declares no local fields |
 | Removed Program fields | Entity Level and Recurrence Definition are absent from Scorecard Program, Scorecard Program Version, diagrams, Publish mappings, generation rules, forms, and reports; Scorecard Entity Level has no remaining current-target dependency |
 | Cadence immutability | Frequency becomes stable when its Cadence is first referenced by a published Program Version; unpublished Program edits do not change live scheduling, and a materially different recurrence requires a new Cadence record |
+| Generation lag | Program Schedule Anchor calculates with `DATEADD` from Effective From, Generation Lag Time, and the exact increment Code `d` or `M`; Publish freezes all three scheduling values in Program Version, and each reporting occurrence receives the lag independently |
 | Inherited Code uniqueness | Validate that inherited Code uniqueness can be enforced per concrete catalogue child. Seed data cannot be loaded until repeated cross-catalogue codes are proven valid or replaced with approved globally distinct codes |
 | M:N use | Supplier Recipient Roles and Source Scorecards require simultaneous multi-selection and no business attributes; native M:N is appropriate |
 | Version mirroring | KPI and Program publishable fields are mapped to immutable versions; Program Publish copies all child membership and recipient roles |
 | Version atomicity | KPI, Program, and Benchmark Publish require locking, deterministic version numbering, non-overlapping effective ranges, and rollback |
-| Formula vocabulary | No unverified executable Intelex formula is asserted; total/effective/display logic is declarative and requires tenant validation |
+| Formula vocabulary | The required Schedule Anchor logic is expressed as `DATEADD` with exact interval Codes `d` and `M`, while deployable tenant syntax remains subject to validation; total/effective/display logic is declarative and also requires tenant validation |
 | Workflow state | No custom State or Workflow field is introduced |
 | Native evidence | No custom event, audit, reminder, review-response, dispute, or publication-history object is introduced |
 | Uniqueness | Explicit keys defined for versions, participation ranges, Generation Delays, stable Program occurrences/Runs, scorecards, KPI values, contribution tasks, benchmarks, and program membership |
@@ -1373,14 +1422,18 @@ Specific constraints include:
 | Catalogue-backed selection | New selections show only active catalogue records; published and historical records retain inactive references; changing a localizable Name does not alter behavior because rules resolve stable Code |
 | Catalogue relationship configuration | A consuming record can select one catalogue record through its M:1 field, while the catalogue record exposes no inverse field or consumer grid; source-object queries still support usage reporting |
 | Catalogue inheritance | A record created in each concrete catalogue exposes inherited Code, Name, Active?, and Sort; the abstract parent cannot be instantiated or selected; KPI Aggregation Method additionally exposes Description and Scorecard Cadence exposes Frequency |
+| Configure generation lag | Selecting increment Code `M`, Generation Lag Time 1, and Effective From 2026-01-01 calculates Schedule Anchor 2026-02-01; Publish copies the lag, increment relationship, and anchor to the immutable Version |
+| Generate lagged monthly occurrences | A Monthly Version effective 2026-01-01 through 2026-12-31 with a one-`M` lag schedules January for 2026-02-01 through December for 2027-01-01; the last generation remains valid after Effective To because its reporting period is in range |
 | Cadence-owned scheduling | Program exposes Cadence but no Recurrence Definition; selecting Monthly uses the Monthly Frequency, selecting Fiscal Year uses the Annually Frequency, and invalid/blank recurrence expressions block Program Publish or generation |
 | Revise a used Cadence | Frequency cannot be changed after the Cadence is referenced by a published Program Version; administrator creates a new active Cadence and republishes the affected Program instead |
 | Publish Program | Program Version, all Program KPI Versions, and all recipient-role links are created atomically |
-| Create Generation Delay from Program | New form defaults and locks Program, accepts one valid future Scheduled Generation Date, requires a later Delay Until and Reason, and rejects a duplicate or an occurrence with an existing Run |
-| Delayed occurrence before Delay Until | Scheduler creates no Run or Scorecards, preserves the occurrence for retry, and does not alter the Program Cadence.Frequency anchor |
+| Create Generation Delay from Program | Controlled New action finds the earliest reporting cycle without a Run, atomically stores and locks its period boundaries and Scheduled Generation Date, requires a later Delay Until and Reason, and rejects an existing Delay or concurrent Run for that cycle |
+| Attempt to pre-stage a later delay | While an earlier Program cycle remains ungenerated, the controlled New action cannot select or create a Delay for a later reporting cycle |
+| Revise the same cycle delay | Administrator changes Delay Until or Reason on the existing unapplied record; schedule fields remain locked, audit preserves the revisions, and a second Delay for the cycle is rejected |
+| Delayed occurrence before Delay Until | Scheduler creates no Run or Scorecards, preserves the occurrence for retry, and does not alter later cadence-generated, lagged occurrences |
 | Delayed occurrence on or after Delay Until | Scheduler resolves the Program Version by reporting period, creates exactly one Run with original Scheduled Generation Date and actual Generated At, then links the Delay to that Run |
 | Delay expires without applicable Program Version | No Run is created; coordinator receives an owned configuration exception; later retries can succeed after publication without duplicating the occurrence |
-| Revise pending delay | Administrator changes Delay Until before application; native audit preserves the change; applied Delay is read only |
+| Revise pending delay | Administrator changes Delay Until or Reason on the existing cycle record before application; native audit preserves the change; applied Delay is read only |
 | Generate monthly Run twice | Second execution finds the existing Run/Scorecards/values/tasks and creates no duplicates |
 | Ineligible supplier | Capability denial prevents a new Scorecard but does not change historical Scorecards |
 | Participation-scoped generation | Each eligible Participation generates for its exact Supplier record, whether Parent Company or Facility; Parent Company context, Commodity, and NAICS are snapshotted without a Program entity-level filter |
@@ -1412,7 +1465,7 @@ The following decisions do not prevent the logical model from being reviewed, bu
 2. Approve the first KPI catalogue, Value Types, categories, maximum points, initialization, applicability, missing-value behavior, aggregation methods, feedback contacts, and effective dates.
 3. Approve SC-024's publication-exception treatments or replace them with a different explicit policy.
 4. Name the Supplier Scorecard Application Administrator, coordinator, review, correction, and contributor groups and separation-of-duty rules.
-5. Approve Scorecard Cadence Frequency expressions and reporting-period boundary mappings, monthly generation, entry cutoff, review cutoff, publication schedule, scheduler timezone, business calendar, reminders, and escalation behavior.
+5. Approve Scorecard Cadence Frequency expressions, reporting-period boundary mappings, Generation Lag Time rules, supported exact increment Codes `d` and `M`, monthly generation, entry cutoff, review cutoff, publication schedule, scheduler timezone, business calendar, reminders, and escalation behavior; validate the exact tenant `DATEADD` syntax.
 6. Approve overall/commodity ranking tie, exclusion, null, and population-count rules.
 7. Confirm whether a Facility may override Parent Company Commodity; initial design keeps the value company-synchronized and read only.
 8. Define NAICS ownership, missing-code handling, benchmark source, benchmark update procedure, and exact LTIR/TRIR scoring rules.
@@ -1432,8 +1485,12 @@ The following decisions do not prevent the logical model from being reviewed, bu
 
 2026-10-20 — Refined catalogue relationship configuration following user clarification. All M:1 fields targeting catalogue objects now explicitly disable the Intelex inverse relationship; earlier proposed catalogue-side inverse names and grids are superseded. Company/Facility and operational inverse grids remain enabled only where the specification explicitly requires navigation.
 
-2026-10-20 — Added Supplier Scorecard catalogue inheritance following user clarification. Supplier Scorecard Abstract Catalog Record now owns Code, Name, Active?, and Sort; all thirteen scorecard-owned catalogue objects inherit those fields without redeclaration, while KPI Aggregation Method retains its directly declared Description. The shared Recurrence Definition remains outside this scorecard-specific inheritance family.
+2026-10-20 — Added Supplier Scorecard catalogue inheritance following user clarification. Supplier Scorecard Abstract Catalog Record now owns Code, Name, Active?, and Sort; all twelve then-defined scorecard-owned catalogue objects inherit those fields without redeclaration, while KPI Aggregation Method retains its directly declared Description. The shared Recurrence Definition remains outside this scorecard-specific inheritance family.
 
 2026-10-20 — Removed Program-level entity scope and recurrence configuration following user clarification. Scorecard Program and Program Version no longer contain Entity Level or Recurrence Definition; Supplier Scorecard Participation.Supplier supplies the exact scored entity, Scorecard Entity Level is removed as orphaned configuration, and Scorecard Cadence now directly declares the recurrence-expression Frequency used by generation.
 
 2026-10-23 — Clarified inheritance and relationship terminology under SC-032. Supersedes earlier use of parent for operational associations and inheritance for Commodity value copying. Inventory and catalogue labels now identify inheritance parents; concise defaults use Creating Program and Generating Scorecard; workflow, totals, rollup, security, and validation wording names the related object. Supplier Parent Company and existing Parent field names/codes are retained. Commodity synchronization follows the existing Action Handler scope of each related Facility. No object, field, relationship, inheritance edge, or baseline is changed.
+
+2026-11-04 — Added configurable Program generation lag under SC-033. Generation Lag Time and the governed Generation Lag Time Increment Codes `d` and `M` calculate Schedule Anchor with `DATEADD`; Publish freezes the lag, increment, and anchor in Program Version. Cadence generates reporting occurrences from Effective From, the lag is applied independently to each occurrence, and a final in-range reporting period may generate after Effective To.
+
+2026-11-04 — Refined Generation Delay creation under SC-034. The controlled New action now targets only the next ungenerated Program cycle, atomically stores read-only Reporting Period Start, Reporting Period End, and Scheduled Generation Date, and enforces one Delay per Program cycle. Administrators revise Delay Until and Reason on the existing unapplied record; applied records remain immutable, and later cycles cannot be pre-staged while an earlier cycle is ungenerated.

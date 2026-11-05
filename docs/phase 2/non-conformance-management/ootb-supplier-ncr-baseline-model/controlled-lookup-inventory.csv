@@ -1,0 +1,2 @@
+﻿graph_node_id,stable_metadata_id,package_item_id,internal_name,display_name,table_name,directly_declared_fields,referencing_field_count,exported_value_count,package_role,evidence,source_path
+357,7d1148ac-b0d3-4863-81c4-cd7a00424548,7bff47e6-bf07-4a4b-a0fd-145450abfa91,SupplierMgmt_SupplierNCRTypeObject,Supplier_Mgmt_NCRType,cusSupplierMgmt_SupplierNCRType,Value,1,0,Dependency,Extracted lookup type; values not present in package graph,/GraphData/Items/40

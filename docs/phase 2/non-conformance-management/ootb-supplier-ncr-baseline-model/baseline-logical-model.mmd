@@ -1,0 +1,107 @@
+classDiagram
+direction LR
+%% Extracted baseline. Display/internal-name mappings are in object-inventory.csv
+class ActionPlans_ActionPlanAbsObject
+class ActionPlans_GlobActPlanAbsObject
+class AFW_AuditFindingObject
+class AuditMgmt_FindingObject
+class CauseAnalysis_CauseAnalysisObject
+class CauseAnalysis_RootCauseObject
+class CFW_FindingObject
+class ComplyFramework_CARAbstractObject
+class EventFwk_AbsEvidenceObject
+class EventFwk_CAPAObject
+class EventFwk_EventActionPlanObject
+class EventFwk_EventCostObject
+class EventFwk_EventObject
+class EventFwk_EventScenarioObject
+class EventFwk_EventTypeObject
+class EventFwk_LessonLearnedObject
+class EventFwk_NonConfAbstractObject
+class EventFwk_SeverityObject
+class EventFwk_TeamMemberObject
+class FragApplication_AbCorrectivActiObject
+class FragApplication_AbstractCostObject
+class FragApplication_ActionCostObject
+class FragApplication_BusFunctionsObject
+class FragApplication_ProcessObject
+class NonConf_CategoryObject
+class NonConf_NonconformancesObject
+class NonConf_NonconfPlatinumObject
+class NonConf_PriorityObject
+class RiskFmk_OpRiskObject
+class RiskFmk_RiskObject
+class SupplierMgmt_SRMNonConformObject
+class SupplierMgmt_SupAbstractObject
+class SupplierMgmt_SupNonconformObject
+class SupplierMgmt_SuppActionPlanObject
+class SupplierMgmt_SupplierContactObject
+class SupplierMgmt_SupplierNCRTypeObject
+class SysEmployeeEntity
+class SysLocationEntity
+class SysSubjectEntity
+class SysWorkflowInstanceEntity
+class SysWorkflowStageEntity
+class ComplyFramework_CARAbstractRelatedEventsToEventFwk_EventMapObject
+class NonConf_NonconformancesRelatedEventsToNonConf_NonconformancesMapObject
+FragApplication_AbCorrectivActiObject <|-- ActionPlans_ActionPlanAbsObject : inherits
+FragApplication_AbCorrectivActiObject <|-- ActionPlans_GlobActPlanAbsObject : inherits
+CFW_FindingObject <|-- AFW_AuditFindingObject : inherits
+AFW_AuditFindingObject <|-- AuditMgmt_FindingObject : inherits
+EventFwk_EventObject <|-- CFW_FindingObject : inherits
+FragApplication_AbCorrectivActiObject <|-- EventFwk_CAPAObject : inherits
+ActionPlans_ActionPlanAbsObject <|-- EventFwk_EventActionPlanObject : inherits
+FragApplication_AbstractCostObject <|-- EventFwk_EventCostObject : inherits
+EventFwk_EventScenarioObject <|-- EventFwk_EventObject : inherits
+ActionPlans_GlobActPlanAbsObject <|-- EventFwk_LessonLearnedObject : inherits
+EventFwk_EventObject <|-- EventFwk_NonConfAbstractObject : inherits
+FragApplication_AbstractCostObject <|-- FragApplication_ActionCostObject : inherits
+FragApplication_BusFunctionsObject <|-- FragApplication_ProcessObject : inherits
+EventFwk_NonConfAbstractObject <|-- NonConf_NonconformancesObject : inherits
+NonConf_NonconformancesObject <|-- NonConf_NonconfPlatinumObject : inherits
+RiskFmk_RiskObject <|-- RiskFmk_OpRiskObject : inherits
+EventFwk_EventScenarioObject <|-- RiskFmk_RiskObject : inherits
+SupplierMgmt_SupNonconformObject <|-- SupplierMgmt_SRMNonConformObject : inherits
+NonConf_NonconfPlatinumObject <|-- SupplierMgmt_SupNonconformObject : inherits
+ActionPlans_ActionPlanAbsObject <|-- SupplierMgmt_SuppActionPlanObject : inherits
+SysSubjectEntity <|-- SysEmployeeEntity : inherits
+EventFwk_EventObject --> FragApplication_AbCorrectivActiObject : AbsCorActPlan [cardinality unresolved]
+EventFwk_EventObject --> EventFwk_CAPAObject : CAPAs [cardinality unresolved]
+EventFwk_EventObject --> ComplyFramework_CARAbstractRelatedEventsToEventFwk_EventMapObject : CAREvent [m:n]
+ComplyFramework_CARAbstractRelatedEventsToEventFwk_EventMapObject --> ComplyFramework_CARAbstractObject : target [m:n]
+EventFwk_EventObject --> CauseAnalysis_CauseAnalysisObject : CauseAnalysis [cardinality unresolved]
+EventFwk_EventObject --> EventFwk_EventCostObject : Costs [cardinality unresolved]
+EventFwk_EventObject --> EventFwk_EventActionPlanObject : EventActionPlan [cardinality unresolved]
+EventFwk_EventObject --> EventFwk_AbsEvidenceObject : Evidence [cardinality unresolved]
+EventFwk_EventObject "0..*" --> "0..1" SysEmployeeEntity : FinalApprover
+EventFwk_EventObject "0..*" --> "0..1" SysEmployeeEntity : Investigator
+EventFwk_EventObject --> EventFwk_LessonLearnedObject : LessonsLearned [cardinality unresolved]
+EventFwk_EventObject "0..*" --> "0..1" SysEmployeeEntity : ReportedBy
+EventFwk_EventObject "0..*" --> "0..1" RiskFmk_OpRiskObject : Risk
+EventFwk_EventObject --> CauseAnalysis_RootCauseObject : RootCauses [cardinality unresolved]
+EventFwk_EventObject "0..*" --> "0..1" EventFwk_SeverityObject : Severity
+EventFwk_EventObject "0..1" --> "0..*" EventFwk_EventObject : Subs
+EventFwk_EventObject "0..*" --> "0..1" SysEmployeeEntity : TeamLeader
+EventFwk_EventObject --> EventFwk_TeamMemberObject : TeamMembers [cardinality unresolved]
+EventFwk_EventObject "0..*" --> "0..1" EventFwk_EventTypeObject : TypeOfEvent
+EventFwk_EventScenarioObject "0..*" --> "1..1" SysEmployeeEntity : CreatedBy
+EventFwk_EventScenarioObject "0..*" --> "1..1" SysLocationEntity : Location
+EventFwk_EventScenarioObject "0..*" --> "0..1" SysWorkflowInstanceEntity : Workflow
+FragApplication_AbCorrectivActiObject --> FragApplication_ActionCostObject : Costs [cardinality unresolved]
+FragApplication_AbCorrectivActiObject "0..*" --> "0..1" SysWorkflowInstanceEntity : Workflow
+NonConf_NonconfPlatinumObject "0..*" --> "0..1" NonConf_NonconfPlatinumObject : RefNonconforman
+NonConf_NonconformancesObject "0..*" --> "0..1" NonConf_CategoryObject : Category
+NonConf_NonconformancesObject "0..*" --> "0..1" NonConf_PriorityObject : Priority
+NonConf_NonconformancesObject "0..*" --> "0..1" FragApplication_ProcessObject : Process
+NonConf_NonconformancesObject --> NonConf_NonconformancesRelatedEventsToNonConf_NonconformancesMapObject : RelatedNonconf [m:n]
+NonConf_NonconformancesRelatedEventsToNonConf_NonconformancesMapObject --> NonConf_NonconformancesObject : target [m:n]
+NonConf_PriorityObject "0..*" --> "0..1" EventFwk_SeverityObject : SeverityMapping
+SupplierMgmt_SupAbstractObject "0..*" --> "1..1" SysLocationEntity : Location
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" SupplierMgmt_SupplierNCRTypeObject : NCRType
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" SupplierMgmt_SupplierContactObject : SupPersonRespon
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" SupplierMgmt_SupAbstractObject : SupplierAbs
+SupplierMgmt_SuppActionPlanObject "0..*" --> "0..1" SupplierMgmt_SupNonconformObject : RelatedSupNCR
+SupplierMgmt_SuppActionPlanObject "0..*" --> "0..1" SupplierMgmt_SupplierContactObject : SupPersonResp
+SupplierMgmt_SupplierContactObject "0..*" --> "0..1" SysEmployeeEntity : Employee
+SysWorkflowInstanceEntity "0..*" --> "0..1" SysWorkflowStageEntity : CurrentStage
+SysWorkflowInstanceEntity "0..*" --> "0..1" SysSubjectEntity : PersonResponsible

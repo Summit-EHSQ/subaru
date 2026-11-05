@@ -1,0 +1,137 @@
+{
+  "version": 1,
+  "tasks": [
+    {
+      "id": "IMP-01",
+      "taskHash": "0cd2b6d052347fceb19b19a98e050f5cd7f0a3855a44a0bb3171b4bcea573a75",
+      "renderedTaskHash": "10c14b24b185e304e096ad2a93c52da1847bbcfdaf3e275dc7c499c2b97e6f0a",
+      "evidenceReview": "The specification now defines Generation Lag Time Increment as the thirteenth concrete child of the existing abstract catalogue. The task adds only that required structural difference while retaining the complete child inventory; inherited uniqueness remains outside this object-creation task.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Create the complete abstract catalogue family with the new generation-lag child included.", "mechanism": "Intelex object inheritance configuration"},
+        {"path": "configurationRows.0", "requiredChange": "Add Generation Lag Time Increment as the thirteenth direct concrete child.", "mechanism": "New inherited catalogue object"},
+        {"path": "configurationRows.1", "requiredChange": "Use the parent's four common fields without creating duplicate child fields.", "mechanism": "Field inheritance settings"},
+        {"path": "configurationRows.2", "requiredChange": "Prevent records on the abstract parent and allow them only on concrete children.", "mechanism": "Abstract object configuration"}
+      ]
+    },
+    {
+      "id": "IMP-02",
+      "taskHash": "ef2e59b25fb8064bb909a8e5fe635104a78538d035dd12eb807bda76f49fee83",
+      "renderedTaskHash": "e0540640c2858290d3871eb73b6e6d99d182a44f97260bdd81df0b947d5ec7ea",
+      "evidenceReview": "The new increment is a governed catalogue with inherited fields, active filtering, disabled inverse relationships, audit, and administrator-only maintenance. The task keeps these ordinary catalogue settings together and leaves the unresolved inherited-Code uniqueness behavior as a narrow supplied input.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Configure all catalogue presentation and governance settings, including the new increment catalogue.", "mechanism": "Catalogue fields, forms, filters, audit, and permissions"},
+        {"path": "configurationRows.0", "requiredChange": "Provide an administration surface for the inherited increment fields.", "mechanism": "Child form and grid configuration"},
+        {"path": "configurationRows.1", "requiredChange": "Exclude inactive increments from new Program selections.", "mechanism": "Relationship selection filter"},
+        {"path": "configurationRows.2", "requiredChange": "Prevent catalogue-side consumer navigation for the increment relationship.", "mechanism": "Disabled inverse relationship setting"},
+        {"path": "configurationRows.3", "requiredChange": "Restrict catalogue maintenance and retain ordinary change evidence.", "mechanism": "Object permissions and native audit"}
+      ]
+    },
+    {
+      "id": "IMP-03",
+      "taskHash": "eaff2dcd043aa77afd451594ada162a970548e57d9d157e97d7076a7ee2c2cf9",
+      "renderedTaskHash": "f9ed835733195f8dc090f9bc400bd87fef0ae15ed1a7d2789c3094da7017174e",
+      "evidenceReview": "The user confirmed the exact case-sensitive interval Codes required by DATEADD. The task assigns the two tangible record additions and retains the wider catalogue load already owned by DAT-04; it does not ask the consultant to choose other interval values.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Load the approved catalogue records and preserve the case-sensitive generation-lag Codes.", "mechanism": "Initial catalogue record configuration"},
+        {"path": "configurationRows.0", "requiredChange": "Create the Days interval with lowercase Code d, active state, and sort 10.", "mechanism": "Generation Lag Time Increment record"},
+        {"path": "configurationRows.1", "requiredChange": "Create the Months interval with uppercase Code M, active state, and sort 20.", "mechanism": "Generation Lag Time Increment record"}
+      ]
+    },
+    {
+      "id": "IMP-04",
+      "taskHash": "7a1e41647b354c9f43cba77600df2574ad0f3a0e8a2429576330a0025558d032",
+      "renderedTaskHash": "9d6b11f35eb89bb77d4436acb00d5230ef21aa4b6c425dad65f8ff3caaab9a2d",
+      "evidenceReview": "The specification adds three authoring fields and three immutable version fields. The task states their types, defaults, relationships, filters, editability, and calculation inputs. Executable DATEADD syntax is correctly isolated as a supplied tenant input rather than invented.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Add editable Program timing values and matching immutable Program Version values.", "mechanism": "Program and Program Version object fields"},
+        {"path": "configurationRows.0", "requiredChange": "Add a required non-negative whole-number generation lag with default zero.", "mechanism": "Integer field configuration"},
+        {"path": "configurationRows.1", "requiredChange": "Add the required active d-or-M interval selection without an inverse relationship.", "mechanism": "M:1 catalogue relationship"},
+        {"path": "configurationRows.2", "requiredChange": "Calculate and protect the first scheduled generation date from the three authoring inputs.", "mechanism": "Read-only Date calculation"},
+        {"path": "configurationRows.3", "requiredChange": "Store the published lag number on the immutable Program Version.", "mechanism": "Read-only Integer version field"},
+        {"path": "configurationRows.4", "requiredChange": "Store the exact published increment relationship without a target-side inverse.", "mechanism": "Read-only M:1 version relationship"},
+        {"path": "configurationRows.5", "requiredChange": "Store the published Schedule Anchor on the immutable Program Version.", "mechanism": "Read-only Date version field"}
+      ]
+    },
+    {
+      "id": "IMP-05",
+      "taskHash": "35963ab165efe08698995df183f7a6ae654baf89eda90475bf90515a8791b7ef",
+      "renderedTaskHash": "703c8dd44ca4005934b886a2ec5a25472a68e57da6ceee9c69f17971fb1ee5b0",
+      "evidenceReview": "The specification requires one stored Delay per Program/reporting cycle, read-only cycle identity, editable pending delay details, applied-Run evidence, and no unrestricted New route. The task owns the object/form/grid and uniqueness settings; the separate IMP-07 task owns the complex creation action.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Configure Program timing forms and the complete cycle-specific Generation Delay record surface.", "mechanism": "Forms, fields, grid, audit, and uniqueness"},
+        {"path": "configurationRows.0", "requiredChange": "Place the two editable lag inputs and read-only Schedule Anchor together on Program.", "mechanism": "Program form layout"},
+        {"path": "configurationRows.1", "requiredChange": "Show the three immutable scheduling values on Program Version.", "mechanism": "Program Version read-only form"},
+        {"path": "configurationRows.2", "requiredChange": "Add and lock the Program and reporting-cycle identity fields on each Delay.", "mechanism": "Required read-only Delay fields"},
+        {"path": "configurationRows.3", "requiredChange": "Allow administrators to revise delay timing and reason only before application.", "mechanism": "Conditional field editability"},
+        {"path": "configurationRows.4", "requiredChange": "Add read-only Run application evidence and native change history.", "mechanism": "Applied fields and object audit"},
+        {"path": "configurationRows.5", "requiredChange": "Prevent a second Delay for the same cycle and protect the scheduled-date identity.", "mechanism": "Two object uniqueness constraints"},
+        {"path": "configurationRows.6", "requiredChange": "Expose full delay history and route creation only through the controlled action.", "mechanism": "Program child grid and action placement"}
+      ]
+    },
+    {
+      "id": "IMP-06",
+      "taskHash": "491285254d619ea69de25021fd202e9b00419edac7a0a55dd2a29538e41b1bc4",
+      "renderedTaskHash": "d2631949db04d9e400ab861683b04109ba5d97a285a6a91be45959496d71af6d",
+      "evidenceReview": "Program Publish is the single owner for validating and freezing the schedule fields. The task puts lag and anchor checks before version creation, copies exact values in the existing atomic graph, and preserves reporting cycles whose lagged generation date falls after Effective To.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Extend atomic Program publishing to validate and freeze generation scheduling values.", "mechanism": "Program Publish Action Handler"},
+        {"path": "configurationRows.0", "requiredChange": "Block invalid lag, increment, or Schedule Anchor before any version record is created.", "mechanism": "Pre-creation Publish validation"},
+        {"path": "configurationRows.1", "requiredChange": "Copy all three approved scheduling values into the new immutable Program Version.", "mechanism": "Program-to-Version field mapping"},
+        {"path": "configurationRows.2", "requiredChange": "Allow the final in-range reporting cycle to generate after the Version's Effective To date.", "mechanism": "Publish effective-range rule"},
+        {"path": "configurationRows.3", "requiredChange": "Remove every partial published record when schedule or graph creation fails.", "mechanism": "Transactional rollback behavior"}
+      ]
+    },
+    {
+      "id": "IMP-07",
+      "taskHash": "fdf72085f2809a241ba049d515e8b6ceeb8c9591fb13592ffa626630d919b00f",
+      "renderedTaskHash": "87f82af6d29fca8ac02d4ee68a2f788d82197a28dc974827424459efd285b7b2",
+      "evidenceReview": "The approved design requires system-selected next-cycle creation rather than user-selected dates. This new action is justified because ordinary form defaults cannot safely handle locking, cross-record schedule calculation, duplicate checks, and rollback. Native bindings remain explicit supplied inputs.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Add a controlled action that creates one Delay for only the next ungenerated cycle.", "mechanism": "New Delay for Next Generation Action Handler"},
+        {"path": "configurationRows.0", "requiredChange": "Limit the action to administrators and prevent concurrent schedule decisions for one Program.", "mechanism": "Action permission and Program lock"},
+        {"path": "configurationRows.1", "requiredChange": "Select the earliest reporting cycle without a Run and remove arbitrary cycle selection.", "mechanism": "Program Run query and action logic"},
+        {"path": "configurationRows.2", "requiredChange": "Calculate and stamp both period boundaries and the original scheduled generation date.", "mechanism": "Cadence and lag calculation"},
+        {"path": "configurationRows.3", "requiredChange": "Stop creation when the cycle already has a Delay or Run, including a concurrent Run.", "mechanism": "Pre-creation uniqueness checks"},
+        {"path": "configurationRows.4", "requiredChange": "Create all protected cycle fields together and then collect the administrator's delay details.", "mechanism": "Complete child creation and form navigation"},
+        {"path": "configurationRows.5", "requiredChange": "Leave no partial Delay and release the Program when any action step fails.", "mechanism": "Action rollback and lock release"}
+      ]
+    },
+    {
+      "id": "IMP-08",
+      "taskHash": "cbf4165280b79b6463ca5a401ab19a49bdd3ef094626f8f24331cf3f85af9935",
+      "renderedTaskHash": "16239bd9ff403e12e35fc37919f955fb9f47ec1bfa54914b89dc38f94062007a",
+      "evidenceReview": "Scheduled generation remains authoritative for due cycles and Run creation. The revised task applies the published lag independently, uses the reporting-cycle key to find a Delay, blocks later cycles behind a delayed one, and writes application evidence only after the complete Run graph succeeds.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Extend generation with lagged cycle dates, one cycle Delay, ordered processing, and application evidence.", "mechanism": "Scheduled Scorecard Generation Event Service"},
+        {"path": "configurationRows.0", "requiredChange": "Build each due reporting cycle from the published effective schedule and calculate its original due date.", "mechanism": "Cadence and DATEADD schedule logic"},
+        {"path": "configurationRows.1", "requiredChange": "Match the one Delay for the cycle and detect a stored scheduled-date mismatch.", "mechanism": "Generation Delay cycle query"},
+        {"path": "configurationRows.2", "requiredChange": "Hold the delayed cycle and every later cycle until Delay Until is reached.", "mechanism": "Sequential Program generation gate"},
+        {"path": "configurationRows.3", "requiredChange": "Create or resume the unique Run once the cycle is permitted to proceed.", "mechanism": "Retry-safe Run generation"},
+        {"path": "configurationRows.4", "requiredChange": "Link the Delay to the Run only after the complete generated record set succeeds.", "mechanism": "Post-success Applied Run update"},
+        {"path": "configurationRows.5", "requiredChange": "Use the defined business keys so another service execution cannot duplicate generated records.", "mechanism": "Uniqueness-key reconciliation"}
+      ]
+    },
+    {
+      "id": "IMP-09",
+      "taskHash": "0165e46254e2006271e51095ad864cdac22752e9ae12f0db20d6c6222fe4f817",
+      "renderedTaskHash": "91e633ddc61e5e33ea52f28b3ed231101d57b9d98cfdea217e7d21ccca1d9161",
+      "evidenceReview": "Initial configuration must now provide concrete lag values before Program Publish. The task keeps those values with the existing initial Program, KPI, routing, and Participation setup and uses observable first/final date checks without adding migration or formal testing work.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Populate and publish each initial Program with its approved generation schedule and related configuration.", "mechanism": "Initial Program and related record configuration"},
+        {"path": "configurationRows.0", "requiredChange": "Enter the approved recurrence and effective range for every initial Program.", "mechanism": "Program authoring fields"},
+        {"path": "configurationRows.1", "requiredChange": "Enter the approved non-negative lag and active d-or-M increment for every Program.", "mechanism": "Program generation-lag fields"},
+        {"path": "configurationRows.2", "requiredChange": "Use the read-only anchor to correct source inputs before an incorrect schedule is published.", "mechanism": "Schedule Anchor form calculation"},
+        {"path": "configurationRows.3", "requiredChange": "Publish only complete Programs with schedule, routing, recipients, and KPI membership populated.", "mechanism": "Program Publish action"}
+      ]
+    }
+  ]
+}
