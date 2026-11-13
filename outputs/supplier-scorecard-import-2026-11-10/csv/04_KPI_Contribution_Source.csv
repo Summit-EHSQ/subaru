@@ -1,0 +1,4 @@
+﻿Code,Name,Active?,Sort
+INTERNAL,Internal,TRUE,10
+SUPPLIER,Supplier,TRUE,20
+AUTOMATED,Automated,TRUE,30

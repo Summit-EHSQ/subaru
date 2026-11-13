@@ -1,0 +1,3 @@
+﻿Code,Name,Active?,Sort
+DIRECT_ENTRY,Direct Entry,TRUE,10
+QUERY,Query,TRUE,20

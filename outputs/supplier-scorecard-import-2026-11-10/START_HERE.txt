@@ -1,0 +1,14 @@
+Supplier Scorecard KPI import drafts
+
+Use Supplier_Scorecard_KPI_Import_Drafts.xlsx as the review master.
+
+01: KPI authoring records (20); complete amber required fields before import.
+02-06: Category and standard catalogue seed records; reuse existing Codes.
+07: Empty aggregation method template; approved algorithms/Codes are missing.
+08: Program/KPI membership drafts; assign Program and publication requirements.
+09: Historical source staging (240 rows), NOT a direct KPI Value import.
+10: Scoring evidence and conflicts, NOT an import object.
+
+These headers are logical mapping aliases based on the project specification, not verified tenant import-schema names. Resolve relationship Codes and IDs through the tenant loader. Publish immutable versions using the application action. Read the workbook ReadMe and Field Mapping before import.
+
+Source: A315_Heartland_Automotive,_LLC.xlsm. Dates: September 2025-August 2026. Source macros were not run and external links were not refreshed.

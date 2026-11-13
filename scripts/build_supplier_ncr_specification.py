@@ -4,11 +4,13 @@ import csv
 import json
 import re
 import xml.etree.ElementTree as ET
+import hashlib
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / 'docs/phase 2/non-conformance-management'
 OUT = BASE / 'solution_specification'
 PACKAGE = ROOT / 'ootb_config_packages/Supplier NCR Extract(v1.0.0.0).ipack'
+REVIEW_DATE = '2026-11-12'
 
 def walk(v):
     if isinstance(v, dict):
@@ -34,6 +36,9 @@ def row(o, name, typ, req='N', default='None', edit='Authorized internal editor;
     model[o]['fields'].append([name,typ,req,default,edit,life])
 
 def ref(o,n,t,req='N',inverse='disabled',edit=None,life=None,cat=False,default='None'):
+    cat = cat or t in ('Supplier Management Role', 'Shared Visibility Classification')
+    if cat and edit:
+        edit += '; active values only for new selection; retain historical inactive references'
     row(o,n,f'M:1 to {t}; many to '+('exactly one' if req=='Y' else 'zero or one')+f'; inverse {inverse}',req,default,edit or ('Administrator; active values only for new selection; retain inactive historical values' if cat else 'Authorized editor within the same NCR and supplier scope'),life or 'Validate scope on every write; audit relationship changes')
 
 def text(o,n,req='N',edit=None,life=None,default='None',length=4000):
@@ -59,16 +64,22 @@ for o in objects:
     obj(o['display_name'],'Existing package object; baseline declaration retained',parent,o['internal_name'],'Extracted; unchanged unless a supplier-scoped override is specified')
     model[o['display_name']]['stable_id']=o['stable_metadata_id']
     model[o['display_name']]['source']=o['source_path']
+    model[o['display_name']]['system']=o['is_system']
+    model[o['display_name']]['abstract']=o['is_abstract']
 for o in readcsv('controlled-lookup-inventory.csv'):
     obj(o['display_name'],'Legacy NCR type lookup; read-only historical authority pending mapped replacement','Unresolved',o['internal_name'],'Extracted')
     model[o['display_name']]['stable_id']=o['stable_metadata_id']
     model[o['display_name']]['source']=o['source_path']
+    model[o['display_name']]['system']='Unresolved; lookup metadata not exported'
+    model[o['display_name']]['abstract']='Unresolved'
 for f in sorted(fields,key=lambda x:(x['owner_display_name'],x['field_internal_name'])):
     fd=nodes[f['stable_metadata_id']].get('FieldData',{})
     typ=f['type']
     if f['field_kind']=='Reference':
         r=relations[f['stable_metadata_id']]
         typ=f"Reference to {r['target_object']}; {r['cardinality']}; inverse " + (r['reverse_property'] or 'not exported') + '; ' + r['classification']
+        if f['field_internal_name'] == 'ParentEvent':
+            typ='M:1 to Event; many to zero or one; inverse Subs; Inferred from declaring IsStartOfRelation=true and the paired Subs foreign-key metadata; corrects target orientation only'
     elif typ=='Text': typ+=f"; max length {fd.get('MaxLength') if fd.get('MaxLength') is not None else 'not exported'}"
     elif typ=='Date and Time': typ+=f"; TimeZoneCapture={fd.get('TimeZoneCapture')}"
     elif typ in ('Float','Number'): typ+=f"; precision={fd.get('Precision')}; scale={fd.get('Scale')} (null means unspecified)"
@@ -110,6 +121,7 @@ obj('Supplier NCR Process Configuration','One governed immutable configuration r
 for n,t,q in [('Issue Type','Supplier Issue Type','Y'),('Issue Subtype','Supplier Issue Subtype','N')]: ref('Supplier NCR Process Configuration',n,t,q,cat=True)
 row('Supplier NCR Process Configuration','Revision','Number; integer','Y','None','Administrator; unique for type/subtype','Immutable once referenced; issue a new configuration record for later cases')
 row('Supplier NCR Process Configuration','Active?','Yes/No','Y','FALSE','Administrator; activate only after all readiness gates for this type pass','Exactly one active revision per type/subtype; deactivation blocks new cases, retains existing cases')
+ref('Supplier NCR Process Configuration','Holding Subject','Subject','Conditional',edit='Administrator; required when an enabled PENDING_FOLLOWUP stage or follow-up schedule exists; otherwise optional, retain prior value',life='Non-operational platform subject; generation and stage-entry handlers assign it; never a fabricated person or an external portal account')
 text('Supplier NCR Process Configuration','Risk Calculation Rule','N','Administrator; declarative non-executable specification','Controlled arithmetic and weights G-01; reviewed handler implements validated rule')
 text('Supplier NCR Process Configuration','Closure Rule','Y','Administrator; declarative non-executable specification','Exact risk/category/reporting-area criteria G-04; reject incomplete configuration')
 text('Supplier NCR Process Configuration','Follow-up Schedule','N','Administrator; declarative non-executable schedule specification','Intervals, business calendar, lead time and repeat rules G-05; no invented executable recurrence expression')
@@ -130,9 +142,12 @@ text('Supplier NCR Stage Rule','Notification Template Key','N','Administrator','
 obj('Supplier NCR Response Rule','Response type activation and deadlines per configuration and tier')
 ref('Supplier NCR Response Rule','Configuration','Supplier NCR Process Configuration','Y',inverse='Response Rules')
 ref('Supplier NCR Response Rule','Tier','Supplier Response Tier','N',cat=True)
-text('Supplier NCR Response Rule','Component Code','Y','Administrator; QUICK, CONTAINMENT, ROOT_CAUSE, CORRECTIVE, WARRANTY','Code selects concrete response class; unique per Configuration/Tier/Component',length=100)
+text('Supplier NCR Response Rule','Component Code','Y','Administrator; QUICK, CONTAINMENT, ROOT_CAUSE, CORRECTIVE, WARRANTY','Code selects concrete response class; slot identity is Configuration/Tier/Component Code/Slot Code',length=100)
+text('Supplier NCR Response Rule','Slot Code','Y','Administrator; stable non-localizable slot within Configuration','Unique within Configuration/Tier/Component Code; several CONTAINMENT slots are permitted; one ROOT_CAUSE container per case',length=100)
+text('Supplier NCR Response Rule','Applicability Rule','Y','Administrator; declarative non-executable predicate over Issue Type/Subtype, Tier, Problem Profile, Impact Level, Defect Classification and Reporting Area Rating','Validated by activation preflight; explicit TRUE means unconditional within the selected Configuration/Tier; evaluated on release and risk revision')
 row('Supplier NCR Response Rule','Required?','Yes/No','Y','TRUE','Administrator','Case applicability evaluated at release and on controlled risk revision')
-row('Supplier NCR Response Rule','Due Offset','Number; integer business days','Conditional','None','Administrator; required for required components','Release-based deadline; business calendar G-02')
+row('Supplier NCR Response Rule','Due Offset','Number; integer business days','Y','None','Administrator; required for every generated response, including optional response slots','Release-based deadline; business calendar G-02; optional content still has a measurable due date')
+row('Supplier NCR Response Rule','Preventive Actions Required?','Yes/No','Y','FALSE','Administrator; editable only for Component Code=CORRECTIVE; otherwise force FALSE','CORRECTIVE response validation consumes this flag; changing it requires a new frozen configuration revision')
 ref('Supplier NCR Response Rule','Reviewer Role','Supplier Management Role','Y',life='Resolve exact supplier-specific internal role at action time')
 
 # All new case-specific declarations are on the existing supplier base.
@@ -243,6 +258,7 @@ row('Certified Shipment','Verified?','Yes/No','Y','FALSE','Internal engineer','C
 
 obj('Supplier NCR Follow-up','Scheduled procedure-driven effectiveness check; independent repeated checks')
 ref('Supplier NCR Follow-up','NCR','Supplier Nonconformance Base','Y',inverse='Follow-up Checks')
+ref('Supplier NCR Follow-up','Replaces Check','Supplier NCR Follow-up','N',inverse='disabled',edit='Management selects only during Create Further Check; read only afterward; target must be a failed/inconclusive check on the same NCR',life='At most one successor per check; no cycles; a retry reuses successor; historical failed check remains immutable; closure evaluates passing terminal successors for each required schedule slot')
 text('Supplier NCR Follow-up','Schedule Key','Y','Read only','Generation handler identifies rule and occurrence; unique NCR/Schedule Key; repeat allocates new key',length=255)
 row('Supplier NCR Follow-up','Due Date','Date','Y','Generated from Configuration.Follow-up Schedule','Internal owner; extensions audited','Exact intervals and calendar G-05')
 row('Supplier NCR Follow-up','Activate On','Date','Y','Due Date less configured lead time','Read only','Generation handler populates once; scheduler activates only eligible scheduled checks')
@@ -259,9 +275,107 @@ stamp('Supplier NCR Output','Generated At','Generation handler stamps once after
 ref('Supplier NCR Output','Generated By','Employee','Y',edit='Read only',life='Generation handler stamps authenticated requesting user')
 row('Supplier NCR Output','Artifact','File','Y','None','Read only','Generation writes complete file before committing record; retained immutable; no overwrite')
 
+# Resolve conditional behavior in the canonical rows, rather than only in prose.
+def amend(o, n, **changes):
+    field = next(r for r in model[o]['fields'] if r[0] == n)
+    for key, value in changes.items():
+        field[{'typ':1, 'req':2, 'default':3, 'edit':4, 'life':5}[key]] = value
+
+for n in ('Problem Profile','Impact Level','Defect Classification','Response Tier'):
+    amend(case,n,edit='Internal only; required before release when Issue Type.Code=PIR; internal associate before release and responsible engineer afterward; hidden and NULL for other types unless an activated type rule explicitly requires it; retain existing historical values read only when inapplicable; active catalogue values only',
+          life='Release validates required values; frozen Configuration governs applicability; post-release changes invoke audited risk reconciliation and supplier notice')
+for n,condition in [('Internal Owner Role','every active Configuration'),('Supplier Quality Role','Issue Type.Code=PIR or an enabled pilot supplier-response path'),('Supplier Warranty Role','Issue Type.Code=WCAR'),('Warranty Coordinator Role','Issue Type.Code=WCAR'),('Group Leader Role','a Stage Rule with Stage Code=GROUP_REVIEW can activate')]:
+    amend('Supplier NCR Process Configuration',n,edit=f'Administrator before first use; required when {condition}; otherwise optional and retained; active SRM library roles only; Internal Owner/Warranty Coordinator/Group Leader must be internal roles and supplier Quality/Warranty must be external roles',life='Resolve exact Supplier Specific Role when the consuming stage/action activates; configuration locks on first case reference; no cross-entity fallback')
+amend('Supplier NCR Stage Rule','Owner Role',edit='Administrator before Configuration is first referenced; required for actionable stages except DRAFT; DRAFT uses originator and PENDING_FOLLOWUP uses Configuration.Holding Subject, with Owner Role blank for those two stages; active SRM library roles only',life='Stage entry resolves role for exact NCR.Supplier; current membership rechecked at action time; inherited workflow actor history records the individual')
+amend('Supplier NCR Follow-up','Completed At',life='Submit Check stamps successful evidence submission for PASS, FAIL or INCONCLUSIVE; failed/inconclusive result also routes governing case to DETERMINATION; immutable afterward')
+for o,fields_at_submit in {
+    'Quick Feedback Response':['Feedback'],
+    'Containment Response':['Containment Actions','Suspect Population','Breakpoint','Completed On'],
+    'Root Cause Response':['Root Cause Summary'],
+    'Corrective Action Response':['Corrective Actions','Action Owner','Implementation Date'],
+    'Warranty Response':['Outcome','Findings'],
+}.items():
+    for n in fields_at_submit:
+        amend(o,n,req='Conditional',edit='Supplier Owner may save blank drafts in Draft/Returned; required when Submit Response is invoked for this Applicable?=TRUE component; read only in Review/Approved; retain previous submissions and return-cycle evidence',life='Submission validates this field before transition; one component approval never approves another; frozen content is reconstructed through verified native history G-11')
+
+# The canonical declaring row carries supplier-specific overrides alongside its
+# extracted evidence. Other descendants retain their existing metadata contract.
+def supplier_override(o, n, behavior, mechanism, requiredness=None):
+    field=next(r for r in model[o]['fields'] if r[0]==n)
+    field[4]+='; PROPOSED Supplier Nonconformance branch only: '+behavior
+    field[5]+='; supplier branch population/lifecycle: '+mechanism
+    if requiredness:
+        field[5]+='; extracted IsRequired='+str(field[2]=='Y')
+        field[2]=requiredness
+
+supplier_override('Event Scenario','Description','originator edits in Draft; required at Submit Intake; supplier may edit only its own SUPPLIER_REPORTED draft; internal-only problem detail is not exposed by default','Submit Intake validates; supplier-visible release uses approved content allowlist; other Event Scenario descendants unchanged','Conditional')
+supplier_override('Supplier Nonconformance Base','Supplier','authorized internal intake editor may correct before release through verified scoped override G-12; supplier-originated intake forced to authenticated reporting entity; mandatory at Submit Intake; immutable after release','Draft save/Submit Intake validates exact supplier scope; release freezes; correction after release creates another NCR','Conditional')
+supplier_override('Supplier Nonconformance Base','NCR Type','legacy NCRType is historical read-only information; new-case selection uses Issue Type','Map only verified legacy lookup values G-09; never fabricate a lookup default')
+supplier_override('Supplier Nonconformance Base','Assigned To','optional communication contact; internal selector requires same supplier plus non-null Employee; does not establish actionable responsibility','Supplier Owner operational group controls work; preserve existing named-contact history')
+supplier_override('Nonconformance Base','Date Closed','read only for all participants on supplier records','Terminal closure handler stamps business closure date in America/Toronto together with Closed At; cancellation does not assert successful closure')
+supplier_override('Nonconformance','Is this a valid Nonconformance?','internal triage owner must decide before Complete Triage for Issue Type.Code=SUPPLIER_REPORTED; reporter cannot edit; other supplier types optional','Complete Triage requires validity decision and Create PIR?; reject invalid report combined with Create PIR?=TRUE','Conditional')
+for n,code in [('Responsibility Rating','RESPONSIBILITY'),('Vehicle Impact Rating','VEHICLE_IMPACT'),('Reporting Area Rating','REPORTING_AREA'),('Recurrence Rating','RECURRENCE')]:
+    amend(case,n,edit=f'Internal only; visible and required for Issue Type.Code=PIR at release; active Supplier Risk Option.Input Code={code}; human editable before release and by responsible engineer afterward; other types hide and retain historical values read only',
+          life='Audit actor/time/prior and new values plus reason; validate G-01 scoring before release; occurrence counts never write this input')
+amend(case,'Drawing',edit='Internal intake; select only the drawing applicable to Part; required at PIR release when Part has governed drawing context; missing required master context blocks release G-08; otherwise optional; engineer correction after release retains audit and revalidates occurrences')
+amend(case,'Supplier Owner',edit='Internal release handler only; required before any supplier response or RMA is assigned; resolve exact Supplier and quality/warranty role; read only to supplier; NULL for SUPPLIER_REPORTED intake until independently actionable work is configured',life='Resolve at release from frozen Configuration; same-supplier group only; current eligible membership controls every action; retain role on completed cases')
+amend(case,'Responsible Manufacturer',edit='Internal triage only; visible for Issue Type.Code=SUPPLIER_REPORTED; required when Create PIR?=TRUE; active applicable manufacturing supplier shortlisted from Part relationships; otherwise hide and retain internally; never visible to reporter',life='Complete Triage handler validates manufacturer and writes separate PIR.Supplier; reporting intake Supplier never changes')
+amend(case,'Issue Type',edit='Internal originator selects active PIR or WCAR; portal originator is forced to SUPPLIER_REPORTED; immutable after Submit Intake; supplier may never initiate PIR/WCAR',life='Create handler constrains permitted codes; submission freezes identity; no type-switch access bypass')
+amend(case,'Issue Subtype',edit='Originator before Submit Intake; active subtype belonging to Issue Type only; changing type in Draft clears incompatible subtype after warning; immutable after submission',life='Resolve a matching active Configuration; reject cross-type subtype')
+amend(case,'Configuration',edit='Read only; Create handler resolves exactly one active revision for Issue Type/Issue Subtype; Draft type/subtype change re-resolves; immutable after submission',life='Existing cases retain frozen revision; no automatic switch when administrators activate a new revision')
+amend(case,'Part',edit='Originator in Draft/intake; authorized Canonical Part selector; never select API Data staging objects; engineer may correct after release within same Supplier scope with audit reason',life='Every write revalidates Drawing, supplier responsibility and occurrences; canonical target identity unresolved G-08')
+amend(case,'Internal Owner',edit='Read only; Create/Submit handler resolves configured Supplier Management Role to exact-supplier internal Supplier Specific Role; triage/shipping/review use their configured stage role',life='Current members act; native action history records individual; no external field or global-view restriction inferred from assignment')
+amend(case,'Source Intake',edit='Internal creation handler only; visible only to authorized internal users; read only after downstream creation',life='Unique per populated Source Intake in this single-PIR design; source and target security rechecked independently; inverse Downstream PIRs is internal only')
+amend(case,'Visibility Classification',edit='Authorized internal classifier or lifecycle handler; active shared classification only; external users cannot modify it',life='Audit old/new value, actor and reason; update case and governed descendant ACLs without changing workflow stage or owner; preserve source-record ACLs')
+amend(case,'Warranty Contact',edit='Internal warranty initiator; required for Issue Type.Code=WCAR before Submit Intake enters SHIPPING; select contact belonging to Supplier warranty role; otherwise hidden and retain historical value read only',life='PCC notification receives selected contact/address; later correction is audited and notified; does not substitute for authenticated Supplier Owner membership')
+amend(case,'VIN',edit='Internal WCAR intake; visible and required only for WCAR subtypes whose frozen Configuration requires VIN (exact subtype matrix G-03); otherwise hidden and retain historical value read only',life='Validate configured VIN format; normalized search field; never part of sequential identifier')
+amend(case,'Tracking Number',edit='Internal shipping user; WCAR SHIPPING only before release; first nonblank valid entry is release trigger; other types hide; retain read only after release',life='Update Action Handler validates shipment and release preflight; successful release is stamped once; audited later correction sends notice and never regenerates responses')
+amend(case,'Shipping Address',edit='Internal warranty initiator; required for Issue Type.Code=WCAR before PCC notice; otherwise hidden and retain historical value read only',life='PCC and release use this address; audited changes after notice require correction notification')
+amend(case,'Triage Instructions',edit='Internal triage owner for SUPPLIER_REPORTED; required before Complete Triage; reporter sees approved instructions only; other types hide and retain history',life='Complete Triage publishes the approved instruction content and audits changes')
+amend(case,'Cancellation Reason',edit='Internal owner/manager; required by Cancel NCR; otherwise hidden; retain read only after cancellation',life='Cancellation action commits reason before cancelling related eligible open work; immutable audit evidence')
+amend('Supplier Response','Review Comment',edit='Internal reviewer on Return Response or engineer on Reopen Response; required nonblank for those actions; supplier can read authorized returned reason; retain every prior comment in append-only native history',life='Action records comment, actor, time, affected submission and outcome before state change; native mechanism must pass G-11')
+amend('Corrective Action Response','Preventive Actions',edit='Supplier in Draft/Returned; required when Rule.Preventive Actions Required?=TRUE; otherwise optional and retain entered content; read only in Review/Approved',life='Submit validates rule flag; record is frozen with submitted corrective response')
+amend('Supplier Cause Method','Conclusion',edit='Supplier while governing Root Cause Response is Draft/Returned; blank permitted in generated placeholder; required for Submit Response on the container; retain through returns',life='Root-cause container submission validates every applicable method; single container approval covers methods')
+amend('Supplier Cause Method','External Evidence',edit='Supplier while container is Draft/Returned; required when Method Code=EXTERNAL; otherwise optional; method changes retain file; all methods read only during Review/Approved',life='Changing method after submission requires audited Reopen/Return of container; file retention G-11')
+amend('Supplier NCR RMA','Supplier Authorization',edit='Supplier Owner in Supplier Response stage; required for Submit Authorization; internal request may be blank; retain read only after successful submission',life='Submit Authorization validates nonblank value and preserves prior return cycles in native history')
+amend('Supplier NCR RMA','Handling Instructions',edit='Supplier Owner in Supplier Response stage; required for Submit Authorization; blank permitted in Internal Request; retain and lock during Internal Completion',life='Return Authorization reopens same record with mandatory reason; prior submitted instructions remain reconstructable')
+amend('Supplier NCR Follow-up','Result',edit='Current internal Owner in Active; required for Submit Check; active result code PASS, FAIL or INCONCLUSIVE; Scheduled hides blank value; immutable after submission',life='PASS completes check; FAIL/INCONCLUSIVE completes failed evidence and sends NCR to management determination; later attempt is a new check')
+amend('Supplier NCR Follow-up','Evidence Notes',edit='Current internal Owner in Active; required for Submit Check; optional in Scheduled; read only after result submission',life='Submit Check preserves result/notes together; retry cannot overwrite failed evidence')
+
+# Every diagram dependency has an inventory entry and an individually scoped section.
+# External authorities declare no new fields here and retain their owning specification.
+authorities = {
+    'Canonical Part': ('ADR-062 / ADR-092; Product Management canonical-master authority, target identity unresolved G-08', 'Unresolved'),
+    'Drawing': ('ADR-062 / ADR-073; Product Management drawing/revision authority, target identity unresolved G-08', 'Unresolved'),
+    'Incident': ('ADR-091; Incident Management owns fields, workflow and source permissions', 'Unresolved'),
+    'Pilot Inspection Failure': ('ADR-045 / ADR-098 / ADR-099; Pilot Part Data owns failure, PPAP/build-event links and replacement shipments', 'Unresolved'),
+    'SPANF': ('ADR-071; SPANF owns notification lifecycle and optional NCR escalation', 'Unresolved'),
+    'Shared Visibility Classification': ('ADR-084; shared security catalogue authority and codes unresolved G-07; no local catalogue duplication', 'Unresolved'),
+    'Supplier Management Role': ('SRM Supplier Management Role specification; governed role library; inherited membership is not maintained on library records', 'Group'),
+    'Supplier Specific Role': ('SRM Supplier Management Role specification; operational group for exact Supplier Abstract; current eligible Members supply accountability', 'Group'),
+    'Group': ('SRM Supplier Management Role specification and native platform; Members inherited here; full platform contract requires tenant verification', 'Subject'),
+}
+for name,(authority,parent) in authorities.items():
+    obj(name,'Referenced authority only: '+authority,parent=parent,classification='Referenced dependency; not configured or redefined by this specification')
+    if name=='Subject': continue
+    model[name]['authority']=authority
+for junction in readcsv('junction-object-register.csv'):
+    name=junction['junction_internal_name']
+    obj(name,'Native M:N implementation extracted by name; '+junction['source_internal_name']+'.'+junction['declaring_field']+' to '+junction['target_internal_name'],parent='Unresolved',internal=name,classification='Extracted implementation name; field metadata and stable ID not exported')
+    model[name]['system']='Unresolved; native map implementation'
+    model[name]['abstract']='Unresolved'
+    model[name]['source']=junction['relation_name']
+
 def esc(v): return str(v).replace('|','\\|').replace('\n','<br>')
 def table(headers,rows):
     return '\n'.join(['| '+' | '.join(headers)+' |','| '+' | '.join('---' for _ in headers)+' |']+['| '+' | '.join(esc(v) for v in r)+' |' for r in rows])
+
+def inherited_names(name, seen=None):
+    seen=set() if seen is None else seen
+    if name in seen or name not in model: return []
+    seen.add(name)
+    o=model[name]
+    return inherited_names(o['parent'], seen)+[r[0] for r in o['fields']]
 
 OUT.mkdir(parents=True,exist_ok=True)
 inventory=[]
@@ -269,13 +383,39 @@ sections=['# Supplier Nonconformances — field-level contract','',
           'Companion to [Technical Specification](supplier-nonconformances-technical-specification.md). Baseline metadata is labelled Extracted; additions and supplier-scoped behavior are Proposed. This is a review contract with the unresolved deployment gates in the main specification. Native platform identity, workflow and audit infrastructure is reused.',
           '', 'Metadata requiredness is distinguished from action-time validation. For inherited fields the package row is retained at its declaring object; supplier-specific overrides in the main specification apply only to the Supplier Nonconformance branch. Null metadata does not prove absence of tenant behavior. All inherited and dependency objects receive individual sections; zero exported fields does not prove zero tenant fields. Shared external authorities introduced by the target are referenced in the main specification and are not redefined here.', '']
 for i,(name,o) in enumerate(model.items(),1):
-    inventory.append([name,o['internal'],o['parent'],len(o['fields']),o['classification'],o.get('stable_id','Unassigned'),o['purpose']])
-    sections += [f'## 1.{i} {name}','',f"**Inheritance parent:** {o['parent']}",'',f"**Classification:** {o['classification']}",'',f"**Responsibility:** {o['purpose']}",'', '**Directly declared fields:** '+(', '.join(r[0] for r in o['fields']) if o['fields'] else 'None. Available fields are inherited from the identified inheritance parent; dependency exports may omit additional tenant declarations.'),'']
+    inventory.append([name,o['internal'],o['parent'],len(o['fields']),o['classification'],o.get('stable_id','Unassigned'),o.get('system','Not asserted; referenced authority' if name in authorities else 'Proposed extension'),o.get('abstract','Proposed TRUE' if 'non-instantiable' in o['purpose'] else 'Unresolved' if name in authorities else 'Proposed FALSE'),o.get('source',o.get('authority','Proposed; field contract defines implementation intent')),o['purpose']])
+    no_fields='None declared by this specification. '+('Inherited fields: '+', '.join(inherited_names(o['parent']))+'.' if inherited_names(o['parent']) else 'No additional fields are evidenced here; complete tenant/authority metadata remains unresolved or externally owned.')
+    sections += [f'## 1.{i} {name}','',f"**Inheritance parent:** {o['parent']}",'',f"**Classification:** {o['classification']}",'',f"**Responsibility:** {o['purpose']}",'', '**Directly declared fields:** '+(', '.join(r[0] for r in o['fields']) if o['fields'] else no_fields),'']
     if o.get('stable_id'): sections += [f"Stable metadata ID: `{o['stable_id']}`. Source: `{o['source']}`.",'']
     if o['fields']: sections += [table(['Field','Type / relationship','Req','Default / calculation','Editability and visibility','Automation / lifecycle'],o['fields']),'']
     if o['seeds']: sections += ['Initial values:','',table(['Code','Name','Active?','Sort'],o['seeds']),'','Seed records and codes are Proposed; the package does not establish these values.','']
-(OUT/'supplier-nonconformances-field-contract.md').write_text('\n'.join(sections),encoding='utf-8')
-(OUT/'supplier-nonconformances-object-inventory.md').write_text('# Supplier Nonconformances — target object inventory\n\n'+table(['Object','Internal / diagram identifier','Inheritance parent','Declared rows','Classification','Stable metadata ID','Responsibility'],inventory)+'\n',encoding='utf-8')
+main_path=OUT/'supplier-nonconformances-technical-specification.md'
+main_text=main_path.read_text(encoding='utf-8')
+first_object=sections.index('## 1.1 Abstract Corrective Action')
+embedded='\n'.join(sections[first_object:])
+embedded=re.sub(r'^## 1\.(\d+) ',r'### 5.\1 ',embedded,flags=re.M)
+begin='<!-- BEGIN GENERATED FULL FIELD CONTRACT -->'
+end='<!-- END GENERATED FULL FIELD CONTRACT -->'
+conventions=('The following tables are the canonical full field list. Each object has its own numbered subsection; inherited fields are defined once on the declaring object. '
+             'Req uses Y, N or Conditional; action-time conditions permit the documented draft behavior. '
+             'Extracted identifiers and source pointers are preserved, while supplier-specific changes are labelled Proposed. '
+             'Dependency objects with no exported declarations and referenced external authorities are identified explicitly rather than assigned invented fields.\n\n')
+block=begin+'\n\n'+conventions+embedded.rstrip()+'\n\n'+end+'\n\n'
+if begin in main_text:
+    main_text=re.sub(re.escape(begin)+r'.*?'+re.escape(end)+r'\s*',lambda _:block,main_text,count=1,flags=re.S)
+else:
+    anchor='## 6. Record creation, security and data behavior'
+    if anchor not in main_text:
+        raise ValueError('Full field contract insertion anchor is missing')
+    main_text=main_text.replace(anchor,block+anchor,1)
+main_path.write_text(main_text,encoding='utf-8')
+(OUT/'supplier-nonconformances-field-contract.md').write_text(
+    '# Supplier Nonconformances — field-list location\n\n'
+    'The complete field-level implementation contract is now embedded in '
+    '[section 5 of the Technical Specification](supplier-nonconformances-technical-specification.md#5-inherited-fields-and-supplier-specific-overrides).\n\n'
+    'That section is the single authoritative field list, including all 79 object/dependency subsections and 290 individual field/grid rows. '
+    'This page preserves existing links and contains no separate field definitions.\n',encoding='utf-8')
+(OUT/'supplier-nonconformances-object-inventory.md').write_text('# Supplier Nonconformances — target object inventory\n\n'+table(['Object','Internal / diagram identifier','Inheritance parent','Declared rows','Classification','Stable metadata ID','System / custom status','Abstract?','Source / authority','Responsibility'],inventory)+'\n',encoding='utf-8')
 
 # Full baseline remains visible in the target diagram; add target dependencies and references.
 diagram=(BASE/'ootb-supplier-ncr-baseline-model/baseline-logical-model.mmd').read_text(encoding='utf-8').splitlines()
@@ -317,6 +457,32 @@ for n,o in model.items():
         m=re.match(r'M:1 to (.+?);',r[1])
         if m and m.group(1) in catalogues and 'inverse disabled' not in r[1]:
             report['proposed_catalogue_inverse_violations'].append((n,r[0]))
+report['review_date']=REVIEW_DATE
+report['canonical_field_contract']='supplier-nonconformances-technical-specification.md#5-inherited-fields-and-supplier-specific-overrides'
+report['embedded_object_sections']=len(re.findall(r'^### 5\.\d+ ',main_text,re.M))
+report['embedded_contract_markers']=main_text.count(begin)==1 and main_text.count(end)==1
+report['package_sha256']=hashlib.sha256(PACKAGE.read_bytes()).hexdigest()
+report['missing_diagram_objects']=sorted(o['internal'] for o in model.values() if o['internal'] not in defined)
+report['unregistered_diagram_objects']=sorted(defined-{o['internal'] for o in model.values()})
+report['inheritance_cycles']=[]
+for name in model:
+    seen=[]; current=name
+    while current in model:
+        if current in seen:
+            report['inheritance_cycles'].append(seen[seen.index(current):]+[current]);break
+        seen.append(current);current=model[current]['parent']
+report['invalid_inverse_grids']=[]
+for name,o in model.items():
+    for r in o['fields']:
+        m=re.fullmatch(r'Inverse 1:M grid from (.+)\.([^.]+)',r[1])
+        if not m: continue
+        source,field=m.groups()
+        matches=[f for f in model.get(source,{}).get('fields',[]) if f[0]==field and f[1].startswith('M:1 to '+name+';')]
+        if len(matches)!=1: report['invalid_inverse_grids'].append([name,r[0],source,field])
+report['inverse_grid_count']=sum(r[1].startswith('Inverse 1:M grid') for o in model.values() for r in o['fields'])
+report['baseline_field_mapping_failures']=[f['stable_metadata_id'] for f in fields if sum(f['stable_metadata_id'] in r[5] for r in model[f['owner_display_name']]['fields'])!=1]
+report['implementation_contract_complete']=False
+report['semantic_limitations']=['Ten baseline reverse relationship targets lack source-side field metadata; cardinality remains unresolved.', 'Business configuration G-01 through G-10 and tenant checks G-11/G-12 remain unresolved where explicitly identified in rows.', 'Structural coverage is not proof of resolved conditional business matrices, formulas, permissions or runtime behavior.']
 (OUT/'supplier-nonconformances-validation.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
 
 relevance={
@@ -373,9 +539,14 @@ relevance={
   103:('Interface','Proposed Meetings work uses Supplier Tasks; domain-specific NCR responses/checks remain separate','9; G-08','Partially satisfied'),
   115:('Interface','Aggregate scorecard permission does not grant NCR source drill-through','6.4; 9','Satisfied'),
   117:('Core','Reporter supplier intake, SIA triage and distinct responsible-manufacturer PIR','4; 5; 9; G-08','Partially satisfied'),
+  6:('Interface','SRM owns proposed role maintenance and confirmation; NCR consumes current eligible members rather than creating contact-review tasks','6.2; G-07','Partially satisfied'),
+  74:('Interface','Governed NCR evidence and generated files remain in native storage; capacity, retention and protected historical versions are assessed before rollout','9; G-10; G-11','Partially satisfied'),
+  86:('Boundary','Published scorecard results and corrections remain scorecard-owned; poor scores alone never generate NCRs','9','Satisfied'),
+  113:('Interface','Preserve known facility/depot attribution; proposed annual company rollups do not duplicate NCR quantities','9; G-09','Partially satisfied'),
+  116:('Interface','Scorecard/profile navigation may link source reports only after NCR security recheck; no scorecard native-mobile requirement imposed on NCR','9','Satisfied'),
 }
 import os
-trace=[];excluded=[]
+trace=[];excluded=[];source_manifest=[]
 for p in sorted((ROOT/'docs').rglob('ADR-*.md')):
     m=re.match(r'ADR-(\d+)-',p.name)
     if not m: continue
@@ -384,6 +555,7 @@ for p in sorted((ROOT/'docs').rglob('ADR-*.md')):
     title=re.search(r'^# (ADR-.*)',content,re.M)
     link=os.path.relpath(p,OUT).replace(os.sep,'/')
     label=f'[{title.group(1) if title else p.stem}](<{link}>)'
+    source_manifest.append({'adr':f'ADR-{ident:03}', 'path':str(p.relative_to(ROOT)).replace(os.sep,'/'), 'status':status.group(1).strip() if status else 'Unresolved', 'sha256':hashlib.sha256(p.read_bytes()).hexdigest(), 'applicability':relevance[ident][0] if ident in relevance else 'Screened out'})
     if ident in relevance:
         scope,response,section,result=relevance[ident]
         trace.append([f'SN-{ident:03}',label,status.group(1).strip() if status else 'Unresolved',scope,response,section,result])
@@ -396,4 +568,9 @@ trace_doc=['# Supplier Nonconformances — ADR applicability and traceability','
            'Repository coverage index: these ADRs were excluded from the supplier NCR requirements register after scope screening. Their specialist workflows, calculations or application implementation details are not imported into this component.', '',
            table(['Source ADR','Source status','Scope disposition'],excluded),'']
 (OUT/'supplier-nonconformances-adr-traceability.md').write_text('\n'.join(trace_doc),encoding='utf-8')
+(OUT/'supplier-nonconformances-source-manifest.json').write_text(json.dumps({'review_date':REVIEW_DATE,'package_sha256':report['package_sha256'],'adrs':source_manifest},indent=2)+'\n',encoding='utf-8')
+report['adr_files_screened']=len(source_manifest)
+report['adr_requirement_rows']=len(trace)
+report['adr_screened_out_rows']=len(excluded)
+(OUT/'supplier-nonconformances-validation.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
 print(json.dumps(report,indent=2))

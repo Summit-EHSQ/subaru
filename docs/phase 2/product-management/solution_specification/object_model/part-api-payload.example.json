@@ -1,0 +1,52 @@
+{
+  "partName": "TRIM PNL ASSY SETDR ",
+  "partNumber": "94203SL38A",
+  "futurePartName": null,
+  "lsPartNumber": null,
+  "lePartNumber": null,
+  "unitCost": null,
+  "drawingNumber": "94203SL00A",
+  "id": "4398708a-17de-4edf-9645-b4ca0085337d",
+  "partClassification": null,
+  "program": null,
+  "programs": [
+    {
+      "id": "e383a96a-4b62-41d1-8c70-af250144eb20",
+      "name": "DA9",
+      "status": true
+    }
+  ],
+  "status": true,
+  "name": "94203SL38A (TRIM PNL ASSY SETDR )",
+  "Flag": {
+    "id": "2",
+    "name": "[ISOQuest].[PartNumber].Flag.Buy",
+    "status": true
+  },
+  "customers": [],
+  "suppliers": [
+    {
+      "id": "d61a1d08-3295-4f7b-8b98-b01300df14bd",
+      "name": "Heartland Automotive, LLC",
+      "status": true
+    }
+  ],
+  "revLevels": ["P2460-0.0"],
+  "partNumberRevLevels": [
+    {
+      "id": "f2a19293-7d51-48c8-8e9e-b4ca0085337d",
+      "name": "P2460-0.0",
+      "status": true
+    }
+  ],
+  "tags": ["942C"],
+  "measures": [],
+  "notes": null,
+  "productFamily": {
+    "id": "0cd34a52-452e-4a2a-81fd-b0130113de3b",
+    "name": "94203SL00A",
+    "status": true
+  },
+  "includeAllFacilities": false,
+  "facilities": []
+}

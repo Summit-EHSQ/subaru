@@ -140,6 +140,8 @@ class SPANF
 class Shared_Visibility_Classification
 class Supplier_Management_Role
 class Supplier_Specific_Role
+class Group
+EventFwk_EventObject "0..*" --> "0..1" EventFwk_EventObject : Parent_Event
 SupplierMgmt_SupNonconformObject "0..*" --> "0..1" Supplier_Problem_Profile : Problem_Profile
 SupplierMgmt_SupNonconformObject "0..*" --> "0..1" Supplier_Impact_Level : Impact_Level
 SupplierMgmt_SupNonconformObject "0..*" --> "0..1" Supplier_Defect_Classification : Defect_Classification
@@ -166,6 +168,7 @@ SupplierMgmt_SupNonconformObject "0..*" --> "0..1" SupplierMgmt_SupplierContactO
 Supplier_Issue_Subtype "0..*" --> "1" Supplier_Issue_Type : Issue_Type
 Supplier_NCR_Process_Configuration "0..*" --> "1" Supplier_Issue_Type : Issue_Type
 Supplier_NCR_Process_Configuration "0..*" --> "0..1" Supplier_Issue_Subtype : Issue_Subtype
+Supplier_NCR_Process_Configuration "0..*" --> "0..1" SysSubjectEntity : Holding_Subject
 Supplier_NCR_Process_Configuration "0..*" --> "0..1" Supplier_Management_Role : Internal_Owner_Role
 Supplier_NCR_Process_Configuration "0..*" --> "0..1" Supplier_Management_Role : Supplier_Quality_Role
 Supplier_NCR_Process_Configuration "0..*" --> "0..1" Supplier_Management_Role : Supplier_Warranty_Role
@@ -187,7 +190,7 @@ Supplier_Response <|-- Containment_Response : inherits
 Supplier_Response <|-- Root_Cause_Response : inherits
 Supplier_Response <|-- Corrective_Action_Response : inherits
 Supplier_Response <|-- Warranty_Response : inherits
-Warranty_Response "0..*" --> "1" Warranty_Response_Outcome : Outcome
+Warranty_Response "0..*" --> "0..1" Warranty_Response_Outcome : Outcome
 Supplier_Cause_Method "0..*" --> "1" Root_Cause_Response : Response
 Supplier_Cause_Entry "0..*" --> "1" Supplier_Cause_Method : Method
 Supplier_NCR_Disposition "0..*" --> "1" SupplierMgmt_SupNonconformObject : NCR
@@ -198,7 +201,11 @@ Supplier_NCR_RMA "0..*" --> "0..1" Supplier_NCR_Disposition : Disposition
 Supplier_NCR_RMA "0..*" --> "1" Supplier_Specific_Role : Supplier_Owner
 Certified_Shipment "0..*" --> "1" SupplierMgmt_SupNonconformObject : NCR
 Supplier_NCR_Follow_up "0..*" --> "1" SupplierMgmt_SupNonconformObject : NCR
+Supplier_NCR_Follow_up "0..*" --> "0..1" Supplier_NCR_Follow_up : Replaces_Check
 Supplier_NCR_Follow_up "0..*" --> "1" Supplier_Specific_Role : Owner
 Supplier_NCR_Follow_up "0..*" --> "0..1" Follow_up_Result : Result
 Supplier_NCR_Output "0..*" --> "1" SupplierMgmt_SupNonconformObject : NCR
 Supplier_NCR_Output "0..*" --> "1" SysEmployeeEntity : Generated_By
+Group <|-- Supplier_Management_Role : inherits
+Group <|-- Supplier_Specific_Role : inherits
+SysSubjectEntity <|-- Group : inherits

@@ -1,0 +1,4 @@
+﻿Code,Name,Active?,Sort
+NO_DEFAULT,No Default,TRUE,10
+STATIC_DEFAULT,Static Default,TRUE,20
+PRIOR_PERIOD,Prior Period,TRUE,30
