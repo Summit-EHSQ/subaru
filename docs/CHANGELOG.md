@@ -1,5 +1,35 @@
 # ADR Revision Change Log
 
+## Supplier Integration Reconciliation — 2026-11-13
+
+### Source
+
+- Supplier integration and go-live testing call held November 12, 2026, at 1:00 AM ET, confirmed by the user. The unchanged transcript and metadata clarification are retained under Phase 2 / Product Management / raw_artifacts / meeting_transcripts.
+
+### Updated Existing ADRs
+
+- **ADR-062:** Revised the existing proposed decision in place to reuse upstream BOMEX/PartsMaster consolidation, initially create one Intelex part from BOMEX, and enrich the same part later from PartsMaster. Separate source children are no longer mandatory merely to repeat consolidation. Preserved the original draft date, engineering context, controlled depot exceptions, service-part questions, and supplier relationships. Classification and destination/consignee field contracts remain unresolved.
+
+### New ADRs
+
+- **ADR-118:** Added a proposed flat REST-fed parts-consumption dataset for governed scorecard queries. Retained ADR-058's monthly reporting semantics, manual-first sequencing, and published snapshot controls; the payload, entity matching, delivery cadence, and replay/correction behavior remain open.
+
+### Retained Decisions and Open Scope
+
+- ADR-030 already accommodates dependent parent/child calls and a final batch-versus-individual-call choice; no new batching ADR was required.
+- No inspection confidentiality control was removed, and no accepted security ADR was changed. Resolve overlap with visibility classification through testing before revising security decisions.
+- The isolated Product Management API Data specification remains unchanged. Its operational linkage requires a separately agreed mapping or scope decision; the later call does not explicitly alter that component's build boundary.
+- Both affected ADRs remain **proposed**. No accepted ADR was superseded, deprecated, or materially rewritten.
+- Updated the ADR catalogue, navigation, and application indexes. The earlier reconciliation plan and draft bodies remain historical review artifacts; the Phase 2 ADR files are the maintained records.
+
+### Status
+
+- **Total ADRs:** 116
+- **Accepted:** 90
+- **Proposed:** 22
+- **Rejected:** 1
+- **Superseded:** 3
+
 ## Supplier NCR Coverage and Adjacent Workflow Revision
 
 ### Superseded or Removed ADRs

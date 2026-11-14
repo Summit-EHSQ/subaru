@@ -63,7 +63,7 @@
 | ADR-059 | Use Supplier Surveys for Recurring Warranty Analysis Reporting | Supplier Relationship Management | Supplier Surveys, Supplier Portal, Warranty Claims, Supplier Scorecard | Proposes recurring Warranty Analysis surveys over supplier-secured claim data, with direct data access, evidence collection, scorecard outputs, and automatic no-claim closure. |
 | ADR-060 | Provision Employee Records Through a Resilient SuccessFactors SFTP Feed | Employee Management | SAP SuccessFactors, Intelex Platform | Uses a Subaru-hosted SFTP feed of current SuccessFactors employee states, with a rolling change window, to provision and update Intelex employees and users. |
 | ADR-061 | Use Entra ID SSO for Internal Users and a Separate Local-Authentication Supplier Portal | Intelex Platform | Supplier Portal, Employee Management, Training Management, Document Control | Uses Microsoft Entra ID SAML SSO for employees and SIA-identified contractors while retaining a separate local-authentication supplier portal. |
-| ADR-062 | Create a Composite Part Master from BOMEX and PartsMaster Data | Product Management | BOMEX / ECS, PartsMaster, Supplier Relationship Management, Production Part Approval Process (PPAP), Shipping, Receiving and Inspection (Pilot Part Data), Non-Conformance Management, Warranty Corrective Action Report (WCAR) | Composes one canonical Intelex part from separately retained engineering and logistics source records using governed field precedence and depot exceptions. |
+| ADR-062 | Create a Composite Part Master from BOMEX and PartsMaster Data | Product Management | BOMEX / ECS, PartsMaster, SIA integration layer, Supplier Relationship Management, Production Part Approval Process (PPAP), Shipping, Receiving and Inspection (Pilot Part Data), Non-Conformance Management, Warranty Corrective Action Report (WCAR) | Reuses upstream BOMEX/PartsMaster consolidation to create and enrich one canonical Intelex part while retaining governed field authority, engineering context, and depot exceptions. |
 | ADR-063 | Provide Suppliers Current-Period Scrap Visibility While Keeping Financial Debit Processing External | Supplier Relationship Management | Supplier Portal, Scrap Data, Supplier Scorecard | Loads current scrap data into the supplier portal for early visibility while leaving procurement debit memos and financial settlement in the existing process. |
 | ADR-064 | Integrate OHM Medical Data into Incident Management While Preserving Initiation Flexibility | Incident Management | OHM, Employee Management | Proposes retaining OHM as the medical-data source and feeding injury information into Incident Management whether the initial digital AIR begins in OHM or Intelex. |
 | ADR-065 | Expose PPAP and Tooling Milestones for Future SAP Payment Automation | Tooling Database | Production Part Approval Process (PPAP), SAP | Proposes an outbound event interface from Intelex milestones to SAP so tooling payments can be released in controlled percentages. |
@@ -117,32 +117,30 @@
 | ADR-115 | Separate Aggregate Scorecard Access from Source-Record Security and Restrict Administration | Supplier Scorecard | Supplier Relationship Management, Production Part Approval Process (PPAP), Non-Conformance Management, Supplier Portal | Allows complete aggregate scorecard visibility within supplier scope while restricting configuration and overrides to scorecard or system administrators. |
 | ADR-116 | Use Responsive Browser Scorecard Views and Supplier-Profile Drilldown | Supplier Scorecard | Supplier Relationship Management, Supplier Portal, Reporting | Uses responsive connected browser views, supplier-profile history navigation, and governed source reports for optional advanced analytics. |
 | ADR-117 | Process Supplier-Reported SAP-Part Problems as Linked NCR Intake Records | Non-Conformance Management | Supplier Relationship Management, Supplier Portal | Uses a supplier-visible NCR intake type for SAP-part problems, internal triage, and linked downstream PIR creation against the responsible manufacturer while remaining distinct from SPANF. |
+| ADR-118 | Receive Parts Consumption Through a Flat REST-Fed Dataset | Supplier Scorecard | Parts Consumption, Supplier Relationship Management, SIA integration layer, Intelex REST API | Proposes a flat REST-fed consumption dataset for governed scorecard queries while preserving monthly reporting semantics and published snapshots. |
 
 ## Latest Revision Summary
 
-- **Existing ADRs refined in the latest revision:** ADR-046, ADR-053, ADR-059, ADR-071, ADR-093, ADR-095, and ADR-103.
-- **New ADRs created in the latest revision:** ADR-117.
+- **Existing ADRs refined in the latest revision:** ADR-062, based on the November 12, 2026 integration call.
+- **New ADRs created in the latest revision:** ADR-118.
 - **Superseded ADRs:** ADR-001 is superseded by ADR-083; ADR-042 is superseded by ADR-098; ADR-055 is superseded by ADR-087.
 - **Status changes:** None in this revision.
-- **Total ADRs:** 115.
-- **Current status distribution:** 90 accepted, 21 proposed, 1 rejected, and 3 superseded ADRs.
+- **Total ADRs:** 116.
+- **Current status distribution:** 90 accepted, 22 proposed, 1 rejected, and 3 superseded ADRs.
 
 ### Material Refinements to Existing ADRs
 
-- Supplier NCR now uses type and subtype configuration to activate stages, roles, timing, fields, guidance, notifications, validation, and supplier visibility after a minimal common intake.
-- WCAR adds conditional instructions and fields, Parts Collection Center notification, and tracking-number-controlled release to the supplier.
-- Warranty Analysis is proposed as a recurring Supplier Survey rather than a dedicated application or an NCR type.
-- SPANF remains the broader advance-notification process and excludes the supplier-reported SAP-part quality intake.
-- Supplier visits use supplier-linked meetings with related NCR agenda items and centralized Supplier Task follow-up.
-- RMA remains a child workflow separate from disposition, with third-party sort instructions modeled distinctly.
+- ADR-062 places BOMEX/PartsMaster consolidation in SIA's existing upstream integration layer and retains one canonical operational part in Intelex.
+- Production attribute types, source authority, and operational mapping beyond the isolated API Data component remain unresolved. Governed depot exceptions and engineering context are retained.
+- Earlier supplier NCR and adjacent workflow refinements remain recorded in the change log.
 
 ### New Architectural Areas
 
-- Supplier-reported SAP-part problems as supplier-visible NCR intake records with internal triage and linked downstream PIR creation against the responsible manufacturer.
+- ADR-118 defines the proposed consumption REST intake boundary alongside ADR-058's existing scorecard calculation and snapshot policy. Payload, matching, cadence, and correction details require confirmation.
 
 ## Source and Status Notes
 
-- The meeting dates were not included in the transcripts. The YAML `date` is the ADR drafting date; `decision-date` remains explicitly unavailable.
+- The YAML `date` records the ADR drafting date. Historical transcripts without meeting dates retain their unavailable `decision-date` values. The user confirmed the integration call as November 12, 2026, at 1:00 AM ET; ADR-118 records that discussion date without implying formal approval.
 - **Accepted** indicates that the discussion established and affirmed a clear architectural direction, even when configuration details remain open.
 - **Proposed** indicates that the direction was supported but important sequencing, scope, ownership, integration feasibility, or stakeholder confirmation remains incomplete.
 - Names appear only in YAML governance metadata. ADR body text uses roles and organizations rather than attributing decisions to individuals.

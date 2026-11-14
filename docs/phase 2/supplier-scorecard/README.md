@@ -8,4 +8,5 @@
 - [ADR-114: Snapshot Commodity and Calculate Period Rankings on Demand](ADR-114-snapshot-commodity-and-calculate-period-rankings-on-demand.md)
 - [ADR-115: Separate Aggregate Scorecard Access from Source-Record Security and Restrict Administration](ADR-115-separate-aggregate-scorecard-access-from-source-record-security-and-restrict-administration.md)
 - [ADR-116: Use Responsive Browser Scorecard Views and Supplier-Profile Drilldown](ADR-116-use-responsive-browser-scorecard-views-and-supplier-profile-drilldown.md)
+- [ADR-118: Receive Parts Consumption Through a Flat REST-Fed Dataset](ADR-118-receive-parts-consumption-through-a-flat-rest-fed-dataset.md)
 
