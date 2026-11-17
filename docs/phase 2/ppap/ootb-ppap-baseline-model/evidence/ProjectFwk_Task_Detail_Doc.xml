@@ -1,0 +1,19 @@
+<ix:DetailPage WorkFlowStatusIsVisible="False"><ix:DetailPageMenuBar EnableWorkflowMenu="False" ID="DetailPageMenuBar" runat="server"><ix:EditActionLink Override="true" Visible="false"/><ix:AddEntryActionLink Override="true" Visible="false"/><ix:SaveActionLink Override="true" Visible="false"/><ix:SaveExitActionLink Override="true" Visible="false"/><ix:CloneActionLink Override="true" Visible="false"/><ix:DeleteActionLink Override="true" Visible="false"/><ix:SaveAddNewActionLink Override="true" Visible="false"/><ix:SecurityActionLink Override="true" Visible="false"/></ix:DetailPageMenuBar><ix:TabsSection Title="Private Document Attachment" ShowHeader="true" Icon="Icons/new/48x48/folder_up.gif" meta:resourcekey="TabsSection0" ResourceKey="TabsSection0"><ix:Tab Caption="Upload" meta:resourcekey="Tab0" ResourceKey="Tab0"><ix:AttachmentSection CssClass="HideBorders" ID="AttachmentFragmentGridSection" Title="Upload images" UseCookies="false" isCollapsed="false" meta:resourcekey="AttachmentSection0" ResourceKey="AttachmentSection0"/></ix:Tab><ix:Tab Caption="Image Preview" DisplayMode="View,Edit" meta:resourcekey="Tab1" ResourceKey="Tab1"><ix:GridPanel Entity="DocDocumentAttachmentsEntity" isCollapsed="false" UseCookies="false" ShowColumnCaptions="false" AllowPaging="false" AllowFiltering="false" AllowSorting="false" RowSelectionMode="None" Readonly="True" DisplayMode="View,Edit" DisplayEditColumn="false" CssClass="HideBorders"><Filters><ix:Filter><ix:CommonPredicate For="ObjectRecordId" Type="Equal"><ix:Value Parse="True"><%= Model.Id %></ix:Value></ix:CommonPredicate></ix:Filter><ix:Filter PredicateOperator="or"><ix:LikePredicate For="AttachmentName" Type="EndsWith"><ix:Value>.png</ix:Value></ix:LikePredicate><ix:LikePredicate For="AttachmentName" Type="EndsWith"><ix:Value>.jpg</ix:Value></ix:LikePredicate><ix:LikePredicate For="AttachmentName" Type="EndsWith"><ix:Value>.gif</ix:Value></ix:LikePredicate></ix:Filter></Filters><aliases><ix:Alias For="Id"/><ix:Alias For="AttachmentName"/></aliases><columns><ix:TemplateColumn><template><div class="imagepreview" title="<%# Container.ViewData.Eval("AttachmentName") %>" style="background-image:url('<%= HttpEnvironment.SystemApplicationPath %>/intelexforms/attachmentsection/downloadfile?recordid=<%# Container.ViewData.Eval("Id") %>')"/></template></ix:TemplateColumn></columns></ix:GridPanel></ix:Tab></ix:TabsSection></ix:DetailPage><style>.HideBorders > .header {
+    display: none;
+}
+
+.HideBorders > .footer {
+    display: none;
+}
+
+.HideBorders > .content {
+    border: medium none;
+    padding: 0;
+}
+
+.imagepreview {
+background-repeat:no-repeat;
+max-width:500px;
+min-height:300px;
+background-size:contain;
+}</style>

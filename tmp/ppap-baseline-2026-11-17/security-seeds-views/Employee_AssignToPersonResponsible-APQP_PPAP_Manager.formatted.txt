@@ -1,0 +1,17 @@
+<ix:InventoryPage>
+<ix:Inventory ID="SysEmployeeEntityInventory">
+<ix:InventoryView ID="SysEmployeeEntityInventoryView">
+<Menu>
+<ix:GridCreateActionLink runat="server" Visible="false" Override="true"/>
+<ix:GridArchiveActionLink runat="server" Visible="false" Override="true"/>
+<ix:GridDataImportActionLink runat="server" Visible="false" Override="true"/>
+</Menu>
+<Columns>
+<ix:Column DisplayAs="string" For="Number"/>
+<ix:Column DisplayAs="string" For="Location"/>
+<ix:Column DisplayAs="string" For="FullName"/>
+<ix:Column DisplayAs="string" For="Position"/>
+</Columns>
+</ix:InventoryView>
+</ix:Inventory>
+</ix:InventoryPage>

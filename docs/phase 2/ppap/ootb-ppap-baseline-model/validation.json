@@ -1,0 +1,55 @@
+{
+  "mode": "Static package baseline, no import or runtime execution",
+  "objects": 92,
+  "field_subsections": 92,
+  "exported_fields": 508,
+  "owner_type_resolved_fields": 403,
+  "canonical_field_rows": 403,
+  "detached_fields": 105,
+  "relationship_field_rows": 181,
+  "canonical_relationships": 101,
+  "native_association_maps": 12,
+  "inheritance_edges": 34,
+  "inheritance_cycles": 0,
+  "missing_inheritance_metadata": [
+    {
+      "kind": "Missing inheritance metadata",
+      "object": "DocDocumentEntity"
+    },
+    {
+      "kind": "Missing inheritance metadata",
+      "object": "ProgramFmk_ReqAbsObject"
+    },
+    {
+      "kind": "Missing inheritance metadata",
+      "object": "RiskFmk_HazardsObject"
+    }
+  ],
+  "metadata_property_variations": 14,
+  "seed_objects": 36,
+  "seed_records": 489,
+  "expression_records": 158,
+  "unresolved_population_paths": 0,
+  "unknown_requiredness_rows": 0,
+  "duplicate_field_contract_ids": [],
+  "duplicate_object_internal_names": [],
+  "orphaned_graph_endpoints": 0,
+  "independent_review": "Independent object/field-owner/type and cardinality comparison matched; see independent-schema-validation.json",
+  "runtime_limits": [
+    "Import policy enums and overlay outcome not tested",
+    "Workflow/Action Handler trigger enum mapping, transaction ordering and rollback not executed",
+    "Effective user security and field editability not tested",
+    "Merge template PSW_Intelex.docx absent",
+    "Formula dependencies can traverse external objects not fully exported"
+  ],
+  "inherited_field_name_collisions": [
+    {
+      "object": "APQP_PPAPAbstractObject",
+      "field": "Id",
+      "field_id": "abb52bc8-9c94-4ebe-8a03-a7f648cb9b4b",
+      "inheritance_base": "ProjectFwk_ProjectAbstractObject",
+      "base_field_id": "d0e823b0-c3ac-438e-a476-6fc4e4c72bd4",
+      "classification": "Extracted name collision; runtime shadow/identity binding unresolved"
+    }
+  ]
+}

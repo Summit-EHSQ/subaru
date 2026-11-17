@@ -1,0 +1,759 @@
+{
+  "counts": {
+    "objects": 92,
+    "fields": 508,
+    "relationships": 181,
+    "inheritance_edges": 34,
+    "metadata_variations": 14
+  },
+  "unresolved": [
+    {
+      "kind": "Missing inheritance metadata",
+      "object": "DocDocumentEntity"
+    },
+    {
+      "kind": "Missing inheritance metadata",
+      "object": "ProgramFmk_ReqAbsObject"
+    },
+    {
+      "kind": "Missing inheritance metadata",
+      "object": "RiskFmk_HazardsObject"
+    },
+    {
+      "kind": "Field owner",
+      "field": "46bbda27-ca85-44b3-8721-021cc7568704",
+      "name": "CancelAppHelp",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "af0bb2a4-1876-4f22-bac3-89df455dc93e",
+      "name": "BusinessImpact",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "4fed8eb0-0364-4302-8053-f98beca0c1f7",
+      "name": "Severity",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "6abefd53-c4e2-46fb-9f32-b94a69954fd1",
+      "name": "Street",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "10195428-23ae-450b-a137-acddef744465",
+      "name": "Approvers",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "b30b0734-80ec-4ca8-a98b-2babc9c94c0d",
+      "name": "CorrectiveHelpe",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "6fa434eb-2260-492e-b42f-a81bc9cbdb1a",
+      "name": "Notes",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "a14bc287-958e-420a-ab49-bc3bbb5208c0",
+      "name": "CurrentAttempt",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "08cac1c6-e54d-4c66-85fa-9ffc35e69096",
+      "name": "PreventiveHelpe",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "9b47a3bc-04fc-4594-bb3f-358d204e0674",
+      "name": "ItemTypes",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "0066ce58-c932-4ff3-a1c0-739ae7e167cc",
+      "name": "PhoneNo",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "754c1558-6253-44f6-b676-64c4c19000ad",
+      "name": "Relations",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "6515ea34-f493-4144-9ad1-6c4e2a5b1ab3",
+      "name": "LastEvaluation",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "3b4f5d2a-85a1-45c1-ba40-f58bdab48f74",
+      "name": "SuppItemRevs",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "068c78ba-10fb-4c49-90f8-72d45d241e6c",
+      "name": "RollUpPrice",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "571d47a6-b4cb-459e-a0a8-f7635b03c751",
+      "name": "PartOf",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "4f3aaa62-86a3-43cd-b6cb-b42fd8b7f7f6",
+      "name": "SCARs",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "163088d1-c73e-40ac-a25b-36e28f324cbe",
+      "name": "Owner",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "8d7aa509-481e-4f28-8a9c-5f5389126a66",
+      "name": "Items",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "ef3422a1-41d5-4498-a696-7e814af68f45",
+      "name": "Approvals",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "49f2440a-511d-46fc-9385-6ed93ea3fd2c",
+      "name": "RootCauseAnaly",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "5277f66f-d621-49e0-b14d-b2733d8cc83c",
+      "name": "WFHelper",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "9f2dd0b2-84e0-4c5a-af0a-b3c442769499",
+      "name": "RelatedEvents",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "3e00721b-787a-4830-b914-bf1fe42fd0df",
+      "name": "FaxNo",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "10af5b6d-681f-4160-bfac-15c701f1784e",
+      "name": "SupplierID",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "6ed60c59-4fe6-4157-b683-b5957ab172d9",
+      "name": "PostalCode",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "6b5ba9c8-4a6a-43a6-9a67-601613bfa137",
+      "name": "Address",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "57253aab-c575-4298-a3ea-f6f392e12f8e",
+      "name": "RecordNo",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "26f17bd5-ecf0-4a67-8ada-0afb4f99fba5",
+      "name": "Geography",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "69e22ce6-8f22-4afa-89c9-3cc0aaa5e1c7",
+      "name": "ReleasedOn",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "ee570b51-f3c3-46ef-b901-8cc22a2503e7",
+      "name": "AttributeValues",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "588b3a43-be93-4d54-a1c6-fa705124886f",
+      "name": "UnitofMeasure",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "276f5dc2-905e-4416-ac46-e22e51ddcdc1",
+      "name": "Assignee",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "f45f4432-5ab0-44be-9de9-6a8a66696248",
+      "name": "ContainmentHelp",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "44dc1d5b-fb2d-4018-97e3-256485e740b1",
+      "name": "TotalPrice",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "6eb6a096-a6f7-4cd1-bbe4-9b66eb7b1879",
+      "name": "HelperIsActive",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "166c4dd6-e35f-450d-b1c6-83b5ba22d1f4",
+      "name": "SupCategory",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "0ae13c31-0a62-42b6-a682-f23d1607ca68",
+      "name": "Cost",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "774209fd-39d4-483f-9486-51b05905d8c7",
+      "name": "ImplemenDueDate",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "7c237fef-4bbb-4e46-8ac3-728478e1946c",
+      "name": "CreateSRHelper",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "a820c3c8-298b-4938-b405-d8af187e339d",
+      "name": "Name",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "312b6735-d786-4649-b90a-8ecb33b74aed",
+      "name": "RecordNo",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "eb71d959-6040-4e04-8d45-0354231912d3",
+      "name": "RevisionType",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "89ba9b36-f4b2-4372-80b5-702115ea7f00",
+      "name": "ProvinceState",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "1e0d8863-90af-4aed-9600-ae886c5ccaa9",
+      "name": "Criticality",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "13b73117-8f6b-43f2-ad74-9c636bf49f86",
+      "name": "DateClosed",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "d63b0bcc-b27a-453d-904a-49f74f67d213",
+      "name": "Description",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "b9d58985-2f6e-4a8f-84c1-4429dce219b2",
+      "name": "Price",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "7d59b437-d53f-4ebd-b602-c050291c3798",
+      "name": "SupContacts",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "6287ed0e-ec49-4eaa-a671-2b092c980fc9",
+      "name": "LastScoreDate",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "bae40c10-bdb9-419e-abf7-2eb50b872c98",
+      "name": "DateClosed",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "40497c10-c322-460c-9bc3-79666fb3877a",
+      "name": "VerifiedEff",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "1e8291b8-ab53-4d1a-a643-c31fca14f1a1",
+      "name": "HelpRevTypeReac",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "65f4466d-94f4-4864-8434-b57ad77b88c7",
+      "name": "Nonconformances",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "c4e07a94-d6c2-419e-b1f4-e3679c1142ec",
+      "name": "ItemSource",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "3c216669-cb9e-48d0-9546-948264a04583",
+      "name": "DateCreate",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "a383b681-69d8-4da6-93ce-0d5b13d23bca",
+      "name": "NewRevHelper",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "0552ca6c-80d5-4f2d-93b2-f12f037773ef",
+      "name": "PublicProfiles",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "4206d2aa-28e5-454b-beb7-abaeac513f4e",
+      "name": "Score",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "a3b80e5d-9ce3-44e7-8d1b-1cca5ede58b0",
+      "name": "Occurrence",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "fca1fe27-1b69-4645-bdc2-0dd941e8cc72",
+      "name": "RelatedEvent",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "6a8ccedc-c9f2-48c2-9e53-92d393ddd7b0",
+      "name": "VerificationBy",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "7da06fbd-6350-48ff-9c78-b303996bcd17",
+      "name": "Documents",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "6d4cfda9-613c-4b38-8e6f-244319fd74b1",
+      "name": "HelpActPlanProg",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "f9344f07-30a9-4482-969d-75360fa6acc7",
+      "name": "RPN",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "c414f217-6f4c-4a03-ac23-263910d984b4",
+      "name": "TotalCoPQ",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "ebb67da5-36b8-4b08-aa14-649c4f05544c",
+      "name": "SamplingScheme",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "38c51f1b-be4f-44b1-84ef-e0b1574d9311",
+      "name": "Reason4Revision",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "2f90d70a-687d-4c1d-9a1d-e6d5a91e9550",
+      "name": "CurrSuppRevs",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "49ae4d7f-6204-4781-994e-71d03edc3634",
+      "name": "EffectReviewLog",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "baab61ce-d437-400e-8f15-1c257089af10",
+      "name": "CountSupItmHelp",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "2323c532-2ef7-45b4-b2e0-6599365226c1",
+      "name": "PersResponsible",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "a460a756-02d8-4f88-8e08-46adad4e7504",
+      "name": "Website",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "0d10c06d-bfcf-464c-a801-2e756c232f32",
+      "name": "SupplierType",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "b60e8985-feaf-4bb5-b601-11fda4bec80b",
+      "name": "CreateBy",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "cdfc4a4f-9ff4-4b2b-8d9b-8bcd5c52d808",
+      "name": "LessonsLearned",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "c304bbc2-9905-4610-ae43-ae6a628b3270",
+      "name": "VerificatDate",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "84520068-e0d4-4e71-9241-22d0b372dbc8",
+      "name": "VerificatNotes",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "f5aa9fbe-8063-4773-b392-1cb07796adc3",
+      "name": "CreateAppHelp",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "5f78dd5e-dd23-41ef-bec6-5e97d8efbd26",
+      "name": "MeasurementType",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "90cd2f39-fec5-4b2d-9d28-9744fdc0a09c",
+      "name": "WFDateHelper",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "f9635ea5-f934-4770-a678-b20a58ab83b1",
+      "name": "CertReqs",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "6984b2e9-41d0-48d3-9102-1d70ce277968",
+      "name": "IssuDescription",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "7a5259f2-4007-42a0-85e9-eb98045c9df1",
+      "name": "RecordNo",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "379a3283-58fb-4f32-bfb9-57d98bcb7428",
+      "name": "Detection",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "6646c36d-43fa-4c6d-8ab7-525aab36e7bc",
+      "name": "City",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "9cd06759-fb5b-42d9-8c47-e3ca3661192f",
+      "name": "Type",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "1c27780e-d455-4247-acde-789afd8f6731",
+      "name": "TeamMembers",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "04e18e6a-a0ec-43bf-bd12-57741682bb81",
+      "name": "NumDaysOpen",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "adbd6dd2-c185-4d4f-9ace-098ea9b7c621",
+      "name": "DateInitiated",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "37ee4174-358f-465d-bcdd-28399969f8ee",
+      "name": "HelpRevTypeObs",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "b8624c3f-a701-4c2a-87b7-2514b390cacf",
+      "name": "RecordType",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "cf629945-fce4-4ca1-8bec-23c7d5365c10",
+      "name": "NoOfEvaluations",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "32a22ffa-5cdf-4885-b34b-f5f135a2dc4a",
+      "name": "DocReqs",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "748d7116-54c6-4025-82bf-4f7636cc3d99",
+      "name": "IsCurrent",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "233b7c73-b4a0-44f6-8009-b703f234c5bc",
+      "name": "ActionPlan",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "782858bf-d452-41fc-ab55-905711d5bf0d",
+      "name": "ApprovAttempts",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "efe0a44e-d45f-4530-8cc3-9c3ab954890c",
+      "name": "SupplierStatus",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "ba20883f-7a72-4717-923e-a4dd1d88f7a8",
+      "name": "PMItems",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "806c27c4-0510-4f79-b990-05edc3d55be2",
+      "name": "WasCanceledHelp",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "847457b8-7fdc-4f33-876a-7640e03576f7",
+      "name": "CancelSIAppHelp",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "4e64f19b-619c-45ed-b57c-c0cd3040aae5",
+      "name": "Certificates",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "b5a4b716-0c3a-4b8e-8d9d-ba8b937daa00",
+      "name": "Settings",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "1a91d0f2-8dde-475c-bef1-df972d89caa7",
+      "name": "SupEvaluations",
+      "owners": [],
+      "types": []
+    },
+    {
+      "kind": "Field owner",
+      "field": "0747e483-ec92-47e9-83a0-2dcbf24d79fe",
+      "name": "ListItemCatego",
+      "owners": [],
+      "types": []
+    }
+  ],
+  "inheritance_cycles": []
+}

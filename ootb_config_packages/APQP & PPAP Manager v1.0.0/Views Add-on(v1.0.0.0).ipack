@@ -1,0 +1,1512 @@
+﻿{
+  "$id": "1",
+  "Id": "0ffa465f-416b-45c9-a2f4-6ea0849878c5",
+  "Name": "Views Add-on",
+  "Description": "",
+  "Version": "1.0.0.0",
+  "VersionId": "f33c6fc3-749d-4dd9-878d-e72ff39b42b2",
+  "Source": {
+    "$id": "2",
+    "Owner": "Venn Trial User",
+    "OwnerId": "496cd72f-ce23-4c77-9252-edc5d16be4b0",
+    "BuildDate": "2018-05-28T14:25:42.0352574Z",
+    "ExportDate": "2018-05-28T14:25:42.1002574Z",
+    "PlatformVersion": "6.5.74.0"
+  },
+  "Requirements": [
+    {
+      "$id": "3",
+      "$type": "Intelex.Business.PackageManagement.Export.Requirements.ApplicationTargetRequirement, Intelex.Business.PackageManagement",
+      "Caption": "Program Framework",
+      "Name": "ProgramFmk",
+      "Version": "1.1.0"
+    },
+    {
+      "$id": "4",
+      "$type": "Intelex.Business.PackageManagement.Export.Requirements.ApplicationTargetRequirement, Intelex.Business.PackageManagement",
+      "Caption": "Calendar Management",
+      "Name": "CalenManagement",
+      "Version": "1.0.0"
+    },
+    {
+      "$id": "5",
+      "$type": "Intelex.Business.PackageManagement.Export.Requirements.ApplicationTargetRequirement, Intelex.Business.PackageManagement",
+      "Caption": "Checklist Framework",
+      "Name": "CLF",
+      "Version": "1.0.0"
+    },
+    {
+      "$id": "6",
+      "$type": "Intelex.Business.PackageManagement.Export.Requirements.ApplicationTargetRequirement, Intelex.Business.PackageManagement",
+      "Caption": "Risk Framework",
+      "Name": "RiskFmk",
+      "Version": "1.0.0"
+    },
+    {
+      "$id": "7",
+      "$type": "Intelex.Business.PackageManagement.Export.Requirements.PlatformVersionTargetRequirement, Intelex.Business.PackageManagement",
+      "PlatformVersion": "1.0.0.0"
+    },
+    {
+      "$id": "8",
+      "$type": "Intelex.Business.PackageManagement.Export.Requirements.ApplicationTargetRequirement, Intelex.Business.PackageManagement",
+      "Caption": "System Objects",
+      "Name": "Setup",
+      "Version": "1.0.0"
+    }
+  ],
+  "GraphData": {
+    "$id": "9",
+    "Items": [
+      {
+        "$id": "10",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.SysConfigurableViewPackageItemData, Intelex.Business.PackageManagement",
+        "ResourceItems": null,
+        "RecordId": "aa0ec1fd-fa4a-4ef7-bddf-e27b34f579fa",
+        "ObjectName": "SysConfigurableViewEntity",
+        "FieldData": {
+          "$id": "11",
+          "Id": "aa0ec1fd-fa4a-4ef7-bddf-e27b34f579fa",
+          "Caption": null,
+          "ConfigurableViewActions": null,
+          "Content": "<ix:InventoryPage><ix:Inventory ID=\"DocCtrl_Document_Select_RelatedDocuments\"><ix:InventorySearch Placeholder=\"Type and Press Enter\" Fields=\"Title,CurrentRevision.File.Content,Code,CurrentRevision.Abstract,CurrentRevision.Keywords\"/><ix:InventoryView ID=\"DocCtrl_Document_Select_RelatedDocumentsView\" HideGroupAddButton=\"true\" DisplayEditColumn=\"false\" DisplayDefaultHierarchies=\"True\"><Hierarchies><ix:GridHierarchyTree For=\"Shortcuts.Folder\" EnableContextMenu=\"false\" ShowTitle=\"true\" EnableDragAndDrop=\"false\"/><ix:GridHierarchyTree For=\"DocCategory\" Title=\"Type\" EnableContextMenu=\"false\" ShowTitle=\"true\" EnableDragAndDrop=\"false\"/></Hierarchies><Menu><ix:GridCreateActionLink Override=\"true\" Visible=\"false\"/><ix:GridDeleteActionLink Override=\"true\" Visible=\"false\"/><ix:GridExecuteActionLink Name=\"Pin Document\" Override=\"true\" Visible=\"false\"/></Menu><Aliases><ix:Alias For=\"Language.Language\" Name=\"LanguageCode\"/></Aliases><Sorting><ix:Sort By=\"CurrentRevision.Title\" Direction=\"ascending\"/></Sorting><Filters><ix:Filter PredicateOperator=\"Or\"><ix:CommonPredicate For=\"OnGoingRevisionId\" Type=\"Equal\" Negate=\"True\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"Document:\", \"\") %></ix:Value></ix:CommonPredicate><ix:IsNullPredicate For=\"OnGoingRevisionId\"/></ix:Filter><ix:Filter><ix:CommonPredicate For=\"DocumentStatus.Code\" Type=\"Equal\"><ix:Value>Released</ix:Value></ix:CommonPredicate><ix:CommonPredicate For=\"Id\" Type=\"Equal\" Negate=\"True\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"Document:\", \"\") %></ix:Value></ix:CommonPredicate><ix:SubQueryPredicate For=\"Id\" FromEntity=\"DocCtrl_RelationObject\" Type=\"In\" EntityAlias=\"Relation\" Negate=\"true\"><ix:Property Text=\"RelatedDocument.Id\"/><ix:Filter><ix:CommonPredicate For=\"[Relation].Document.ID\" Type=\"Equal\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"Document:\", \"\") %></ix:Value></ix:CommonPredicate></ix:Filter></ix:SubQueryPredicate><ix:SubQueryPredicate For=\"Id\" FromEntity=\"DocCtrl_RelationObject\" Type=\"In\" EntityAlias=\"Relation\" Negate=\"true\"><ix:Property Text=\"RelatedDocument.Id\"/><ix:Filter><ix:CommonPredicate For=\"[Relation].Document.OnGoingRevisionID\" Type=\"Equal\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"Document:\", \"\") %></ix:Value></ix:CommonPredicate></ix:Filter></ix:SubQueryPredicate></ix:Filter><ix:Filter><ix:SubQueryPredicate EntityAlias=\"ShortCut\" For=\"Id\" FromEntity=\"DocCtrl_ShortcutObject\" Type=\"In\"><ix:Property Text=\"DocumentId\"/><ix:Filter PredicateOperator=\"Or\"><ix:SubQueryPredicate EntityAlias=\"LocationStructure\" For=\"[ShortCut].LocationId\" FromEntity=\"SysLocationTreeStructureEntity\" Type=\"In\"><ix:Property Text=\"LocationId\"/><ix:Filter><ix:CommonPredicate For=\"[LocationStructure].ParentId\" Type=\"Equal\"><ix:Value Parse=\"true\"><%= SystemContext.ActiveLocation.Id%></ix:Value></ix:CommonPredicate></ix:Filter></ix:SubQueryPredicate><ix:SubQueryPredicate EntityAlias=\"LocationStructure\" For=\"[ShortCut].LocationId\" FromEntity=\"SysLocationTreeStructureEntity\" Type=\"In\"><ix:Property Text=\"ParentId\"/><ix:Filter><ix:CommonPredicate For=\"[LocationStructure].LocationId\" Type=\"Equal\"><ix:Value Parse=\"true\"><%= SystemContext.ActiveLocation.Id%></ix:Value></ix:CommonPredicate></ix:Filter></ix:SubQueryPredicate></ix:Filter></ix:SubQueryPredicate></ix:Filter></Filters><Columns><ix:Column For=\"Code\"/><ix:Column For=\"CurrentRevision.Title\"/><ix:Column For=\"CurrentRevision.RevisionNumber\"/><ix:Column DisplayAs=\"string\" For=\"Owner\"/><ix:Column DisplayAs=\"String\" For=\"Location\"/></Columns></ix:InventoryView></ix:Inventory></ix:InventoryPage>",
+          "IsParsedForMobile": false,
+          "IsPublic": false,
+          "MasterPage": null,
+          "Name": "DocCtrl_Document_Select_RelatedDocuments",
+          "Path": "DocCtrl_Document_Select_RelatedDocuments",
+          "Type": 1
+        },
+        "LocalizationData": null,
+        "Id": "4919e96a-2746-4003-90a2-066f77c51796",
+        "Caption": "DocCtrl_Document_Select_RelatedDocuments",
+        "Type": "Configurable View",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "12",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.MetObjectPackageItemData, Intelex.Business.PackageManagement",
+        "PublishWorkflowId": null,
+        "RecordId": "3689096d-a5c4-48a1-be81-a2554c720d25",
+        "ObjectName": "MetObjectEntity",
+        "FieldData": {
+          "$id": "13",
+          "Id": "3689096d-a5c4-48a1-be81-a2554c720d25",
+          "CheckChanges": false,
+          "ConcurrencyType": 1,
+          "HasWorkflow": true,
+          "IsAbstract": false,
+          "IsAttachmentEnabled": false,
+          "IsAuditEnabled": true,
+          "IsCreationFromMyTaskEnabled": false,
+          "IsDataImportEnabled": false,
+          "IsDocumentEnabled": false,
+          "IsLocalizable": false,
+          "IsLocationBound": true,
+          "IsMailMergeEnabled": false,
+          "IsMapEnabled": false,
+          "IsMessageEnabled": false,
+          "IsSecurityEnabled": true,
+          "LocationFilter": 4,
+          "MergeType": null,
+          "MobileFilter": null,
+          "MobileTabOrder": null,
+          "ShortName": "Document",
+          "TableName": "docDocument",
+          "Timeout": null,
+          "TimeoutType": 1,
+          "UseSoftDelete": false,
+          "Caption": "Document",
+          "DefaultValue": null,
+          "Description": "Document Object",
+          "DetailDisplayAs": null,
+          "DetailEditAs": null,
+          "DetailEmptyText": null,
+          "Icon": null,
+          "InventoryDisplayAs": null,
+          "InventoryEditAs": null,
+          "InventoryEmptyText": null,
+          "IsStatic": true,
+          "IsSystem": false,
+          "Name": "DocDocumentEntity",
+          "NetType": "Intelex.Entities.EntityClasses.DocDocumentEntity, Intelex.Entities, Culture=neutral, PublicKeyToken=035b8d2ead3f9bb6",
+          "UseSystemViewSettings": true
+        },
+        "LocalizationData": null,
+        "Id": "b9603161-593c-438c-b333-f32a04c182dd",
+        "Caption": "Document",
+        "Type": "Object",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 2,
+        "IsHidden": true
+      },
+      {
+        "$id": "14",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.SysConfigurableViewPackageItemData, Intelex.Business.PackageManagement",
+        "ResourceItems": [
+          {
+            "$id": "15",
+            "MetaResourceKey": "Column0",
+            "DefaultValue": "Record No.",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          },
+          {
+            "$id": "16",
+            "MetaResourceKey": "Column1",
+            "DefaultValue": "Course Code",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          },
+          {
+            "$id": "17",
+            "MetaResourceKey": "Column2",
+            "DefaultValue": "Course Name",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          },
+          {
+            "$id": "18",
+            "MetaResourceKey": "Column3",
+            "DefaultValue": "Course Version",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          },
+          {
+            "$id": "19",
+            "MetaResourceKey": "Column4",
+            "DefaultValue": "Course Type",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          },
+          {
+            "$id": "20",
+            "MetaResourceKey": "InventoryView0",
+            "DefaultValue": "Training Course List",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          }
+        ],
+        "RecordId": "6e9181e8-aa76-4f68-928b-0fffb4172b00",
+        "ObjectName": "SysConfigurableViewEntity",
+        "FieldData": {
+          "$id": "21",
+          "Id": "6e9181e8-aa76-4f68-928b-0fffb4172b00",
+          "Caption": null,
+          "ConfigurableViewActions": null,
+          "Content": "<ix:InventoryPage><ix:Inventory ID=\"TrainMgmt_CourseReq_Select_FromEmployee\"><ix:InventoryView ID=\"TrainMgmt_CourseReq_Select_FromEmployeeView\" Caption=\"Training Course List\" meta:resourcekey=\"InventoryView0\" ResourceKey=\"InventoryView0\"><Menu><ix:GridDeleteActionLink Visible=\"false\" Override=\"true\"/></Menu><Filters><ix:Filter><ix:CommonPredicate For=\"Application\" Type=\"Equal\"><ix:Value>Training</ix:Value></ix:CommonPredicate><ix:SubQueryPredicate For=\"Id\" FromEntity=\"ProgramFmk_ReqEmployeeObject\" Type=\"In\" EntityAlias=\"ReqEmployee\" Negate=\"true\"><ix:Property Text=\"Requirement.Id\"/><ix:Filter><ix:CommonPredicate For=\"[ReqEmployee].Employee.Id\" Type=\"Equal\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"Employee:\", \"\") %></ix:Value></ix:CommonPredicate><ix:IsNullPredicate For=\"[ReqEmployee].Requirement.Id\" Negate=\"True\"/></ix:Filter></ix:SubQueryPredicate></ix:Filter></Filters><menu><ix:GridCreateActionLink Override=\"true\" Visible=\"false\"/><ix:GridDeleteActionLink Override=\"true\" Visible=\"false\"/></menu><Sorting><ix:Sort By=\"RecordNo\" Direction=\"Descending\"/></Sorting><Columns><ix:Column For=\"RecordNo\" Caption=\"Record No.\" meta:resourcekey=\"Column0\" ResourceKey=\"Column0\"/><ix:Column For=\":TrainMgmt_CourseObject.Code\" Caption=\"Course Code\" meta:resourcekey=\"Column1\" ResourceKey=\"Column1\"/><ix:Column For=\"Name\" Caption=\"Course Name\" meta:resourcekey=\"Column2\" ResourceKey=\"Column2\"/><ix:Column For=\"CurrentVersion\" Caption=\"Course Version\" meta:resourcekey=\"Column3\" ResourceKey=\"Column3\"/><ix:Column FilterAs=\"dropdown\" For=\":TrainMgmt_CourseObject.Type\" Caption=\"Course Type\" meta:resourcekey=\"Column4\" ResourceKey=\"Column4\"/><ix:Column DisplayAs=\"Recurrence\" For=\"Frequency\" Wrap=\"false\"/><ix:Column For=\"Mandatory\"/></Columns></ix:InventoryView></ix:Inventory></ix:InventoryPage>",
+          "IsParsedForMobile": false,
+          "IsPublic": false,
+          "MasterPage": null,
+          "Name": "TrainMgmt_CourseReq_Select_FromEmployee",
+          "Path": "TrainMgmt_CourseReq_Select_FromEmployee",
+          "Type": 1
+        },
+        "LocalizationData": null,
+        "Id": "7bf6b401-116b-4a60-a32a-1d62ae542ed3",
+        "Caption": "TrainMgmt_CourseReq_Select_FromEmployee",
+        "Type": "Configurable View",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "22",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.MetObjectPackageItemData, Intelex.Business.PackageManagement",
+        "PublishWorkflowId": null,
+        "RecordId": "0e1e7614-8cfb-407c-8ddb-ea2ea42a9393",
+        "ObjectName": "MetObjectEntity",
+        "FieldData": {
+          "$id": "23",
+          "Id": "0e1e7614-8cfb-407c-8ddb-ea2ea42a9393",
+          "CheckChanges": false,
+          "ConcurrencyType": null,
+          "HasWorkflow": false,
+          "IsAbstract": true,
+          "IsAttachmentEnabled": false,
+          "IsAuditEnabled": false,
+          "IsCreationFromMyTaskEnabled": false,
+          "IsDataImportEnabled": false,
+          "IsDocumentEnabled": false,
+          "IsLocalizable": false,
+          "IsLocationBound": false,
+          "IsMailMergeEnabled": false,
+          "IsMapEnabled": false,
+          "IsMessageEnabled": false,
+          "IsSecurityEnabled": true,
+          "LocationFilter": null,
+          "MergeType": null,
+          "MobileFilter": null,
+          "MobileTabOrder": null,
+          "ShortName": "ReqAbs",
+          "TableName": "cusProgramFmk_ReqAbs",
+          "Timeout": null,
+          "TimeoutType": null,
+          "UseSoftDelete": false,
+          "Caption": "Requirement Abstract",
+          "DefaultValue": null,
+          "Description": "Training Management – This is the parent of Course. This stores details such as Name, Description, Frequency, Current Version, Allow Employee to Self-Update, and Allow Course Requests.",
+          "DetailDisplayAs": null,
+          "DetailEditAs": null,
+          "DetailEmptyText": null,
+          "Icon": "Icons/new/48x48/scroll.gif",
+          "InventoryDisplayAs": null,
+          "InventoryEditAs": null,
+          "InventoryEmptyText": null,
+          "IsStatic": false,
+          "IsSystem": false,
+          "Name": "ProgramFmk_ReqAbsObject",
+          "NetType": null,
+          "UseSystemViewSettings": true
+        },
+        "LocalizationData": null,
+        "Id": "1539d911-ff54-40c5-b3d6-21e01b39a267",
+        "Caption": "Requirement Abstract",
+        "Type": "Object",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "24",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "c44b7847-8000-4003-a154-b0da7ada0757",
+        "ObjectName": "SysModuleEntity",
+        "FieldData": {
+          "$id": "25",
+          "Id": "c44b7847-8000-4003-a154-b0da7ada0757",
+          "Caption": "Program Framework",
+          "Description": null,
+          "Disabled": false,
+          "Index": null,
+          "IsAvailableForMobile": false,
+          "IsAvailableOffline": false,
+          "LegacyModuleId": null,
+          "MobileCaption": null,
+          "MobileIcon": null,
+          "UrlCaption": "ProgramFmk",
+          "UrlIcon": null,
+          "VersionNumber": "1.1.0",
+          "VersionOrder": 1001000
+        },
+        "LocalizationData": null,
+        "Id": "75481373-f851-4a6b-afe2-dc18253c12ef",
+        "Caption": "Program Framework",
+        "Type": "Application",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "26",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.SysConfigurableViewPackageItemData, Intelex.Business.PackageManagement",
+        "ResourceItems": [
+          {
+            "$id": "27",
+            "MetaResourceKey": "InventoryView0",
+            "DefaultValue": "Select Days",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          }
+        ],
+        "RecordId": "325bc716-c085-480f-9c23-091a1876b932",
+        "ObjectName": "SysConfigurableViewEntity",
+        "FieldData": {
+          "$id": "28",
+          "Id": "325bc716-c085-480f-9c23-091a1876b932",
+          "Caption": null,
+          "ConfigurableViewActions": null,
+          "Content": "<ix:InventoryPage><ix:Inventory ID=\"CalenManagement_DayObjectInventory\"><ix:InventoryView ID=\"CalenManagement_DayObjectInventoryView\" HideGroupAddButton=\"true\" DisplayEditColumn=\"false\" AllowSorting=\"false\" Caption=\"Select Days\" PageSize=\"100\" meta:resourcekey=\"InventoryView0\" ResourceKey=\"InventoryView0\"><Menu><ix:GridCreateActionLink Override=\"true\" visible=\"false\"/><ix:GridDataImportActionLink Override=\"true\" visible=\"false\"/><ix:GridDeleteActionLink Override=\"true\" visible=\"false\"/></Menu><filters><ix:Filter PredicateOperator=\"Or\"><ix:SubQueryPredicate For=\"Date\" FromEntity=\"EHSIncidentMang_OIIObject\" Type=\"GreaterThan\" EntityAlias=\"OII\" Negate=\"false\"><ix:Property Text=\"Date\"/><ix:Filter><ix:CommonPredicate For=\"[OII].Id\" Type=\"Equal\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"OII:\", \"\") %></ix:Value></ix:CommonPredicate></ix:Filter></ix:SubQueryPredicate></ix:Filter></filters><Sorting><ix:Sort By=\"Year\" Direction=\"Ascending\"/><ix:Sort By=\"Month.Value\" Direction=\"Ascending\"/><ix:Sort By=\"Week.Value\" Direction=\"Ascending\"/><ix:Sort By=\"Date\" Direction=\"Ascending\"/></Sorting><Grouping><ix:Group by=\"Year\"/><ix:Group by=\"Month\"/><ix:Group by=\"Week\"/></Grouping><Columns><ix:Column For=\"Date\" Format=\"dddd dd\" HorizontalAlign=\"right\"/><ix:Column FilterAs=\"Dropdown\" For=\"Month\" HorizontalAlign=\"center\"/><ix:Column For=\"Year\" HorizontalAlign=\"left\" Width=\"100%\"/></Columns></ix:InventoryView></ix:Inventory></ix:InventoryPage>",
+          "IsParsedForMobile": false,
+          "IsPublic": false,
+          "MasterPage": null,
+          "Name": "CalenManagement_Day_OIIDay_Select",
+          "Path": "CalenManagement_Day_OIIDay_Select",
+          "Type": 1
+        },
+        "LocalizationData": null,
+        "Id": "e98d96ac-cd73-40bb-8e76-268ee0de2379",
+        "Caption": "CalenManagement_Day_OIIDay_Select",
+        "Type": "Configurable View",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "29",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.MetObjectPackageItemData, Intelex.Business.PackageManagement",
+        "PublishWorkflowId": null,
+        "RecordId": "ce69b1eb-bc48-442c-9477-c00b8df345cb",
+        "ObjectName": "MetObjectEntity",
+        "FieldData": {
+          "$id": "30",
+          "SuperType": null,
+          "Id": "ce69b1eb-bc48-442c-9477-c00b8df345cb",
+          "CheckChanges": false,
+          "ConcurrencyType": null,
+          "HasWorkflow": false,
+          "IsAbstract": false,
+          "IsAttachmentEnabled": false,
+          "IsAuditEnabled": false,
+          "IsCreationFromMyTaskEnabled": false,
+          "IsDataImportEnabled": false,
+          "IsDocumentEnabled": false,
+          "IsLocalizable": false,
+          "IsLocationBound": false,
+          "IsMailMergeEnabled": false,
+          "IsMapEnabled": false,
+          "IsMessageEnabled": false,
+          "IsSecurityEnabled": false,
+          "LocationFilter": null,
+          "MergeType": null,
+          "MobileFilter": null,
+          "MobileTabOrder": null,
+          "ShortName": "Day",
+          "TableName": "cusCalenManagement_Day",
+          "Timeout": null,
+          "TimeoutType": null,
+          "UseSoftDelete": false,
+          "Caption": "Calendar Day",
+          "DefaultValue": null,
+          "Description": null,
+          "DetailDisplayAs": null,
+          "DetailEditAs": null,
+          "DetailEmptyText": null,
+          "Icon": null,
+          "InventoryDisplayAs": null,
+          "InventoryEditAs": null,
+          "InventoryEmptyText": null,
+          "IsStatic": false,
+          "IsSystem": false,
+          "Name": "CalenManagement_DayObject",
+          "NetType": null,
+          "UseSystemViewSettings": true
+        },
+        "LocalizationData": null,
+        "Id": "ad93510b-70a7-45b5-94c0-f83219ef587d",
+        "Caption": "Calendar Day",
+        "Type": "Object",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "31",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.SysConfigurableViewPackageItemData, Intelex.Business.PackageManagement",
+        "ResourceItems": [
+          {
+            "$id": "32",
+            "MetaResourceKey": "Column0",
+            "DefaultValue": "Course Code",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          },
+          {
+            "$id": "33",
+            "MetaResourceKey": "Column1",
+            "DefaultValue": "Course Name",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          },
+          {
+            "$id": "34",
+            "MetaResourceKey": "Column2",
+            "DefaultValue": "Course Version",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          },
+          {
+            "$id": "35",
+            "MetaResourceKey": "Column3",
+            "DefaultValue": "Course Type",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          },
+          {
+            "$id": "36",
+            "MetaResourceKey": "InventoryView0",
+            "DefaultValue": "Training Course List",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          }
+        ],
+        "RecordId": "c6af9adc-d9d0-4d2e-aa7b-f996dac7e47c",
+        "ObjectName": "SysConfigurableViewEntity",
+        "FieldData": {
+          "$id": "37",
+          "Id": "c6af9adc-d9d0-4d2e-aa7b-f996dac7e47c",
+          "Caption": null,
+          "ConfigurableViewActions": null,
+          "Content": "<ix:InventoryPage><ix:Inventory ID=\"TrainMgmt_CourseReq_Select_FromLocation\"><ix:InventoryView ID=\"TrainMgmt_CourseReq_Select_FromLocationView\" Caption=\"Training Course List\" meta:resourcekey=\"InventoryView0\" ResourceKey=\"InventoryView0\"><Filters><ix:Filter><ix:CommonPredicate For=\"Application\" Type=\"Equal\"><ix:Value>Training</ix:Value></ix:CommonPredicate><ix:SubQueryPredicate For=\"Id\" FromEntity=\"ProgramFmk_ReqLocationObject\" Type=\"In\" EntityAlias=\"ReqLocation\" Negate=\"true\"><ix:Property Text=\"Requirement.Id\"/><ix:Filter><ix:CommonPredicate For=\"[ReqLocation].LocationReq.Id\" Type=\"Equal\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"LocationReq:\", \"\") %></ix:Value></ix:CommonPredicate><ix:IsNullPredicate For=\"[ReqLocation].Requirement.Id\" Negate=\"True\"/></ix:Filter></ix:SubQueryPredicate></ix:Filter></Filters><Menu><ix:GridDeleteActionLink Visible=\"false\" Override=\"true\"/><ix:GridCreateActionLink Override=\"true\" Visible=\"false\"/></Menu><Sorting><ix:Sort By=\"RecordNo\" Direction=\"Descending\"/></Sorting><Columns><ix:Column For=\"RecordNo\"/><ix:Column For=\":TrainMgmt_CourseObject.Code\" Caption=\"Course Code\" meta:resourcekey=\"Column0\" ResourceKey=\"Column0\"/><ix:Column For=\"Name\" Caption=\"Course Name\" meta:resourcekey=\"Column1\" ResourceKey=\"Column1\"/><ix:Column For=\"CurrentVersion\" Caption=\"Course Version\" meta:resourcekey=\"Column2\" ResourceKey=\"Column2\"/><ix:Column FilterAs=\"dropdown\" For=\":TrainMgmt_CourseObject.Type\" Caption=\"Course Type\" meta:resourcekey=\"Column3\" ResourceKey=\"Column3\"/><ix:Column DisplayAs=\"Recurrence\" For=\"Frequency\" Wrap=\"false\"/><ix:Column For=\"Mandatory\"/></Columns></ix:InventoryView></ix:Inventory></ix:InventoryPage>",
+          "IsParsedForMobile": false,
+          "IsPublic": false,
+          "MasterPage": null,
+          "Name": "TrainMgmt_CourseReq_Select_FromLocation",
+          "Path": "TrainMgmt_CourseReq_Select_FromLocation",
+          "Type": 1
+        },
+        "LocalizationData": null,
+        "Id": "fbf3d5a1-52aa-4d7d-8bf2-2951160d742d",
+        "Caption": "TrainMgmt_CourseReq_Select_FromLocation",
+        "Type": "Configurable View",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "38",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.SysConfigurableViewPackageItemData, Intelex.Business.PackageManagement",
+        "ResourceItems": [
+          {
+            "$id": "39",
+            "MetaResourceKey": "InventoryView0",
+            "DefaultValue": "Aspect List",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          }
+        ],
+        "RecordId": "55a2e231-291b-430b-a19f-a3d3c6256936",
+        "ObjectName": "SysConfigurableViewEntity",
+        "FieldData": {
+          "$id": "40",
+          "Id": "55a2e231-291b-430b-a19f-a3d3c6256936",
+          "Caption": "Aspect List",
+          "ConfigurableViewActions": null,
+          "Content": "<ix:InventoryPage><ix:Inventory ID=\"EnvAspImp_Hazards_Select\"><ix:InventoryView ID=\"EnvAspImp_Hazards_SelectView\" Caption=\"Aspect List\" meta:resourcekey=\"InventoryView0\" ResourceKey=\"InventoryView0\"><Filters><ix:Filter><ix:CommonPredicate For=\"Type.Code\" Type=\"Equal\"><ix:Value>Aspect</ix:Value></ix:CommonPredicate><ix:SubQueryPredicate EntityAlias=\"RiskSpec\" For=\"Id\" FromEntity=\"RiskFmk_RSpecificHazardObject\" Type=\"In\" Negate=\"True\"><ix:Property Text=\"Hazard.Id\"/><ix:Filter><ix:CommonPredicate For=\"[RiskSpec].Risk.Id\" Type=\"Equal\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"Risk:\", \"\") %></ix:Value></ix:CommonPredicate></ix:Filter></ix:SubQueryPredicate></ix:Filter></Filters><Menu><ix:GridCreateActionLink Override=\"true\" Visible=\"false\"/><ix:GridDeleteActionLink Override=\"true\" Visible=\"false\"/></Menu><Columns><ix:Column For=\"RecordNo\" LinkTo=\"default\"/><ix:Column For=\"Hazard\"/><ix:Column DisplayAs=\"List\" FetchAs=\"Collection\" For=\"HazardCategory\"/></Columns></ix:InventoryView></ix:Inventory></ix:InventoryPage>",
+          "IsParsedForMobile": false,
+          "IsPublic": false,
+          "MasterPage": null,
+          "Name": "EnvAspImp_Hazards_Select",
+          "Path": "EnvAspImp_Hazards_Select",
+          "Type": 1
+        },
+        "LocalizationData": null,
+        "Id": "8f47cd0b-f9d9-416d-8b28-296fef4a236d",
+        "Caption": "EnvAspImp_Hazards_Select",
+        "Type": "Configurable View",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "41",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.MetObjectPackageItemData, Intelex.Business.PackageManagement",
+        "PublishWorkflowId": null,
+        "RecordId": "5fdd9f30-372f-4fb2-abf9-2ec1cc316386",
+        "ObjectName": "MetObjectEntity",
+        "FieldData": {
+          "$id": "42",
+          "Id": "5fdd9f30-372f-4fb2-abf9-2ec1cc316386",
+          "CheckChanges": false,
+          "ConcurrencyType": null,
+          "HasWorkflow": false,
+          "IsAbstract": false,
+          "IsAttachmentEnabled": true,
+          "IsAuditEnabled": false,
+          "IsCreationFromMyTaskEnabled": false,
+          "IsDataImportEnabled": false,
+          "IsDocumentEnabled": false,
+          "IsLocalizable": true,
+          "IsLocationBound": false,
+          "IsMailMergeEnabled": false,
+          "IsMapEnabled": false,
+          "IsMessageEnabled": false,
+          "IsSecurityEnabled": true,
+          "LocationFilter": null,
+          "MergeType": null,
+          "MobileFilter": null,
+          "MobileTabOrder": null,
+          "ShortName": "Hazards",
+          "TableName": "cusRiskFmk_Hazards",
+          "Timeout": null,
+          "TimeoutType": null,
+          "UseSoftDelete": false,
+          "Caption": "Hazards",
+          "DefaultValue": null,
+          "Description": null,
+          "DetailDisplayAs": null,
+          "DetailEditAs": null,
+          "DetailEmptyText": null,
+          "Icon": null,
+          "InventoryDisplayAs": null,
+          "InventoryEditAs": null,
+          "InventoryEmptyText": null,
+          "IsStatic": false,
+          "IsSystem": false,
+          "Name": "RiskFmk_HazardsObject",
+          "NetType": null,
+          "UseSystemViewSettings": true
+        },
+        "LocalizationData": null,
+        "Id": "1636575c-b02a-478f-8109-35be157262ae",
+        "Caption": "Hazards",
+        "Type": "Object",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "43",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "07a3548e-f2c9-4f6d-88b4-b6469f83864d",
+        "ObjectName": "SysModuleEntity",
+        "FieldData": {
+          "$id": "44",
+          "Id": "07a3548e-f2c9-4f6d-88b4-b6469f83864d",
+          "Caption": "Risk Framework",
+          "Description": null,
+          "Disabled": false,
+          "Index": null,
+          "IsAvailableForMobile": false,
+          "IsAvailableOffline": false,
+          "LegacyModuleId": null,
+          "MobileCaption": null,
+          "MobileIcon": null,
+          "UrlCaption": "RiskFmk",
+          "UrlIcon": null,
+          "VersionNumber": "1.0.0",
+          "VersionOrder": 1000000
+        },
+        "LocalizationData": null,
+        "Id": "bb53a21d-f95d-4a57-b573-e1478102379b",
+        "Caption": "Risk Framework",
+        "Type": "Application",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "45",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "cb6277a9-6157-4149-bf7d-e44900119b0e",
+        "ObjectName": "SysModuleEntity",
+        "FieldData": {
+          "$id": "46",
+          "Id": "cb6277a9-6157-4149-bf7d-e44900119b0e",
+          "Caption": "Checklist Framework",
+          "Description": null,
+          "Disabled": false,
+          "Index": 19,
+          "IsAvailableForMobile": false,
+          "IsAvailableOffline": true,
+          "LegacyModuleId": null,
+          "MobileCaption": null,
+          "MobileIcon": null,
+          "UrlCaption": "CLF",
+          "UrlIcon": "Icons/new/48x48/preferences.gif",
+          "VersionNumber": "1.0.0",
+          "VersionOrder": 1000000
+        },
+        "LocalizationData": null,
+        "Id": "c4d13c42-105d-4fd7-b905-4ca5225d2d7a",
+        "Caption": "Checklist Framework",
+        "Type": "Application",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "47",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "fe0eb852-ece3-431a-8813-75d0633a2c64",
+        "ObjectName": "SysModuleEntity",
+        "FieldData": {
+          "$id": "48",
+          "Id": "fe0eb852-ece3-431a-8813-75d0633a2c64",
+          "Caption": "System Objects",
+          "Description": "Setup",
+          "Disabled": true,
+          "Index": 9999,
+          "IsAvailableForMobile": false,
+          "IsAvailableOffline": false,
+          "LegacyModuleId": null,
+          "MobileCaption": null,
+          "MobileIcon": null,
+          "UrlCaption": "Setup",
+          "UrlIcon": "Icons/new/48x48/wrench.gif",
+          "VersionNumber": "1.0.0",
+          "VersionOrder": 1000000
+        },
+        "LocalizationData": null,
+        "Id": "01cf1ed9-ffbd-4fcb-ad53-4d472fc03396",
+        "Caption": "System Objects",
+        "Type": "Application",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 2,
+        "IsHidden": true
+      },
+      {
+        "$id": "49",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.SysConfigurableViewPackageItemData, Intelex.Business.PackageManagement",
+        "ResourceItems": null,
+        "RecordId": "4c20b939-b887-4e4a-974b-57c11fb3cc2c",
+        "ObjectName": "SysConfigurableViewEntity",
+        "FieldData": {
+          "$id": "50",
+          "Id": "4c20b939-b887-4e4a-974b-57c11fb3cc2c",
+          "Caption": "Employees",
+          "ConfigurableViewActions": null,
+          "Content": "<ix:InventoryPage><ix:Inventory ID=\"SysEmployeeEntityInventory\"><ix:InventoryView ID=\"SysEmployeeEntityInventoryView\"><Filters><ix:Filter><ix:SubQueryPredicate For=\"Id\" FromEntity=\"ProductMgmt_ItemApproverObject\" Type=\"In\" EntityAlias=\"ItemApprover\" Negate=\"true\"><ix:Property Text=\"Employee.Id\"/><ix:Filter><ix:CommonPredicate For=\"[ItemApprover].Item.Revisions.ID\" Type=\"Equal\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"Item:\", \"\") %></ix:Value></ix:CommonPredicate></ix:Filter></ix:SubQueryPredicate></ix:Filter></Filters><Menu><ix:GridCreateActionLink runat=\"server\" Visible=\"false\" Override=\"true\"/><ix:GridArchiveActionLink runat=\"server\" Visible=\"false\" Override=\"true\"/><ix:GridDataImportActionLink runat=\"server\" Visible=\"false\" Override=\"true\"/></Menu><Columns><ix:Column DisplayAs=\"string\" For=\"Number\"/><ix:Column DisplayAs=\"string\" For=\"Location\"/><ix:Column DisplayAs=\"string\" For=\"FullName\"/><ix:Column DisplayAs=\"string\" For=\"Position\"/></Columns></ix:InventoryView></ix:Inventory></ix:InventoryPage>",
+          "IsParsedForMobile": false,
+          "IsPublic": false,
+          "MasterPage": null,
+          "Name": "ProductMgmt_Employee_SelectApprovers",
+          "Path": "ProductMgmt_Employee_SelectApprovers",
+          "Type": 1
+        },
+        "LocalizationData": null,
+        "Id": "2d48db8a-ea91-4b85-9083-4fdbbbaabacc",
+        "Caption": "ProductMgmt_Employee_SelectApprovers",
+        "Type": "Configurable View",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "51",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.MetObjectPackageItemData, Intelex.Business.PackageManagement",
+        "PublishWorkflowId": null,
+        "RecordId": "6afb3ac6-96db-4072-9293-4d02699d1264",
+        "ObjectName": "MetObjectEntity",
+        "FieldData": {
+          "$id": "52",
+          "Id": "6afb3ac6-96db-4072-9293-4d02699d1264",
+          "CheckChanges": false,
+          "ConcurrencyType": null,
+          "HasWorkflow": false,
+          "IsAbstract": false,
+          "IsAttachmentEnabled": false,
+          "IsAuditEnabled": false,
+          "IsCreationFromMyTaskEnabled": false,
+          "IsDataImportEnabled": false,
+          "IsDocumentEnabled": false,
+          "IsLocalizable": true,
+          "IsLocationBound": true,
+          "IsMailMergeEnabled": false,
+          "IsMapEnabled": false,
+          "IsMessageEnabled": false,
+          "IsSecurityEnabled": true,
+          "LocationFilter": 2,
+          "MergeType": null,
+          "MobileFilter": null,
+          "MobileTabOrder": null,
+          "ShortName": "Employee",
+          "TableName": "sysEmployee",
+          "Timeout": null,
+          "TimeoutType": null,
+          "UseSoftDelete": true,
+          "Caption": "Employee",
+          "DefaultValue": null,
+          "Description": "Employee Object",
+          "DetailDisplayAs": null,
+          "DetailEditAs": null,
+          "DetailEmptyText": null,
+          "Icon": null,
+          "InventoryDisplayAs": null,
+          "InventoryEditAs": null,
+          "InventoryEmptyText": null,
+          "IsStatic": true,
+          "IsSystem": false,
+          "Name": "SysEmployeeEntity",
+          "NetType": "Intelex.Entities.EntityClasses.SysEmployeeEntity, Intelex.Entities, Culture=neutral, PublicKeyToken=035b8d2ead3f9bb6",
+          "UseSystemViewSettings": true
+        },
+        "LocalizationData": null,
+        "Id": "b459acbe-593f-4fff-9516-fb4791313a35",
+        "Caption": "Employee",
+        "Type": "Object",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 2,
+        "IsHidden": true
+      },
+      {
+        "$id": "53",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.SysConfigurableViewPackageItemData, Intelex.Business.PackageManagement",
+        "ResourceItems": [
+          {
+            "$id": "54",
+            "MetaResourceKey": "Column0",
+            "DefaultValue": "Record No.",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          },
+          {
+            "$id": "55",
+            "MetaResourceKey": "Column1",
+            "DefaultValue": "Course Code",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          },
+          {
+            "$id": "56",
+            "MetaResourceKey": "Column2",
+            "DefaultValue": "Course Name",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          },
+          {
+            "$id": "57",
+            "MetaResourceKey": "Column3",
+            "DefaultValue": "Course Version",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          },
+          {
+            "$id": "58",
+            "MetaResourceKey": "Column4",
+            "DefaultValue": "Course Type",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          },
+          {
+            "$id": "59",
+            "MetaResourceKey": "InventoryView0",
+            "DefaultValue": "Training Course List",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          }
+        ],
+        "RecordId": "c2cf03b0-1b86-41c8-836a-de3d1b077e64",
+        "ObjectName": "SysConfigurableViewEntity",
+        "FieldData": {
+          "$id": "60",
+          "Id": "c2cf03b0-1b86-41c8-836a-de3d1b077e64",
+          "Caption": null,
+          "ConfigurableViewActions": null,
+          "Content": "<ix:InventoryPage><ix:Inventory ID=\"TrainMgmt_CourseReq_Select_FromGroup\"><ix:InventoryView ID=\"TrainMgmt_CourseReq_Select_FromGroupView\" Caption=\"Training Course List\" meta:resourcekey=\"InventoryView0\" ResourceKey=\"InventoryView0\"><Menu><ix:GridCreateActionLink Override=\"true\" Visible=\"false\"/><ix:GridDeleteActionLink Override=\"true\" Visible=\"false\"/></Menu><Filters><ix:Filter><ix:CommonPredicate For=\"Application\" Type=\"Equal\"><ix:Value>Training</ix:Value></ix:CommonPredicate><ix:SubQueryPredicate For=\"Id\" FromEntity=\"ProgramFmk_ReqGroupObject\" Type=\"In\" EntityAlias=\"ReqGroup\" Negate=\"true\"><ix:Property Text=\"Requirement.Id\"/><ix:Filter><ix:CommonPredicate For=\"[ReqGroup].Group.Id\" Type=\"Equal\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"Group:\", \"\") %></ix:Value></ix:CommonPredicate><ix:IsNullPredicate For=\"[ReqGroup].Requirement.Id\" Negate=\"True\"/></ix:Filter></ix:SubQueryPredicate></ix:Filter></Filters><Sorting><ix:Sort By=\"RecordNo\" Direction=\"Descending\"/></Sorting><Columns><ix:Column For=\"RecordNo\" Caption=\"Record No.\" meta:resourcekey=\"Column0\" ResourceKey=\"Column0\"/><ix:Column For=\":TrainMgmt_CourseObject.Code\" Caption=\"Course Code\" meta:resourcekey=\"Column1\" ResourceKey=\"Column1\"/><ix:Column For=\"Name\" Caption=\"Course Name\" meta:resourcekey=\"Column2\" ResourceKey=\"Column2\"/><ix:Column Caption=\"Course Version\" For=\"CurrentVersion\" meta:resourcekey=\"Column3\" ResourceKey=\"Column3\"/><ix:Column FilterAs=\"dropdown\" For=\":TrainMgmt_CourseObject.Type\" Caption=\"Course Type\" meta:resourcekey=\"Column4\" ResourceKey=\"Column4\"/><ix:Column DisplayAs=\"Recurrence\" For=\"Frequency\" Wrap=\"false\"/><ix:Column For=\"Mandatory\"/></Columns></ix:InventoryView></ix:Inventory></ix:InventoryPage>",
+          "IsParsedForMobile": false,
+          "IsPublic": false,
+          "MasterPage": null,
+          "Name": "TrainMgmt_CourseReq_Select_FromGroup",
+          "Path": "TrainMgmt_CourseReq_Select_FromGroup",
+          "Type": 1
+        },
+        "LocalizationData": null,
+        "Id": "b5954c1d-7216-40e0-8b5c-61a66100dcc9",
+        "Caption": "TrainMgmt_CourseReq_Select_FromGroup",
+        "Type": "Configurable View",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "61",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.SysConfigurableViewPackageItemData, Intelex.Business.PackageManagement",
+        "ResourceItems": null,
+        "RecordId": "d42b7332-e01a-46cc-9bf8-93217f3861df",
+        "ObjectName": "SysConfigurableViewEntity",
+        "FieldData": {
+          "$id": "62",
+          "Id": "d42b7332-e01a-46cc-9bf8-93217f3861df",
+          "Caption": null,
+          "ConfigurableViewActions": null,
+          "Content": "<ix:InventoryPage><ix:Inventory ID=\"Insp_PubQuestion_Select\"><ix:InventoryView ID=\"Insp_PubQuestion_SelectSelect\" HideGroupAddButton=\"true\"><filters><ix:Filter><ix:SubQueryPredicate For=\"Question.ChecklistType.Id\" FromEntity=\"Insp_InspectionAbsObject\" Type=\"In\" EntityAlias=\"Inspection\"><ix:Property Text=\"TypeOfInspec.Id\"/><ix:Filter><ix:CommonPredicate For=\"[Inspection].Id\" Type=\"Equal\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"ChecklistAnswer:\", \"\") %></ix:Value></ix:CommonPredicate></ix:Filter></ix:SubQueryPredicate><ix:CommonPredicate For=\"DateCreated\" Type=\"GreaterThanOrEqual\"><ix:Property Text=\"Question.LastPublish\"/></ix:CommonPredicate></ix:Filter></filters><Menu><ix:GridCreateActionLink Override=\"true\" visible=\"false\"/><ix:GridDeleteActionLink Override=\"true\" visible=\"false\"/></Menu><grouping><ix:Group By=\"Section\"/></grouping><Sorting><ix:Sort By=\"Order\" Direction=\"Ascending\"/></Sorting><Columns><ix:Column For=\"QuestionRef\"/><ix:Column For=\"Content\" DisplayAs=\"Truncate\"/><ix:Column For=\"Guideline\" DisplayAs=\"Truncate\"/></Columns></ix:InventoryView></ix:Inventory></ix:InventoryPage>",
+          "IsParsedForMobile": false,
+          "IsPublic": false,
+          "MasterPage": null,
+          "Name": "Insp_PubQuestion_Select",
+          "Path": "Insp_PubQuestion_Select",
+          "Type": 1
+        },
+        "LocalizationData": null,
+        "Id": "1816154f-9b75-4ae9-87fd-7664c7969446",
+        "Caption": "Insp_PubQuestion_Select",
+        "Type": "Configurable View",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "63",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.MetObjectPackageItemData, Intelex.Business.PackageManagement",
+        "PublishWorkflowId": null,
+        "RecordId": "0e5d5f7f-2039-4194-8f37-86771b63e36f",
+        "ObjectName": "MetObjectEntity",
+        "FieldData": {
+          "$id": "64",
+          "Id": "0e5d5f7f-2039-4194-8f37-86771b63e36f",
+          "CheckChanges": false,
+          "ConcurrencyType": null,
+          "HasWorkflow": false,
+          "IsAbstract": false,
+          "IsAttachmentEnabled": false,
+          "IsAuditEnabled": false,
+          "IsCreationFromMyTaskEnabled": false,
+          "IsDataImportEnabled": false,
+          "IsDocumentEnabled": false,
+          "IsLocalizable": false,
+          "IsLocationBound": false,
+          "IsMailMergeEnabled": false,
+          "IsMapEnabled": false,
+          "IsMessageEnabled": false,
+          "IsSecurityEnabled": false,
+          "LocationFilter": 2,
+          "MergeType": null,
+          "MobileFilter": null,
+          "MobileTabOrder": null,
+          "ShortName": "PubQuest",
+          "TableName": "cusCLF_PubQuest",
+          "Timeout": null,
+          "TimeoutType": null,
+          "UseSoftDelete": false,
+          "Caption": "Published Question",
+          "DefaultValue": null,
+          "Description": null,
+          "DetailDisplayAs": null,
+          "DetailEditAs": null,
+          "DetailEmptyText": null,
+          "Icon": "Icons/new/48x48/help.gif",
+          "InventoryDisplayAs": null,
+          "InventoryEditAs": null,
+          "InventoryEmptyText": null,
+          "IsStatic": false,
+          "IsSystem": false,
+          "Name": "CLF_PubQuestObject",
+          "NetType": null,
+          "UseSystemViewSettings": true
+        },
+        "LocalizationData": null,
+        "Id": "5cd0bf82-652c-4dfa-9689-f7f4c7adf5c4",
+        "Caption": "Published Question",
+        "Type": "Object",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "65",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.SysConfigurableViewPackageItemData, Intelex.Business.PackageManagement",
+        "ResourceItems": [
+          {
+            "$id": "66",
+            "MetaResourceKey": "InventoryView0",
+            "DefaultValue": "Select Days",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          }
+        ],
+        "RecordId": "5ef60aff-6f2f-4b99-86df-46eb836da6c3",
+        "ObjectName": "SysConfigurableViewEntity",
+        "FieldData": {
+          "$id": "67",
+          "Walkthroughs": null,
+          "Id": "5ef60aff-6f2f-4b99-86df-46eb836da6c3",
+          "Caption": null,
+          "ConfigurableViewActions": "[]",
+          "Content": "<ix:InventoryPage><ix:Inventory ID=\"CalenManagement_DayObjectInventory\"><ix:InventoryView ID=\"CalenManagement_DayObjectInventoryView\" HideGroupAddButton=\"true\" DisplayEditColumn=\"false\" AllowSorting=\"false\" Caption=\"Select Days\" PageSize=\"100\" meta:resourcekey=\"InventoryView0\" ResourceKey=\"InventoryView0\"><Menu><ix:GridCreateActionLink Override=\"true\" visible=\"false\"/><ix:GridDataImportActionLink Override=\"true\" visible=\"false\"/><ix:GridDeleteActionLink Override=\"true\" visible=\"false\"/></Menu><filters><ix:Filter PredicateOperator=\"Or\"><ix:SubQueryPredicate For=\"Date\" FromEntity=\"EHSIncidentMang_OIIObject\" Type=\"GreaterThan\" EntityAlias=\"OII\" Negate=\"false\"><ix:Property Text=\"Date\"/><ix:Filter><ix:CommonPredicate For=\"[OII].AbsenceRecord.Id\" Type=\"Equal\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"AbsenceRecord:\", \"\") %></ix:Value></ix:CommonPredicate></ix:Filter></ix:SubQueryPredicate><ix:SubQueryPredicate For=\"Date\" FromEntity=\"EHSIncidentMang_OIIObject\" Type=\"Equal\" EntityAlias=\"OII\" Negate=\"false\"><ix:Property Text=\"DateOnly\"/><ix:Filter><ix:CommonPredicate For=\"[OII].AbsenceRecord.Id\" Type=\"Equal\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"AbsenceRecord:\", \"\") %></ix:Value></ix:CommonPredicate></ix:Filter></ix:SubQueryPredicate></ix:Filter></filters><Sorting><ix:Sort By=\"Year\" Direction=\"Ascending\"/><ix:Sort By=\"Month.Value\" Direction=\"Ascending\"/><ix:Sort By=\"Week.Value\" Direction=\"Ascending\"/><ix:Sort By=\"Date\" Direction=\"Ascending\"/></Sorting><Grouping><ix:Group by=\"Year\"/><ix:Group by=\"Month\"/><ix:Group by=\"Week\"/></Grouping><Columns><ix:Column For=\"Date\" Format=\"dddd dd\" HorizontalAlign=\"right\"/><ix:Column FilterAs=\"Dropdown\" For=\"Month\" HorizontalAlign=\"center\"/><ix:Column For=\"Year\" HorizontalAlign=\"left\" Width=\"100%\"/></Columns></ix:InventoryView></ix:Inventory></ix:InventoryPage>",
+          "IsParsedForMobile": false,
+          "IsPublic": false,
+          "MasterPage": null,
+          "Name": "CalenManagement_Day_OIIDay_SelectFromAbsenceRecord",
+          "Path": "CalenManagement_Day_OIIDay_SelectFromAbsenceRecord",
+          "Type": 1
+        },
+        "LocalizationData": null,
+        "Id": "7276dfd7-9546-4263-bf51-a5d17bb32780",
+        "Caption": "CalenManagement_Day_OIIDay_SelectFromAbsenceRecord",
+        "Type": "Configurable View",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "68",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.SysConfigurableViewPackageItemData, Intelex.Business.PackageManagement",
+        "ResourceItems": null,
+        "RecordId": "d1fa5f36-1d9c-41f7-9894-299f5fce4b2c",
+        "ObjectName": "SysConfigurableViewEntity",
+        "FieldData": {
+          "$id": "69",
+          "Id": "d1fa5f36-1d9c-41f7-9894-299f5fce4b2c",
+          "Caption": null,
+          "ConfigurableViewActions": null,
+          "Content": "<ix:InventoryPage><ix:Inventory ID=\"TrainMgmt_Employee_Select_NoStatus\"><ix:InventoryView ID=\"TrainMgmt_Employee_Select_NoStatusView\" DisplayEditColumn=\"False\" HideGroupAddButton=\"true\"><Filters><ix:Filter><ix:SubQueryPredicate For=\"Location.Id\" FromEntity=\"SysLocationTreeStructureEntity\" Type=\"In\" EntityAlias=\"Location\"><ix:Property Text=\"LocationId\"/><ix:Filter><ix:LikePredicate For=\"[Location].ParentId\" Type=\"Contains\"><ix:Value Parse=\"true\"><%= SystemContext.ActiveLocation.Id%></ix:Value></ix:LikePredicate></ix:Filter></ix:SubQueryPredicate><ix:SubQueryPredicate For=\"Id\" FromEntity=\"TrainMgmt_IndTrainRecordObject\" Type=\"In\" EntityAlias=\"TrainingRecords\" Negate=\"true\"><ix:Property Text=\"Employee.Id\"/><ix:Filter><ix:CommonPredicate For=\"[TrainingRecords].SessionId\" Type=\"Equal\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"Session:\", \"\") %></ix:Value></ix:CommonPredicate></ix:Filter></ix:SubQueryPredicate><ix:SubQueryPredicate For=\"Id\" FromEntity=\"TrainMgmt_SessionTrainRecObject\" Type=\"In\" EntityAlias=\"TrainingRecords\" Negate=\"true\"><ix:Property Text=\"Employee.Id\"/><ix:Filter><ix:CommonPredicate For=\"[TrainingRecords].SessionId\" Type=\"Equal\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"Session:\", \"\") %></ix:Value></ix:CommonPredicate></ix:Filter></ix:SubQueryPredicate></ix:Filter></Filters><Menu><ix:GridCreateActionLink Visible=\"false\" Override=\"true\"/><ix:GridArchiveActionLink Override=\"true\" Visible=\"false\"/><ix:GridDataImportActionLink Override=\"false\" Visible=\"false\"/></Menu><Columns><ix:Column For=\"Number\"/><ix:Column For=\"FullName\"/><ix:Column For=\"Location\" displayas=\"string\"/><ix:Column For=\"Position\"/></Columns></ix:InventoryView></ix:Inventory></ix:InventoryPage>",
+          "IsParsedForMobile": false,
+          "IsPublic": false,
+          "MasterPage": null,
+          "Name": "TrainMgmt_Employee_Select_NoStatus",
+          "Path": "TrainMgmt_Employee_Select_NoStatus",
+          "Type": 1
+        },
+        "LocalizationData": null,
+        "Id": "00e42f6c-cb9b-496d-9dc2-a60d3b3c941e",
+        "Caption": "TrainMgmt_Employee_Select_NoStatus",
+        "Type": "Configurable View",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "70",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "1fd6eb33-f6b7-46f7-b533-9a9fc1ba39e6",
+        "ObjectName": "SysModuleEntity",
+        "FieldData": {
+          "$id": "71",
+          "Id": "1fd6eb33-f6b7-46f7-b533-9a9fc1ba39e6",
+          "Caption": "Calendar Management",
+          "Description": "Calendar Management",
+          "Disabled": false,
+          "Index": 1,
+          "IsAvailableForMobile": false,
+          "IsAvailableOffline": false,
+          "LegacyModuleId": null,
+          "MobileCaption": null,
+          "MobileIcon": null,
+          "UrlCaption": "CalenManagement",
+          "UrlIcon": null,
+          "VersionNumber": "1.0.0",
+          "VersionOrder": 1000000
+        },
+        "LocalizationData": null,
+        "Id": "fc1fa330-74f4-4545-981c-c384d8fbd69a",
+        "Caption": "Calendar Management",
+        "Type": "Application",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "72",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.MetObjectPackageItemData, Intelex.Business.PackageManagement",
+        "PublishWorkflowId": null,
+        "RecordId": "785124a0-20be-4606-8d25-56dd86248bbf",
+        "ObjectName": "MetObjectEntity",
+        "FieldData": {
+          "$id": "73",
+          "Id": "785124a0-20be-4606-8d25-56dd86248bbf",
+          "CheckChanges": false,
+          "ConcurrencyType": null,
+          "HasWorkflow": false,
+          "IsAbstract": false,
+          "IsAttachmentEnabled": false,
+          "IsAuditEnabled": false,
+          "IsCreationFromMyTaskEnabled": false,
+          "IsDataImportEnabled": false,
+          "IsDocumentEnabled": false,
+          "IsLocalizable": true,
+          "IsLocationBound": false,
+          "IsMailMergeEnabled": false,
+          "IsMapEnabled": false,
+          "IsMessageEnabled": false,
+          "IsSecurityEnabled": true,
+          "LocationFilter": 2,
+          "MergeType": null,
+          "MobileFilter": null,
+          "MobileTabOrder": null,
+          "ShortName": "Subject",
+          "TableName": "sysSubject",
+          "Timeout": null,
+          "TimeoutType": null,
+          "UseSoftDelete": false,
+          "Caption": "Subject",
+          "DefaultValue": null,
+          "Description": "Subject Object",
+          "DetailDisplayAs": null,
+          "DetailEditAs": null,
+          "DetailEmptyText": null,
+          "Icon": null,
+          "InventoryDisplayAs": null,
+          "InventoryEditAs": null,
+          "InventoryEmptyText": null,
+          "IsStatic": true,
+          "IsSystem": false,
+          "Name": "SysSubjectEntity",
+          "NetType": "Intelex.Entities.EntityClasses.SysSubjectEntity, Intelex.Entities, Culture=neutral, PublicKeyToken=035b8d2ead3f9bb6",
+          "UseSystemViewSettings": true
+        },
+        "LocalizationData": null,
+        "Id": "4920290a-2bc6-496d-bf88-c4ebf7e4026b",
+        "Caption": "Subject",
+        "Type": "Object",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 2,
+        "IsHidden": true
+      },
+      {
+        "$id": "74",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.MetObjectPackageItemData, Intelex.Business.PackageManagement",
+        "PublishWorkflowId": null,
+        "RecordId": "312a57bc-343e-4337-a251-91609c550820",
+        "ObjectName": "MetObjectEntity",
+        "FieldData": {
+          "$id": "75",
+          "Id": "312a57bc-343e-4337-a251-91609c550820",
+          "CheckChanges": false,
+          "ConcurrencyType": null,
+          "HasWorkflow": false,
+          "IsAbstract": true,
+          "IsAttachmentEnabled": false,
+          "IsAuditEnabled": false,
+          "IsCreationFromMyTaskEnabled": false,
+          "IsDataImportEnabled": false,
+          "IsDocumentEnabled": false,
+          "IsLocalizable": true,
+          "IsLocationBound": false,
+          "IsMailMergeEnabled": false,
+          "IsMapEnabled": false,
+          "IsMessageEnabled": false,
+          "IsSecurityEnabled": true,
+          "LocationFilter": 2,
+          "MergeType": null,
+          "MobileFilter": null,
+          "MobileTabOrder": null,
+          "ShortName": "QuestAbstract",
+          "TableName": "cusCLF_QuestAbstract",
+          "Timeout": null,
+          "TimeoutType": null,
+          "UseSoftDelete": false,
+          "Caption": "Question Abstract",
+          "DefaultValue": null,
+          "Description": null,
+          "DetailDisplayAs": null,
+          "DetailEditAs": null,
+          "DetailEmptyText": null,
+          "Icon": null,
+          "InventoryDisplayAs": null,
+          "InventoryEditAs": null,
+          "InventoryEmptyText": null,
+          "IsStatic": false,
+          "IsSystem": false,
+          "Name": "CLF_QuestAbstractObject",
+          "NetType": null,
+          "UseSystemViewSettings": true
+        },
+        "LocalizationData": null,
+        "Id": "ee9e1b07-81f2-4393-874b-ce0aa2bd27e4",
+        "Caption": "Question Abstract",
+        "Type": "Object",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 1,
+        "IsHidden": false
+      },
+      {
+        "$id": "76",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.SysConfigurableViewPackageItemData, Intelex.Business.PackageManagement",
+        "ResourceItems": [
+          {
+            "$id": "77",
+            "MetaResourceKey": "InventoryView0",
+            "DefaultValue": "Employees with Overdue/Upcoming Requirement",
+            "VirtualPath": "Caption",
+            "LocalizedValues": null
+          }
+        ],
+        "RecordId": "413d7155-212b-4475-b340-262943d5f35e",
+        "ObjectName": "SysConfigurableViewEntity",
+        "FieldData": {
+          "$id": "78",
+          "Id": "413d7155-212b-4475-b340-262943d5f35e",
+          "Caption": "Employees",
+          "ConfigurableViewActions": null,
+          "Content": "<ix:InventoryPage><ix:Inventory ID=\"TrainMgmt_Employee_Select_WithStatus\"><ix:InventoryView ID=\"TrainMgmt_Employee_Select_WithStatusView\" Caption=\"Employees with Overdue/Upcoming Requirement\" HelperText=\"Shows only employees with training requirements that are overdue or upcoming in the next two months.\" DisplayEditColumn=\"False\" HideGroupAddButton=\"true\" meta:resourcekey=\"InventoryView0\" ResourceKey=\"InventoryView0\"><Menu><ix:GridCreateActionLink Visible=\"false\" Override=\"true\"/><ix:GridDeleteActionLink Override=\"true\" Visible=\"false\"/><ix:GridArchiveActionLink Override=\"true\" Visible=\"false\"/></Menu><grouping><ix:Group By=\"ReqStatuses.Workflow.DueDateType\"/></grouping><Sorting><ix:Sort By=\"ReqStatuses.Workflow.DueDateType\" Direction=\"Descending\"/><ix:Sort By=\"ReqStatuses.NextDueDate\" Direction=\"Ascending\"/></Sorting><filters><ix:Filter PredicateOperator=\"And\"><ix:CommonPredicate For=\"ReqStatuses.Requirement:TrainMgmt_CourseObject.Sessions.id\" Type=\"Equal\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"Session:\", \"\") %></ix:Value></ix:CommonPredicate><ix:IsNullPredicate For=\"ReqStatuses.NextSchedDate\"/><ix:IsNullPredicate For=\"ReqStatuses.NextDueDate\" Negate=\"true\"/><ix:CommonPredicate For=\"ReqStatuses.NextDueDate\" Type=\"LessThan\"><ix:Value Parse=\"True\"><%= DateTime.Today.AddMonths(2) %></ix:Value></ix:CommonPredicate><ix:SubQueryPredicate For=\"Id\" FromEntity=\"TrainMgmt_IndTrainRecordObject\" Type=\"In\" EntityAlias=\"TrainingRecords\" Negate=\"true\"><ix:Property Text=\"Employee.Id\"/><ix:Filter><ix:CommonPredicate For=\"[TrainingRecords].SessionId\" Type=\"Equal\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"Session:\", \"\") %></ix:Value></ix:CommonPredicate></ix:Filter></ix:SubQueryPredicate><ix:SubQueryPredicate For=\"Id\" FromEntity=\"TrainMgmt_SessionTrainRecObject\" Type=\"In\" EntityAlias=\"TrainingRecords\" Negate=\"true\"><ix:Property Text=\"Employee.Id\"/><ix:Filter><ix:CommonPredicate For=\"[TrainingRecords].SessionId\" Type=\"Equal\"><ix:Value Parse=\"true\"><%=Request.QueryString[\"_DependsOn.Parent$\"].Replace(\"Session:\", \"\") %></ix:Value></ix:CommonPredicate></ix:Filter></ix:SubQueryPredicate></ix:Filter></filters><Columns><ix:Column For=\"Number\"/><ix:Column For=\"FullName\"/><ix:Column For=\"Location\" displayas=\"string\"/><ix:Column For=\"Position\"/><ix:Column For=\"ReqStatuses.LastCompDate\" Format=\"d\"/><ix:TemplateColumn For=\"ReqStatuses.NextDueDate\"><template><div class=\"<%# (DateTime) Container.ViewData.Eval(\"ReqStatuses.NextDueDate\") <= DateTime.Today ? \"redDiv\" : (DateTime) Container.ViewData.Eval(\"ReqStatuses.NextDueDate\") <= DateTime.Today.AddMonths(1) ? \"orangeDiv\" : \"greenDiv\" %>\"><%# String.Format(\"{0:MM/dd/yyyy}\", Container.ViewData.Eval(\"ReqStatuses.NextDueDate\")) %></div></template></ix:TemplateColumn></Columns></ix:InventoryView></ix:Inventory></ix:InventoryPage><style>.redDiv {\n\tfont-weight:bold;\n\tcolor:red;\n}\n\n.orangeDiv {\n\tfont-weight:bold;\n\tcolor:orange;\n}\n\n\n.greenDiv {\n\tfont-weight:bold;\n\tcolor:green;\n}</style>",
+          "IsParsedForMobile": false,
+          "IsPublic": false,
+          "MasterPage": null,
+          "Name": "TrainMgmt_Employee_Select_WithStatus",
+          "Path": "TrainMgmt_Employee_Select_WithStatus",
+          "Type": 1
+        },
+        "LocalizationData": null,
+        "Id": "6a16eef2-bdd7-4ee1-ba29-f78b40656a17",
+        "Caption": "TrainMgmt_Employee_Select_WithStatus",
+        "Type": "Configurable View",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 1,
+        "IsHidden": false
+      }
+    ],
+    "Relations": [
+      {
+        "$id": "79",
+        "Type": 2,
+        "Start": {
+          "$ref": "10"
+        },
+        "End": {
+          "$ref": "12"
+        },
+        "IsMandatory": true,
+        "Source": "Object"
+      },
+      {
+        "$id": "80",
+        "Type": 2,
+        "Start": {
+          "$ref": "12"
+        },
+        "End": {
+          "$ref": "47"
+        },
+        "IsMandatory": true,
+        "Source": "Module"
+      },
+      {
+        "$id": "81",
+        "Type": 2,
+        "Start": {
+          "$ref": "14"
+        },
+        "End": {
+          "$ref": "22"
+        },
+        "IsMandatory": true,
+        "Source": "Object"
+      },
+      {
+        "$id": "82",
+        "Type": 2,
+        "Start": {
+          "$ref": "22"
+        },
+        "End": {
+          "$ref": "24"
+        },
+        "IsMandatory": true,
+        "Source": "Module"
+      },
+      {
+        "$id": "83",
+        "Type": 2,
+        "Start": {
+          "$ref": "26"
+        },
+        "End": {
+          "$ref": "29"
+        },
+        "IsMandatory": true,
+        "Source": "Object"
+      },
+      {
+        "$id": "84",
+        "Type": 2,
+        "Start": {
+          "$ref": "29"
+        },
+        "End": {
+          "$ref": "70"
+        },
+        "IsMandatory": true,
+        "Source": "Module"
+      },
+      {
+        "$id": "85",
+        "Type": 2,
+        "Start": {
+          "$ref": "31"
+        },
+        "End": {
+          "$ref": "22"
+        },
+        "IsMandatory": true,
+        "Source": "Object"
+      },
+      {
+        "$id": "86",
+        "Type": 2,
+        "Start": {
+          "$ref": "38"
+        },
+        "End": {
+          "$ref": "41"
+        },
+        "IsMandatory": true,
+        "Source": "Object"
+      },
+      {
+        "$id": "87",
+        "Type": 2,
+        "Start": {
+          "$ref": "41"
+        },
+        "End": {
+          "$ref": "43"
+        },
+        "IsMandatory": true,
+        "Source": "Module"
+      },
+      {
+        "$id": "88",
+        "Type": 2,
+        "Start": {
+          "$ref": "49"
+        },
+        "End": {
+          "$ref": "51"
+        },
+        "IsMandatory": true,
+        "Source": "Object"
+      },
+      {
+        "$id": "89",
+        "Type": 2,
+        "Start": {
+          "$ref": "51"
+        },
+        "End": {
+          "$ref": "47"
+        },
+        "IsMandatory": true,
+        "Source": "Module"
+      },
+      {
+        "$id": "90",
+        "Type": 2,
+        "Start": {
+          "$ref": "51"
+        },
+        "End": {
+          "$ref": "72"
+        },
+        "IsMandatory": true,
+        "Source": "SuperType"
+      },
+      {
+        "$id": "91",
+        "Type": 2,
+        "Start": {
+          "$ref": "53"
+        },
+        "End": {
+          "$ref": "22"
+        },
+        "IsMandatory": true,
+        "Source": "Object"
+      },
+      {
+        "$id": "92",
+        "Type": 2,
+        "Start": {
+          "$ref": "61"
+        },
+        "End": {
+          "$ref": "63"
+        },
+        "IsMandatory": true,
+        "Source": "Object"
+      },
+      {
+        "$id": "93",
+        "Type": 2,
+        "Start": {
+          "$ref": "63"
+        },
+        "End": {
+          "$ref": "74"
+        },
+        "IsMandatory": true,
+        "Source": "SuperType"
+      },
+      {
+        "$id": "94",
+        "Type": 2,
+        "Start": {
+          "$ref": "63"
+        },
+        "End": {
+          "$ref": "45"
+        },
+        "IsMandatory": true,
+        "Source": "Module"
+      },
+      {
+        "$id": "95",
+        "Type": 2,
+        "Start": {
+          "$ref": "65"
+        },
+        "End": {
+          "$ref": "29"
+        },
+        "IsMandatory": true,
+        "Source": "Object"
+      },
+      {
+        "$id": "96",
+        "Type": 2,
+        "Start": {
+          "$ref": "68"
+        },
+        "End": {
+          "$ref": "51"
+        },
+        "IsMandatory": true,
+        "Source": "Object"
+      },
+      {
+        "$id": "97",
+        "Type": 2,
+        "Start": {
+          "$ref": "72"
+        },
+        "End": {
+          "$ref": "47"
+        },
+        "IsMandatory": true,
+        "Source": "Module"
+      },
+      {
+        "$id": "98",
+        "Type": 2,
+        "Start": {
+          "$ref": "74"
+        },
+        "End": {
+          "$ref": "45"
+        },
+        "IsMandatory": true,
+        "Source": "Module"
+      },
+      {
+        "$id": "99",
+        "Type": 2,
+        "Start": {
+          "$ref": "76"
+        },
+        "End": {
+          "$ref": "51"
+        },
+        "IsMandatory": true,
+        "Source": "Object"
+      }
+    ],
+    "RootItems": [
+      {
+        "$ref": "10"
+      },
+      {
+        "$ref": "14"
+      },
+      {
+        "$ref": "26"
+      },
+      {
+        "$ref": "31"
+      },
+      {
+        "$ref": "38"
+      },
+      {
+        "$ref": "49"
+      },
+      {
+        "$ref": "53"
+      },
+      {
+        "$ref": "61"
+      },
+      {
+        "$ref": "65"
+      },
+      {
+        "$ref": "68"
+      },
+      {
+        "$ref": "76"
+      }
+    ],
+    "IncludedItems": [
+      {
+        "$ref": "10"
+      },
+      {
+        "$ref": "14"
+      },
+      {
+        "$ref": "26"
+      },
+      {
+        "$ref": "31"
+      },
+      {
+        "$ref": "38"
+      },
+      {
+        "$ref": "49"
+      },
+      {
+        "$ref": "53"
+      },
+      {
+        "$ref": "61"
+      },
+      {
+        "$ref": "65"
+      },
+      {
+        "$ref": "68"
+      },
+      {
+        "$ref": "76"
+      }
+    ],
+    "Dependencies": [
+      {
+        "$ref": "12"
+      },
+      {
+        "$ref": "22"
+      },
+      {
+        "$ref": "24"
+      },
+      {
+        "$ref": "29"
+      },
+      {
+        "$ref": "41"
+      },
+      {
+        "$ref": "43"
+      },
+      {
+        "$ref": "45"
+      },
+      {
+        "$ref": "47"
+      },
+      {
+        "$ref": "51"
+      },
+      {
+        "$ref": "63"
+      },
+      {
+        "$ref": "70"
+      },
+      {
+        "$ref": "72"
+      },
+      {
+        "$ref": "74"
+      }
+    ],
+    "ExcludedItems": []
+  }
+}

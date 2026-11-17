@@ -1,0 +1,33 @@
+Installation Instructions
+PRECONDITIONS
+*************************************************
+Install Released Application Supplier Relationship Management 1.3.0
+Install Released Application Product Management	1.2.1
+Install Released Application Quality Comply Solution	1.0.0
+
+INSTALLATION INSTRUCTIONS
+*************************************************
+Install Checklist Framework(v1.0.0).ipack
+Install APQP & PPAP Manager(v1.0.0.0).ipack
+Install Checklist Framework - Data(v1.0.0).ipack
+Install APQP & PPAP Manager - Data(v1.0.0.0).ipack
+
+Views Add-On (Mandatory)
+For clients with Platform version 6.5.75 or higher install package Views Add-on(v1.0.0.0).ipack (ILX-8580)
+
+MERGE TEMPLATE SETUP: 
+*************************************************
+Add Template under Setup Application->Application Builder->Object Properties->Merge Templetes
+Details:
+Object: PPAP
+Template: "PSW_Intelex.docx" (upload file)
+Download as: Word
+Known Issues
+KNOWN ISSUES
+*************************************************
+TP#154212 - Members of APQP&PPAP Contributors can answer checklist questions for tasks where they are not person responsible (Checklist Framework limitation)
+TP#151543 - Members of APQP&PPAP Contributors group can't see the details on Program grid (This is an issue due to current Product Management application security)
+TP#151452 - Instructions, Workflow diagrams, Section Titles are not translated by the tool (Platform Limitation)
+TP#152726 - Process/Project Owner slicer is not filtering the list based on APQP&PPAP Owner group existing filter (Platform Limitation)
+TP#154170 - APQP&PPAP Owner is able to create Public Profile records for SRM (result of current SRM Security settings)
+TP#155049 - Wrong caption for Due Date field is displayed on validation error message on Task record (result of current Action Plan configuration)

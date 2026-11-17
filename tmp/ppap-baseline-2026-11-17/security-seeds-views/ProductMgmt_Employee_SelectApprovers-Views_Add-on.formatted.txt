@@ -1,0 +1,31 @@
+<ix:InventoryPage>
+<ix:Inventory ID="SysEmployeeEntityInventory">
+<ix:InventoryView ID="SysEmployeeEntityInventoryView">
+<Filters>
+<ix:Filter>
+<ix:SubQueryPredicate For="Id" FromEntity="ProductMgmt_ItemApproverObject" Type="In" EntityAlias="ItemApprover" Negate="true">
+<ix:Property Text="Employee.Id"/>
+<ix:Filter>
+<ix:CommonPredicate For="[ItemApprover].Item.Revisions.ID" Type="Equal">
+<ix:Value Parse="true">
+<%=Request.QueryString["_DependsOn.Parent$"].Replace("Item:", "") %>
+</ix:Value>
+</ix:CommonPredicate>
+</ix:Filter>
+</ix:SubQueryPredicate>
+</ix:Filter>
+</Filters>
+<Menu>
+<ix:GridCreateActionLink runat="server" Visible="false" Override="true"/>
+<ix:GridArchiveActionLink runat="server" Visible="false" Override="true"/>
+<ix:GridDataImportActionLink runat="server" Visible="false" Override="true"/>
+</Menu>
+<Columns>
+<ix:Column DisplayAs="string" For="Number"/>
+<ix:Column DisplayAs="string" For="Location"/>
+<ix:Column DisplayAs="string" For="FullName"/>
+<ix:Column DisplayAs="string" For="Position"/>
+</Columns>
+</ix:InventoryView>
+</ix:Inventory>
+</ix:InventoryPage>

@@ -1,0 +1,33 @@
+{
+  "source_hashes": [
+    {
+      "file": "Checklist Framework(v1.0.0).ipack",
+      "match": true
+    },
+    {
+      "file": "APQP & PPAP Manager(v1.0.0.0).ipack",
+      "match": true
+    },
+    {
+      "file": "Checklist Framework - Data(v1.0.0).ipack",
+      "match": true
+    },
+    {
+      "file": "APQP & PPAP Manager - Data(v1.0.0.0).ipack",
+      "match": true
+    },
+    {
+      "file": "Views Add-on(v1.0.0.0).ipack",
+      "match": true
+    }
+  ],
+  "source_pointer_failures": [],
+  "broken_links": [],
+  "unbalanced_fences": [],
+  "object_section_count": 92,
+  "field_rows": 403,
+  "seed_rows": 489,
+  "bad_mermaid_identifiers": [],
+  "failures": [],
+  "pass": true
+}

@@ -1,0 +1,38 @@
+<ix:InventoryPage>
+  <ix:Inventory ID="Insp_PubQuestion_Select">
+    <ix:InventoryView ID="Insp_PubQuestion_SelectSelect" HideGroupAddButton="true">
+      <filters>
+        <ix:Filter>
+          <ix:SubQueryPredicate For="Question.ChecklistType.Id" FromEntity="Insp_InspectionAbsObject" Type="In" EntityAlias="Inspection">
+<ix:Property Text="TypeOfInspec.Id"/>
+            <ix:Filter>
+              <ix:CommonPredicate For="[Inspection].Id" Type="Equal">
+                <ix:Value Parse="true">
+<%=Request.QueryString["_DependsOn.Parent"].Replace("ChecklistAnswer:", "") %>
+                </ix:Value>
+              </ix:CommonPredicate>
+            </ix:Filter>
+          </ix:SubQueryPredicate>
+          <ix:CommonPredicate For="DateCreated" Type="GreaterThanOrEqual">
+<ix:Property Text="Question.LastPublish"/>
+          </ix:CommonPredicate>
+        </ix:Filter>
+      </filters>
+      <Menu>
+<ix:GridCreateActionLink Override="true" visible="false"/>
+<ix:GridDeleteActionLink Override="true" visible="false"/>
+      </Menu>
+      <grouping>
+<ix:Group By="Section"/>
+      </grouping>
+      <Sorting>
+<ix:Sort By="Order" Direction="Ascending"/>
+      </Sorting>
+      <Columns>
+<ix:Column For="QuestionRef"/>
+<ix:Column For="Content" DisplayAs="Truncate"/>
+<ix:Column For="Guideline" DisplayAs="Truncate"/>
+      </Columns>
+    </ix:InventoryView>
+  </ix:Inventory>
+</ix:InventoryPage>

@@ -1,0 +1,781 @@
+﻿{
+  "$id": "1",
+  "Id": "0ff3c438-1cde-4420-87f7-e7d02802fdbe",
+  "Name": "Checklist Framework - Data",
+  "Description": "11/21/2014 - Finding Status",
+  "Version": "1.0.0",
+  "VersionId": "3f65ada2-f564-410a-9272-544e6550779e",
+  "Source": {
+    "$id": "2",
+    "Owner": "Venn Trial User",
+    "OwnerId": "496cd72f-ce23-4c77-9252-edc5d16be4b0",
+    "BuildDate": "2014-11-24T19:59:23.5216131Z",
+    "ExportDate": "2014-11-24T19:59:23.7716531Z",
+    "PlatformVersion": "6.4.1.0"
+  },
+  "Requirements": [
+    {
+      "$id": "3",
+      "$type": "Intelex.Business.PackageManagement.Export.Requirements.PlatformVersionTargetRequirement, Intelex.Business.PackageManagement",
+      "PlatformVersion": "6.4.1.0"
+    }
+  ],
+  "GraphData": {
+    "$id": "4",
+    "Items": [
+      {
+        "$id": "5",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "522c4ce8-9478-4f0b-bbfc-b050d615cdfb",
+        "ObjectName": "CLF_FindingStatusObject",
+        "FieldData": {
+          "$id": "6",
+          "BC": null,
+          "Id": "522c4ce8-9478-4f0b-bbfc-b050d615cdfb",
+          "Code": "Closed without Action",
+          "Icon": null,
+          "Name": "Closed without Action"
+        },
+        "LocalizationData": null,
+        "Id": "f7b5f5a8-b16c-4269-8848-03dde92c97e3",
+        "Caption": "Closed without Action",
+        "Type": "Finding Status",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "7",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "5586fde5-8b5c-4edc-b297-d76a895839b6",
+        "ObjectName": "FragApplication_ColorObject",
+        "FieldData": {
+          "$id": "8",
+          "Id": "5586fde5-8b5c-4edc-b297-d76a895839b6",
+          "Caption": "Dark Blue",
+          "Value": "#0023EC"
+        },
+        "LocalizationData": null,
+        "Id": "887e5fbf-0e6b-4ba0-b7a2-0ec51b04de95",
+        "Caption": "Dark Blue",
+        "Type": "Color",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "9",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "5e0d7c72-dadb-4241-b293-f79c213b1870",
+        "ObjectName": "CLF_ChoiceObject",
+        "FieldData": {
+          "$id": "10",
+          "Id": "5e0d7c72-dadb-4241-b293-f79c213b1870",
+          "Css": "text-align:center;padding:8px 3px;border-radius:10px;border:1px dotted darkred;",
+          "Name": "No",
+          "Reference": "YN.2",
+          "Value": 0.0
+        },
+        "LocalizationData": null,
+        "Id": "06fbfbd3-d412-4d57-9b21-1348b0319a91",
+        "Caption": "No",
+        "Type": "Choice",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "11",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "f1da27ed-8e56-4222-a00d-32a31789a937",
+        "ObjectName": "FragApplication_ColorObject",
+        "FieldData": {
+          "$id": "12",
+          "Id": "f1da27ed-8e56-4222-a00d-32a31789a937",
+          "Caption": "Red",
+          "Value": "#FA5555"
+        },
+        "LocalizationData": null,
+        "Id": "0d584cc7-5b18-4afa-8863-4ab2c169c564",
+        "Caption": "Red",
+        "Type": "Color",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "13",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "70b9d693-5d24-424b-a8e7-a17d9a072296",
+        "ObjectName": "CLF_ChoiceListObject",
+        "FieldData": {
+          "$id": "14",
+          "Id": "70b9d693-5d24-424b-a8e7-a17d9a072296",
+          "Description": null,
+          "MaxPoints": 1.0,
+          "Name": "Yes/No",
+          "NbChoices": 2,
+          "Reference": "YN"
+        },
+        "LocalizationData": null,
+        "Id": "e0c29f34-3718-40a1-928f-eee9ef49bf38",
+        "Caption": "Yes/No",
+        "Type": "Choice List",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "15",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "794c6052-8e18-403a-a957-995ea4f52df4",
+        "ObjectName": "FragApplication_ColorObject",
+        "FieldData": {
+          "$id": "16",
+          "Id": "794c6052-8e18-403a-a957-995ea4f52df4",
+          "Caption": "White",
+          "Value": "#FFFFFF"
+        },
+        "LocalizationData": null,
+        "Id": "ac3d84bb-56ed-4d58-bcd4-7f954f1bbcaa",
+        "Caption": "White",
+        "Type": "Color",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "17",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "9bbe68b1-ab58-4b28-9262-6c4c2beb289e",
+        "ObjectName": "CLF_ChoiceObject",
+        "FieldData": {
+          "$id": "18",
+          "Id": "9bbe68b1-ab58-4b28-9262-6c4c2beb289e",
+          "Css": "text-align:center;padding:8px 3px;border-radius:10px;border:1px dotted darkgreen;",
+          "Name": "Yes",
+          "Reference": "YNN.1",
+          "Value": 1.0
+        },
+        "LocalizationData": null,
+        "Id": "50ad7c5d-7986-4632-925d-2142cdfd1b2b",
+        "Caption": "Yes",
+        "Type": "Choice",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "19",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "76001999-bc51-4888-975f-7aac7a612abc",
+        "ObjectName": "FragApplication_ColorObject",
+        "FieldData": {
+          "$id": "20",
+          "Id": "76001999-bc51-4888-975f-7aac7a612abc",
+          "Caption": "Green",
+          "Value": "#9FE1CA"
+        },
+        "LocalizationData": null,
+        "Id": "abd69fc2-8da0-4dd8-9377-b9ec885b7d9a",
+        "Caption": "Green",
+        "Type": "Color",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "21",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "2917ee4e-4752-4062-9c5e-e7b6b8ab01ee",
+        "ObjectName": "FragApplication_ColorObject",
+        "FieldData": {
+          "$id": "22",
+          "Id": "2917ee4e-4752-4062-9c5e-e7b6b8ab01ee",
+          "Caption": "Black",
+          "Value": "#3A3B3C"
+        },
+        "LocalizationData": null,
+        "Id": "4f5015a3-851b-4403-8127-4ad72f842a9e",
+        "Caption": "Black",
+        "Type": "Color",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "23",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "cc01b77b-0ed2-4294-9b4a-d3c859f6ef69",
+        "ObjectName": "CLF_ChoiceListObject",
+        "FieldData": {
+          "$id": "24",
+          "Id": "cc01b77b-0ed2-4294-9b4a-d3c859f6ef69",
+          "Description": null,
+          "MaxPoints": 1.0,
+          "Name": "Yes/No/NA",
+          "NbChoices": 3,
+          "Reference": "YNN"
+        },
+        "LocalizationData": null,
+        "Id": "01cca6e5-5184-4b4d-ad95-820dc3ca3d6c",
+        "Caption": "Yes/No/NA",
+        "Type": "Choice List",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "25",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "f5a08400-fcae-4ad2-b150-326fdebb9daf",
+        "ObjectName": "CLF_ChoiceObject",
+        "FieldData": {
+          "$id": "26",
+          "Id": "f5a08400-fcae-4ad2-b150-326fdebb9daf",
+          "Css": "text-align:center;padding:8px 3px;border-radius:10px;border:1px dotted darkred;",
+          "Name": "No",
+          "Reference": "YNN.2",
+          "Value": 0.0
+        },
+        "LocalizationData": null,
+        "Id": "cf0033b9-d1b7-426e-bda8-5558c37babac",
+        "Caption": "No",
+        "Type": "Choice",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "27",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "2f52cefd-fb5c-4d35-876f-a5d3cb86ca90",
+        "ObjectName": "FragApplication_ColorObject",
+        "FieldData": {
+          "$id": "28",
+          "Id": "2f52cefd-fb5c-4d35-876f-a5d3cb86ca90",
+          "Caption": "Grey",
+          "Value": "#C4C6C4"
+        },
+        "LocalizationData": null,
+        "Id": "471b39cf-03e9-42e7-8e33-7e5811efda7f",
+        "Caption": "Grey",
+        "Type": "Color",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "29",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "8d75d3c0-54cc-43dd-be51-ca488ca18b0e",
+        "ObjectName": "CLF_ChoiceObject",
+        "FieldData": {
+          "$id": "30",
+          "Id": "8d75d3c0-54cc-43dd-be51-ca488ca18b0e",
+          "Css": "text-align:center;padding:8px 3px;border-radius:10px;border:1px dotted grey;",
+          "Name": "NA",
+          "Reference": "YNN.3",
+          "Value": null
+        },
+        "LocalizationData": null,
+        "Id": "503cb78e-966d-42f2-bb0e-c30db9d179e9",
+        "Caption": "NA",
+        "Type": "Choice",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "31",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "90db8f7f-26b5-4dfa-93b6-7dec96683ee7",
+        "ObjectName": "CLF_FindingStatusObject",
+        "FieldData": {
+          "$id": "32",
+          "BC": null,
+          "Id": "90db8f7f-26b5-4dfa-93b6-7dec96683ee7",
+          "Code": "In Progress",
+          "Icon": null,
+          "Name": "In Progress"
+        },
+        "LocalizationData": null,
+        "Id": "4dfa239f-c205-41e4-a887-9cf3f1ff101e",
+        "Caption": "In Progress",
+        "Type": "Finding Status",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "33",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "5aab1860-f10c-42e5-b967-1a938cd6ede0",
+        "ObjectName": "FragApplication_ColorObject",
+        "FieldData": {
+          "$id": "34",
+          "Id": "5aab1860-f10c-42e5-b967-1a938cd6ede0",
+          "Caption": "Dark Green",
+          "Value": "#00930E"
+        },
+        "LocalizationData": null,
+        "Id": "8993fe02-a087-4885-9859-d65c65e35341",
+        "Caption": "Dark Green",
+        "Type": "Color",
+        "Version": null,
+        "IfExists": 1,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "35",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "03b79b78-1c12-4e19-bcc4-da6e5e9f14b5",
+        "ObjectName": "CLF_ChoiceObject",
+        "FieldData": {
+          "$id": "36",
+          "Id": "03b79b78-1c12-4e19-bcc4-da6e5e9f14b5",
+          "Css": "text-align:center;padding:8px 3px;border-radius:10px;border:1px dotted darkgreen;",
+          "Name": "Yes",
+          "Reference": "YN.1",
+          "Value": 1.0
+        },
+        "LocalizationData": null,
+        "Id": "0b512622-ec6e-4658-a7e3-d4dde7440a76",
+        "Caption": "Yes",
+        "Type": "Choice",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "37",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "b1a82f40-1b4f-4811-8880-717d4fb812b4",
+        "ObjectName": "CLF_FindingStatusObject",
+        "FieldData": {
+          "$id": "38",
+          "BC": null,
+          "Id": "b1a82f40-1b4f-4811-8880-717d4fb812b4",
+          "Code": "Closed",
+          "Icon": null,
+          "Name": "Closed"
+        },
+        "LocalizationData": null,
+        "Id": "239587f4-301b-434e-8cf3-e9da86602923",
+        "Caption": "Closed",
+        "Type": "Finding Status",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 0,
+        "IsHidden": false
+      },
+      {
+        "$id": "39",
+        "$type": "Intelex.Business.PackageManagement.Export.DataItems.BusinessObjectPackageItemData, Intelex.Business.PackageManagement",
+        "RecordId": "2ea0b4d2-ce73-4bd4-a837-5030d44e6e45",
+        "ObjectName": "CLF_FindingStatusObject",
+        "FieldData": {
+          "$id": "40",
+          "BC": null,
+          "Id": "2ea0b4d2-ce73-4bd4-a837-5030d44e6e45",
+          "Code": "Open",
+          "Icon": null,
+          "Name": "Open"
+        },
+        "LocalizationData": null,
+        "Id": "39f6750f-a00f-476f-83c6-f3c01ebf0bc2",
+        "Caption": "Open",
+        "Type": "Finding Status",
+        "Version": null,
+        "IfExists": 0,
+        "IfNotExists": 0,
+        "IsHidden": false
+      }
+    ],
+    "Relations": [
+      {
+        "$id": "41",
+        "Type": 2,
+        "Start": {
+          "$ref": "5"
+        },
+        "End": {
+          "$ref": "7"
+        },
+        "IsMandatory": false,
+        "Source": "TC"
+      },
+      {
+        "$id": "42",
+        "Type": 2,
+        "Start": {
+          "$ref": "9"
+        },
+        "End": {
+          "$ref": "11"
+        },
+        "IsMandatory": false,
+        "Source": "BColor"
+      },
+      {
+        "$id": "43",
+        "Type": 2,
+        "Start": {
+          "$ref": "9"
+        },
+        "End": {
+          "$ref": "13"
+        },
+        "IsMandatory": true,
+        "Source": "ChoiceList"
+      },
+      {
+        "$id": "44",
+        "Type": 2,
+        "Start": {
+          "$ref": "9"
+        },
+        "End": {
+          "$ref": "15"
+        },
+        "IsMandatory": false,
+        "Source": "TColor"
+      },
+      {
+        "$id": "45",
+        "Type": 1,
+        "Start": {
+          "$ref": "13"
+        },
+        "End": {
+          "$ref": "9"
+        },
+        "IsMandatory": false,
+        "Source": "Choices"
+      },
+      {
+        "$id": "46",
+        "Type": 1,
+        "Start": {
+          "$ref": "13"
+        },
+        "End": {
+          "$ref": "35"
+        },
+        "IsMandatory": false,
+        "Source": "Choices"
+      },
+      {
+        "$id": "47",
+        "Type": 2,
+        "Start": {
+          "$ref": "17"
+        },
+        "End": {
+          "$ref": "19"
+        },
+        "IsMandatory": false,
+        "Source": "BColor"
+      },
+      {
+        "$id": "48",
+        "Type": 2,
+        "Start": {
+          "$ref": "17"
+        },
+        "End": {
+          "$ref": "21"
+        },
+        "IsMandatory": false,
+        "Source": "TColor"
+      },
+      {
+        "$id": "49",
+        "Type": 2,
+        "Start": {
+          "$ref": "17"
+        },
+        "End": {
+          "$ref": "23"
+        },
+        "IsMandatory": true,
+        "Source": "ChoiceList"
+      },
+      {
+        "$id": "50",
+        "Type": 1,
+        "Start": {
+          "$ref": "23"
+        },
+        "End": {
+          "$ref": "29"
+        },
+        "IsMandatory": false,
+        "Source": "Choices"
+      },
+      {
+        "$id": "51",
+        "Type": 1,
+        "Start": {
+          "$ref": "23"
+        },
+        "End": {
+          "$ref": "17"
+        },
+        "IsMandatory": false,
+        "Source": "Choices"
+      },
+      {
+        "$id": "52",
+        "Type": 1,
+        "Start": {
+          "$ref": "23"
+        },
+        "End": {
+          "$ref": "25"
+        },
+        "IsMandatory": false,
+        "Source": "Choices"
+      },
+      {
+        "$id": "53",
+        "Type": 2,
+        "Start": {
+          "$ref": "25"
+        },
+        "End": {
+          "$ref": "15"
+        },
+        "IsMandatory": false,
+        "Source": "TColor"
+      },
+      {
+        "$id": "54",
+        "Type": 2,
+        "Start": {
+          "$ref": "25"
+        },
+        "End": {
+          "$ref": "11"
+        },
+        "IsMandatory": false,
+        "Source": "BColor"
+      },
+      {
+        "$id": "55",
+        "Type": 2,
+        "Start": {
+          "$ref": "25"
+        },
+        "End": {
+          "$ref": "23"
+        },
+        "IsMandatory": true,
+        "Source": "ChoiceList"
+      },
+      {
+        "$id": "56",
+        "Type": 2,
+        "Start": {
+          "$ref": "29"
+        },
+        "End": {
+          "$ref": "23"
+        },
+        "IsMandatory": true,
+        "Source": "ChoiceList"
+      },
+      {
+        "$id": "57",
+        "Type": 2,
+        "Start": {
+          "$ref": "29"
+        },
+        "End": {
+          "$ref": "27"
+        },
+        "IsMandatory": false,
+        "Source": "TColor"
+      },
+      {
+        "$id": "58",
+        "Type": 2,
+        "Start": {
+          "$ref": "29"
+        },
+        "End": {
+          "$ref": "15"
+        },
+        "IsMandatory": false,
+        "Source": "BColor"
+      },
+      {
+        "$id": "59",
+        "Type": 2,
+        "Start": {
+          "$ref": "31"
+        },
+        "End": {
+          "$ref": "33"
+        },
+        "IsMandatory": false,
+        "Source": "TC"
+      },
+      {
+        "$id": "60",
+        "Type": 2,
+        "Start": {
+          "$ref": "35"
+        },
+        "End": {
+          "$ref": "21"
+        },
+        "IsMandatory": false,
+        "Source": "TColor"
+      },
+      {
+        "$id": "61",
+        "Type": 2,
+        "Start": {
+          "$ref": "35"
+        },
+        "End": {
+          "$ref": "13"
+        },
+        "IsMandatory": true,
+        "Source": "ChoiceList"
+      },
+      {
+        "$id": "62",
+        "Type": 2,
+        "Start": {
+          "$ref": "35"
+        },
+        "End": {
+          "$ref": "19"
+        },
+        "IsMandatory": false,
+        "Source": "BColor"
+      },
+      {
+        "$id": "63",
+        "Type": 2,
+        "Start": {
+          "$ref": "37"
+        },
+        "End": {
+          "$ref": "7"
+        },
+        "IsMandatory": false,
+        "Source": "TC"
+      },
+      {
+        "$id": "64",
+        "Type": 2,
+        "Start": {
+          "$ref": "39"
+        },
+        "End": {
+          "$ref": "11"
+        },
+        "IsMandatory": false,
+        "Source": "TC"
+      }
+    ],
+    "RootItems": [
+      {
+        "$ref": "5"
+      },
+      {
+        "$ref": "13"
+      },
+      {
+        "$ref": "23"
+      },
+      {
+        "$ref": "31"
+      },
+      {
+        "$ref": "37"
+      },
+      {
+        "$ref": "39"
+      }
+    ],
+    "IncludedItems": [
+      {
+        "$ref": "5"
+      },
+      {
+        "$ref": "9"
+      },
+      {
+        "$ref": "13"
+      },
+      {
+        "$ref": "17"
+      },
+      {
+        "$ref": "23"
+      },
+      {
+        "$ref": "25"
+      },
+      {
+        "$ref": "29"
+      },
+      {
+        "$ref": "31"
+      },
+      {
+        "$ref": "35"
+      },
+      {
+        "$ref": "37"
+      },
+      {
+        "$ref": "39"
+      }
+    ],
+    "Dependencies": [
+      {
+        "$ref": "7"
+      },
+      {
+        "$ref": "11"
+      },
+      {
+        "$ref": "15"
+      },
+      {
+        "$ref": "19"
+      },
+      {
+        "$ref": "21"
+      },
+      {
+        "$ref": "27"
+      },
+      {
+        "$ref": "33"
+      }
+    ],
+    "ExcludedItems": []
+  }
+}

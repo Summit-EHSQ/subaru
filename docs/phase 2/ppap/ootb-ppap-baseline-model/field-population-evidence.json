@@ -1,0 +1,1732 @@
+{
+  "resolved": [
+    {
+      "field_id": "9b1fbd04-1f0b-4069-a29b-c2a40dc70070",
+      "evidence": [
+        {
+          "label": "Action Handler: Update Task Person Responsible",
+          "value": "TRUE",
+          "path": "ProjectTasks.HelpMemChanged",
+          "source": {
+            "id": "a66b7248-f1d0-4214-884c-8373b83eb0a3",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/94"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "6d49ba21-e617-4eb7-9bf0-dd1327e663f1",
+      "evidence": [
+        {
+          "label": "Action Handler: Assign Gate on Mass Update",
+          "value": "GateMassHelper",
+          "path": "Phase",
+          "source": {
+            "id": "8c11f7aa-51b5-423a-9ab7-9a284322f3bb",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/212"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "5e972763-8526-42b3-9481-4bc5387e6af7",
+      "evidence": [
+        {
+          "label": "Action Handler: Assign Gate on Mass Update",
+          "value": "NULL",
+          "path": "GateMassHelper",
+          "source": {
+            "id": "8c11f7aa-51b5-423a-9ab7-9a284322f3bb",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/212"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "928f4637-0e14-46dc-89bc-90cb6e3fadd2",
+      "evidence": [
+        {
+          "label": "Action Handler: Update Related PPAP Project Owner and Due Date",
+          "value": "DueDate",
+          "path": "RelatedPPAP.SubmissionDate",
+          "source": {
+            "id": "4b1cb894-4720-4ba0-b469-dafbf4913664",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/245"
+          }
+        },
+        {
+          "label": "Action Handler: Initialize PPAP When Task<>NULL",
+          "value": "Task.Workflow.DueDate",
+          "path": "SubmissionDate",
+          "source": {
+            "id": "fc0d5679-5d86-4c11-b026-f76ff4d28eae",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/845"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "4d00fd0b-0676-47ea-b0c5-969bcf30f742",
+      "evidence": [
+        {
+          "label": "Action Handler: Update Related PPAP Project Owner and Due Date",
+          "value": "PersResponsible.MemberId\n",
+          "path": "RelatedPPAP.ProjectOwnerId",
+          "source": {
+            "id": "4b1cb894-4720-4ba0-b469-dafbf4913664",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/245"
+          }
+        },
+        {
+          "label": "Action Handler: Update Related PPAP Project Owner and Due Date",
+          "value": "PersonRespId",
+          "path": "RelatedPPAP.ProjectOwnerId",
+          "source": {
+            "id": "4b1cb894-4720-4ba0-b469-dafbf4913664",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/245"
+          }
+        },
+        {
+          "label": "Action Handler: Update Related PPAP Project Owner and Due Date",
+          "value": "Project.Workflow.PersonResponsibleId",
+          "path": "RelatedPPAP.ProjectOwnerId",
+          "source": {
+            "id": "4b1cb894-4720-4ba0-b469-dafbf4913664",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/245"
+          }
+        },
+        {
+          "label": "Action Handler: Initialize PPAP When Task<>NULL",
+          "value": "Task.Workflow.PersonResponsibleId",
+          "path": "ProjectOwnerId",
+          "source": {
+            "id": "fc0d5679-5d86-4c11-b026-f76ff4d28eae",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/845"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "6d95da63-950c-431c-ae19-fe0c02097768",
+      "evidence": [
+        {
+          "label": "Action Handler: Copy Values on Create and Create PPAP",
+          "value": "ProjectTaskMap.ProjTaskDefObj.Id",
+          "path": "DefId",
+          "source": {
+            "id": "0ded9b46-572f-4fad-bd6d-c7c2450b09b4",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/289"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "7da95534-7ec0-4313-990d-c0a5d5ec92b1",
+      "evidence": [
+        {
+          "label": "Action Handler: Set Relation with Task Type",
+          "value": "GETRELATED(\"ProjectFwk_TaskTypeObject\", \"TableName\", \"ProjectFwk_ChecklistObject\")",
+          "path": "TaskType",
+          "source": {
+            "id": "8c99c9a7-5b0f-4b01-b81b-abe2aacf5999",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/353"
+          }
+        },
+        {
+          "label": "Action Handler: Set Relation with Task Type",
+          "value": "GETRELATED(\"ProjectFwk_TaskTypeObject\", \"TableName\", \"ProjectFwk_TaskObject\")",
+          "path": "TaskType",
+          "source": {
+            "id": "751153a5-db9c-4ebe-ae17-bd02d2006805",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/450"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "41c28c7a-2842-4515-99f9-141e7d29d328",
+      "evidence": [
+        {
+          "label": "Action Handler: Clear IMDS Field",
+          "value": "NULL",
+          "path": "IMDSOther",
+          "source": {
+            "id": "6578b2b3-e10d-4ce5-b286-a003ba3606bd",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/392"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "c9b8496b-998c-46c3-a571-2374d5ffdba7",
+      "evidence": [
+        {
+          "label": "Action Handler: Clear Product Design & Development and dehactivate",
+          "value": "NULL",
+          "path": "WeightAssigned",
+          "source": {
+            "id": "3b05f75e-2967-4017-b1a4-88cdfb340689",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/437"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "2c3fa19f-e2f4-44b1-bafb-0367bfb86867",
+      "evidence": [
+        {
+          "label": "Action Handler: Clear Product Design & Development and dehactivate",
+          "value": "FALSE",
+          "path": "Active",
+          "source": {
+            "id": "3b05f75e-2967-4017-b1a4-88cdfb340689",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/437"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "1b92481d-e59f-47ad-8da8-008d85492f19",
+      "evidence": [
+        {
+          "label": "Action Handler: Initialize when Project <> NULL",
+          "value": "Project.LocationId",
+          "path": "LocationId",
+          "source": {
+            "id": "cd82bba4-4f01-4b8e-99bf-efece4cc6f82",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/478"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "7ce5c916-8396-49c7-8314-d47421b2252a",
+      "evidence": [
+        {
+          "label": "Action Handler: Initialize when Project <> NULL",
+          "value": "FETCHVALUE(\"ProjectFwk_PhaseObject\", \"Id\", \"Order Ascending\", \"ProjectTypeId\", \"=\", Project.ProjectTypeId,\"WFStageName\",\"=\",Project.Workflow.CurrentStage.SystemName)",
+          "path": "PhaseId",
+          "source": {
+            "id": "cd82bba4-4f01-4b8e-99bf-efece4cc6f82",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/478"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "664fc9c8-4c2c-43d4-9b44-e67467fdbab4",
+      "evidence": [
+        {
+          "label": "Action Handler: Update Integrated Task Due Date",
+          "value": "SubmissionDate",
+          "path": "Task.DueDate",
+          "source": {
+            "id": "19fa8394-fd01-4057-a7bb-8780d5b67b7d",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/502"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "aaf0b21b-9cfb-4259-89c1-0c8ec1a04d02",
+      "evidence": [
+        {
+          "label": "Action Handler: Update \"Skip Product Design Gate\" (Helper) on phases for APQP project type",
+          "value": "SkipGate2",
+          "path": "APQPProjectType.Phases.DevelopmeHelper",
+          "source": {
+            "id": "92c5d842-111d-4d19-9ff1-b185be8b993d",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/520"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "8dc1c8dc-f39c-4159-8e38-699de87f3e8f",
+      "evidence": [
+        {
+          "label": "Action Handler: Sync Person Responsible",
+          "value": "ProcessOwnerId",
+          "path": "Workflow.PersonResponsibleId",
+          "source": {
+            "id": "dce7312b-32c2-4302-83d3-d24c5c966133",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/623"
+          }
+        },
+        {
+          "label": "Action Handler: Sync Person Responsible",
+          "value": "PersResponsible.MemberId",
+          "path": "Workflow.PersonResponsibleId",
+          "source": {
+            "id": "0503d7d8-c8f5-4b34-a429-af14326c8739",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/630"
+          }
+        },
+        {
+          "label": "Action Handler: Sync Person Responsible",
+          "value": "PersonRespId",
+          "path": "Workflow.PersonResponsibleId",
+          "source": {
+            "id": "0503d7d8-c8f5-4b34-a429-af14326c8739",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/630"
+          }
+        },
+        {
+          "label": "Action Handler: Sync Person Responsible",
+          "value": "Project.Workflow.PersonResponsibleId",
+          "path": "Workflow.PersonResponsibleId",
+          "source": {
+            "id": "0503d7d8-c8f5-4b34-a429-af14326c8739",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/630"
+          }
+        },
+        {
+          "label": "Action Handler: Sync Person Responsible",
+          "value": "ProjectOwnerId",
+          "path": "Workflow.PersonResponsibleId",
+          "source": {
+            "id": "c79ef2d8-6659-46d0-81c3-0708c760a0c4",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/837"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "49eba879-2ac4-484a-9bcb-06095a1f8a6e",
+      "evidence": [
+        {
+          "label": "Action Handler: Set Relation to Project Type",
+          "value": "GETRELATED(\"ProjectFwk_ProjectTypeObject\", \"Name\", \"APQP\")",
+          "path": "ProjectType",
+          "source": {
+            "id": "3668e785-86b9-4ece-b6ed-7d8eadad8836",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/624"
+          }
+        },
+        {
+          "label": "Action Handler: Set Relation to Project Type",
+          "value": "GETRELATED(\"ProjectFwk_ProjectTypeObject\", \"Name\", \"PPAP\")",
+          "path": "ProjectType",
+          "source": {
+            "id": "3f9590ca-03dc-461f-b335-7970c5ef0dc5",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/843"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "cddd6059-c0a4-40be-8505-5de50180d9bf",
+      "evidence": [
+        {
+          "label": "Action Handler: Copy Values on Create",
+          "value": "ProjectTaskMap.ProjTaskDefObj.Id",
+          "path": "DefId",
+          "source": {
+            "id": "56198296-7d7f-4cd8-9d87-c50a65600ff8",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/633"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "309c0f2c-e39b-4f04-99d1-9c203552356f",
+      "evidence": [
+        {
+          "label": "Action Handler: Copy Values on Create",
+          "value": "FETCHVALUE(\"CLF_PubChecklistObject\", \"Id\", \"DateCreated Descending\", \"ChecklistId\", \"=\", Def.Checklist.Id)",
+          "path": "HelpPubCheck",
+          "source": {
+            "id": "56198296-7d7f-4cd8-9d87-c50a65600ff8",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/633"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "4f788663-622b-4616-bd3e-e94651c0dcbe",
+      "evidence": [
+        {
+          "label": "Action Handler: Copy Values on Create",
+          "value": "GETRELATED(\n\"ProjectFwk_ChecklistRecordObject\",\n\"LocationId\", LocationId,\n\"PubChecklistId\", HelpPubCheck,\n\"DateCreated\", NOW\n)  ",
+          "path": "ChecklistAnswer",
+          "source": {
+            "id": "56198296-7d7f-4cd8-9d87-c50a65600ff8",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/633"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "0c5a8c29-d3c5-45c0-b16b-c16dd3de3b46",
+      "evidence": [
+        {
+          "label": "Action Handler: Set RelatedPPAP on Task",
+          "value": "Id",
+          "path": "Task.RelatedPPAPId",
+          "source": {
+            "id": "891eff41-8aa1-44b2-83ab-aa3258126fae",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/756"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "a761db79-f722-4c8a-ac45-258481c6cbc1",
+      "evidence": [
+        {
+          "label": "Action Handler: [Listener] Create Tasks",
+          "value": "GETRELATED(\n\"ProjectFwk_TaskObject\",\n\"ProjectId\", HelpProjUpId,\n\"PhaseId\",PhaseId,\n\"ProjectTaskMapId\", Id\n) ",
+          "path": "HelpProjTask",
+          "source": {
+            "id": "ac1a709d-5ca9-422c-aa49-aa78924327d0",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/774"
+          }
+        },
+        {
+          "label": "Action Handler: [Listener] Create Tasks",
+          "value": "GETRELATED(\n\"ProjectFwk_AdHocTaskObject\",\n\"ProjectId\", HelpProjUpId,\n\"PhaseId\",PhaseId,\n\"ProjectTaskMapId\", Id\n) ",
+          "path": "HelpProjTask",
+          "source": {
+            "id": "ac1a709d-5ca9-422c-aa49-aa78924327d0",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/774"
+          }
+        },
+        {
+          "label": "Action Handler: [Listener] Create Tasks",
+          "value": "GETRELATED(\n\"ProjectFwk_ChecklistObject\",\n\"ProjectId\", HelpProjUpId,\n\"PhaseId\",PhaseId,\n\"ProjectTaskMapId\", Id\n) ",
+          "path": "HelpProjTask",
+          "source": {
+            "id": "ac1a709d-5ca9-422c-aa49-aa78924327d0",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/774"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "2270e7af-f3f5-4e6e-9e24-598f609a67e4",
+      "evidence": [
+        {
+          "label": "Action Handler: [Listener] Create Tasks",
+          "value": "NULL",
+          "path": "HelpProjUp",
+          "source": {
+            "id": "ac1a709d-5ca9-422c-aa49-aa78924327d0",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/774"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "19dd5ce0-995d-4557-a51c-6e3729273cae",
+      "evidence": [
+        {
+          "label": "Action Handler: Role Creation",
+          "value": "Id",
+          "path": "ProjectTemplate.ProjectTasks.ProjTaskDefObj.ProjectRole.HelperProjectID",
+          "source": {
+            "id": "e75c1108-299d-4ecf-83bd-0a91ea2b79be",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/778"
+          }
+        },
+        {
+          "label": "Action Handler: [Listener] Create Project/Role/TeamMembers",
+          "value": "NULL",
+          "path": "HelperProjectID",
+          "source": {
+            "id": "60d7d9db-bb5a-4998-bcb7-32d765819002",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/889"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "02bc401c-1df2-4e73-a39a-cbda7b44143c",
+      "evidence": [
+        {
+          "label": "Action Handler: Initialize PPAP When Task<>NULL",
+          "value": "Task.Project.ProductId",
+          "path": "ProductId",
+          "source": {
+            "id": "fc0d5679-5d86-4c11-b026-f76ff4d28eae",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/845"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "c39ea860-8f9e-414f-8e47-a61640067a7c",
+      "evidence": [
+        {
+          "label": "Action Handler: Initialize PPAP When Task<>NULL",
+          "value": "Task.Project.SupplierId",
+          "path": "SupplierId",
+          "source": {
+            "id": "fc0d5679-5d86-4c11-b026-f76ff4d28eae",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/845"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "ac93149a-5b55-484c-9d1e-29e9cb747dc0",
+      "evidence": [
+        {
+          "label": "Action Handler: Initialize PPAP When Task<>NULL",
+          "value": "Task.Project.CustomerId",
+          "path": "CustomerId",
+          "source": {
+            "id": "fc0d5679-5d86-4c11-b026-f76ff4d28eae",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/845"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "e86e6764-02d8-456b-a5a5-21e9655e274a",
+      "evidence": [
+        {
+          "label": "Action Handler: Initialize PPAP When Task<>NULL",
+          "value": "Task.Def.PPAPTemplateId",
+          "path": "ProjectTemplateId",
+          "source": {
+            "id": "fc0d5679-5d86-4c11-b026-f76ff4d28eae",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/845"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "1304e2a8-c0c4-4e4a-91a2-8f3bdd29aa3d",
+      "evidence": [
+        {
+          "label": "Action Handler: Update Phase for open tasks",
+          "value": "GETRELATED( \"ProjectFwk_PhaseObject\", \"WFStageName\", \"InProgress\", \"ProjectTypeId\", Project.ProjectType.Id )",
+          "path": "Phase",
+          "source": {
+            "id": "8e9db346-5543-455f-9d32-5e5606e4a3ab",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/859"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "798f7c0f-c5a2-4db4-a389-9e9c4bcfc8e9",
+      "evidence": [
+        {
+          "label": "Action Handler: Update Phase for open tasks",
+          "value": "FALSE",
+          "path": "HelpProjWorkCh",
+          "source": {
+            "id": "8e9db346-5543-455f-9d32-5e5606e4a3ab",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/859"
+          }
+        },
+        {
+          "label": "Workflow PPAP / Draft / Proceed to Next Stage",
+          "value": "TRUE",
+          "path": "ProjectTasks.HelpProjWorkCh",
+          "source": {
+            "id": "db040717-9e07-466d-bcc1-3ea8bf335370",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/20"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "6760eec2-10be-4d35-944b-8ad12b6cad40",
+      "evidence": [
+        {
+          "label": "Action Handler: [Listener] Create Project/Role/TeamMembers",
+          "value": "GETRELATED(\n\"ProjectFwk_ProjRoleTeMemObject\",\n\"ProjectAbstractProjRoleTeamMemId\", HelperProjectID,\n\"ProjectRoleId\", Id\n) ",
+          "path": "HelpProjRolMem",
+          "source": {
+            "id": "60d7d9db-bb5a-4998-bcb7-32d765819002",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/889"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "e2ac0318-e2a9-428a-803c-d0f4957ae0fb",
+      "evidence": [
+        {
+          "label": "Action Handler: Set Phase Field & Task Creation",
+          "value": "FETCHVALUE(\"ProjectFwk_PhaseObject\", \"Id\", \"Order Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId)",
+          "path": "PhaseId",
+          "source": {
+            "id": "d5da1088-aa43-4014-857e-8c50a19e6857",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/938"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "d2cdabfd-5b74-4e87-b700-abd3546f53ee",
+      "evidence": [
+        {
+          "label": "Action Handler: Set Phase Field & Task Creation",
+          "value": "GETRELATED(\"ProjectFwk_PhaseObject\", \"ProjectTypeId\", ProjectTypeId, \"WFStageName\", Workflow.CurrentStage.SystemName)",
+          "path": "Phase",
+          "source": {
+            "id": "d5da1088-aa43-4014-857e-8c50a19e6857",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/938"
+          }
+        },
+        {
+          "label": "Workflow PPAP / In Review / Approve",
+          "value": "NULL",
+          "path": "Phase",
+          "source": {
+            "id": "59d77971-7084-48a3-8eab-c61f961e7771",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/26"
+          }
+        },
+        {
+          "label": "Workflow PPAP / In Review / Reject",
+          "value": "NULL",
+          "path": "Phase",
+          "source": {
+            "id": "1eb129c2-9ea6-4b3c-8067-cc9fd215bbcb",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/27"
+          }
+        },
+        {
+          "label": "Workflow PPAP / Interim Approval / Approve",
+          "value": "NULL",
+          "path": "Phase",
+          "source": {
+            "id": "9d7a9360-42cc-4ab2-b778-a3bd7d98b62a",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/28"
+          }
+        },
+        {
+          "label": "Workflow PPAP / Interim Approval / Reject",
+          "value": "NULL",
+          "path": "Phase",
+          "source": {
+            "id": "8e768b51-c858-4ab6-9285-c8306dfd5eaf",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/29"
+          }
+        },
+        {
+          "label": "Workflow APQP / Gate 5 / Approve",
+          "value": "NULL",
+          "path": "Phase",
+          "source": {
+            "id": "f976d235-8755-4a99-8b97-7feafd0df32c",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/32"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "532dc543-91c0-4f2a-b8b9-2308489b9ace",
+      "evidence": [
+        {
+          "label": "Action Handler: Set Phase Field & Task Creation",
+          "value": "Id",
+          "path": "ProjectTemplate.ProjectTasks.HelpProjUpId",
+          "source": {
+            "id": "d5da1088-aa43-4014-857e-8c50a19e6857",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/938"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "258f338e-9606-470f-beb9-8b05551ee613",
+      "evidence": [
+        {
+          "label": "Action Handler: Auto Close Related Task WF",
+          "value": "TODAY()",
+          "path": "Task.Workflow.DateNotRequired",
+          "source": {
+            "id": "b4b01894-d81c-41cf-be14-ba9f519ea0af",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/954"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "84565854-3e9a-4898-aad8-0fc944032bc4",
+      "evidence": [
+        {
+          "label": "Action Handler: Auto Close Related Task WF",
+          "value": "TRUE",
+          "path": "Task.IsCompleted",
+          "source": {
+            "id": "b4b01894-d81c-41cf-be14-ba9f519ea0af",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/954"
+          }
+        },
+        {
+          "label": "Workflow Task / Open / Complete Task",
+          "value": "TRUE",
+          "path": "IsCompleted",
+          "source": {
+            "id": "d74d3aac-1eb9-4262-b8d2-911c314f0766",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/185/GraphData/Items/19"
+          }
+        },
+        {
+          "label": "Workflow Task / Open / Complete Task",
+          "value": "TRUE",
+          "path": "IsCompleted",
+          "source": {
+            "id": "3bc1f16f-c247-4fb8-9763-277794eb35bf",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/310/GraphData/Items/19"
+          }
+        },
+        {
+          "label": "Workflow Project Checklist / Open / Complete Task",
+          "value": "TRUE",
+          "path": "IsCompleted",
+          "source": {
+            "id": "d27ff9e6-b9a2-425e-a22f-cc4cdbc53bff",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/452/GraphData/Items/19"
+          }
+        },
+        {
+          "label": "Workflow Inspection Action Plan / In Progress / Complete",
+          "path": "84565854-3e9a-4898-aad8-0fc944032bc4",
+          "source": {
+            "id": "b736836e-f77d-4a45-967a-712179a2cf74",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/102/GraphData/Items/12"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "c49aee33-a42a-4fe2-ba2a-d309e1091942",
+      "evidence": [
+        {
+          "label": "Action Handler: Auto Close Related Task WF",
+          "value": "CURRENTUSER",
+          "path": "Task.CompletedBy",
+          "source": {
+            "id": "b4b01894-d81c-41cf-be14-ba9f519ea0af",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/954"
+          }
+        },
+        {
+          "label": "Workflow Task / Open / Complete Task",
+          "value": "CURRENTUSER",
+          "path": "CompletedBy",
+          "source": {
+            "id": "d74d3aac-1eb9-4262-b8d2-911c314f0766",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/185/GraphData/Items/19"
+          }
+        },
+        {
+          "label": "Workflow Task / Open / Complete Task",
+          "value": "CURRENTUSER",
+          "path": "CompletedBy",
+          "source": {
+            "id": "3bc1f16f-c247-4fb8-9763-277794eb35bf",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/310/GraphData/Items/19"
+          }
+        },
+        {
+          "label": "Workflow Project Checklist / Open / Complete Task",
+          "value": "CURRENTUSER",
+          "path": "CompletedBy",
+          "source": {
+            "id": "d27ff9e6-b9a2-425e-a22f-cc4cdbc53bff",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/452/GraphData/Items/19"
+          }
+        },
+        {
+          "label": "Workflow Inspection Action Plan / In Progress / Complete",
+          "path": "c49aee33-a42a-4fe2-ba2a-d309e1091942",
+          "source": {
+            "id": "b736836e-f77d-4a45-967a-712179a2cf74",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/102/GraphData/Items/12"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "c9bfec00-62e4-4cf3-84e4-7a93c62d5228",
+      "evidence": [
+        {
+          "label": "Action Handler: Set Person Responsible on create",
+          "value": "FETCHVALUE(\"ProjectFwk_ProjRoleTeMemObject\", \"Id\", \"Id Ascending\", \"ProjectAbstractProjRoleTeamMemId\", \"=\", ProjectId, \"ProjectRoleId\", \"=\",ProjectRoleId) ",
+          "path": "PersResponsibleId",
+          "source": {
+            "id": "0b748107-344b-42c7-a5ee-b2f6591a01ea",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/995"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "8e823fb2-07c3-4e02-bdc1-d77d470e214f",
+      "evidence": [
+        {
+          "label": "Action Handler: Set Person Responsible on create",
+          "value": "GETRELATED( \"ProjectFwk_ProjRoleTeMemObject\", \"ProjectAbstractProjRoleTeamMemId\", ProjectId, \"ProjectRoleId\", ProjectRoleId)",
+          "path": "PersResponsible",
+          "source": {
+            "id": "0b748107-344b-42c7-a5ee-b2f6591a01ea",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/995"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "dbab4405-3e42-40be-97c6-b1ac86afcd03",
+      "evidence": [
+        {
+          "label": "Action Handler: On Create",
+          "value": "CONCATENATE(MasterChecklist.Name, \" - \",  PubChecklist.Title)",
+          "path": "Name",
+          "source": {
+            "id": "69990af1-7f77-4564-ad82-88b993514121",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/28"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "de676db5-1ec1-48bf-b482-62bc76e930b1",
+      "evidence": [
+        {
+          "label": "Action Handler: Update Status",
+          "value": "GETRELATED(\"CLF_FindingStatusObject\", \"Code\", \"Closed\")",
+          "path": "FindingStatus",
+          "source": {
+            "id": "1481a998-d1d2-4406-9242-c71a5b84c837",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/80"
+          }
+        },
+        {
+          "label": "Action Handler: Update Status",
+          "value": "GETRELATED(\"CLF_FindingStatusObject\", \"Code\", \"In Progress\")",
+          "path": "FindingStatus",
+          "source": {
+            "id": "1481a998-d1d2-4406-9242-c71a5b84c837",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/80"
+          }
+        },
+        {
+          "label": "Action Handler: Update Status",
+          "value": "GETRELATED(\"CLF_FindingStatusObject\", \"Code\", \"Closed without Action\")",
+          "path": "FindingStatus",
+          "source": {
+            "id": "1481a998-d1d2-4406-9242-c71a5b84c837",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/80"
+          }
+        },
+        {
+          "label": "Action Handler: Update Status",
+          "value": "GETRELATED(\"CLF_FindingStatusObject\", \"Code\", \"Open\")",
+          "path": "FindingStatus",
+          "source": {
+            "id": "1481a998-d1d2-4406-9242-c71a5b84c837",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/80"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "7f006665-2bb0-41f3-a16a-82d3833c055a",
+      "evidence": [
+        {
+          "label": "Action Handler: Set Record Name",
+          "value": "CONCATENATE(LEFT(CPARActionReq, 47), \"...\")",
+          "path": "RecordName",
+          "source": {
+            "id": "9963eeda-5d67-415b-bbce-2add56ec6d0f",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/101"
+          }
+        },
+        {
+          "label": "Action Handler: Set Record Name",
+          "value": "CPARActionReq",
+          "path": "RecordName",
+          "source": {
+            "id": "9963eeda-5d67-415b-bbce-2add56ec6d0f",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/101"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "58691738-0274-4573-9080-8b7b7614b56a",
+      "evidence": [
+        {
+          "label": "Action Handler: Set Field values on Abstract",
+          "value": "ChecklistAnswer.Location",
+          "path": "Location",
+          "source": {
+            "id": "a5a0ee90-129b-494c-a4da-ecd5ca266705",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/104"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "b90945dd-c741-4ab6-b883-e3b777267f63",
+      "evidence": [
+        {
+          "label": "Action Handler: Copy Values",
+          "value": "Checklist.Description",
+          "path": "Description",
+          "source": {
+            "id": "4f0babb6-3f8a-4033-9a9b-eb9aaf19946e",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/115"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "8f9f7d5e-6d8e-49a9-afb2-b837c474c3e0",
+      "evidence": [
+        {
+          "label": "Action Handler: Copy Values",
+          "value": "Checklist.Reference",
+          "path": "ChecklistRef",
+          "source": {
+            "id": "4f0babb6-3f8a-4033-9a9b-eb9aaf19946e",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/115"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "89017e1b-b3b4-4c3c-9fc5-496ec1aadfa0",
+      "evidence": [
+        {
+          "label": "Action Handler: Init Abstract Field Values on Create",
+          "value": "ChecklistAnswer.Location",
+          "path": "Location",
+          "source": {
+            "id": "5fa8dfc8-7279-4025-bc21-54418178b6e8",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/147"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "019fa055-545a-4039-ace5-8d61a1c4e278",
+      "evidence": [
+        {
+          "label": "Action Handler: Init Abstract Field Values on Create",
+          "value": "\"Audit Finding\"",
+          "path": "EventType",
+          "source": {
+            "id": "5fa8dfc8-7279-4025-bc21-54418178b6e8",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/147"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "c5a89cb6-3576-4a9c-b988-d4cb637239ec",
+      "evidence": [
+        {
+          "label": "Action Handler: Clean up Choice List Field",
+          "value": "NULL",
+          "path": "ChoiceList",
+          "source": {
+            "id": "39a5f868-dfd3-46d0-80b5-5d5d46e629a4",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/187"
+          }
+        },
+        {
+          "label": "Action Handler: Copy Values from Question during Publish",
+          "value": "Question.ChoiceList",
+          "path": "ChoiceList",
+          "source": {
+            "id": "2423e735-77e4-4fef-a298-75d196cfa945",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/301"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "628a37dc-4c8b-4c5e-876f-d2f98fb29bd6",
+      "evidence": [
+        {
+          "label": "Action Handler: Clean up Choice List Field",
+          "value": "NULL",
+          "path": "TextReferences",
+          "source": {
+            "id": "39a5f868-dfd3-46d0-80b5-5d5d46e629a4",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/187"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "542c9285-afc8-48db-b5a9-9ba34915ad4d",
+      "evidence": [
+        {
+          "label": "Action Handler: Calc Due Date",
+          "value": "TODAY +  DueIn.Value",
+          "path": "ResponseDue",
+          "source": {
+            "id": "8b21a817-47f1-4572-bc24-43e143c315a9",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/217"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "dc7ebfa2-f7f5-4ae0-a693-268dda18dc4e",
+      "evidence": [
+        {
+          "label": "Action Handler: Init Values",
+          "value": "ChecklistType.MaxOrder+1",
+          "path": "Order",
+          "source": {
+            "id": "643d5500-6424-44d9-9efc-e85caddd9045",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/240"
+          }
+        },
+        {
+          "label": "Action Handler: Copy Values from Question during Publish",
+          "value": "Question.Order",
+          "path": "Order",
+          "source": {
+            "id": "2423e735-77e4-4fef-a298-75d196cfa945",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/301"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "00b884fc-b74e-4f87-91cd-f0fcdea9fd59",
+      "evidence": [
+        {
+          "label": "Action Handler: Check Consistency",
+          "value": "MassUpChoice",
+          "path": "Choice",
+          "source": {
+            "id": "e5c42452-1ce2-41f7-a61f-7f02479de807",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/254"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "4843a3c0-c8ac-4d05-830b-6d1bf0bca72f",
+      "evidence": [
+        {
+          "label": "Action Handler: Check Consistency",
+          "value": "NULL",
+          "path": "MassUpChoice",
+          "source": {
+            "id": "e5c42452-1ce2-41f7-a61f-7f02479de807",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/254"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "93ec7652-3348-4f98-b794-ac890ef7d602",
+      "evidence": [
+        {
+          "label": "Action Handler: Set Record Name",
+          "value": "CONCATENATE(LEFT(Description, 47), \"...\")",
+          "path": "Name",
+          "source": {
+            "id": "5a9bf245-7ccd-4347-ac83-1e817981f6f7",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/266"
+          }
+        },
+        {
+          "label": "Action Handler: Set Record Name",
+          "value": "Description",
+          "path": "Name",
+          "source": {
+            "id": "5a9bf245-7ccd-4347-ac83-1e817981f6f7",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/266"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "bb18c2b7-d1f2-4931-bbba-f8f6b50a1964",
+      "evidence": [
+        {
+          "label": "Action Handler: Copy Values from Question during Publish",
+          "value": "Question.QuestionRef",
+          "path": "QuestionRef",
+          "source": {
+            "id": "2423e735-77e4-4fef-a298-75d196cfa945",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/301"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "959ddf0c-0824-4f40-bcd3-e3df2ac3440c",
+      "evidence": [
+        {
+          "label": "Action Handler: Copy Values from Question during Publish",
+          "value": "Question.Content",
+          "path": "Content",
+          "source": {
+            "id": "2423e735-77e4-4fef-a298-75d196cfa945",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/301"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "ec2afd43-5eb1-4e93-969f-812dffc7f1c6",
+      "evidence": [
+        {
+          "label": "Action Handler: Copy Values from Question during Publish",
+          "value": "Question.Guideline",
+          "path": "Guideline",
+          "source": {
+            "id": "2423e735-77e4-4fef-a298-75d196cfa945",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/301"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "ce64e09e-51c6-41db-a259-63a723265b69",
+      "evidence": [
+        {
+          "label": "Action Handler: Copy Values from Question during Publish",
+          "value": "Question.Section",
+          "path": "Section",
+          "source": {
+            "id": "2423e735-77e4-4fef-a298-75d196cfa945",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/301"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "ae6d1a33-3e2a-46dc-8786-84b48cf2c664",
+      "evidence": [
+        {
+          "label": "Action Handler: Copy Values from Question during Publish",
+          "value": "Question.AnswerType",
+          "path": "AnswerType",
+          "source": {
+            "id": "2423e735-77e4-4fef-a298-75d196cfa945",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/301"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "9a09042e-ff57-4a57-b3e6-795e06006fd7",
+      "evidence": [
+        {
+          "label": "Workflow Task / Open / Complete Task",
+          "value": "TODAY",
+          "path": "CompletionDate",
+          "source": {
+            "id": "d74d3aac-1eb9-4262-b8d2-911c314f0766",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/185/GraphData/Items/19"
+          }
+        },
+        {
+          "label": "Workflow Task / Open / Complete Task",
+          "value": "TODAY",
+          "path": "CompletionDate",
+          "source": {
+            "id": "3bc1f16f-c247-4fb8-9763-277794eb35bf",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/310/GraphData/Items/19"
+          }
+        },
+        {
+          "label": "Workflow Project Checklist / Open / Complete Task",
+          "value": "TODAY",
+          "path": "CompletionDate",
+          "source": {
+            "id": "d27ff9e6-b9a2-425e-a22f-cc4cdbc53bff",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/452/GraphData/Items/19"
+          }
+        },
+        {
+          "label": "Workflow Inspection Action Plan / In Progress / Complete",
+          "path": "9a09042e-ff57-4a57-b3e6-795e06006fd7",
+          "source": {
+            "id": "b736836e-f77d-4a45-967a-712179a2cf74",
+            "package": "Checklist Framework(v1.0.0).ipack",
+            "pointer": "/GraphData/Items/102/GraphData/Items/12"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "6f0edd6e-5bf8-40ea-994d-0ccc509d9eb5",
+      "evidence": [
+        {
+          "label": "Workflow PPAP / Draft / Proceed to Next Stage",
+          "value": "Workflow.CurrentStage.SystemName",
+          "path": "MyCurrentStage",
+          "source": {
+            "id": "db040717-9e07-466d-bcc1-3ea8bf335370",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/20"
+          }
+        },
+        {
+          "label": "Workflow PPAP / In Progress / Proceed to Review Stage",
+          "value": "Workflow.CurrentStage.SystemName",
+          "path": "MyCurrentStage",
+          "source": {
+            "id": "f99c0dc7-1a2e-4192-80dc-f202878cb95d",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/24"
+          }
+        },
+        {
+          "label": "Workflow PPAP / In Review / Approve",
+          "value": "NULL",
+          "path": "MyCurrentStage",
+          "source": {
+            "id": "59d77971-7084-48a3-8eab-c61f961e7771",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/26"
+          }
+        },
+        {
+          "label": "Workflow PPAP / In Review / Interim Approval",
+          "value": "Workflow.CurrentStage.SystemName",
+          "path": "MyCurrentStage",
+          "source": {
+            "id": "b782ce3a-ed0a-47a7-815c-c1f377b077f6",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/25"
+          }
+        },
+        {
+          "label": "Workflow PPAP / In Review / Reject",
+          "value": "NULL",
+          "path": "MyCurrentStage",
+          "source": {
+            "id": "1eb129c2-9ea6-4b3c-8067-cc9fd215bbcb",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/27"
+          }
+        },
+        {
+          "label": "Workflow PPAP / Interim Approval / Approve",
+          "value": "NULL",
+          "path": "MyCurrentStage",
+          "source": {
+            "id": "9d7a9360-42cc-4ab2-b778-a3bd7d98b62a",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/28"
+          }
+        },
+        {
+          "label": "Workflow PPAP / Interim Approval / Reject",
+          "value": "NULL",
+          "path": "MyCurrentStage",
+          "source": {
+            "id": "8e768b51-c858-4ab6-9285-c8306dfd5eaf",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/29"
+          }
+        },
+        {
+          "label": "Workflow APQP / Draft / Proceed to First Gate",
+          "value": "Workflow.CurrentStage.SystemName",
+          "path": "MyCurrentStage",
+          "source": {
+            "id": "75aec4cc-2a78-4373-b61a-a8a0ea866ec8",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/22"
+          }
+        },
+        {
+          "label": "Workflow APQP / Gate 1 / Proceed to Next Gate",
+          "value": "Workflow.CurrentStage.SystemName",
+          "path": "MyCurrentStage",
+          "source": {
+            "id": "459fdd16-99aa-42fc-aa8b-e4601277a088",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/26"
+          }
+        },
+        {
+          "label": "Workflow APQP / Gate 2 / Proceed to Next Gate",
+          "value": "Workflow.CurrentStage.SystemName",
+          "path": "MyCurrentStage",
+          "source": {
+            "id": "f19131bd-ec63-4934-84e6-e6db6e3a0eca",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/27"
+          }
+        },
+        {
+          "label": "Workflow APQP / Gate 3 / Proceed to Next Gate",
+          "value": "Workflow.CurrentStage.SystemName",
+          "path": "MyCurrentStage",
+          "source": {
+            "id": "1822903d-102c-4e95-a2d7-fb39860f70f3",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/28"
+          }
+        },
+        {
+          "label": "Workflow APQP / Gate 4 / Proceed to Next Gate",
+          "value": "Workflow.CurrentStage.SystemName",
+          "path": "MyCurrentStage",
+          "source": {
+            "id": "e162eaab-8a46-4b76-8951-491aa653df18",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/30"
+          }
+        },
+        {
+          "label": "Workflow APQP / Gate 5 / Approve",
+          "value": "NULL",
+          "path": "MyCurrentStage",
+          "source": {
+            "id": "f976d235-8755-4a99-8b97-7feafd0df32c",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/32"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "fd378739-8a62-45ed-899e-a21562a317d9",
+      "evidence": [
+        {
+          "label": "Workflow PPAP / Draft / Proceed to Next Stage",
+          "value": "Progress+ DraftWeight",
+          "path": "Progress",
+          "source": {
+            "id": "db040717-9e07-466d-bcc1-3ea8bf335370",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/20"
+          }
+        },
+        {
+          "label": "Workflow PPAP / In Progress / Proceed to Review Stage",
+          "value": "Progress+ InProgresWeight",
+          "path": "Progress",
+          "source": {
+            "id": "f99c0dc7-1a2e-4192-80dc-f202878cb95d",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/24"
+          }
+        },
+        {
+          "label": "Workflow PPAP / In Review / Approve",
+          "value": "1",
+          "path": "Progress",
+          "source": {
+            "id": "59d77971-7084-48a3-8eab-c61f961e7771",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/26"
+          }
+        },
+        {
+          "label": "Workflow PPAP / In Review / Interim Approval",
+          "value": "Progress+ InReviewWeight",
+          "path": "Progress",
+          "source": {
+            "id": "b782ce3a-ed0a-47a7-815c-c1f377b077f6",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/25"
+          }
+        },
+        {
+          "label": "Workflow PPAP / Interim Approval / Approve",
+          "value": "1",
+          "path": "Progress",
+          "source": {
+            "id": "9d7a9360-42cc-4ab2-b778-a3bd7d98b62a",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/28"
+          }
+        },
+        {
+          "label": "Workflow APQP / Draft / Proceed to First Gate",
+          "value": "Progress+DraftWeight ",
+          "path": "Progress",
+          "source": {
+            "id": "75aec4cc-2a78-4373-b61a-a8a0ea866ec8",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/22"
+          }
+        },
+        {
+          "label": "Workflow APQP / Gate 1 / Proceed to Next Gate",
+          "value": "Progress+FirstGateWeight+SecGateWeight",
+          "path": "Progress",
+          "source": {
+            "id": "459fdd16-99aa-42fc-aa8b-e4601277a088",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/26"
+          }
+        },
+        {
+          "label": "Workflow APQP / Gate 1 / Proceed to Next Gate",
+          "value": "Progress+ FirstGateWeight",
+          "path": "Progress",
+          "source": {
+            "id": "459fdd16-99aa-42fc-aa8b-e4601277a088",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/26"
+          }
+        },
+        {
+          "label": "Workflow APQP / Gate 2 / Proceed to Next Gate",
+          "value": "Progress+SecGateWeight ",
+          "path": "Progress",
+          "source": {
+            "id": "f19131bd-ec63-4934-84e6-e6db6e3a0eca",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/27"
+          }
+        },
+        {
+          "label": "Workflow APQP / Gate 3 / Proceed to Next Gate",
+          "value": "Progress+ThirdGateWeight",
+          "path": "Progress",
+          "source": {
+            "id": "1822903d-102c-4e95-a2d7-fb39860f70f3",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/28"
+          }
+        },
+        {
+          "label": "Workflow APQP / Gate 4 / Proceed to Next Gate",
+          "value": "Progress+ FourGateWeight",
+          "path": "Progress",
+          "source": {
+            "id": "e162eaab-8a46-4b76-8951-491aa653df18",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/30"
+          }
+        },
+        {
+          "label": "Workflow APQP / Gate 5 / Approve",
+          "value": "Progress+ FifthGateWeight",
+          "path": "Progress",
+          "source": {
+            "id": "f976d235-8755-4a99-8b97-7feafd0df32c",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/32"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "86af7b2a-a619-4aa1-91d2-d0b7f1516001",
+      "evidence": [
+        {
+          "label": "Workflow PPAP / In Progress / Proceed to Review Stage",
+          "value": "TODAY",
+          "path": "InProgCompDate",
+          "source": {
+            "id": "f99c0dc7-1a2e-4192-80dc-f202878cb95d",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/24"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "13560454-ef1b-415c-8c7b-415add11f776",
+      "evidence": [
+        {
+          "label": "Workflow PPAP / In Review / Approve",
+          "value": "TODAY",
+          "path": "PPAPCompDate",
+          "source": {
+            "id": "59d77971-7084-48a3-8eab-c61f961e7771",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/26"
+          }
+        },
+        {
+          "label": "Workflow PPAP / Interim Approval / Approve",
+          "value": "TODAY",
+          "path": "PPAPCompDate",
+          "source": {
+            "id": "9d7a9360-42cc-4ab2-b778-a3bd7d98b62a",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/28"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "9b9816d7-179d-4348-ab83-b9ff40017253",
+      "evidence": [
+        {
+          "label": "Workflow PPAP / In Review / Approve",
+          "value": "TODAY",
+          "path": "ReviewCompDate",
+          "source": {
+            "id": "59d77971-7084-48a3-8eab-c61f961e7771",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/26"
+          }
+        },
+        {
+          "label": "Workflow PPAP / In Review / Interim Approval",
+          "value": "TODAY",
+          "path": "ReviewCompDate",
+          "source": {
+            "id": "b782ce3a-ed0a-47a7-815c-c1f377b077f6",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/25"
+          }
+        },
+        {
+          "label": "Workflow PPAP / In Review / Reject",
+          "value": "TODAY",
+          "path": "ReviewCompDate",
+          "source": {
+            "id": "1eb129c2-9ea6-4b3c-8067-cc9fd215bbcb",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/27"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "7712a276-d36c-48e6-826a-79bf0c1c2291",
+      "evidence": [
+        {
+          "label": "Workflow PPAP / In Review / Reject",
+          "value": "TODAY",
+          "path": "PPAPRejeDate",
+          "source": {
+            "id": "1eb129c2-9ea6-4b3c-8067-cc9fd215bbcb",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/27"
+          }
+        },
+        {
+          "label": "Workflow PPAP / Interim Approval / Reject",
+          "value": "TODAY",
+          "path": "PPAPRejeDate",
+          "source": {
+            "id": "8e768b51-c858-4ab6-9285-c8306dfd5eaf",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/29"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "1b1cec57-81df-4e3b-93f7-2b78ac17125a",
+      "evidence": [
+        {
+          "label": "Workflow PPAP / Interim Approval / Approve",
+          "value": "TODAY",
+          "path": "IApprovCompDate",
+          "source": {
+            "id": "9d7a9360-42cc-4ab2-b778-a3bd7d98b62a",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/28"
+          }
+        },
+        {
+          "label": "Workflow PPAP / Interim Approval / Reject",
+          "value": "TODAY",
+          "path": "IApprovCompDate",
+          "source": {
+            "id": "8e768b51-c858-4ab6-9285-c8306dfd5eaf",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/379/GraphData/Items/29"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "688dd9a1-3a49-416d-9c39-d590792f4490",
+      "evidence": [
+        {
+          "label": "Workflow APQP / Gate 1 / Proceed to Next Gate",
+          "value": "TODAY",
+          "path": "Gate1Completed",
+          "source": {
+            "id": "459fdd16-99aa-42fc-aa8b-e4601277a088",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/26"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "8d9e0431-147d-4ea9-8440-9e0425c00828",
+      "evidence": [
+        {
+          "label": "Workflow APQP / Gate 2 / Proceed to Next Gate",
+          "value": "TODAY",
+          "path": "Gate2Completed",
+          "source": {
+            "id": "f19131bd-ec63-4934-84e6-e6db6e3a0eca",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/27"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "40293a64-b7a8-4f36-906a-c5a6486908cd",
+      "evidence": [
+        {
+          "label": "Workflow APQP / Gate 3 / Proceed to Next Gate",
+          "value": "TODAY",
+          "path": "Gate3Completed",
+          "source": {
+            "id": "1822903d-102c-4e95-a2d7-fb39860f70f3",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/28"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "a3604c5c-10e1-43a8-b10b-8ae6c6015147",
+      "evidence": [
+        {
+          "label": "Workflow APQP / Gate 4 / Proceed to Next Gate",
+          "value": "TODAY",
+          "path": "Gate4Completed",
+          "source": {
+            "id": "e162eaab-8a46-4b76-8951-491aa653df18",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/30"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "79213c17-e7af-4c38-aa84-4eb35ba7b869",
+      "evidence": [
+        {
+          "label": "Workflow APQP / Gate 5 / Approve",
+          "value": "TODAY",
+          "path": "Gate5Completed",
+          "source": {
+            "id": "f976d235-8755-4a99-8b97-7feafd0df32c",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/32"
+          }
+        }
+      ]
+    },
+    {
+      "field_id": "1ee92dcf-9a37-47c5-9172-ea3a9472ea3d",
+      "evidence": [
+        {
+          "label": "Workflow APQP / Gate 5 / Approve",
+          "value": "TODAY",
+          "path": "ProjCompletedOn",
+          "source": {
+            "id": "f976d235-8755-4a99-8b97-7feafd0df32c",
+            "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+            "pointer": "/GraphData/Items/535/GraphData/Items/32"
+          }
+        }
+      ]
+    }
+  ],
+  "unresolved": []
+}

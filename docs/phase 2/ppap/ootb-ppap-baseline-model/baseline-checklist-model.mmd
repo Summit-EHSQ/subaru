@@ -1,0 +1,77 @@
+classDiagram
+direction LR
+%% Logical Intelex model. Names map to object-inventory.csv; dotted cardinality interpretations are qualified in the register.
+class CLF_AnswerTypeObject
+class CLF_CheckliAbstractObject
+class CLF_ChecklistAnswerObject
+class CLF_ChecklistObject
+class CLF_ChecklistTypeObject
+class CLF_ChoiceListObject
+class CLF_ChoiceObject
+class CLF_FindingDDObject
+class CLF_FindingObject
+class CLF_FindingStatusObject
+class CLF_InsActionPlanObject
+class CLF_MultichecklistsObject
+class CLF_PubChecklistObject
+class CLF_PubQuestObject
+class CLF_QuestAbstractObject
+class CLF_QuestObject
+class CLF_QuestionAnswerObject
+class CLF_SinglechecklistObject
+class CLF_SubchecklistObject
+class CLF_TagObject
+class FragApplication_ColorObject
+class SysEmployeeEntity
+class SysLocationEntity
+CLF_CheckliAbstractObject <|-- CLF_ChecklistObject : inherits
+CLF_ChecklistAnswerObject <|-- CLF_MultichecklistsObject : inherits
+CLF_CheckliAbstractObject <|-- CLF_PubChecklistObject : inherits
+CLF_QuestAbstractObject <|-- CLF_PubQuestObject : inherits
+CLF_QuestAbstractObject <|-- CLF_QuestObject : inherits
+CLF_ChecklistAnswerObject <|-- CLF_SinglechecklistObject : inherits
+CLF_ChecklistAnswerObject <|-- CLF_SubchecklistObject : inherits
+CLF_ChecklistAnswerObject "0..*" --> "0..1" CLF_PubChecklistObject : PubChecklist
+class cusCLF_InsActionPlanFindingsToCLF_FindingMap
+CLF_FindingObject --> cusCLF_InsActionPlanFindingsToCLF_FindingMap : ActionPlans M_N
+cusCLF_InsActionPlanFindingsToCLF_FindingMap --> CLF_InsActionPlanObject : target
+CLF_ChecklistAnswerObject "0..*" --> "0..1" CLF_ChecklistAnswerObject : MasterChecklist
+CLF_QuestAbstractObject "0..*" --> "0..1" CLF_ChoiceListObject : ChoiceList
+CLF_FindingObject "0..*" --> "0..1" CLF_FindingStatusObject : FindingStatus
+CLF_QuestionAnswerObject "0..*" --> "1" CLF_PubQuestObject : PubQuestion
+CLF_QuestionAnswerObject "0..*" --> "0..1" CLF_ChoiceObject : Choice
+CLF_InsActionPlanObject "0..*" --> "1" CLF_ChecklistAnswerObject : ChecklistAnswer
+CLF_InsActionPlanObject "0..*" --> "1" SysEmployeeEntity : ActionOwner
+CLF_PubChecklistObject "0..*" --> "1" CLF_ChecklistObject : Checklist
+CLF_ChoiceObject "0..*" --> "0..1" FragApplication_ColorObject : TColor
+CLF_ChecklistAnswerObject "0..*" --> "1" SysLocationEntity : Location
+CLF_FindingObject "0..*" --> "0..1" CLF_ChecklistAnswerObject : ChecklistAnswer
+CLF_ChecklistAnswerObject "0..*" --> "0..1" SysEmployeeEntity : DefPersRespFind
+class CLF_QuestionAnswerChoicesToCLF_ChoiceMapObject
+CLF_QuestionAnswerObject --> CLF_QuestionAnswerChoicesToCLF_ChoiceMapObject : Choices M_N
+CLF_QuestionAnswerChoicesToCLF_ChoiceMapObject --> CLF_ChoiceObject : target
+class cusCLF_QuestReferencesToCLF_TagMap
+CLF_QuestObject --> cusCLF_QuestReferencesToCLF_TagMap : References M_N
+cusCLF_QuestReferencesToCLF_TagMap --> CLF_TagObject : target
+CLF_ChoiceObject "0..*" --> "1" CLF_ChoiceListObject : ChoiceList
+CLF_QuestAbstractObject "0..*" --> "0..1" CLF_AnswerTypeObject : AnswerType
+class CLF_PubChecklistPubQuestionsToCLF_PubQuestMapObject
+CLF_PubChecklistObject --> CLF_PubChecklistPubQuestionsToCLF_PubQuestMapObject : PubQuestions M_N
+CLF_PubChecklistPubQuestionsToCLF_PubQuestMapObject --> CLF_PubQuestObject : target
+CLF_PubChecklistObject "0..*" --> "0..1" CLF_ChecklistTypeObject : ChecklistType
+CLF_QuestionAnswerObject "0..*" --> "0..1" CLF_ChoiceObject : MassUpChoice
+CLF_QuestObject "0..*" --> "1" CLF_ChecklistTypeObject : ChecklistType
+CLF_FindingObject "0..*" --> "1" CLF_FindingDDObject : DueIn
+CLF_QuestionAnswerObject "0..*" --> "1" CLF_ChecklistAnswerObject : ChecklistAnswer
+CLF_FindingStatusObject "0..*" --> "0..1" FragApplication_ColorObject : TC
+class CLF_ChecklistQuestionsToCLF_QuestMapObject
+CLF_ChecklistObject --> CLF_ChecklistQuestionsToCLF_QuestMapObject : Questions M_N
+CLF_ChecklistQuestionsToCLF_QuestMapObject --> CLF_QuestObject : target
+class cusCLF_QuestionAnswerFindingsToCLF_FindingMap
+CLF_QuestionAnswerObject --> cusCLF_QuestionAnswerFindingsToCLF_FindingMap : Findings M_N
+cusCLF_QuestionAnswerFindingsToCLF_FindingMap --> CLF_FindingObject : target
+CLF_FindingObject "0..*" --> "1" SysEmployeeEntity : PersResponsible
+CLF_ChoiceObject "0..*" --> "0..1" FragApplication_ColorObject : BColor
+CLF_FindingStatusObject "0..*" --> "0..1" FragApplication_ColorObject : BC
+CLF_PubQuestObject "0..*" --> "1" CLF_QuestObject : Question
+CLF_ChecklistObject "0..*" --> "1" CLF_ChecklistTypeObject : ChecklistType

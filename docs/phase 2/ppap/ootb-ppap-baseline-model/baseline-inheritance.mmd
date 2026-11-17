@@ -1,0 +1,36 @@
+classDiagram
+direction LR
+FragApplication_AbCorrectivActiObject <|-- ActionPlans_ActionPlanAbsObject : inherits
+FragApplication_AbCorrectivActiObject <|-- ActionPlans_GlobActPlanAbsObject : inherits
+ProjectFwk_ProjectAbstractObject <|-- APQP_APQPObject : inherits
+ProjectFwk_ProjectAbstractObject <|-- APQP_PPAPAbstractObject : inherits
+CLF_CheckliAbstractObject <|-- CLF_ChecklistObject : inherits
+EventFwk_EventObject <|-- CLF_FindingObject : inherits
+ActionPlans_ActionPlanAbsObject <|-- CLF_InsActionPlanObject : inherits
+CLF_ChecklistAnswerObject <|-- CLF_MultichecklistsObject : inherits
+CLF_CheckliAbstractObject <|-- CLF_PubChecklistObject : inherits
+CLF_QuestAbstractObject <|-- CLF_PubQuestObject : inherits
+CLF_QuestAbstractObject <|-- CLF_QuestObject : inherits
+CLF_ChecklistAnswerObject <|-- CLF_SinglechecklistObject : inherits
+CLF_ChecklistAnswerObject <|-- CLF_SubchecklistObject : inherits
+UserReg_CategoryObject <|-- CustComplaints_CustomerObject : inherits
+EventFwk_EventScenarioObject <|-- EventFwk_EventObject : inherits
+ActionPlans_GlobActPlanAbsObject <|-- EventFwk_LessonLearnedObject : inherits
+MetObjectEntity <|-- MetHierarchyObjectEntity : inherits
+MetObjectEntity <|-- MetLookupObjectEntity : inherits
+MetTypeEntity <|-- MetObjectEntity : inherits
+FragApplication_ProductObject <|-- ProductMgmt_ItemObject : inherits
+ProjectFwk_ProjectTaskObject <|-- ProjectFwk_AdHocTaskObject : inherits
+ProjectFwk_ProjectTaskDefObject <|-- ProjectFwk_ChecklistDefObject : inherits
+ProjectFwk_ProjectTaskObject <|-- ProjectFwk_ChecklistObject : inherits
+CLF_ChecklistAnswerObject <|-- ProjectFwk_ChecklistRecordObject : inherits
+CLF_ChecklistTypeObject <|-- ProjectFwk_ChecklistTypeObject : inherits
+ActionPlans_ActionPlanAbsObject <|-- ProjectFwk_ProjectTaskObject : inherits
+ProjectFwk_ProjectTaskDefObject <|-- ProjectFwk_TaskDefObject : inherits
+ProjectFwk_ProjectTaskObject <|-- ProjectFwk_TaskObject : inherits
+SysSubjectEntity <|-- SysEmployeeEntity : inherits
+SysSubjectEntity <|-- SysGroupEntity : inherits
+SysModuleTabEntity <|-- SysModuleTabConfigurableViewEntity : inherits
+SysModuleTabEntity <|-- SysModuleTabDashboardEntity : inherits
+SysGroupEntity <|-- SysRoleEntity : inherits
+SysGroupEntity <|-- SysSecurityGroupEntity : inherits

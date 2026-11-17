@@ -1,0 +1,37 @@
+{
+  "workflowWrappers": 8,
+  "completeStageGraphs": 6,
+  "workflowActionCount": 18,
+  "ppapStages": 4,
+  "ppapActionCount": 7,
+  "objectActionCount": 63,
+  "ownerResolved": 45,
+  "notificationTemplateCount": 11,
+  "flowParseFailures": 0,
+  "objectActionFlowCompleteness": {
+    "objectActionRecordCount": 63,
+    "bySourcePackage": {
+      "APQP & PPAP Manager(v1.0.0.0).ipack": 49,
+      "Checklist Framework(v1.0.0).ipack": 14
+    },
+    "nonEmptyParsedFlowPrograms": 63,
+    "emptyOrAbsentFlowPrograms": [],
+    "ownerResolvedCount": 45,
+    "ownerUnresolvedCount": 18,
+    "statement": "Every object-action record contains a non-empty parseable exported Flow property. Missing owner edges on dependency entries do not mean that their Flow properties are placeholders. This does not prove runtime handler completeness or enum semantics."
+  },
+  "ppapStagePermissions": {
+    "stageCount": 4,
+    "entryCount": 8,
+    "allowOperationCount": 32,
+    "denyOperationCount": 0,
+    "subjectResolutionFailures": [],
+    "operationResolutionFailures": [],
+    "parseFailures": [],
+    "ApplyToCodes": [
+      "2"
+    ],
+    "ApplyToCodeSemantics": "Unresolved",
+    "effectiveTenantAccessTested": false
+  }
+}

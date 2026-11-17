@@ -1,0 +1,442 @@
+{
+  "subject": "PPAP target configuration requirements clarification",
+  "purpose": "Record user-confirmed decisions for the future target technical specification; preserve the OOTB baseline separately.",
+  "decisions": [
+    {
+      "id": "PPAP-SCOPE-001",
+      "question_number": 1,
+      "topic": "First release scope",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Core PPAP with those extensions deferred (Recommended)",
+      "included": [
+        "Drawing review",
+        "Explicit part scope",
+        "Independent element workflows",
+        "Evidence reuse",
+        "Approvals",
+        "Scheduling",
+        "Security",
+        "Reporting",
+        "Approval certificates",
+        "PPAP-side connections to PCR and inspections"
+      ],
+      "deferred": [
+        "Shipment integration",
+        "Recurring post-approval validation",
+        "Dedicated TACT-TRI build"
+      ],
+      "constraints": [
+        "Preserve existing APQP behavior when changing shared components.",
+        "Treat connected-application connections as PPAP-side interfaces; do not infer authorization to implement entire connected applications.",
+        "Operational BOMEX/ECS integration timing is governed by PPAP-INT-001."
+      ]
+    },
+    {
+      "id": "PPAP-INT-001",
+      "question_number": 2,
+      "topic": "Operational BOMEX/ECS intake for the first release",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Automated intake in the first release, with controlled manual initiation as a fallback (Recommended)",
+      "requirements": [
+        "Automatically receive applicable BOMEX/ECS changes in the first PPAP release.",
+        "Create source-linked initial drawing-review records from the automated intake.",
+        "Support controlled manual initiation as a fallback."
+      ],
+      "constraints": [
+        "Preserve the existing Product Integration application's isolated business-object boundary.",
+        "Define the operational connection needed for PPAP separately; do not assume that isolated intake already supplies operational PPAP relationships or triggers.",
+        "Detailed payload mappings, manual-initiation permissions, and fallback reconciliation remain design or subsequent clarification work."
+      ]
+    },
+    {
+      "id": "PPAP-SCOPE-002",
+      "question_number": 3,
+      "topic": "Manufacturing facility and shipping depot scope",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "One manufacturing facility, with shipping depots linked separately (Recommended)",
+      "requirements": [
+        "Scope each PPAP approval to one manufacturing facility.",
+        "Link shipping depots separately as context for the PPAP and its task routing."
+      ],
+      "constraints": [
+        "A shipping depot does not replace the manufacturing facility as the approval scope.",
+        "Do not require a separate PPAP solely because the same manufacturing facility uses a different linked shipping depot.",
+        "Preserve the governed SRM supplier-entity and role-resolution rules when implementing depot links and task routing."
+      ]
+    },
+    {
+      "id": "PPAP-SCHEDULE-001",
+      "question_number": 4,
+      "topic": "Governing model and manufacturing-stage context",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "One model/program and one manufacturing stage per model-change PPAP (Recommended)",
+      "requirements": [
+        "Each model-change PPAP has one governing model/program and one manufacturing stage.",
+        "Calculate model-change task dates from that governing context using the model schedule and applicable element offsets."
+      ],
+      "constraints": [
+        "Do not assign several independently governing model/stage schedules to a single model-change PPAP.",
+        "Running-change and process-change PPAPs remain independently scheduled unless explicitly connected to a model-change context under ADR-101."
+      ]
+    },
+    {
+      "id": "PPAP-LIFECYCLE-001",
+      "question_number": 5,
+      "topic": "Interim and conditional approval",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Full approval only; omit Interim Approval (Recommended)",
+      "requirements": [
+        "Require full PPAP approval; do not provide interim or conditional approval.",
+        "Omit the OOTB Interim Approval stage and its entry and exit actions from the target PPAP workflow."
+      ],
+      "constraints": [
+        "Reconcile PPAP-specific interim-approval fields, phase values, progress calculations, views, notifications, reports, and other dependencies in the target change specification.",
+        "Preserve the separately retained OOTB baseline and existing APQP behavior."
+      ]
+    },
+    {
+      "id": "PPAP-LIFECYCLE-002",
+      "question_number": 6,
+      "topic": "Cancellation of an issued PPAP",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Engineer or PPAP administrator may cancel, using those controls (Recommended)",
+      "requirements": [
+        "The responsible PPAP engineer or a designated PPAP administrator may cancel an issued PPAP.",
+        "Require a cancellation reason and retain the actor and cancellation time.",
+        "Stop outstanding PPAP element work and reminders when cancellation completes.",
+        "Preserve the PPAP's evidence and complete decision history.",
+        "Expose the cancelled PPAP outcome to linked PCR/APQP work and flag it for the responsible owner's resolution; do not treat cancellation as successful fulfilment."
+      ],
+      "constraints": [
+        "Do not require a separate cancellation-approval workflow.",
+        "Do not automatically cancel an entire originating PCR or APQP solely because a linked PPAP was cancelled.",
+        "Approval withdrawal after final closure is outside the first release under PPAP-LIFECYCLE-003.",
+        "Eligibility of previously approved elements from cancelled PPAPs is governed by PPAP-EVIDENCE-002."
+      ]
+    },
+    {
+      "id": "PPAP-LIFECYCLE-003",
+      "question_number": 7,
+      "topic": "Withdrawal of approval after closure",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Do not support approval withdrawal in the first release",
+      "requirements": [
+        "Exclude post-approval withdrawal functionality from the first PPAP release."
+      ],
+      "constraints": [
+        "Do not introduce a first-release approval-withdrawal action, workflow, or withdrawal-driven certificate-verification state.",
+        "Preserve the original approved package and evidence unchanged.",
+        "Cancellation of issued work under PPAP-LIFECYCLE-002 does not authorize cancelling an approved, closed PPAP.",
+        "Continue to create a new PPAP for applicable engineering changes received after closure, as governed by ADR-104."
+      ]
+    },
+    {
+      "id": "PPAP-EVIDENCE-001",
+      "question_number": 8,
+      "topic": "Compatibility and version selection for evidence reuse",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Same facility/drawing/element, with engineer-confirmed revision and part compatibility (Recommended)",
+      "requirements": [
+        "Restrict evidence reuse to the same manufacturing facility, drawing, and governed element type.",
+        "Require the responsible engineer to confirm that retained evidence is suitable for the receiving PPAP's drawing revision and selected part scope.",
+        "Suggest the latest eligible approved evidence version.",
+        "Permit the engineer to select a different eligible approved version with a mandatory reason."
+      ],
+      "constraints": [
+        "Do not require an identical drawing revision or identical selected part set when the engineer confirms compatibility.",
+        "Do not support cross-facility or cross-drawing reuse under this policy.",
+        "Copy retained evidence into the receiving PPAP's immutable task-level snapshot while preserving source lineage under ADR-023.",
+        "Cancellation effects on evidence eligibility are governed by PPAP-EVIDENCE-002; element-reopening effects are governed by PPAP-EVIDENCE-003."
+      ]
+    },
+    {
+      "id": "PPAP-EVIDENCE-002",
+      "question_number": "8a",
+      "topic": "Evidence eligibility after source PPAP cancellation",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Exclude approved evidence from cancelled PPAPs from future reuse (Recommended)",
+      "requirements": [
+        "Exclude evidence whose source PPAP is cancelled from future reuse, even when that element was individually approved before cancellation.",
+        "Apply the exclusion to both automatic suggestions and manual selection of retained evidence.",
+        "Collect and approve a fresh submission in the receiving PPAP when no eligible prior evidence is available.",
+        "Preserve existing historical snapshots and source lineage."
+      ],
+      "constraints": [
+        "Do not introduce an administrator-revalidation exception to the cancelled-source exclusion in the first release.",
+        "The prospective reuse restriction does not authorize deletion or alteration of historical evidence or withdrawal of a closed PPAP approval."
+      ]
+    },
+    {
+      "id": "PPAP-EVIDENCE-003",
+      "question_number": "8b",
+      "topic": "Evidence eligibility while an approved element is reopened",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Keep the last approved snapshot eligible, subject to compatibility checks (Recommended)",
+      "requirements": [
+        "When an approved element is reopened for an engineering change while its PPAP remains open, retain its last approved evidence snapshot as eligible for reuse elsewhere.",
+        "Apply the manufacturing-facility, drawing, element-type, revision, and selected-part compatibility rules in PPAP-EVIDENCE-001.",
+        "Make a replacement submission eligible for reuse only after that replacement is approved."
+      ],
+      "constraints": [
+        "Reopening an element does not erase or alter its prior approved snapshot or approval history.",
+        "The cancelled-source exclusion in PPAP-EVIDENCE-002 continues to apply and takes precedence if the source PPAP is cancelled.",
+        "Selection of an eligible approved version other than the suggested latest version continues to require a reason under PPAP-EVIDENCE-001."
+      ]
+    },
+    {
+      "id": "PPAP-RELEASE-001",
+      "question_number": 9,
+      "topic": "Draft visibility, issue, and supplier scope confirmation",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Internal drafts; explicit issue; supplier confirms scope before its first element submission (Recommended)",
+      "requirements": [
+        "Keep draft PPAPs internal and unavailable to supplier users.",
+        "Require an explicit engineer issue action before releasing the PPAP to the supplier.",
+        "Require the supplier to confirm the manufacturing facility, drawing, and included part numbers before its first supplier element submission."
+      ],
+      "constraints": [
+        "Apply ordinary supplier-entity and record-classification security after issue; issue does not grant access outside authorized scope.",
+        "The supplier confirmation requirement governs supplier element submissions and does not prevent authorized internal element work.",
+        "Post-issue scope is locked under PPAP-SCOPE-003; scope changes require cancellation and replacement."
+      ]
+    },
+    {
+      "id": "PPAP-SCOPE-003",
+      "question_number": "9a",
+      "topic": "Scope immutability after issue",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Lock facility, drawing number, and part scope; cancel and replace the PPAP if scope changes",
+      "requirements": [
+        "Lock the manufacturing facility, drawing number, and included part-number scope after the PPAP is issued.",
+        "Require cancellation of the issued PPAP and creation of a replacement PPAP when any of those scope values must change."
+      ],
+      "constraints": [
+        "Do not provide a post-issue part-scope amendment action, including an administrator override, in the first release.",
+        "Distinguish drawing number from drawing revision: supplemental engineering changes and drawing-revision updates may continue within an open PPAP under ADR-104 without changing the locked facility, drawing number, or included part set.",
+        "Apply cancellation controls under PPAP-LIFECYCLE-002 and draft/issue/supplier-confirmation controls under PPAP-RELEASE-001 to the replacement process.",
+        "Apply the cancelled-source evidence exclusion under PPAP-EVIDENCE-002; replacement does not make evidence from the cancelled PPAP eligible for retained reuse."
+      ]
+    },
+    {
+      "id": "PPAP-CLASSIFICATION-001",
+      "question_number": 10,
+      "topic": "Authority for safety, quality, and regulated classifications",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Imported drawing/part classifications are authoritative; no PPAP-level overrides (Recommended)",
+      "requirements": [
+        "Use the authoritative drawing/part classifications supplied through operational integration for important-safety, important-quality, and regulated requirements.",
+        "Do not permit PPAP-level classification overrides.",
+        "Block issue until missing or conflicting classifications are resolved."
+      ],
+      "constraints": [
+        "Do not interpret a missing classification as an explicit confirmation that no classification applies.",
+        "Resolve classification corrections through the authoritative source and operational integration rather than an override on the PPAP.",
+        "Mixed-part aggregation is governed by PPAP-CLASSIFICATION-002; post-issue classification changes are governed by PPAP-CLASSIFICATION-003."
+      ]
+    },
+    {
+      "id": "PPAP-CLASSIFICATION-002",
+      "question_number": "10a",
+      "topic": "Aggregation of classifications across included parts",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Combine applicable requirements; any important-safety part triggers management approval (Recommended)",
+      "requirements": [
+        "Combine all applicable evidence requirements arising from the classifications of the included parts.",
+        "Require overall management approval whenever at least one included part has the important-safety classification."
+      ],
+      "constraints": [
+        "Important-quality or regulated classifications alone affect evidence requirements and do not independently activate overall management approval.",
+        "Do not require separate PPAPs solely because the included parts have different classifications.",
+        "Use authoritative imported classifications without PPAP-level overrides under PPAP-CLASSIFICATION-001."
+      ]
+    },
+    {
+      "id": "PPAP-CLASSIFICATION-003",
+      "question_number": "10b",
+      "topic": "Authoritative classification changes after issue",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Cancel and replace the issued PPAP when classifications change",
+      "requirements": [
+        "Require cancellation and replacement of an issued, open PPAP when its applicable authoritative classifications change.",
+        "Initialize the replacement PPAP using the current authoritative classifications and their combined evidence and approval requirements."
+      ],
+      "constraints": [
+        "Do not implement in-place post-issue classification reassessment as an alternative to cancellation and replacement.",
+        "Draft preparation may incorporate updated source classifications before issue; no cancellation is required solely to refresh an unissued draft.",
+        "Preserve previously closed approvals unchanged; post-approval withdrawal remains outside the first release.",
+        "Apply cancellation and replacement controls under PPAP-LIFECYCLE-002 and PPAP-RELEASE-001, including the cancelled-source evidence exclusion under PPAP-EVIDENCE-002."
+      ]
+    },
+    {
+      "id": "PPAP-REQUIREMENTS-001",
+      "question_number": 11,
+      "topic": "Authority for the requirement library and template matrix",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Use SIA's current IntelliQuest library/procedure as the authority; map and reconcile OOTB content (Recommended)",
+      "requirements": [
+        "Use SIA's current IntelliQuest requirement library and PPAP procedure as the authoritative source for the initial target requirement library and template matrix.",
+        "Map and reconcile the OOTB elements, checklist content, level templates, routing, and classification defaults against that authoritative source."
+      ],
+      "constraints": [
+        "Do not treat the OOTB catalogue as the authority when it differs from the current controlled SIA requirements.",
+        "Preserve source traceability for retained, modified, added, or retired OOTB configuration."
+      ],
+      "required_inputs": [
+        {
+          "id": "PPAP-INPUT-001",
+          "description": "Current controlled SIA PPAP procedure, IntelliQuest requirement library, and applicable template/classification matrix.",
+          "status": "pending",
+          "question_number": "11a",
+          "user_answer": "Record the source material as pending and continue",
+          "handling": "Continue clarifying business rules; retain this input as outstanding for source-backed catalogue and template reconciliation."
+        }
+      ]
+    },
+    {
+      "id": "PPAP-REQUIREMENTS-002",
+      "question_number": "11b",
+      "topic": "Requirement exclusions and protected applicability",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Engineer may exclude unprotected requirements with a reason; protected requirements remain mandatory (Recommended)",
+      "requirements": [
+        "Permit the responsible engineer to mark an unprotected default requirement Not Required during PPAP setup, with a mandatory reason.",
+        "Keep requirements mandated by the controlled SIA procedure or applicable classifications protected from waiver.",
+        "Allow suppliers to request N/A for engineer review; suppliers cannot waive requirements themselves."
+      ],
+      "constraints": [
+        "Do not require a separate administrator-approval workflow for an engineer's permitted exclusion of an unprotected requirement.",
+        "Determine the actual protected requirement set through the source-backed reconciliation under PPAP-REQUIREMENTS-001; PPAP-INPUT-001 remains outstanding.",
+        "Post-issue element and applicability changes are governed by PPAP-REQUIREMENTS-003 and require cancellation and replacement."
+      ]
+    },
+    {
+      "id": "PPAP-REQUIREMENTS-003",
+      "question_number": "11c",
+      "topic": "Requirement-set immutability after issue",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Lock the requirement set at issue; cancel and replace for additions or exclusions",
+      "requirements": [
+        "Lock the PPAP requirement set and element applicability when the PPAP is issued.",
+        "Require cancellation and replacement of an issued PPAP when an element must be added or excluded, including changing an existing element to Not Required."
+      ],
+      "constraints": [
+        "Do not provide an in-place post-issue requirement-set amendment action.",
+        "Continue to allow correction, resubmission, and authorized reopening of existing required elements for in-flight engineering changes when the locked scope, classifications, and requirement set remain unchanged.",
+        "Evaluate a supplier's N/A request through the engineer: an accepted request that changes issued applicability requires cancellation and replacement rather than an in-place waiver.",
+        "Apply PPAP-SCOPE-003, PPAP-CLASSIFICATION-003, and the cancellation/release/evidence-reuse controls when deciding whether an in-flight change can remain within the existing PPAP."
+      ]
+    },
+    {
+      "id": "PPAP-WARRANT-001",
+      "question_number": 12,
+      "topic": "Part-level mass data and validation",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Require both masses for every part, in kg, using those validation rules (Recommended)",
+      "requirements": [
+        "Require average actual mass and average metal mass for every included part before final submission.",
+        "Capture both values in kilograms.",
+        "Validate average actual mass as greater than zero.",
+        "Validate average metal mass as greater than or equal to zero and less than or equal to average actual mass.",
+        "Treat zero average metal mass as an explicit confirmation that the part has no metal content."
+      ],
+      "constraints": [
+        "Keep unknown mass values missing; do not default unknown values to zero.",
+        "Do not permit N/A to bypass either required mass value for an included part.",
+        "The final mass-data gate is separate from the scope confirmation required before the first supplier element submission under PPAP-RELEASE-001."
+      ]
+    },
+    {
+      "id": "PPAP-SCHEDULE-002",
+      "question_number": 13,
+      "topic": "Calendar basis and initial drawing-review target",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Calendar days; initial drawing review due after 14 calendar days (Recommended)",
+      "requirements": [
+        "Use calendar-day arithmetic for PPAP task-date offsets in the first release.",
+        "Set the initial drawing-review target to 14 calendar days after drawing release."
+      ],
+      "constraints": [
+        "Do not apply working-day or holiday-calendar adjustments to these first-release calculations.",
+        "Keep date-change audit, PPAP schedule disconnection/reconnection, and overdue-date warnings under ADR-101 and ADR-108."
+      ]
+    },
+    {
+      "id": "PPAP-SCHEDULE-003",
+      "question_number": "13a",
+      "topic": "Date recalculation and preservation of issued baselines",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Update open connected work only; preserve issued baselines and completed history (Recommended)",
+      "requirements": [
+        "Apply model-driven effective due-date recalculation only to open work on schedule-connected PPAPs.",
+        "Preserve the original issued planned-date baseline when model schedules subsequently change.",
+        "Preserve completed task and closed PPAP date history unchanged.",
+        "Keep manually assigned dates on disconnected PPAPs unchanged until an authorized reconnection."
+      ],
+      "constraints": [
+        "Do not overwrite an original issued baseline with the latest model plan.",
+        "Continue to audit effective date changes and warn before schedule disconnection/reconnection under ADR-101 and ADR-108.",
+        "Timeliness and scorecard date-basis rules remain a separate clarification."
+      ]
+    },
+    {
+      "id": "PPAP-RELEASE-002",
+      "question_number": "13b",
+      "topic": "Element due-date completeness before issue",
+      "status": "confirmed",
+      "decision_date": "2026-11-17",
+      "source": "User reply in the PPAP requirements clarification conversation",
+      "user_answer": "Require due dates for all required elements before issue, and allow already-overdue dates with a warning.",
+      "requirements": [
+        "Require every required PPAP element to have a calculated or manually assigned due date before issue.",
+        "Permit issue when one or more required element due dates are already overdue, while displaying a warning."
+      ],
+      "constraints": [
+        "Block issue for missing required element dates, not merely because a populated date is in the past.",
+        "Apply the date-completeness gate to both supplier-facing and internal required elements.",
+        "Preserve the calendar-day and issued-baseline rules under PPAP-SCHEDULE-002 and PPAP-SCHEDULE-003."
+      ]
+    }
+  ]
+}

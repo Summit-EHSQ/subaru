@@ -1,0 +1,1582 @@
+[
+  {
+    "field_id": "7391ff31-f677-47b9-a517-724070e58328",
+    "owner": "APQP_APQPObject",
+    "field": "DisplayField",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>CONCATENATE(\"APQP \",Product,\" - \",Product.Name)</Expression></CalculationBase>",
+    "decoded": "CONCATENATE(\"APQP \",Product,\" - \",Product.Name)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/625/FieldData/Calculation"
+  },
+  {
+    "field_id": "e8718d97-c2e3-49fa-9459-ac6f0a7e51cf",
+    "owner": "APQP_APQPObject",
+    "field": "DraftWeight",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"Draft\")</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"Draft\")",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/241/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "404759da-8e01-4a02-806e-6353cb373174",
+    "owner": "APQP_APQPObject",
+    "field": "FifthGateWeight",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"FifthGate\")</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"FifthGate\")",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/352/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "d5101acf-7583-4459-85f6-0e74bfd61c97",
+    "owner": "APQP_APQPObject",
+    "field": "FirstGateWeight",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"FirstGate\")</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"FirstGate\")",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/626/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "b143febd-3260-4edc-ad75-8f0be3907736",
+    "owner": "APQP_APQPObject",
+    "field": "FourGateWeight",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"FourthGate\")</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"FourthGate\")",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/618/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "d726afa9-521d-4a3c-8108-c81a0d96315f",
+    "owner": "APQP_APQPObject",
+    "field": "ProcessOwner",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>CreatedBy</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "CreatedBy",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/266/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "d726afa9-521d-4a3c-8108-c81a0d96315f",
+    "owner": "APQP_APQPObject",
+    "field": "ProcessOwner",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"BelongsToGroup\",\"For\":\"ID\",\"Negate\":false,\"GroupId\":\"bfbec27b-d0b6-47b2-b6d4-9241abf697c7\"}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"BelongsToGroup\",\"For\":\"ID\",\"Negate\":false,\"GroupId\":\"bfbec27b-d0b6-47b2-b6d4-9241abf697c7\"}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/266/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "4202c8e9-e42b-473e-808e-27440d24e83f",
+    "owner": "APQP_APQPObject",
+    "field": "SecGateWeight",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"SecondGate\")</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"SecondGate\")",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/616/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "89e8e416-cf54-4606-bc05-619109ba326a",
+    "owner": "APQP_APQPObject",
+    "field": "Settings",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"EntityValueGeneratorOfAPQP_SettingsObjectjuNyfaHs\" xmlns=\"http://schemas.intelex.net\"><Id>7b040ae4-8679-43df-ad06-3ad53a684674</Id></ValueGenerator>",
+    "decoded": "7b040ae4-8679-43df-ad06-3ad53a684674",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/484/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "602a6e63-3feb-4fd7-b054-cbbc06c5f986",
+    "owner": "APQP_APQPObject",
+    "field": "ThirdGateWeight",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"ThirdGate\")</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"ThirdGate\")",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/475/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "998bd167-41b8-46bf-bc08-b1baa5ec3a50",
+    "owner": "APQP_PPAPAbstractObject",
+    "field": "DisplayField",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>CONCATENATE(\"PPAP \",Product,\" - \",Product.Name)</Expression></CalculationBase>",
+    "decoded": "CONCATENATE(\"PPAP \",Product,\" - \",Product.Name)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/579/FieldData/Calculation"
+  },
+  {
+    "field_id": "965d6b14-7820-4af9-8f87-460e11923049",
+    "owner": "APQP_PPAPAbstractObject",
+    "field": "DraftWeight",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"Draft\")</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"Draft\")",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/738/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "d4f0340b-fe8b-43a3-a9be-054df25737db",
+    "owner": "APQP_PPAPAbstractObject",
+    "field": "IApprovalWeight",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"InterimApproval\")</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"InterimApproval\")",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/892/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "2d7a337b-05a7-4fb7-881c-adafe86bb472",
+    "owner": "APQP_PPAPAbstractObject",
+    "field": "InProgresWeight",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"InProgress\")</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"InProgress\")",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/872/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "63ea8832-1c8d-4ae4-acbf-4db8ffc3a407",
+    "owner": "APQP_PPAPAbstractObject",
+    "field": "InReviewWeight",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"InReview\")</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "FETCHVALUE(\"ProjectFwk_PhaseObject\", \"WeightAssigned\", \"DateCreated Ascending\", \"ProjectTypeId\", \"=\", ProjectTypeId,\"WFStageName\", \"=\", \"InReview\")",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/531/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "1235abd4-f363-46d1-a1b6-314aefe130b9",
+    "owner": "APQP_PPAPAbstractObject",
+    "field": "ProjectOwner",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"BelongsToGroup\",\"For\":\"ID\",\"Negate\":false,\"GroupId\":\"bfbec27b-d0b6-47b2-b6d4-9241abf697c7\"}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"BelongsToGroup\",\"For\":\"ID\",\"Negate\":false,\"GroupId\":\"bfbec27b-d0b6-47b2-b6d4-9241abf697c7\"}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/201/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "9ee028e1-dc09-4781-86c2-1a103c89dc6c",
+    "owner": "APQP_PPAPAbstractObject",
+    "field": "Settings",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"EntityValueGeneratorOfAPQP_SettingsObjectjuNyfaHs\" xmlns=\"http://schemas.intelex.net\"><Id>7b040ae4-8679-43df-ad06-3ad53a684674</Id></ValueGenerator>",
+    "decoded": "7b040ae4-8679-43df-ad06-3ad53a684674",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/320/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "928f4637-0e14-46dc-89bc-90cb6e3fadd2",
+    "owner": "APQP_PPAPAbstractObject",
+    "field": "SubmissionDate",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>Task.Workflow.DueDate</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "Task.Workflow.DueDate",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/249/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "d11343ae-5ac5-46b9-a303-840b604f9056",
+    "owner": "APQP_SettingsObject",
+    "field": "APQPProjectType",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"EntityValueGeneratorOfProjectFwk_ProjectTypeObjectjuNyfaHs\" xmlns=\"http://schemas.intelex.net\"><Id>f467e500-49c1-4877-8b65-9a20492687f9</Id></ValueGenerator>",
+    "decoded": "f467e500-49c1-4877-8b65-9a20492687f9",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/319/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "4375e0a2-0a69-4823-be2d-091f4cc447c6",
+    "owner": "APQP_SettingsObject",
+    "field": "PPAPHidTskDraft",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfboolean5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>false</Value></ValueGenerator>",
+    "decoded": "false",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/524/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "fa7c5344-880e-4d5b-a3b3-efc4040f410c",
+    "owner": "APQP_SettingsObject",
+    "field": "PPAPProjectType",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"EntityValueGeneratorOfProjectFwk_ProjectTypeObjectjuNyfaHs\" xmlns=\"http://schemas.intelex.net\"><Id>a6aa71e1-4202-4d7f-b583-caddd4c87188</Id></ValueGenerator>",
+    "decoded": "a6aa71e1-4202-4d7f-b583-caddd4c87188",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/407/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "881f7808-9a99-4521-970a-6e42587fb9ef",
+    "owner": "APQP_SettingsObject",
+    "field": "SkipGate2",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfboolean5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>false</Value></ValueGenerator>",
+    "decoded": "false",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/522/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "071bf3da-d8a0-4b50-b638-81b8c2f5d484",
+    "owner": "CLF_ChecklistAnswerObject",
+    "field": "ApplicQuestions",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(COUNT(QuestionAnswers)=0, COUNT(PubChecklist.PubQuestions), COUNT(QuestionAnswers)) + SUM(SubChecklists.ApplicQuestions) </Expression></CalculationBase>",
+    "decoded": "IF(COUNT(QuestionAnswers)=0, COUNT(PubChecklist.PubQuestions), COUNT(QuestionAnswers)) + SUM(SubChecklists.ApplicQuestions) ",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/171/FieldData/Calculation"
+  },
+  {
+    "field_id": "3c17b069-7b8e-4bd7-9a7c-923143d5e919",
+    "owner": "CLF_ChecklistAnswerObject",
+    "field": "Depth",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(MasterChecklist&lt;&gt;NULL, MasterChecklist.Depth+1, 1)</Expression></CalculationBase>",
+    "decoded": "IF(MasterChecklist<>NULL, MasterChecklist.Depth+1, 1)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/174/FieldData/Calculation"
+  },
+  {
+    "field_id": "9eb5b820-84e7-459d-a736-062bf1637ac3",
+    "owner": "CLF_ChecklistAnswerObject",
+    "field": "FilledQuestions",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>SUM(QuestionAnswers.IsFilled) + SUM(SubChecklists.FilledQuestions)</Expression></CalculationBase>",
+    "decoded": "SUM(QuestionAnswers.IsFilled) + SUM(SubChecklists.FilledQuestions)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/175/FieldData/Calculation"
+  },
+  {
+    "field_id": "79aef9dd-9a4f-421e-915f-d7c30cef905c",
+    "owner": "CLF_ChecklistAnswerObject",
+    "field": "MaxPoints",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>SUM(QuestionAnswers.MaxPoints) + SUM(SubChecklists.MaxPoints)</Expression></CalculationBase>",
+    "decoded": "SUM(QuestionAnswers.MaxPoints) + SUM(SubChecklists.MaxPoints)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/166/FieldData/Calculation"
+  },
+  {
+    "field_id": "4c9646f8-b586-45c0-9107-b66971cc7223",
+    "owner": "CLF_ChecklistAnswerObject",
+    "field": "NbFindings",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>COUNT(Findings) + SUM(SubChecklists.NbFindings)</Expression></CalculationBase>",
+    "decoded": "COUNT(Findings) + SUM(SubChecklists.NbFindings)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/158/FieldData/Calculation"
+  },
+  {
+    "field_id": "0655be39-410d-435c-a680-51b843ab6c52",
+    "owner": "CLF_ChecklistAnswerObject",
+    "field": "NbSubChecklists",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>COUNT(SubChecklists)</Expression></CalculationBase>",
+    "decoded": "COUNT(SubChecklists)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/155/FieldData/Calculation"
+  },
+  {
+    "field_id": "071a14bc-1d47-4277-a5c5-16b1ea4c487c",
+    "owner": "CLF_ChecklistAnswerObject",
+    "field": "Path",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(MasterChecklist&lt;&gt;NULL, CONCATENATE(MasterChecklist.Path, \".\", RecordNo), RecordNo)</Expression></CalculationBase>",
+    "decoded": "IF(MasterChecklist<>NULL, CONCATENATE(MasterChecklist.Path, \".\", RecordNo), RecordNo)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/170/FieldData/Calculation"
+  },
+  {
+    "field_id": "56f4f2db-044f-4833-aad6-0d0f0ee84d85",
+    "owner": "CLF_ChecklistAnswerObject",
+    "field": "PointsAwarded",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>SUM(QuestionAnswers.PointsAwarded) + SUM(SubChecklists.PointsAwarded)</Expression></CalculationBase>",
+    "decoded": "SUM(QuestionAnswers.PointsAwarded) + SUM(SubChecklists.PointsAwarded)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/165/FieldData/Calculation"
+  },
+  {
+    "field_id": "7ac79076-0202-4097-bac7-fad6c540e65b",
+    "owner": "CLF_ChecklistAnswerObject",
+    "field": "Progress",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IFERROR(FilledQuestions / ApplicQuestions, 0)</Expression></CalculationBase>",
+    "decoded": "IFERROR(FilledQuestions / ApplicQuestions, 0)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/161/FieldData/Calculation"
+  },
+  {
+    "field_id": "b38a67c1-41b7-4534-b914-d7b6d1cbff55",
+    "owner": "CLF_ChecklistAnswerObject",
+    "field": "Score",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IFERROR(PointsAwarded/ MaxPoints, 0)</Expression></CalculationBase>",
+    "decoded": "IFERROR(PointsAwarded/ MaxPoints, 0)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/173/FieldData/Calculation"
+  },
+  {
+    "field_id": "c209764b-a12f-4a31-aa65-91933fb938ea",
+    "owner": "CLF_ChecklistObject",
+    "field": "NbQuestions",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>COUNT(Questions)</Expression></CalculationBase>",
+    "decoded": "COUNT(Questions)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/236/FieldData/Calculation"
+  },
+  {
+    "field_id": "ad0459de-0804-4ff0-b296-da15d39e21a6",
+    "owner": "CLF_ChecklistObject",
+    "field": "Questions",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ChecklistType\",\"ID\":null},\"For\":\"ChecklistType\",\"Negate\":false}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ChecklistType\",\"ID\":null},\"For\":\"ChecklistType\",\"Negate\":false}]}",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/237/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "974e3544-2625-479e-8321-f0722992e415",
+    "owner": "CLF_ChecklistObject",
+    "field": "Reference",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>CONCATENATE(ChecklistType.Reference, \".\",  ChecklistType.NbChecklists+1)</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "CONCATENATE(ChecklistType.Reference, \".\",  ChecklistType.NbChecklists+1)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/52/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "645a536e-aa60-4c95-88bb-e43f8bf7812c",
+    "owner": "CLF_ChecklistTypeObject",
+    "field": "MaxOrder",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>MAX(Questions.Order)</Expression></CalculationBase>",
+    "decoded": "MAX(Questions.Order)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/82/FieldData/Calculation"
+  },
+  {
+    "field_id": "eac1371d-cd62-41a0-9cb4-d9b8df09b5be",
+    "owner": "CLF_ChecklistTypeObject",
+    "field": "NbChecklists",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>COUNT(Checklists)</Expression></CalculationBase>",
+    "decoded": "COUNT(Checklists)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/151/FieldData/Calculation"
+  },
+  {
+    "field_id": "7ef2fc23-54af-4dd1-aae1-4c945cd5cfc1",
+    "owner": "CLF_ChecklistTypeObject",
+    "field": "NbQuestions",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>COUNT(Questions)</Expression></CalculationBase>",
+    "decoded": "COUNT(Questions)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/209/FieldData/Calculation"
+  },
+  {
+    "field_id": "70d0d1df-7d5f-45ae-b01f-adf174f1cb94",
+    "owner": "CLF_ChecklistTypeObject",
+    "field": "QueAnswerObject",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfstring\" xmlns=\"http://schemas.intelex.net\"><Value>CLF_QuestionAnswerObject</Value></ValueGenerator>",
+    "decoded": "CLF_QuestionAnswerObject",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/292/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "91e0613b-66fb-4cce-8158-de81572a4fa6",
+    "owner": "CLF_ChoiceListObject",
+    "field": "MaxPoints",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>MAX(Choices.Value)</Expression></CalculationBase>",
+    "decoded": "MAX(Choices.Value)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/16/FieldData/Calculation"
+  },
+  {
+    "field_id": "afabde3b-355b-4536-86f0-797f937da850",
+    "owner": "CLF_ChoiceListObject",
+    "field": "NbChoices",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>COUNT(Choices)</Expression></CalculationBase>",
+    "decoded": "COUNT(Choices)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/20/FieldData/Calculation"
+  },
+  {
+    "field_id": "4710a81a-c167-40c9-a6d9-66f4d7479342",
+    "owner": "CLF_ChoiceObject",
+    "field": "Reference",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>CONCATENATE(ChoiceList.Reference, \".\",  ChoiceList.NbChoices+1)</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "CONCATENATE(ChoiceList.Reference, \".\",  ChoiceList.NbChoices+1)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/114/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "51155bb6-f0cc-41eb-a602-3b4d70980405",
+    "owner": "CLF_FindingObject",
+    "field": "ActionPlans",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ChecklistAnswer\",\"ID\":null},\"For\":\"ChecklistAnswer\",\"Negate\":false}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ChecklistAnswer\",\"ID\":null},\"For\":\"ChecklistAnswer\",\"Negate\":false}]}",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/6/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "18423386-cbd4-412e-9e90-710173f24669",
+    "owner": "CLF_FindingObject",
+    "field": "DueIn",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"EntityValueGeneratorOfCLF_FindingDDObjectjuNyfaHs\" xmlns=\"http://schemas.intelex.net\"><Id>eb1f2003-c086-4224-aca9-a26c842f6442</Id></ValueGenerator>",
+    "decoded": "eb1f2003-c086-4224-aca9-a26c842f6442",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/218/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "de676db5-1ec1-48bf-b482-62bc76e930b1",
+    "owner": "CLF_FindingObject",
+    "field": "FindingStatus",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"EntityValueGeneratorOfCLF_FindingStatusObjectjuNyfaHs\" xmlns=\"http://schemas.intelex.net\"><Id>2ea0b4d2-ce73-4bd4-a837-5030d44e6e45</Id></ValueGenerator>",
+    "decoded": "2ea0b4d2-ce73-4bd4-a837-5030d44e6e45",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/81/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "e4ec6661-51b4-4bcc-9a3d-ff1aff4f2c1d",
+    "owner": "CLF_FindingObject",
+    "field": "HasActionPlans",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(NbAPs&gt;0, TRUE, FALSE)</Expression></CalculationBase>",
+    "decoded": "IF(NbAPs>0, TRUE, FALSE)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/120/FieldData/Calculation"
+  },
+  {
+    "field_id": "db85d606-b22d-4bfa-a34c-a6dea9e0f9ff",
+    "owner": "CLF_FindingObject",
+    "field": "IsOpen",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(AND(FindingStatus.Code&lt;&gt;\"Closed\", FindingStatus.Code&lt;&gt;\"Closed without Action\"), 1, 0)</Expression></CalculationBase>",
+    "decoded": "IF(AND(FindingStatus.Code<>\"Closed\", FindingStatus.Code<>\"Closed without Action\"), 1, 0)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/270/FieldData/Calculation"
+  },
+  {
+    "field_id": "e8295e71-37e4-4a16-9475-70954d674bab",
+    "owner": "CLF_FindingObject",
+    "field": "ManualClose",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfboolean5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>false</Value></ValueGenerator>",
+    "decoded": "false",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/61/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "990b34ac-0ccd-4636-a58f-b6b723cce8a8",
+    "owner": "CLF_FindingObject",
+    "field": "NbAPs",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>COUNT(ActionPlans)</Expression></CalculationBase>",
+    "decoded": "COUNT(ActionPlans)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/35/FieldData/Calculation"
+  },
+  {
+    "field_id": "8cdbcea5-e567-471c-a514-bc6f541a7b16",
+    "owner": "CLF_FindingObject",
+    "field": "NbOpAPs",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>COUNT(FILTER(ActionPlans.IsCompleted, \"&lt;&gt;\", TRUE)) </Expression></CalculationBase>",
+    "decoded": "COUNT(FILTER(ActionPlans.IsCompleted, \"<>\", TRUE)) ",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/4/FieldData/Calculation"
+  },
+  {
+    "field_id": "f9df3607-ae7c-41f3-b5da-bc9d53598f4e",
+    "owner": "CLF_FindingObject",
+    "field": "PersResponsible",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>ChecklistAnswer.DefPersRespFind</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "ChecklistAnswer.DefPersRespFind",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/275/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "a69b116f-60c9-4ce2-80e5-9569d93baa68",
+    "owner": "CLF_FindingObject",
+    "field": "QuestionAnswers",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ChecklistAnswer\",\"ID\":null},\"For\":\"ChecklistAnswer\",\"Negate\":false}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ChecklistAnswer\",\"ID\":null},\"For\":\"ChecklistAnswer\",\"Negate\":false}]}",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/273/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "0e1e53f2-fc07-4118-a04f-e73435763482",
+    "owner": "CLF_FindingStatusObject",
+    "field": "Name",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>Code</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "Code",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/220/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "0ff76b4f-ebf5-422c-8cb4-47e7e50b95dc",
+    "owner": "CLF_InsActionPlanObject",
+    "field": "ActionOwner",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>ChecklistAnswer.DefPersRespFind</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "ChecklistAnswer.DefPersRespFind",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/99/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "97215722-33de-4fb1-a078-e008c9657e7b",
+    "owner": "CLF_InsActionPlanObject",
+    "field": "Findings",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"AdvancedExpression\",\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ChecklistAnswer\",\"ID\":null},\"For\":\"ChecklistAnswer\",\"Negate\":false},{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"Open\",\"ID\":null},\"For\":\"FindingStatus\",\"Negate\":false},{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"In Progress\",\"ID\":null},\"For\":\"FindingStatus\",\"Negate\":false}],\"AdvancedFilterFormula\":\"A and (B or C)\",\"AdvancedFilterFormulaEnabled\":true}",
+    "decoded": "{\"__type\":\"AdvancedExpression\",\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ChecklistAnswer\",\"ID\":null},\"For\":\"ChecklistAnswer\",\"Negate\":false},{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"Open\",\"ID\":null},\"For\":\"FindingStatus\",\"Negate\":false},{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"In Progress\",\"ID\":null},\"For\":\"FindingStatus\",\"Negate\":false}],\"AdvancedFilterFormula\":\"A and (B or C)\",\"AdvancedFilterFormulaEnabled\":true}",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/100/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "d39de5aa-36bf-4f11-9ffa-6d75f6952239",
+    "owner": "CLF_PubChecklistObject",
+    "field": "ChecklistType",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>Checklist.ChecklistType</Expression></CalculationBase>",
+    "decoded": "Checklist.ChecklistType",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/197/FieldData/Calculation"
+  },
+  {
+    "field_id": "3f34e5f3-b2a0-46ed-b808-26a7f0817273",
+    "owner": "CLF_PubQuestObject",
+    "field": "AnswerTypeCode",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>AnswerType.Value</Expression></CalculationBase>",
+    "decoded": "AnswerType.Value",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/92/FieldData/Calculation"
+  },
+  {
+    "field_id": "0500b72d-388e-4883-9998-e75386a93c8d",
+    "owner": "CLF_PubQuestObject",
+    "field": "MaxPoints",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>ChoiceList.MaxPoints</Expression></CalculationBase>",
+    "decoded": "ChoiceList.MaxPoints",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/72/FieldData/Calculation"
+  },
+  {
+    "field_id": "ae6d1a33-3e2a-46dc-8786-84b48cf2c664",
+    "owner": "CLF_QuestAbstractObject",
+    "field": "AnswerType",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"EntityValueGeneratorOfCLF_AnswerTypeObjectjuNyfaHs\" xmlns=\"http://schemas.intelex.net\"><Id>771916e1-5251-4658-add8-3091457e7295</Id></ValueGenerator>",
+    "decoded": "771916e1-5251-4658-add8-3091457e7295",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/190/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "6ca75a85-7f52-42de-bba7-618af4e7f28a",
+    "owner": "CLF_QuestionAnswerObject",
+    "field": "AnswerText",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(PubQuestion.AnswerTypeCode=\"Choice\", \r\n\tChoice.Name\r\n,\r\n\tIF(PubQuestion.AnswerTypeCode=\"Date\",\r\n\t\tCONCATENATE(Date, \"\")\r\n\t,\r\n\t\tIF(PubQuestion.AnswerTypeCode=\"Float\", \r\n\t\t\tCONCATENATE(Float, \"\")\r\n\t\t,\r\n\t\t\tIF(PubQuestion.AnswerTypeCode=\"Text\", \r\n\t\t\t\tText\r\n\t\t\t,\r\n\t\t\t\tIF(PubQuestion.AnswerTypeCode=\"Checkbox\", \r\n\t\t\t\t\tCONCATENATE(Checkbox, \"\")\r\n\t\t\t\t,\r\n\t\t\t\t\t\"\"\r\n\t\t\t\t)\r\n\t\t\t)\r\n\t\t)\r\n\t)\r\n)</Expression></CalculationBase>",
+    "decoded": "IF(PubQuestion.AnswerTypeCode=\"Choice\", \r\n\tChoice.Name\r\n,\r\n\tIF(PubQuestion.AnswerTypeCode=\"Date\",\r\n\t\tCONCATENATE(Date, \"\")\r\n\t,\r\n\t\tIF(PubQuestion.AnswerTypeCode=\"Float\", \r\n\t\t\tCONCATENATE(Float, \"\")\r\n\t\t,\r\n\t\t\tIF(PubQuestion.AnswerTypeCode=\"Text\", \r\n\t\t\t\tText\r\n\t\t\t,\r\n\t\t\t\tIF(PubQuestion.AnswerTypeCode=\"Checkbox\", \r\n\t\t\t\t\tCONCATENATE(Checkbox, \"\")\r\n\t\t\t\t,\r\n\t\t\t\t\t\"\"\r\n\t\t\t\t)\r\n\t\t\t)\r\n\t\t)\r\n\t)\r\n)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/86/FieldData/Calculation"
+  },
+  {
+    "field_id": "00b884fc-b74e-4f87-91cd-f0fcdea9fd59",
+    "owner": "CLF_QuestionAnswerObject",
+    "field": "Choice",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Reference\",\"For\":\"ID\",\"Negate\":false,\"ExpressionText\":\"PubQuestion.ChoiceList.Choices\",\"BaseType\":\"CLF_QuestionAnswerObject\"}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Reference\",\"For\":\"ID\",\"Negate\":false,\"ExpressionText\":\"PubQuestion.ChoiceList.Choices\",\"BaseType\":\"CLF_QuestionAnswerObject\"}]}",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/93/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "028137c1-e158-40b5-8df6-1d00430fe251",
+    "owner": "CLF_QuestionAnswerObject",
+    "field": "Choices",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Reference\",\"For\":\"ID\",\"Negate\":false,\"ExpressionText\":\"PubQuestion.ChoiceList.Choices\",\"BaseType\":\"CLF_QuestionAnswerObject\"}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Reference\",\"For\":\"ID\",\"Negate\":false,\"ExpressionText\":\"PubQuestion.ChoiceList.Choices\",\"BaseType\":\"CLF_QuestionAnswerObject\"}]}",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/182/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "8fea66f7-a0c8-4ca0-9e94-5ce6bc2cc591",
+    "owner": "CLF_QuestionAnswerObject",
+    "field": "Findings",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ChecklistAnswer\",\"ID\":null},\"For\":\"ChecklistAnswer\",\"Negate\":false}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ChecklistAnswer\",\"ID\":null},\"For\":\"ChecklistAnswer\",\"Negate\":false}]}",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/260/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "4431b722-2378-41fe-98d2-3a3b9927540a",
+    "owner": "CLF_QuestionAnswerObject",
+    "field": "IsApplicable",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOflong5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>1</Value></ValueGenerator>",
+    "decoded": "1",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/50/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "0b2e82a0-a21f-444c-9833-03201f261d45",
+    "owner": "CLF_QuestionAnswerObject",
+    "field": "IsFilled",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(OR(\r\n\tAND(PubQuestion.AnswerTypeCode=\"Choice\", Choice&lt;&gt;NULL), \r\n\tAND(PubQuestion.AnswerTypeCode=\"Choices\", COUNT(Choices)&gt;0), \r\n\tAND(PubQuestion.AnswerTypeCode=\"Date\", Date&lt;&gt;NULL), \r\n\tAND(PubQuestion.AnswerTypeCode=\"Float\", Float&lt;&gt;NULL), \r\n\tAND(PubQuestion.AnswerTypeCode=\"Text\", Text&lt;&gt;NULL), \r\n\tAND(PubQuestion.AnswerTypeCode=\"Checkbox\", Checkbox&lt;&gt;NULL)\r\n\t),1,0)</Expression></CalculationBase>",
+    "decoded": "IF(OR(\r\n\tAND(PubQuestion.AnswerTypeCode=\"Choice\", Choice<>NULL), \r\n\tAND(PubQuestion.AnswerTypeCode=\"Choices\", COUNT(Choices)>0), \r\n\tAND(PubQuestion.AnswerTypeCode=\"Date\", Date<>NULL), \r\n\tAND(PubQuestion.AnswerTypeCode=\"Float\", Float<>NULL), \r\n\tAND(PubQuestion.AnswerTypeCode=\"Text\", Text<>NULL), \r\n\tAND(PubQuestion.AnswerTypeCode=\"Checkbox\", Checkbox<>NULL)\r\n\t),1,0)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/211/FieldData/Calculation"
+  },
+  {
+    "field_id": "7a552bca-cb1a-4bd0-9610-2c6103fb3978",
+    "owner": "CLF_QuestionAnswerObject",
+    "field": "MaxPoints",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(Choice.Value=NULL, NULL,  PubQuestion.MaxPoints)</Expression></CalculationBase>",
+    "decoded": "IF(Choice.Value=NULL, NULL,  PubQuestion.MaxPoints)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/144/FieldData/Calculation"
+  },
+  {
+    "field_id": "3339c315-5a31-4182-88fb-8ccdc11129b0",
+    "owner": "CLF_QuestionAnswerObject",
+    "field": "NbFindings",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>COUNT(Findings)</Expression></CalculationBase>",
+    "decoded": "COUNT(Findings)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/259/FieldData/Calculation"
+  },
+  {
+    "field_id": "13f33185-7b90-4a4c-a6ae-23231f4d20ba",
+    "owner": "CLF_QuestionAnswerObject",
+    "field": "PointsAwarded",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(PubQuestion.AnswerTypeCode=\"Choice\", Choice.Value, IF(PubQuestion.AnswerTypeCode=\"Choices\", MAX(Choices.Value), NULL))</Expression></CalculationBase>",
+    "decoded": "IF(PubQuestion.AnswerTypeCode=\"Choice\", Choice.Value, IF(PubQuestion.AnswerTypeCode=\"Choices\", MAX(Choices.Value), NULL))",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/213/FieldData/Calculation"
+  },
+  {
+    "field_id": "cbf01deb-2a66-4943-b517-0d9852655cb0",
+    "owner": "CLF_QuestionAnswerObject",
+    "field": "PubQuestion",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Reference\",\"For\":\"ID\",\"Negate\":true,\"ExpressionText\":\"ChecklistAnswer.QuestionAnswers.PubQuestion\",\"BaseType\":\"CLF_QuestionAnswerObject\"}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Reference\",\"For\":\"ID\",\"Negate\":true,\"ExpressionText\":\"ChecklistAnswer.QuestionAnswers.PubQuestion\",\"BaseType\":\"CLF_QuestionAnswerObject\"}]}",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/90/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "fadf3603-b0a8-4375-aa03-c69c58375923",
+    "owner": "CLF_QuestObject",
+    "field": "Checklists",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ChecklistType\",\"ID\":null},\"For\":\"ChecklistType\",\"Negate\":false}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ChecklistType\",\"ID\":null},\"For\":\"ChecklistType\",\"Negate\":false}]}",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/238/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "e3a6ab98-6fc6-431f-af48-9d97a19e32cb",
+    "owner": "CLF_QuestObject",
+    "field": "LastPublish",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>MAX(PubQuestions.DateCreated)</Expression></CalculationBase>",
+    "decoded": "MAX(PubQuestions.DateCreated)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/239/FieldData/Calculation"
+  },
+  {
+    "field_id": "2cfbe2bb-b3ca-432e-8690-f67f6d8d42c3",
+    "owner": "CLF_QuestObject",
+    "field": "NbChecklists",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>COUNT(Checklists)</Expression></CalculationBase>",
+    "decoded": "COUNT(Checklists)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/249/FieldData/Calculation"
+  },
+  {
+    "field_id": "c5277595-969b-4857-98ae-ff9f1df39590",
+    "owner": "CLF_QuestObject",
+    "field": "QuestionRef",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>CONCATENATE(ChecklistType.Reference, \".\",  ChecklistType.NbQuestions+1)</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "CONCATENATE(ChecklistType.Reference, \".\",  ChecklistType.NbQuestions+1)",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/245/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "d19523f4-839a-424c-831a-866fdda10855",
+    "owner": "CLF_QuestObject",
+    "field": "UseReferences",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfboolean5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>false</Value></ValueGenerator>",
+    "decoded": "false",
+    "package": "Checklist Framework(v1.0.0).ipack",
+    "pointer": "/GraphData/Items/188/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "e4f63cb1-16ca-4baf-8736-b6e30b5639f2",
+    "owner": "ComplyFramework_CARAbstractObject",
+    "field": "DisplayField",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>CONCATENATE(\"CAR No. \", RecordNo)</Expression></CalculationBase>",
+    "decoded": "CONCATENATE(\"CAR No. \", RecordNo)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/601/FieldData/Calculation"
+  },
+  {
+    "field_id": "8453847c-fcf7-47b4-9836-1f7e2075ebda",
+    "owner": "EventFwk_LessonLearnedObject",
+    "field": "DisplayField",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>CONCATENATE(\"LL\",\" - \",ActionNo)</Expression></CalculationBase>",
+    "decoded": "CONCATENATE(\"LL\",\" - \",ActionNo)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/13/FieldData/Calculation"
+  },
+  {
+    "field_id": "9c5c7f39-367b-4064-a39f-080fc3b034a8",
+    "owner": "EventFwk_LessonLearnedObject",
+    "field": "HelpNotify",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>COUNT(RecipientsRol ) </Expression></CalculationBase>",
+    "decoded": "COUNT(RecipientsRol ) ",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/400/FieldData/Calculation"
+  },
+  {
+    "field_id": "bfffeabb-83d5-46fe-a632-817282181185",
+    "owner": "EventFwk_LessonLearnedObject",
+    "field": "Responsible",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"AdvancedExpression\",\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"6afb3ac6-96db-4072-9293-4d02699d1264\",\"ID\":null},\"For\":\"SystemType\",\"Negate\":false},{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"1b44b982-2248-41c5-971e-dfa68eddb196\",\"ID\":null},\"For\":\"SystemType\",\"Negate\":false}],\"AdvancedFilterFormula\":\"A OR B\",\"AdvancedFilterFormulaEnabled\":true}",
+    "decoded": "{\"__type\":\"AdvancedExpression\",\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"6afb3ac6-96db-4072-9293-4d02699d1264\",\"ID\":null},\"For\":\"SystemType\",\"Negate\":false},{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"1b44b982-2248-41c5-971e-dfa68eddb196\",\"ID\":null},\"For\":\"SystemType\",\"Negate\":false}],\"AdvancedFilterFormula\":\"A OR B\",\"AdvancedFilterFormulaEnabled\":true}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/67/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "3da8d270-4d02-4832-bd06-338809a6d110",
+    "owner": "EventFwk_LessonLearnedObject",
+    "field": "SSafetyBulletin",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfboolean5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>false</Value></ValueGenerator>",
+    "decoded": "false",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/192/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "84565854-3e9a-4898-aad8-0fc944032bc4",
+    "owner": "FragApplication_AbCorrectivActiObject",
+    "field": "IsCompleted",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfboolean5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>false</Value></ValueGenerator>",
+    "decoded": "false",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/136/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "31c86647-e0d9-4aab-a3d9-cab0f01ad988",
+    "owner": "ProductMgmt_ItemRevisionObject",
+    "field": "Code",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>CONCATENATE(Item.PartNumber, \" v.\",  RevisionNumber)</Expression></CalculationBase>",
+    "decoded": "CONCATENATE(Item.PartNumber, \" v.\",  RevisionNumber)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/112/FieldData/Calculation"
+  },
+  {
+    "field_id": "9adc18a7-569a-4b2c-8776-74c96bfa2ba9",
+    "owner": "ProductMgmt_ItemRevisionObject",
+    "field": "Name",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>Item.Name</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "Item.Name",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/493/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "6db9e762-30a1-4b8c-b920-9d29fe8e2730",
+    "owner": "ProductMgmt_ItemRevisionObject",
+    "field": "RevisionNumber",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(Item.CurrentRevision=NULL, 0, Item.CurrentRevision.RevisionNumber+1)</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "IF(Item.CurrentRevision=NULL, 0, Item.CurrentRevision.RevisionNumber+1)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/113/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "bc245361-f360-4f6f-a38d-1d69922e21fc",
+    "owner": "ProjectFwk_AdHocTaskObject",
+    "field": "StartCondition",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(DueDate&lt;&gt;NULL,TRUE,FALSE)</Expression></CalculationBase>",
+    "decoded": "IF(DueDate<>NULL,TRUE,FALSE)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/185/GraphData/Items/3/FieldData/Calculation"
+  },
+  {
+    "field_id": "deaae573-7d74-4ac4-a4a1-a55fc0754f7b",
+    "owner": "ProjectFwk_ChecklistDefObject",
+    "field": "Checklist",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ChecklistType\",\"ID\":null},\"For\":\"ChecklistType\",\"Negate\":false}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ChecklistType\",\"ID\":null},\"For\":\"ChecklistType\",\"Negate\":false}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/634/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "791d2816-dd37-4d05-8d8a-7a095a0366a6",
+    "owner": "ProjectFwk_ChecklistObject",
+    "field": "StartCondition",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(DueDate&lt;&gt;NULL,TRUE,FALSE)</Expression></CalculationBase>",
+    "decoded": "IF(DueDate<>NULL,TRUE,FALSE)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/237/FieldData/Calculation"
+  },
+  {
+    "field_id": "6d49ba21-e617-4eb7-9bf0-dd1327e663f1",
+    "owner": "ProjectFwk_PFWKProjectTaskObject",
+    "field": "Phase",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Reference\",\"For\":\"ID\",\"Negate\":false,\"ExpressionText\":\"ProjectTemplate.ProjectType.Phases\",\"BaseType\":\"ProjectFwk_PFWKProjectTaskObject\"},{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"TRUE\",\"ID\":null},\"For\":\"Active\",\"Negate\":false}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Reference\",\"For\":\"ID\",\"Negate\":false,\"ExpressionText\":\"ProjectTemplate.ProjectType.Phases\",\"BaseType\":\"ProjectFwk_PFWKProjectTaskObject\"},{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"TRUE\",\"ID\":null},\"For\":\"Active\",\"Negate\":false}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/213/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "50a40716-6b0f-440d-ba9a-f029a8ba09ef",
+    "owner": "ProjectFwk_PFWKProjectTaskObject",
+    "field": "ProjTaskDefObj",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"TRUE\",\"ID\":null},\"For\":\"Active\",\"Negate\":false}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"TRUE\",\"ID\":null},\"For\":\"Active\",\"Negate\":false}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/291/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "b54ea28c-0990-440a-9329-418e988f10b5",
+    "owner": "ProjectFwk_PFWKTemplateObject",
+    "field": "Active",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfboolean5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>false</Value></ValueGenerator>",
+    "decoded": "false",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/748/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "2c3fa19f-e2f4-44b1-bafb-0367bfb86867",
+    "owner": "ProjectFwk_PhaseObject",
+    "field": "Active",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfboolean5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>true</Value></ValueGenerator>",
+    "decoded": "true",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/421/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "9a04e858-5931-4d74-9bb5-fa4f8b4a3a1c",
+    "owner": "ProjectFwk_PhaseObject",
+    "field": "Order",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>MAX(ProjectType.Phases.Order)+1</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "MAX(ProjectType.Phases.Order)+1",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/224/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "3cb34495-f82c-4d59-a0fe-28157fbed0f2",
+    "owner": "ProjectFwk_ProjectAbstractObject",
+    "field": "NbofProTasks",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(ProjectType.ProjeSystemName = \"APQP_APQPObject\",COUNT(ProjectTasks), COUNT(FILTER(ProjectTasks.PhaseNamehelper, \"=\", Phase.Name)) )</Expression></CalculationBase>",
+    "decoded": "IF(ProjectType.ProjeSystemName = \"APQP_APQPObject\",COUNT(ProjectTasks), COUNT(FILTER(ProjectTasks.PhaseNamehelper, \"=\", Phase.Name)) )",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/448/FieldData/Calculation"
+  },
+  {
+    "field_id": "fa18162f-8520-4601-91f7-9735b1a75da6",
+    "owner": "ProjectFwk_ProjectAbstractObject",
+    "field": "NbOpenProTasks",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>COUNT(FILTER(ProjectTasks.IsCompleted, \"=\", FALSE))</Expression></CalculationBase>",
+    "decoded": "COUNT(FILTER(ProjectTasks.IsCompleted, \"=\", FALSE))",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/447/FieldData/Calculation"
+  },
+  {
+    "field_id": "d2cdabfd-5b74-4e87-b700-abd3546f53ee",
+    "owner": "ProjectFwk_ProjectAbstractObject",
+    "field": "Phase",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ProjectType\",\"ID\":null},\"For\":\"ProjectType\",\"Negate\":false}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ProjectType\",\"ID\":null},\"For\":\"ProjectType\",\"Negate\":false}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/670/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "4e811d57-dafb-43cd-adf5-66b40c4dc58b",
+    "owner": "ProjectFwk_ProjectAbstractObject",
+    "field": "ProgProTasks",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IFERROR((NbofProTasks-NbOpenProTasks)/NbofProTasks, 0)</Expression></CalculationBase>",
+    "decoded": "IFERROR((NbofProTasks-NbOpenProTasks)/NbofProTasks, 0)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/446/FieldData/Calculation"
+  },
+  {
+    "field_id": "fd378739-8a62-45ed-899e-a21562a317d9",
+    "owner": "ProjectFwk_ProjectAbstractObject",
+    "field": "Progress",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfdecimal5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>0</Value></ValueGenerator>",
+    "decoded": "0",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/679/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "586066b4-9b82-43b3-ae32-eb80bc8ebf68",
+    "owner": "ProjectFwk_ProjectAbstractObject",
+    "field": "ProjectTemplate",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ProjectType\",\"ID\":null},\"For\":\"ProjectType\",\"Negate\":false},{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"TRUE\",\"ID\":null},\"For\":\"Active\",\"Negate\":false}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ProjectType\",\"ID\":null},\"For\":\"ProjectType\",\"Negate\":false},{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"TRUE\",\"ID\":null},\"For\":\"Active\",\"Negate\":false}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/779/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "146f9fc3-c225-482f-9671-6d12ccb8eefb",
+    "owner": "ProjectFwk_ProjectAbstractObject",
+    "field": "Supplier",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Reference\",\"For\":\"ID\",\"Negate\":false,\"ExpressionText\":\"Product.SuppItemRevs.CompPP\",\"BaseType\":\"ProjectFwk_ProjectAbstractObject\"}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Reference\",\"For\":\"ID\",\"Negate\":false,\"ExpressionText\":\"Product.SuppItemRevs.CompPP\",\"BaseType\":\"ProjectFwk_ProjectAbstractObject\"}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/866/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "70b37be2-5cc8-4e16-addf-48fdd45d5ba0",
+    "owner": "ProjectFwk_ProjectTaskDefObject",
+    "field": "Active",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfboolean5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>true</Value></ValueGenerator>",
+    "decoded": "true",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/734/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "f5238818-ba54-4b30-ac33-52891bad0149",
+    "owner": "ProjectFwk_ProjectTaskDefObject",
+    "field": "DisplayValue",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>CONCATENATE(RecordNo, \" - \", IF(LEN(Description)&gt;50, CONCATENATE(LEFT(Description, 47), \"...\"), Description))</Expression></CalculationBase>",
+    "decoded": "CONCATENATE(RecordNo, \" - \", IF(LEN(Description)>50, CONCATENATE(LEFT(Description, 47), \"...\"), Description))",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/361/FieldData/Calculation"
+  },
+  {
+    "field_id": "47bedb3a-d72f-4ff9-9af0-c81d00957d4c",
+    "owner": "ProjectFwk_ProjectTaskObject",
+    "field": "Description",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>ProjectTaskMap.ProjTaskDefObj.Description</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "ProjectTaskMap.ProjTaskDefObj.Description",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/698/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "9b1fbd04-1f0b-4069-a29b-c2a40dc70070",
+    "owner": "ProjectFwk_ProjectTaskObject",
+    "field": "HelpMemChanged",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>FALSE</Expression></CalculationBase>",
+    "decoded": "FALSE",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/582/FieldData/Calculation"
+  },
+  {
+    "field_id": "3fda830d-aff9-4d22-a61a-4e8b89ee3a43",
+    "owner": "ProjectFwk_ProjectTaskObject",
+    "field": "Order",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>ProjectTaskMap.Order</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "ProjectTaskMap.Order",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/990/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "8e823fb2-07c3-4e02-bdc1-d77d470e214f",
+    "owner": "ProjectFwk_ProjectTaskObject",
+    "field": "PersResponsible",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ProjectRole\",\"ID\":null},\"For\":\"ProjectRole\",\"Negate\":false},{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"Project\",\"ID\":null},\"For\":\"Project\",\"Negate\":false},{\"__type\":\"IsNull\",\"For\":\"Member\",\"Negate\":true}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ProjectRole\",\"ID\":null},\"For\":\"ProjectRole\",\"Negate\":false},{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"Project\",\"ID\":null},\"For\":\"Project\",\"Negate\":false},{\"__type\":\"IsNull\",\"For\":\"Member\",\"Negate\":true}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/185/GraphData/Items/13/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "1304e2a8-c0c4-4e4a-91a2-8f3bdd29aa3d",
+    "owner": "ProjectFwk_ProjectTaskObject",
+    "field": "Phase",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>ProjectTaskMap.Phase</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "ProjectTaskMap.Phase",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/367/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "1304e2a8-c0c4-4e4a-91a2-8f3bdd29aa3d",
+    "owner": "ProjectFwk_ProjectTaskObject",
+    "field": "Phase",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Reference\",\"For\":\"ID\",\"Negate\":false,\"ExpressionText\":\"Project.ProjectType.Phases\",\"BaseType\":\"ProjectFwk_ProjectTaskObject\"}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Reference\",\"For\":\"ID\",\"Negate\":false,\"ExpressionText\":\"Project.ProjectType.Phases\",\"BaseType\":\"ProjectFwk_ProjectTaskObject\"}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/367/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "2950fb4e-5e79-4720-a7fd-0718eb766cd4",
+    "owner": "ProjectFwk_ProjectTaskObject",
+    "field": "PhaseNamehelper",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>Phase.Name</Expression></CalculationBase>",
+    "decoded": "Phase.Name",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/759/FieldData/Calculation"
+  },
+  {
+    "field_id": "96f0c7da-ace1-49ba-b881-f79f900ef571",
+    "owner": "ProjectFwk_ProjectTaskObject",
+    "field": "ProjectRole",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>ProjectTaskMap.ProjTaskDefObj.ProjectRole</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "ProjectTaskMap.ProjTaskDefObj.ProjectRole",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/534/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "a267768c-e643-4892-b226-c1aa92abcde2",
+    "owner": "ProjectFwk_ProjectTypeObject",
+    "field": "TotPhaseWeight",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>SUM(Phases.WeightAssigned)</Expression></CalculationBase>",
+    "decoded": "SUM(Phases.WeightAssigned)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/790/FieldData/Calculation"
+  },
+  {
+    "field_id": "e4a91b64-b576-486a-ae33-2fcb48ddb022",
+    "owner": "ProjectFwk_ProjRoleTeMemObject",
+    "field": "DisplayValue",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>CONCATENATE(Member.FullName, \" (\", ProjectRole.Name,\")\") </Expression></CalculationBase>",
+    "decoded": "CONCATENATE(Member.FullName, \" (\", ProjectRole.Name,\")\") ",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/95/FieldData/Calculation"
+  },
+  {
+    "field_id": "4ed9437a-433d-46fc-b3a5-1113d9b91471",
+    "owner": "ProjectFwk_ProjRoleTeMemObject",
+    "field": "Member",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"BelongsToGroup\",\"For\":\"ID\",\"Negate\":false,\"GroupId\":\"55cd72fd-bc23-4488-83cb-abe55f84e5b8\"}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"BelongsToGroup\",\"For\":\"ID\",\"Negate\":false,\"GroupId\":\"55cd72fd-bc23-4488-83cb-abe55f84e5b8\"}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/101/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "82c9b33c-d408-4012-9d04-5050375ba0d8",
+    "owner": "ProjectFwk_TaskDefObject",
+    "field": "PPAPTemplate",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"APQP_PPAPAbstractObject\",\"ID\":null},\"For\":\"ProjectType.ProjeSystemName\",\"Negate\":false},{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"True\",\"ID\":null},\"For\":\"Active\",\"Negate\":false}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"APQP_PPAPAbstractObject\",\"ID\":null},\"For\":\"ProjectType.ProjeSystemName\",\"Negate\":false},{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"True\",\"ID\":null},\"For\":\"Active\",\"Negate\":false}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/470/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "6f8de12f-cc79-4203-bc6d-9442978def69",
+    "owner": "ProjectFwk_TaskObject",
+    "field": "HelperTaskId",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IFNULL(RelatedPPAP.Id, NULL)</Expression></CalculationBase>",
+    "decoded": "IFNULL(RelatedPPAP.Id, NULL)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/297/FieldData/Calculation"
+  },
+  {
+    "field_id": "bfe43cf5-a333-43e5-bc9b-92a8e456d1cb",
+    "owner": "ProjectFwk_TaskObject",
+    "field": "HelpeTaskExists",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>HelperTaskId&lt;&gt;NULL</Expression></CalculationBase>",
+    "decoded": "HelperTaskId<>NULL",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/305/FieldData/Calculation"
+  },
+  {
+    "field_id": "32973f22-f583-4ed9-b735-4b2c340292f4",
+    "owner": "ProjectFwk_TaskObject",
+    "field": "StartCondition",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(DueDate&lt;&gt;NULL,TRUE,FALSE)</Expression></CalculationBase>",
+    "decoded": "IF(DueDate<>NULL,TRUE,FALSE)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/309/FieldData/Calculation"
+  },
+  {
+    "field_id": "85af8aef-ed27-425f-9778-0a9384664d2f",
+    "owner": "ProjectFwk_TaskObject",
+    "field": "TypeOfRecord",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>Def.TypeofRecord</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "Def.TypeofRecord",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/306/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "6b5ba9c8-4a6a-43a6-9a67-601613bfa137",
+    "owner": "Unresolved",
+    "field": "Address",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>CONCATENATE(\"Street No. \", Street, IF(City&lt;&gt;NULL,CONCATENATE(\", \", City),\"\"),IF(Geography&lt;&gt;NULL,CONCATENATE(\", \", Geography),\"\"),IF(Geography.ParentGeography&lt;&gt;NULL,CONCATENATE(\", \", Geography.ParentGeography),\"\"), IF(PostalCode&lt;&gt;NULL,CONCATENATE(\". Postal Code/Zip Code: \", PostalCode),\"\"))</Expression></CalculationBase>",
+    "decoded": "CONCATENATE(\"Street No. \", Street, IF(City<>NULL,CONCATENATE(\", \", City),\"\"),IF(Geography<>NULL,CONCATENATE(\", \", Geography),\"\"),IF(Geography.ParentGeography<>NULL,CONCATENATE(\", \", Geography.ParentGeography),\"\"), IF(PostalCode<>NULL,CONCATENATE(\". Postal Code/Zip Code: \", PostalCode),\"\"))",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/442/FieldData/Calculation"
+  },
+  {
+    "field_id": "46bbda27-ca85-44b3-8721-021cc7568704",
+    "owner": "Unresolved",
+    "field": "CancelAppHelp",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfboolean5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>false</Value></ValueGenerator>",
+    "decoded": "false",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/0/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "847457b8-7fdc-4f33-876a-7640e03576f7",
+    "owner": "Unresolved",
+    "field": "CancelSIAppHelp",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfboolean5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>false</Value></ValueGenerator>",
+    "decoded": "false",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/977/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "f45f4432-5ab0-44be-9de9-6a8a66696248",
+    "owner": "Unresolved",
+    "field": "ContainmentHelp",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>FETCHVALUE(\"FragApplication_CorrectivePreveObject\", \"Id\", \"DateCreated Ascending\", \"Value\", \"=\", \"Containment\")</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "FETCHVALUE(\"FragApplication_CorrectivePreveObject\", \"Id\", \"DateCreated Ascending\", \"Value\", \"=\", \"Containment\")",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/496/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "b30b0734-80ec-4ca8-a98b-2babc9c94c0d",
+    "owner": "Unresolved",
+    "field": "CorrectiveHelpe",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>FETCHVALUE(\"FragApplication_CorrectivePreveObject\", \"Id\", \"DateCreated Ascending\", \"Value\", \"=\", \"Corrective\")</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "FETCHVALUE(\"FragApplication_CorrectivePreveObject\", \"Id\", \"DateCreated Ascending\", \"Value\", \"=\", \"Corrective\")",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/75/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "baab61ce-d437-400e-8f15-1c257089af10",
+    "owner": "Unresolved",
+    "field": "CountSupItmHelp",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>COUNT(FILTER(SuppItemRevs.DateApproved,\"&lt;&gt;\",NULL))</Expression></CalculationBase>",
+    "decoded": "COUNT(FILTER(SuppItemRevs.DateApproved,\"<>\",NULL))",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/799/FieldData/Calculation"
+  },
+  {
+    "field_id": "f5aa9fbe-8063-4773-b392-1cb07796adc3",
+    "owner": "Unresolved",
+    "field": "CreateAppHelp",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfboolean5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>false</Value></ValueGenerator>",
+    "decoded": "false",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/842/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "b60e8985-feaf-4bb5-b601-11fda4bec80b",
+    "owner": "Unresolved",
+    "field": "CreateBy",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>CURRENTUSER</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "CURRENTUSER",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/827/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "7c237fef-4bbb-4e46-8ac3-728478e1946c",
+    "owner": "Unresolved",
+    "field": "CreateSRHelper",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfboolean5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>false</Value></ValueGenerator>",
+    "decoded": "false",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/545/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "1e0d8863-90af-4aed-9600-ae886c5ccaa9",
+    "owner": "Unresolved",
+    "field": "Criticality",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>PRODUCT(Severity.value,  Occurrence.Value)</Expression></CalculationBase>",
+    "decoded": "PRODUCT(Severity.value,  Occurrence.Value)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/568/FieldData/Calculation"
+  },
+  {
+    "field_id": "3c216669-cb9e-48d0-9546-948264a04583",
+    "owner": "Unresolved",
+    "field": "DateCreate",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"TodayValueGenerator\" xmlns=\"http://schemas.intelex.net\" />",
+    "decoded": "",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/649/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "d63b0bcc-b27a-453d-904a-49f74f67d213",
+    "owner": "Unresolved",
+    "field": "Description",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>Item.CurrentRevision.Description</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "Item.CurrentRevision.Description",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/583/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "6d4cfda9-613c-4b38-8e6f-244319fd74b1",
+    "owner": "Unresolved",
+    "field": "HelpActPlanProg",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfstring\" xmlns=\"http://schemas.intelex.net\"><Value>N/A</Value></ValueGenerator>",
+    "decoded": "N/A",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/730/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "37ee4174-358f-465d-bcdd-28399969f8ee",
+    "owner": "Unresolved",
+    "field": "HelpRevTypeObs",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"EntityValueGeneratorOfProductMgmt_RevisionTypeObjectjuNyfaHs\" xmlns=\"http://schemas.intelex.net\"><Id>fbdd55ce-7b79-4327-ba89-96b7cb65f093</Id></ValueGenerator>",
+    "decoded": "fbdd55ce-7b79-4327-ba89-96b7cb65f093",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/926/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "37ee4174-358f-465d-bcdd-28399969f8ee",
+    "owner": "Unresolved",
+    "field": "HelpRevTypeObs",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"Reactivate Item\",\"ID\":null},\"For\":\"Name\",\"Negate\":true}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"Reactivate Item\",\"ID\":null},\"For\":\"Name\",\"Negate\":true}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/926/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "1e8291b8-ab53-4d1a-a643-c31fca14f1a1",
+    "owner": "Unresolved",
+    "field": "HelpRevTypeReac",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"EntityValueGeneratorOfProductMgmt_RevisionTypeObjectjuNyfaHs\" xmlns=\"http://schemas.intelex.net\"><Id>1495e186-1aa4-45ba-aee8-f4d4fa42048e</Id></ValueGenerator>",
+    "decoded": "1495e186-1aa4-45ba-aee8-f4d4fa42048e",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/643/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "1e8291b8-ab53-4d1a-a643-c31fca14f1a1",
+    "owner": "Unresolved",
+    "field": "HelpRevTypeReac",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"Reactivate Item\",\"ID\":null},\"For\":\"Name\",\"Negate\":false}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Value\",\"Parse\":false,\"Text\":\"Reactivate Item\",\"ID\":null},\"For\":\"Name\",\"Negate\":false}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/643/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "748d7116-54c6-4025-82bf-4f7636cc3d99",
+    "owner": "Unresolved",
+    "field": "IsCurrent",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfboolean5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>false</Value></ValueGenerator>",
+    "decoded": "false",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/956/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "c4e07a94-d6c2-419e-b1f4-e3679c1142ec",
+    "owner": "Unresolved",
+    "field": "ItemSource",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(Item.CurrentRevision&lt;&gt;NULL, Item.CurrentRevision.ItemSource.Value, \"Manufactured\")</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "IF(Item.CurrentRevision<>NULL, Item.CurrentRevision.ItemSource.Value, \"Manufactured\")",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/647/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "5f78dd5e-dd23-41ef-bec6-5e97d8efbd26",
+    "owner": "Unresolved",
+    "field": "MeasurementType",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>Item.CurrentRevision.MeasurementType</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "Item.CurrentRevision.MeasurementType",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/853/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "a383b681-69d8-4da6-93ce-0d5b13d23bca",
+    "owner": "Unresolved",
+    "field": "NewRevHelper",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfboolean5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>false</Value></ValueGenerator>",
+    "decoded": "false",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/650/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "cf629945-fce4-4ca1-8bec-23c7d5365c10",
+    "owner": "Unresolved",
+    "field": "NoOfEvaluations",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>COUNT(SupEvaluations)</Expression></CalculationBase>",
+    "decoded": "COUNT(SupEvaluations)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/943/FieldData/Calculation"
+  },
+  {
+    "field_id": "163088d1-c73e-40ac-a25b-36e28f324cbe",
+    "owner": "Unresolved",
+    "field": "Owner",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>Item.CurrentRevision.Owner</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "Item.CurrentRevision.Owner",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/260/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "163088d1-c73e-40ac-a25b-36e28f324cbe",
+    "owner": "Unresolved",
+    "field": "Owner",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"BelongsToGroup\",\"For\":\"ID\",\"Negate\":false,\"GroupId\":\"6a60ed95-6592-4fc2-9a2d-6c3ad7269206\"}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"BelongsToGroup\",\"For\":\"ID\",\"Negate\":false,\"GroupId\":\"6a60ed95-6592-4fc2-9a2d-6c3ad7269206\"}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/260/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "08cac1c6-e54d-4c66-85fa-9ffc35e69096",
+    "owner": "Unresolved",
+    "field": "PreventiveHelpe",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>FETCHVALUE(\"FragApplication_CorrectivePreveObject\", \"Id\", \"DateCreated Ascending\", \"Value\", \"=\", \"Preventive\")</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "FETCHVALUE(\"FragApplication_CorrectivePreveObject\", \"Id\", \"DateCreated Ascending\", \"Value\", \"=\", \"Preventive\")",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/211/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "b9d58985-2f6e-4a8f-84c1-4429dce219b2",
+    "owner": "Unresolved",
+    "field": "Price",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>Item.CurrentRevision.Price</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "Item.CurrentRevision.Price",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/584/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "eb71d959-6040-4e04-8d45-0354231912d3",
+    "owner": "Unresolved",
+    "field": "RevisionType",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(HelpRevTypeObs.Name&lt;&gt;NULL,  HelpRevTypeObs.Name,  HelpRevTypeReac.Name)</Expression></CalculationBase>",
+    "decoded": "IF(HelpRevTypeObs.Name<>NULL,  HelpRevTypeObs.Name,  HelpRevTypeReac.Name)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/564/FieldData/Calculation"
+  },
+  {
+    "field_id": "068c78ba-10fb-4c49-90f8-72d45d241e6c",
+    "owner": "Unresolved",
+    "field": "RollUpPrice",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>IF(Relations&lt;&gt;NULL,SUM(Relations.Price),0)</Expression></CalculationBase>",
+    "decoded": "IF(Relations<>NULL,SUM(Relations.Price),0)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/255/FieldData/Calculation"
+  },
+  {
+    "field_id": "f9344f07-30a9-4482-969d-75360fa6acc7",
+    "owner": "Unresolved",
+    "field": "RPN",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>PRODUCT(Severity.value,Occurrence.Value,Detection.Value)</Expression></CalculationBase>",
+    "decoded": "PRODUCT(Severity.value,Occurrence.Value,Detection.Value)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/739/FieldData/Calculation"
+  },
+  {
+    "field_id": "ebb67da5-36b8-4b08-aa14-649c4f05544c",
+    "owner": "Unresolved",
+    "field": "SamplingScheme",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>Item.CurrentRevision.SamplingScheme.Name</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "Item.CurrentRevision.SamplingScheme.Name",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/750/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "b5a4b716-0c3a-4b8e-8d9d-ba8b937daa00",
+    "owner": "Unresolved",
+    "field": "Settings",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"EntityValueGeneratorOfCAR_SettingsObjectjuNyfaHs\" xmlns=\"http://schemas.intelex.net\"><Id>acd226dc-9740-4030-aeba-7318248f5dc3</Id></ValueGenerator>",
+    "decoded": "acd226dc-9740-4030-aeba-7318248f5dc3",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/989/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "7d59b437-d53f-4ebd-b602-c050291c3798",
+    "owner": "Unresolved",
+    "field": "SupContacts",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ID\",\"ID\":null},\"For\":\"Suppliers\",\"Negate\":false}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"ID\",\"ID\":null},\"For\":\"Suppliers\",\"Negate\":false}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/599/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "efe0a44e-d45f-4530-8cc3-9c3ab954890c",
+    "owner": "Unresolved",
+    "field": "SupplierStatus",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"EntityValueGeneratorOfSupplierMgmt_SupplierStatusObjectjuNyfaHs\" xmlns=\"http://schemas.intelex.net\"><Id>a6c02bbf-5a31-48a9-aede-656d8e950f66</Id></ValueGenerator>",
+    "decoded": "a6c02bbf-5a31-48a9-aede-656d8e950f66",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/969/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "c414f217-6f4c-4a03-ac23-263910d984b4",
+    "owner": "Unresolved",
+    "field": "TotalCoPQ",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>SUM(Cost.ConvertedCost)</Expression></CalculationBase>",
+    "decoded": "SUM(Cost.ConvertedCost)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/749/FieldData/Calculation"
+  },
+  {
+    "field_id": "44dc1d5b-fb2d-4018-97e3-256485e740b1",
+    "owner": "Unresolved",
+    "field": "TotalPrice",
+    "property": "Calculation",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><CalculationBase xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptExpressionCalculation\" xmlns=\"http://schemas.intelex.net\"><Expression>SUM(Price,  RollUpPrice)</Expression></CalculationBase>",
+    "decoded": "SUM(Price,  RollUpPrice)",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/500/FieldData/Calculation"
+  },
+  {
+    "field_id": "9cd06759-fb5b-42d9-8c47-e3ca3661192f",
+    "owner": "Unresolved",
+    "field": "Type",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>Item.CurrentRevision.Type</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "Item.CurrentRevision.Type",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/902/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "588b3a43-be93-4d54-a1c6-fa705124886f",
+    "owner": "Unresolved",
+    "field": "UnitofMeasure",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>Item.CurrentRevision.UnitofMeasure</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "Item.CurrentRevision.UnitofMeasure",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/490/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "588b3a43-be93-4d54-a1c6-fa705124886f",
+    "owner": "Unresolved",
+    "field": "UnitofMeasure",
+    "property": "FilterExpression",
+    "raw": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"MeasurementType\",\"ID\":null},\"For\":\"Category\",\"Negate\":false}]}",
+    "decoded": "{\"__type\":\"Expression\",\"Operator\":0,\"Predicates\":[{\"__type\":\"Common\",\"Type\":1,\"Operand\":{\"__type\":\"Dependent\",\"Parse\":false,\"FieldExpression\":\"MeasurementType\",\"ID\":null},\"For\":\"Category\",\"Negate\":false}]}",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/490/FieldData/FilterExpression"
+  },
+  {
+    "field_id": "c304bbc2-9905-4610-ae43-ae6a628b3270",
+    "owner": "Unresolved",
+    "field": "VerificatDate",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"TodayValueGenerator\" xmlns=\"http://schemas.intelex.net\" />",
+    "decoded": "",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/835/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "6a8ccedc-c9f2-48c2-9e53-92d393ddd7b0",
+    "owner": "Unresolved",
+    "field": "VerificationBy",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"XScriptValueGenerator\" xmlns=\"http://schemas.intelex.net\"><Expression>CURRENTUSER</Expression><IsExpressionValid>true</IsExpressionValid></ValueGenerator>",
+    "decoded": "CURRENTUSER",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/693/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "806c27c4-0510-4f79-b990-05edc3d55be2",
+    "owner": "Unresolved",
+    "field": "WasCanceledHelp",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOfboolean5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>false</Value></ValueGenerator>",
+    "decoded": "false",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/974/FieldData/DefaultValue"
+  },
+  {
+    "field_id": "5277f66f-d621-49e0-b14d-b2733d8cc83c",
+    "owner": "Unresolved",
+    "field": "WFHelper",
+    "property": "DefaultValue",
+    "raw": "<?xml version=\"1.0\" encoding=\"utf-16\"?><ValueGenerator xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" i:type=\"StaticValueGeneratorOfNullableOflong5F2dSckg\" xmlns=\"http://schemas.intelex.net\"><Value>0</Value></ValueGenerator>",
+    "decoded": "0",
+    "package": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "pointer": "/GraphData/Items/348/FieldData/DefaultValue"
+  }
+]

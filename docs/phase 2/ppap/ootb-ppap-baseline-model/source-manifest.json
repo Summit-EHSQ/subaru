@@ -1,0 +1,302 @@
+[
+  {
+    "file": "Checklist Framework(v1.0.0).ipack",
+    "id": "86cacc67-d6fa-4819-a750-d85702ee39c8",
+    "name": "Checklist Framework",
+    "version": "1.0.0",
+    "version_id": "eef5c901-c624-4042-9f09-00380029600d",
+    "source": {
+      "Owner": "Venn Trial User",
+      "OwnerId": "496cd72f-ce23-4c77-9252-edc5d16be4b0",
+      "BuildDate": "2014-12-03T17:38:57.4653448Z",
+      "ExportDate": "2014-12-03T17:38:59.1839738Z",
+      "PlatformVersion": "6.4.2.0"
+    },
+    "sha256": "E143C7D7BC71AD1F709D86C580DA9145694B5248580AFC5F6B42A9ED1F4E4041",
+    "bytes": 960618,
+    "requirements": [
+      {
+        "Caption": "System Objects",
+        "Name": "Setup",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "Fragment Application",
+        "Name": "FragApplication",
+        "Version": "1.0.2"
+      },
+      {
+        "Caption": "Action Plans",
+        "Name": "ActionPlans",
+        "Version": "1.0.0"
+      },
+      {
+        "PlatformVersion": "6.4.2.0"
+      },
+      {
+        "Caption": "Inspections",
+        "Name": "Insp",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "Event Framework",
+        "Name": "EventFwk",
+        "Version": "1.0.3"
+      }
+    ],
+    "graph_items": 313,
+    "graph_relations": 957,
+    "root_items": 1,
+    "included_items": 266,
+    "dependencies": 40,
+    "excluded_items": 0,
+    "duplicate_json_ids": []
+  },
+  {
+    "file": "APQP & PPAP Manager(v1.0.0.0).ipack",
+    "id": "fbaaf8c6-9929-40bf-86df-e937b38b5380",
+    "name": "APQP & PPAP Manager",
+    "version": "1.0.0.0",
+    "version_id": "e627f1d4-a1d1-46a1-b2f0-c15c23ee5308",
+    "source": {
+      "Owner": "Venn Trial User",
+      "OwnerId": "496cd72f-ce23-4c77-9252-edc5d16be4b0",
+      "BuildDate": "2017-10-05T14:40:29.2656461Z",
+      "ExportDate": "2017-10-05T14:40:34.3036461Z",
+      "PlatformVersion": "6.5.58.0"
+    },
+    "sha256": "E66B9D805246B38FCD40C05E9E5D76466899CCE380AA0A8C13EA26486B98C9DB",
+    "bytes": 4280537,
+    "requirements": [
+      {
+        "Caption": "Nonconformance Reporting",
+        "Name": "NCR",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "System Objects",
+        "Name": "Setup",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "Event Framework",
+        "Name": "EventFwk",
+        "Version": "1.0.3"
+      },
+      {
+        "Caption": "Product Management",
+        "Name": "ProductMgmt",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "Customer Complaint Reporting",
+        "Name": "CustComplaints",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "Action Plans",
+        "Name": "ActionPlans",
+        "Version": "1.2.1"
+      },
+      {
+        "Caption": "Quality Comply Framework",
+        "Name": "ComplyFramework",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "My Tasks Summary",
+        "Name": "MyTasksSummary",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "Checklist Framework",
+        "Name": "CLF",
+        "Version": "1.0.0"
+      },
+      {
+        "PlatformVersion": "1.0.0.0"
+      },
+      {
+        "Caption": "User Registeration",
+        "Name": "UserReg",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "Fragment Application",
+        "Name": "FragApplication",
+        "Version": "1.0.2"
+      },
+      {
+        "Caption": "Supplier Management Framework",
+        "Name": "SupplierMgmt",
+        "Version": "1.0.0"
+      }
+    ],
+    "graph_items": 998,
+    "graph_relations": 2153,
+    "root_items": 80,
+    "included_items": 495,
+    "dependencies": 163,
+    "excluded_items": 363,
+    "duplicate_json_ids": []
+  },
+  {
+    "file": "Checklist Framework - Data(v1.0.0).ipack",
+    "id": "0ff3c438-1cde-4420-87f7-e7d02802fdbe",
+    "name": "Checklist Framework - Data",
+    "version": "1.0.0",
+    "version_id": "3f65ada2-f564-410a-9272-544e6550779e",
+    "source": {
+      "Owner": "Venn Trial User",
+      "OwnerId": "496cd72f-ce23-4c77-9252-edc5d16be4b0",
+      "BuildDate": "2014-11-24T19:59:23.5216131Z",
+      "ExportDate": "2014-11-24T19:59:23.7716531Z",
+      "PlatformVersion": "6.4.1.0"
+    },
+    "sha256": "640087894B7E51E7E0FC6AC32AB2ADB866007E0EC1EAEA2FAA4542F762916584",
+    "bytes": 21424,
+    "requirements": [
+      {
+        "PlatformVersion": "6.4.1.0"
+      }
+    ],
+    "graph_items": 18,
+    "graph_relations": 24,
+    "root_items": 6,
+    "included_items": 11,
+    "dependencies": 7,
+    "excluded_items": 0,
+    "duplicate_json_ids": []
+  },
+  {
+    "file": "APQP & PPAP Manager - Data(v1.0.0.0).ipack",
+    "id": "3358ebba-b9e7-4289-bef3-9126a4b80539",
+    "name": "APQP & PPAP Manager - Data",
+    "version": "1.0.0.0",
+    "version_id": "3164e801-f5f0-46a1-9e57-629033a28afc",
+    "source": {
+      "Owner": "Venn Trial User",
+      "OwnerId": "496cd72f-ce23-4c77-9252-edc5d16be4b0",
+      "BuildDate": "2017-10-05T13:53:58.1901641Z",
+      "ExportDate": "2017-10-05T13:53:58.6622113Z",
+      "PlatformVersion": "6.5.58.0"
+    },
+    "sha256": "5EA7D9A2338C0846A6E27EC1AB5C6A4B0A4C9C961DE3AB2D483728684102299D",
+    "bytes": 1207973,
+    "requirements": [
+      {
+        "Caption": "Fragment Application",
+        "Name": "FragApplication",
+        "Version": "1.0.2"
+      },
+      {
+        "Caption": "Supplier Management Framework",
+        "Name": "SupplierMgmt",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "Event Framework",
+        "Name": "EventFwk",
+        "Version": "1.0.3"
+      },
+      {
+        "Caption": "Checklist Framework",
+        "Name": "CLF",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "Customer Complaint Reporting",
+        "Name": "CustComplaints",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "Product Management",
+        "Name": "ProductMgmt",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "APQP & PPAP Manager",
+        "Name": "APQP",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "User Registeration",
+        "Name": "UserReg",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "Project Framework",
+        "Name": "ProjectFwk",
+        "Version": "1.0.0"
+      },
+      {
+        "PlatformVersion": "1.0.0.0"
+      },
+      {
+        "Caption": "System Objects",
+        "Name": "Setup",
+        "Version": "1.0.0"
+      }
+    ],
+    "graph_items": 487,
+    "graph_relations": 1998,
+    "root_items": 107,
+    "included_items": 419,
+    "dependencies": 68,
+    "excluded_items": 0,
+    "duplicate_json_ids": []
+  },
+  {
+    "file": "Views Add-on(v1.0.0.0).ipack",
+    "id": "0ffa465f-416b-45c9-a2f4-6ea0849878c5",
+    "name": "Views Add-on",
+    "version": "1.0.0.0",
+    "version_id": "f33c6fc3-749d-4dd9-878d-e72ff39b42b2",
+    "source": {
+      "Owner": "Venn Trial User",
+      "OwnerId": "496cd72f-ce23-4c77-9252-edc5d16be4b0",
+      "BuildDate": "2018-05-28T14:25:42.0352574Z",
+      "ExportDate": "2018-05-28T14:25:42.1002574Z",
+      "PlatformVersion": "6.5.74.0"
+    },
+    "sha256": "4B9A04CACF66310C11F2428BD3A0268E9FA7D75AF3859DD0A3CD2304AF541441",
+    "bytes": 69425,
+    "requirements": [
+      {
+        "Caption": "Program Framework",
+        "Name": "ProgramFmk",
+        "Version": "1.1.0"
+      },
+      {
+        "Caption": "Calendar Management",
+        "Name": "CalenManagement",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "Checklist Framework",
+        "Name": "CLF",
+        "Version": "1.0.0"
+      },
+      {
+        "Caption": "Risk Framework",
+        "Name": "RiskFmk",
+        "Version": "1.0.0"
+      },
+      {
+        "PlatformVersion": "1.0.0.0"
+      },
+      {
+        "Caption": "System Objects",
+        "Name": "Setup",
+        "Version": "1.0.0"
+      }
+    ],
+    "graph_items": 24,
+    "graph_relations": 21,
+    "root_items": 11,
+    "included_items": 11,
+    "dependencies": 13,
+    "excluded_items": 0,
+    "duplicate_json_ids": []
+  }
+]

@@ -1,0 +1,254 @@
+classDiagram
+direction LR
+%% Logical Intelex model. Names map to object-inventory.csv; dotted cardinality interpretations are qualified in the register.
+class APQP_APQPObject
+class APQP_AbstractTextLo0Object
+class APQP_AbstractTextLo1Object
+class APQP_AbstractTextLo2Object
+class APQP_AbstractTextLo3Object
+class APQP_AbstractTextLo4Object
+class APQP_AbstractTextLooObject
+class APQP_PPAPAbstractObject
+class APQP_SettingsObject
+class ActionPlans_ActionPlanAbsObject
+class ActionPlans_GlobActPlanAbsObject
+class CLF_AnswerTypeObject
+class CLF_CheckliAbstractObject
+class CLF_ChecklistAnswerObject
+class CLF_ChecklistObject
+class CLF_ChecklistTypeObject
+class CLF_ChoiceListObject
+class CLF_ChoiceObject
+class CLF_FindingDDObject
+class CLF_FindingObject
+class CLF_FindingStatusObject
+class CLF_InsActionPlanObject
+class CLF_MultichecklistsObject
+class CLF_PubChecklistObject
+class CLF_PubQuestObject
+class CLF_QuestAbstractObject
+class CLF_QuestObject
+class CLF_QuestionAnswerObject
+class CLF_SinglechecklistObject
+class CLF_SubchecklistObject
+class CLF_TagObject
+class CalenManagement_DayObject
+class ComplyFramework_CARAbstractObject
+class CustComplaints_CustomerObject
+class DasDashboardEntity
+class DocDocumentEntity
+class EventFwk_EventObject
+class EventFwk_EventScenarioObject
+class EventFwk_KeyWordsObject
+class EventFwk_LearnedCategoryObject
+class EventFwk_LessonLearnedObject
+class FragApplication_AbCorrectivActiObject
+class FragApplication_ColorObject
+class FragApplication_GeographyObject
+class FragApplication_ProductObject
+class MetHierarchyObjectEntity
+class MetLookupObjectEntity
+class MetObjectEntity
+class MetTypeEntity
+class MnuMenuEntity
+class MnuMenuItemEntity
+class ProductMgmt_ItemObject
+class ProductMgmt_ItemRevisionObject
+class ProgramFmk_ReqAbsObject
+class ProjectFwk_AdHocTaskObject
+class ProjectFwk_AttendeeObject
+class ProjectFwk_ChecklistDefObject
+class ProjectFwk_ChecklistObject
+class ProjectFwk_ChecklistRecordObject
+class ProjectFwk_ChecklistTypeObject
+class ProjectFwk_PFRoleObject
+class ProjectFwk_PFWKProjectTaskObject
+class ProjectFwk_PFWKTemplateObject
+class ProjectFwk_PhaseObject
+class ProjectFwk_ProjRoleTeMemObject
+class ProjectFwk_ProjectAbstractObject
+class ProjectFwk_ProjectTaskDefObject
+class ProjectFwk_ProjectTaskObject
+class ProjectFwk_ProjectTypeObject
+class ProjectFwk_TaskDefObject
+class ProjectFwk_TaskObject
+class ProjectFwk_TaskTypeObject
+class ProjectFwk_TypeofRecordObject
+class RepDataDefinitionEntity
+class RiskFmk_HazardsObject
+class SupplierMgmt_ItemCategoryObject
+class SupplierMgmt_PublicProfileObject
+class SupplierMgmt_SupAbstractObject
+class SupplierMgmt_SupCategoryObject
+class SysEmployeeEntity
+class SysGroupEntity
+class SysLocationEntity
+class SysModuleEntity
+class SysModuleTabConfigurableViewEntity
+class SysModuleTabDashboardEntity
+class SysModuleTabEntity
+class SysRoleEntity
+class SysSecurityGroupEntity
+class SysSubjectEntity
+class SysWorkflowInstanceEntity
+class SysWorkflowStageEntity
+class UserReg_CategoryObject
+FragApplication_AbCorrectivActiObject <|-- ActionPlans_ActionPlanAbsObject : inherits
+FragApplication_AbCorrectivActiObject <|-- ActionPlans_GlobActPlanAbsObject : inherits
+ProjectFwk_ProjectAbstractObject <|-- APQP_APQPObject : inherits
+ProjectFwk_ProjectAbstractObject <|-- APQP_PPAPAbstractObject : inherits
+CLF_CheckliAbstractObject <|-- CLF_ChecklistObject : inherits
+EventFwk_EventObject <|-- CLF_FindingObject : inherits
+ActionPlans_ActionPlanAbsObject <|-- CLF_InsActionPlanObject : inherits
+CLF_ChecklistAnswerObject <|-- CLF_MultichecklistsObject : inherits
+CLF_CheckliAbstractObject <|-- CLF_PubChecklistObject : inherits
+CLF_QuestAbstractObject <|-- CLF_PubQuestObject : inherits
+CLF_QuestAbstractObject <|-- CLF_QuestObject : inherits
+CLF_ChecklistAnswerObject <|-- CLF_SinglechecklistObject : inherits
+CLF_ChecklistAnswerObject <|-- CLF_SubchecklistObject : inherits
+UserReg_CategoryObject <|-- CustComplaints_CustomerObject : inherits
+EventFwk_EventScenarioObject <|-- EventFwk_EventObject : inherits
+ActionPlans_GlobActPlanAbsObject <|-- EventFwk_LessonLearnedObject : inherits
+MetObjectEntity <|-- MetHierarchyObjectEntity : inherits
+MetObjectEntity <|-- MetLookupObjectEntity : inherits
+MetTypeEntity <|-- MetObjectEntity : inherits
+FragApplication_ProductObject <|-- ProductMgmt_ItemObject : inherits
+ProjectFwk_ProjectTaskObject <|-- ProjectFwk_AdHocTaskObject : inherits
+ProjectFwk_ProjectTaskDefObject <|-- ProjectFwk_ChecklistDefObject : inherits
+ProjectFwk_ProjectTaskObject <|-- ProjectFwk_ChecklistObject : inherits
+CLF_ChecklistAnswerObject <|-- ProjectFwk_ChecklistRecordObject : inherits
+CLF_ChecklistTypeObject <|-- ProjectFwk_ChecklistTypeObject : inherits
+ActionPlans_ActionPlanAbsObject <|-- ProjectFwk_ProjectTaskObject : inherits
+ProjectFwk_ProjectTaskDefObject <|-- ProjectFwk_TaskDefObject : inherits
+ProjectFwk_ProjectTaskObject <|-- ProjectFwk_TaskObject : inherits
+SysSubjectEntity <|-- SysEmployeeEntity : inherits
+SysSubjectEntity <|-- SysGroupEntity : inherits
+SysModuleTabEntity <|-- SysModuleTabConfigurableViewEntity : inherits
+SysModuleTabEntity <|-- SysModuleTabDashboardEntity : inherits
+SysGroupEntity <|-- SysRoleEntity : inherits
+SysGroupEntity <|-- SysSecurityGroupEntity : inherits
+CLF_ChecklistAnswerObject "0..*" --> "0..1" CLF_PubChecklistObject : PubChecklist
+class cusCLF_InsActionPlanFindingsToCLF_FindingMap
+CLF_FindingObject --> cusCLF_InsActionPlanFindingsToCLF_FindingMap : ActionPlans M_N
+cusCLF_InsActionPlanFindingsToCLF_FindingMap --> CLF_InsActionPlanObject : target
+CLF_ChecklistAnswerObject "0..*" --> "0..1" CLF_ChecklistAnswerObject : MasterChecklist
+CLF_QuestAbstractObject "0..*" --> "0..1" CLF_ChoiceListObject : ChoiceList
+CLF_FindingObject "0..*" --> "0..1" CLF_FindingStatusObject : FindingStatus
+CLF_QuestionAnswerObject "0..*" --> "1" CLF_PubQuestObject : PubQuestion
+CLF_QuestionAnswerObject "0..*" --> "0..1" CLF_ChoiceObject : Choice
+CLF_InsActionPlanObject "0..*" --> "1" CLF_ChecklistAnswerObject : ChecklistAnswer
+CLF_InsActionPlanObject "0..*" --> "1" SysEmployeeEntity : ActionOwner
+FragApplication_AbCorrectivActiObject "0..*" --> "1" SysEmployeeEntity : CreatedBy
+FragApplication_AbCorrectivActiObject "0..*" --> "0..1" SysEmployeeEntity : CompletedBy
+EventFwk_EventScenarioObject "0..*" --> "1" SysLocationEntity : Location
+CLF_PubChecklistObject "0..*" --> "1" CLF_ChecklistObject : Checklist
+CLF_ChoiceObject "0..*" --> "0..1" FragApplication_ColorObject : TColor
+CLF_ChecklistAnswerObject "0..*" --> "1" SysLocationEntity : Location
+CLF_FindingObject "0..*" --> "0..1" CLF_ChecklistAnswerObject : ChecklistAnswer
+CLF_ChecklistAnswerObject "0..*" --> "0..1" SysEmployeeEntity : DefPersRespFind
+class CLF_QuestionAnswerChoicesToCLF_ChoiceMapObject
+CLF_QuestionAnswerObject --> CLF_QuestionAnswerChoicesToCLF_ChoiceMapObject : Choices M_N
+CLF_QuestionAnswerChoicesToCLF_ChoiceMapObject --> CLF_ChoiceObject : target
+class cusCLF_QuestReferencesToCLF_TagMap
+CLF_QuestObject --> cusCLF_QuestReferencesToCLF_TagMap : References M_N
+cusCLF_QuestReferencesToCLF_TagMap --> CLF_TagObject : target
+CLF_ChoiceObject "0..*" --> "1" CLF_ChoiceListObject : ChoiceList
+CLF_QuestAbstractObject "0..*" --> "0..1" CLF_AnswerTypeObject : AnswerType
+class CLF_PubChecklistPubQuestionsToCLF_PubQuestMapObject
+CLF_PubChecklistObject --> CLF_PubChecklistPubQuestionsToCLF_PubQuestMapObject : PubQuestions M_N
+CLF_PubChecklistPubQuestionsToCLF_PubQuestMapObject --> CLF_PubQuestObject : target
+CLF_PubChecklistObject "0..*" --> "0..1" CLF_ChecklistTypeObject : ChecklistType
+CLF_QuestionAnswerObject "0..*" --> "0..1" CLF_ChoiceObject : MassUpChoice
+CLF_QuestObject "0..*" --> "1" CLF_ChecklistTypeObject : ChecklistType
+CLF_FindingObject "0..*" --> "1" CLF_FindingDDObject : DueIn
+CLF_QuestionAnswerObject "0..*" --> "1" CLF_ChecklistAnswerObject : ChecklistAnswer
+CLF_FindingStatusObject "0..*" --> "0..1" FragApplication_ColorObject : TC
+class CLF_ChecklistQuestionsToCLF_QuestMapObject
+CLF_ChecklistObject --> CLF_ChecklistQuestionsToCLF_QuestMapObject : Questions M_N
+CLF_ChecklistQuestionsToCLF_QuestMapObject --> CLF_QuestObject : target
+class cusCLF_QuestionAnswerFindingsToCLF_FindingMap
+CLF_QuestionAnswerObject --> cusCLF_QuestionAnswerFindingsToCLF_FindingMap : Findings M_N
+cusCLF_QuestionAnswerFindingsToCLF_FindingMap --> CLF_FindingObject : target
+CLF_FindingObject "0..*" --> "1" SysEmployeeEntity : PersResponsible
+CLF_ChoiceObject "0..*" --> "0..1" FragApplication_ColorObject : BColor
+CLF_FindingStatusObject "0..*" --> "0..1" FragApplication_ColorObject : BC
+CLF_PubQuestObject "0..*" --> "1" CLF_QuestObject : Question
+CLF_ChecklistObject "0..*" --> "1" CLF_ChecklistTypeObject : ChecklistType
+FragApplication_AbCorrectivActiObject "0..*" --> "1" SysLocationEntity : Location
+ActionPlans_GlobActPlanAbsObject "0..*" --> "0..1" SysRoleEntity : RoleResponsible
+class EventFwk_LessonLearnedResponsibleToSetup_SubjectMapObject
+EventFwk_LessonLearnedObject --> EventFwk_LessonLearnedResponsibleToSetup_SubjectMapObject : Responsible M_N
+EventFwk_LessonLearnedResponsibleToSetup_SubjectMapObject --> SysSubjectEntity : target
+SupplierMgmt_ItemCategoryObject "0..*" --> "0..1" SupplierMgmt_ItemCategoryObject : ParentItemCate
+ProjectFwk_ProjRoleTeMemObject "0..*" --> "1" ProjectFwk_ProjectAbstractObject : Project
+ProjectFwk_ProjRoleTeMemObject "0..*" --> "1" ProjectFwk_PFRoleObject : ProjectRole
+ProjectFwk_ProjRoleTeMemObject "0..*" --> "0..1" SysEmployeeEntity : Member
+ActionPlans_ActionPlanAbsObject "0..*" --> "0..1" SysEmployeeEntity : PersonResp
+ProductMgmt_ItemRevisionObject "0..*" --> "0..1" ProductMgmt_ItemObject : Item
+ProjectFwk_ProjectTaskObject "0..*" --> "0..1" ProjectFwk_ProjectAbstractObject : Project
+SysWorkflowInstanceEntity "0..*" --> "0..1" SysSubjectEntity : PersonResponsible
+ProjectFwk_ProjectAbstractObject "0..*" --> "0..1" SysWorkflowInstanceEntity : Workflow
+ProjectFwk_ProjectTaskObject "0..*" --> "0..1" ProjectFwk_ProjRoleTeMemObject : PersResponsible
+ProjectFwk_ChecklistObject "0..*" --> "0..1" ProjectFwk_ChecklistDefObject : Def
+APQP_PPAPAbstractObject "0..*" --> "0..1" SysEmployeeEntity : ProjectOwner
+ProjectFwk_PFWKProjectTaskObject "0..*" --> "0..1" ProjectFwk_PhaseObject : Phase
+ProjectFwk_PhaseObject "0..*" --> "1" ProjectFwk_ProjectTypeObject : ProjectType
+ProjectFwk_PFWKProjectTaskObject "0..*" --> "0..1" ProjectFwk_PFWKTemplateObject : ProjectTemplate
+ProjectFwk_PFWKTemplateObject "0..*" --> "1" ProjectFwk_ProjectTypeObject : ProjectType
+ProjectFwk_PFWKProjectTaskObject "0..*" --> "0..1" ProjectFwk_PhaseObject : GateMassHelper
+ProjectFwk_TaskObject "0..*" --> "0..1" APQP_PPAPAbstractObject : RelatedPPAP
+FragApplication_AbCorrectivActiObject "0..*" --> "0..1" SysWorkflowInstanceEntity : Workflow
+APQP_APQPObject "0..*" --> "1" SysEmployeeEntity : ProcessOwner
+ProjectFwk_ProjectTaskObject "0..*" --> "0..1" ProjectFwk_PFWKProjectTaskObject : ProjectTaskMap
+ProjectFwk_PFWKProjectTaskObject "0..*" --> "1" ProjectFwk_ProjectTaskDefObject : ProjTaskDefObj
+ProjectFwk_TaskObject "0..*" --> "0..1" ProjectFwk_TaskDefObject : Def
+ProjectFwk_TaskObject "0..*" --> "1" ProjectFwk_TypeofRecordObject : TypeOfRecord
+APQP_SettingsObject "0..*" --> "1" ProjectFwk_ProjectTypeObject : APQPProjectType
+APQP_PPAPAbstractObject "0..*" --> "1" APQP_SettingsObject : Settings
+ProjectFwk_ProjectAbstractObject "0..*" --> "0..1" ProjectFwk_ProjectTypeObject : ProjectType
+ProjectFwk_ProjectTaskDefObject "0..*" --> "0..1" ProjectFwk_TaskTypeObject : TaskType
+ProjectFwk_ProjectTaskObject "0..*" --> "0..1" ProjectFwk_PhaseObject : Phase
+ProjectFwk_ProjectAbstractObject "0..*" --> "1" SysEmployeeEntity : CreatedBy
+APQP_PPAPAbstractObject "0..*" --> "0..1" APQP_AbstractTextLo2Object : IMDS
+class EventFwk_LessonLearnedRecipientsRolToSetup_RoleMapObject
+EventFwk_LessonLearnedObject --> EventFwk_LessonLearnedRecipientsRolToSetup_RoleMapObject : RecipientsRol M_N
+EventFwk_LessonLearnedRecipientsRolToSetup_RoleMapObject --> SysRoleEntity : target
+APQP_SettingsObject "0..*" --> "1" ProjectFwk_ProjectTypeObject : PPAPProjectType
+class cusEventFwk_LessonLearnedKeyWordsToEventFwk_KeyWordsMap
+EventFwk_KeyWordsObject --> cusEventFwk_LessonLearnedKeyWordsToEventFwk_KeyWordsMap : LessonLearned M_N
+cusEventFwk_LessonLearnedKeyWordsToEventFwk_KeyWordsMap --> EventFwk_LessonLearnedObject : target
+class cusProjectFwk_ProjectAbstractCARsToComplyFramework_CARAbstractMap
+ComplyFramework_CARAbstractObject --> cusProjectFwk_ProjectAbstractCARsToComplyFramework_CARAbstractMap : ProjecAbstracts M_N
+cusProjectFwk_ProjectAbstractCARsToComplyFramework_CARAbstractMap --> ProjectFwk_ProjectAbstractObject : target
+ProjectFwk_TaskDefObject "0..*" --> "0..1" ProjectFwk_PFWKTemplateObject : PPAPTemplate
+SysWorkflowInstanceEntity "0..*" --> "0..1" SysWorkflowStageEntity : CurrentStage
+APQP_APQPObject "0..*" --> "1" APQP_SettingsObject : Settings
+APQP_PPAPAbstractObject "0..*" --> "0..1" ProjectFwk_TaskObject : Task
+APQP_PPAPAbstractObject "0..*" --> "0..1" APQP_AbstractTextLo0Object : SubmissionInfo
+ProjectFwk_ProjectTaskObject "0..*" --> "0..1" ProjectFwk_PFRoleObject : ProjectRole
+ProjectFwk_ChecklistObject "0..*" --> "0..1" ProjectFwk_ChecklistRecordObject : ChecklistAnswer
+ProjectFwk_PFWKProjectTaskObject "0..*" --> "0..1" ProjectFwk_ProjectTaskObject : HelpProjTask
+ProjectFwk_ProjectAbstractObject "0..*" --> "0..1" ProductMgmt_ItemRevisionObject : Product
+ProjectFwk_AttendeeObject "0..*" --> "0..1" SysEmployeeEntity : Employee
+ProjectFwk_ProjectTaskDefObject "0..*" --> "0..1" ProjectFwk_ProjectTypeObject : RecommendedFor
+APQP_APQPObject "0..*" --> "0..1" APQP_PPAPAbstractObject : PPAPAbstract
+APQP_APQPObject "0..*" --> "0..1" APQP_AbstractTextLooObject : RiskLevel
+ProjectFwk_ChecklistDefObject "0..*" --> "0..1" CLF_ChecklistObject : Checklist
+ProjectFwk_PFRoleObject "0..*" --> "0..1" ProjectFwk_ProjRoleTeMemObject : HelpProjRolMem
+ProjectFwk_TaskDefObject "0..*" --> "0..1" ProjectFwk_TypeofRecordObject : TypeofRecord
+ProjectFwk_ProjectAbstractObject "0..*" --> "0..1" ProjectFwk_PhaseObject : Phase
+class cusAPQP_PPAPAbstractResultsForToAPQP_AbstractTextLo4Map
+APQP_AbstractTextLo4Object --> cusAPQP_PPAPAbstractResultsForToAPQP_AbstractTextLo4Map : ResultsFors M_N
+cusAPQP_PPAPAbstractResultsForToAPQP_AbstractTextLo4Map --> APQP_PPAPAbstractObject : target
+ProjectFwk_ChecklistDefObject "0..*" --> "0..1" ProjectFwk_ChecklistTypeObject : ChecklistType
+ProjectFwk_ProjectAbstractObject "0..*" --> "0..1" CustComplaints_CustomerObject : Customer
+ProjectFwk_ProjectTaskDefObject "0..*" --> "1" ProjectFwk_PFRoleObject : ProjectRole
+ProjectFwk_PFWKProjectTaskObject "0..*" --> "0..1" ProjectFwk_ProjectAbstractObject : HelpProjUp
+ProjectFwk_ProjectAbstractObject "0..*" --> "0..1" ProjectFwk_PFWKTemplateObject : ProjectTemplate
+class EventFwk_LessonLearnedCategoryToEventFwk_LearnedCategoryMapObject
+EventFwk_LessonLearnedObject --> EventFwk_LessonLearnedCategoryToEventFwk_LearnedCategoryMapObject : Category M_N
+EventFwk_LessonLearnedCategoryToEventFwk_LearnedCategoryMapObject --> EventFwk_LearnedCategoryObject : target
+APQP_PPAPAbstractObject "0..*" --> "0..1" APQP_AbstractTextLo1Object : ReasonforSubm
+ProjectFwk_ProjectAbstractObject "0..*" --> "0..1" SupplierMgmt_PublicProfileObject : Supplier
+APQP_PPAPAbstractObject "0..*" --> "0..1" APQP_AbstractTextLo3Object : SubmissionLevel
+ProjectFwk_ProjectAbstractObject "0..*" --> "1" SysLocationEntity : Location
