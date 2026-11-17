@@ -9,7 +9,9 @@
     "No live tenant state, actual endpoint, supported native execution method, or existing object/field metadata identity is asserted.",
     "Existing .ipack baselines stay unchanged. The specification explicitly requires no package extraction for this new isolated design and supplies no inherited business-object targets.",
     "User direction dated 2026-11-17 replaces Product Management / API Data ownership with the standalone Product Integration application and one tab with eleven direct inventory menu items. This revises the target design; no tenant relocation is claimed.",
-    "User direction dated 2026-11-17 supplies the existing Administrators bypass as current behavior, the exact Part Integration - Admin Security Group name and Create/View/Edit/Delete Rights, and Everyone Create/Edit/Delete Audit Trail settings across all eleven objects."
+    "User direction dated 2026-11-17 supplies the existing Administrators bypass as current behavior, the exact Part Integration - Admin Security Group name and Create/View/Edit/Delete Rights, and Everyone Create/Edit/Delete Audit Trail settings across all eleven objects.",
+    "The latest user direction adds application and tab Use for Part Integration - Admin Security Group and requires all human-access references to use the supplied two-group administration model. Everyone remains an audit audience only.",
+    "The latest user direction adds a separate Use Rights grant for Part Integration - Admin Security Group on every one of the eleven existing inventory menu items. The model now has 13 Use grants, 44 object Rights grants, and 33 Everyone audit settings."
   ],
   "evidenceNames": {},
   "externalInputs": [
@@ -31,7 +33,7 @@
     {
       "id": "IN-04",
       "title": "Security, audit, and evidence retention",
-      "description": "The administrative group and object-rights policy are supplied: existing Administrators has full control with permission checks disabled; Part Integration - Admin Security Group receives Create, View, Edit, and Delete via Rights on all eleven objects; Everyone has Audit Trail enabled for Create, Edit, and Delete on every object. Supply only the remaining native field/association/document/search/export/navigation bindings and approved evidence-retention settings needed for other permission duties and prior messages/failures. Named group policy and audit operations are not missing decisions. Actual group membership administration is external."
+      "description": "The human access model is supplied: Administrators already has full control with permission checks disabled; Part Integration - Admin Security Group receives Use via Rights on the Product Integration application, its sole tab, and each of its eleven inventory menu items, plus Create, View, Edit, and Delete via Rights on all eleven objects. These same two groups may access forms, inventories, editable local catalogue/Role fields, Raw Payload, source documents, retained records, and evidence. The thirteen Use grants are separate from the 44 object Rights grants. Everyone has Audit Trail enabled for Create, Edit, and Delete on every object and receives no Use or object access grant from this audit setting. Supply only the remaining native evidence/document bindings and approved retention settings. User membership administration remains external; no additional reader or maintenance-group policy is needed."
     },
     {
       "id": "IN-05",
@@ -122,84 +124,84 @@
       "configurationRows": [
         [
           "Program Reference.Source System",
-          "Create this field/list on Program Reference. Type: Text, up to 100 characters. Required. Default or source timing: Connector namespace; must match receiving Part or Engineering Change Number.Source System. Who supplies or sees it: Importer supplied; immutable. Behavior: Unique with External ID; sharing across feeds requires the same verified namespace. Source population is owned by IMP-10 and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Program Reference. Type: Text, up to 100 characters. Required. Default or source timing: Connector namespace; must match receiving Part or Engineering Change Number.Source System. Who supplies or sees it: Importer supplied; immutable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Unique with External ID; sharing across feeds requires the same verified namespace. Source population is owned by IMP-10 and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Program Reference.External ID",
-          "Create this field/list on Program Reference. Type: Text, up to 100 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from Part `programs[*].id` or change row `program.Id`; immutable. Behavior: Upsert by source + ID; exact path casing per feed. Source population is owned by IMP-10 and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Program Reference. Type: Text, up to 100 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from Part `programs[*].id` or change row `program.Id`; immutable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Upsert by source + ID; exact path casing per feed. Source population is owned by IMP-10 and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Program Reference.Name",
-          "Create this field/list on Program Reference. Type: Text, up to 255 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from Part `programs[*].name` or change row `program.Name`; read only to users. Behavior: Descriptor only; renamed program retains identity. Source population is owned by IMP-10 and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Program Reference. Type: Text, up to 255 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from Part `programs[*].name` or change row `program.Name`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Descriptor only; renamed program retains identity. Source population is owned by IMP-10 and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Program Reference.Active?",
-          "Create this field/list on Program Reference. Type: Yes/No. Required. Default or source timing: None. Who supplies or sees it: Importer from Part `programs[*].status` or change row `program.Status`; read only to users. Behavior: Preserve inactive references; no cascade to parts or changes. Source population is owned by IMP-10 and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Program Reference. Type: Yes/No. Required. Default or source timing: None. Who supplies or sees it: Importer from Part `programs[*].status` or change row `program.Status`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Preserve inactive references; no cascade to parts or changes. Source population is owned by IMP-10 and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Supplier Reference.Source System",
-          "Create this field/list on Supplier Reference. Type: Text, up to 100 characters. Required. Default or source timing: Connector namespace; must match receiving Part or Engineering Change Number.Source System. Who supplies or sees it: Importer supplied; immutable. Behavior: Unique with External ID; sharing across feeds requires the same verified namespace. Source population is owned by IMP-10 and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Supplier Reference. Type: Text, up to 100 characters. Required. Default or source timing: Connector namespace; must match receiving Part or Engineering Change Number.Source System. Who supplies or sees it: Importer supplied; immutable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Unique with External ID; sharing across feeds requires the same verified namespace. Source population is owned by IMP-10 and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Supplier Reference.External ID",
-          "Create this field/list on Supplier Reference. Type: Text, up to 100 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from Part `suppliers[*].id` or change row `supplier.id`; immutable. Behavior: Source key; not assumed to be an Intelex supplier ID. Source population is owned by IMP-10 and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Supplier Reference. Type: Text, up to 100 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from Part `suppliers[*].id` or change row `supplier.id`; immutable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Source key; not assumed to be an Intelex supplier ID. Source population is owned by IMP-10 and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Supplier Reference.Name",
-          "Create this field/list on Supplier Reference. Type: Text, up to 255 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from Part `suppliers[*].name` or change row `supplier.name`; read only to users. Behavior: Local descriptor only; no matching, relationship, or writeback to an existing supplier master. Source population is owned by IMP-10 and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Supplier Reference. Type: Text, up to 255 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from Part `suppliers[*].name` or change row `supplier.name`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Local descriptor only; no matching, relationship, or writeback to an existing supplier master. Source population is owned by IMP-10 and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Supplier Reference.Active?",
-          "Create this field/list on Supplier Reference. Type: Yes/No. Required. Default or source timing: None. Who supplies or sees it: Importer from Part `suppliers[*].status` or change row `supplier.status`; read only to users. Behavior: Preserve source status within this component; no existing supplier eligibility is read or changed. Source population is owned by IMP-10 and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Supplier Reference. Type: Yes/No. Required. Default or source timing: None. Who supplies or sees it: Importer from Part `suppliers[*].status` or change row `supplier.status`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Preserve source status within this component; no existing supplier eligibility is read or changed. Source population is owned by IMP-10 and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Part Flag.Source System",
-          "Create this field/list on Part Flag. Type: Text, up to 100 characters. Required. Default or source timing: Receiving part's Source System. Who supplies or sees it: Importer supplied; immutable. Behavior: Unique with Code. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Part Flag. Type: Text, up to 100 characters. Required. Default or source timing: Receiving part's Source System. Who supplies or sees it: Importer supplied; immutable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Unique with Code. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Part Flag.Code",
-          "Create this field/list on Part Flag. Type: Text, up to 100 characters, stable and non-localizable. Required. Default or source timing: None. Who supplies or sees it: Importer from `Flag.id`; immutable. Behavior: Preserve `\"2\"` as text; not a UUID or Boolean. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Part Flag. Type: Text, up to 100 characters, stable and non-localizable. Required. Default or source timing: None. Who supplies or sees it: Importer from `Flag.id`; immutable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Preserve `\"2\"` as text; not a UUID or Boolean. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Part Flag.Name",
-          "Create this field/list on Part Flag. Type: Text, up to 255 characters; localizable catalogue display field. Required. Default or source timing: None. Who supplies or sees it: Importer supplies exact source label from `Flag.name`; approved translations managed by catalogue administrator. Behavior: Retain resource key in the source locale; do not infer a translated label. Value maintenance is owned by IMP-10 for the literal source label and the catalogue administrator for approved translations. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Part Flag. Type: Text, up to 255 characters; localizable catalogue display field. Required. Default or source timing: None. Who supplies or sees it: Importer supplies exact source label from `Flag.name`; approved translations managed by Administrators and Part Integration - Admin Security Group. Behavior: Retain resource key in the source locale; do not infer a translated label. Value maintenance is owned by IMP-10 for the literal source label and Administrators and Part Integration - Admin Security Group for approved translations. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Part Flag.Active?",
-          "Create this field/list on Part Flag. Type: Yes/No. Required. Default or source timing: None. Who supplies or sees it: Importer from `Flag.status`; read only to users. Behavior: Inactive values retained; exclude from future manual selections. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Part Flag. Type: Yes/No. Required. Default or source timing: None. Who supplies or sees it: Importer from `Flag.status`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Inactive values retained; exclude from future manual selections. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Part Flag.Sort",
-          "Create this field/list on Part Flag. Type: Number allowing decimals (Float). Optional. Default or source timing: NULL. Who supplies or sees it: Catalogue administrator editable; not supplied by API. Behavior: Presentation only; never participates in source identity. Value maintenance is owned by the catalogue administrator only; the Part API supplies no Sort. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Part Flag. Type: Number allowing decimals (Float). Optional. Default or source timing: NULL. Who supplies or sees it: Administrators and Part Integration - Admin Security Group editable; not supplied by API. Behavior: Presentation only; never participates in source identity. Value maintenance is owned by Administrators and Part Integration - Admin Security Group only; the Part API supplies no Sort. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Part Tag.Source System",
-          "Create this field/list on Part Tag. Type: Text, up to 100 characters. Required. Default or source timing: Receiving part's Source System. Who supplies or sees it: Importer supplied; immutable. Behavior: Unique with Value. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Part Tag. Type: Text, up to 100 characters. Required. Default or source timing: Receiving part's Source System. Who supplies or sees it: Importer supplied; immutable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Unique with Value. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Part Tag.Value",
-          "Create this field/list on Part Tag. Type: Text, up to 100 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from `tags[*]`; immutable. Behavior: Preserve exact text; deduplicate identical values; reject null/blank elements. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Part Tag. Type: Text, up to 100 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from `tags[*]`; immutable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Preserve exact text; deduplicate identical values; reject null/blank elements. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Supplier Relationship Role.Code",
-          "Create this field/list on Supplier Relationship Role. Type: Text, up to 100 characters, stable and non-localizable. Required. Default or source timing: None. Who supplies or sees it: Catalogue administrator sets; immutable after first use. Behavior: Unique; automation compares Code. Source population is owned by the catalogue administrator. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Supplier Relationship Role. Type: Text, up to 100 characters, stable and non-localizable. Required. Default or source timing: None. Who supplies or sees it: Administrators and Part Integration - Admin Security Group sets; immutable after first use. Behavior: Unique; automation compares Code. Source population is owned by Administrators and Part Integration - Admin Security Group. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Supplier Relationship Role.Name",
-          "Create this field/list on Supplier Relationship Role. Type: Text, up to 255 characters; localizable. Required. Default or source timing: None. Who supplies or sees it: Catalogue administrator editable. Behavior: Display label only. Source population is owned by the catalogue administrator. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Supplier Relationship Role. Type: Text, up to 255 characters; localizable. Required. Default or source timing: None. Who supplies or sees it: Administrators and Part Integration - Admin Security Group editable. Behavior: Display label only. Source population is owned by Administrators and Part Integration - Admin Security Group. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Supplier Relationship Role.Active?",
-          "Create this field/list on Supplier Relationship Role. Type: Yes/No. Required. Default or source timing: TRUE. Who supplies or sees it: Catalogue administrator editable. Behavior: False prevents new assignments; existing references remain valid. Source population is owned by the catalogue administrator. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Supplier Relationship Role. Type: Yes/No. Required. Default or source timing: TRUE. Who supplies or sees it: Administrators and Part Integration - Admin Security Group editable. Behavior: False prevents new assignments; existing references remain valid. Source population is owned by Administrators and Part Integration - Admin Security Group. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Supplier Relationship Role.Sort",
-          "Create this field/list on Supplier Relationship Role. Type: Number allowing decimals (Float). Optional. Default or source timing: NULL. Who supplies or sees it: Catalogue administrator editable. Behavior: Presentation ordering only. Source population is owned by the catalogue administrator. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Supplier Relationship Role. Type: Number allowing decimals (Float). Optional. Default or source timing: NULL. Who supplies or sees it: Administrators and Part Integration - Admin Security Group editable. Behavior: Presentation ordering only. Source population is owned by Administrators and Part Integration - Admin Security Group. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ]
       ],
       "modifications": [],
       "steps": [
-        "Create reference screens showing all fields below, with source facts read only. IMP-07 supplies actual permissions for catalogue edits.",
+        "Create reference screens for Administrators and Part Integration - Admin Security Group. Source-populated controls remain read only as data-entry behavior; the local catalogue fields expressly identified below are editable by these same groups. IMP-07 owns all access grants; create no separate catalogue-administrator audience.",
         "Add Supplier Relationship Role entries with Code / Name / Active? / Sort: MANUFACTURING / Manufacturing / TRUE / 10; ASSEMBLY / Assembly / TRUE / 20; SEQUENCING / Sequencing / TRUE / 30. Do not default supplier memberships to any role.",
         "Configure localizable catalogue Name and non-localizable codes. Retain [ISOQuest].[PartNumber].Flag.Buy literally in its source locale; add only approved translations. Enable no catalogue-side consumer grids and seed no source descriptor examples."
       ],
@@ -218,7 +220,7 @@
       "id": "IMP-03",
       "title": "Set up the Part record and reading screen",
       "category": "Part records and forms",
-      "objective": "Show received Part facts and local links without ordinary-user source edits.",
+      "objective": "Show source-owned Part facts and local links to Administrators and Part Integration - Admin Security Group.",
       "scope": "Configure twenty Part fields/lists and their presentation/default rules. Use native Programs/Tags links and read-only supplier/revision lists on the Part screen.",
       "deliverable": "Part field definitions, declaring links, and reading screen.",
       "implementer": "Senior Associate Consultant",
@@ -267,95 +269,95 @@
       "configurationRows": [
         [
           "BOMECS Part API Recod.Source System",
-          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 100 characters. Required. Default or source timing: Connector source namespace. Who supplies or sees it: Importer supplied; read only after creation. Behavior: Immutable; unique with External ID. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 100 characters. Required. Default or source timing: Connector source namespace. Who supplies or sees it: Importer supplied; immutable after creation; human access for Administrators and Part Integration - Admin Security Group. Behavior: Immutable; unique with External ID. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.External ID",
-          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 100 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from `$.id`; read only after creation. Behavior: Immutable; source-scoped upsert key. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 100 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from `$.id`; immutable after creation; human access for Administrators and Part Integration - Admin Security Group. Behavior: Immutable; source-scoped upsert key. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.Part Number",
-          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 100 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from `$.partNumber`; read only to users. Behavior: Nonblank; not assumed globally unique; changed value does not create a new source identity. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 100 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from `$.partNumber`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Nonblank; not assumed globally unique; changed value does not create a new source identity. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.Part Name",
-          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 255 characters. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.partName`; read only to users. Behavior: Preserve source spaces; explicit null clears. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 255 characters. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.partName`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Preserve source spaces; explicit null clears. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.Future Part Name",
-          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 255 characters; provisional type. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.futurePartName`; read only to users. Behavior: Explicit null clears; confirm non-null contract. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 255 characters; provisional type. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.futurePartName`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Explicit null clears; confirm non-null contract. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.LS Part Number",
-          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 100 characters; provisional type. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.lsPartNumber`; read only to users. Behavior: Explicit null clears; no inferred relationship to another part. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 100 characters; provisional type. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.lsPartNumber`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Explicit null clears; no inferred relationship to another part. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.LE Part Number",
-          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 100 characters; provisional type. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.lePartNumber`; read only to users. Behavior: Explicit null clears; no inferred relationship to another part. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 100 characters; provisional type. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.lePartNumber`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Explicit null clears; no inferred relationship to another part. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.Unit Cost",
-          "Create this field/list on BOMECS Part API Recod. Type: Decimal, precision 19, scale 6; provisional type. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.unitCost`; read only to users. Behavior: Exact numeric conversion only; confirm currency, unit basis, precision, and negative-value policy before business use. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Decimal, precision 19, scale 6; provisional type. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.unitCost`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Exact numeric conversion only; confirm currency, unit basis, precision, and negative-value policy before business use. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.Drawing Number",
-          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 100 characters. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.drawingNumber`; read only to users. Behavior: No automatic Drawing object lookup by name. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 100 characters. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.drawingNumber`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: No automatic Drawing object lookup by name. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.Active?",
-          "Create this field/list on BOMECS Part API Recod. Type: Yes/No. Required. Default or source timing: None. Who supplies or sees it: Importer from `$.status`; read only to users. Behavior: False excludes the part from new manual component assignments; retain its data and existing links; no external application effect. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Yes/No. Required. Default or source timing: None. Who supplies or sees it: Importer from `$.status`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: False excludes the part from new manual component assignments; retain its data and existing links; no external application effect. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.Name",
-          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 512 characters; configured display field. Required. Default or source timing: Import `$.name`; on creation only, use Part Number if name is absent or null. Who supplies or sees it: Importer populated; read only to users. Behavior: Stored label, not a formula or match key; explicit null on update rejected. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Text, up to 512 characters; configured display field. Required. Default or source timing: Import `$.name`; on creation only, use Part Number if name is absent or null. Who supplies or sees it: Importer populated; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Stored label, not a formula or match key; explicit null on update rejected. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.Programs",
-          "Create this field/list on BOMECS Part API Recod. Type: Native many-to-many link (M:N) to Program Reference; inverse disabled. Optional. Default or source timing: Empty collection on creation. Who supplies or sees it: Importer from `$.programs`; inactive source references allowed for fidelity. Behavior: Replace source-owned links when property is present; empty array clears; no program deletion. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Native many-to-many link (M:N) to Program Reference; inverse disabled. Optional. Default or source timing: Empty collection on creation. Who supplies or sees it: Importer from `$.programs`; inactive source references allowed for fidelity; human access for Administrators and Part Integration - Admin Security Group. Behavior: Replace source-owned links when property is present; empty array clears; no program deletion. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.Flag",
-          "Create this field/list on BOMECS Part API Recod. Type: Single-reference link (M:1) to Part Flag, 0..1 per part; inverse disabled. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.Flag`; no manual selector; inactive source values accepted. Behavior: Resolve Source System + Code; explicit null clears; never parse resource key into identity. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Single-reference link (M:1) to Part Flag, 0..1 per part; inverse disabled. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.Flag`; no manual selector; inactive source values accepted; human access for Administrators and Part Integration - Admin Security Group. Behavior: Resolve Source System + Code; explicit null clears; never parse resource key into identity. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.Supplier Relationships",
-          "Create this field/list on BOMECS Part API Recod. Type: Read-only related-record list (inverse 1:M) grid from Part Supplier Relationship.Part. Optional. Default or source timing: None. Who supplies or sees it: Read only; displays importer-maintained associations. Behavior: Navigation only; no duplicate stored relationship. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Read-only related-record list (inverse 1:M) grid from Part Supplier Relationship.Part. Optional. Default or source timing: None. Who supplies or sees it: Read only; displays importer-maintained associations; human access for Administrators and Part Integration - Admin Security Group. Behavior: Navigation only; no duplicate stored relationship. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.Revisions",
-          "Create this field/list on BOMECS Part API Recod. Type: Read-only related-record list (inverse 1:M) grid from Part Revision Reference.Part. Optional. Default or source timing: None. Who supplies or sees it: Read only; default filter Included in Latest Part Feed?=TRUE; authorized readers may view retained rows. Behavior: Navigation only; no duplicate stored relationship; array replacement updates feed membership flags, preserving records and ECN references. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Read-only related-record list (inverse 1:M) grid from Part Revision Reference.Part. Optional. Default or source timing: None. Who supplies or sees it: Read only; default filter Included in Latest Part Feed?=TRUE; Administrators and Part Integration - Admin Security Group may view retained rows. Behavior: Navigation only; no duplicate stored relationship; array replacement updates feed membership flags, preserving records and ECN references. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.Tags",
-          "Create this field/list on BOMECS Part API Recod. Type: Native many-to-many link (M:N) to Part Tag; inverse disabled. Optional. Default or source timing: Empty collection on creation. Who supplies or sees it: Importer from `$.tags`; read only to users. Behavior: Resolve source + exact Value; replace source-owned links on present array. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Native many-to-many link (M:N) to Part Tag; inverse disabled. Optional. Default or source timing: Empty collection on creation. Who supplies or sees it: Importer from `$.tags`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Resolve source + exact Value; replace source-owned links on present array. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.Notes",
-          "Create this field/list on BOMECS Part API Recod. Type: Plain Unicode long text, proposed limit 65,536 characters; provisional format. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.notes`; read only to users. Behavior: Explicit null clears; treat as text and escape when displayed. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Plain Unicode long text, proposed limit 65,536 characters; provisional format. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.notes`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Explicit null clears; treat as text and escape when displayed. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.Product Family",
-          "Create this field/list on BOMECS Part API Recod. Type: Single-reference link (M:1) to Product Family, 0..1 per part; inverse Part Numbers. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.productFamily`, or family assignment command from `selectedPartNumbersIds`; read only to ordinary users; inactive source references allowed. Behavior: Explicit null clears; enforce same-source scope; inverse updates automatically; no independent M:N storage; same name as Drawing Number does not merge identities. Value maintenance is owned by IMP-10 for the Part feed and IMP-11 for standalone Family membership commands. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Single-reference link (M:1) to Product Family, 0..1 per part; inverse Part Numbers. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from `$.productFamily`, or family assignment command from `selectedPartNumbersIds`; read-only source control; inactive source references allowed; human access for Administrators and Part Integration - Admin Security Group. Behavior: Explicit null clears; enforce same-source scope; inverse updates automatically; no independent M:N storage; same name as Drawing Number does not merge identities. Value maintenance is owned by IMP-10 for the Part feed and IMP-11 for standalone Family membership commands. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.Include All Facilities?",
-          "Create this field/list on BOMECS Part API Recod. Type: Yes/No. Required. Default or source timing: None. Who supplies or sees it: Importer from `$.includeAllFacilities`; read only to users. Behavior: Preserve supplied true/false; no permission grants or invented facility associations. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Yes/No. Required. Default or source timing: None. Who supplies or sees it: Importer from `$.includeAllFacilities`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Preserve supplied true/false; no permission grants or invented facility associations. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "BOMECS Part API Recod.Raw Payload",
-          "Create this field/list on BOMECS Part API Recod. Type: Native Unicode long-text/document storage for complete JSON, proposed limit 1 MiB UTF-8; supported binding waits for IN-01. Required. Default or source timing: Complete validated request document. Who supplies or sees it: Importer supplied; restricted to authorized integration/technical readers. Behavior: Updated on each accepted receive; preserve all unknown properties and string contents; native retention preserves prior messages. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on BOMECS Part API Recod. Type: Native Unicode long-text/document storage for complete JSON, proposed limit 1 MiB UTF-8; supported binding waits for IN-01. Required. Default or source timing: Complete validated request document. Who supplies or sees it: Importer supplied; restricted to Administrators and Part Integration - Admin Security Group. Behavior: Updated on each accepted receive; preserve all unknown properties and string contents; native retention preserves prior messages. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ]
       ],
       "modifications": [],
       "steps": [
-        "Build the Part screen with identity/descriptive fields, Programs, Tags, Flag, Product Family, Include All Facilities?, and supplier/revision lists. Source facts are read only; Raw Payload uses the technical presentation enforced by IMP-07.",
+        "Build the Part screen for Administrators and Part Integration - Admin Security Group with identity/descriptive fields, Programs, Tags, Flag, Product Family, Include All Facilities?, and supplier/revision lists. Source-populated controls remain read only as data-entry behavior. Both groups may inspect Raw Payload; add no separate technical-reader restriction. IMP-07 supplies the access grants.",
         "Configure native Programs/Tags many-to-many maps with inverses disabled. Flag and Product Family allow at most one target; Product Family alone provides the Part Numbers inverse.",
-        "After IMP-05 provides the declaring fields, show Supplier Relationships through Part Supplier Relationship.Part and Revisions through Part Revision Reference.Part. Default Revisions to Included in Latest Part Feed?=TRUE and let authorized readers inspect retained rows without membership editing. Store no duplicate relationship.",
+        "After IMP-05 provides the declaring fields, show Supplier Relationships through Part Supplier Relationship.Part and Revisions through Part Revision Reference.Part. Default Revisions to Included in Latest Part Feed?=TRUE and let Administrators and Part Integration - Admin Security Group inspect retained rows without membership editing. Store no duplicate relationship.",
         "Use stored Name as the display label, never a formula/match key. Add no projected Part Classification, singular Program, Customers, Measures, or Facilities fields; unknown structures remain in Raw Payload."
       ],
       "accept": [
-        "The twenty Part fields/lists appear with read-only source facts and restricted raw evidence.",
-        "Included revisions appear by default; authorized readers can inspect retained rows without editing membership.",
+        "The twenty Part fields/lists and Raw Payload are available to Administrators and Part Integration - Admin Security Group. Source-owned read-only controls remain data behavior and do not introduce another human access audience.",
+        "Included revisions appear by default; Administrators and Part Integration - Admin Security Group can inspect retained rows without editing membership.",
         "Drawing Number stays text and Product Family stores one optional local link."
       ],
       "refs": [
@@ -407,37 +409,37 @@
       "configurationRows": [
         [
           "Product Family.Source System",
-          "Create this field/list on Product Family. Type: Text, up to 100 characters. Required. Default or source timing: Connector namespace; equals receiving Part or Engineering Change Number.Source System for nested descriptors. Who supplies or sees it: Importer supplied; immutable. Behavior: External ID uniqueness is scoped to this source when populated. Source population is owned by IMP-10, IMP-11, and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Product Family. Type: Text, up to 100 characters. Required. Default or source timing: Connector namespace; equals receiving Part or Engineering Change Number.Source System for nested descriptors. Who supplies or sees it: Importer supplied; immutable; human access for Administrators and Part Integration - Admin Security Group. Behavior: External ID uniqueness is scoped to this source when populated. Source population is owned by IMP-10, IMP-11, and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Product Family.External ID",
-          "Create this field/list on Product Family. Type: Text, up to 100 characters. Conditionally required under the rules below. Default or source timing: NULL for standalone creation without source identity; None for a nested descriptor requiring `productFamily.id`. Who supplies or sees it: Importer maps nested Part/change ID or verified request/response context; may populate a null value once, then immutable. Behavior: Required for nested descriptor resolution; optional for standalone create/update by native ID; retain any assigned ID on standalone updates; unique with Source System when non-null; never derive from Name. Source population is owned by IMP-10, IMP-11, and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Product Family. Type: Text, up to 100 characters. Conditionally required under the rules below. Default or source timing: NULL for standalone creation without source identity; None for a nested descriptor requiring `productFamily.id`. Who supplies or sees it: Importer maps nested Part/change ID or verified request/response context; may populate a null value once, then immutable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Required for nested descriptor resolution; optional for standalone create/update by native ID; retain any assigned ID on standalone updates; unique with Source System when non-null; never derive from Name. Source population is owned by IMP-10, IMP-11, and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Product Family.Name",
-          "Create this field/list on Product Family. Type: Text, up to 255 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from standalone `$.name`, Part `$.productFamily.name`, or change row `productFamily.name`; read only to ordinary users. Behavior: Nonblank; required on create; omission preserves on update; null rejected; renaming retains identity. Source population is owned by IMP-10, IMP-11, and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Product Family. Type: Text, up to 255 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from standalone `$.name`, Part `$.productFamily.name`, or change row `productFamily.name`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Nonblank; required on create; omission preserves on update; null rejected; renaming retains identity. Source population is owned by IMP-10, IMP-11, and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Product Family.Notes",
-          "Create this field/list on Product Family. Type: Plain Unicode long text, proposed limit 65,536 characters; provisional format. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from standalone `$.notes`; read only to ordinary users. Behavior: Explicit null clears; omission preserves; neither nested descriptor clears Notes; escape when displayed. Value maintenance is owned by IMP-11 only; nested descriptors preserve this value. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Product Family. Type: Plain Unicode long text, proposed limit 65,536 characters; provisional format. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from standalone `$.notes`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Explicit null clears; omission preserves; neither nested descriptor clears Notes; escape when displayed. Value maintenance is owned by IMP-11 only; nested descriptors preserve this value. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Product Family.Active?",
-          "Create this field/list on Product Family. Type: Yes/No. Required. Default or source timing: Proposed TRUE only on standalone create; otherwise Part/change descriptor `productFamily.status` or existing value. Who supplies or sees it: Importer supplied; read only to ordinary users. Behavior: Standalone update preserves activity; nested descriptor requires explicit Boolean status; false retains membership/history and prevents new manual operational use; no cascade. Source population is owned by IMP-10, IMP-11, and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Product Family. Type: Yes/No. Required. Default or source timing: Proposed TRUE only on standalone create; otherwise Part/change descriptor `productFamily.status` or existing value. Who supplies or sees it: Importer supplied; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Standalone update preserves activity; nested descriptor requires explicit Boolean status; false retains membership/history and prevents new manual operational use; no cascade. Source population is owned by IMP-10, IMP-11, and IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Product Family.Part Numbers",
-          "Create this field/list on Product Family. Type: Read-only related-record list (inverse 1:M) grid from BOMECS Part API Recod.Product Family; each part has 0..1 family. Optional. Default or source timing: Empty membership on standalone create. Who supplies or sees it: Read-only navigation; importer processes `selectedPartNumbersIds` by updating the declaring Part field. Behavior: No duplicate stored relationship; present array replaces this family's source-owned links; `[]` clears links, omission preserves; null invalid; prevalidate all IDs and family conflicts. Value maintenance is owned by IMP-10 and IMP-11 through Part.Product Family; IMP-12 does not change Part membership. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Product Family. Type: Read-only related-record list (inverse 1:M) grid from BOMECS Part API Recod.Product Family; each part has 0..1 family. Optional. Default or source timing: Empty membership on standalone create. Who supplies or sees it: Read-only navigation; importer processes `selectedPartNumbersIds` by updating the declaring Part field; human access for Administrators and Part Integration - Admin Security Group. Behavior: No duplicate stored relationship; present array replaces this family's source-owned links; `[]` clears links, omission preserves; null invalid; prevalidate all IDs and family conflicts. Value maintenance is owned by IMP-10 and IMP-11 through Part.Product Family; IMP-12 does not change Part membership. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Product Family.Raw Payload",
-          "Create this field/list on Product Family. Type: Native Unicode long-text/document storage for complete JSON, proposed limit 1 MiB UTF-8; supported binding waits for IN-01. Conditionally required under the rules below. Default or source timing: NULL if first created only from a nested descriptor. Who supplies or sees it: Importer from complete standalone family body; restricted to authorized integration/technical readers. Behavior: Required when receiving a standalone family request; latest accepted standalone body retained; descriptors do not overwrite it and remain in Part.Raw Payload or Engineering Change Scope.Raw Payload. Value maintenance is owned by IMP-11 only; nested descriptors retain their evidence in the Part or Scope instead. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Product Family. Type: Native Unicode long-text/document storage for complete JSON, proposed limit 1 MiB UTF-8; supported binding waits for IN-01. Conditionally required under the rules below. Default or source timing: NULL if first created only from a nested descriptor. Who supplies or sees it: Importer from complete standalone family body; restricted to Administrators and Part Integration - Admin Security Group. Behavior: Required when receiving a standalone family request; latest accepted standalone body retained; descriptors do not overwrite it and remain in Part.Raw Payload or Engineering Change Scope.Raw Payload. Value maintenance is owned by IMP-11 only; nested descriptors retain their evidence in the Part or Scope instead. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ]
       ],
       "modifications": [],
       "steps": [
-        "Build the Family screen with identity, Name, Notes, Active?, and read-only Part Numbers. Restrict Raw Payload through IMP-07.",
-        "Configure Part Numbers only as inverse navigation over BOMECS Part API Recod.Product Family, with no second stored collection or ordinary-user assignment control.",
+        "Build the Family screen for Administrators and Part Integration - Admin Security Group with identity, Name, Notes, Active?, and read-only Part Numbers. Both groups may inspect Raw Payload using the access supplied by IMP-07.",
+        "Configure Part Numbers only as inverse navigation over BOMECS Part API Recod.Product Family, with no second stored collection or direct membership editor on the inverse list. This read-only list is data behavior, not a separate group restriction.",
         "Require External ID for nested descriptor resolution; permit NULL for standalone creation/update by native ID. Allow one verified NULL-to-ID assignment, then make the ID immutable. IMP-11 owns request-dependent activity/evidence checks; a generic TRUE default must not override nested status."
       ],
       "accept": [
@@ -455,7 +457,7 @@
       "title": "Set up retained revisions and supplier memberships",
       "category": "Part associations and forms",
       "objective": "Keep revision history and mapped roles separate from source membership.",
-      "scope": "Configure five revision fields and three supplier-membership fields, with reading and local Role-mapping screens. Keep revisions attached to their Part and allow one optional local role on an existing membership.",
+      "scope": "Configure five revision fields and three supplier-membership fields, with screens for Administrators and Part Integration - Admin Security Group. Keep revisions attached to their Part and allow these groups to assign one optional local Role on an existing membership.",
       "deliverable": "Revision and supplier-membership definitions/screens.",
       "implementer": "Senior Associate Consultant",
       "reviewer": "Product build manager — Senior Consultant (a separate person)",
@@ -488,41 +490,41 @@
       "configurationRows": [
         [
           "Part Revision Reference.Part",
-          "Create this field/list on Part Revision Reference. Type: Single-reference link (M:1) to BOMECS Part API Recod, exactly 1; inverse Revisions. Required. Default or source timing: Receiving BOMECS Part API Recod. Who supplies or sees it: Importer assigned; immutable; target must belong to the current source. Behavior: No orphan revision records; source namespace follows Part. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Part Revision Reference. Type: Single-reference link (M:1) to BOMECS Part API Recod, exactly 1; inverse Revisions. Required. Default or source timing: Receiving BOMECS Part API Recod. Who supplies or sees it: Importer assigned; immutable; target must belong to the current source; human access for Administrators and Part Integration - Admin Security Group. Behavior: No orphan revision records; source namespace follows Part. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Part Revision Reference.External ID",
-          "Create this field/list on Part Revision Reference. Type: Text, up to 100 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from `partNumberRevLevels[*].id`; immutable. Behavior: Unique with Part; do not manufacture an ID from a string label. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Part Revision Reference. Type: Text, up to 100 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from `partNumberRevLevels[*].id`; immutable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Unique with Part; do not manufacture an ID from a string label. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Part Revision Reference.Name",
-          "Create this field/list on Part Revision Reference. Type: Text, up to 255 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from `partNumberRevLevels[*].name`; read only to users. Behavior: Compare exactly with `revLevels` labels when both arrays are supplied. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Part Revision Reference. Type: Text, up to 255 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from `partNumberRevLevels[*].name`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Compare exactly with `revLevels` labels when both arrays are supplied. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Part Revision Reference.Active?",
-          "Create this field/list on Part Revision Reference. Type: Yes/No. Required. Default or source timing: None. Who supplies or sees it: Importer from `partNumberRevLevels[*].status`; read only to users. Behavior: Not a current-revision indicator; retain historical references. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Part Revision Reference. Type: Yes/No. Required. Default or source timing: None. Who supplies or sees it: Importer from `partNumberRevLevels[*].status`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Not a current-revision indicator; retain historical references. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Part Revision Reference.Included in Latest Part Feed?",
-          "Create this field/list on Part Revision Reference. Type: Yes/No. Required. Default or source timing: TRUE when first received in the identified revision array. Who supplies or sees it: Importer maintained; visible read only to authorized readers. Behavior: For a present `partNumberRevLevels` array set TRUE for listed IDs and FALSE for retained IDs omitted from it; array omission preserves; reappearance reuses identity; never changes source Active? or deletes scope references. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Part Revision Reference. Type: Yes/No. Required. Default or source timing: TRUE when first received in the identified revision array. Who supplies or sees it: Importer maintained; visible read only to Administrators and Part Integration - Admin Security Group. Behavior: For a present `partNumberRevLevels` array set TRUE for listed IDs and FALSE for retained IDs omitted from it; array omission preserves; reappearance reuses identity; never changes source Active? or deletes scope references. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Part Supplier Relationship.Part",
-          "Create this field/list on Part Supplier Relationship. Type: Single-reference link (M:1) to BOMECS Part API Recod, exactly 1; inverse Supplier Relationships. Required. Default or source timing: Receiving BOMECS Part API Recod. Who supplies or sees it: Importer assigned; immutable. Behavior: Association scoped to one source part. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Part Supplier Relationship. Type: Single-reference link (M:1) to BOMECS Part API Recod, exactly 1; inverse Supplier Relationships. Required. Default or source timing: Receiving BOMECS Part API Recod. Who supplies or sees it: Importer assigned; immutable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Association scoped to one source part. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Part Supplier Relationship.Supplier",
-          "Create this field/list on Part Supplier Relationship. Type: Single-reference link (M:1) to Supplier Reference, exactly 1; inverse disabled. Required. Default or source timing: None. Who supplies or sees it: Importer resolves `suppliers[*].id`; immutable; Source System must match Part. Behavior: Validate source scope; no association by name. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Part Supplier Relationship. Type: Single-reference link (M:1) to Supplier Reference, exactly 1; inverse disabled. Required. Default or source timing: None. Who supplies or sees it: Importer resolves `suppliers[*].id`; immutable; Source System must match Part; human access for Administrators and Part Integration - Admin Security Group. Behavior: Validate source scope; no association by name. Source population is owned by IMP-10. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Part Supplier Relationship.Role",
-          "Create this field/list on Part Supplier Relationship. Type: Single-reference link (M:1) to Supplier Relationship Role, 0..1; inverse disabled. Optional. Default or source timing: NULL. Who supplies or sees it: Authorized integration mapper may assign; new selection filter Active?=TRUE; existing inactive role retained read only. Behavior: API array does not supply a role; never default Manufacturing; assignment updates existing association after uniqueness check. Value maintenance is owned by the authorized local relationship mapper; source receipt never supplies or defaults Role. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Part Supplier Relationship. Type: Single-reference link (M:1) to Supplier Relationship Role, 0..1; inverse disabled. Optional. Default or source timing: NULL. Who supplies or sees it: Administrators and Part Integration - Admin Security Group may assign; new selection filter Active?=TRUE; existing inactive role retained read only. Behavior: API array does not supply a role; never default Manufacturing; assignment updates existing association after uniqueness check. Value maintenance is owned by Administrators and Part Integration - Admin Security Group; source receipt never supplies or defaults Role. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ]
       ],
       "modifications": [],
       "steps": [
         "Create revision and supplier-membership screens. Keep revision Part/External ID and membership Part/Supplier immutable; source Name/Active?/Included in Latest Part Feed? remain read only.",
-        "Offer a local mapper Role editor only on an existing membership. Filter new choices to Supplier Relationship Role.Active?=TRUE; retain inactive assigned roles read only. IMP-07 prevents creation of source membership by the mapper.",
+        "Provide the Role editor to Administrators and Part Integration - Admin Security Group on an existing membership. Filter new choices to Supplier Relationship Role.Active?=TRUE and retain an inactive assigned Role read only. The editor updates the existing association rather than manufacturing duplicate source membership; it does not remove the groups' object Create rights. IMP-07 supplies the access grants.",
         "Configure the declaring Part links used by the Part reverse lists without extra stored relationships. IMP-10 owns revision inclusion and supplier membership reconciliation, including role retention."
       ],
       "accept": [
@@ -594,65 +596,65 @@
       "configurationRows": [
         [
           "Engineering Change Number.Source System",
-          "Create this field/list on Engineering Change Number. Type: Text, up to 100 characters. Required. Default or source timing: Connector source namespace. Who supplies or sees it: Importer supplied; immutable; restricted staging access. Behavior: Unique with External ID; namespace must be verified before shared-reference reuse. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Engineering Change Number. Type: Text, up to 100 characters. Required. Default or source timing: Connector source namespace. Who supplies or sees it: Importer supplied; immutable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Unique with External ID; namespace must be verified before shared-reference reuse. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Engineering Change Number.External ID",
-          "Create this field/list on Engineering Change Number. Type: Text, up to 100 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from `data[*].engineeringChangeNumber.id`; immutable. Behavior: Source-scoped number identity; does not identify the complete context row. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Engineering Change Number. Type: Text, up to 100 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from `data[*].engineeringChangeNumber.id`; immutable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Source-scoped number identity; does not identify the complete context row. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Engineering Change Number.Name",
-          "Create this field/list on Engineering Change Number. Type: Text, up to 255 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from `data[*].engineeringChangeNumber.name`; read only to ordinary users. Behavior: Nonblank label; retain punctuation; do not parse segments into revision, drawing, program, or chronological order. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Engineering Change Number. Type: Text, up to 255 characters. Required. Default or source timing: None. Who supplies or sees it: Importer from `data[*].engineeringChangeNumber.name`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Nonblank label; retain punctuation; do not parse segments into revision, drawing, program, or chronological order. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Engineering Change Number.Active?",
-          "Create this field/list on Engineering Change Number. Type: Yes/No. Required. Default or source timing: None. Who supplies or sees it: Importer from `data[*].engineeringChangeNumber.status`; read only to ordinary users. Behavior: False prevents new manual operational selection; retains scopes/history; no release, approval, or workflow effect. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Engineering Change Number. Type: Yes/No. Required. Default or source timing: None. Who supplies or sees it: Importer from `data[*].engineeringChangeNumber.status`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: False prevents new manual operational selection; retains scopes/history; no release, approval, or workflow effect. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Engineering Change Number.Scopes",
-          "Create this field/list on Engineering Change Number. Type: Read-only related-record list (inverse 1:M) grid from Engineering Change Scope.Engineering Change Number. Optional. Default or source timing: None. Who supplies or sees it: Read-only navigation for authorized staging users. Behavior: Navigation only; no duplicate stored relationship; importer maintains context rows. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Engineering Change Number. Type: Read-only related-record list (inverse 1:M) grid from Engineering Change Scope.Engineering Change Number. Optional. Default or source timing: None. Who supplies or sees it: Read-only navigation for Administrators and Part Integration - Admin Security Group. Behavior: Navigation only; no duplicate stored relationship; importer maintains context rows. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Engineering Change Scope.Engineering Change Number",
-          "Create this field/list on Engineering Change Scope. Type: Single-reference link (M:1) to Engineering Change Number, exactly 1; inverse Scopes. Required. Default or source timing: None. Who supplies or sees it: Importer resolves source + `engineeringChangeNumber.id`; read only to users; inactive source numbers importable. Behavior: Required scope anchor and source namespace; key component; changing the key needs source correction mapping. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Engineering Change Scope. Type: Single-reference link (M:1) to Engineering Change Number, exactly 1; inverse Scopes. Required. Default or source timing: None. Who supplies or sees it: Importer resolves source + `engineeringChangeNumber.id`; read-only source control; inactive source numbers importable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Required scope anchor and source namespace; key component; changing the key needs source correction mapping. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Engineering Change Scope.Supplier",
-          "Create this field/list on Engineering Change Scope. Type: Single-reference link (M:1) to Supplier Reference, 0..1 per scope; inverse disabled. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from row `supplier`; read only to users; inactive source references importable. Behavior: Require same source; no Part Supplier Relationship or role is generated; key component. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Engineering Change Scope. Type: Single-reference link (M:1) to Supplier Reference, 0..1 per scope; inverse disabled. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from row `supplier`; read-only source control; inactive source references importable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Require same source; no Part Supplier Relationship or role is generated; key component. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Engineering Change Scope.Part",
-          "Create this field/list on Engineering Change Scope. Type: Single-reference link (M:1) to BOMECS Part API Recod, 0..1 per scope; inverse disabled. Conditionally required under the rules below. Default or source timing: NULL. Who supplies or sees it: Importer from row `partNumber` after non-null wire mapping is confirmed; read only to users. Behavior: Null allowed when Revision is null; required when Revision is populated; retain Part when Revision becomes null unless Part is explicitly cleared; require same source; never infer from family members or Name; key component. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Engineering Change Scope. Type: Single-reference link (M:1) to BOMECS Part API Recod, 0..1 per scope; inverse disabled. Conditionally required under the rules below. Default or source timing: NULL. Who supplies or sees it: Importer from row `partNumber` after non-null wire mapping is confirmed; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Null allowed when Revision is null; required when Revision is populated; retain Part when Revision becomes null unless Part is explicitly cleared; require same source; never infer from family members or Name; key component. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Engineering Change Scope.Revision",
-          "Create this field/list on Engineering Change Scope. Type: Single-reference link (M:1) to Part Revision Reference, 0..1 per scope; inverse disabled. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from row `partNumberRevLevel` after non-null wire mapping is confirmed; read only to users. Behavior: When populated require Part and enforce Revision.Part=Part; retained revisions with Included in Latest Part Feed?=FALSE remain valid targets; null does not choose a current revision; key component. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Engineering Change Scope. Type: Single-reference link (M:1) to Part Revision Reference, 0..1 per scope; inverse disabled. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from row `partNumberRevLevel` after non-null wire mapping is confirmed; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: When populated require Part and enforce Revision.Part=Part; retained revisions with Included in Latest Part Feed?=FALSE remain valid targets; null does not choose a current revision; key component. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Engineering Change Scope.Product Family",
-          "Create this field/list on Engineering Change Scope. Type: Single-reference link (M:1) to Product Family, 0..1 per scope; inverse disabled. Optional. Default or source timing: NULL. Who supplies or sees it: Importer resolves row `productFamily.id`; read only to users; inactive source references importable. Behavior: Require same source; context only, no family-membership mutation; key component. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Engineering Change Scope. Type: Single-reference link (M:1) to Product Family, 0..1 per scope; inverse disabled. Optional. Default or source timing: NULL. Who supplies or sees it: Importer resolves row `productFamily.id`; read-only source control; inactive source references importable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Require same source; context only, no family-membership mutation; key component. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Engineering Change Scope.Program",
-          "Create this field/list on Engineering Change Scope. Type: Single-reference link (M:1) to Program Reference, 0..1 per scope; inverse disabled. Optional. Default or source timing: NULL. Who supplies or sees it: Importer resolves row `program.Id`; read only to users; inactive source references importable. Behavior: Exact capitalized descriptor keys; require same source; does not mutate Part.Programs; key component. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Engineering Change Scope. Type: Single-reference link (M:1) to Program Reference, 0..1 per scope; inverse disabled. Optional. Default or source timing: NULL. Who supplies or sees it: Importer resolves row `program.Id`; read-only source control; inactive source references importable; human access for Administrators and Part Integration - Admin Security Group. Behavior: Exact capitalized descriptor keys; require same source; does not mutate Part.Programs; key component. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Engineering Change Scope.Description",
-          "Create this field/list on Engineering Change Scope. Type: Plain Unicode long text, proposed limit 65,536 characters. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from row `description`; read only to ordinary users. Behavior: Store exact wording, spacing, and punctuation per scope; explicit null clears; omission preserves on an identified update; escape when displayed. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Engineering Change Scope. Type: Plain Unicode long text, proposed limit 65,536 characters. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from row `description`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Store exact wording, spacing, and punctuation per scope; explicit null clears; omission preserves on an identified update; escape when displayed. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Engineering Change Scope.Comment",
-          "Create this field/list on Engineering Change Scope. Type: Plain Unicode long text, proposed limit 65,536 characters; provisional non-null format. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from row `comment`; read only to ordinary users. Behavior: Explicit null clears; omission preserves on an identified update; retain as scope-level text pending ownership confirmation; escape when displayed. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Engineering Change Scope. Type: Plain Unicode long text, proposed limit 65,536 characters; provisional non-null format. Optional. Default or source timing: NULL. Who supplies or sees it: Importer from row `comment`; read-only source control; human access for Administrators and Part Integration - Admin Security Group. Behavior: Explicit null clears; omission preserves on an identified update; retain as scope-level text pending ownership confirmation; escape when displayed. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ],
         [
           "Engineering Change Scope.Raw Payload",
-          "Create this field/list on Engineering Change Scope. Type: Native Unicode long-text/document storage for complete JSON, proposed limit 1 MiB UTF-8; supported binding waits for IN-01. Required. Default or source timing: Complete validated `data[*]` row. Who supplies or sees it: Importer supplied; restricted to authorized staging/technical readers. Behavior: Latest accepted row retained, including original property casing and nulls; full envelope retained separately through native integration evidence. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
+          "Create this field/list on Engineering Change Scope. Type: Native Unicode long-text/document storage for complete JSON, proposed limit 1 MiB UTF-8; supported binding waits for IN-01. Required. Default or source timing: Complete validated `data[*]` row. Who supplies or sees it: Importer supplied; restricted to Administrators and Part Integration - Admin Security Group. Behavior: Latest accepted row retained, including original property casing and nulls; full envelope retained separately through native integration evidence. Source population is owned by IMP-12. IMP-07 owns enforced permissions/audit and IMP-09 receive-time key enforcement. Allocate a new internal field identifier; none is supplied."
         ]
       ],
       "modifications": [],
       "steps": [
         "Build the Number screen with identity, Name, Active?, and read-only Scopes over Scope.Engineering Change Number; store no second relationship.",
-        "Build a Scope screen with six context references, Description, and Comment; source fields stay read only and Raw Payload is restricted through IMP-07.",
+        "Build the Scope screen for Administrators and Part Integration - Admin Security Group with six context references, Description, Comment, and Raw Payload. Both groups may inspect the source evidence. Source-populated controls remain read only as data behavior, with no separate technical-reader or staging-user audience.",
         "Configure Part required when Revision is populated and require Revision.Part=Part. Retained revisions remain valid when Included in Latest Part Feed?=FALSE. Null Part/Revision is allowed; IMP-12 owns receive-time validation and deferral.",
         "Display scope Description/Comment as separate optional escaped text. Add no counts, State field, approval, ECS matching, PPAP, or inspection trigger."
       ],
@@ -671,13 +673,14 @@
       "id": "IMP-07",
       "title": "Control component access and retain audit",
       "category": "Permissions and audit",
-      "objective": "Give integration administrators the specified object rights and enable Create, Edit, and Delete audit coverage across all eleven integration objects.",
-      "scope": "Set up Part Integration - Admin Security Group and grant it Create, View, Edit, and Delete via Rights on every Product Integration object. Enable Audit Trail for Everyone on each object's Create, Edit, and Delete permissions. Reuse the existing Administrators full-control access and retain the separate service, ordinary-reader, local-maintenance, and evidence-retention rules.",
-      "deliverable": "The named integration administration group, four Rights grants on each of eleven objects, and Everyone Audit Trail enabled for Create, Edit, and Delete on every object, with the supporting access and retention configuration.",
+      "objective": "Give the specified administration group application, tab, and inventory-menu Use, full object Rights, and the required Everyone audit coverage.",
+      "scope": "Grant Part Integration - Admin Security Group Use via Rights on the Product Integration application, its sole Product Integration tab, and all eleven inventory menu items, plus Create, View, Edit, and Delete via Rights on all eleven objects. Enable Everyone Audit Trail for Create, Edit, and Delete on every object. Reuse existing Administrators full control. Apply the same two-group human access model to forms, inventories, source evidence, retained records, local catalogue maintenance, and Role editing.",
+      "deliverable": "Thirteen Use grants (application, tab, and eleven inventory menu items), 44 object Rights grants, and 33 Everyone Audit Trail settings, with consistent access for Administrators and Part Integration - Admin Security Group throughout Product Integration.",
       "implementer": "Senior Consultant",
       "reviewer": "Product build manager — Senior Consultant (a separate person)",
-      "rationale": "Object rights, Everyone audit settings, restricted source evidence, and lower-privilege access must work together without accidentally denying the administrative grants or broadening service and reader access.",
+      "rationale": "Application entry, tab entry, each inventory-menu entry, object operations, source-document access, and audit settings must agree so the named group can use every permitted part of the app without an additional invented reader or maintenance audience.",
       "prerequisites": [
+        "IMP-01",
         "IMP-02",
         "IMP-03",
         "IMP-04",
@@ -685,6 +688,10 @@
         "IMP-06"
       ],
       "predecessorOutputs": [
+        {
+          "id": "IMP-01",
+          "description": "The Product Integration application, its sole Product Integration tab, and all eleven inventory menu items with their allocated identities."
+        },
         {
           "id": "IMP-02",
           "description": "Reference/catalogue fields and editable settings."
@@ -712,15 +719,67 @@
       "suppliedInputDescriptions": [
         {
           "id": "IN-04",
-          "description": "The group names, four administrative Rights grants, and three Everyone Audit Trail operations are known. Supply only the remaining native bindings and retention settings for restricted evidence and non-administrative duties; they do not block the stated group/object/audit configuration."
+          "description": "The two human administration groups, application/tab/inventory-menu Use targets, four object Rights, and Everyone audit operations are known. Supply only the remaining native evidence/document bindings and retention settings that expose evidence to Administrators and Part Integration - Admin Security Group; do not request another reader or maintenance-group policy."
         }
       ],
-      "blockedStatus": "Partly waiting: the named group setup, four object Rights grants, and three Everyone Audit Trail settings can proceed after the earlier object definitions exist. Only the remaining document, association, search/export, navigation, and evidence-retention bindings wait for IN-04.",
-      "assumptions": "User-confirmed existing behavior: Administrators already has full control because its Intelex permission checks are disabled; no new Administrators grant or permission-check setting is assigned. Everyone is the existing audit audience. Actual user/group membership administration remains external. Ordinary-reader and local-maintenance restrictions describe lower-privilege duties, not limits on the named administrative object Rights.",
+      "blockedStatus": "Partly waiting: the named group, application/tab/inventory-menu Use, object Rights, and Everyone audit settings can be configured after the application, tab, and objects exist. Only remaining native document/evidence bindings and approved retention settings wait for IN-04; the human access audiences are fully specified.",
+      "assumptions": "Administrators already has full control with permission checks disabled, as confirmed by the user; no change to that existing group is assigned. The other human administration group is exactly Part Integration - Admin Security Group. Everyone is the audit audience and receives no application, tab, inventory-menu Use, or object access grant from this plan. User membership administration remains external. Source-owned fields, immutable keys, active-value filters, and inverse-list behavior remain data rules rather than extra group restrictions.",
       "configurationRows": [
         [
           "Part Integration - Admin Security Group",
           "Create a Group with the exact Name Part Integration - Admin Security Group if absent; reuse the exact existing group if present. Configure the group record, without assigning users or duplicating a same-named group."
+        ],
+        [
+          "Product Integration application Use",
+          "Grant the Use permission via Rights on the Product Integration application to Part Integration - Admin Security Group. Target the new application identity supplied by IMP-01."
+        ],
+        [
+          "Product Integration tab Use",
+          "Grant the Use permission via Rights on the sole tab named Product Integration to Part Integration - Admin Security Group. Target the tab identity supplied by IMP-01, separately from its application."
+        ],
+        [
+          "Inventory menu Use — BOMECS Part API Recod",
+          "Grant Use via Rights to Part Integration - Admin Security Group on the inventory menu item named BOMECS Part API Recod on the sole Product Integration tab. Target that menu item identity supplied by IMP-01, separately from application Use, tab Use, and the linked object's Create/View/Edit/Delete permissions."
+        ],
+        [
+          "Inventory menu Use — Program Reference",
+          "Grant Use via Rights to Part Integration - Admin Security Group on the inventory menu item named Program Reference on the sole Product Integration tab. Target that menu item identity supplied by IMP-01, separately from application Use, tab Use, and the linked object's Create/View/Edit/Delete permissions."
+        ],
+        [
+          "Inventory menu Use — Supplier Reference",
+          "Grant Use via Rights to Part Integration - Admin Security Group on the inventory menu item named Supplier Reference on the sole Product Integration tab. Target that menu item identity supplied by IMP-01, separately from application Use, tab Use, and the linked object's Create/View/Edit/Delete permissions."
+        ],
+        [
+          "Inventory menu Use — Part Revision Reference",
+          "Grant Use via Rights to Part Integration - Admin Security Group on the inventory menu item named Part Revision Reference on the sole Product Integration tab. Target that menu item identity supplied by IMP-01, separately from application Use, tab Use, and the linked object's Create/View/Edit/Delete permissions."
+        ],
+        [
+          "Inventory menu Use — Product Family",
+          "Grant Use via Rights to Part Integration - Admin Security Group on the inventory menu item named Product Family on the sole Product Integration tab. Target that menu item identity supplied by IMP-01, separately from application Use, tab Use, and the linked object's Create/View/Edit/Delete permissions."
+        ],
+        [
+          "Inventory menu Use — Part Flag",
+          "Grant Use via Rights to Part Integration - Admin Security Group on the inventory menu item named Part Flag on the sole Product Integration tab. Target that menu item identity supplied by IMP-01, separately from application Use, tab Use, and the linked object's Create/View/Edit/Delete permissions."
+        ],
+        [
+          "Inventory menu Use — Part Tag",
+          "Grant Use via Rights to Part Integration - Admin Security Group on the inventory menu item named Part Tag on the sole Product Integration tab. Target that menu item identity supplied by IMP-01, separately from application Use, tab Use, and the linked object's Create/View/Edit/Delete permissions."
+        ],
+        [
+          "Inventory menu Use — Part Supplier Relationship",
+          "Grant Use via Rights to Part Integration - Admin Security Group on the inventory menu item named Part Supplier Relationship on the sole Product Integration tab. Target that menu item identity supplied by IMP-01, separately from application Use, tab Use, and the linked object's Create/View/Edit/Delete permissions."
+        ],
+        [
+          "Inventory menu Use — Supplier Relationship Role",
+          "Grant Use via Rights to Part Integration - Admin Security Group on the inventory menu item named Supplier Relationship Role on the sole Product Integration tab. Target that menu item identity supplied by IMP-01, separately from application Use, tab Use, and the linked object's Create/View/Edit/Delete permissions."
+        ],
+        [
+          "Inventory menu Use — Engineering Change Number",
+          "Grant Use via Rights to Part Integration - Admin Security Group on the inventory menu item named Engineering Change Number on the sole Product Integration tab. Target that menu item identity supplied by IMP-01, separately from application Use, tab Use, and the linked object's Create/View/Edit/Delete permissions."
+        ],
+        [
+          "Inventory menu Use — Engineering Change Scope",
+          "Grant Use via Rights to Part Integration - Admin Security Group on the inventory menu item named Engineering Change Scope on the sole Product Integration tab. Target that menu item identity supplied by IMP-01, separately from application Use, tab Use, and the linked object's Create/View/Edit/Delete permissions."
         ],
         [
           "Administrative Create right",
@@ -755,44 +814,34 @@
           "Allow create/update only on the eleven local types and declared fields/maps. Allow supplier-membership removal only through validated source withdrawal and Programs/Tags unlinking only through specified membership changes. Prohibit deletion of retained revisions and reference masters; protect immutable source keys except one verified NULL-to-ID assignment on Family.External ID."
         ],
         [
-          "Component reader",
-          "Allow reading normalized records and approved internal navigation; deny source-field edits and Raw Payload/source-document access across forms, direct URLs, search, exports, and relationship navigation."
-        ],
-        [
-          "Technical reader without administrative membership",
-          "Allow authorized Raw Payload, native diagnostics, and configuration inspection for the technical-reading duty. That duty alone provides no source-edit override. This limited reading duty is separate from Administrators and Part Integration - Admin Security Group full object administration."
-        ],
-        [
-          "Catalogue administrator",
-          "Allow local Supplier Relationship Role.Code/Name/Active?/Sort maintenance, with Code immutable after first use. Allow Part Flag.Sort and approved Name translations; protect imported flag identity/activity."
-        ],
-        [
-          "Local relationship mapper",
-          "Allow Role updates only on existing Part Supplier Relationships with active local role choices; deny membership creation and Part/Supplier edits. Retain existing inactive assigned roles read only."
+          "Human access throughout Product Integration",
+          "Give Administrators and Part Integration - Admin Security Group access to the inventories, forms, catalogue fields, supplier Role editor, retained revisions/scopes, Raw Payload, source documents, and retained integration evidence within the supplied administrative model. Configure any native field/document/navigation/search/export binding needed for these same groups. Do not introduce generic component-reader, technical-reader, catalogue-administrator, or local-mapper access audiences, and do not impose a special Raw Payload restriction that excludes either group."
         ],
         [
           "Audit evidence and retention",
-          "Retain native audit for changed values, relevant associations, local role/catalogue changes, and receive outcomes alongside the explicit Everyone Create/Edit/Delete object audit settings. Bind prior accepted messages and failures to restricted native retention. Raw Payload alone holds only the latest accepted message."
+          "Retain changed values, relevant associations, role/catalogue changes, receive outcomes, prior accepted messages, and failures. Human access to this evidence is for Administrators and Part Integration - Admin Security Group; native receiving-service access remains governed by its trusted execution bindings. Raw Payload represents only the latest accepted message."
         ],
         [
-          "Inactive values and administrative removal",
-          "Retain authorized reading via existing links after deactivation without broadening access. Prevent new manual inactive assignments where selectors are allowed, while receiving inactive source facts. Add no deletion workflow; permitted administrative removal obeys native reference integrity and retention."
+          "Data behavior and administrative removal",
+          "Keep source-owned field controls, immutable identity checks, active-value selection filters, inverse-list behavior, reference integrity, and native retention rules. These are data/lifecycle rules, not substitutes for the specified Use, View, Create, Edit, or Delete Rights. Do not remove an administrative object right because the receiving service has a narrower write/delete allowlist."
         ]
       ],
       "modifications": [],
       "steps": [
-        "Apply the named administrative Rights and Everyone Audit Trail settings to every Product Integration object: BOMECS Part API Recod, Program Reference, Supplier Reference, Part Revision Reference, Product Family, Part Flag, Part Tag, Part Supplier Relationship, Supplier Relationship Role, Engineering Change Number, Engineering Change Scope. The object list includes all catalogues, references, associations, and source-record types; no object is exempt.",
-        "Set up or reuse Part Integration - Admin Security Group, then grant its Create, View, Edit, and Delete permissions via Rights on each of those eleven objects. The result is four grants per object, 44 in total. Use Rights for this group rather than disabling its permission checks.",
-        "For the existing Everyone group, enable Audit Trail on each object's Create, Edit, and Delete permissions, for 33 enabled object-operation settings. Everyone is the audit audience; do not grant it Create, View, Edit, or Delete access as part of this audit change. No View audit change is assigned.",
-        "Apply the separate service allowlist, ordinary-reader restrictions, technical-reading access, and local-maintenance rules through native field, association, document, navigation, search, and export settings. These lower-privilege duties do not replace or deny the specified administrative object Rights. Do not assign the receiving service to an administrative group or expand its write/delete allowlist as a side effect of the administrative grants.",
-        "Bind prior accepted source evidence, failure diagnostics, and relevant association changes to restricted native retention. Display native audit/execution timestamps through supported user time zones while preserving server instants; add no duplicate audit or Date/Time fields."
+        "Apply the administrative object Rights and Everyone Audit Trail settings to all eleven Product Integration types: BOMECS Part API Recod, Program Reference, Supplier Reference, Part Revision Reference, Product Family, Part Flag, Part Tag, Part Supplier Relationship, Supplier Relationship Role, Engineering Change Number, Engineering Change Scope. The application, tab, and eleven inventory menu items are separate Use targets; they are not extra business objects.",
+        "Create or reuse the exact Group Part Integration - Admin Security Group. Grant Use via Rights separately on the Product Integration application and on its sole Product Integration tab. Use the application and tab identities provided by IMP-01.",
+        "On the sole Product Integration tab, grant Use via Rights to Part Integration - Admin Security Group on each of these eleven separate inventory menu items: BOMECS Part API Recod, Program Reference, Supplier Reference, Part Revision Reference, Product Family, Part Flag, Part Tag, Part Supplier Relationship, Supplier Relationship Role, Engineering Change Number, Engineering Change Scope. Use the menu item identities created by IMP-01. A grant on the application, tab, or linked business object does not substitute for the menu item's own Use grant.",
+        "Grant that group Create, View, Edit, and Delete via Rights on each of the eleven objects: 44 object grants. Together with the thirteen Use grants (one application, one tab, and eleven inventory menu items), this assignment configures 57 required Rights grants. Use Rights rather than introducing a new permission-check bypass.",
+        "For the existing Everyone group, enable Audit Trail for Create, Edit, and Delete on every object: 33 enabled object-operation settings. This assigns audit coverage, not application/tab/menu Use or object access to Everyone; no View audit change is assigned.",
+        "Apply the same human access audiences, Administrators and Part Integration - Admin Security Group, to every inventory, form, editable local catalogue field, supplier Role editor, retained-record view, Raw Payload field, source document, and evidence view. Configure supporting native bindings for those groups without adding separate reader, technical-reader, catalogue-maintenance, or mapper audiences. Keep service-controlled data rules distinct from group access.",
+        "Retain the receiving-service allowlist for its authenticated connector operations. Do not assign that service to an administrative group or enlarge its deletion/write scope as a side effect of human access grants. Bind prior source evidence, failures, and association audit to native retention, visible to Administrators and Part Integration - Admin Security Group. Preserve server instants and supported user-zone timestamp display without duplicate audit/Date-Time fields."
       ],
       "accept": [
-        "Part Integration - Admin Security Group exists once and has Create, View, Edit, and Delete granted via Rights on each of the eleven named objects: 44 required object Rights grants, with no omitted reference or catalogue object.",
-        "For Everyone, Audit Trail is enabled for Create, Edit, and Delete on each of the eleven objects: 33 required enabled settings. These settings add no Everyone object-access grant.",
-        "A user with only the named administration group receives the four object permissions through Rights rather than a new permission-check bypass. Existing native reference integrity remains in effect for Delete.",
-        "A lower-privilege ordinary reader cannot edit source facts or obtain Raw Payload via forms, URLs, search, exports, related documents, or navigation. Its restrictions do not narrow the named administrative object grants.",
-        "For lower-privilege local mappers, inactive new Role selection and source-membership creation remain prevented. Changed values, withdrawn memberships, local role changes, prior accepted messages, and failed receipts retain the specified native evidence."
+        "A user whose app access comes only from Part Integration - Admin Security Group can open Product Integration, its sole tab, and each of its eleven inventory menu items through thirteen separately configured Use Rights grants.",
+        "The named group has Create, View, Edit, and Delete via Rights on all eleven objects (44 object grants), plus thirteen Use grants for application, tab, and all eleven menu items: 57 required Rights grants. No catalogue, reference, association, source-record inventory, or menu item is omitted.",
+        "Everyone has Audit Trail enabled for Create, Edit, and Delete on all eleven objects: 33 settings, with no Everyone application/tab/menu Use or object-access grant introduced by this change.",
+        "Administrators and Part Integration - Admin Security Group can view the app inventories, forms, Raw Payload, source documents, retained records, and retained evidence, and maintain the expressly editable local fields. No separate technical-reader, catalogue-administrator, or mapper membership is required.",
+        "Read-only source controls, immutable identities, active-value filtering, reverse-list behavior, reference integrity, and the receiving-service write/delete allowlist remain the specified data behavior; none is expressed as a reduction of the administrative Rights."
       ],
       "refs": [
         "[Technical specification, 7](product-management-api-technical-specification.md)",
@@ -815,7 +864,7 @@
       "predecessorOutputs": [
         {
           "id": "IMP-07",
-          "description": "Enforced service allowlist and restricted source/evidence permissions with native audit/retention."
+          "description": "Application/tab/inventory-menu Use and object Rights for Part Integration - Admin Security Group, Everyone audit settings, the receiving-service allowlist, and evidence access for Administrators and Part Integration - Admin Security Group."
         }
       ],
       "inputs": [
@@ -834,7 +883,7 @@
         },
         {
           "id": "IN-04",
-          "description": "Native diagnostic, prior-message retention, and technical-only document bindings are required."
+          "description": "Supply native diagnostic/document and prior-message retention bindings that allow Administrators and Part Integration - Admin Security Group to inspect the stored evidence; the human access audiences are already known."
         }
       ],
       "blockedStatus": "Waiting to complete entry configuration until supported methods, trusted sources, storage, and evidence bindings are supplied.",
@@ -846,7 +895,7 @@
         "Parse strict JSON before normalized changes. Reject duplicate keys, invalid syntax, wrong types in properties with confirmed mappings, excessive sizes, and required-value nulls. Retain unknown properties and explicitly unconfirmed raw-only structures without inventing normalized mappings. Preserve exact strings/spaces, nulls, and key casing. Never normalize identifiers, truncate, or silently round costs.",
         "On update preserve omitted scalar values and clear only nullable explicit nulls. Required nulls fail except the Part create-only Name fallback. Validate populated descriptor string ID/Name and Boolean status using each feed exact casing; conflicting descriptors for one source/entity ID in one receive unit fail before mutation.",
         "Retain complete Part requests, standalone Family bodies, and Scope rows in their Raw Payload fields up to 1 MiB UTF-8 through supported Unicode text/document storage. If text capacity is insufficient use the supplied native document binding. Reject overflow before changes and retain diagnostics. Keep full ECN envelopes and earlier accepted messages as native integration evidence.",
-        "Bind native receive outcomes and audit identity to each unit. Raw Payload represents the latest accepted message/row, not a reconstructed source snapshot. Pass only validated changes to IMP-09; no entry bypasses its saving protection."
+        "Bind native receive outcomes and audit identity to each unit. Raw Payload represents the latest accepted message/row, not a reconstructed source snapshot. Pass only validated changes to IMP-09; no entry bypasses its saving protection. Use the evidence-access bindings supplied by IMP-07 so Administrators and Part Integration - Admin Security Group can inspect accepted and failed receive evidence."
       ],
       "accept": [
         "Malformed/duplicate-key JSON, wrong types in confirmed mappings, required nulls, and overflow fail before business values change and retain diagnostics; unknown and explicitly raw-only structures remain retained.",
@@ -1567,7 +1616,7 @@
       "element": "Part Flag.Name",
       "action": "Add",
       "owner": "IMP-02",
-      "description": "Create this field/list and its stated declaration, default, relationship, and presentation settings; value maintenance belongs to IMP-10 for the literal source label and the catalogue administrator for approved translations.",
+      "description": "Create this field/list and its stated declaration, default, relationship, and presentation settings; value maintenance belongs to IMP-10 for the literal source label and Administrators and Part Integration - Admin Security Group for approved translations.",
       "blockedBy": [
         "IN-01",
         "IN-07"
@@ -1587,7 +1636,7 @@
       "element": "Part Flag.Sort",
       "action": "Add",
       "owner": "IMP-02",
-      "description": "Create this field/list and its stated declaration, default, relationship, and presentation settings; value maintenance belongs to the catalogue administrator only; the Part API supplies no Sort.",
+      "description": "Create this field/list and its stated declaration, default, relationship, and presentation settings; value maintenance belongs to Administrators and Part Integration - Admin Security Group only; the Part API supplies no Sort.",
       "blockedBy": [
         "IN-01",
         "IN-07"
@@ -1635,7 +1684,7 @@
       "element": "Part Supplier Relationship.Role",
       "action": "Add",
       "owner": "IMP-05",
-      "description": "Create this field/list and its stated declaration, default, relationship, and presentation settings; value maintenance belongs to the authorized local relationship mapper; source receipt never supplies or defaults Role.",
+      "description": "Create this field/list and its stated declaration, default, relationship, and presentation settings; value maintenance belongs to Administrators and Part Integration - Admin Security Group; source receipt never supplies or defaults Role.",
       "blockedBy": [
         "IN-01"
       ]
@@ -1644,7 +1693,7 @@
       "element": "Supplier Relationship Role.Code",
       "action": "Add",
       "owner": "IMP-02",
-      "description": "Create this field/list and its stated declaration, default, relationship, and presentation settings; source population belongs to the catalogue administrator.",
+      "description": "Create this field/list and its stated declaration, default, relationship, and presentation settings; source population belongs to Administrators and Part Integration - Admin Security Group.",
       "blockedBy": [
         "IN-01",
         "IN-07"
@@ -1654,7 +1703,7 @@
       "element": "Supplier Relationship Role.Name",
       "action": "Add",
       "owner": "IMP-02",
-      "description": "Create this field/list and its stated declaration, default, relationship, and presentation settings; source population belongs to the catalogue administrator.",
+      "description": "Create this field/list and its stated declaration, default, relationship, and presentation settings; source population belongs to Administrators and Part Integration - Admin Security Group.",
       "blockedBy": [
         "IN-01",
         "IN-07"
@@ -1664,7 +1713,7 @@
       "element": "Supplier Relationship Role.Active?",
       "action": "Add",
       "owner": "IMP-02",
-      "description": "Create this field/list and its stated declaration, default, relationship, and presentation settings; source population belongs to the catalogue administrator.",
+      "description": "Create this field/list and its stated declaration, default, relationship, and presentation settings; source population belongs to Administrators and Part Integration - Admin Security Group.",
       "blockedBy": [
         "IN-01",
         "IN-07"
@@ -1674,7 +1723,7 @@
       "element": "Supplier Relationship Role.Sort",
       "action": "Add",
       "owner": "IMP-02",
-      "description": "Create this field/list and its stated declaration, default, relationship, and presentation settings; source population belongs to the catalogue administrator.",
+      "description": "Create this field/list and its stated declaration, default, relationship, and presentation settings; source population belongs to Administrators and Part Integration - Admin Security Group.",
       "blockedBy": [
         "IN-01",
         "IN-07"
@@ -1947,7 +1996,7 @@
       "element": "Supporting access and evidence retention",
       "action": "Add",
       "owner": "IMP-07",
-      "description": "Apply service, ordinary-reader, technical-reading, and local-maintenance access plus restricted prior-message/failure/association retention; administrative object Rights and Everyone object audit settings have separate coverage below.",
+      "description": "Apply the receiving-service allowlist and evidence/document/navigation/search/export bindings for Administrators and Part Integration - Admin Security Group; no additional human access audiences are introduced.",
       "blockedBy": [
         "IN-04"
       ]
@@ -2105,6 +2154,84 @@
       "action": "Add",
       "owner": "IMP-07",
       "description": "Enable the Delete permission Audit Trail setting for Everyone on every Product Integration object; this does not grant Everyone Delete access."
+    },
+    {
+      "element": "Product Integration application — Use for Part Integration - Admin Security Group",
+      "action": "Add",
+      "owner": "IMP-07",
+      "description": "Grant Use via Rights on the new Product Integration application to the named group."
+    },
+    {
+      "element": "Product Integration tab — Use for Part Integration - Admin Security Group",
+      "action": "Add",
+      "owner": "IMP-07",
+      "description": "Grant Use via Rights on the sole Product Integration tab to the named group, separately from application Use."
+    },
+    {
+      "element": "Inventory menu BOMECS Part API Recod — Use for Part Integration - Admin Security Group",
+      "action": "Add",
+      "owner": "IMP-07",
+      "description": "Grant Use via Rights on this separate inventory menu item on the Product Integration tab to the named group; application/tab Use and linked-object rights do not replace this grant."
+    },
+    {
+      "element": "Inventory menu Program Reference — Use for Part Integration - Admin Security Group",
+      "action": "Add",
+      "owner": "IMP-07",
+      "description": "Grant Use via Rights on this separate inventory menu item on the Product Integration tab to the named group; application/tab Use and linked-object rights do not replace this grant."
+    },
+    {
+      "element": "Inventory menu Supplier Reference — Use for Part Integration - Admin Security Group",
+      "action": "Add",
+      "owner": "IMP-07",
+      "description": "Grant Use via Rights on this separate inventory menu item on the Product Integration tab to the named group; application/tab Use and linked-object rights do not replace this grant."
+    },
+    {
+      "element": "Inventory menu Part Revision Reference — Use for Part Integration - Admin Security Group",
+      "action": "Add",
+      "owner": "IMP-07",
+      "description": "Grant Use via Rights on this separate inventory menu item on the Product Integration tab to the named group; application/tab Use and linked-object rights do not replace this grant."
+    },
+    {
+      "element": "Inventory menu Product Family — Use for Part Integration - Admin Security Group",
+      "action": "Add",
+      "owner": "IMP-07",
+      "description": "Grant Use via Rights on this separate inventory menu item on the Product Integration tab to the named group; application/tab Use and linked-object rights do not replace this grant."
+    },
+    {
+      "element": "Inventory menu Part Flag — Use for Part Integration - Admin Security Group",
+      "action": "Add",
+      "owner": "IMP-07",
+      "description": "Grant Use via Rights on this separate inventory menu item on the Product Integration tab to the named group; application/tab Use and linked-object rights do not replace this grant."
+    },
+    {
+      "element": "Inventory menu Part Tag — Use for Part Integration - Admin Security Group",
+      "action": "Add",
+      "owner": "IMP-07",
+      "description": "Grant Use via Rights on this separate inventory menu item on the Product Integration tab to the named group; application/tab Use and linked-object rights do not replace this grant."
+    },
+    {
+      "element": "Inventory menu Part Supplier Relationship — Use for Part Integration - Admin Security Group",
+      "action": "Add",
+      "owner": "IMP-07",
+      "description": "Grant Use via Rights on this separate inventory menu item on the Product Integration tab to the named group; application/tab Use and linked-object rights do not replace this grant."
+    },
+    {
+      "element": "Inventory menu Supplier Relationship Role — Use for Part Integration - Admin Security Group",
+      "action": "Add",
+      "owner": "IMP-07",
+      "description": "Grant Use via Rights on this separate inventory menu item on the Product Integration tab to the named group; application/tab Use and linked-object rights do not replace this grant."
+    },
+    {
+      "element": "Inventory menu Engineering Change Number — Use for Part Integration - Admin Security Group",
+      "action": "Add",
+      "owner": "IMP-07",
+      "description": "Grant Use via Rights on this separate inventory menu item on the Product Integration tab to the named group; application/tab Use and linked-object rights do not replace this grant."
+    },
+    {
+      "element": "Inventory menu Engineering Change Scope — Use for Part Integration - Admin Security Group",
+      "action": "Add",
+      "owner": "IMP-07",
+      "description": "Grant Use via Rights on this separate inventory menu item on the Product Integration tab to the named group; application/tab Use and linked-object rights do not replace this grant."
     }
   ],
   "expectedElements": [
@@ -2215,6 +2342,19 @@
     "Part Integration - Admin Security Group — Delete Rights on all eleven objects",
     "Everyone — Create Audit Trail on all eleven objects",
     "Everyone — Edit Audit Trail on all eleven objects",
-    "Everyone — Delete Audit Trail on all eleven objects"
+    "Everyone — Delete Audit Trail on all eleven objects",
+    "Product Integration application — Use for Part Integration - Admin Security Group",
+    "Product Integration tab — Use for Part Integration - Admin Security Group",
+    "Inventory menu BOMECS Part API Recod — Use for Part Integration - Admin Security Group",
+    "Inventory menu Program Reference — Use for Part Integration - Admin Security Group",
+    "Inventory menu Supplier Reference — Use for Part Integration - Admin Security Group",
+    "Inventory menu Part Revision Reference — Use for Part Integration - Admin Security Group",
+    "Inventory menu Product Family — Use for Part Integration - Admin Security Group",
+    "Inventory menu Part Flag — Use for Part Integration - Admin Security Group",
+    "Inventory menu Part Tag — Use for Part Integration - Admin Security Group",
+    "Inventory menu Part Supplier Relationship — Use for Part Integration - Admin Security Group",
+    "Inventory menu Supplier Relationship Role — Use for Part Integration - Admin Security Group",
+    "Inventory menu Engineering Change Number — Use for Part Integration - Admin Security Group",
+    "Inventory menu Engineering Change Scope — Use for Part Integration - Admin Security Group"
   ]
 }

@@ -2,7 +2,8 @@
   "contractVersion": 1,
   "passed": true,
   "scope": [
-    "IMP-07"
+    "IMP-07",
+    "IMP-08"
   ],
   "unreviewedTaskIds": [
     "IMP-01",
@@ -11,7 +12,6 @@
     "IMP-04",
     "IMP-05",
     "IMP-06",
-    "IMP-08",
     "IMP-09",
     "IMP-10",
     "IMP-11",

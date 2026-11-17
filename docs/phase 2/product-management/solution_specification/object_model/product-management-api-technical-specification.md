@@ -197,13 +197,13 @@ Engineering_Change_Scope "0..*" --> "0..1" Program_Reference : Program
 
 `Y` means required in the persisted normalized record; `N` means optional; `Conditional` means the row identifies when a value is required. This does not mean every property is required in a partial-update body. `None` means no default exists; `NULL` means intentionally initialized without a value. Text lengths and decimal precision are proposed. Do not truncate, normalize identifier spelling, strip source spaces, or silently round costs.
 
-**Importer** means the dedicated authorized receive service executing operations PMAPI-PART, PMAPI-FAMILY, and PMAPI-ECN from section 6. It populates source fields through configured native persistence APIs; no executable Intelex expressions or fictitious endpoint names are specified. Ordinary users cannot edit source fields directly. The local catalogue administrator may edit the expressly permitted catalogue fields; the local relationship mapper may assign supplier Role.
+**Importer** means the dedicated authorized receive service executing operations PMAPI-PART, PMAPI-FAMILY, and PMAPI-ECN from section 6. It populates source fields through configured native persistence APIs; no executable Intelex expressions or fictitious endpoint names are specified. Human access is for Administrators and Part Integration - Admin Security Group. These groups maintain the expressly editable local catalogue fields and supplier Role. Importer-owned source controls, immutable keys, and inverse lists retain their data behavior; they do not define additional access audiences or reduce the groups' object Rights.
 
-All internal references must remain in the declaring record's Source System, except Supplier Relationship Role, which is a component-local governed catalogue without a source namespace. No ordinary-user selector is enabled for source-owned relationships. Inactive source references may be imported to preserve the received facts. Active?=FALSE prevents new manual assignments within this component where a selector is authorized; existing references remain valid. There is no downstream application behavior.
+All internal references must remain in the declaring record's Source System, except Supplier Relationship Role, which is a component-local governed catalogue without a source namespace. Source-owned relationships have no direct human selector; their links are maintained by the receive operation as data behavior. Inactive source references may be imported to preserve the received facts. Active?=FALSE prevents new manual assignments within this component where a selector is authorized; existing references remain valid. There is no downstream application behavior.
 
 **Raw JSON storage:** retain the complete parsed JSON document or row in native Unicode long-text/document storage, with a proposed maximum of 1 MiB UTF-8 per retained document. Native capacity and the exact binding must be verified before build completion. Do not claim that a native JSON scalar type exists. If a supported text field cannot retain the complete allowed content, select native document storage for the same logical field and verify field-level access. The full ECN response envelope is native integration evidence; it is not another business object. Reject overflow before mutation and retain failure evidence through the receive service.
 
-No custom Date/Time fields are proposed. Native audit and execution timestamps must preserve server instants and display through supported user time zones. No publication copies or version fields apply; the stored records are source-aligned mutable data with native audit history. All source fields remain visible read only to authorized component readers except Raw Payload, which is restricted to technical readers. Conditional requiredness does not hide a field unless its row explicitly says so.
+No custom Date/Time fields are proposed. Native audit and execution timestamps must preserve server instants and display through supported user time zones. No publication copies or version fields apply; the stored records are source-aligned mutable data with native audit history. Human field access, including Raw Payload, is for Administrators and Part Integration - Admin Security Group. Source-owned controls remain read only on receiving screens as data behavior; do not require a separate technical-reader membership or exclude either administration group from source evidence. Conditional requiredness does not hide a field unless its row explicitly says so.
 
 ### 5.1 BOMECS Part API Recod
 
@@ -211,26 +211,26 @@ Inheritance parent: None. Directly declared fields and inverse grids:
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
-| Source System | Text, max 100 | Y | Connector source namespace | Importer supplied; read only after creation | Immutable; unique with External ID |
-| External ID | Text, max 100 | Y | None | Importer from `$.id`; read only after creation | Immutable; source-scoped upsert key |
-| Part Number | Text, max 100 | Y | None | Importer from `$.partNumber`; read only to users | Nonblank; not assumed globally unique; changed value does not create a new source identity |
-| Part Name | Text, max 255 | N | NULL | Importer from `$.partName`; read only to users | Preserve source spaces; explicit null clears |
-| Future Part Name | Text, max 255; provisional type | N | NULL | Importer from `$.futurePartName`; read only to users | Explicit null clears; confirm non-null contract |
-| LS Part Number | Text, max 100; provisional type | N | NULL | Importer from `$.lsPartNumber`; read only to users | Explicit null clears; no inferred relationship to another part |
-| LE Part Number | Text, max 100; provisional type | N | NULL | Importer from `$.lePartNumber`; read only to users | Explicit null clears; no inferred relationship to another part |
-| Unit Cost | Decimal, precision 19, scale 6; provisional type | N | NULL | Importer from `$.unitCost`; read only to users | Exact numeric conversion only; confirm currency, unit basis, precision, and negative-value policy before business use |
-| Drawing Number | Text, max 100 | N | NULL | Importer from `$.drawingNumber`; read only to users | No automatic Drawing object lookup by name |
-| Active? | Yes/No | Y | None | Importer from `$.status`; read only to users | False excludes the part from new manual component assignments; retain its data and existing links; no external application effect |
-| Name | Text, max 512; configured display field | Y | Import `$.name`; on creation only, use Part Number if name is absent or null | Importer populated; read only to users | Stored label, not a formula or match key; explicit null on update rejected |
-| Programs | M:N to Program Reference; inverse disabled | N | Empty collection on creation | Importer from `$.programs`; inactive source references allowed for fidelity | Replace source-owned links when property is present; empty array clears; no program deletion |
-| Flag | M:1 to Part Flag, 0..1 per part; inverse disabled | N | NULL | Importer from `$.Flag`; no manual selector; inactive source values accepted | Resolve Source System + Code; explicit null clears; never parse resource key into identity |
-| Supplier Relationships | Inverse 1:M grid from Part Supplier Relationship.Part | N | None | Read only; displays importer-maintained associations | Navigation only; no duplicate stored relationship |
-| Revisions | Inverse 1:M grid from Part Revision Reference.Part | N | None | Read only; default filter Included in Latest Part Feed?=TRUE; authorized readers may view retained rows | Navigation only; no duplicate stored relationship; array replacement updates feed membership flags, preserving records and ECN references |
-| Tags | M:N to Part Tag; inverse disabled | N | Empty collection on creation | Importer from `$.tags`; read only to users | Resolve source + exact Value; replace source-owned links on present array |
-| Notes | Plain Unicode long text, proposed max 65,536 characters; provisional format | N | NULL | Importer from `$.notes`; read only to users | Explicit null clears; treat as text and escape when displayed |
-| Product Family | M:1 to Product Family, 0..1 per part; inverse Part Numbers | N | NULL | Importer from `$.productFamily`, or family assignment command from `selectedPartNumbersIds`; read only to ordinary users; inactive source references allowed | Explicit null clears; enforce same-source scope; inverse updates automatically; no independent M:N storage; same name as Drawing Number does not merge identities |
-| Include All Facilities? | Yes/No | Y | None | Importer from `$.includeAllFacilities`; read only to users | Preserve supplied true/false; no permission grants or invented facility associations |
-| Raw Payload | Raw JSON storage as defined in section 5 | Y | Complete validated request document | Importer supplied; restricted to authorized integration/technical readers | Updated on each accepted receive; preserve all unknown properties and string contents; native retention preserves prior messages |
+| Source System | Text, max 100 | Y | Connector source namespace | Importer supplied; immutable after creation; human access for Administrators and Part Integration - Admin Security Group | Immutable; unique with External ID |
+| External ID | Text, max 100 | Y | None | Importer from `$.id`; immutable after creation; human access for Administrators and Part Integration - Admin Security Group | Immutable; source-scoped upsert key |
+| Part Number | Text, max 100 | Y | None | Importer from `$.partNumber`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Nonblank; not assumed globally unique; changed value does not create a new source identity |
+| Part Name | Text, max 255 | N | NULL | Importer from `$.partName`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Preserve source spaces; explicit null clears |
+| Future Part Name | Text, max 255; provisional type | N | NULL | Importer from `$.futurePartName`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Explicit null clears; confirm non-null contract |
+| LS Part Number | Text, max 100; provisional type | N | NULL | Importer from `$.lsPartNumber`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Explicit null clears; no inferred relationship to another part |
+| LE Part Number | Text, max 100; provisional type | N | NULL | Importer from `$.lePartNumber`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Explicit null clears; no inferred relationship to another part |
+| Unit Cost | Decimal, precision 19, scale 6; provisional type | N | NULL | Importer from `$.unitCost`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Exact numeric conversion only; confirm currency, unit basis, precision, and negative-value policy before business use |
+| Drawing Number | Text, max 100 | N | NULL | Importer from `$.drawingNumber`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | No automatic Drawing object lookup by name |
+| Active? | Yes/No | Y | None | Importer from `$.status`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | False excludes the part from new manual component assignments; retain its data and existing links; no external application effect |
+| Name | Text, max 512; configured display field | Y | Import `$.name`; on creation only, use Part Number if name is absent or null | Importer populated; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Stored label, not a formula or match key; explicit null on update rejected |
+| Programs | M:N to Program Reference; inverse disabled | N | Empty collection on creation | Importer from `$.programs`; inactive source references allowed for fidelity; human access for Administrators and Part Integration - Admin Security Group | Replace source-owned links when property is present; empty array clears; no program deletion |
+| Flag | M:1 to Part Flag, 0..1 per part; inverse disabled | N | NULL | Importer from `$.Flag`; no manual selector; inactive source values accepted; human access for Administrators and Part Integration - Admin Security Group | Resolve Source System + Code; explicit null clears; never parse resource key into identity |
+| Supplier Relationships | Inverse 1:M grid from Part Supplier Relationship.Part | N | None | Read only; displays importer-maintained associations; human access for Administrators and Part Integration - Admin Security Group | Navigation only; no duplicate stored relationship |
+| Revisions | Inverse 1:M grid from Part Revision Reference.Part | N | None | Read only; default filter Included in Latest Part Feed?=TRUE; Administrators and Part Integration - Admin Security Group may view retained rows | Navigation only; no duplicate stored relationship; array replacement updates feed membership flags, preserving records and ECN references |
+| Tags | M:N to Part Tag; inverse disabled | N | Empty collection on creation | Importer from `$.tags`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Resolve source + exact Value; replace source-owned links on present array |
+| Notes | Plain Unicode long text, proposed max 65,536 characters; provisional format | N | NULL | Importer from `$.notes`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Explicit null clears; treat as text and escape when displayed |
+| Product Family | M:1 to Product Family, 0..1 per part; inverse Part Numbers | N | NULL | Importer from `$.productFamily`, or family assignment command from `selectedPartNumbersIds`; read-only source control; inactive source references allowed; human access for Administrators and Part Integration - Admin Security Group | Explicit null clears; enforce same-source scope; inverse updates automatically; no independent M:N storage; same name as Drawing Number does not merge identities |
+| Include All Facilities? | Yes/No | Y | None | Importer from `$.includeAllFacilities`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Preserve supplied true/false; no permission grants or invented facility associations |
+| Raw Payload | Raw JSON storage as defined in section 5 | Y | Complete validated request document | Importer supplied; restricted to Administrators and Part Integration - Admin Security Group | Updated on each accepted receive; preserve all unknown properties and string contents; native retention preserves prior messages |
 
 There are no separate projected fields for Part Classification, singular Program, Customers, Measures, or Facilities in this draft. Their typed definitions require non-null or non-empty evidence; Raw Payload is their current storage contract.
 
@@ -240,10 +240,10 @@ Inheritance parent: None. Directly declared fields:
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
-| Source System | Text, max 100 | Y | Connector namespace; must match receiving Part or Engineering Change Number.Source System | Importer supplied; immutable | Unique with External ID; sharing across feeds requires the same verified namespace |
-| External ID | Text, max 100 | Y | None | Importer from Part `programs[*].id` or change row `program.Id`; immutable | Upsert by source + ID; exact path casing per feed |
-| Name | Text, max 255 | Y | None | Importer from Part `programs[*].name` or change row `program.Name`; read only to users | Descriptor only; renamed program retains identity |
-| Active? | Yes/No | Y | None | Importer from Part `programs[*].status` or change row `program.Status`; read only to users | Preserve inactive references; no cascade to parts or changes |
+| Source System | Text, max 100 | Y | Connector namespace; must match receiving Part or Engineering Change Number.Source System | Importer supplied; immutable; human access for Administrators and Part Integration - Admin Security Group | Unique with External ID; sharing across feeds requires the same verified namespace |
+| External ID | Text, max 100 | Y | None | Importer from Part `programs[*].id` or change row `program.Id`; immutable; human access for Administrators and Part Integration - Admin Security Group | Upsert by source + ID; exact path casing per feed |
+| Name | Text, max 255 | Y | None | Importer from Part `programs[*].name` or change row `program.Name`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Descriptor only; renamed program retains identity |
+| Active? | Yes/No | Y | None | Importer from Part `programs[*].status` or change row `program.Status`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Preserve inactive references; no cascade to parts or changes |
 
 Sample record: external ID `e383a96a-4b62-41d1-8c70-af250144eb20`, Name `DA9`, Active? true. This is an imported example, not configuration seed data.
 
@@ -253,10 +253,10 @@ Inheritance parent: None. Directly declared fields:
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
-| Source System | Text, max 100 | Y | Connector namespace; must match receiving Part or Engineering Change Number.Source System | Importer supplied; immutable | Unique with External ID; sharing across feeds requires the same verified namespace |
-| External ID | Text, max 100 | Y | None | Importer from Part `suppliers[*].id` or change row `supplier.id`; immutable | Source key; not assumed to be an Intelex supplier ID |
-| Name | Text, max 255 | Y | None | Importer from Part `suppliers[*].name` or change row `supplier.name`; read only to users | Local descriptor only; no matching, relationship, or writeback to an existing supplier master |
-| Active? | Yes/No | Y | None | Importer from Part `suppliers[*].status` or change row `supplier.status`; read only to users | Preserve source status within this component; no existing supplier eligibility is read or changed |
+| Source System | Text, max 100 | Y | Connector namespace; must match receiving Part or Engineering Change Number.Source System | Importer supplied; immutable; human access for Administrators and Part Integration - Admin Security Group | Unique with External ID; sharing across feeds requires the same verified namespace |
+| External ID | Text, max 100 | Y | None | Importer from Part `suppliers[*].id` or change row `supplier.id`; immutable; human access for Administrators and Part Integration - Admin Security Group | Source key; not assumed to be an Intelex supplier ID |
+| Name | Text, max 255 | Y | None | Importer from Part `suppliers[*].name` or change row `supplier.name`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Local descriptor only; no matching, relationship, or writeback to an existing supplier master |
+| Active? | Yes/No | Y | None | Importer from Part `suppliers[*].status` or change row `supplier.status`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Preserve source status within this component; no existing supplier eligibility is read or changed |
 
 Sample record: external ID `d61a1d08-3295-4f7b-8b98-b01300df14bd`, Name `Heartland Automotive, LLC`, Active? true. This is a local source descriptor; it is not a link to an existing supplier company or facility.
 
@@ -266,11 +266,11 @@ Inheritance parent: None. Directly declared fields:
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
-| Part | M:1 to BOMECS Part API Recod, exactly 1; inverse Revisions | Y | Receiving BOMECS Part API Recod | Importer assigned; immutable; target must belong to the current source | No orphan revision records; source namespace follows Part |
-| External ID | Text, max 100 | Y | None | Importer from `partNumberRevLevels[*].id`; immutable | Unique with Part; do not manufacture an ID from a string label |
-| Name | Text, max 255 | Y | None | Importer from `partNumberRevLevels[*].name`; read only to users | Compare exactly with `revLevels` labels when both arrays are supplied |
-| Active? | Yes/No | Y | None | Importer from `partNumberRevLevels[*].status`; read only to users | Not a current-revision indicator; retain historical references |
-| Included in Latest Part Feed? | Yes/No | Y | TRUE when first received in the identified revision array | Importer maintained; visible read only to authorized readers | For a present `partNumberRevLevels` array set TRUE for listed IDs and FALSE for retained IDs omitted from it; array omission preserves; reappearance reuses identity; never changes source Active? or deletes scope references |
+| Part | M:1 to BOMECS Part API Recod, exactly 1; inverse Revisions | Y | Receiving BOMECS Part API Recod | Importer assigned; immutable; target must belong to the current source; human access for Administrators and Part Integration - Admin Security Group | No orphan revision records; source namespace follows Part |
+| External ID | Text, max 100 | Y | None | Importer from `partNumberRevLevels[*].id`; immutable; human access for Administrators and Part Integration - Admin Security Group | Unique with Part; do not manufacture an ID from a string label |
+| Name | Text, max 255 | Y | None | Importer from `partNumberRevLevels[*].name`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Compare exactly with `revLevels` labels when both arrays are supplied |
+| Active? | Yes/No | Y | None | Importer from `partNumberRevLevels[*].status`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Not a current-revision indicator; retain historical references |
+| Included in Latest Part Feed? | Yes/No | Y | TRUE when first received in the identified revision array | Importer maintained; visible read only to Administrators and Part Integration - Admin Security Group | For a present `partNumberRevLevels` array set TRUE for listed IDs and FALSE for retained IDs omitted from it; array omission preserves; reappearance reuses identity; never changes source Active? or deletes scope references |
 
 Sample record: external ID `f2a19293-7d51-48c8-8e9e-b4ca0085337d`, Name `P2460-0.0`, Active? true, Included in Latest Part Feed? true. A present array omitting this ID sets its inclusion flag FALSE while preserving the record, its Part reference, and every Engineering Change Scope.Revision reference. This membership flag is separate from source activity and does not designate a current engineering revision.
 
@@ -280,13 +280,13 @@ Inheritance parent: None. This business master receives nested Part/engineering-
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
-| Source System | Text, max 100 | Y | Connector namespace; equals receiving Part or Engineering Change Number.Source System for nested descriptors | Importer supplied; immutable | External ID uniqueness is scoped to this source when populated |
-| External ID | Text, max 100 | Conditional | NULL for standalone creation without source identity; None for a nested descriptor requiring `productFamily.id` | Importer maps nested Part/change ID or verified request/response context; may populate a null value once, then immutable | Required for nested descriptor resolution; optional for standalone create/update by native ID; retain any assigned ID on standalone updates; unique with Source System when non-null; never derive from Name |
-| Name | Text, max 255 | Y | None | Importer from standalone `$.name`, Part `$.productFamily.name`, or change row `productFamily.name`; read only to ordinary users | Nonblank; required on create; omission preserves on update; null rejected; renaming retains identity |
-| Notes | Plain Unicode long text, proposed max 65,536 characters; provisional format | N | NULL | Importer from standalone `$.notes`; read only to ordinary users | Explicit null clears; omission preserves; neither nested descriptor clears Notes; escape when displayed |
-| Active? | Yes/No | Y | Proposed TRUE only on standalone create; otherwise Part/change descriptor `productFamily.status` or existing value | Importer supplied; read only to ordinary users | Standalone update preserves activity; nested descriptor requires explicit Boolean status; false retains membership/history and prevents new manual operational use; no cascade |
-| Part Numbers | Inverse 1:M grid from BOMECS Part API Recod.Product Family; each part has 0..1 family | N | Empty membership on standalone create | Read-only navigation; importer processes `selectedPartNumbersIds` by updating the declaring Part field | No duplicate stored relationship; present array replaces this family's source-owned links; `[]` clears links, omission preserves; null invalid; prevalidate all IDs and family conflicts |
-| Raw Payload | Raw JSON storage as defined in section 5 | Conditional | NULL if first created only from a nested descriptor | Importer from complete standalone family body; restricted to authorized integration/technical readers | Required when receiving a standalone family request; latest accepted standalone body retained; descriptors do not overwrite it and remain in Part.Raw Payload or Engineering Change Scope.Raw Payload |
+| Source System | Text, max 100 | Y | Connector namespace; equals receiving Part or Engineering Change Number.Source System for nested descriptors | Importer supplied; immutable; human access for Administrators and Part Integration - Admin Security Group | External ID uniqueness is scoped to this source when populated |
+| External ID | Text, max 100 | Conditional | NULL for standalone creation without source identity; None for a nested descriptor requiring `productFamily.id` | Importer maps nested Part/change ID or verified request/response context; may populate a null value once, then immutable; human access for Administrators and Part Integration - Admin Security Group | Required for nested descriptor resolution; optional for standalone create/update by native ID; retain any assigned ID on standalone updates; unique with Source System when non-null; never derive from Name |
+| Name | Text, max 255 | Y | None | Importer from standalone `$.name`, Part `$.productFamily.name`, or change row `productFamily.name`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Nonblank; required on create; omission preserves on update; null rejected; renaming retains identity |
+| Notes | Plain Unicode long text, proposed max 65,536 characters; provisional format | N | NULL | Importer from standalone `$.notes`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Explicit null clears; omission preserves; neither nested descriptor clears Notes; escape when displayed |
+| Active? | Yes/No | Y | Proposed TRUE only on standalone create; otherwise Part/change descriptor `productFamily.status` or existing value | Importer supplied; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Standalone update preserves activity; nested descriptor requires explicit Boolean status; false retains membership/history and prevents new manual operational use; no cascade |
+| Part Numbers | Inverse 1:M grid from BOMECS Part API Recod.Product Family; each part has 0..1 family | N | Empty membership on standalone create | Read-only navigation; importer processes `selectedPartNumbersIds` by updating the declaring Part field; human access for Administrators and Part Integration - Admin Security Group | No duplicate stored relationship; present array replaces this family's source-owned links; `[]` clears links, omission preserves; null invalid; prevalidate all IDs and family conflicts |
+| Raw Payload | Raw JSON storage as defined in section 5 | Conditional | NULL if first created only from a nested descriptor | Importer from complete standalone family body; restricted to Administrators and Part Integration - Admin Security Group | Required when receiving a standalone family request; latest accepted standalone body retained; descriptors do not overwrite it and remain in Part.Raw Payload or Engineering Change Scope.Raw Payload |
 
 The Part sample resolves a family with External ID `0cd34a52-452e-4a2a-81fd-b0130113de3b`, Name `94203SL00A`, and Active? true. The standalone sample instead supplies Name `85132SL550`, Notes null, and no selected parts. It does not establish the same family identity.
 
@@ -300,11 +300,11 @@ Inheritance parent: None. Directly declared fields:
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
-| Source System | Text, max 100 | Y | Receiving part's Source System | Importer supplied; immutable | Unique with Code |
-| Code | Text, max 100, stable and non-localizable | Y | None | Importer from `Flag.id`; immutable | Preserve `"2"` as text; not a UUID or Boolean |
-| Name | Text, max 255; localizable catalogue display field | Y | None | Importer supplies exact source label from `Flag.name`; approved translations managed by catalogue administrator | Retain resource key in the source locale; do not infer a translated label |
-| Active? | Yes/No | Y | None | Importer from `Flag.status`; read only to users | Inactive values retained; exclude from future manual selections |
-| Sort | Float | N | NULL | Catalogue administrator editable; not supplied by API | Presentation only; never participates in source identity |
+| Source System | Text, max 100 | Y | Receiving part's Source System | Importer supplied; immutable; human access for Administrators and Part Integration - Admin Security Group | Unique with Code |
+| Code | Text, max 100, stable and non-localizable | Y | None | Importer from `Flag.id`; immutable; human access for Administrators and Part Integration - Admin Security Group | Preserve `"2"` as text; not a UUID or Boolean |
+| Name | Text, max 255; localizable catalogue display field | Y | None | Importer supplies exact source label from `Flag.name`; approved translations managed by Administrators and Part Integration - Admin Security Group | Retain resource key in the source locale; do not infer a translated label |
+| Active? | Yes/No | Y | None | Importer from `Flag.status`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Inactive values retained; exclude from future manual selections |
+| Sort | Float | N | NULL | Administrators and Part Integration - Admin Security Group editable; not supplied by API | Presentation only; never participates in source identity |
 
 Sample imported Code is `2`; Name is `[ISOQuest].[PartNumber].Flag.Buy`; Active? is true. The text suggests a Buy flag, but the full source catalogue and approved display labels require confirmation. No manually seeded flag record is required to import this source-supplied value.
 
@@ -314,8 +314,8 @@ Inheritance parent: None. Directly declared fields:
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
-| Source System | Text, max 100 | Y | Receiving part's Source System | Importer supplied; immutable | Unique with Value |
-| Value | Text, max 100 | Y | None | Importer from `tags[*]`; immutable | Preserve exact text; deduplicate identical values; reject null/blank elements |
+| Source System | Text, max 100 | Y | Receiving part's Source System | Importer supplied; immutable; human access for Administrators and Part Integration - Admin Security Group | Unique with Value |
+| Value | Text, max 100 | Y | None | Importer from `tags[*]`; immutable; human access for Administrators and Part Integration - Admin Security Group | Preserve exact text; deduplicate identical values; reject null/blank elements |
 
 Sample Value: `942C`. A changed tag value is a different tag; replacing a part's tag links does not delete shared values. No source ID or status is invented.
 
@@ -325,9 +325,9 @@ Inheritance parent: None. Directly declared fields:
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
-| Part | M:1 to BOMECS Part API Recod, exactly 1; inverse Supplier Relationships | Y | Receiving BOMECS Part API Recod | Importer assigned; immutable | Association scoped to one source part |
-| Supplier | M:1 to Supplier Reference, exactly 1; inverse disabled | Y | None | Importer resolves `suppliers[*].id`; immutable; Source System must match Part | Validate source scope; no association by name |
-| Role | M:1 to Supplier Relationship Role, 0..1; inverse disabled | N | NULL | Authorized integration mapper may assign; new selection filter Active?=TRUE; existing inactive role retained read only | API array does not supply a role; never default Manufacturing; assignment updates existing association after uniqueness check |
+| Part | M:1 to BOMECS Part API Recod, exactly 1; inverse Supplier Relationships | Y | Receiving BOMECS Part API Recod | Importer assigned; immutable; human access for Administrators and Part Integration - Admin Security Group | Association scoped to one source part |
+| Supplier | M:1 to Supplier Reference, exactly 1; inverse disabled | Y | None | Importer resolves `suppliers[*].id`; immutable; Source System must match Part; human access for Administrators and Part Integration - Admin Security Group | Validate source scope; no association by name |
+| Role | M:1 to Supplier Relationship Role, 0..1; inverse disabled | N | NULL | Administrators and Part Integration - Admin Security Group may assign; new selection filter Active?=TRUE; existing inactive role retained read only | API array does not supply a role; never default Manufacturing; assignment updates existing association after uniqueness check |
 
 The receiving operation locates the one source membership by Part + Supplier before considering Role, so replaying a supplier array cannot create a second unassigned link after Role has been mapped. This component supports one optional local role assignment per source membership. Removing source membership removes only this local association and is audited; Supplier Reference remains. No canonical supplier or other existing object is linked.
 
@@ -337,10 +337,10 @@ Inheritance parent: None. Create this governed catalogue within Product Integrat
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
-| Code | Text, max 100, stable and non-localizable | Y | None | Catalogue administrator sets; immutable after first use | Unique; automation compares Code |
-| Name | Text, max 255; localizable | Y | None | Catalogue administrator editable | Display label only |
-| Active? | Yes/No | Y | TRUE | Catalogue administrator editable | False prevents new assignments; existing references remain valid |
-| Sort | Float | N | NULL | Catalogue administrator editable | Presentation ordering only |
+| Code | Text, max 100, stable and non-localizable | Y | None | Administrators and Part Integration - Admin Security Group sets; immutable after first use | Unique; automation compares Code |
+| Name | Text, max 255; localizable | Y | None | Administrators and Part Integration - Admin Security Group editable | Display label only |
+| Active? | Yes/No | Y | TRUE | Administrators and Part Integration - Admin Security Group editable | False prevents new assignments; existing references remain valid |
+| Sort | Float | N | NULL | Administrators and Part Integration - Admin Security Group editable | Presentation ordering only |
 
 Initial values:
 
@@ -358,11 +358,11 @@ Inheritance parent: None. This source-aligned business identity represents the n
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
-| Source System | Text, max 100 | Y | Connector source namespace | Importer supplied; immutable; restricted staging access | Unique with External ID; namespace must be verified before shared-reference reuse |
-| External ID | Text, max 100 | Y | None | Importer from `data[*].engineeringChangeNumber.id`; immutable | Source-scoped number identity; does not identify the complete context row |
-| Name | Text, max 255 | Y | None | Importer from `data[*].engineeringChangeNumber.name`; read only to ordinary users | Nonblank label; retain punctuation; do not parse segments into revision, drawing, program, or chronological order |
-| Active? | Yes/No | Y | None | Importer from `data[*].engineeringChangeNumber.status`; read only to ordinary users | False prevents new manual operational selection; retains scopes/history; no release, approval, or workflow effect |
-| Scopes | Inverse 1:M grid from Engineering Change Scope.Engineering Change Number | N | None | Read-only navigation for authorized staging users | Navigation only; no duplicate stored relationship; importer maintains context rows |
+| Source System | Text, max 100 | Y | Connector source namespace | Importer supplied; immutable; human access for Administrators and Part Integration - Admin Security Group | Unique with External ID; namespace must be verified before shared-reference reuse |
+| External ID | Text, max 100 | Y | None | Importer from `data[*].engineeringChangeNumber.id`; immutable; human access for Administrators and Part Integration - Admin Security Group | Source-scoped number identity; does not identify the complete context row |
+| Name | Text, max 255 | Y | None | Importer from `data[*].engineeringChangeNumber.name`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Nonblank label; retain punctuation; do not parse segments into revision, drawing, program, or chronological order |
+| Active? | Yes/No | Y | None | Importer from `data[*].engineeringChangeNumber.status`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | False prevents new manual operational selection; retains scopes/history; no release, approval, or workflow effect |
+| Scopes | Inverse 1:M grid from Engineering Change Scope.Engineering Change Number | N | None | Read-only navigation for Administrators and Part Integration - Admin Security Group | Navigation only; no duplicate stored relationship; importer maintains context rows |
 
 Sample: External ID `e98e2611-c94a-4b45-8b4f-b4d40083e905`, Name `CH2-S1397-1.0-26118SL01B`, Active? true. Multiple contexts may reference this one number under the proposed model.
 
@@ -372,15 +372,15 @@ Inheritance parent: None. One context row from `data` is a proposed scope associ
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
-| Engineering Change Number | M:1 to Engineering Change Number, exactly 1; inverse Scopes | Y | None | Importer resolves source + `engineeringChangeNumber.id`; read only to users; inactive source numbers importable | Required scope anchor and source namespace; key component; changing the key needs source correction mapping |
-| Supplier | M:1 to Supplier Reference, 0..1 per scope; inverse disabled | N | NULL | Importer from row `supplier`; read only to users; inactive source references importable | Require same source; no Part Supplier Relationship or role is generated; key component |
-| Part | M:1 to BOMECS Part API Recod, 0..1 per scope; inverse disabled | Conditional | NULL | Importer from row `partNumber` after non-null wire mapping is confirmed; read only to users | Null allowed when Revision is null; required when Revision is populated; retain Part when Revision becomes null unless Part is explicitly cleared; require same source; never infer from family members or Name; key component |
-| Revision | M:1 to Part Revision Reference, 0..1 per scope; inverse disabled | N | NULL | Importer from row `partNumberRevLevel` after non-null wire mapping is confirmed; read only to users | When populated require Part and enforce Revision.Part=Part; retained revisions with Included in Latest Part Feed?=FALSE remain valid targets; null does not choose a current revision; key component |
-| Product Family | M:1 to Product Family, 0..1 per scope; inverse disabled | N | NULL | Importer resolves row `productFamily.id`; read only to users; inactive source references importable | Require same source; context only, no family-membership mutation; key component |
-| Program | M:1 to Program Reference, 0..1 per scope; inverse disabled | N | NULL | Importer resolves row `program.Id`; read only to users; inactive source references importable | Exact capitalized descriptor keys; require same source; does not mutate Part.Programs; key component |
-| Description | Plain Unicode long text, proposed max 65,536 characters | N | NULL | Importer from row `description`; read only to ordinary users | Store exact wording, spacing, and punctuation per scope; explicit null clears; omission preserves on an identified update; escape when displayed |
-| Comment | Plain Unicode long text, proposed max 65,536 characters; provisional non-null format | N | NULL | Importer from row `comment`; read only to ordinary users | Explicit null clears; omission preserves on an identified update; retain as scope-level text pending ownership confirmation; escape when displayed |
-| Raw Payload | Raw JSON storage as defined in section 5 | Y | Complete validated `data[*]` row | Importer supplied; restricted to authorized staging/technical readers | Latest accepted row retained, including original property casing and nulls; full envelope retained separately through native integration evidence |
+| Engineering Change Number | M:1 to Engineering Change Number, exactly 1; inverse Scopes | Y | None | Importer resolves source + `engineeringChangeNumber.id`; read-only source control; inactive source numbers importable; human access for Administrators and Part Integration - Admin Security Group | Required scope anchor and source namespace; key component; changing the key needs source correction mapping |
+| Supplier | M:1 to Supplier Reference, 0..1 per scope; inverse disabled | N | NULL | Importer from row `supplier`; read-only source control; inactive source references importable; human access for Administrators and Part Integration - Admin Security Group | Require same source; no Part Supplier Relationship or role is generated; key component |
+| Part | M:1 to BOMECS Part API Recod, 0..1 per scope; inverse disabled | Conditional | NULL | Importer from row `partNumber` after non-null wire mapping is confirmed; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Null allowed when Revision is null; required when Revision is populated; retain Part when Revision becomes null unless Part is explicitly cleared; require same source; never infer from family members or Name; key component |
+| Revision | M:1 to Part Revision Reference, 0..1 per scope; inverse disabled | N | NULL | Importer from row `partNumberRevLevel` after non-null wire mapping is confirmed; read-only source control; human access for Administrators and Part Integration - Admin Security Group | When populated require Part and enforce Revision.Part=Part; retained revisions with Included in Latest Part Feed?=FALSE remain valid targets; null does not choose a current revision; key component |
+| Product Family | M:1 to Product Family, 0..1 per scope; inverse disabled | N | NULL | Importer resolves row `productFamily.id`; read-only source control; inactive source references importable; human access for Administrators and Part Integration - Admin Security Group | Require same source; context only, no family-membership mutation; key component |
+| Program | M:1 to Program Reference, 0..1 per scope; inverse disabled | N | NULL | Importer resolves row `program.Id`; read-only source control; inactive source references importable; human access for Administrators and Part Integration - Admin Security Group | Exact capitalized descriptor keys; require same source; does not mutate Part.Programs; key component |
+| Description | Plain Unicode long text, proposed max 65,536 characters | N | NULL | Importer from row `description`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Store exact wording, spacing, and punctuation per scope; explicit null clears; omission preserves on an identified update; escape when displayed |
+| Comment | Plain Unicode long text, proposed max 65,536 characters; provisional non-null format | N | NULL | Importer from row `comment`; read-only source control; human access for Administrators and Part Integration - Admin Security Group | Explicit null clears; omission preserves on an identified update; retain as scope-level text pending ownership confirmation; escape when displayed |
+| Raw Payload | Raw JSON storage as defined in section 5 | Y | Complete validated `data[*]` row | Importer supplied; restricted to Administrators and Part Integration - Admin Security Group | Latest accepted row retained, including original property casing and nulls; full envelope retained separately through native integration evidence |
 
 Use the tuple `(Engineering Change Number, Supplier, Part, Revision, Product Family, Program)` as the proposed scope key, comparing null components equally. This draft requires all six context properties in a received row, allowing explicit null for nullable references; defer a row with an omitted context property until delta identity is agreed. Native uniqueness must enforce null equality; do not rely on database null uniqueness behavior without verification. Text is not part of the key, so a text correction updates the same scope. Changes to key components produce a different scope until authoritative correction/removal rules identify the old one. A stable source row ID should replace this provisional key if supplied by the producer.
 
@@ -413,7 +413,7 @@ For `partNumberRevLevels`, upsert each identified revision by Part + External ID
 
 When `revLevels` is also present, its distinct strings must equal the distinct incoming revision Names with exact comparison. Reject duplicate identified IDs, ambiguous duplicate names, or conflicting sets before applying changes. A strings-only `revLevels` message does not manufacture IDs, replace revision membership, or designate a current revision; retain the strings in Raw Payload.
 
-Upsert one Part Supplier Relationship per Part + Supplier. Incoming supplier membership does not supply Role. Retain an existing mapped Role for a retained association; a retry must not create an additional null-role association. Removing membership removes only this component-local association, with native audit. It never deletes Supplier Reference. An explicit Role assignment is a separate authorized local mapper edit, with the active-catalogue filter and audit specified in section 5.
+Upsert one Part Supplier Relationship per Part + Supplier. Incoming supplier membership does not supply Role. Retain an existing mapped Role for a retained association; a retry must not create an additional null-role association. Removing membership removes only this component-local association, with native audit. It never deletes Supplier Reference. An explicit Role assignment is a separate edit by Administrators or Part Integration - Admin Security Group, with the active-catalogue filter and audit specified in section 5.
 
 Preserve `partClassification`, singular `program`, `customers`, `measures`, and `facilities` in Raw Payload until their non-null/non-empty contracts are supplied. LS/LE definitions, notes format, monetary precision/currency/unit basis, and future name semantics remain provisional. `includeAllFacilities` is source applicability data only; it grants no location access and creates no Facility relationship. Drawing Number remains text.
 
@@ -447,22 +447,34 @@ Rows absent from a page and empty `data` leave existing scopes unchanged. A chan
 |---|---|
 | Product Integration application / Product Integration tab | Exactly one tab with eleven separate direct inventory menu items, one for each object listed in section 3; no Reference Data submenu or grids on existing business-object forms |
 | Part form | Identity and descriptive source fields; Programs, Tags, Flag, and Family; read-only supplier-association and revision grids |
-| Revision grid | Revisions is the inverse of Part Revision Reference.Part; default filter Included in Latest Part Feed?=TRUE; authorized readers can inspect retained rows without changing membership |
+| Revision grid | Revisions is the inverse of Part Revision Reference.Part; default filter Included in Latest Part Feed?=TRUE; Administrators and Part Integration - Admin Security Group can inspect retained rows without changing membership |
 | Product Family form | Name, Notes, activity, identity, and read-only Part Numbers grid; assignments performed by the receive operation |
 | Change Number form | Identity, Name, activity, and Scopes inverse grid |
 | Change Scope form | Internal context relationships, Description, Comment; no existing master-object selector or navigation target |
 | Integration service | Create/update only these component objects; remove Part Supplier Relationship records only for validated source-membership removal and unlink native M:N associations as specified; prohibit deletion of retained revisions and reference masters; restrict source-key mutation |
-| Component reader | Read normalized records and approved internal navigation; no source-field edits and no Raw Payload access |
-| Technical reader without administrative membership | Inspect Raw Payload, native diagnostics, and configuration as authorized; this duty alone grants no source-edit override and is separate from the two administrative groups below |
-| Catalogue administrator | Maintain local Supplier Relationship Role; maintain Part Flag Sort and approved label translations; audit changes |
-| Local relationship mapper | Assign Role on existing Part Supplier Relationship using active local catalogue values; cannot manufacture source membership |
 
-The service, ordinary-reader, technical-reading, catalogue-maintenance, and local-mapper labels describe duties; they do not require additional named groups. The named administrative group model below takes precedence over any generic limited component-administrator wording. Lower-privilege duty restrictions do not deny the specified administrative object Rights or expand the receiving service allowlist.
+Human access throughout the application is for Administrators and Part Integration - Admin Security Group. This includes all inventories, forms, editable local catalogue fields, supplier Role editing, retained records, Raw Payload, source documents, and native receive evidence. Do not introduce separate component-reader, technical-reader, catalogue-administrator, or mapper access audiences. Everyone is used for audit settings only. The integration service remains a separately authenticated receive path with its existing write/delete allowlist.
 
 **Administrative groups:**
 
 - **Administrators (existing):** User-confirmed full control over all eleven objects is already in place because this group accesses Intelex with permission checks disabled. Reuse that existing behavior; no Administrators group creation, extra Rights grants, or permission-check configuration is assigned.
-- **Part Integration - Admin Security Group:** Set up this exact named group if absent, or reuse its exact existing match. Grant **Create, View, Edit, and Delete via Rights** on every Product Integration object, including all catalogues and references. Use Rights for this group; no permission-check bypass is requested. Group membership administration remains external.
+- **Part Integration - Admin Security Group:** Set up this exact named group if absent, or reuse its exact existing match. Grant **Use via Rights** separately on the **Product Integration application**, its sole **Product Integration tab**, and **all eleven inventory menu items** on that tab. Grant **Create, View, Edit, and Delete via Rights** on every Product Integration object, including all catalogues and references. Use Rights for this group; no permission-check bypass is requested. Group membership administration remains external.
+
+| Target | Part Integration - Admin Security Group: Rights |
+|---|---|
+| Product Integration application | Use |
+| Product Integration tab (the sole tab) | Use |
+| Inventory menu — BOMECS Part API Recod | Use |
+| Inventory menu — Program Reference | Use |
+| Inventory menu — Supplier Reference | Use |
+| Inventory menu — Part Revision Reference | Use |
+| Inventory menu — Product Family | Use |
+| Inventory menu — Part Flag | Use |
+| Inventory menu — Part Tag | Use |
+| Inventory menu — Part Supplier Relationship | Use |
+| Inventory menu — Supplier Relationship Role | Use |
+| Inventory menu — Engineering Change Number | Use |
+| Inventory menu — Engineering Change Scope | Use |
 
 **Everyone audit settings:** For the existing **Everyone** group, enable **Audit Trail** for each object's **Create, Edit, and Delete** permissions. Apply all three settings to all eleven objects, for 33 enabled object-operation settings. These are audit settings, not Create/View/Edit/Delete access grants to Everyone. No View audit change is assigned.
 
@@ -480,7 +492,7 @@ The service, ordinary-reader, technical-reading, catalogue-maintenance, and loca
 | Engineering Change Number | Create, View, Edit, Delete | Create, Edit, Delete |
 | Engineering Change Scope | Create, View, Edit, Delete | Create, Edit, Delete |
 
-The named administration group has 44 required object Rights grants. Keep native reference integrity applicable to administrative deletion; the service-only deletion restrictions do not remove this group's Delete right. Retain native audit of relevant association changes and restricted evidence of prior accepted messages/failures. Audit/execution timestamps remain native server instants displayed through supported user time zones. Inactive records retain authorized existing links without broadening access. Verify ordinary-reader restrictions through URLs, search, exports, source documents, and relationship navigation; do not rely only on form visibility.
+The named administration group has thirteen Use Rights grants (one application, one tab, and eleven separate inventory menu items) and 44 object Rights grants, for 57 required Rights grants in total. Each menu item requires its own Use grant; application Use, tab Use, and linked-object permissions do not substitute for it. Keep native reference integrity applicable to administrative deletion; the service-only deletion restrictions do not remove this group's Delete right. Retain native audit of relevant association changes and restricted evidence of prior accepted messages/failures. Audit/execution timestamps remain native server instants displayed through supported user time zones. Inactive records retain authorized existing links without broadening access. Apply the same two administration groups through direct URLs, search, exports, source documents, and relationship navigation. Neither group requires an additional reader membership to inspect evidence. Source-owned field controls, inverse grids, active-value filters, immutable-key checks, reference integrity, and retention remain data/lifecycle behavior, not further group-access restrictions.
 
 Source labels are imported literally. Catalogue Name fields support localization; stable codes remain non-localizable. The Part Flag source label is a resource key and must not be silently translated into an assumed enum value. Render imported text as text with the appropriate output escaping.
 
@@ -542,10 +554,10 @@ Statuses below describe the logical specification; they do not report a live ten
 | PMAPI-A12 | Receive conflicting duplicate scope tuples or an unconfirmed non-null Part/Revision DTO | Reconcile/defer as specified before normalized row mutation; retain source evidence |
 | PMAPI-A13 | Attempt cross-source links or a revision from a different Part | Reject invalid association; no partial update |
 | PMAPI-A14 | Inspect every relationship target, configured selector, inverse, and inheritance edge | All business targets belong to the eleven local objects; no existing-object lookup or connector writeback |
-| PMAPI-A15 | Exercise direct URLs, search, export, and Raw Payload access with reader permissions | Only permitted local data is visible; source fields remain read only; restricted evidence is protected |
+| PMAPI-A15 | Exercise forms, direct URLs, search, export, Raw Payload, and retained-evidence access with each administrative group | Administrators and Part Integration - Admin Security Group can inspect all application data/evidence; no separate reader group is required, and source-controlled data rules remain distinct from permissions |
 | PMAPI-A16 | Fail persistence mid-operation and retry | Verified transaction/staging strategy prevents exposed partial state and duplicate records; native diagnostics retain the failure |
 | PMAPI-A17 | Inspect application ownership and navigation | All eleven objects belong to Product Integration; its only tab is Product Integration and contains eleven direct inventory menu items, one per object, without a Reference Data submenu |
-| PMAPI-A18 | Inspect the named administration group on every object | Part Integration - Admin Security Group has Create, View, Edit, and Delete via Rights on all eleven objects (44 grants); Administrators full control is reused as user-confirmed existing behavior |
+| PMAPI-A18 | Inspect named-group app/tab entry and object Rights | Part Integration - Admin Security Group has Use via Rights on application, sole tab, and all eleven inventory menu items, plus Create, View, Edit, and Delete on all eleven objects: 57 Rights grants; Administrators full control is reused |
 | PMAPI-A19 | Inspect Everyone audit settings on every object | Audit Trail is enabled for Everyone on Create, Edit, and Delete on all eleven objects (33 enabled settings), without granting Everyone object access |
 
 ## 10 Validation findings and remaining configuration decisions
@@ -581,7 +593,7 @@ The required revision Part link and optional ECN Part/Revision constraints accep
 | ECN pagination | Confirm page parameters, count interpretation, snapshot consistency, and delivery behavior; omission does not delete records |
 | Native storage and types | Verify long-text/document capacity, Decimal(19,6), character limits, localization, and source-identifier case comparison; no silent truncation/rounding |
 | Native uniqueness and transactions | Verify composite-key enforcement, null-aware scope matching, locks, rollback, native staging, and create-request mapping before enabling production writes |
-| Native audit, retention, and permissions | Named group Rights and Everyone Create/Edit/Delete Audit Trail policy are supplied in section 7; only the remaining native bindings for prior evidence, association audit, technical document access, and retention require supplied settings; no custom audit object is proposed |
+| Native audit, retention, and permissions | Application/tab/inventory-menu Use, named group object Rights, and Everyone Create/Edit/Delete Audit Trail policy are supplied in section 7; only the remaining native bindings for prior evidence, association audit, document access for the two named administration groups, and retention require supplied settings; no custom audit object is proposed |
 | Configuration metadata | Allocate unique new application, tab, menu, object, and field identifiers within Product Integration; do not reuse an existing object by name |
 
 These decisions do not prevent a reviewable logical technical specification or receipt of the supplied examples under the stated assumptions. They remain implementation prerequisites where the tenant or producer contract must determine executable behavior. No tenant build, import execution, security test, or deployment is claimed here.
