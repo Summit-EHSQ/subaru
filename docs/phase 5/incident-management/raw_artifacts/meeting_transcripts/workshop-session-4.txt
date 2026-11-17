@@ -1,0 +1,1686 @@
+[P0001] Summit EHSQ  SIA  Incident Design-20261104_123712-Meeting Recording
+
+[P0002] 4 November 2026, 05:37pm
+
+[P0003] 1h 21m 21s
+
+[P0004] 
+Shao Ngoi started transcription
+
+[P0005] 
+Shao Ngoi   0:03
+My wife.
+
+[P0006] 
+Joel Frick (6124)   0:05
+Yeah, yeah.
+The.
+
+[P0007] 
+Shao Ngoi   0:07
+All right, so for the rest of the sessions here until 2:00, what I really want to cover with the team is really, I want to make sure that we are all on the same page in terms of what has been discussed. If I bring back my agenda here for a second, we touched on...
+most of the incident type, but I do want to take an opportunity to revisit some of the incident type, especially, you know, vehicle incident versus PIT. I am as well as the NOE, right? What are we going to do with the NOE now that Monica has mentioned that she'll manage it?
+insight audit. Okay, so those are a few few items that I want to confirm, but for now, following my agenda here, I want to touch on reporting. When it comes to reporting, generally speaking, as mentioned before, right, whatever we have in intellects is whatever we can report out.
+However, that is just reporting out the data. In this scenario, when I'm talking reporting as well, is really beside incident that has been reported into Intellects for incident management. How are we planning to report? Are we planning to report hours, work, headcounts into Intellects as well?
+for you to generate your OSHA report.
+
+[P0008] 
+Joel Frick (6124)   1:31
+Did you say head count? Yeah, or hours work? We would need hours, yeah.
+
+[P0009] 
+Shao Ngoi   1:36
+Ours headcount will give you the KPI, I mean the rates. Do you need those in intellects?
+
+[P0010] 
+Joel Frick (6124)   1:42
+What rates?
+
+[P0011] 
+Shao Ngoi   1:44
+the incident rates. Sorry, head count is required for your OSHA 300A average employee for the establishment for a given year.
+
+[P0012] 
+Joel Frick (6124)   1:56
+Okay, yes, but that, yeah, but the head count doesn't calculate our actual rates. We need hours for rates. So that would come out of, there's two different pathways, as I understand it, to get hours. ADP is 1, and then there's another one that Scott told me about, but Scott, I, I Scott on the call.
+
+[P0013] 
+Scott Bailey (6347)   2:19
+Yeah, so, okay. Let me back up a little bit. Dan, are we intending to do 300 reporting out of the system now and not have it go through the clinic? Is that what you're looking to pursue?
+
+[P0014] 
+Joel Frick (6124)   2:29
+I'm not sure I'm ready to say that, but I don't want to shut it down as a possibility.
+
+[P0015] 
+Scott Bailey (6347)   2:34
+Okay, so...
+
+[P0016] 
+Joel Frick (6124)   2:35
+Because we, because we're the reason I say that is because we're still waiting on the clinic to get back on what they're willing to do in terms of what system they're switching to or willing to switch to.
+
+[P0017] 
+Scott Bailey (6347)   2:44
+Sure, my goodness, all of the hours comes out of ADP. I can feed that however is needed, but we do.
+It depends on what your objective is, right, and how that would drive.
+What we send, if it's just a 300 reporting, then you probably need very limited, just summed up data, right? Is how I assume that needs to work, but for all of our other reporting we currently do out of the system, that's a lot more rules around it, and therefore we have to...
+not sum up that data and therefore it's like millions and millions and millions of records. And so it's like, I kind of need to understand what the objective is here for this reporting.
+
+[P0018] 
+Nicholas Leuck   3:35
+If it, if it's just the OSHA 300 log.
+It's just one total. It's just the total hours.
+
+[P0019] 
+Joel Frick (6124)   3:45
+And that's for everybody, yeah.
+
+[P0020] 
+Nicholas Leuck   3:45
+I would rather, yeah, I would rather not do trying to do section rates, you know, incident rates or OSHA rates in this system. I'd rather just...
+Populate, you know, we extract that data and have it in Power BI. It's a lot easier to do that than try to feed all this data to Intellect to do hours.
+
+[P0021] 
+Shao Ngoi   4:11
+Okay, so on that note then, you know, obviously...
+We didn't, from what I can see in your location structure, it is 1 establishment Subaru, right? SIA. In this case, is that the one summed up hour that you're referring to here, just at the top level?
+Do you need?
+
+[P0022] 
+Scott Bailey (6347)   4:32
+This is where I need your direction on this. The one number would probably be at the top level, the executive level.
+or whatever, Subaru level, sorry, rather. But I would need direction from you guys. If you guys just need a number on a month, now, the thing is that number changes over time, and how do you want us to handle that as well?
+
+[P0023] 
+Shao Ngoi   4:47
+Minh.
+
+[P0024] 
+Scott Bailey (6347)   4:59
+So...
+Just however you need it, we can accommodate. I just need to understand the objective.
+
+[P0025] 
+Shao Ngoi   5:07
+So, let me then...
+Different questions, right? If we some, obviously for OSHA reporting, it is at the very top level, like SIA, Subaru level. When it comes to the hours, right, are we planning just an automation from Scott, right? Is that based on just you entering?
+the data monthly into Intellects or are we doing this yearly into Intellects? What is that frequency is going to look like? Is there any scenarios where someone will come in here by, let's say, the department, they enter the hours of the department?
+
+[P0026] 
+Nicholas Leuck   5:47
+O.
+
+[P0027] 
+Scott Bailey (6347)   5:47
+No, I'm hoping that we would never have to manually do any of this. But go ahead, Nick.
+
+[P0028] 
+Nicholas Leuck   5:52
+So where we get caught up is if IOSHA comes in to the plant and requests, what is your OSHA log today? And then we have to pull one at that moment.
+That doesn't happen that often, but it, you know, it can happen to where we need to pull that OSHA log in a specific moment.
+We currently have the, we can do that now, but once again, we have to, I have to work with the clinic to get them the hours, get them headcount numbers, and then they have to pull that log.
+So...
+So yeah, it can randomly come up in the middle of the year if we get like an audit from IOSHA.
+
+[P0029] 
+Shao Ngoi   6:50
+So which means at the very least we would be looking at maybe monthly.
+Total hours by month.
+
+[P0030] 
+Scott Bailey (6347)   7:02
+I'm going to be totally transparent here. I don't know how the IOSHA stuff looks or works.
+
+[P0031] 
+Shao Ngoi   7:02
+So, the wait...
+
+[P0032] 
+Nicholas Leuck   7:06
+You wouldn't.
+You wouldn't do it by month. You would just, it's the, it's a year to date. So.
+
+[P0033] 
+Scott Bailey (6347)   7:13
+Okay, so we can send, if it's good with Intellects, we could just send like a daily or weekly feed of the summed hours for the year.
+
+[P0034] 
+Shao Ngoi   7:23
+Okay, so it's year to date, so that just, I guess, it's just an accumulation, it's not by year, by month. It's not like you say this month is 10,000 hours, next month is 20,000 hours. So that's for you guys, it's accumulation over time.
+
+[P0035] 
+Nicholas Leuck   7:37
+Yes, we do. We do that on our own reporting, but for the log, for, you know, for the OSHA 300 log, that is, you know, if it need, you know, it's always what is the end of the year look like, but you really may get a request.
+you know, in June, and they may ask, hey, what's your current log in June?
+
+[P0036] 
+Shao Ngoi   8:05
+Yep, for sure, right? Because that's the yearly report that you submit to OSHA. The other one is, like, to your point, an ad hoc request.
+
+[P0037] 
+Joel Frick (6124)   8:14
+Yeah, but we also, if we ever have a regulator, we have to have that in their hands within 4 hours.
+Like, if they stop in right now, we gotta get our ocean 300.
+accurate Ocean 300 in their hands.
+
+[P0038] 
+Scott Bailey (6347)   8:31
+So Dan, by accurate, do we mean accurate within reason or accurate to the second?
+If the data refreshes once a day, is that accurate? Okay.
+
+[P0039] 
+Joel Frick (6124)   8:41
+Accurate with him.
+Oh, yeah, yeah, yeah, yeah, that would be fine. Yes.
+Yes, but it, but if it was like, you know, we didn't, we didn't add, you know, 6 injuries from last week, I wouldn't feel as comfortable with that.
+
+[P0040] 
+Scott Bailey (6347)   9:00
+Okay, yeah, that's different. Yeah, I'm talking about from an hours perspective, like we can we can feed the hours every every 5 minutes if they really want it, but I would urge us not to do that if we don't have to.
+
+[P0041] 
+Joel Frick (6124)   9:02
+Yeah, yeah.
+No, it's.
+Yeah, and it's much more critical that they have the log of injuries and illnesses more so than the rate.
+The rate, I want it to be accurate within reason, I like to put it that way, but I mean, as much as we know about...
+
+[P0042] 
+Scott Bailey (6347)   9:22
+Got you.
+
+[P0043] 
+Joel Frick (6124)   9:29
+injuries and illnesses, they should be on the log before we give it to them. If we don't know of them or haven't identified them, but it's been since yesterday, then that's probably okay.
+Normally, I mean, you can do this with a pen in a paper form, right? So it's, if you know about it, if you write it down, you give it to OSHA, but it's not, it doesn't have to be electronic.
+
+[P0044] 
+Nicholas Leuck   10:09
+So...
+We typically.
+Don't report.
+Um...
+Like our OSHA 300 log until like the end of January, maybe early February.
+
+[P0045] 
+Joel Frick (6124)   10:22
+It's February to May. It's February to the end of May.
+
+[P0046] 
+Nicholas Leuck   10:24
+Okay, okay. So that's typically when we fill that out with the clinic.
+
+[P0047] 
+Joel Frick (6124)   10:28
+That's when it's posted, yeah.
+
+[P0048] 
+Nicholas Leuck   10:31
+So, so I don't know if, at that point, like at that point, it's a cutoff, right? If anything happens afterwards, it, it, you don't, you don't resubmit it unless they request you to resubmit it.
+
+[P0049] 
+Joel Frick (6124)   10:45
+It doesn't change your 300A. That's your summary. That's what's posted. You post it at the beginning of February and it stays same piece of paper, stays out for months, right? And then you take it down to the end of May. That doesn't change. That freezes off. However, if, you know, we post that February 1st and then February 3rd, an injury that happened last November,
+
+[P0050] 
+Nicholas Leuck   10:51
+Yes.
+Yes.
+
+[P0051] 
+Joel Frick (6124)   11:06
+turns into an OSHA recordable, it's going to be on the 300 log, but it's not going to make it to the summary report. We don't have to go pull down the summary report, reprint it, change it, like that stays locked in.
+
+[P0052] 
+Nicholas Leuck   11:20
+That's correct, yes.
+
+[P0053] 
+Scott Bailey (6347)   11:21
+So January 5th, when we return from winter shutdown, do I need to continue to feed last year's hours as they mature? Or, okay, and then once you guys say, hey, we are pulling this as of February 1st or whatever, then at that point in time,
+
+[P0054] 
+Joel Frick (6124)   11:30
+Yes.
+Thank you.
+
+[P0055] 
+Scott Bailey (6347)   11:40
+I need to stop updating the 20 for next year, 2026 calendar year.
+
+[P0056] 
+Joel Frick (6124)   11:47
+just for the 300A, because we're going to take it as in the best information that we know and understand at the time, we're going to print that summary page, post it, but then you would keep updating the 300 log.
+
+[P0057] 
+Scott Bailey (6347)   11:59
+from an hours perspective. So from an hours, okay, so I just need to update all years at all time.
+
+[P0058] 
+Joel Frick (6124)   12:00
+Yes.
+Yep, and the only one that freezes up is the A summary form that gets printed.
+
+[P0059] 
+Scott Bailey (6347)   12:14
+That's not hard. That actually makes it easier. I was more worried about having like this, like you have to tell me when to turn something off.
+
+[P0060] 
+Shao Ngoi   12:22
+Yep, so then from what I'm hearing, every single hour's work, you know, it has to be, it will be by year, by the top location Subaru, and then it will always just be that, right? You can do update by that dimension, Subaru and the year, right, regardless of its last.
+
+[P0061] 
+Joel Frick (6124)   12:37
+Yeah, and I asked, I asked this during the during the.
+demonstration of this. And they said they were going to look to make sure that it's freezing it off the right way and all that. Because obviously, if you print it on a hard piece of paper, it's going to freeze it off because it's printed. But I want to also be able to go back electronically into the system in March and print off our current 300 day.
+and have it be the same as the one that we printed at the beginning of February. So I asked the question, does Intellect freeze that off electronically for the A, the 300A? And I haven't heard that answer, but I'm strongly suspecting that, you know, we're obviously not the first ones to go to this rodeo. So I'm strongly suspecting that it's been worked out.
+
+[P0062] 
+Shao Ngoi   13:23
+I will need to follow up on that and see what they are looking into. In terms of freezing it off, right? Intellect's platform here, there's no...
+freezing per se, right? So let's say a last year data, 300 A generate today, let's say it contains, let's say 2 recordables, okay? And then let's say maybe there's something that is wrongly categorized back, get back data to last year, right? Something that's recordable gets back.
+data to last year. Now if you generate the 300A again, it will say tree recordable because the data is live in Intellex.
+
+[P0063] 
+Joel Frick (6124)   14:06
+Are we sure about that? That it doesn't freeze it off?
+
+[P0064] 
+Shao Ngoi   14:11
+I am pretty certain there's no freezing of the data. It's live data.
+
+[P0065] 
+Joel Frick (6124)   14:17
+Is.
+
+[P0066] 
+Shao Ngoi   14:21
+That's why again, I need to take it back and see what Intellect has communicated. That is what always be the database in Intellect is always live. There is no, we lock it down, this version, and then there is a live version that is ongoing.
+Yep, I can take this as a parking lot item and follow up internally, but just pointing out, yeah, as far as I know, there is no time stamping, no versioning, unless you say you generated it already, you keep it, you file it away, that is your version.
+Right, if you try to generate again, now that...
+number may or may not change, but whatever version that you're generating right now is using again live data.
+I'm not sure if that helps, but that's how the Intellect database works. There's no versioning per se. It's all live data.
+K.
+
+[P0067] 
+Joel Frick (6124)   16:00
+Do you have an example of what 300 and 380 log looks like within intellects?
+
+[P0068] 
+Shao Ngoi   16:06
+Yep, I do. So let's say, let's see if you have 10 test data here. There's no test data.
+
+[P0069] 
+Joel Frick (6124)   16:12
+See.
+
+[P0070] 
+Shao Ngoi   16:16
+It's very much followed the same format as the OSHA format. That's how Intellect is based off the template by.
+
+[P0071] 
+Joel Frick (6124)   16:24
+Can you reduce your screen a little bit to some of your left-hand side of the screen is getting cut off?
+
+[P0072] 
+Shao Ngoi   16:30
+Reduce, like as in cut off like the site.
+
+[P0073] 
+Joel Frick (6124)   16:31
+Yeah.
+Yeah.
+
+[P0074] 
+Shao Ngoi   16:37
+Does it help?
+
+[P0075] 
+Joel Frick (6124)   16:39
+Yeah, but you can send me like one one click and we're good.
+
+[P0076] 
+Shao Ngoi   16:42
+Like this one?
+
+[P0077] 
+Joel Frick (6124)   16:42
+Yeah, yeah.
+
+[P0078] 
+Shao Ngoi   16:47
+So let me see if there's something recordable here.
+Because this is development site, what I need to do essentially on my side is trigger a job to...
+generate those summary first. Just bear with me for a second here.
+K.
+This is this one first.
+So what I'm doing here essentially triggering the system's job to generate all this OSHA summary.
+I'm obviously in development site right now, none of this job is really running, so I'm actually running it.
+manually. So the for a template itself, I can if I'm to bring up the template while that one runs.
+So for the 300...
+Template.
+This.
+These are all the merge code. I don't know why I cannot change it.
+One second.
+
+[P0079] 
+Joel Frick (6124)   18:33
+So, I just I just looked up the 1904 standard, and it says there's a Q&A in it, like a thank you, I should say, and it says, "Do I have to update those 300 log gas obviously for five years, and then do I have to do I have to update the annual summary?" No, you're not required to update the annual summary, but you may do so if you wish. So, technically, either.
+
+[P0080] 
+Shao Ngoi   18:33
+Okay.
+
+[P0081] 
+Joel Frick (6124)   18:54
+Option, if it updated or not, but the problem to be, I wouldn't wanna give it, wouldn't wanna have it update automatically and not be aware of that, and then Ocean Inspector comes in and looks at our posting in the in the glass wall, right? Yeah, and they're like, "OK, this is what I'm looking at," and then I give them something they want a copy of it, and it's...
+It's the worldwide of these, not Matthew. I have to explain.
+I mean, it's easy enough to explain, but it will be nice. Take all those boards and make them digital. You shouldn't have to worry about it. And then, like, what was the issue we're going to this year?
+Was.
+I'm paraphrasing, but it's my understanding the train had to pull the ocean to disaster, yeah, and...
+He had to.
+basically be CSI to deduce why the numbers were not matching up. Yes. And it was in my understanding that it was because the way that our OSHAs get reported at a later time threw off the summary.
+
+[P0082] 
+Nicholas Leuck   20:13
+There's more to that. When you pull the log in OHM, there is not an easy way to do like an overall. For some reason in OHM, it's broken out by SIA associates and
+temporary associates. So when Brandi was originally pulling it, she was only getting part of it. Wasn't getting the full picture. So it's a little, it's a little tricky, but you have, there's a way to, you have to select like everything.
+
+[P0083] 
+Joel Frick (6124)   20:39
+Right.
+
+[P0084] 
+Nicholas Leuck   20:52
+before you pull the log or you have to pull them individually and then merge them together somehow. But that was one of the big issues is because it bring it was the manager, the occupational.
+Manager typically was the one who would do that, but she had left before we did the OSHA 300. So this was Brandy's kind of first time trying to do this. But yeah, it's not an OHM. It's not a very easy just, hey, I select this. It gets me everything you actually have to select.
+
+[P0085] 
+Joel Frick (6124)   21:14
+Mhm.
+Right.
+
+[P0086] 
+Nicholas Leuck   21:28
+like Subaru associates and then your temporary associates to get the complete, the complete log. So just a little bit of a, you know, a little bit of a, you know, technological issue there trying to get all those.
+
+[P0087] 
+Joel Frick (6124)   21:46
+And I'm going to make the assumption that we don't have that issue with the intellects.
+
+[P0088] 
+Shao Ngoi   21:54
+Pulling, it needs like pulling the log. It's again, beside the data, it's all by establishments, right? So let's say, based on the incident reported, every single incident will have a location, right? The location essentially will roll up to each of these location. We can, we have to.
+look into if it's only Subaru that you're reporting by, right? So we can have to roll up the data to that location. But as it stands, even without rolling up, if I look at my OSHA summary, it has all the locations that you currently have in your location structure give you that summary. All right, let's say I have...
+and a reportable incident under quality engineering, you'll say one, and then if, let's say, I have another reportable incident under, let's say, in-process control metal, I have one, all of those will ultimately roll up to the top location, Subaru, in this case. Okay, so in...
+
+[P0089] 
+Joel Frick (6124)   22:53
+And where do, where do, within our case, where would those temporary employees fall?
+
+[P0090] 
+Nicholas Leuck   23:05
+I, I don't think they have it broken out like that, Larry, in here. I, I see, I think they're all...
+They're just, they're all in there, no matter what the location is. Yeah.
+
+[P0091] 
+Joel Frick (6124)   23:15
+OK.
+Okay.
+
+[P0092] 
+Shao Ngoi   23:21
+Yeah, so that again, that when you say all in there, right, so this we are still, let's say, an associate or whoever it is, may not have a location, set location in your structure, but the system still needs to know, all right, where exactly this incident is being is happening.
+Right, like I say, it could be any of this location, as long as, you know, as part of the incident reporting, I go, all right, this is being reported at the maintenance locations for manufacturing.
+Tang.
+So that is what's critical for it, for the system to know, all right, this is part of this location. It can roll up to Subaru at the end of your year for the OSHA summary.
+
+[P0093] 
+Joel Frick (6124)   24:06
+And that's OK, because it doesn't matter.
+It does not matter who the person works for, it matters who they report to daily.
+So like if technically, you know, Morales pays somebody or MIS and they're getting their paycheck from them, but we are directing them daily, it goes on our log.
+
+[P0094] 
+Shao Ngoi   24:33
+Yeah, all in all, because everything rolled up to Subaru, right? So this is where you'll see all the cases, all the days away, that's captured, roll up into that one top location. And this is where if you have the head counts, it will roll up into here as part of your...
+300A summary.
+So this is your 300 summary, basically a summary of a recordable injury that's being reported. 300A, if I may pull up a template for that, it looks like this.
+
+[P0095] 
+Joel Frick (6124)   25:00
+Yeah.
+So Intellect spits it out on the actual OSHA form.
+Yeah, good.
+
+[P0096] 
+Shao Ngoi   25:19
+Right, so this is where you have Subaru, whatever the address is, your industry description, SIG code, NAICS code, the number of employees. So this is where the number of, sorry, not here, average number of employee would go into, and then your total hours.
+And this will contain the count of all the cases for the year, for all the location that rolls up to Subaru.
+So again, this number here, once you generate, let's say today, you have maybe total number of cases with job transfer or restriction is 2, right? Going back to the case of what if something that has to be backdated to last year. Now, if you generate that again, this number will go 10 to 3 because
+This number is not set in stone. Whenever you generate this report out of intellects, it's using the live data.
+
+[P0097] 
+Joel Frick (6124)   26:23
+And that's okay, we'll just have to, we'll probably just save it somewhere in February. And if we, because I also just don't want, you know, let's say one of them gets damaged or something, we got it reprinted for a case on a wall. I want them to dispatch. So we have the same PDF saved somewhere.
+
+[P0098] 
+Shao Ngoi   26:40
+Yeah, so the only freezing here is, yeah, once you generate, you save it, you file it, right? And then if you ever need to regenerate it again, it may or may not have the same number, depending on if the data has changed.
+
+[P0099] 
+Joel Frick (6124)   26:45
+Yeah.
+Yeah.
+K.
+
+[P0100] 
+Shao Ngoi   26:56
+Does that help answer some of your questions around freezing? Because that's the part where I kind of got caught off guard with freezing because technically there's no freezing of the data.
+
+[P0101] 
+Joel Frick (6124)   27:10
+Good.
+
+[P0102] 
+Shao Ngoi   27:15
+Yep, so if no, what?
+
+[P0103] 
+Joel Frick (6124)   27:17
+No, we're good.
+
+[P0104] 
+Shao Ngoi   27:19
+Awesome. Yeah, so this is where you can see in Intellect, it just comes with all this template pre-populated by Intellects already. One thing I've noted here specifically for hours work, you are doing year-to-date for Subaru as a whole for the year.
+Just need to note that down.
+A year.
+You are too late.
+Right, so that's that one item.
+So that's kind of really addressed the hours work which will feed into your OSHA 300A. And then for incident data, I know we talked about injury, environmental, PIT.
+What type of reporting are you planning to get out of Intellects beside, you know, the AI components where you do your analysis? Are you planning to do some training or anything out of Intellects using Intellects reporting tools?
+
+[P0105] 
+Joel Frick (6124)   28:25
+Yes.
+
+[P0106] 
+Shao Ngoi   28:29
+Do we have an idea of what we are looking into like overdue tasks? I don't know.
+
+[P0107] 
+Joel Frick (6124)   28:34
+We haven't mapped out the lagging or leading indicators or the KPIs, but I do know we want to have the ability to be able to create those reports. Those would be mostly intellectual use and like outstanding incidents and things that we need to follow up on intellectual use side of things.
+
+[P0108] 
+Shao Ngoi   28:43
+Okay.
+
+[P0109] 
+Joel Frick (6124)   28:55
+In terms of our of our like safety system performance, that's probably gonna live more in Power BI to to next point earlier.
+
+[P0110] 
+Shao Ngoi   29:08
+Yep, so then, in this case, you know, since you didn't get a chance to really map this out yet, once we review the solution, especially from a field level side of things, right? Just keep in mind, right, going back to the statement of if it's in the intellects, we can report it, no problem. If it's if it's not in intellects.
+then we cannot report it. Obviously, we don't have the data points or data to even report it out. The other one thing to keep in mind as well is anything that you're looking to trend, right, looking to have a consistent data.
+
+[P0111] 
+Nicholas Leuck   29:31
+Okay.
+
+[P0112] 
+Shao Ngoi   29:42
+Stay away from having a text box, right? I think that that's pretty, pretty obvious, right? If it's text box, it's hard to really trend or do any proper analysis unless you use AI agent that could learn your pattern, whatever you're trying to group everything as one, right? That is a possibility. But in this case, most of what I've seen is really trying to...
+Stay away from text box if you are looking to trend or do some kind of meaningful groupings.
+
+[P0113] 
+Nicholas Leuck   30:11
+So yeah, so just speak on that, Dan, like that would be an issue. Like if we're having the group leader hand type in like the stations.
+
+[P0114] 
+Shao Ngoi   30:11
+Makes sense so far.
+
+[P0115] 
+Joel Frick (6124)   30:13
+Yep.
+
+[P0116] 
+Nicholas Leuck   30:27
+you wouldn't be, this wouldn't be a good way to try to like trim that out.
+
+[P0117] 
+Joel Frick (6124)   30:33
+Right.
+
+[P0118] 
+Nicholas Leuck   30:34
+That would be like an example of where if you if you're in intellection or trying to find out what stations are a hotspot or like on a heat map, doing that on a free text field.
+would not be a really good idea.
+
+[P0119] 
+Joel Frick (6124)   30:54
+It has to be like a drop down or something of that name was predetermined, correct?
+
+[P0120] 
+Nicholas Leuck   30:58
+Correct, and I don't know if we'll be ready to have all the station information in here when we go live.
+
+[P0121] 
+Joel Frick (6124)   31:06
+Right.
+
+[P0122] 
+Nicholas Leuck   31:10
+So it would be reliant on a free text field until then.
+
+[P0123] 
+Joel Frick (6124)   31:14
+Good.
+
+[P0124] 
+Shao Ngoi   31:16
+Yeah, so again, that's a very good call out there. That's a good example. Anything that you want to train, obviously, text will be a bit challenging because everyone spells something differently.
+Right, right. I've noted down maybe something that we can decide as we go along, right? This is for a station you mentioned.
+
+[P0125] 
+Joel Frick (6124)   31:39
+Mhm.
+
+[P0126] 
+Shao Ngoi   31:40
+Station.
+That's just really touching reporting as a whole, right? The other one thing is...
+Who would be creating all this report? Is it just the system admin or someone like, I don't know, Nicholas Scott building these reports in Intellects?
+
+[P0127] 
+Joel Frick (6124)   32:06
+It'd be, you know, myself, a safety practitioner, you know, we haven't really defined those individual roles. But I would definitely make the strong assumption that someone within the safety team would have some kind of input or administration of the type of reports that we
+
+[P0128] 
+Shao Ngoi   32:14
+Mhm.
+
+[P0129] 
+Joel Frick (6124)   32:25
+Each group to have on a regular basis.
+
+[P0130] 
+Shao Ngoi   32:28
+Got it. Okay. Yep, that's not a roadblock at this point. I'm just trying to get an understanding who would ultimately be will be creating this report in Intellects. All right.
+Okay, yeah, the other one is really just kind of feeding into the reporting itself, right? Obviously, we touch on API, we touch on Power BI. That's just a lot of functionality that we can accommodate all those, right? Just that from an API side of things, Intellect does have an open API that you can connect to.
+As well as from a reporting side, there is the OData connector that we can also teach you how to connect to your Power BI, for example. However, for the OData, though, it's really start off with what report do I want? I have to build that report first in Intellex, right, before you can have that connector. That connector, essentially OData connector, essentially.
+Connects to the data set that you've built in Intellex, and those are the set of data that you're getting out of Intellex, whereas on API side you're connecting directly to the database table. You can pull all the data from beginning of time, so it's up to you guys to filter out what data are you looking for.
+
+[P0131] 
+Nicholas Leuck   33:43
+Yeah, I think we're going to be using a lot more of the API version.
+
+[P0132] 
+Shao Ngoi   33:47
+Cool. Yeah, so then on the API side, right, I need to take a look and see what's in place. For API side, then it's strictly on you guys to build out the API calls, right? We can support you with the column names and the table names.
+Right, so.
+
+[P0133] 
+Scott Bailey (6347)   34:07
+A quick question on that. When we're talking about feeding you the time data, can I do that via API as well? Can I like target your table and update it?
+
+[P0134] 
+Shao Ngoi   34:19
+Yes, you could. On the update side, it's a bit challenging, simply because for any update in Intellect, you have to find out the GUID ID of the record from the table before you can do an update. So basically, you have to do a fetch to figure out, all right, what is it that you're trying to do?
+Update, get the grid ID, and then feed it back into intellects true to a patch.
+
+[P0135] 
+Scott Bailey (6347)   34:45
+Okay.
+Yeah, that makes sense.
+I had one other question, but I forgot it, so I'm good. Thank you.
+
+[P0136] 
+Shao Ngoi   34:56
+Awesome. Okay. Any other questions on reporting or am I, did I miss any critical reports that you're planning to build out or get out of intellects?
+
+[P0137] 
+Joel Frick (6124)   35:10
+I think I'll know more once we get to the reporting demonstration and we see what capabilities we have.
+
+[P0138] 
+Shao Ngoi   35:19
+It's capable, just that it's not Power BI. It can do analysis, it can do training, it can do grouping, it has all these nice charts that you can build, but it's all.
+Uh, reactive data is like data that happens already.
+
+[P0139] 
+Joel Frick (6124)   35:32
+Right, yeah. So, I mean, I'd like to see, I mean, I think, I don't think I have specific things that are coming to mind right now that I want to build that are custom. I'm guessing that a lot of boilerplate pre-canned versions of these reports are something we could use.
+But I just don't have visibility on what is available out-of-the-box. So if we can see that first, I think I could have a more educated answer.
+
+[P0140] 
+Shao Ngoi   36:01
+Okay, sounds good. Yeah, like I said, it's not Power BI, but it can definitely give you a lot of, hey, this is what I have today at this location, at this time frame. Right, last day, I would give me the number of injury that involve arm, for example. If we're capturing body parts, we can do that. Anything that data has been reported, again, going back to if we have the data in intellects.
+
+[P0141] 
+Joel Frick (6124)   36:10
+Bui.
+
+[P0142] 
+Shao Ngoi   36:22
+we can slice and dice the data.
+
+[P0143] 
+Joel Frick (6124)   36:24
+Okay.
+
+[P0144] 
+Shao Ngoi   36:24
+anything that you want to stack or try to look at.
+
+[P0145] 
+Scott Bailey (6347)   36:24
+I think.
+I think a report that would probably be useful is because we're going to have some things that are so far out into the future, it's just maybe a quick way of understanding what is in my inbox right now that I need to get completed today, tomorrow type situation. Because I see this like we're going to be entering more information than ever.
+and it's going to be coming to you guys faster and more than ever. So having a clean way of doing that, understanding the priority of these things, would probably be a good report to have.
+
+[P0146] 
+Shao Ngoi   36:58
+Right, so on that note, so Intellects have what we call my task, right? So that is a clean element where if I log into Intellects, if I simply just go to my task, it tells me right away what is it that has been assigned to me, what is the due date, what is the status of the task.
+So for example, in this case, I've been assigned a property damage of this number. It's supposed to be due January 4th, which is today. The system will know that, well, it's technically Shao, you're overdue because it's due today.
+
+[P0147] 
+Scott Bailey (6347)   37:29
+Can you filter this so you don't see like next year's tasks and you only see today's tasks?
+
+[P0148] 
+Shao Ngoi   37:29
+Temp.
+
+[P0149] 
+Joel Frick (6124)   37:30
+But...
+I mean, that's something that does.
+
+[P0150] 
+Shao Ngoi   37:37
+It displayed everything. I think it displayed the most recent one first at the top, right? Let's say, for example, I'm looking at all tasks here, this one.
+
+[P0151] 
+Scott Bailey (6347)   37:46
+most recent or most, the oldest do or the newest do. I don't know how you want to explain that.
+
+[P0152] 
+Shao Ngoi   37:52
+The one that needs to be addressed with. Yeah, yeah. Because it could be a long list, so you can go down that path of, hey, I have something that's next year. You know, if I have nothing on my plate now, but that the task that's supposed to do next year, then it'll show up here as the first item.
+
+[P0153] 
+Scott Bailey (6347)   37:55
+Okay, there we go. Perfect.
+And you can quickly see that it's OK.
+
+[P0154] 
+Shao Ngoi   38:15
+Yeah, so we just show up as as a list, as in this case, as we in for this version of incident management or intellect set.
+I call essential, right? We make it a little bit more visual versus intellects give you just a list of items like this.
+
+[P0155] 
+Joel Frick (6124)   38:34
+Ohh.
+
+[P0156] 
+Shao Ngoi   38:36
+Yep, so that's that, right? I'm not sure how far have Joel that the phase one and phase two has been discussed. There's also what we call a homepage that allows you to build essentially a site map, if you want to call it, or a landing page for your end user. So...
+that in this case you can customize it with your logo, what's not upon landing in that homepage, you have that.
+whatever content you want to present to the end user so that they don't have to really go find it. It's like right there. This is my task and this is what I, you know, this is the shortcut if I need to report an incident, so on and so forth. Obviously for a regular user, it's not because they're just going to call the 222 number, right? But for, you know, safety folks, if they want to see a specific matrix like a dashboard, they can click on that.
+So, there are many ways that we can customize those user experience towards your end user, right? Those are all possible in Intel. It's just a matter of how far we want, how fancy do we want to make it.
+
+[P0157] 
+Joel Frick (6124)   39:41
+Yeah, and I can see that being very helpful for the.
+group that receives a call at 2222, obviously the safety group.
+
+[P0158] 
+Shao Ngoi   39:54
+Okay, so that is really on the reporting side. Yeah, so as you guys learn more about, you know, the Intellects platform and the system, right, like I said, once we review the field, keep in mind the important piece here will be for you guys to identify, right, what are the necessary fields that I need.
+to capture the data that I need for not just the look pretty on the front end, but also brings meaningful data when it comes to reporting. Obviously, Intellects has fields that come out-of-the-box. We tried to strip out as much as we could with this version of Intellects to make it.
+Um...
+
+[P0159] 
+Joel Frick (6124)   40:34
+Yeah.
+
+[P0160] 
+Shao Ngoi   40:34
+From our experience, what actually makes sense, right? So, let's say you see something that doesn't make sense to you guys, we can remove it, right? We can always add more based on what you are looking for, OK? Nothing in the system right now, it's a must-have, but it's always something like good to have, right? For any incident, we always know we need the who, what, when, where.
+how and so on. But beyond that, right, say for investigation, you want to add an investigation summary. It's not there on the screen, so we can add those in. Any drop downs that specifically to Subaru, we can add those in. Again, it goes back to if the field is not in there, we cannot report it.
+So if anything that you want to report out, we must add those in to Intellects.
+
+[P0161] 
+Joel Frick (6124)   41:21
+Got it.
+
+[P0162] 
+Nicholas Leuck   41:22
+I do have a follow-up question on that.
+I, and I could be wrong on this, but I believe during our audits and inspections, if...
+We were having to describe exactly the...
+the data types that we wanted and it was like a like it was a hard stop like you couldn't go back later on and then change it down the road.
+Like if location for, like, I don't know, I don't know a good example in here, but like, like, okay, we talk station. Station currently would probably be a free text field. If we wanted to change that to a dropdown while the data type still stays the same as.
+
+[P0163] 
+Shao Ngoi   42:00
+Mhm.
+
+[P0164] 
+Nicholas Leuck   42:10
+a text. Does that affect anything if we change it from a dropdown to a multi-select to a free text? Does that affect the data in any way or do we lose data? Does that compromise anything?
+
+[P0165] 
+Shao Ngoi   42:26
+Short answer, yes. A longer answer becomes depends. Right, so obviously, right now if you have a tax seal.
+you know, you can type in whatever it is. Let's say this is station 111. Okay. Let's say down the road, you want to change this into a dropdown. Well, because of the field type is different, we will.
+have to create a new field that is a drop down for station. However, when I say depends, it's because however, any existing record with this new field in place is blank, but there is data in the text box.
+
+[P0166] 
+Joel Frick (6124)   43:04
+Minh.
+
+[P0167] 
+Shao Ngoi   43:06
+So then now the activities become, how do we map the data from this text box into the drop-down for the existing records?
+you become more of a mapping exercise. Because let's say in a drop-down, all you have, instead of calling it station 111, all you have is 111. That is the mapping that we need to do in terms of data transformations so that whatever in the text box, I'm able to map it back into the drop-down.
+
+[P0168] 
+Joel Frick (6124)   43:34
+Yeah.
+
+[P0169] 
+Nicholas Leuck   43:35
+That makes complete sense. So it's not necessarily an easy lift, per se.
+
+[P0170] 
+Shao Ngoi   43:39
+Correct, correct, because it all it takes effort, right? Because, like I said, somebody spelled this or somebody may have with a space, who knows, right? Um, so that that's wait, hold on.
+
+[P0171] 
+Nicholas Leuck   43:45
+Yeah.
+With the...
+
+[P0172] 
+Joel Frick (6124)   43:48
+Yeah.
+
+[P0173] 
+Nicholas Leuck   43:50
+Would the same thing also be true to like, we have a, for whatever reason, let's say we have a...
+Text field and it's a number, but we started off as a text field and then for whatever reason why we change it later to a decimal.
+
+[P0174] 
+Joel Frick (6124)   44:10
+Yeah.
+
+[P0175] 
+Nicholas Leuck   44:13
+Like.
+
+[P0176] 
+Shao Ngoi   44:13
+That is same same problem will happen, right? Because text will allows you to enter anything. What if I spell 1.1?
+
+[P0177] 
+Nicholas Leuck   44:16
+Yeah.
+
+[P0178] 
+Shao Ngoi   44:22
+I cannot simply just translate that into a decimal.
+
+[P0179] 
+Nicholas Leuck   44:25
+Yeah, OK.
+
+[P0180] 
+Shao Ngoi   44:26
+Right, so yeah, again, we will most likely try to, instead of changing the data type into something else, we will most likely create a new field and try to map it into that new field, simply because we do not want to lose data, right? Yeah, anything that is all we probably.
+
+[P0181] 
+Nicholas Leuck   44:41
+Okay.
+
+[P0182] 
+Shao Ngoi   44:46
+Change this for.
+data just in case, right? So this is the kind of discussion that we'll have in case, you know, you want to change the data type to something else down the road. These are the kind of activities that we have to go through.
+
+[P0183] 
+Nicholas Leuck   45:00
+Okay. Perfect. Perfect. Thank you.
+
+[P0184] 
+Joel Frick (6124)   45:03
+My initial thoughts are is just to make that a numeric entry, otherwise you may run into a lot of different things. Probably enter that information, you know what I mean? So, yes, we might put a T in front of it or something. So, you can because like 50 left, 20 right.
+
+[P0185] 
+Shao Ngoi   45:11
+Mhm.
+
+[P0186] 
+Nicholas Leuck   45:19
+I...
+It's so, it's so difficult.
+
+[P0187] 
+Joel Frick (6124)   45:23
+OK, letters and numbers, yeah, I see the left, yeah, the right.
+
+[P0188] 
+Nicholas Leuck   45:28
+It would be very difficult, I think, to get everyone on the same page on that, unless...
+
+[P0189] 
+Joel Frick (6124)   45:34
+That's what I'm saying. He started looking something up. Even if he just said, okay, use numeric and left or right.
+
+[P0190] 
+Nicholas Leuck   45:35
+Unless, unless.
+Yeah.
+
+[P0191] 
+Joel Frick (6124)   45:45
+You'd almost be better off to have a numbering system and then click left or right. Yeah. Because you don't know what they're going to put in there or something, but.
+
+[P0192] 
+Nicholas Leuck   45:55
+Well, it's also dependent.
+partially dependent on what does that station data look like in the future. Because, you know, the goal is to have that station data in here. But if we start doing left, right, and we start doing numbers, if that doesn't match what the...
+What were what what gets you know created in Intellects, then we have to redo that mapping again, so then we're doing the same thing over again.
+
+[P0193] 
+Joel Frick (6124)   46:24
+Yeah. And to what that station was. Right. Oh, yeah.
+
+[P0194] 
+Nicholas Leuck   46:25
+I, I, I think we're gonna have to do a free text field for for a minute.
+
+[P0195] 
+Joel Frick (6124)   46:30
+Yeah, I really want that data pump. I know it's going to be tough. It's set in stone to be one thing, but it's something that's dynamic, especially stations we have, yeah.
+Yep, OK.
+
+[P0196] 
+Shao Ngoi   46:45
+No.
+Yeah, like I say, these are the kind of activities that may or may not apply right down the road, right? If it does, let's say, apply to you guys, right? Again, just it's not a simple flick of a switch where, you know, Shao can just magically make everything transform.
+You'll probably need some of your guidance, your feedback in term of, all right, how should we translate this data? What should this data look like when it's being mapped to this new field?
+
+[P0197] 
+Nicholas Leuck   47:17
+That's very helpful, so it kind of...
+pushes us to make sure that we have all the data types as best as possible mapped out the way we expect them to so that we're not having to do too many changes later down the road.
+
+[P0198] 
+Joel Frick (6124)   47:34
+Mhm.
+
+[P0199] 
+Shao Ngoi   47:34
+Yeah, yeah, right. Generally, this is where I would say you, you can take this opportunity, let's call it standardization of your data data data sets, right?
+But again, this is just discussions where you could have as a team, right? From our side, this is what you will probably see when we have different.
+When you ask the questions of, can we switch the data points? Yeah, we could, but it comes with not just a simple switch of a of a flick of a switch.
+Okay, so now from a reporting side, any further questions? If not, then I have then follow-up questions mainly on the incident type, going back to the incident type itself.
+
+[P0200] 
+Nicholas Leuck   48:23
+I do, I actually I do when it comes to the to the 300 log, so how does Intellects handle?
+
+[P0201] 
+Shao Ngoi   48:27
+Uh-huh.
+
+[P0202] 
+Nicholas Leuck   48:35
+When a case, and I don't know if this is a general term, and Dan, maybe you know, I'm going to say redlined.
+
+[P0203] 
+Joel Frick (6124)   48:42
+Mhm.
+
+[P0204] 
+Nicholas Leuck   48:44
+Is that a general or is that different based on where you work at? Do people call it differently somewhere else?
+
+[P0205] 
+Joel Frick (6124)   48:51
+Yeah, I mean, Redman is just removing.
+Dating, adding, removing, yeah, it's, but the idea is there, people call different things.
+
+[P0206] 
+Nicholas Leuck   49:01
+Okay, so like you, Shao, you mentioned earlier, you know, you would cancel, like potentially cancel if it's not work related.
+
+[P0207] 
+Shao Ngoi   49:09
+Mhm.
+
+[P0208] 
+Nicholas Leuck   49:10
+How would that display on the log? Because currently how I've seen them is...
+That you wouldn't want that removed from the log, but it draws a line through the log.
+of that incident. Does that work the same in Intellects?
+
+[P0209] 
+Shao Ngoi   49:24
+Yes.
+No, it doesn't work that way. So let's say from a log standpoint, right? So this is where it goes back to what, when something is being cancelled, right? Do you still want to, let's say something being cancelled, it's really for what reason? If something's recordable.
+and it's being cancelled. It'll still go into your log because someone has marked it recordable. However, let's say something that is truly invalid, you can have it not just cancelled, but you can actually archive the record, which means now it's being self-deleted from the database, but it's not.
+
+[P0210] 
+Nicholas Leuck   50:06
+So, what so I can give you an example?
+
+[P0211] 
+Shao Ngoi   50:06
+Right.
+
+[P0212] 
+Nicholas Leuck   50:10
+If we have like an incident that becomes an OSHA recordable, and then let's say two months later, it is deemed not work related, we would classify that as redlined. So it would show on the log still, but it has a line through it.
+
+[P0213] 
+Shao Ngoi   50:15
+Uh-huh.
+Mhm.
+
+[P0214] 
+Nicholas Leuck   50:29
+It doesn't count, it doesn't like it doesn't count, like it doesn't count as a number, but it still displays in the log, but you just have a line drawn through it.
+
+[P0215] 
+Shao Ngoi   50:34
+Mhm.
+Yeah, in intellects there, I...
+There is no redlining per se then, yeah.
+
+[P0216] 
+Nicholas Leuck   50:42
+What?
+OK, would so then would intellects remove it from the log?
+
+[P0217] 
+Shao Ngoi   50:48
+No, it'll still just count as regular.
+
+[P0218] 
+Nicholas Leuck   50:51
+But we would become that we would be potentially misrepresenting the actual number.
+
+[P0219] 
+Joel Frick (6124)   50:56
+Well, could we, if we have, don't we have the option of selecting it as an OSHA recordable or not in the field or in the record? And if so, then could we just unselect that and then it should come off our log, correct?
+
+[P0220] 
+Shao Ngoi   51:09
+Correct. All the lock cares about if it's recordable or not recordable.
+
+[P0221] 
+Nicholas Leuck   51:10
+Okay.
+Dan, is that an issue?
+
+[P0222] 
+Joel Frick (6124)   51:17
+Neault.
+
+[P0223] 
+Nicholas Leuck   51:19
+Okay, I just typically the ones I've seen, it still shows them. They just have a line drawn through them. They're redlined.
+And that's built in, like that's built into that.
+Like we don't currently have to go in and draw a line through them. It's in the system like that.
+
+[P0224] 
+Joel Frick (6124)   51:38
+That's an OHM feature.
+
+[P0225] 
+Nicholas Leuck   51:40
+To my knowledge, yes.
+
+[P0226] 
+Joel Frick (6124)   51:42
+I think that, yeah, so I just looked, I had this page up still. I think that the reason the red line is there is because this, again, this is historically A handwritten document. It's an official paper form that you would hand write out. I mean, it's been that way since the 70s, since December 29th, 1970.
+Exactly. But the statement in the language from that rule says, if the description or outcome of a case changes, you must remove or line out the original entry and enter new information.
+
+[P0227] 
+Nicholas Leuck   52:12
+Okay, so you can remove it.
+
+[P0228] 
+Joel Frick (6124)   52:14
+Yeah.
+
+[P0229] 
+Nicholas Leuck   52:15
+Okay, just want to make sure that wasn't like a deal breaker.
+
+[P0230] 
+Shao Ngoi   52:21
+Yeah, like I said, there's no redlining, but you can definitely make it not recordable.
+Okay.
+Any other scenarios that you guys have come across that is not being addressed here?
+
+[P0231] 
+Nicholas Leuck   52:36
+I there is one more, sorry.
+
+[P0232] 
+Shao Ngoi   52:39
+That's all good.
+
+[P0233] 
+Nicholas Leuck   52:42
+hearing cases. Typically, the way a hearing case works for a recordable is we currently put it on the log as a placeholder. So they go through their testing, and let's say they determine that there is an initial shift in their hearing that gets put on the log initially as a
+placeholder. There is no investigation done. There is no, like, there's no, there's no form filled out. Initially, once that associate has had a retest.
+Once the retest has been confirmed to be work-related, then the group leader brings them down to the clinic. They fill out their AIR form. They do their five why analysis.
+Is that how we would, does that affect, like, does that cause any issues on?
+On the intellect side, knowing that this is kind of how we currently do it, do you think we should change that process so that we're not causing any additional issues? Or what are your thoughts on that?
+
+[P0234] 
+Joel Frick (6124)   53:51
+My question would be, from a procedural standpoint,
+Do we have to make the determination right then and there that it's recordable or can we wait till they get their reevaluation to make that final decision or the clinic make that final decision if it's recordable or not?
+Is there a again and so short summary of that?
+Is, are we required to make that emotion recordable?
+
+[P0235] 
+Nicholas Leuck   54:21
+According.
+
+[P0236] 
+Joel Frick (6124)   54:21
+when there's a hearing shift or can we wait until they're re-evaluated?
+
+[P0237] 
+Nicholas Leuck   54:27
+I think Brandy would say she has to now. That's what I've been told in the past. I don't know if that's, I don't know if that's actual.
+requirements, but that's what Brandy has told me in the past. Yes, that yes, I do have to put it on the log.
+
+[P0238] 
+Joel Frick (6124)   54:45
+Boss.
+Boss received the boss OSHA no regulation man. Do you do we know if there's a regulation surrounding that for your protection? If if they if there's been a shift, does it have to be reported as an OSHA right away or? Seven days. Seven days. Seven days when you know about it to put it on.
+Okay, so they'd have to be re-evaluated within that seven days. No, so, and I had this wrong the other day when we were talking about it. So, because there was the one that the person refused the re-evaluation. So I think you have 30 days to do the re-evaluation if you so choose to.
+as an employer. So if you don't do the reevaluation, then the first one stands and you have to then post that within seven days. If you plan on doing the reevaluation, you have to do it in 30 days. And I think that extends your seven day period. But you have to be planning to do that. If you, if you, if the 30 days goes out, you don't.
+If you do re-evaluation, then that it it's a wash and you add it to your to your three hand talk. OK, but if you do the re-evaluation and it shows that there's an anonymous standard threshold shift, then that indicates a false positive you can take it on or not put it on.
+in your additional discussing.
+You have to decide within seven days if it's an OSHA. No, no, no. If once you define that it is an OSHA recordable, you have seven days to put it on your form. And again, that goes back to it's a paper form that you fill out with a pen. So within seven days, it's got to be on there and post it for your employees or it's got to be on there and then
+you know, whatever's on there at the time of February 1st is hosted as summarize. And that's where all of our red lines prepare to come from. Yeah. Right.
+
+[P0239] 
+Shao Ngoi   56:31
+Mhm.
+
+[P0240] 
+Joel Frick (6124)   56:43
+Good question, Nick.
+
+[P0241] 
+Nicholas Leuck   56:46
+Yeah, maybe, maybe it's just something we can have to further discuss. I just thought I'd bring it up because it's, you know, it's a little bit unique on how we do it currently, and it does does a...
+
+[P0242] 
+Joel Frick (6124)   56:57
+Yeah, and I think we, yeah, but I think we in the same way we just selected the OSHA recordable or not, but I think it's more for us how we want to define that as a process moving forward.
+
+[P0243] 
+Nicholas Leuck   57:11
+Yeah, because currently they don't fill out, they currently it's a placeholder. Nothing gets nothing gets done until it becomes until after that retest and that retest is confirmed. So that kind of changes how we do some things. I didn't know if that would affect affect our process or not in intellects.
+
+[P0244] 
+Joel Frick (6124)   57:15
+Exactly.
+Yeah.
+Yeah.
+Yeah.
+
+[P0245] 
+Shao Ngoi   57:37
+Okay, yep.
+
+[P0246] 
+Joel Frick (6124)   57:38
+Can we, in intellects, can we kind of keep it as a placeholder until we decide whether it is an OSHA or not an OSHA? That'd be basically the intellects just not selecting it as OSHA recordable.
+But I mean, if even if you're not selecting that, it's not maybe.
+You don't know yet, so you're leaving it.
+
+[P0247] 
+Shao Ngoi   58:00
+Yeah, so couple of ways we can tackle that switching, right? So let's say, for example, I could put in, you know, an injury illness in place that is not recordable. Let's say I even closed, I did my root cause, everything that we have talked about, everything is said and done is closed. Let's say a few months down the road,
+
+[P0248] 
+Joel Frick (6124)   58:00
+Yeah, yeah, this.
+
+[P0249] 
+Nicholas Leuck   58:05
+Hello!
+
+[P0250] 
+Shao Ngoi   58:19
+You know, it turned out to be irrecordable. A couple of things can happen here, right? As a as a as as built in into intellects, once an incident has been closed, that incident can be reopened.
+Okay, so let's say we reopen it back to the investigation stage. That is where now all the fields that was editable will become.
+Sorry, all the fields that was supposed to be in the investigation will now become editable again, because ultimately we reopened the incident so that you can make any modifications that you need to make, right? Even let's say, for example, I started off, it's a medical treatment and it's not OSHA recordable. Not OSHA recordable, I say no.
+I'd say I did all my root cause analysis, I closed off everything within a week. Next week, it turned out, guess what? The injury that I sustained caused me to lost time, lost work from, lost time from work. Now it is a lost time I can.
+reopen it, change the classifications, right? Define, you know, any medical treatment. Maybe back then there was no medical treatment, but now it's actually an emergency room treatment, right? And then now this could turn into a OSHA recordable. All those could be handled within intellects as part of the reopening of the incident itself.
+Once the incident is closed, it's not locked in place. Well, it meant to lock in place. There is the opportunity for you to reopen it so that you can make any adjustments. Once you reopen it, whatever modifications that you make, you can resubmit it for the Safety Manager to do a review before now it's closed.
+back to close. When it's back to close, now everything becomes read-only so that nobody can actually edit it.
+
+[P0251] 
+Joel Frick (6124)   1:00:10
+I guess what I was asking is when you, instead of being able to click yes or no, can there be an option of TBD? And that's not just to you, that's, I guess, to the safety group. But I don't know yet. Is it? August is a journey, yes or no?
+
+[P0252] 
+Nicholas Leuck   1:00:10
+Um...
+Who?
+Can you K?
+
+[P0253] 
+Joel Frick (6124)   1:00:29
+Right.
+
+[P0254] 
+Nicholas Leuck   1:00:30
+Can you scroll back up a little bit?
+
+[P0255] 
+Shao Ngoi   1:00:32
+Yeah.
+
+[P0256] 
+Nicholas Leuck   1:00:33
+Okay, right there. Initial treatment.
+Um...
+Technically, a hearing case, like for this is only related to hearing case. Technically, you really wouldn't have any initial treatment at the beginning.
+Not until after your retest.
+Um...
+Like what initial treatment none like would none what is what does none mean in this scenario?
+
+[P0257] 
+Joel Frick (6124)   1:01:01
+Mm.
+
+[P0258] 
+Shao Ngoi   1:01:07
+Didn't receive any treatment.
+
+[P0259] 
+Joel Frick (6124)   1:01:11
+Well, we wouldn't know. Well, I see what you're going, Nick, is like, how do we what's the what's the starting point for hearing conservation?
+
+[P0260] 
+Nicholas Leuck   1:01:18
+Yeah.
+Yeah.
+
+[P0261] 
+Shao Ngoi   1:01:20
+I was going to ask that. So what is the initial input? Like do I call 2222 saying that my hearing has shifted?
+
+[P0262] 
+Joel Frick (6124)   1:01:22
+Yeah.
+
+[P0263] 
+Nicholas Leuck   1:01:28
+Nope, nope, nope.
+
+[P0264] 
+Joel Frick (6124)   1:01:28
+No, no.
+
+[P0265] 
+Shao Ngoi   1:01:30
+Okay, okay, so where would that stem from?
+
+[P0266] 
+Joel Frick (6124)   1:01:35
+Well, that's where, Dan, that's where, if we can do the care case management, Dan.
+
+[P0267] 
+Nicholas Leuck   1:01:35
+So, OK, so.
+
+[P0268] 
+Joel Frick (6124)   1:01:41
+That I know that, and then the planning could facilitate that.
+
+[P0269] 
+Nicholas Leuck   1:01:47
+So, so yeah, we we do testing every month.
+And that's it. It's.
+You know, they get groups of people every month and they're doing those testing. There is no, like, there is no, uh, you know, they're working on the line and, oh, hey, my...
+You know, that could be an incident, that could be an incident if something does happen, what they're hearing, but that that is true, like that could happen on the line.
+But when it comes to specifically the hearing cases that we're talking about, those are those are done, you know, in groups and they have a testing period where they do that. That's my, that's the one that I'm kind of talking about.
+Because they they would they would have a they would they would have initial treatment, it would be none, but but.
+
+[P0270] 
+Shao Ngoi   1:02:32
+Yeah.
+
+[P0271] 
+Nicholas Leuck   1:02:39
+If it's determined they have a shift.
+Then they go on the 300. Then it is, we start the process of creating the incident and we start the process of just as a placeholder, identifying that this currently is a recordable, but it deems a second, it deems A retest to actually confirm that and then have everything else filled out afterwards.
+
+[P0272] 
+Shao Ngoi   1:03:08
+So in this scenario, right, who initiate the creation of this injury record? Is it clinic call 222? Oh, to be, okay.
+
+[P0273] 
+Joel Frick (6124)   1:03:19
+I think to be determined.
+Yeah, that would not go through security. That's facilitated solely through the clinic.
+
+[P0274] 
+Nicholas Leuck   1:03:23
+I...
+Yeah, I would say the clinic would be starting that, you know, starting it, but you wouldn't be assigning any, you wouldn't be assigning anything until after it's been 100% confirmed after the retest.
+
+[P0275] 
+Joel Frick (6124)   1:03:42
+Exactly.
+
+[P0276] 
+Nicholas Leuck   1:03:46
+So clinic would start it, but it's just kind of floating out there, the placeholder, until it's been confirmed.
+It's a unique situation, but they happen monthly, so...
+
+[P0277] 
+Joel Frick (6124)   1:04:00
+One thing, you know, I was just telling Day and Nick, I think once we have or...
+deeper conversation with the clinic and if they're going to be moving into intellects and using the care and case management or the occupational health applications, that would be, that can be facilitated through that system.
+
+[P0278] 
+Nicholas Leuck   1:04:24
+That true, it could, but once again, that is not going to happen within the next year or so. So we have to build it out as what's going to happen now.
+Like, how are we going to handle these right now? Because there's no way we're going to be able to, you know, integrate those systems into the current, like, you know, Joel said, you know, and Rick said, I think yesterday, those have to be discussed and planned out later.
+
+[P0279] 
+Joel Frick (6124)   1:04:49
+Right. I think a good worker. I mean, our obvious workaround is that it's.
+For the sake of the application, it's an incidence. But we need to be able to define it, define within the context of that record that this is hearing conservation.
+
+[P0280] 
+Nicholas Leuck   1:05:06
+I've agreed there, yes.
+
+[P0281] 
+Joel Frick (6124)   1:05:10
+That's not that's only work around I can think that of.
+
+[P0282] 
+Nicholas Leuck   1:05:17
+So I would say just further discussion on that one.
+
+[P0283] 
+Shao Ngoi   1:05:21
+Okay, okay. Let, let, yeah, put a pin on that, 'cause yeah, I just need to know if the process flow is even the same if it's, you know, if it's being reported.
+
+[P0284] 
+Joel Frick (6124)   1:05:30
+Yeah, it would not be 2222.
+
+[P0285] 
+Shao Ngoi   1:05:33
+It will be clinic. All right, yeah, let's put a pin on that. I noted this down on my side here for, you call it hearing conservation.
+
+[P0286] 
+Joel Frick (6124)   1:05:42
+Yes.
+
+[P0287] 
+Shao Ngoi   1:05:49
+Nick, you're bringing up a lot of good questions. Any good ones?
+
+[P0288] 
+Nicholas Leuck   1:05:56
+Yeah, I think I'll probably have more, but I'm still working on trying to...
+Um, you know, better *** lows.
+
+[P0289] 
+Shao Ngoi   1:06:04
+Okay.
+All right, then on my side, then I just want to really clarify, you know, from an incident type itself, right? What type of, I know we talk about injury, we talk about environmental, those are set in stone, but what I want to really clarify with team is between vehicle and PIT.
+Generally speaking, for if I go back to my statement of work here,
+we don't have vehicle in place. Now, that being said, if I take a look at PIT, right, that's something that I know it's been called out already as part of the scope of work. For PIT, you know, based on the definitions given as equipment-based, sorry, power industrial truck.
+I know there is, there's the tendencies of, yeah, this is a vehicle incident. I just want to touch on that briefly between vehicle and PIT. Are we grouping both of them into one incident type or are we having this as two separate incident type, one being vehicle, one being PIT?
+
+[P0290] 
+Joel Frick (6124)   1:07:13
+I think you look at this vernacular, what you know, what intellect is defined as vehicle is what we define internally as PIT.
+
+[P0291] 
+Shao Ngoi   1:07:22
+Okay, because we call incident.
+
+[P0292] 
+Joel Frick (6124)   1:07:23
+Correct. Well, I see it as a hierarchy. We have a vehicle, could be PIT, could be golf cart, could be, you know, motor truck, could be tricycle, like could be a company vehicle, but not a product right now.
+Unit, press unit.
+I think vehicle kind of covers it all. I think it does. We think a further to those sub-filter that into motor truck, forklift, I mean, secondary option. Yeah. It would just be vehicle and then if we could say like what kind of vehicle, we can give you a drop down.
+
+[P0293] 
+Shao Ngoi   1:08:01
+Okay, so, so, so.
+
+[P0294] 
+Joel Frick (6124)   1:08:02
+Or even mobile equipment or something that's really generic and you have a drop-down, I can tell you what you could add to that.
+
+[P0295] 
+Shao Ngoi   1:08:10
+Okay, because in vehicle incidents specifically, where, as you can see here, we are capturing, you know, the characteristic of the vehicle incident, right? If it's collision with something else, tab, misjudging of the height, so on and so forth. Beside that, we also have, you know, if the damage to the vehicle, if I say yes.
+extent of damage, this is where I can tell the system what is the extent of damage, which is fine. The additional stuff to vehicle incident is really weather conditions, road conditions, visibility, the light, right, drug test, police report, right, anything that would...
+
+[P0296] 
+Joel Frick (6124)   1:08:47
+Yeah.
+
+[P0297] 
+Shao Ngoi   1:08:50
+Go on to the road where typically would classify as...
+dot type of vehicles. So again, I'm just.
+
+[P0298] 
+Joel Frick (6124)   1:08:57
+Yeah, but we also drive some of our vehicles outside. I mean, could we just have a question that says, was this indoor or outdoor? A checkbox, if you checked this was outdoor, and it would add all those things, that's a possibility. Or if we had a box that asked what type of vehicle.
+Based on that answer.
+the appropriate boxes would appear. So if it's Motra, then it asks us Motra questions. If it's a company vehicle, it asks us company vehicle. Yeah, and that's possible out-of-the-box, right? To have that, I mean, we're not talking about hard coding something differently.
+
+[P0299] 
+Shao Ngoi   1:09:43
+All right, so then I would need to take a look at the fields that you have between the vehicle type and the PIT, right? Because I want to make sure that we are able to accommodate those scenarios that we described here. That's why I just want to clarify, right, we are switching from property to vehicle.
+And vehicle, in this case, we are capturing all type of vehicle, either dot qualified vehicle or your power industrial equipments or trucks in this case. The other one thing that makes vehicle incident different is that we also capture in this scenario.
+
+[P0300] 
+Joel Frick (6124)   1:10:16
+Heet.
+
+[P0301] 
+Shao Ngoi   1:10:23
+the details of the vehicles, right? This is where we capture, right, is this company owned, who owned it, right? Let's say this is a company owned vehicle, right? We have the type of vehicle, let's say this is Mazda, right? The purpose of the vehicle, this is for personal, vehicle owner is the driver. So do we need to capture all this for your...
+GAT.
+
+[P0302] 
+Nicholas Leuck   1:10:43
+So...
+
+[P0303] 
+Joel Frick (6124)   1:10:43
+I think what they're trying to say is we don't.
+
+[P0304] 
+Nicholas Leuck   1:11:00
+So, so I don't, I don't currently know how they...
+I mean, Joel, do you know, like I just, I don't know if a vehicle is, you know, if a if one of our vehicles is damaged, you know, during the, you know, driving off off the line, you know, into the parking lot.
+Does that get stored somewhere or entered somewhere? I'd hate for us to be also doing that if it's already being done somewhere else. Or is it not?
+
+[P0305] 
+Joel Frick (6124)   1:11:27
+That's why I said, that's why I said early on, I would think he would use non-production vehicles, so it doesn't have anything to do with the vehicles we produce here, but...
+
+[P0306] 
+Nicholas Leuck   1:11:35
+So...
+Keep it to IT.
+
+[P0307] 
+Joel Frick (6124)   1:11:39
+Yeah.
+
+[P0308] 
+Nicholas Leuck   1:11:41
+Because I, I, I don't, yeah.
+
+[P0309] 
+Joel Frick (6124)   1:11:41
+So I think, I think you're looking at that and then we'd have facility which could be anything or.
+You know, inside the plant, it's worth money, but...
+
+[P0310] 
+Nicholas Leuck   1:11:55
+Yeah, because like, if, because like honestly, like while we do have golf carts, if one of those gets in an accident, we're not putting that in the PIT. Like there's no PIT for that, I don't believe. Could be wrong, but I don't believe there that's a PIT. So like, I don't know where that gets tracked currently or if it even does get tracked.
+I only know of the PIT, and that's the only, like, when we talk safety, or I'm only describing it as PIT, not vehicle, not, you know, a golf cart, not someone's personal car, not a fleet vehicle.
+
+[P0311] 
+Joel Frick (6124)   1:12:33
+So, Shao, I think you know the example that you showed, you just walked through for us.
+
+[P0312] 
+Shao Ngoi   1:12:40
+Mhm.
+
+[P0313] 
+Joel Frick (6124)   1:12:40
+We would consider this a PIT incident, and we would further define the type of vehicle that was involved in the incident.
+So, it'd be either like mow truck, forklift, crane, electric cart.
+
+[P0314] 
+Shao Ngoi   1:12:58
+Mhm.
+But you wouldn't necessarily need any of this.
+
+[P0315] 
+Joel Frick (6124)   1:13:07
+Depending on if you, in this scenario, if we chose, for example, it was a company car, yes, we would go through these series of questions. But if we chose motor truck, then motor truck specific questions would be asked.
+
+[P0316] 
+Shao Ngoi   1:13:26
+Okay, so this goes back to Nicholas' questions, right? If it's a company car, does it go into intellects? Because he's referring to just PIT.
+
+[P0317] 
+Joel Frick (6124)   1:13:35
+Right, so if a company car, we need to get confirmation on that because that's a whole fleet.
+Shirley kind of question. But what we're most specifically concerned about are our powered industrial vehicles that function within the context of our facility. And we have various swings. And I think maybe what, and I know I keep changing this, but maybe we call it mobile equipment.
+
+[P0318] 
+Shao Ngoi   1:13:53
+Mm-hmm.
+
+[P0319] 
+Joel Frick (6124)   1:14:01
+Because power industrial.
+Truck, P-I-T, is an OSHA term. And that OSHA term specifically means what we all know as fork trucks and powered pallet jacks. It doesn't include scissor lifts, aerial man lifts, doesn't include golf carts, it doesn't include cranes, any of that. That's all a different category. So to keep consistent with OSHA language,
+I think PIT should be a subcategory to mobile equipment.
+
+[P0320] 
+Shao Ngoi   1:14:31
+So how about this? If you have the fields, I think Nicholas, I'm not sure if you're the right person here. Can I at least, if I can at least get a field list of what exactly encapsulate, then I can make a better recommendations because right now.
+
+[P0321] 
+Joel Frick (6124)   1:14:36
+Yeah.
+We could do the homework and fill it out.
+
+[P0322] 
+Shao Ngoi   1:14:51
+Yeah, I know they're both vehicular type of incident, right? Just that in intellects, the vehicle incident is mainly designed for dot type of vehicles.
+
+[P0323] 
+Joel Frick (6124)   1:14:54
+Togetherless.
+We'll get a list together and get that to you.
+
+[P0324] 
+Shao Ngoi   1:15:09
+Sounds good.
+Okay, and then last but not least, well, this one here, from all this incident type, right, we talk about near misses, we talk about injury, we talk about environmental, we talk about a PIT.
+Is there any scenarios where these type of records, either near misses, injury, environmental, or PIT, right, is there any scenario where a singular incident record or near miss record be considered as confidentials, where it's not visible?
+Or is there any scenarios where, you know, nobody should be able to see any of these records?
+
+[P0325] 
+Joel Frick (6124)   1:15:52
+I think that's more of the user role.
+
+[P0326] 
+Shao Ngoi   1:15:55
+OK.
+
+[P0327] 
+Joel Frick (6124)   1:15:59
+Anything from management above, I make the assumption, I'm not going to make that call, but I think anything from a management level up should have visibility into the incidences, but not anything below that level.
+
+[P0328] 
+Shao Ngoi   1:16:13
+Okay.
+That's fine. So which means if I can see it, I can see all type, all details within the incident. So let's say for injury, illness, I, if let's say I management and birth, I can see all these details, right? If I see, you know, environmental incident, regardless of if I am.
+a safety person or an environmental person, as long as I'm in the management role and above, I can see the details of all these records.
+
+[P0329] 
+Joel Frick (6124)   1:16:45
+Yeah, so the question to the group is, do we want to further define that by department? So should trim be able to see bodies incident reports or do we care?
+
+[P0330] 
+Nicholas Leuck   1:16:54
+I...
+Yeah, I think we just need to have maybe some more internal discussion on that.
+
+[P0331] 
+Joel Frick (6124)   1:17:01
+Yeah.
+
+[P0332] 
+Nicholas Leuck   1:17:03
+So that we better know what's what everyone's going to be able to see.
+
+[P0333] 
+Shao Ngoi   1:17:07
+OK.
+
+[P0334] 
+Nicholas Leuck   1:17:08
+I, I think we should.
+You know, table that for us to figure that out with a larger group.
+
+[P0335] 
+Shao Ngoi   1:17:26
+Okay, yeah, I've noted a couple of items on my side, practical item for you guys as well. I know, Joel, I owe you the recording. I'll try to summarize all that I have from these couple of days and send it back to you, and you can share it with the team as well as some of these diagrams that I drew out.
+this morning, this one here, right, so that you guys can review it as well.
+
+[P0336] 
+Joel Frick (6124)   1:17:52
+Okay. Shao, and if we have like questions later, once we've been able to, you know, speak, have conversations amongst ourselves, how would you like us to facilitate those questions?
+That doesn't mean, so not necessarily, it just depends.
+
+[P0337] 
+Shao Ngoi   1:18:06
+Um...
+
+[P0338] 
+Joel Frick (6124)   1:18:11
+Because I think we should have like everybody have all, you know, questions, maybe we use a smart sheet that it could be collected. So we're not asking redundant questions, etc. Right. And then we can track it if our question was answered. Yeah, we can we can collect these questions on Smartsheet.
+give you guys access if that works for you or possibly a SharePoint system.
+
+[P0339] 
+Shao Ngoi   1:18:34
+Yep.
+
+[P0340] 
+Joel Frick (6124)   1:18:38
+Is there something that works better or worse for you guys?
+
+[P0341] 
+Shao Ngoi   1:18:38
+Yep, yep.
+We can start with that, right? But at the same time, yeah, I will have to see what kind of answer, right? If there's further questions I need from you guys, or a further answer that I need from you guys, I would typically then recommend a quick half hour, just kind of hash it out. Because I find while we have the Smartsheets, we have emails.
+
+[P0342] 
+Joel Frick (6124)   1:18:58
+Yeah.
+
+[P0343] 
+Shao Ngoi   1:19:02
+It gets messy after a while.
+
+[P0344] 
+Joel Frick (6124)   1:19:06
+Yeah, sometimes we can give a list of, you know, specifics and then the response from you guys or whoever might be, you know, we'll follow up on this in our next meeting. This is our initial thoughts, but this is.
+
+[P0345] 
+Shao Ngoi   1:19:13
+Mm.
+
+[P0346] 
+Joel Frick (6124)   1:19:21
+We'll need to follow up with that with a meeting. And then as we get a couple of those together, then we can have a meeting in regards, you know, to answer those questions or discuss it further.
+
+[P0347] 
+Shao Ngoi   1:19:34
+Yep, yep. So those, I, you know, we will have to play it out first and see how it goes, right? Something can definitely work with you guys, like from our side and you, your side, Joel, right, to organize a quick meeting. Definitely not long. So I know everyone's busy, right? So that we just need to have a quick one to get the answer that we need.
+
+[P0348] 
+Joel Frick (6124)   1:19:52
+Right. Yep.
+
+[P0349] 
+Shao Ngoi   1:19:53
+Yep.
+Great. Anything else from anyone?
+
+[P0350] 
+Joel Frick (6124)   1:19:58
+I think that.
+
+[P0351] 
+Shao Ngoi   1:20:01
+Awesome. All right. Well, I mean, you spend three days with me, not full three days, but long enough.
+
+[P0352] 
+Joel Frick (6124)   1:20:08
+It had been a pleasurable experience.
+
+[P0353] 
+Shao Ngoi   1:20:12
+I, I hope I didn't, you know, make it too hard on you guys, 'cause I, I, I do ask some some pointed question at times, just just trying to see if I can get the answer. No, so it is, it is a pleasure for me to be in this session with you all. Obviously, it's virtual, but it was a pleasure to to visit.
+
+[P0354] 
+Joel Frick (6124)   1:20:20
+That's what we need.
+
+[P0355] 
+Shao Ngoi   1:20:32
+Joel, what back in, I don't remember when it was, it was nice. But yeah, if anything, feel free to, you know, reach out. Like I said, I'll send the summary out and we'll go from there.
+
+[P0356] 
+Joel Frick (6124)   1:20:35
+Yeah, yes, thank you.
+So just for my understanding, what you're going to do, Shao, is now take all of this and start building it in accordance with these decisions, right? Yes.
+
+[P0357] 
+Shao Ngoi   1:20:54
+Eventually, yes, but not quite there yet.
+
+[P0358] 
+Joel Frick (6124)   1:21:00
+So better yet, you're going to put some flow charts together and some notes and confirm with us and then we'll follow up. Does that sound good? Yeah.
+
+[P0359] 
+Shao Ngoi   1:21:08
+Yeah, yeah, now that, that, that's the better approach.
+
+[P0360] 
+Joel Frick (6124)   1:21:10
+To illustrate your architecture, yeah, that's good.
+
+[P0361] 
+Shao Ngoi   1:21:16
+All right, thank you all. Have a good one. Bye-bye.
+
+[P0362] 
+Joel Frick (6124)   1:21:17
+Thank you. Thanks. Bye.
+
+[P0363] 
+Shao Ngoi stopped transcription

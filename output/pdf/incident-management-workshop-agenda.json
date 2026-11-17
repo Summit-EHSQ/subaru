@@ -1,0 +1,142 @@
+{
+  "workshop_label": "ESSENTIAL PROCESS REVIEW | DRAFT FOR REVIEW",
+  "title": "SIA Incident Management",
+  "subtitle": "Two-day online Essential demonstration and process fit workshop",
+  "organization": "SIA",
+  "footer_title": "Incident Management Workshop | Draft",
+  "purpose": "Introduce Essential and assess how closely its current incident processes meet SIA needs, in priority order: Injury/Illness, Environmental Incident, Property Damage, Notice of Violation, and Near Miss. Agree where the standard process can be adopted, identify minor workflow and field changes, and capture OHM/Resolver API and reporting requirements.",
+  "daily_format": "Session 1: 9:30 a.m.-1:30 p.m. EST (4 hours total; 3 hours 30 minutes working time). Session 2: 9:30 a.m.-1:00 p.m. EST (3 hours 30 minutes total; 3 hours working time). Each session includes two 15-minute breaks. Agenda tables use the 24-hour clock; all times are EST. Dates and the online platform are to be confirmed. No lunch is scheduled within these half-day windows. Use a live Essential demonstration, screen sharing, and a shared fit/gap and decision log.",
+  "scope": "Review all five incident types in the stated priority order. For each, compare intake, investigation, follow-up, and closure with SIA practice. Include client-configured OHM and Resolver APIs, minor form/workflow/field changes, hours worked, and overall incident reporting. Capture larger changes separately for impact review.",
+  "days": [
+    {
+      "label": "SESSION 1 | DATE TO BE CONFIRMED | DRAFT",
+      "title": "Essential, Injury/Illness and Environment",
+      "subtitle": "9:30 a.m.-1:30 p.m. EST | Two 15-minute breaks | Table times: 24-hour clock",
+      "summary": "Introduce Essential; compare Injury/Illness and Environmental Incident with SIA processes. Define OHM and Resolver feed requirements and minor changes.",
+      "rows": [
+        {
+          "time": "09:30-09:40",
+          "session": "Opening and priorities",
+          "outcome": "Confirm workshop outputs, SIA decision owners, and the five-topic priority order. Agree how process matches, gaps, decisions, and actions will be recorded.",
+          "kind": "normal"
+        },
+        {
+          "time": "09:40-10:05",
+          "session": "Introduction to Essential",
+          "outcome": "Review navigation, incident records, role-based tasks, investigation, follow-up, and closure. Confirm the Essential baseline being demonstrated and the comparison approach for SIA.",
+          "kind": "normal"
+        },
+        {
+          "time": "10:05-10:50",
+          "session": "1. Injury/Illness: Essential vs SIA",
+          "outcome": "Walk through the current Essential process using an SIA scenario. Compare first report, investigation, follow-up, and closure; confirm matches and identify minor workflow and field changes, including fields needed for OHM data.",
+          "kind": "normal"
+        },
+        {
+          "time": "10:50-11:05",
+          "session": "Screen break",
+          "outcome": "",
+          "kind": "break"
+        },
+        {
+          "time": "11:05-11:50",
+          "session": "Injury/Illness: OHM API and changes",
+          "outcome": "Define requirements for the client-configured API sending OHM incident records to Intelex. Confirm first-report-of-injury creation and investigation/follow-up triggers; review field mapping, source identifiers, duplicate prevention, error handling, and access. Agree minor changes and owners.",
+          "kind": "normal"
+        },
+        {
+          "time": "11:50-12:30",
+          "session": "2. Environmental Incident: Essential vs SIA",
+          "outcome": "Walk through the current Essential environmental process using an SIA scenario. Compare first report, investigation, follow-up, and closure; confirm matches and identify minor workflow and field changes needed for SIA and the Resolver feed.",
+          "kind": "normal"
+        },
+        {
+          "time": "12:30-12:45",
+          "session": "Screen break",
+          "outcome": "",
+          "kind": "break"
+        },
+        {
+          "time": "12:45-13:15",
+          "session": "Environmental Incident: Resolver API",
+          "outcome": "Define requirements for the client-configured API sending Resolver environmental incident records to Intelex. Confirm first-report creation and investigation/follow-up triggers; review field mapping, source identifiers, duplicate prevention, error handling, and ownership of minor changes.",
+          "kind": "normal"
+        },
+        {
+          "time": "13:15-13:30",
+          "session": "Day 1 decisions and closeout",
+          "outcome": "Confirm process matches, gaps, and agreed changes. Review open questions, actions, owners, and dependencies; assign any OHM/Resolver mapping follow-up and preparation needed for Day 2.",
+          "kind": "normal"
+        }
+      ]
+    },
+    {
+      "label": "SESSION 2 | DATE TO BE CONFIRMED | DRAFT",
+      "title": "Remaining incident types and reporting",
+      "subtitle": "9:30 a.m.-1:00 p.m. EST | Two 15-minute breaks | Table times: 24-hour clock",
+      "summary": "Compare Property Damage, Notice of Violation, and Near Miss in order. Confirm hours-worked and overall incident reporting requirements; agree next steps.",
+      "rows": [
+        {
+          "time": "09:30-09:40",
+          "session": "Recap and decision priorities",
+          "outcome": "Confirm Day 1 outcomes and open dependencies. Agree decisions needed today and preserve the remaining topic priority order.",
+          "kind": "normal"
+        },
+        {
+          "time": "09:40-10:20",
+          "session": "3. Property Damage: Essential vs SIA",
+          "outcome": "Walk through the current Essential process and compare SIA intake, damage details, investigation, follow-up, and closure. Confirm process matches, required fields, responsible roles, and minor workflow changes.",
+          "kind": "normal"
+        },
+        {
+          "time": "10:20-10:55",
+          "session": "4. Notice of Violation: Essential vs SIA",
+          "outcome": "Walk through the current Essential process and compare SIA notice capture, ownership, response deadlines, investigation, follow-up, and closure evidence. Agree process matches and required minor field/workflow changes.",
+          "kind": "normal"
+        },
+        {
+          "time": "10:55-11:10",
+          "session": "Screen break",
+          "outcome": "",
+          "kind": "break"
+        },
+        {
+          "time": "11:10-11:45",
+          "session": "5. Near Miss: Essential vs SIA",
+          "outcome": "Walk through the current Essential process and compare SIA reporting, classification, investigation, follow-up, and closure. Confirm required roles, process matches, and minor field/workflow changes.",
+          "kind": "normal"
+        },
+        {
+          "time": "11:45-12:10",
+          "session": "Reporting: hours worked",
+          "outcome": "Define the hours-worked source, data owner, reporting frequency, reporting period, and location/worker coverage. Agree entry or import needs, validation and correction rules, and alignment with incident measures where hours are used.",
+          "kind": "normal"
+        },
+        {
+          "time": "12:10-12:25",
+          "session": "Screen break",
+          "outcome": "",
+          "kind": "break"
+        },
+        {
+          "time": "12:25-12:45",
+          "session": "Reporting: overall incident data",
+          "outcome": "Review Essential reporting against SIA needs across all five incident types. Confirm priority measures, definitions, filters, trends, open/overdue follow-up views, audiences, and exports; identify gaps and owners for sample reports.",
+          "kind": "normal"
+        },
+        {
+          "time": "12:45-13:00",
+          "session": "Cross-topic completion and next steps",
+          "outcome": "Agree the consolidated fit/gap record, minor change list, API/reporting follow-ups, and unresolved decisions. Confirm actions, owners, target dates, dependencies, and the next review of the workshop outputs.",
+          "kind": "normal"
+        }
+      ]
+    }
+  ],
+  "closeout": {
+    "expected_outputs": "A fit/gap comparison for each of the five incident types, in priority order; agreed adoption of Essential steps; a prioritized minor workflow/field change list; OHM and Resolver API requirements, mapping actions, and first-report/workflow triggers; hours-worked and overall incident reporting requirements; a decision/action log with owners, target dates, and dependencies. Mark each requirement as confirmed, provisional, or unresolved.",
+    "participants": "Core: SIA incident process owner, safety/EHS representatives, operational investigators or supervisors, Essential demonstrator/Intelex solution lead, facilitator, and scribe. Day 1 targeted: clinic/OHM owner, environmental/Resolver owner, client API/integration team, and data/access representatives. Day 2 targeted: Property Damage, Notice of Violation, and Near Miss process owners; hours-worked data owner; reporting lead. Ensure decision makers attend their sessions or nominate delegates.",
+    "preparation": "Prepare the current Essential demonstration environment and one anonymized SIA scenario for each incident type. Share current SIA forms, workflows, roles, and follow-up/closure requirements. Bring OHM and Resolver sample payloads or field lists, source identifiers, API constraints, and integration owners. Provide hours-worked source examples, reporting periods, sample incident reports, and desired measures. Confirm dates, platform, participant availability for the stated EST times, and shared fit/gap log; test online access and screen sharing.",
+    "scope_control": "Use the updated SIA brief as the workshop baseline: client-configured APIs send OHM Injury/Illness and Resolver Environmental Incident records to Intelex, which creates first reports and starts investigation/follow-up workflows. Focus on Essential adoption and minor form/workflow/field changes; record larger changes for impact review. Reconcile the earlier proposed ADR-064 with this OHM/API direction when documenting outcomes. Address ADR-091 incident-to-NCR/CAR linkage only where a demonstrated process requires it; record unresolved linkage questions without expanding this workshop into a separate application redesign."
+  }
+}
