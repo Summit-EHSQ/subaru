@@ -1,0 +1,10 @@
+{
+  "project_id": "appgprj_6afbc39cbbc88191b4f62a83f21ec5bb",
+  "commit_sha": "6c843acaec3fb10bb15183bed524ddf1d4ec0587",
+  "deployment_id": "appgdep_6afbe0365c0c819186d25391da4e69a1",
+  "status": "succeeded",
+  "url": "https://supplier-scorecard-overview-example.summit-ehsq-5147.chatgpt.site",
+  "audience": "owner-private",
+  "tests_passed": 19,
+  "tenant_updated": false
+}

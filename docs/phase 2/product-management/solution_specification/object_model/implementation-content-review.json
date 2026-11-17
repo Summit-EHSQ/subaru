@@ -1,0 +1,1043 @@
+{
+  "version": 1,
+  "tasks": [
+    {
+      "id": "IMP-01",
+      "evidenceReview": "Reviewed the complete revised assignment against the user direction dated 2026-11-17 and specification sections 1, 2, 3, 7, 8, and 9. Product Integration is now a new application owning every integration object. The only tab has eleven direct menu targets, checked individually against the unchanged eleven-object inventory. This replaces the former existing-application reuse and Reference Data arrangement without claiming a tenant move.",
+      "languageReview": "The title and objective name the application and one-tab access outcome. Steps state application-before-object ordering, every object/menu name, exact same-name inventory binding, and the no-submenu condition. Role reasons and acceptance checks describe concrete configuration results. The assignment remains understandable with its source references hidden.",
+      "meaningReview": "The only design differences are new application ownership and one tab with eleven direct inventory menu items. Preserved all eleven object names including BOMECS Part API Recod, native identity, no explicit business inheritance, no existing-object connections, Associate Consultant ownership, separate reviewer, empty predecessor/input lists, and all field/integration rules in unchanged tasks IMP-02 through IMP-12. Coverage now assigns new application creation to IMP-01 instead of recording application reuse.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Create the standalone application, its only tab, eleven application-owned types, and eleven direct inventory access points.",
+          "mechanism": "Native Product Integration application, tab, object ownership, and inventory menu configuration."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Create Product Integration as a new application before adding its sole same-named tab.",
+          "mechanism": "Native application and tab creation with collision-free identifiers."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Create all eleven exactly named types under Product Integration rather than the existing Product Management application.",
+          "mechanism": "Native object creation and application ownership metadata for the eleven inventory entries."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Create eleven direct same-name inventory menu bindings on the only tab without a Reference Data submenu.",
+          "mechanism": "Product Integration tab menu configuration targeting each same-named local object inventory."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Constrain the newly created definitions to the isolated model without explicit inheritance, duplicate infrastructure fields, or existing-object connections.",
+          "mechanism": "New object inheritance and relationship configuration, reusing native identity/audit infrastructure."
+        }
+      ],
+      "taskHash": "40b23cb6c9c2a979a8ff7fcea2473ad71cc916e40f271613a3a7d48dd302038d",
+      "renderedTaskHash": "334dfd572a0ed5b108324179c9e6d7adca1c2427b53a4f11429f316f67e0d16b"
+    },
+    {
+      "id": "IMP-02",
+      "evidenceReview": "Compared all nineteen declared rows to sections 5.2, 5.3, 5.6, 5.7, and 5.9. Source Program/Supplier identity remains separate from existing masters; flag Sort is locally maintained and flag Name splits literal receipt from approved translation. The only seeded records are the three proposed local roles. Native limits/localization and unapproved translations remain narrow supplied inputs.",
+      "languageReview": "The complete assignment states the reference records, role choices, exact entry values, permitted local edits, and observable display outcomes. Float is explained as a decimal-capable number; literal flag code and resource key remain exact technical names needed for configuration.",
+      "meaningReview": "Preserved required 100-character source/code keys, 255-character descriptor/catalogue labels, Boolean activity, nullable Float sort, TRUE role default, exact three code/name/sort seeds, and no membership Role default. Source population and native permissions/key enforcement have distinct owners.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add five local reference/catalogue field sets and screens with exactly three locally governed role entries.",
+          "mechanism": "Program Reference, Supplier Reference, Part Flag, Part Tag, and Supplier Relationship Role configuration."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Add the reference screens with source facts read only and narrowly available catalogue maintenance.",
+          "mechanism": "Five new reference forms; IMP-07 supplies corresponding access enforcement."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Seed MANUFACTURING, ASSEMBLY, and SEQUENCING with exact labels, TRUE activity, and sort 10/20/30, without a membership default.",
+          "mechanism": "Local Supplier Relationship Role catalogue entries and empty membership Role default."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Enable catalogue label localization while keeping codes stable and the supplied flag resource key literal until an approved translation exists.",
+          "mechanism": "Catalogue Name localization settings, non-localizable Code fields, and disabled consumer grids."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add required immutable Text(100) trusted namespace matching the receiving Part or Number.",
+          "mechanism": "New Program Reference.Source System field; IMP-10/12 supply namespace."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add required immutable Text(100) identity using lowercase Part id and capitalized ECN Id.",
+          "mechanism": "Program Reference.External ID field and exact source-path mapping contract."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add required Text(255) source label without changing identity on rename.",
+          "mechanism": "Program Reference.Name field and source-controlled reading presentation."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add required source Boolean activity without cascade or loss of inactive links.",
+          "mechanism": "Program Reference.Active? Yes/No field."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add required immutable Text(100) source namespace for component-local supplier identity.",
+          "mechanism": "New Supplier Reference.Source System field."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add required immutable Text(100) source supplier key without native supplier matching.",
+          "mechanism": "Supplier Reference.External ID field with source-key contract."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add required Text(255) local descriptor label without any existing supplier connection.",
+          "mechanism": "Supplier Reference.Name field and read-only source control."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add required source Boolean activity without changing existing supplier eligibility.",
+          "mechanism": "Supplier Reference.Active? Yes/No field."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add required immutable Text(100) namespace matching the received Part.",
+          "mechanism": "New Part Flag.Source System field."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add required non-localizable immutable Text(100) code preserving the string 2.",
+          "mechanism": "Part Flag.Code text field; source Flag.id mapping contract."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add required localizable Text(255) display label preserving the resource key and allowing only approved translations.",
+          "mechanism": "Part Flag.Name source-locale value and catalogue localization settings."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add required source Boolean activity retaining inactive records and excluding future manual choices.",
+          "mechanism": "Part Flag.Active? Yes/No field and specified selection contract."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add optional Float with NULL default maintained locally, never received from the API.",
+          "mechanism": "Part Flag.Sort numeric field and catalogue-administrator presentation."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add required immutable Text(100) namespace for exact local tag identity.",
+          "mechanism": "New Part Tag.Source System field."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Add required immutable Text(100) exact tag value, with null/blank rejection and identical-value deduplication owned by receiving.",
+          "mechanism": "Part Tag.Value field; IMP-10 tag validation contract."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Add required non-localizable Text(100) unique stable code, immutable after first use.",
+          "mechanism": "New local Role.Code field and catalogue maintenance contract."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Add required localizable Text(255) catalogue label independent of identity.",
+          "mechanism": "Supplier Relationship Role.Name field and localization metadata."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Add required Boolean with TRUE default, retaining old references after deactivation.",
+          "mechanism": "Supplier Relationship Role.Active? field with catalogue default and selector contract."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Add optional Float with NULL default for local presentation ordering only.",
+          "mechanism": "Supplier Relationship Role.Sort numeric field."
+        }
+      ],
+      "taskHash": "248bbfa7b0faacee5a12257aaf680eeec79d878f193114892580b851f16894a6",
+      "renderedTaskHash": "5dfb1afb25aa28e1fa2a8e63ad552c0ebd760e939514f10bb2d5074be6158658"
+    },
+    {
+      "id": "IMP-03",
+      "evidenceReview": "Reconciled all twenty rows to section 5.1 and Part property mappings. Corrected prerequisites so declaring revision and supplier Part links from IMP-05 exist before inverse grids; that task itself needs only object identities and supplier/role fields. Corrected Part.Product Family ownership to include the standalone command. Storage/provisional value decisions remain IN-01, IN-05, and IN-07, without claiming a native JSON scalar or existing Drawing target.",
+      "languageReview": "The task explains Part reading, source edits, programs/tags, revision views, and retained information in direct business terms. Each row states its type, requiredness, source/default timing, editor, and behavior; field capacities retain character units. Technical paths remain for locating mappings, while the instructions describe observable screen outcomes.",
+      "meaningReview": "Preserved all text capacities, provisional Decimal(19,6), nullable optional source fields, required Boolean fields, create-only Name fallback with update-null rejection, four declaring local links, two inverse grids, revision filter, raw-document size/restriction, and no projected unknown structures. IMP-10/11 own population and IMP-07/09 own enforcement without duplicate configuration ownership.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add all twenty Part field/list declarations and source reading presentation.",
+          "mechanism": "New BOMECS Part API Recod field definitions, local relationships, and reading form."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Create the Part reading layout with its named source facts, relationship lists, and restricted technical evidence presentation.",
+          "mechanism": "New Part form controls and technical Raw Payload presentation consumed by IMP-07."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Declare native Programs/Tags maps and optional Flag/Family links with only the Family inverse enabled.",
+          "mechanism": "Four Part relationship definitions and their specified inverse flags."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Add read-only supplier/revision reverse lists after their declaring Part fields exist, including included-by-default and retained-row views.",
+          "mechanism": "Inverse grids over IMP-05 Part links, with Included in Latest Part Feed? filter and authorized retained-row view."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Configure the stored Name display label and omit unsupported projected fields from the new definition.",
+          "mechanism": "Part display-field metadata and the defined twenty-row field set; unknown structures stay in Raw Payload."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add required immutable Text(100) trusted source namespace, read only after creation.",
+          "mechanism": "New Part.Source System field and IMP-10 trusted namespace contract."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add required immutable Text(100) source id, independent of native record identity.",
+          "mechanism": "Part.External ID field and Source System + id match contract."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add required nonblank Text(100) business label whose change does not create another source identity.",
+          "mechanism": "Part.Part Number field with source partNumber population."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add optional Text(255) default NULL, retaining spaces and allowing explicit-null clearing.",
+          "mechanism": "Part.Part Name field and read-only source presentation."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add proposed optional Text(255) default NULL while leaving unsupported non-null meaning pending.",
+          "mechanism": "Part.Future Part Name provisional text declaration and IN-07 constraint."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add proposed optional Text(100) default NULL without inferred links to another Part.",
+          "mechanism": "Part.LS Part Number field and pending non-null producer contract."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add proposed optional Text(100) default NULL without inferred Part identity or relationships.",
+          "mechanism": "Part.LE Part Number field and IN-07 constraint."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add provisional optional Decimal(19,6) default NULL, prohibiting rounding and leaving currency/unit/negative policy pending.",
+          "mechanism": "Part.Unit Cost decimal declaration; native type binding IN-01 and producer semantics IN-07."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add optional Text(100) default NULL with no Drawing lookup.",
+          "mechanism": "Part.Drawing Number scalar field."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add required source Boolean with no default, retaining records and links when false.",
+          "mechanism": "Part.Active? Yes/No field and manual-selection contract."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add required stored Text(512) display label with create-only Part Number fallback and rejection of update-null.",
+          "mechanism": "Part.Name field, display-field metadata, and IMP-10 create/update default contract."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add optional native many-to-many Program links, initially empty, with inverse disabled and source-owned membership replacement.",
+          "mechanism": "Part.Programs native M:N relationship; IMP-10 owns membership operations."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add optional single local Flag link default NULL, no selector/inverse, allowing inactive source facts and explicit-null clear.",
+          "mechanism": "Part.Flag M:1 relationship to local Part Flag."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add read-only inverse membership navigation without duplicate stored links.",
+          "mechanism": "Part.Supplier Relationships grid over Part Supplier Relationship.Part from IMP-05."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Add read-only inverse revision list with included-default filter and retained-row inspection without deletion.",
+          "mechanism": "Part.Revisions grid over Part Revision Reference.Part and inclusion filter."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Add optional native many-to-many exact source tag links, initially empty with inverse disabled.",
+          "mechanism": "Part.Tags native M:N relationship to local Part Tag."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Add optional Unicode long text up to proposed 65536 characters, default NULL, with escaped display and explicit-null clear.",
+          "mechanism": "Part.Notes long-text field; IN-01 native storage and IN-07 format constraints."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Add optional same-source single Family reference default NULL and family-side inverse, updated by both Part and standalone Family operations.",
+          "mechanism": "Part.Product Family M:1 relationship with Part Numbers inverse; IMP-10/11 population."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Add required source Boolean with no default and no security or Facility relationship effect.",
+          "mechanism": "Part.Include All Facilities? Yes/No field."
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Add required latest complete accepted Part document with proposed 1 MiB capacity and technical-only evidence access.",
+          "mechanism": "Part.Raw Payload native text/document binding IN-01; IMP-07/08/09/10 enforce access, retention, and saving."
+        }
+      ],
+      "taskHash": "8c4e705283dd5780bdd2c514b0389bef7f75e507972933ee9a08cdf20bff6acd",
+      "renderedTaskHash": "3d1c7a306f5ecf84931f59188913eba5f7ebc59e122da0f4ec5fcffd86e9dc5e"
+    },
+    {
+      "id": "IMP-04",
+      "evidenceReview": "I compared all seven Family rows and the rendered assignment to section 5.5 and standalone/nested rules in 6.3. Native identity is not duplicated; External ID is conditional and may be populated once; nested descriptors cannot overwrite Notes, standalone evidence, or other memberships. IMP-03 supplies the declaring Family link before its inverse. Storage and producer defaults remain explicit inputs.",
+      "languageReview": "The task explains displaying families and Parts, then states how the reverse list, identity, and raw evidence work. Field rows keep editor, type, limits, source timing, and conditions visible. Readiness names exactly what remains pending rather than assigning discovery work.",
+      "meaningReview": "Preserved 100-character source keys, 255-character required Name, optional 65536-character Notes, create-only TRUE activity, conditional raw evidence, one optional Family per Part, and one inverse list. IMP-11 owns standalone Notes/evidence, IMP-10/11 own membership, and IMP-12 does not update Part membership.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add seven Family field/list declarations and a reading screen over the one stored Part family link.",
+          "mechanism": "New Product Family field definitions and form, consuming the IMP-03 declaring relationship."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add required immutable Text(100) trusted source namespace for Family identity.",
+          "mechanism": "Product Family.Source System text field."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add conditional Text(100) External ID, optional for native-identity standalone requests and immutable after its first verified assignment.",
+          "mechanism": "Product Family.External ID field with supplied native conditional settings and IMP-11 request validation."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add required nonblank Text(255) Name, preserving omission on update and rejecting null without name-based identity matching.",
+          "mechanism": "Product Family.Name source-controlled display field."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add optional Unicode Notes up to proposed 65536 characters, NULL initially, with standalone-only updates and escaped display.",
+          "mechanism": "Product Family.Notes long-text field; IMP-11 owns population."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add required Boolean activity with TRUE only on standalone create and explicit descriptor status on nested receipt.",
+          "mechanism": "Product Family.Active? field with request-dependent defaults supplied by IMP-11 and descriptor mapping by IMP-10/12."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add read-only Part Numbers reverse navigation with no duplicate collection or independent membership storage.",
+          "mechanism": "Inverse grid over BOMECS Part API Recod.Product Family from IMP-03."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add conditional latest standalone raw evidence, absent on descriptor-only creation and protected from descriptor overwrites.",
+          "mechanism": "Family.Raw Payload native text/document binding with proposed 1 MiB limit and technical permissions."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Create Family reading controls and a restricted technical evidence presentation.",
+          "mechanism": "New Product Family form; enforced permissions owned by IMP-07."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Configure inverse-only membership display without a separate stored collection or user assignment control.",
+          "mechanism": "Part Numbers reverse grid over the IMP-03 declaring Part link."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Configure the conditional external identity and one-time assignment rule without applying a universal TRUE activity default.",
+          "mechanism": "Family.External ID metadata and request-dependent checks owned by IMP-11."
+        }
+      ],
+      "taskHash": "8e5f5c6971b9265ea90577f50bdf428bb0052c66fe53570fd438daa96eb1fd18",
+      "renderedTaskHash": "503eedae10a56b3d09dbf964c66a273c90403faea01c1db55b89f1e48858add1"
+    },
+    {
+      "id": "IMP-05",
+      "evidenceReview": "Compared five revision rows and three supplier-membership rows to sections 5.4 and 5.8. The declaring Part links require the new Part type identity, not its later fields; prerequisites were corrected accordingly. Membership Role has no source/default value and is maintained by the local mapper. Feed inclusion and source activity remain independent.",
+      "languageReview": "The assignment names retained history, mapped roles, active choices, and read-only outcomes directly. Each field row includes cardinality, source/default, editor, and retention condition. Result checks distinguish the new fields and permitted local edit, with no preparation-only deliverable.",
+      "meaningReview": "Preserved immutable required Part/External ID on revision, required source Name/Active?, required inclusion TRUE when first identified, exact Part + External ID identity, unique Part + Supplier membership, optional Role=NULL, inverses only on declaring Part links, and inactive assigned Role read-only retention. IMP-10 owns reconciliation and IMP-07 access.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add revision and supplier-membership field sets with reading and existing-membership Role editing.",
+          "mechanism": "Part Revision Reference and Part Supplier Relationship definitions/forms."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add required immutable one-Part revision link with Revisions inverse and same-source constraint.",
+          "mechanism": "Part Revision Reference.Part M:1 relationship to the new Part type."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add required immutable Text(100) revision source ID unique within Part, never fabricated from labels.",
+          "mechanism": "Part Revision Reference.External ID field; IMP-09 key enforcement."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add required Text(255) revision label with exact label-array corroboration owned by receiving.",
+          "mechanism": "Part Revision Reference.Name field; IMP-10 reconciliation contract."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add required source Boolean activity independent of engineering-current status and retained links.",
+          "mechanism": "Part Revision Reference.Active? Yes/No field."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add required read-only latest-feed inclusion, initially TRUE on identified receipt, retaining identity when omitted.",
+          "mechanism": "Part Revision Reference.Included in Latest Part Feed? field populated by IMP-10."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add required immutable one-Part supplier-membership link and Supplier Relationships inverse.",
+          "mechanism": "Part Supplier Relationship.Part M:1 relationship."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add required immutable Supplier link with inverse disabled and matching source namespace.",
+          "mechanism": "Part Supplier Relationship.Supplier M:1 to local Supplier Reference."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add optional Role=NULL with active choices, no source assignment/default, and retained inactive value read only.",
+          "mechanism": "Part Supplier Relationship.Role M:1 to local Role catalogue and mapper control."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Create source reading screens with immutable identities and read-only source values.",
+          "mechanism": "Revision and supplier-membership form/control configuration."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Create a restricted Role editor on existing memberships with active-only new choices and inactive retained display.",
+          "mechanism": "Membership Role selector; IMP-07 enforces mapper permissions."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Create the declaring Part relationships without duplicate storage and leave reconciliation to its sole owner.",
+          "mechanism": "Native Part links consumed by IMP-03 reverse grids; IMP-10 owns membership changes."
+        }
+      ],
+      "taskHash": "bee9b3cd5ad494f4bcebfb0d295a2fc1e6de3f688001c432a66e187d43ea79d3",
+      "renderedTaskHash": "1351b180bea7edec532d9ca07a66bcddd2a9b8119df3f8a08b72272fddb291a5"
+    },
+    {
+      "id": "IMP-06",
+      "evidenceReview": "Reviewed fourteen field/grid rows against sections 5.10 and 5.11 plus section 7 screens. Number identity and Scope identity remain separate, all six targets are local, and the Number inverse uses the Scope declaring link within this task. Null Part/Revision and retained revisions remain valid; provisional row/text decisions are explicitly supplied inputs.",
+      "languageReview": "The task explains keeping separate change contexts, source text, and retained evidence. Requiredness and relationship behavior are stated in field rows and screen steps. Technical names identify actual proposed fields, while outcomes describe independent contexts and valid/invalid Part-Revision combinations.",
+      "meaningReview": "Preserved Number source keys Text(100), required Name Text(255), Boolean activity, one Scopes inverse; Scope requires Number and conditionally Part, allows nullable Supplier/Revision/Family/Program, enforces Revision.Part=Part, stores separate optional 65536-character text and required row evidence. No counts, workflow state, existing master connection, or release inference is introduced.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add Number/Scope fields and screens with nullable local context and independent source text/evidence.",
+          "mechanism": "New Engineering Change Number and Scope configuration."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add required immutable Text(100) trusted namespace for Number identity.",
+          "mechanism": "Engineering Change Number.Source System field."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add required immutable Text(100) external Number ID, distinct from row identity.",
+          "mechanism": "Engineering Change Number.External ID field."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add required nonblank Text(255) received Number label without parsing revision/release meaning.",
+          "mechanism": "Engineering Change Number.Name field and read-only presentation."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add required source activity Boolean without release, workflow, or approval effect.",
+          "mechanism": "Engineering Change Number.Active? field."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add read-only Scopes inverse navigation without another stored relationship.",
+          "mechanism": "Number.Scopes grid over Scope.Engineering Change Number."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add required local Number anchor supplying source namespace and one scope-key component.",
+          "mechanism": "Scope.Engineering Change Number M:1 declaring relationship."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add optional local Supplier context, inverse disabled, without generating Part membership or Role.",
+          "mechanism": "Scope.Supplier M:1 relationship to Supplier Reference."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add nullable same-source Part context, required with Revision, never inferred from Name or family members.",
+          "mechanism": "Scope.Part M:1 relationship with conditional requirement."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add nullable retained Revision context requiring its matching Part even when excluded from latest feed.",
+          "mechanism": "Scope.Revision M:1 to Part Revision Reference with Revision.Part=Part rule."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add optional local Family context without modifying Part family membership.",
+          "mechanism": "Scope.Product Family M:1 relationship with inverse disabled."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add optional local Program context using capitalized source descriptor keys without changing Part Programs.",
+          "mechanism": "Scope.Program M:1 relationship to local Program Reference."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add optional Unicode Description up to proposed 65536 characters with exact source text and escaped display.",
+          "mechanism": "Scope.Description long-text field populated by IMP-12."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add optional provisional Unicode Comment up to 65536 characters with null-clear/omission-preserve and pending ownership confirmation.",
+          "mechanism": "Scope.Comment long-text field and IN-06 constraint."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add required latest complete row evidence with original casing/nulls and technical-only access.",
+          "mechanism": "Scope.Raw Payload native text/document storage up to proposed 1 MiB; envelope retained separately."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Create Number reading controls and inverse Scopes navigation using the declaring Scope link.",
+          "mechanism": "Number form and native inverse grid."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Create Scope reading controls and restricted raw-evidence presentation.",
+          "mechanism": "Scope form and technical presentation enforced by IMP-07."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Configure required matching Part for a populated Revision while allowing null context and retained revisions.",
+          "mechanism": "Scope relationship conditional settings; IMP-12 owns receive-time rejection/deferral."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Create separate escaped optional text controls and omit response-count/state/operational-trigger additions.",
+          "mechanism": "Scope Description/Comment controls and bounded Number/Scope field set."
+        }
+      ],
+      "taskHash": "3ca3bebfd00cc21d781d859181f960e04edd646c380d73129eed9594a912f827",
+      "renderedTaskHash": "deec2ea219332f4680f3d3cf8dea349767b1292a37bdded7a7e2e86477f391a7"
+    },
+    {
+      "id": "IMP-07",
+      "evidenceReview": "Reconciled every instruction against the user's exact group names and policy: Administrators already has full control with checks disabled; the named Part Integration group receives four object permissions via Rights; Everyone receives three Audit Trail flags on every object. The eleven targets match the source inventory, including catalogues and retained references. Existing Administrators behavior is reuse context only. Other access duties remain lower-privilege controls rather than invented extra groups. Source-provided policy replaces the old unknown group mapping in IN-04.",
+      "languageReview": "The objective states administrative rights and auditable changes first. Each Rights and audit operation has its own named configuration row; the steps list all eleven targets and distinguish audit audience from access grants. The waiting note isolates remaining evidence/native bindings and does not block the supplied group and audit settings. Acceptance describes the 44 Rights and 33 audit settings and lower-privilege outcomes.",
+      "meaningReview": "Preserved stable task ID/title, roles, five object-definition prerequisites, field declarations, service allowlist, source identity rules, reader protection, local mapper limits, native retention, and timestamp behavior. Added exact named-group setup/reuse, Create/View/Edit/Delete Rights for every object, and Everyone Create/Edit/Delete Audit Trail. Removed the generic administrator-limited-edit criterion so it cannot contradict full administration. No extra Administrators setup, Everyone CRUD grant, View audit change, service group membership, or user membership work is introduced.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add the supplied named-group object Rights and Everyone audit configuration while retaining separately scoped lower-privilege/evidence controls.",
+          "mechanism": "Part Integration administration Group, native Rights, permission Audit Trail settings, and existing supporting access bindings."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Set up exactly the named Group if absent and reuse an exact existing match without assigning users.",
+          "mechanism": "Native Group record with exact Name Part Integration - Admin Security Group."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Grant Create via Rights on all eleven objects to the named integration administration group.",
+          "mechanism": "Each object Create permission Rights grant for the named group."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Grant View via Rights on all eleven objects to the named integration administration group.",
+          "mechanism": "Each object View permission Rights grant for the named group."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Grant Edit via Rights on all eleven objects to the named integration administration group.",
+          "mechanism": "Each object Edit permission Rights grant for the named group."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Grant Delete via Rights on all eleven objects including catalogues/references without overriding native reference integrity.",
+          "mechanism": "Each object Delete permission Rights grant, distinct from the service deletion allowlist."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Enable Everyone Audit Trail on each object Create permission without granting Everyone Create access.",
+          "mechanism": "Native Create permission Audit Trail setting with Everyone audience."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Enable Everyone Audit Trail on each object Edit permission without granting Everyone Edit access.",
+          "mechanism": "Native Edit permission Audit Trail setting with Everyone audience."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Enable Everyone Audit Trail on each object Delete permission without granting Everyone Delete access.",
+          "mechanism": "Native Delete permission Audit Trail setting with Everyone audience."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Constrain the receiving service to local allowed writes/removals without reducing the named administration Delete right.",
+          "mechanism": "Existing service allowlist and application service permissions consumed by receiving."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Give lower-privilege readers normalized access without source edits or raw evidence on any stated route.",
+          "mechanism": "Native reader field/document/search/export/navigation controls."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Allow technical inspection for the reading duty without confusing it with either full-administration group.",
+          "mechanism": "Technical reading access to Raw Payload and native diagnostics."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Enable bounded lower-privilege catalogue maintenance with stable used codes and approved flag display edits.",
+          "mechanism": "Catalogue field permissions and local maintenance controls."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Enable active Role edits only on existing memberships for lower-privilege mappers.",
+          "mechanism": "Mapper field/record permissions and active Role selector."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Retain changed values, associations, local changes, outcomes, prior messages, and failures under native evidence controls.",
+          "mechanism": "Native audit and restricted integration evidence retention alongside the explicit object audit flags."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Retain existing-link reading after deactivation and native integrity/retention on administrative removal.",
+          "mechanism": "Inactive selection rules, reference integrity, and native retention settings."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Target every one of the eleven explicitly named types without omitting catalogues/references.",
+          "mechanism": "The complete Product Integration object inventory used by the Rights and Audit Trail configuration."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Apply four Rights permissions per object through the named group for 44 grants without a new bypass.",
+          "mechanism": "Native Group lookup/creation and object Create/View/Edit/Delete Rights configuration."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Enable all 33 Everyone Create/Edit/Delete audit settings without adding access or View audit.",
+          "mechanism": "Everyone audience on each object-operation Audit Trail setting."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Apply remaining non-administrative access paths without denying named administrative Rights or expanding service writes.",
+          "mechanism": "Native field/map/document/navigation/search/export permissions and existing receiving allowlist."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Bind historical and failure evidence with restricted access and native user-zone timestamp display.",
+          "mechanism": "Native integration retention, association audit, and audit/execution timestamp display."
+        }
+      ],
+      "taskHash": "e6e4045e9ce340bac0898a60665e5d828026b2815058f2d26c89dad91b02f272",
+      "renderedTaskHash": "ea209f0fb6b44bd58ffd96210acaa8f91442270731dddf1cf75dcbb272ca9178"
+    },
+    {
+      "id": "IMP-08",
+      "evidenceReview": "Reviewed section 6.1 and section 5 raw storage against the current corrected entry assignment. Confirmed mappings reject malformed types; unknown properties and explicitly raw-only structures are retained rather than broadly rejected. Trusted source, exact casing, pre-mutation checks, latest raw evidence, prior evidence, and full envelopes remain distinct. Native entry/storage/retention bindings stay explicit inputs.",
+      "languageReview": "The objective explains rejecting malformed/untrusted messages. Each step states what is validated, preserved, retained, and passed to saving, while entry labels remain proposed operations. The corrected wording explains unknown-data retention without requiring the business reader to interpret an endpoint method.",
+      "meaningReview": "Preserved strict duplicate-key rejection, trusted namespace derivation, exact strings/casing, omission-preserve and nullable-null-clear, required-null rejection with create-only Part fallback, descriptor consistency, 1 MiB raw-document capacity, prior native retention, and no bypass of consistent saving.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add shared trusted receive entry, common validation, capacity protection, and native evidence bindings.",
+          "mechanism": "Proposed receiving configuration using supplied supported native service methods."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Connect all three logical operations to authenticated source bindings and constrain namespace/field authority.",
+          "mechanism": "Supplied connector entries, credentials, trusted namespaces, and component allowlist."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Reject malformed JSON and confirmed-contract violations while retaining unknown/raw-only structures.",
+          "mechanism": "Strict JSON parser with pre-mutation confirmed-mapping and capacity validation."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Apply exact omission/null behavior and case-sensitive descriptor type/consistency checks before mutation.",
+          "mechanism": "Common update validation and feed-specific descriptor mappings."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Store complete latest payloads and retain full envelopes/history with overflow failure evidence.",
+          "mechanism": "Supplied Unicode text/document storage and native integration retention, proposed 1 MiB pre-mutation limit."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Attribute native outcomes and route all accepted units through consistent saving.",
+          "mechanism": "Native execution diagnostics/audit and IMP-09 save entry."
+        }
+      ],
+      "taskHash": "eed2353a6824ae347323c2850f130f14c718d85759447290bbaa697d4a556029",
+      "renderedTaskHash": "79e8c93c1cce32e0b964a48e7b7b4d321105635c4e2b0efb18ab736c29523b20"
+    },
+    {
+      "id": "IMP-09",
+      "evidenceReview": "Compared current keys and save units to sections 3, 5.5, 5.11, and 6.1/6.3. Optional Family source identity and null-equal Scope identity are retained, as are locks/rechecks, whole-operation saving, native staging fallback, and retained create-request identity. Supported native execution and producer identity remain local supplied inputs; no unverified method is asserted.",
+      "languageReview": "The objective describes complete repeatable changes after failure or simultaneous receipt. Steps explain matching, protected writes, no partial results, retries, and competing producers through their consequences. The specialist grouping rationale explains why the protecting mechanism must stay coherent.",
+      "meaningReview": "All declared compound keys survive, including Family non-null uniqueness and Part-scoped revision/membership keys. Part/Family save all related changes together; ECN saves one row/descriptors with per-row outcomes. Identical Family key/body converges, conflicting body fails, and absent source versions create no stale-write or chronological guarantee.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add one consistent save mechanism spanning keys, simultaneous changes, replay identity, staging, and request mapping.",
+          "mechanism": "Supplied native persistence, uniqueness, locks, transactions/rollback, staging, and retained requests."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Enforce every exact source compound key including optional Family ID and Part-scoped revision/member identities.",
+          "mechanism": "Native compound uniqueness using supplied exact source comparison."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Match contexts with null equality and preserve distinct occurrences or corrected tuples.",
+          "mechanism": "Confirmed Scope six-reference key or supplied stable row identity."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Protect source keys, membership sets, and shared descriptors from simultaneous writes and duplicate retries.",
+          "mechanism": "Supplied native lock method/order with uniqueness rechecked under the same protection."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Save complete Part/Family or ECN-row units together and keep previous values on failure.",
+          "mechanism": "Verified native transaction/batch/rollback plus per-row outcomes."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Hold unsupported execution without exposing partial business records.",
+          "mechanism": "Supported native integration staging pending consistent execution design."
+        },
+        {
+          "path": "steps.5",
+          "requiredChange": "Reuse the created Family for identical key/body retries and reject conflicting body reuse.",
+          "mechanism": "Native retained request-to-created-Family mapping protected by the same save."
+        },
+        {
+          "path": "steps.6",
+          "requiredChange": "Gate competing producers on namespaces, authority, and delivery order without an invented version check.",
+          "mechanism": "Trusted feed configuration and writer enablement."
+        }
+      ],
+      "taskHash": "966d9d6d9bd725caf5d6a7e6e689bb60344fe25406bdf2efe6e5793ab6626908",
+      "renderedTaskHash": "e4c2288402362bb86b87b7669160344f480a1649c37f82dc09af6fbf00ade1ee"
+    },
+    {
+      "id": "IMP-10",
+      "evidenceReview": "Compared all current eight mapping steps and four outcomes to section 6.2, section 5 field contracts, the 24-property dictionary, and the Part JSON. All populated descriptor paths retain correct casing. The sample trailing space, false facility flag, string flag ID, source revision identity, and null-only values remain preserved. Unsupported non-null meaning stays an input, not an invented projection.",
+      "languageReview": "The assignment explains aligning received facts, keeping mapped supplier roles, and retaining revisions. Ordered instructions state actor, trigger, array presence, null/empty/omission differences, and what remains after withdrawal. Source paths are explicit configuration details; references contain no missing operative rule.",
+      "meaningReview": "Preserved create requirements and create-only Name fallback, update-null Name rejection, exact source keys, array replacement/null rejection/omission preservation, tag validation, revision-set corroboration and retained inclusion, supplier-role retention, descriptor reuse, raw-only unknown structures, exact cost conversion, and one consistent save. Part receive and Family command share only their declared link responsibilities.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add complete Part receive mapping and membership reconciliation without losing retained revisions or local roles.",
+          "mechanism": "PMAPI-PART mapping through validated entry and IMP-09 consistent saving."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Map Part scalar fields and trusted identity with exact create requirements, stored Name fallback, and update-null/omission rules.",
+          "mechanism": "PMAPI-PART scalar source-path mapping and pre-save create/update validation."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Resolve local programs, suppliers, flag, family, and tags using exact source paths and keys.",
+          "mechanism": "Descriptor mapping into local reference records and Part relationships."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Replace only present Part membership sets, distinguish empty/null/omitted values, validate tags, and protect reusable references/family standalone data.",
+          "mechanism": "Part membership reconciliation inside the validated consistent-save unit."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Reconcile identified revision IDs and independent feed-inclusion flags while retaining revision and Scope references.",
+          "mechanism": "Part Revision Reference key lookup and Included in Latest Part Feed? updates."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Reject conflicting revision label/ID sets before mutation and keep strings-only revision information raw.",
+          "mechanism": "Pre-save exact revLevels and identified revision reconciliation."
+        },
+        {
+          "path": "steps.5",
+          "requiredChange": "Preserve mapped Role on retained Part/Supplier membership and remove only withdrawn local associations.",
+          "mechanism": "Part + Supplier membership matching, NULL initial Role, and native removal audit."
+        },
+        {
+          "path": "steps.6",
+          "requiredChange": "Retain unknown structures without projections or inferred links and constrain provisional cost/text business use.",
+          "mechanism": "Complete Part.Raw Payload plus confirmed optional field mappings and IN-07 constraints."
+        },
+        {
+          "path": "steps.7",
+          "requiredChange": "Save the complete checked Part change set without any earlier consequential writes.",
+          "mechanism": "IMP-09 transaction or supported staging for fields, descriptors, links, flags, and latest evidence."
+        }
+      ],
+      "taskHash": "fb6c60f24debc6ff9ea111cca43ac68379e85e8a28e521c93cab020e66e968da",
+      "renderedTaskHash": "0a8d6ef1c738c5ddbc608db0f81aa1aef203b889cd6adcce56fdb4509bd8ff12"
+    },
+    {
+      "id": "IMP-11",
+      "evidenceReview": "Reconciled section 6.3 and seven Family rows with the three-property example. The body supplies no target identity or activity, so create/update context remains IN-05. The current assignment preserves no Name matching, native request mapping, all-ID prevalidation, one stored Part link, and distinct standalone versus descriptor effects.",
+      "languageReview": "The task states the business outcome of changing the intended Family without duplicate creation or unintended reassignment. Each instruction includes what create/update, omitted/null/empty, and conflicting membership mean. Waiting text names the actual missing identity and producer confirmations.",
+      "meaningReview": "Create sets confirmed TRUE only on that path, leaves source ID absent unless verified, and retains the complete standalone body. Update preserves identity/activity and omitted values, clears nullable Notes, rejects null Name, resolves full same-source selected IDs, and saves replacements together. Nested descriptors cannot clear standalone values or merge by label.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add trusted Family create/update mapping with complete validated membership replacement and standalone evidence retention.",
+          "mechanism": "PMAPI-FAMILY command using IMP-09 identity, request mapping, and consistent saving."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Configure standalone creation with native identity, required Name, confirmed create-only activity, optional external ID, and stable retry mapping.",
+          "mechanism": "Family create command and native retained request-to-record map."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Configure identified updates with no Name matching, preserved identity/activity, exact null/omission rules, and one-time source-ID assignment.",
+          "mechanism": "Trusted native/source-ID Family update binding and pre-save validation."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Resolve every selected same-source Part ID before mutation and reject unknown/cross-source/conflicting assignments.",
+          "mechanism": "Confirmed selectedPartNumbersIds mapping and full-set membership validation."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Replace only the identified Family memberships through Part.Product Family and save links/evidence together.",
+          "mechanism": "Declaring Part family relationship and IMP-09 save unit; Part Numbers remains inverse-only."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Keep nested descriptors from modifying standalone Notes, evidence, or other memberships and prohibit same-name merges.",
+          "mechanism": "Descriptor field allowlist and verified external-ID attachment mapping."
+        }
+      ],
+      "taskHash": "1eaffc61cd509036d162f956866878b8002cc85fe36cd74b3713434c49fc604d",
+      "renderedTaskHash": "3d18eff3407f1eaf2ab68fe07c4c5f36a30318cda9aae24de6f204b9178ee307"
+    },
+    {
+      "id": "IMP-12",
+      "evidenceReview": "Reviewed all current seven steps against section 6.4, nine Scope/five Number rows, dictionary casing, and the full ECN example. Number/scope identities remain distinct. Counts stay native response evidence. Missing contexts and unconfirmed non-null Part/Revision defer normalized mutation; page omission is never deletion. Source row/paging/text ownership decisions remain IN-06.",
+      "languageReview": "The task explains preserving separate contexts and records absent from later pages. Steps state required properties, exact capitalized Program keys, null and missing behavior, whole-row failure effects, and what pages cannot remove. Technical tuple language is paired with the named reference list and observable matching result.",
+      "meaningReview": "Preserved required data array/nonnegative 32-bit counts, exact lowercase descriptor keys except Program Id/Name/Status, all six context properties, null-equal matching or supplied stable row identity, conflict handling, same-source matched Part/Revision including retained rows, exact separate text, per-row saving, no Part membership effects, and no release/sequence inference.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add repeatable per-context ECN response mapping, retained page evidence, and explicit unresolved-row deferral.",
+          "mechanism": "PMAPI-ECN row mapper and supplied page binding using native evidence and IMP-09 saving."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Validate required response array and bounded integer counts while retaining envelope metadata outside business fields.",
+          "mechanism": "ECN envelope parser and native integration evidence/page-request binding."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Map each descriptor using exact source casing and reject conflicting source/entity descriptions before mutation.",
+          "mechanism": "Case-sensitive Number, Supplier, Family, and Program descriptor mappings."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Require complete context, defer omitted context, and match confirmed null-equal tuples or supplied stable row identity.",
+          "mechanism": "Pre-save six-context validation and IMP-09 Scope identity matching."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Accept null Part/Revision without inference, defer unconfirmed non-null rows, and enforce matched same-source retained revision references once mapped.",
+          "mechanism": "Context wire mapping and Part/Revision relationship validation."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Store exact separate Scope text/latest row evidence and apply identified update/key-change rules.",
+          "mechanism": "Scope.Description, Comment, Raw Payload mappings and explicit Part/Revision clear behavior."
+        },
+        {
+          "path": "steps.5",
+          "requiredChange": "Save each validated row/descriptors consistently with a per-row result and retain unresolved rows without partial business values.",
+          "mechanism": "IMP-09 transaction/staging and native per-row outcomes/evidence."
+        },
+        {
+          "path": "steps.6",
+          "requiredChange": "Keep omitted scopes and Part memberships unchanged and prohibit operational meaning inferred from labels/activity.",
+          "mechanism": "Omission-safe page reconciliation and bounded context/descriptor write allowlist."
+        }
+      ],
+      "taskHash": "e0b99983e937330aee063ce0913ed6d7c92c990537b70ac6560bb565b60f3b10",
+      "renderedTaskHash": "b404a6c07d01534ee07f4604221ce5049ce7eb3dfb3dfd85638e0a34eee05e7a"
+    }
+  ],
+  "unchangedTaskHashes": {
+    "IMP-01": "40b23cb6c9c2a979a8ff7fcea2473ad71cc916e40f271613a3a7d48dd302038d",
+    "IMP-02": "248bbfa7b0faacee5a12257aaf680eeec79d878f193114892580b851f16894a6",
+    "IMP-03": "8c4e705283dd5780bdd2c514b0389bef7f75e507972933ee9a08cdf20bff6acd",
+    "IMP-04": "8e5f5c6971b9265ea90577f50bdf428bb0052c66fe53570fd438daa96eb1fd18",
+    "IMP-05": "bee9b3cd5ad494f4bcebfb0d295a2fc1e6de3f688001c432a66e187d43ea79d3",
+    "IMP-06": "3ca3bebfd00cc21d781d859181f960e04edd646c380d73129eed9594a912f827",
+    "IMP-08": "eed2353a6824ae347323c2850f130f14c718d85759447290bbaa697d4a556029",
+    "IMP-09": "966d9d6d9bd725caf5d6a7e6e689bb60344fe25406bdf2efe6e5793ab6626908",
+    "IMP-10": "fb6c60f24debc6ff9ea111cca43ac68379e85e8a28e521c93cab020e66e968da",
+    "IMP-11": "1eaffc61cd509036d162f956866878b8002cc85fe36cd74b3713434c49fc604d",
+    "IMP-12": "e0b99983e937330aee063ce0913ed6d7c92c990537b70ac6560bb565b60f3b10"
+  },
+  "revision": {
+    "date": "2026-11-17",
+    "changedTaskIds": [
+      "IMP-07"
+    ],
+    "unchangedTaskIds": [
+      "IMP-01",
+      "IMP-02",
+      "IMP-03",
+      "IMP-04",
+      "IMP-05",
+      "IMP-06",
+      "IMP-08",
+      "IMP-09",
+      "IMP-10",
+      "IMP-11",
+      "IMP-12"
+    ],
+    "scope": "Named administrative group Rights and Everyone object-operation audit; IN-04 now separates supplied policy from remaining evidence/native bindings. Existing Administrators bypass is user-confirmed reuse."
+  }
+}

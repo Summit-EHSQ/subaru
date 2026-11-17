@@ -1,0 +1,11 @@
+{
+  "project_id": "appgprj_6afbc39cbbc88191b4f62a83f21ec5bb",
+  "commit_sha": "ca048d5008cd38585785cd5fc6def2912e2e5e12",
+  "deployment_id": "appgdep_6afbca6472c08191b81ec11be7e528af",
+  "status": "succeeded",
+  "audience": "owner-private",
+  "url": "https://supplier-scorecard-overview-example.summit-ehsq-5147.chatgpt.site",
+  "tenant_updated": false,
+  "browser_handoff": "Private ChatGPT sign-in gate observed; local example and bundled fragment verified separately.",
+  "tests_passed": 17
+}

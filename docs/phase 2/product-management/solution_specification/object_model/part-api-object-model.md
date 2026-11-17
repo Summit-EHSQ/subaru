@@ -1,18 +1,21 @@
-# Product Management API object model
+# Product Integration object model
 
 Status: Proposed logical design  
-Date: 2026-11-10  
-Application: Product Management / API Data  
+Date: 2026-11-17\
+Application: Product Integration\
+Tab: Product Integration\
 Authority: [Technical specification](product-management-api-technical-specification.md)  
 Companion: [API data dictionary](part-api-data-dictionary.md)
 
 ## 1 Component scope
 
-The API Data component contains eleven new Product Management objects for the supplied Part, Product Family, and Engineering Change Numbers payloads. All business relationships stay within this component. The object name **BOMECS Part API Recod** retains the exact user-requested spelling.
+The standalone Product Integration application owns eleven new integration objects for the supplied Part, Product Family, and Engineering Change Numbers payloads. All business relationships stay within this component. The object name **BOMECS Part API Recod** retains the exact user-requested spelling.
 
 Program Reference, Supplier Reference, Product Family, Part Flag, and Supplier Relationship Role are new component-local definitions. No existing application object, catalogue, inheritance base, master record, workflow, or operational process is connected. Native identity, security, audit, localization, and relationship storage remain platform services.
 
 The current target supersedes the earlier reuse/promotion suggestions. The existing package baseline remains unchanged. The technical specification is the sole field-configuration authority; this overview summarizes its structure.
+
+Configure exactly one tab named **Product Integration**, with a separate direct inventory menu item for every object below. Use the displayed object name for its menu item. There is no Reference Data submenu or second tab; the complete menu-to-inventory mapping is in technical specification section 3.
 
 ## 2 Object inventory
 
@@ -38,6 +41,7 @@ All multiplicities are proposed target rules; exact inverse configuration and co
 
 ```mermaid
 classDiagram
+%% Owned by Product Integration; one Product Integration tab with eleven direct inventory menu items.
 direction LR
 class BOMECS_Part_API_Recod {
   +string SourceSystem

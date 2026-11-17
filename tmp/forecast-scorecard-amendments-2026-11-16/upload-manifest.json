@@ -1,0 +1,58 @@
+{
+  "project": {
+    "id": 594236,
+    "name": "[T&M] SIA - Phase 2 - ESQS Program"
+  },
+  "authorization": "User explicitly requested task creation and confirmed project and AMD-02 parent mapping.",
+  "sourcePlanHash": "d12022261803cf03bab05723d1ca969b02851094db73d15b49ab68a7e01f5140",
+  "tasks": [
+    {
+      "amendmentId": "AMD-01",
+      "title": "AMD-01 — Add the Three Supplier Scorecard Tabs and Menu Groups",
+      "stableIdentifier": "supplier-scorecard-navigation-security-amendment:AMD-01",
+      "parentTaskNumber": "T26142",
+      "parentInternalId": 16945723,
+      "parentTitle": "[APP-01] Create the Supplier Scorecard Application",
+      "linkedOriginalTaskId": "APP-01",
+      "payloadFile": "C:\\Users\\DaveMcLean\\OneDrive - Summit EHSQ Inc\\Documents\\GitHub\\subaru\\tmp\\forecast-scorecard-amendments-2026-11-16\\AMD-01-payload.json",
+      "descriptionHash": "a7ba3f25b8f27f703a75ad82e4e9291b9a2fcf19537e7e7d0cd86d1ef225c88a",
+      "descriptionLength": 6221
+    },
+    {
+      "amendmentId": "AMD-02",
+      "title": "AMD-02 — Create Security Groups and Configure Catalogue Permissions",
+      "stableIdentifier": "supplier-scorecard-navigation-security-amendment:AMD-02",
+      "parentTaskNumber": "T26143",
+      "parentInternalId": 16945724,
+      "parentTitle": "[OBJ-02] Create the Scorecard Catalogue Objects",
+      "linkedOriginalTaskId": "CFG-03",
+      "payloadFile": "C:\\Users\\DaveMcLean\\OneDrive - Summit EHSQ Inc\\Documents\\GitHub\\subaru\\tmp\\forecast-scorecard-amendments-2026-11-16\\AMD-02-payload.json",
+      "descriptionHash": "c5c2457d24bac037f00f5a9a42cbb8edd2f40caae2d77f0bab23b988883e099e",
+      "descriptionLength": 17940
+    },
+    {
+      "amendmentId": "AMD-03",
+      "title": "AMD-03 — Configure Application and Supplier Record Access",
+      "stableIdentifier": "supplier-scorecard-navigation-security-amendment:AMD-03",
+      "parentTaskNumber": "T26168",
+      "parentInternalId": 16945751,
+      "parentTitle": "[SEC-26] Configure Supplier Scorecard Security",
+      "linkedOriginalTaskId": "SEC-26",
+      "payloadFile": "C:\\Users\\DaveMcLean\\OneDrive - Summit EHSQ Inc\\Documents\\GitHub\\subaru\\tmp\\forecast-scorecard-amendments-2026-11-16\\AMD-03-payload.json",
+      "descriptionHash": "55ad682b04868f4dcfb4bcc1258b68ad8fced28f521589681ebcb5dd67b893ea",
+      "descriptionLength": 20499
+    },
+    {
+      "amendmentId": "AMD-04",
+      "title": "AMD-04 — Add Menu Links and Default Views",
+      "stableIdentifier": "supplier-scorecard-navigation-security-amendment:AMD-04",
+      "parentTaskNumber": "T26169",
+      "parentInternalId": 16945752,
+      "parentTitle": "[RPT-27] Configure Scorecard Views and Reports",
+      "linkedOriginalTaskId": "RPT-27",
+      "payloadFile": "C:\\Users\\DaveMcLean\\OneDrive - Summit EHSQ Inc\\Documents\\GitHub\\subaru\\tmp\\forecast-scorecard-amendments-2026-11-16\\AMD-04-payload.json",
+      "descriptionHash": "855fa9a519bbfe274a7ee1d60b3ddebdc9ee37113a5b222b36d8eea1d7ae7ca2",
+      "descriptionLength": 16869
+    }
+  ]
+}

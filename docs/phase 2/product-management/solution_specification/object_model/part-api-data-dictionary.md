@@ -1,12 +1,15 @@
-# Product Management API data dictionary
+# Product Integration API data dictionary
 
 Status: Proposed source mapping  
-Date: 2026-11-10  
-Application: Product Management / API Data  
+Date: 2026-11-17\
+Application: Product Integration\
+Tab: Product Integration\
 Authority: [Technical specification](product-management-api-technical-specification.md)  
 Companion: [Object model](part-api-object-model.md)
 
-This dictionary maps the three supplied payloads to the new, isolated Product Management API Data objects. The technical specification owns field types, requiredness, defaults, editability, relationships, and lifecycle rules. No target in this dictionary is an existing application business object.
+This dictionary maps the three supplied payloads to the eleven new objects owned by the standalone Product Integration application. The technical specification owns field types, requiredness, defaults, editability, relationships, and lifecycle rules. No target in this dictionary is an existing application business object.
+
+Product Integration has one tab, also named Product Integration, with one separate direct inventory menu item per object. Technical specification section 3 defines all eleven menu targets.
 
 ## 1 Complete payload mappings
 

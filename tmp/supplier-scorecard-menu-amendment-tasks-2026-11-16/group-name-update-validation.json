@@ -1,0 +1,41 @@
+{
+  "changedFiles": 7,
+  "replacements": 88,
+  "newGroupName": "Supplier Scorecard App - Supplier User Security Group",
+  "files": [
+    {
+      "file": "tmp\\supplier-scorecard-menu-amendment-tasks-2026-11-16\\revise-security-amendments.cjs",
+      "replacements": 2
+    },
+    {
+      "file": "tmp\\supplier-scorecard-menu-amendment-tasks-2026-11-16\\implementation-plan.md",
+      "replacements": 17
+    },
+    {
+      "file": "tmp\\supplier-scorecard-menu-amendment-tasks-2026-11-16\\implementation-plan.json",
+      "replacements": 16
+    },
+    {
+      "file": "tmp\\supplier-scorecard-menu-amendment-tasks-2026-11-16\\group-creation-move-baseline.json",
+      "replacements": 17
+    },
+    {
+      "file": "tmp\\supplier-scorecard-menu-amendment-tasks-2026-11-16\\amendment-task-records.json",
+      "replacements": 14
+    },
+    {
+      "file": "tmp\\supplier-scorecard-menu-amendment-tasks-2026-11-16\\amendment-proposal.md",
+      "replacements": 14
+    },
+    {
+      "file": "docs\\phase 2\\supplier-relationship-management\\solution_specification\\object_model\\supplier-scorecard-technical-specification.md",
+      "replacements": 8
+    }
+  ],
+  "specificationSha256": "25d95cbe51f00d6bda26c2ee937242726e788969d5b995ad20b875b18e993cb3",
+  "taskContentChange": "Exact supplier group name only; no settings, ownership, roles or dependencies changed",
+  "passed": true,
+  "staleReferences": 0,
+  "structuralGatePassed": true,
+  "contentGatePassed": true
+}

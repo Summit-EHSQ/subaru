@@ -1,0 +1,148 @@
+{
+  "project_number": "P544",
+  "project_id": 594236,
+  "parent_task_number": "T24730",
+  "parent_task_id": 16732398,
+  "created": 12,
+  "skipped": 0,
+  "updated": 0,
+  "removed": 0,
+  "failed": 0,
+  "verified": 12,
+  "rerun_would_create": 0,
+  "tasks": [
+    {
+      "plan_task_id": "IMP-01",
+      "source_id": "product-integration/IMP-01",
+      "task_number": "T26879",
+      "internal_id": 17033377,
+      "title": "IMP-01 — Create Product Integration and its object inventories",
+      "project_id": 594236,
+      "parent_task_id": 16732398,
+      "disposition": "created",
+      "verified": true
+    },
+    {
+      "plan_task_id": "IMP-02",
+      "source_id": "product-integration/IMP-02",
+      "task_number": "T26880",
+      "internal_id": 17033378,
+      "title": "IMP-02 — Set up source references and local supplier roles",
+      "project_id": 594236,
+      "parent_task_id": 16732398,
+      "disposition": "created",
+      "verified": true
+    },
+    {
+      "plan_task_id": "IMP-03",
+      "source_id": "product-integration/IMP-03",
+      "task_number": "T26881",
+      "internal_id": 17033379,
+      "title": "IMP-03 — Set up the Part record and reading screen",
+      "project_id": 594236,
+      "parent_task_id": 16732398,
+      "disposition": "created",
+      "verified": true
+    },
+    {
+      "plan_task_id": "IMP-04",
+      "source_id": "product-integration/IMP-04",
+      "task_number": "T26882",
+      "internal_id": 17033381,
+      "title": "IMP-04 — Set up Product Families and their Part list",
+      "project_id": 594236,
+      "parent_task_id": 16732398,
+      "disposition": "created",
+      "verified": true
+    },
+    {
+      "plan_task_id": "IMP-05",
+      "source_id": "product-integration/IMP-05",
+      "task_number": "T26883",
+      "internal_id": 17033382,
+      "title": "IMP-05 — Set up retained revisions and supplier memberships",
+      "project_id": 594236,
+      "parent_task_id": 16732398,
+      "disposition": "created",
+      "verified": true
+    },
+    {
+      "plan_task_id": "IMP-06",
+      "source_id": "product-integration/IMP-06",
+      "task_number": "T26884",
+      "internal_id": 17033383,
+      "title": "IMP-06 — Set up engineering-change numbers and contexts",
+      "project_id": 594236,
+      "parent_task_id": 16732398,
+      "disposition": "created",
+      "verified": true
+    },
+    {
+      "plan_task_id": "IMP-07",
+      "source_id": "product-integration/IMP-07",
+      "task_number": "T26885",
+      "internal_id": 17033384,
+      "title": "IMP-07 — Control component access and retain audit",
+      "project_id": 594236,
+      "parent_task_id": 16732398,
+      "disposition": "created",
+      "verified": true
+    },
+    {
+      "plan_task_id": "IMP-08",
+      "source_id": "product-integration/IMP-08",
+      "task_number": "T26886",
+      "internal_id": 17033385,
+      "title": "IMP-08 — Connect and validate incoming source documents",
+      "project_id": 594236,
+      "parent_task_id": 16732398,
+      "disposition": "created",
+      "verified": true
+    },
+    {
+      "plan_task_id": "IMP-09",
+      "source_id": "product-integration/IMP-09",
+      "task_number": "T26887",
+      "internal_id": 17033386,
+      "title": "IMP-09 — Save related changes consistently and prevent duplicate retries",
+      "project_id": 594236,
+      "parent_task_id": 16732398,
+      "disposition": "created",
+      "verified": true
+    },
+    {
+      "plan_task_id": "IMP-10",
+      "source_id": "product-integration/IMP-10",
+      "task_number": "T26888",
+      "internal_id": 17033387,
+      "title": "IMP-10 — Receive Parts and reconcile their memberships",
+      "project_id": 594236,
+      "parent_task_id": 16732398,
+      "disposition": "created",
+      "verified": true
+    },
+    {
+      "plan_task_id": "IMP-11",
+      "source_id": "product-integration/IMP-11",
+      "task_number": "T26889",
+      "internal_id": 17033388,
+      "title": "IMP-11 — Receive Family requests and replace Part memberships",
+      "project_id": 594236,
+      "parent_task_id": 16732398,
+      "disposition": "created",
+      "verified": true
+    },
+    {
+      "plan_task_id": "IMP-12",
+      "source_id": "product-integration/IMP-12",
+      "task_number": "T26890",
+      "internal_id": 17033389,
+      "title": "IMP-12 — Receive change contexts and retain page evidence",
+      "project_id": 594236,
+      "parent_task_id": 16732398,
+      "disposition": "created",
+      "verified": true
+    }
+  ],
+  "error": null
+}

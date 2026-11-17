@@ -1,16 +1,16 @@
-# Product Management API data technical specification
+# Product Integration technical specification
 
 Status: Proposed logical configuration design  
-Date: 2026-11-10  
-Application: Product Management  
-Component: API Data  
+Date: 2026-11-17\
+Application: Product Integration\
+Tab: Product Integration\
 Companions: [Object model](part-api-object-model.md) and [API data dictionary](part-api-data-dictionary.md)
 
 ## 1 Purpose and application boundary
 
-Create a self-contained API Data component within **Product Management** to receive Part, Product Family, and Engineering Change Numbers data. The component contains eleven new logical business objects and their internal relationships. Preserve the exact user-specified object name **BOMECS Part API Recod**.
+Create a standalone application named **Product Integration** to receive Part, Product Family, and Engineering Change Numbers data. This application owns all eleven integration objects and their internal relationships. Configure exactly one application tab, also named **Product Integration**, with a separate direct menu item for each object inventory. Preserve the exact user-specified object name **BOMECS Part API Recod**.
 
-All configured business relationships terminate at objects defined in this specification. Program Reference, Supplier Reference, Product Family, and Supplier Relationship Role are component-local objects. There are no relationships, inheritance links, lookups, automatic matching, synchronization, or writebacks to existing Product Management, Supplier Management, PPAP, Drawing, ECS, Location, or other application business objects. Housing the component in Product Management establishes application ownership and navigation; it does not connect its records to existing records.
+All configured business relationships terminate at objects defined in this specification. Program Reference, Supplier Reference, Product Family, and Supplier Relationship Role are component-local objects. There are no relationships, inheritance links, lookups, automatic matching, synchronization, or writebacks to existing Product Management, Supplier Management, PPAP, Drawing, ECS, Location, or other application business objects. Product Integration is a new application, separate from existing Product Management and other applications. Its single tab exposes only the eleven local object inventories; it does not connect their records to existing business records.
 
 Use native identity, security, audit, localization, relationship maps, and integration execution evidence as platform services. Those services do not introduce a modeled business connection to an existing application object. No business workflow, publishing/version framework, Event Service, reminder, or notification process is required for this component.
 
@@ -28,7 +28,7 @@ This is a target technical specification based on the three supplied payloads an
 | [Product Family example](product-family-api-payload.example.json) | Directly supplied definition | Name, Notes, and selected part IDs; no family ID or activity in this body |
 | [Engineering Change Numbers example](engineering-change-numbers-api-payload.example.json) | Directly supplied definition | Three response-envelope properties, eight row properties, and exact descriptor casing |
 | User naming instruction | Required target decision | BOMECS Part API Recod is the exact display name, including its spelling |
-| User application and isolation instruction | Required target decision | Own the component in Product Management; no connections to existing business objects |
+| User application and isolation instruction | Required target decision | Own all eleven objects in the new Product Integration application, with one tab and eleven direct inventory menu items; no connections to existing business objects |
 | Object structures, field sizes, defaults, keys, and lifecycle rules below | Proposed | Configuration choices needed to receive and maintain the supplied data |
 | Family member-ID namespace, non-null change Part/Revision DTOs, scope identity, and source ordering | Unresolved | Retain source evidence and use the restrictions in sections 6 and 10 until the producer contract resolves them |
 
@@ -52,12 +52,14 @@ No new package extraction is needed to define this isolated target. Earlier repo
 | API-12 | Accept null change Part/Revision and avoid inferred parts, supplier roles, or release status |
 | API-13 | Process pages with response retention and retry rules; never delete by page omission |
 | PMAPI-14 | Preserve BOMECS Part API Recod consistently across the complete implementation contract |
-| PMAPI-15 | House all eleven objects, forms, views, catalogues, and internal associations within Product Management / API Data |
+| PMAPI-15 | House all eleven objects, forms, views, catalogues, and internal associations in Product Integration; expose each object inventory as a separate menu item on its only tab |
 | PMAPI-16 | Configure no connection or inheritance to pre-existing application business objects |
 | PMAPI-17 | Give every directly declared field and inverse grid one canonical implementation row |
 | PMAPI-18 | Preserve revision records referenced by Engineering Change Scope when current Part-feed membership changes |
 
 ### 2.3 Superseded assumptions
+
+The 2026-11-17 application and navigation direction supersedes the earlier Product Management / API Data ownership and primary-list/Reference Data navigation. The target is now the standalone Product Integration application with one tab and eleven direct inventory menu items. This is a target-design revision, not a tenant move or data migration.
 
 PMAPI-15 and PMAPI-16 supersede earlier suggestions to reuse existing application masters, reuse an existing supplier-role catalogue, map native Item required fields, or promote intake records into canonical objects as part of this build. The internal object relationships remain in scope. Earlier ADR references do not create dependencies or workflow triggers for this component.
 
@@ -65,7 +67,23 @@ PMAPI-18 refines API-05: removing a revision from the latest incoming collection
 
 ## 3 Application structure and object inventory
 
-Create an **API Data** navigation group within Product Management. Provide lists for Parts, Product Families, Engineering Change Numbers, and Engineering Change Scopes, with a Reference Data area for the remaining objects. Native configuration metadata must allocate collision-free internal names during the build; no existing object may be selected merely because its display name matches one below.
+Create the **Product Integration** application before creating its objects. Add exactly one tab named **Product Integration**. On that tab, add the eleven direct inventory menu items below, one per object, using the displayed object names. Do not create a second tab or a Reference Data submenu. Every inventory targets its own new object in Product Integration.
+
+| Menu item | Object inventory |
+|---|---|
+| BOMECS Part API Recod | BOMECS Part API Recod |
+| Program Reference | Program Reference |
+| Supplier Reference | Supplier Reference |
+| Part Revision Reference | Part Revision Reference |
+| Product Family | Product Family |
+| Part Flag | Part Flag |
+| Part Tag | Part Tag |
+| Part Supplier Relationship | Part Supplier Relationship |
+| Supplier Relationship Role | Supplier Relationship Role |
+| Engineering Change Number | Engineering Change Number |
+| Engineering Change Scope | Engineering Change Scope |
+
+ Native configuration metadata must allocate collision-free internal names during the build; no existing object may be selected merely because its display name matches one below.
 
 All inventory entries are proposed new component-local objects. Native record identity and audit fields are platform-managed. No custom identity or audit fields are added to duplicate them. Every object has no proposed explicit business inheritance; any unavoidable platform infrastructure metadata must be verified without introducing an existing domain-object dependency.
 
@@ -93,6 +111,7 @@ Multiplicities are proposed target rules. Field rows in section 5 are authoritat
 
 ```mermaid
 classDiagram
+%% Owned by Product Integration; one Product Integration tab with eleven direct inventory menu items.
 direction LR
 class BOMECS_Part_API_Recod {
   +string SourceSystem
@@ -314,7 +333,7 @@ The receiving operation locates the one source membership by Part + Supplier bef
 
 ### 5.9 Supplier Relationship Role
 
-Inheritance parent: None. Create this governed catalogue within Product Management / API Data. It has no inheritance or relationship to an existing role catalogue. Directly declared fields:
+Inheritance parent: None. Create this governed catalogue within Product Integration. It has no inheritance or relationship to an existing role catalogue. Directly declared fields:
 
 | Field | Type / relationship | Req | Default / calculation | Editability and visibility | Automation / lifecycle |
 |---|---|---:|---|---|---|
@@ -426,7 +445,7 @@ Rows absent from a page and empty `data` leave existing scopes unchanged. A chan
 
 | Surface or principal | Configuration |
 |---|---|
-| Product Management / API Data | Component navigation and object inventories; no grids added to existing business-object forms |
+| Product Integration application / Product Integration tab | Exactly one tab with eleven separate direct inventory menu items, one for each object listed in section 3; no Reference Data submenu or grids on existing business-object forms |
 | Part form | Identity and descriptive source fields; Programs, Tags, Flag, and Family; read-only supplier-association and revision grids |
 | Revision grid | Revisions is the inverse of Part Revision Reference.Part; default filter Included in Latest Part Feed?=TRUE; authorized readers can inspect retained rows without changing membership |
 | Product Family form | Name, Notes, activity, identity, and read-only Part Numbers grid; assignments performed by the receive operation |
@@ -434,11 +453,34 @@ Rows absent from a page and empty `data` leave existing scopes unchanged. A chan
 | Change Scope form | Internal context relationships, Description, Comment; no existing master-object selector or navigation target |
 | Integration service | Create/update only these component objects; remove Part Supplier Relationship records only for validated source-membership removal and unlink native M:N associations as specified; prohibit deletion of retained revisions and reference masters; restrict source-key mutation |
 | Component reader | Read normalized records and approved internal navigation; no source-field edits and no Raw Payload access |
-| Technical reader / component administrator | Inspect Raw Payload, native diagnostics, and configuration as authorized; no implicit edit override for immutable source keys |
+| Technical reader without administrative membership | Inspect Raw Payload, native diagnostics, and configuration as authorized; this duty alone grants no source-edit override and is separate from the two administrative groups below |
 | Catalogue administrator | Maintain local Supplier Relationship Role; maintain Part Flag Sort and approved label translations; audit changes |
 | Local relationship mapper | Assign Role on existing Part Supplier Relationship using active local catalogue values; cannot manufacture source membership |
 
-Principal names above are permission responsibilities, not references to pre-existing named security groups. Configure them with native security mechanisms. Enable audit on all mutable component objects and their relevant associations. Inactive records remain readable through authorized existing links; deactivation does not broaden access. Verify direct URLs, search, exports, source-document access, and relationship navigation rather than relying only on form visibility.
+The service, ordinary-reader, technical-reading, catalogue-maintenance, and local-mapper labels describe duties; they do not require additional named groups. The named administrative group model below takes precedence over any generic limited component-administrator wording. Lower-privilege duty restrictions do not deny the specified administrative object Rights or expand the receiving service allowlist.
+
+**Administrative groups:**
+
+- **Administrators (existing):** User-confirmed full control over all eleven objects is already in place because this group accesses Intelex with permission checks disabled. Reuse that existing behavior; no Administrators group creation, extra Rights grants, or permission-check configuration is assigned.
+- **Part Integration - Admin Security Group:** Set up this exact named group if absent, or reuse its exact existing match. Grant **Create, View, Edit, and Delete via Rights** on every Product Integration object, including all catalogues and references. Use Rights for this group; no permission-check bypass is requested. Group membership administration remains external.
+
+**Everyone audit settings:** For the existing **Everyone** group, enable **Audit Trail** for each object's **Create, Edit, and Delete** permissions. Apply all three settings to all eleven objects, for 33 enabled object-operation settings. These are audit settings, not Create/View/Edit/Delete access grants to Everyone. No View audit change is assigned.
+
+| Object | Part Integration - Admin Security Group: Rights | Everyone: Audit Trail enabled for |
+|---|---|---|
+| BOMECS Part API Recod | Create, View, Edit, Delete | Create, Edit, Delete |
+| Program Reference | Create, View, Edit, Delete | Create, Edit, Delete |
+| Supplier Reference | Create, View, Edit, Delete | Create, Edit, Delete |
+| Part Revision Reference | Create, View, Edit, Delete | Create, Edit, Delete |
+| Product Family | Create, View, Edit, Delete | Create, Edit, Delete |
+| Part Flag | Create, View, Edit, Delete | Create, Edit, Delete |
+| Part Tag | Create, View, Edit, Delete | Create, Edit, Delete |
+| Part Supplier Relationship | Create, View, Edit, Delete | Create, Edit, Delete |
+| Supplier Relationship Role | Create, View, Edit, Delete | Create, Edit, Delete |
+| Engineering Change Number | Create, View, Edit, Delete | Create, Edit, Delete |
+| Engineering Change Scope | Create, View, Edit, Delete | Create, Edit, Delete |
+
+The named administration group has 44 required object Rights grants. Keep native reference integrity applicable to administrative deletion; the service-only deletion restrictions do not remove this group's Delete right. Retain native audit of relevant association changes and restricted evidence of prior accepted messages/failures. Audit/execution timestamps remain native server instants displayed through supported user time zones. Inactive records retain authorized existing links without broadening access. Verify ordinary-reader restrictions through URLs, search, exports, source documents, and relationship navigation; do not rely only on form visibility.
 
 Source labels are imported literally. Catalogue Name fields support localization; stable codes remain non-localizable. The Part Flag source label is a resource key and must not be silently translated into an assumed enum value. Render imported text as text with the appropriate output escaping.
 
@@ -448,14 +490,14 @@ No data migration, canonical-master enrichment, inherited field modification, or
 
 | Change ID | Action | Element | Previous target assumption | Proposed target | Requirement | Rationale | Confidence |
 |---|---|---|---|---|---|---|---|
-| PMAPI-C01 | Modify | Application ownership | Generic intake component with potential native reuse | Product Management / API Data owns eleven new local objects | PMAPI-15 | Explicit user direction | High |
+| PMAPI-C01 | Modify target design | Application ownership and inventory navigation | Product Management / API Data with primary inventories and Reference Data | New Product Integration application owns all eleven objects; exactly one Product Integration tab has eleven direct inventory menu items | PMAPI-15 | User application and single-tab direction, 2026-11-17 | High |
 | PMAPI-C02 | Remove from scope | Existing-object mappings and promotion | Possible master reuse and later canonical promotion dependencies | Zero configured business relationships or inheritance to existing objects | API-06, PMAPI-16 | Explicit isolation direction | High |
 | PMAPI-C03 | No structural change | BOMECS Part API Recod name | Exact user-requested name already applied | Preserve exact spelling in every artifact | PMAPI-14 | Stable terminology | High |
 | PMAPI-C04 | Modify | Supplier Relationship Role | Potential reuse of an existing governed catalogue | New local catalogue with its own seed values | PMAPI-15, PMAPI-16 | Avoid an existing-object dependency | High |
 | PMAPI-C05 | Add | Part Revision Reference.Included in Latest Part Feed? | Array omission could remove a revision record needed by an ECN scope | Retain revision identity and vary current membership separately | API-05, PMAPI-18 | Maintain internal referential integrity | High |
 | PMAPI-C06 | Modify | Documentation authority | Full field contract housed in the draft dictionary | Section 5 is canonical; dictionary maps API properties and links to it | PMAPI-17 | One implementation authority | High |
 
-The configuration impact is confined to the new Product Management component and native permissions/navigation needed to administer it. No existing object, base object, field, inverse grid, report, workflow, or physical table is altered. There is no inheritance propagation to existing descendants. Platform-managed M:N maps connect only local objects.
+The configuration impact is confined to the new Product Integration application, its single tab and eleven direct inventory menu items, and native permissions needed to administer it. No existing object, base object, field, inverse grid, report, workflow, or physical table is altered. There is no inheritance propagation to existing descendants. Platform-managed M:N maps connect only local objects.
 
 Changing the revision membership behavior preserves existing internal change references while keeping the latest incoming revision list inspectable. If pilot data already exists, initialize the marker from the latest accepted identified revision array for each part; do not infer it from Active? or names. If that evidence is unavailable, leave the initial load/reconciliation pending rather than guessing. This is conditional guidance, not a claim that records have been created or require migration.
 
@@ -479,7 +521,7 @@ Statuses below describe the logical specification; they do not report a live ten
 | API-12 | Scope Part/Revision and source-status interpretation | Receive null context without inferred part/revision/release; non-null DTOs unresolved | Partially satisfied |
 | API-13 | ECN native response retention and per-row operations | No deletion by page omission; endpoint paging contract still unconfirmed | Partially satisfied |
 | PMAPI-14 | Part object, diagram, field tables, dictionary | Preserve exact BOMECS Part API Recod spelling | Satisfied |
-| PMAPI-15 | Eleven-object inventory and API Data navigation | Place the complete component in Product Management | Satisfied |
+| PMAPI-15 | Product Integration application, eleven objects, and one-tab inventory navigation | Own every integration object in Product Integration and provide eleven direct inventory menu items on its only tab | Satisfied |
 | PMAPI-16 | All relationship targets, selectors, catalogues, and inheritance declarations | Zero configured connections to existing business objects | Satisfied |
 | PMAPI-17 | Section 5 and dictionary links | One canonical row per field/grid, one numbered subsection per object | Satisfied |
 | PMAPI-18 | Part Revision Reference.Included in Latest Part Feed? | Retain revision records and their ECN references after source-list omission | Satisfied |
@@ -502,6 +544,9 @@ Statuses below describe the logical specification; they do not report a live ten
 | PMAPI-A14 | Inspect every relationship target, configured selector, inverse, and inheritance edge | All business targets belong to the eleven local objects; no existing-object lookup or connector writeback |
 | PMAPI-A15 | Exercise direct URLs, search, export, and Raw Payload access with reader permissions | Only permitted local data is visible; source fields remain read only; restricted evidence is protected |
 | PMAPI-A16 | Fail persistence mid-operation and retry | Verified transaction/staging strategy prevents exposed partial state and duplicate records; native diagnostics retain the failure |
+| PMAPI-A17 | Inspect application ownership and navigation | All eleven objects belong to Product Integration; its only tab is Product Integration and contains eleven direct inventory menu items, one per object, without a Reference Data submenu |
+| PMAPI-A18 | Inspect the named administration group on every object | Part Integration - Admin Security Group has Create, View, Edit, and Delete via Rights on all eleven objects (44 grants); Administrators full control is reused as user-confirmed existing behavior |
+| PMAPI-A19 | Inspect Everyone audit settings on every object | Audit Trail is enabled for Everyone on Create, Edit, and Delete on all eleven objects (33 enabled settings), without granting Everyone object access |
 
 ## 10 Validation findings and remaining configuration decisions
 
@@ -510,6 +555,7 @@ Statuses below describe the logical specification; they do not report a live ten
 | Check | Result |
 |---|---|
 | Object inventory to field sections | 11 objects; 11 matching numbered field subsections |
+| Application and inventory navigation | Product Integration owns all 11 objects; exactly 1 tab and 11 direct inventory menu items |
 | Field and grid contract | 68 individually declared rows, including 4 inverse grids; no combined field rows |
 | Mermaid associations | 14 declaring associations; all targets resolve to the eleven local objects |
 | Existing business-object targets | 0; no explicit business inheritance |
@@ -535,7 +581,7 @@ The required revision Part link and optional ECN Part/Revision constraints accep
 | ECN pagination | Confirm page parameters, count interpretation, snapshot consistency, and delivery behavior; omission does not delete records |
 | Native storage and types | Verify long-text/document capacity, Decimal(19,6), character limits, localization, and source-identifier case comparison; no silent truncation/rounding |
 | Native uniqueness and transactions | Verify composite-key enforcement, null-aware scope matching, locks, rollback, native staging, and create-request mapping before enabling production writes |
-| Native audit, retention, and permissions | Verify prior source evidence, relationship audit, technical document access, and required retention; no custom audit object is proposed |
-| Configuration metadata | Allocate unique new internal object/field identifiers within Product Management; do not reuse an existing object by name |
+| Native audit, retention, and permissions | Named group Rights and Everyone Create/Edit/Delete Audit Trail policy are supplied in section 7; only the remaining native bindings for prior evidence, association audit, technical document access, and retention require supplied settings; no custom audit object is proposed |
+| Configuration metadata | Allocate unique new application, tab, menu, object, and field identifiers within Product Integration; do not reuse an existing object by name |
 
 These decisions do not prevent a reviewable logical technical specification or receipt of the supplied examples under the stated assumptions. They remain implementation prerequisites where the tenant or producer contract must determine executable behavior. No tenant build, import execution, security test, or deployment is claimed here.

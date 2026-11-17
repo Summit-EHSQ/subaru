@@ -1,0 +1,8 @@
+{
+  "planContractVersion": 2,
+  "passed": true,
+  "taskCount": 12,
+  "coverageCount": 108,
+  "errors": [],
+  "limits": "Deterministic structure, snapshot/rendering, input, graph and ownership checks. Not semantic, language-quality, source-completeness or live-tenant certification."
+}

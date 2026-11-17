@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "originalTasksUnchanged": 35,
+  "amendmentTasks": 4,
+  "totalGraphTasks": 39,
+  "groupCreationOwner": "AMD-02",
+  "catalogueRightsRows": 13,
+  "nonCataloguePermissionRows": 14,
+  "approvedMenuPaths": 24,
+  "specificationHash": "25d95cbe51f00d6bda26c2ee937242726e788969d5b995ad20b875b18e993cb3",
+  "supplierGroupName": "Supplier Scorecard App - Supplier User Security Group"
+}

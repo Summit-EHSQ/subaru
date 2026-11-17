@@ -1,0 +1,541 @@
+{
+  "draft": true,
+  "baseScopeRetained": true,
+  "originalToValidator": {
+    "APP-01": "IMP-01",
+    "OBJ-02": "IMP-02",
+    "CFG-03": "IMP-03",
+    "DAT-04": "IMP-04",
+    "OBJ-05": "IMP-05",
+    "AUT-06": "IMP-06",
+    "OBJ-07": "IMP-07",
+    "FRM-08": "IMP-08",
+    "AUT-09": "IMP-09",
+    "OBJ-10": "IMP-10",
+    "FRM-11": "IMP-11",
+    "AUT-12": "IMP-12",
+    "OBJ-13": "IMP-13",
+    "OBJ-14": "IMP-14",
+    "AUT-15": "IMP-15",
+    "OBJ-16": "IMP-16",
+    "OBJ-17": "IMP-17",
+    "WFL-18": "IMP-18",
+    "FRM-19": "IMP-19",
+    "AUT-20": "IMP-20",
+    "AUT-21": "IMP-21",
+    "AUT-22": "IMP-22",
+    "AUT-23": "IMP-23",
+    "WFL-24": "IMP-24",
+    "AUT-25": "IMP-25",
+    "SEC-26": "IMP-26",
+    "RPT-27": "IMP-27",
+    "INT-28": "IMP-28",
+    "INT-29": "IMP-29",
+    "INT-30": "IMP-30",
+    "INT-31": "IMP-31",
+    "INT-32": "IMP-32",
+    "INT-33": "IMP-33",
+    "INT-34": "IMP-34",
+    "DAT-35": "IMP-35"
+  },
+  "tasks": [
+    {
+      "id": "IMP-01",
+      "originalTaskId": "APP-01",
+      "title": "Create the Supplier Scorecard Application",
+      "category": "Application configuration",
+      "objective": "Establish the application container and navigation for Supplier Scorecard configuration and operations.",
+      "scope": "Create the Supplier Scorecard application, application-level settings, navigation areas, and placeholders for administration, contribution, review, published results, and reporting. Do not modify the OOTB SRM application or workflows. Add the three ordered application tabs Supplier Scorecards, Program Administration, and Program Development, and their nine named menu grouping headers. Create the tab and grouping shell here; final menu destinations, menu visibility bindings, and default views are completed with the view work after their targets exist.",
+      "deliverable": "Supplier Scorecard application container with three ordered tab shells and nine ordered menu grouping headers, ready for later menu and view bindings.",
+      "prerequisites": [],
+      "predecessorOutputs": [],
+      "blockedStatus": "Ready for application, tab, and grouping-label configuration. Final menu links and default views are completed by the later view assignment after its configured targets and security policies exist.",
+      "implementer": "Associate Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "This is bounded application setup using an established Intelex pattern; Senior Consultant review protects the SRM boundary.",
+      "assumptions": "The three tab and grouping shells can be created before their final menu destinations are bound. Final native menu/default settings are addressed in the later view assignment; no live tenant configuration is claimed.",
+      "inputs": [],
+      "suppliedInputDescriptions": [],
+      "configurationRows": [
+        [
+          "Supplier Scorecards tab",
+          "Add the first Application tab with display label Supplier Scorecards."
+        ],
+        [
+          "Program Administration tab",
+          "Add the second Application tab with display label Program Administration."
+        ],
+        [
+          "Program Development tab",
+          "Add the third Application tab with display label Program Development."
+        ],
+        [
+          "Supplier Scorecards — Performance & History",
+          "Add the Menu grouping header Performance & History in position 1 within Supplier Scorecards."
+        ],
+        [
+          "Supplier Scorecards — Reporting Progress & Review",
+          "Add the Menu grouping header Reporting Progress & Review in position 2 within Supplier Scorecards."
+        ],
+        [
+          "Program Administration — Program & Scoring Setup",
+          "Add the Menu grouping header Program & Scoring Setup in position 1 within Program Administration."
+        ],
+        [
+          "Program Administration — Program Operations & Data Review",
+          "Add the Menu grouping header Program Operations & Data Review in position 2 within Program Administration."
+        ],
+        [
+          "Program Administration — Business Classifications",
+          "Add the Menu grouping header Business Classifications in position 3 within Program Administration."
+        ],
+        [
+          "Program Development — Scoring & Value Definitions",
+          "Add the Menu grouping header Scoring & Value Definitions in position 1 within Program Development."
+        ],
+        [
+          "Program Development — Data Collection & Initialization",
+          "Add the Menu grouping header Data Collection & Initialization in position 2 within Program Development."
+        ],
+        [
+          "Program Development — Scheduling",
+          "Add the Menu grouping header Scheduling in position 3 within Program Development."
+        ],
+        [
+          "Program Development — Result Provenance & Exceptions",
+          "Add the Menu grouping header Result Provenance & Exceptions in position 4 within Program Development."
+        ]
+      ],
+      "modifications": [],
+      "steps": [
+        "Create the Supplier Scorecard application container and its three tab shells in the stated order.",
+        "Add the nine menu grouping headers to the stated tabs in their stated order; create no additional contribution tab."
+      ],
+      "accept": [
+        "The application has exactly three tabs in this order: Supplier Scorecards, Program Administration, Program Development.",
+        "Supplier Scorecards has two grouping headers, Program Administration has three, and Program Development has four, using the exact displayed labels and order assigned here."
+      ],
+      "refs": [
+        "Original implementation-plan assignment APP-01; original scope is retained.",
+        "Technical specification Sections 1, 3, 16.4 and 21.2; SC-035 and SC-037."
+      ]
+    },
+    {
+      "id": "IMP-03",
+      "originalTaskId": "CFG-03",
+      "title": "Configure the Scorecard Catalogues",
+      "category": "Catalogue configuration",
+      "objective": "Make each catalogue usable as a governed Code-based selection source.",
+      "scope": "Configure inherited `Code`, `Name`, `Active?`, and `Sort`; add `Description` to KPI Aggregation Method and `Frequency` to Scorecard Cadence; configure child administration forms, active-record filters, audit, and basic permissions. Do not expose inverse consumer grids. Replace the proposed blanket catalogue-maintenance grant with two explicit sets: the three business classification catalogues allow maintenance by the Supplier Scorecard Application Administrator group or members of Administrators; the ten technical catalogues allow maintenance only by members of Administrators. Retain the read access needed to select supported values and display historical references. Apply the same maintenance division to inherited and directly declared editable fields.",
+      "deliverable": "Catalogue forms and fields with the approved three-business/ten-technical maintenance division, authorized lookup access, active-selection filtering, and existing audit and lifecycle restrictions.",
+      "prerequisites": [
+        "IMP-02"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-02",
+          "description": "Abstract catalogue parent and twelve correctly inherited concrete child objects."
+        }
+      ],
+      "blockedStatus": "Partly waiting. The catalogue field/form work and known access rules can be prepared after the catalogue objects exist. Applying user privileges waits for the relevant Group bindings and membership. Only Generation Lag Time Increment permissions additionally wait for that object and form from the separate scheduling amendment. Inherited-Code uniqueness and recurrence storage still use the existing supplied capability results.",
+      "implementer": "Senior Associate Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "Inherited fields, recurrence presentation, and inverse suppression exceed simple catalogue setup.",
+      "assumptions": "This changes the planned maintenance grant, not any catalogue fields, inheritance, supported Codes, or seed values. Ordinary object audit, active filtering, and catalogue inverse suppression remain part of the original catalogue assignment.",
+      "inputs": [
+        "IN-08",
+        "IN-20",
+        "IN-22"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-08",
+          "description": "Supply the supported inherited-Code uniqueness and recurrence storage/display behavior used by the existing catalogue configuration. Only the affected constraints and Frequency configuration wait for those results."
+        },
+        {
+          "id": "IN-20",
+          "description": "Supply the native Group bindings and membership for Supplier Scorecard Application Administrator and Administrators so the two catalogue-maintenance sets can be assigned accurately."
+        },
+        {
+          "id": "IN-22",
+          "description": "Supply the Generation Lag Time Increment object and administration form from the separate scheduling amendment; only its catalogue privilege assignment waits for this target."
+        }
+      ],
+      "configurationRows": [
+        [
+          "Supplier Commodity catalogue maintenance",
+          "Allow record creation and change through its administration surface only to the Supplier Scorecard Application Administrator group or members of Administrators; apply the same restriction to direct URLs, APIs, and import/update paths. Existing stable-Code and historical-reference restrictions continue to apply."
+        ],
+        [
+          "NAICS Classification catalogue maintenance",
+          "Allow record creation and change through its administration surface only to the Supplier Scorecard Application Administrator group or members of Administrators; apply the same restriction to direct URLs, APIs, and import/update paths. Existing stable-Code and historical-reference restrictions continue to apply."
+        ],
+        [
+          "KPI Category catalogue maintenance",
+          "Allow record creation and change through its administration surface only to the Supplier Scorecard Application Administrator group or members of Administrators; apply the same restriction to direct URLs, APIs, and import/update paths. Existing stable-Code and historical-reference restrictions continue to apply."
+        ],
+        [
+          "KPI Aggregation Method catalogue maintenance",
+          "Allow record creation and change through its administration surface only to members of Administrators; application-admin membership alone grants no maintenance. Apply the same restriction to direct URLs, APIs, and import/update paths. Existing stable-Code and lifecycle restrictions continue to apply."
+        ],
+        [
+          "KPI Value Type catalogue maintenance",
+          "Allow record creation and change through its administration surface only to members of Administrators; application-admin membership alone grants no maintenance. Apply the same restriction to direct URLs, APIs, and import/update paths. Existing stable-Code and lifecycle restrictions continue to apply."
+        ],
+        [
+          "KPI Contribution Source catalogue maintenance",
+          "Allow record creation and change through its administration surface only to members of Administrators; application-admin membership alone grants no maintenance. Apply the same restriction to direct URLs, APIs, and import/update paths. Existing stable-Code and lifecycle restrictions continue to apply."
+        ],
+        [
+          "KPI Collection Method catalogue maintenance",
+          "Allow record creation and change through its administration surface only to members of Administrators; application-admin membership alone grants no maintenance. Apply the same restriction to direct URLs, APIs, and import/update paths. Existing stable-Code and lifecycle restrictions continue to apply."
+        ],
+        [
+          "KPI Initialization Method catalogue maintenance",
+          "Allow record creation and change through its administration surface only to members of Administrators; application-admin membership alone grants no maintenance. Apply the same restriction to direct URLs, APIs, and import/update paths. Existing stable-Code and lifecycle restrictions continue to apply."
+        ],
+        [
+          "Safety Benchmark Metric catalogue maintenance",
+          "Allow record creation and change through its administration surface only to members of Administrators; application-admin membership alone grants no maintenance. Apply the same restriction to direct URLs, APIs, and import/update paths. Existing stable-Code and lifecycle restrictions continue to apply."
+        ],
+        [
+          "Scorecard Cadence catalogue maintenance",
+          "Allow record creation and change through its administration surface only to members of Administrators; application-admin membership alone grants no maintenance. Apply the same restriction to direct URLs, APIs, and import/update paths. Existing stable-Code and lifecycle restrictions continue to apply."
+        ],
+        [
+          "Generation Lag Time Increment catalogue maintenance",
+          "Allow record creation and change through its administration surface only to members of Administrators; application-admin membership alone grants no maintenance. Apply the same restriction to direct URLs, APIs, and import/update paths. Existing stable-Code and lifecycle restrictions continue to apply."
+        ],
+        [
+          "KPI Value Origin catalogue maintenance",
+          "Allow record creation and change through its administration surface only to members of Administrators; application-admin membership alone grants no maintenance. Apply the same restriction to direct URLs, APIs, and import/update paths. Existing stable-Code and lifecycle restrictions continue to apply."
+        ],
+        [
+          "Publication Exception Treatment catalogue maintenance",
+          "Allow record creation and change through its administration surface only to members of Administrators; application-admin membership alone grants no maintenance. Apply the same restriction to direct URLs, APIs, and import/update paths. Existing stable-Code and lifecycle restrictions continue to apply."
+        ],
+        [
+          "Inherited Code editability",
+          "Apply the concrete catalogue maintenance rule to Code. Code remains editable only before first use and stable afterward; do not redeclare the inherited field."
+        ],
+        [
+          "Inherited Name editability",
+          "Apply the concrete catalogue maintenance rule to Name, retaining its localizable display-label behavior; do not redeclare the inherited field."
+        ],
+        [
+          "Inherited Active? editability",
+          "Apply the concrete catalogue maintenance rule to Active?. Retain existing inactive references on version and historical records; do not redeclare the inherited field."
+        ],
+        [
+          "Inherited Sort editability",
+          "Apply the concrete catalogue maintenance rule to Sort without redeclaring the inherited field."
+        ],
+        [
+          "KPI Aggregation Method.Description editability",
+          "Allow editing only by members of Administrators. Changing a catalogue record does not itself implement a new supported aggregation algorithm."
+        ],
+        [
+          "Scorecard Cadence.Frequency editability",
+          "Allow editing only by members of Administrators before the Cadence is referenced by a published Program Version. Keep Frequency stable after that first published use; a materially different schedule requires a new Cadence record."
+        ],
+        [
+          "Catalogue lookup access",
+          "Allow authorized users of consuming records to read and select the permitted active catalogue records without granting catalogue-maintenance rights; retain read access to inactive values already referenced by historical or version records."
+        ]
+      ],
+      "modifications": [],
+      "steps": [
+        "Apply the business and technical catalogue maintenance rules to the relevant record and field permissions.",
+        "Configure the lookup/read permissions independently from record maintenance so program administrators can continue choosing supported methods on KPI, Program, benchmark, and operational forms."
+      ],
+      "accept": [
+        "An application-admin user without Administrators membership can maintain Supplier Commodity, NAICS Classification, and KPI Category, and can select supported technical catalogue values on consuming forms.",
+        "The same application-admin user cannot maintain any of the ten technical catalogues through the administration form, a direct URL, API, or import/update path.",
+        "A member of Administrators can maintain the technical catalogues subject to existing stable-Code, used-Cadence, and historical-reference restrictions.",
+        "Code, Name, Active?, and Sort remain inherited; Description remains declared on KPI Aggregation Method and Frequency on Scorecard Cadence."
+      ],
+      "refs": [
+        "Original implementation-plan assignment CFG-03; original scope is retained.",
+        "Technical specification Sections 7, 16.1, 16.4.2, 16.4.3 and 21.2; SC-036."
+      ]
+    },
+    {
+      "id": "IMP-26",
+      "originalTaskId": "SEC-26",
+      "title": "Configure Supplier Scorecard Security",
+      "category": "Security configuration",
+      "objective": "Restrict administration, contribution, aggregate viewing, corrections, publication, and supplier access while preserving source security.",
+      "scope": "Configure application/object/record/workflow permissions for administrators, coordinators, reviewers, contributors, correction users, internal viewers, and supplier users; enforce supplier-entity scope, parent/child access rules, internal-only fields, read-only published results, and no access expansion from Group assignment. Add the three tab-audience policies and the applicable-review authorization policy that final menu assembly will consume. Supplier Scorecards allows authorized internal SIA viewers; Program Administration allows the Supplier Scorecard Application Administrator group and members of Administrators; Program Development allows members of Administrators only. Tab membership must not grant additional contributor, coordinator, reviewer, correction, override, or publication actions.",
+      "deliverable": "Existing scorecard record/action security plus three tab-audience policies and an applicable-review authorization policy ready for final menu/view binding.",
+      "prerequisites": [
+        "IMP-19",
+        "IMP-24",
+        "IMP-25"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-19",
+          "description": "Complete responsive operational form set."
+        },
+        {
+          "id": "IMP-24",
+          "description": "Completed Run, Scorecard, and Contribution Task workflows."
+        },
+        {
+          "id": "IMP-25",
+          "description": "Publish Scorecards action and specified notification behavior."
+        }
+      ],
+      "blockedStatus": "Partly waiting. Existing form, workflow, and publication predecessors remain required. The access rules are decided; assigning them waits for the affected Group bindings and membership and the existing supplier-scope/correction/recipient security inputs. Final menu-record visibility is applied later by the menu/view assignment, so this task does not depend on those later menu records.",
+      "implementer": "Senior Consultant",
+      "reviewer": "Principal Consultant",
+      "rationale": "Nuanced cross-object, workflow, source, parent/facility, and supplier security requires senior technical authority.",
+      "assumptions": "Catalogue record/field maintenance grants are configured by the catalogue assignment. This assignment owns user-access policies and existing record/action security; final menu records and their visibility bindings are configured by the later view assignment.",
+      "inputs": [
+        "IN-06",
+        "IN-10",
+        "IN-20"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-06",
+          "description": "Supply coordinator, review, correction, contributor, and support Group assignments and the approved separation of duties used by the original security task; these are distinct from the already decided tab labels and Administrators requirement."
+        },
+        {
+          "id": "IN-10",
+          "description": "Supply any still-unresolved supplier-entity scope, related-facility access, correction-role, field-visibility, and source-link security decisions needed by the original record/action security configuration."
+        },
+        {
+          "id": "IN-20",
+          "description": "Supply the native Group bindings and eligible membership for the application-admin group, Administrators, internal SIA viewers, and current review Groups before their tab/review policies are assigned."
+        }
+      ],
+      "configurationRows": [
+        [
+          "Supplier Scorecards tab-audience policy",
+          "Allow authorized internal SIA Supplier Scorecard users to consume aggregate results and task progress within their existing supplier-entity scope."
+        ],
+        [
+          "Program Administration tab-audience policy",
+          "Allow the Supplier Scorecard Application Administrator group and members of Administrators. Apply existing role, supplier-scope, and workflow checks to individual actions."
+        ],
+        [
+          "Program Development tab-audience policy",
+          "Allow members of Administrators only. Membership of Supplier Scorecard Application Administrator without Administrators membership does not qualify."
+        ],
+        [
+          "Applicable-review authorization policy",
+          "Authorize review only for a user permitted to review the applicable reporting cycle, using its current review authorization. Supply that condition for the later Scorecards in Review menu visibility and destination binding."
+        ],
+        [
+          "Action authorization beneath tabs",
+          "Configure tab access as navigation access only. Continue evaluating contributor, coordinator, reviewer, correction, override, and publication permissions at the actual record/action boundary rather than granting those capabilities through tab membership."
+        ]
+      ],
+      "modifications": [],
+      "steps": [
+        "Configure the three audience policies against the supplied Groups and current eligibility.",
+        "Provide the applicable-review authorization condition for final menu visibility binding, while keeping the record and action checks authoritative when users follow a link or direct URL."
+      ],
+      "accept": [
+        "An application-admin user without Administrators membership qualifies for Program Administration but does not qualify for Program Development.",
+        "An authorized internal viewer receives Supplier Scorecards access within the existing supplier scope; tab access does not grant review, correction, override, publication, or contribution actions.",
+        "Review authorization is evaluated for the applicable reporting cycle, and source-record drilldown still requires the source application permissions."
+      ],
+      "refs": [
+        "Original implementation-plan assignment SEC-26; original scope is retained.",
+        "Technical specification Sections 16.1, 16.4 and 21.2; SC-018, SC-035 and SC-036."
+      ]
+    },
+    {
+      "id": "IMP-27",
+      "originalTaskId": "RPT-27",
+      "title": "Configure Scorecard Views and Reports",
+      "category": "Reporting and view configuration",
+      "objective": "Provide operational oversight, published detail, profile drilldown, category results, trends, and on-demand authorized ranking.",
+      "scope": "Configure responsive entry/review/admin/published views, supplier-profile grids, overdue and completeness reports, snapshot-aware KPI reporting, category aggregation, current-measure workspace links, and secured overall/commodity rank calculation without persisted rank fields. Add the named overview, history, contribution-progress, review, and reported-data views and complete the 24 ordered menu destinations across the three tab shells. Bind the audience and review-visibility policies supplied by the security work. Set Supplier Scorecards to open Scorecard Overview and the other two tabs to open blank content areas until a menu is selected. Omit My Contribution Tasks; retain all earlier reporting, responsive-view, ranking, and supplier-profile scope.",
+      "deliverable": "Existing scorecard report/view set plus 24 ordered menu links with secured visibility and the approved Overview, Blank, Blank tab defaults.",
+      "prerequisites": [
+        "IMP-20",
+        "IMP-26",
+        "IMP-08",
+        "IMP-11"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-20",
+          "description": "Verified KPI Value and parent-total calculation handlers."
+        },
+        {
+          "id": "IMP-26",
+          "description": "Existing scorecard record/action security plus three tab-audience policies and an applicable-review authorization policy ready for final menu/view binding."
+        },
+        {
+          "id": "IMP-08",
+          "description": "Usable KPI authoring and immutable-version forms."
+        },
+        {
+          "id": "IMP-11",
+          "description": "Program/version administration forms and Generation Delay object/form/grid."
+        }
+      ],
+      "blockedStatus": "Partly waiting. Complete the earlier calculation, security, KPI-form, and Program-form outputs before binding their destinations. Menu labels and destination purposes are decided; only unverified native binding settings wait for supplied support details. Only the Generation Lag Time Increments link additionally waits for its catalogue object/form from the separate scheduling amendment. Existing ranking and report/query inputs still block their affected reporting features.",
+      "implementer": "Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "Cross-object reporting and secured query ranking require broader technical judgment but not bespoke UI architecture.",
+      "assumptions": "The three tab shells and grouping labels come from the application task; catalogue privileges and security policies come from their named earlier outputs. Existing task notification links and contribution entry/completion behavior remain in use. No new data object, field, Power BI dataset, or custom audit object is assigned by this amendment.",
+      "inputs": [
+        "IN-08",
+        "IN-11",
+        "IN-21",
+        "IN-22"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-08",
+          "description": "Supply the supported report/query binding needed by the existing views and ranking work; this blocks only the view/query bindings whose native method remains unverified."
+        },
+        {
+          "id": "IN-11",
+          "description": "Supply tie, exclusion, null-score, population-count, and security-filtering rules for the existing overall and commodity ranking features; the approved tab/menu labels do not wait for a new naming decision."
+        },
+        {
+          "id": "IN-21",
+          "description": "Supply only unverified supported native menu/default settings, including blank tab content and the applicable-review visibility condition. New view identifiers are produced by the relevant build tasks, not requested as user decisions."
+        },
+        {
+          "id": "IN-22",
+          "description": "Supply the Generation Lag Time Increment object and administration form from the separate scheduling amendment before completing that one catalogue menu link; other menu and view bindings can proceed."
+        }
+      ],
+      "configurationRows": [
+        [
+          "Supplier Scorecards > Performance & History > Scorecard Overview",
+          "Add menu item Scorecard Overview in position 1 within this grouping. Open the native dashboard/report views showing current results, reporting-cycle status, and contribution completion."
+        ],
+        [
+          "Supplier Scorecards > Performance & History > Supplier Scorecards",
+          "Add menu item Supplier Scorecards in position 2 within this grouping. Open the Supplier Scorecard inventory with supplier, program, reporting-period, and publication-status filters; apply existing record and stage permissions."
+        ],
+        [
+          "Supplier Scorecards > Performance & History > Supplier Scorecard History",
+          "Add menu item Supplier Scorecard History in position 3 within this grouping. Open supplier company/facility profiles and their related current and historical Supplier Scorecards."
+        ],
+        [
+          "Supplier Scorecards > Reporting Progress & Review > Contribution Progress",
+          "Add menu item Contribution Progress in position 1 within this grouping. Open read-only reporting over Scorecard Contribution Task and related Runs, showing assigned, completed, and overdue work within authorized scope."
+        ],
+        [
+          "Supplier Scorecards > Reporting Progress & Review > Scorecards in Review",
+          "Add menu item Scorecards in Review in position 2 within this grouping. Open the consolidated review view for applicable Runs and Scorecards. Bind menu visibility to the applicable-review authorization policy; ordinary internal-viewer access alone must not display or authorize the review menu."
+        ],
+        [
+          "Program Administration > Program & Scoring Setup > Scorecard Programs",
+          "Add menu item Scorecard Programs in position 1 within this grouping. Open Scorecard Program authoring. Its existing grids provide Program KPI membership, immutable Versions, and Generation Delays; delay creation stays on the controlled Program.Generation Delays action."
+        ],
+        [
+          "Program Administration > Program & Scoring Setup > KPI Library",
+          "Add menu item KPI Library in position 2 within this grouping. Open Supplier Scorecard KPI authoring for definitions, scoring settings, collection methods, applicability, and effective dates; open immutable Versions through the KPI record."
+        ],
+        [
+          "Program Administration > Program & Scoring Setup > Supplier Participation",
+          "Add menu item Supplier Participation in position 3 within this grouping. Open Supplier Scorecard Participation for exact supplier/program assignments and effective periods."
+        ],
+        [
+          "Program Administration > Program & Scoring Setup > Safety Benchmarks",
+          "Add menu item Safety Benchmarks in position 4 within this grouping. Open Safety Benchmark authoring and its related immutable Versions for effective-dated values."
+        ],
+        [
+          "Program Administration > Program Operations & Data Review > Scorecard Runs",
+          "Add menu item Scorecard Runs in position 1 within this grouping. Open the Supplier Scorecard Run inventory for monitoring and authorized operational actions; retain existing coordinator and workflow action checks."
+        ],
+        [
+          "Program Administration > Program Operations & Data Review > Reported KPI Data",
+          "Add menu item Reported KPI Data in position 2 within this grouping. Open the governed Scorecard KPI Value review/reporting view with reported values, provenance, queried/base, override and effective points, and publication exceptions; expose native audit/workflow evidence subject to existing privileged-action and supplier-scope controls."
+        ],
+        [
+          "Program Administration > Business Classifications > Supplier Commodities",
+          "Add menu item Supplier Commodities in position 1 within this grouping. Open Supplier Commodity catalogue maintenance."
+        ],
+        [
+          "Program Administration > Business Classifications > NAICS Classifications",
+          "Add menu item NAICS Classifications in position 2 within this grouping. Open NAICS Classification catalogue maintenance."
+        ],
+        [
+          "Program Administration > Business Classifications > KPI Categories",
+          "Add menu item KPI Categories in position 3 within this grouping. Open KPI Category catalogue maintenance."
+        ],
+        [
+          "Program Development > Scoring & Value Definitions > KPI Aggregation Methods",
+          "Add menu item KPI Aggregation Methods in position 1 within this grouping. Open KPI Aggregation Method catalogue maintenance for supported rollup and aggregation algorithms."
+        ],
+        [
+          "Program Development > Scoring & Value Definitions > KPI Value Types",
+          "Add menu item KPI Value Types in position 2 within this grouping. Open KPI Value Type catalogue maintenance for supported typed-value presentation and validation."
+        ],
+        [
+          "Program Development > Scoring & Value Definitions > Safety Benchmark Metrics",
+          "Add menu item Safety Benchmark Metrics in position 3 within this grouping. Open Safety Benchmark Metric catalogue maintenance for KPI-to-benchmark matching."
+        ],
+        [
+          "Program Development > Data Collection & Initialization > KPI Contribution Sources",
+          "Add menu item KPI Contribution Sources in position 1 within this grouping. Open KPI Contribution Source catalogue maintenance for internal, supplier, and automated contribution handling."
+        ],
+        [
+          "Program Development > Data Collection & Initialization > KPI Collection Methods",
+          "Add menu item KPI Collection Methods in position 2 within this grouping. Open KPI Collection Method catalogue maintenance for direct-entry and query processing."
+        ],
+        [
+          "Program Development > Data Collection & Initialization > KPI Initialization Methods",
+          "Add menu item KPI Initialization Methods in position 3 within this grouping. Open KPI Initialization Method catalogue maintenance for default and prior-period initialization."
+        ],
+        [
+          "Program Development > Scheduling > Scorecard Cadences",
+          "Add menu item Scorecard Cadences in position 1 within this grouping. Open Scorecard Cadence catalogue maintenance for scheduler recurrence and reporting-period behavior."
+        ],
+        [
+          "Program Development > Scheduling > Generation Lag Time Increments",
+          "Add menu item Generation Lag Time Increments in position 2 within this grouping. Open Generation Lag Time Increment catalogue maintenance for the exact case-sensitive interval Codes d and M after its object/form exists."
+        ],
+        [
+          "Program Development > Result Provenance & Exceptions > KPI Value Origins",
+          "Add menu item KPI Value Origins in position 1 within this grouping. Open KPI Value Origin catalogue maintenance for system-assigned provenance classifications."
+        ],
+        [
+          "Program Development > Result Provenance & Exceptions > Publication Exception Treatments",
+          "Add menu item Publication Exception Treatments in position 2 within this grouping. Open Publication Exception Treatment catalogue maintenance for zero-point and denominator-exclusion behavior."
+        ],
+        [
+          "Supplier Scorecards default view",
+          "Set the tab default to Scorecard Overview, so opening the tab displays that overview."
+        ],
+        [
+          "Program Administration default view",
+          "Set a blank content view when the tab opens. Do not open a dashboard, inventory, or record automatically; show the selected menu destination only after a menu item is chosen."
+        ],
+        [
+          "Program Development default view",
+          "Set a blank content view when the tab opens. Do not open a dashboard, inventory, or record automatically; show the selected menu destination only after a menu item is chosen."
+        ]
+      ],
+      "modifications": [],
+      "steps": [
+        "Create the named overview and supplemental views using the existing configured objects, responsive forms, and native reporting.",
+        "Bind the 24 menu items to the stated destinations in the stated tab/group order, and apply the three tab-audience policies plus the applicable-review condition to their navigation visibility.",
+        "Apply the three explicit tab default views. Configure no My Contribution Tasks menu, no fourth application tab, no abstract-catalogue administration menu, and no standalone unrestricted Generation Delay creation menu."
+      ],
+      "accept": [
+        "The final navigation contains three tabs, nine grouping headers, and 24 menu items: five under Supplier Scorecards, nine under Program Administration, and ten under Program Development.",
+        "Opening Supplier Scorecards displays Scorecard Overview. Opening Program Administration or Program Development displays blank content until a menu is selected.",
+        "Each of the 24 menu items opens its named object inventory or view, and Scorecards in Review is shown only to users authorized for the applicable reporting cycle.",
+        "Program and KPI Versions open through their authoring records, and Generation Delay creation remains through the controlled Program grid action.",
+        "The three business catalogue menus permit the assigned business maintainers, while the ten technical catalogue menus require Administrators membership; selecting supported values on consuming forms does not grant maintenance.",
+        "Contribution Progress is read only, My Contribution Tasks is absent, and no abstract-catalogue or standalone unrestricted Generation Delay creation menu is introduced."
+      ],
+      "refs": [
+        "Original implementation-plan assignment RPT-27; original scope is retained.",
+        "Technical specification Sections 15.4–15.5, 16.3, 16.4 and 21.2; SC-035 through SC-037."
+      ]
+    }
+  ]
+}

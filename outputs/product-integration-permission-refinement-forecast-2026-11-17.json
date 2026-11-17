@@ -1,0 +1,34 @@
+{
+  "project_number": "P544",
+  "project_id": 594236,
+  "parent_task_number": "T24730",
+  "parent_task_id": 16732398,
+  "created": 0,
+  "updated": 2,
+  "skipped": 0,
+  "removed": 0,
+  "failed": 0,
+  "tasks": [
+    {
+      "task_number": "T26885",
+      "internal_id": 17033384,
+      "plan_task_id": "IMP-07",
+      "title": "IMP-07 — Control component access and retain audit",
+      "change": "Named administration Rights and Everyone object Audit Trail model",
+      "operation": "updated",
+      "verified": true,
+      "other_fields_preserved": true
+    },
+    {
+      "task_number": "T26886",
+      "internal_id": 17033385,
+      "plan_task_id": "IMP-08",
+      "title": "IMP-08 — Connect and validate incoming source documents",
+      "change": "Shared IN-04 security/evidence input paragraph only",
+      "operation": "updated",
+      "verified": true,
+      "other_fields_preserved": true
+    }
+  ],
+  "error": null
+}
