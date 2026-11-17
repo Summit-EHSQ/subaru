@@ -1,0 +1,655 @@
+{
+  "version": 1,
+  "reviewDate": "2026-11-16",
+  "scope": "Exact supplier Group Name correction only. AMD-02, AMD-03 and AMD-04 reread with the standardized name; AMD-01 and all 35 originals remain frozen.",
+  "tasks": [
+    {
+      "id": "IMP-37",
+      "evidenceReview": "I reread the three Group creation/reuse rows and catalogue scope after the approved naming correction. The supplier Group is now exactly Supplier Scorecard App - Supplier User Security Group, alongside the unchanged Viewer and Application Admin names. Its creation remains owned by AMD-02. The full task comparison established that no configuration setting beyond this exact name changed.",
+      "languageReview": "The corrected supplier group name is consistent in the scope, creation feature label, exact native Name value and result checks. The task still separates catalogue View Rights from maintenance and group membership administration, using the same business instructions and independently listed catalogue/field settings.",
+      "meaningReview": "This review changes only the dedicated supplier Group Name and matching references. All three creation records, duplicate prevention, thirteen View Rights, three-business/ten-technical maintenance, inherited field restrictions, role recommendations and CFG-03 prerequisite are unchanged. No group permission, member assignment or task ownership is added or removed.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Create or reuse the three exact native Groups and apply their existing thirteen catalogue Rights and maintenance rules as one complete setup outcome.",
+          "mechanism": "Native Group record creation/reuse followed by Group Rights and catalogue record/field permission settings."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Create/reuse the exact dedicated supplier security Group without changing a general Supplier User group.",
+          "mechanism": "Native Group Name and verified existing-record reuse."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Create/reuse the exact Viewers Security Group without duplicate creation or unapproved membership.",
+          "mechanism": "Native Group creation/reuse with exact Name."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Create/reuse the exact Application Admin Security Group, retaining externally approved membership.",
+          "mechanism": "Native Group creation/reuse with exact Name."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add Supplier Commodity View via Rights for Supplier, Viewer and Application Admin Groups.",
+          "mechanism": "Supplier Commodity catalogue View entry on each named Group Rights."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add NAICS Classification View via Rights for all three named Groups.",
+          "mechanism": "NAICS Classification catalogue View entries on Group Rights."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add KPI Category View via Rights for all three named Groups.",
+          "mechanism": "KPI Category catalogue View entries on Group Rights."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add KPI Aggregation Method read Rights without technical maintenance.",
+          "mechanism": "KPI Aggregation Method View entries on the three Group Rights."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add KPI Value Type read Rights without write or tab access.",
+          "mechanism": "KPI Value Type View entries on the three Group Rights."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add KPI Contribution Source read Rights for all three Groups.",
+          "mechanism": "KPI Contribution Source View entries on Group Rights."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add KPI Collection Method read Rights for the supplier and internal Groups.",
+          "mechanism": "KPI Collection Method View entries on Group Rights."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add KPI Initialization Method read Rights without maintenance.",
+          "mechanism": "KPI Initialization Method View entries on Group Rights."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add Safety Benchmark Metric read Rights for all three Groups.",
+          "mechanism": "Safety Benchmark Metric View entries on Group Rights."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add Scorecard Cadence read Rights without Frequency maintenance.",
+          "mechanism": "Scorecard Cadence View entries on Group Rights."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add Generation Lag Time Increment read Rights after its separate target exists.",
+          "mechanism": "Generation Lag Time Increment View entries on Group Rights."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Add KPI Value Origin read Rights without provenance-record maintenance.",
+          "mechanism": "KPI Value Origin View entries on Group Rights."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Add Publication Exception Treatment read Rights without technical maintenance.",
+          "mechanism": "Publication Exception Treatment View entries on Group Rights."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Permit the named Application Admin group and Administrators to maintain Supplier Commodity, while excluding supplier/viewer writes.",
+          "mechanism": "Supplier Commodity record CRUD permissions and direct-access enforcement."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Permit the named Application Admin group and Administrators to maintain NAICS Classification, retaining reference/deletion safeguards.",
+          "mechanism": "NAICS Classification record CRUD permissions across configured paths."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Permit the named Application Admin group and Administrators to maintain KPI Category with stable-Code protections.",
+          "mechanism": "KPI Category record CRUD and source-backed lifecycle constraints."
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Reserve KPI Aggregation Method write operations to Administrators while named Groups keep Rights View.",
+          "mechanism": "KPI Aggregation Method maintenance permissions."
+        },
+        {
+          "path": "configurationRows.20",
+          "requiredChange": "Reserve KPI Value Type create/edit/delete to Administrators.",
+          "mechanism": "KPI Value Type maintenance permissions and access checks."
+        },
+        {
+          "path": "configurationRows.21",
+          "requiredChange": "Reserve KPI Contribution Source writes to Administrators across direct and administrative paths.",
+          "mechanism": "KPI Contribution Source record maintenance permissions."
+        },
+        {
+          "path": "configurationRows.22",
+          "requiredChange": "Reserve KPI Collection Method writes to Administrators without removing read Rights.",
+          "mechanism": "KPI Collection Method record maintenance permissions."
+        },
+        {
+          "path": "configurationRows.23",
+          "requiredChange": "Reserve KPI Initialization Method writes to Administrators and retain stability locks.",
+          "mechanism": "KPI Initialization Method maintenance permissions."
+        },
+        {
+          "path": "configurationRows.24",
+          "requiredChange": "Reserve Safety Benchmark Metric maintenance to Administrators while retaining lookup View.",
+          "mechanism": "Safety Benchmark Metric record maintenance permissions."
+        },
+        {
+          "path": "configurationRows.25",
+          "requiredChange": "Reserve Scorecard Cadence maintenance to Administrators with existing lifecycle locks.",
+          "mechanism": "Scorecard Cadence maintenance and direct-access permissions."
+        },
+        {
+          "path": "configurationRows.26",
+          "requiredChange": "Reserve Generation Lag Time Increment writes to Administrators after its target is supplied.",
+          "mechanism": "Generation Lag Time Increment record permissions on the supplied object."
+        },
+        {
+          "path": "configurationRows.27",
+          "requiredChange": "Reserve KPI Value Origin maintenance to Administrators without removing read Rights.",
+          "mechanism": "KPI Value Origin record maintenance permissions."
+        },
+        {
+          "path": "configurationRows.28",
+          "requiredChange": "Reserve Publication Exception Treatment writes to Administrators.",
+          "mechanism": "Publication Exception Treatment record maintenance permissions."
+        },
+        {
+          "path": "configurationRows.29",
+          "requiredChange": "Apply each concrete catalogue maintainer rule to inherited Code while retaining its first-use stability.",
+          "mechanism": "Inherited Code permission on concrete catalogue administration."
+        },
+        {
+          "path": "configurationRows.30",
+          "requiredChange": "Apply the concrete maintainer rule to inherited Name while retaining localizable labels.",
+          "mechanism": "Inherited Name editability on concrete catalogue forms."
+        },
+        {
+          "path": "configurationRows.31",
+          "requiredChange": "Apply maintainer restrictions to inherited Active? without invalidating historical references.",
+          "mechanism": "Inherited Active? permission and existing reference retention."
+        },
+        {
+          "path": "configurationRows.32",
+          "requiredChange": "Apply concrete maintainer permissions to inherited Sort without a duplicate declaration.",
+          "mechanism": "Inherited Sort editability on catalogue records."
+        },
+        {
+          "path": "configurationRows.33",
+          "requiredChange": "Restrict Description editing to Administrators without inventing algorithm implementation.",
+          "mechanism": "KPI Aggregation Method.Description permission."
+        },
+        {
+          "path": "configurationRows.34",
+          "requiredChange": "Restrict Frequency editing to Administrators before first published use and retain the used-Cadence lock.",
+          "mechanism": "Scorecard Cadence.Frequency permission and existing publication-use control."
+        },
+        {
+          "path": "configurationRows.35",
+          "requiredChange": "Keep active catalogue lookup and historical inactive reference reads available independently from Use and maintenance.",
+          "mechanism": "Catalogue read/selection permissions and existing active filters."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Create or reuse each of the three exact named native Groups before assigning catalogue Rights, without duplicate records or repurposing a general supplier group.",
+          "mechanism": "Native Group record creation and exact-name reuse before catalogue permission setup."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Apply View Rights to the actual three Group records before adding maintenance permissions.",
+          "mechanism": "Native Group Rights catalogue View assignments."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Apply business and technical maintenance division at record and field boundaries.",
+          "mechanism": "Concrete catalogue object and field security configuration."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Configure the new grant division without overriding existing stability and deletion guards.",
+          "mechanism": "Existing catalogue lifecycle checks beneath the new grants."
+        }
+      ],
+      "taskHash": "23996d79efff2bbf70ebe5711e1ab27fa7a1c4fbdb4d6fa7e0890e8cb8ab358e",
+      "renderedTaskHash": "3f45d88670c58d123ca0312c23285dce092974902f87358a65c5146667e8450b"
+    },
+    {
+      "id": "IMP-38",
+      "evidenceReview": "I reread all supplier Use, inheritance, field/source, publication-recipient and result-check references using Supplier Scorecard App - Supplier User Security Group. The new name consistently identifies the Group supplied by AMD-02. A complete record comparison confirmed exact-name substitution only; source relationships and the existing native binding limits remain unchanged.",
+      "languageReview": "The supplier-facing Group name now follows the App naming pattern in every operative reference. The access task continues to describe no app/tab Use, published inherited record View and the individual internal grants directly, without moving Group creation back into this task or changing the supplied-input explanations.",
+      "meaningReview": "The fourteen-object grants, supplier View-only inheritance through Supplier and Scorecard, associated Published gate, access revocation, native unresolved bindings and notification checks retain the same conditions and execution order. AMD-03 still consumes AMD-02 and remains the access owner; only the referenced supplier Group Name is standardized.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Consume the three created Group records and configure their existing application/tab/object, inherited supplier and review/notification access rules without creating Groups.",
+          "mechanism": "Supplied native Group bindings used by application/tab, object/record and existing recipient-authorization settings."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Leave the supplier Group without application Use and keep supplier identities out of indirect internal Use memberships.",
+          "mechanism": "Application Use grants and approved membership separation."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Leave the supplier Group without Use on any of the three tabs.",
+          "mechanism": "Application tab Use assignments, independent of record View."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Grant application Use to the named Viewers Group.",
+          "mechanism": "Supplier Scorecard application Use permission."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Grant the Viewers Group consumer-tab Use only, excluding Admin and Development.",
+          "mechanism": "Supplier Scorecards Application tab Use permission."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Grant application Use to the named Application Admin Group.",
+          "mechanism": "Supplier Scorecard application Use permission."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Grant the Application Admin Group Use on Supplier Scorecards.",
+          "mechanism": "Consumer Application tab Use permission."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Grant the Application Admin Group Use on Program Administration.",
+          "mechanism": "Program Administration Application tab Use permission."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Keep Development Use limited to existing Administrators without adding a development Group.",
+          "mechanism": "Program Development Application tab Use permission."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Give Viewer View and Application Admin base CRUD on KPI authoring, subject to authoring/stable-Code controls.",
+          "mechanism": "Supplier Scorecard KPI object permissions."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Give the internal Groups the stated KPI Version base grants while Publish-only creation and immutability prevail.",
+          "mechanism": "Supplier Scorecard KPI Version permissions with existing protected lifecycle."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Give the internal Groups Program View/base CRUD without bypassing authoring and Publish checks.",
+          "mechanism": "Scorecard Program object permissions."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Give the internal Groups Program KPI View/base CRUD while membership remains Program-authored.",
+          "mechanism": "Scorecard Program KPI permissions and existing authoring path."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Give the stated internal Program Version grants without independent creation or mutation.",
+          "mechanism": "Scorecard Program Version permissions under immutable version controls."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Give the stated internal membership-version grants without independent creation or mutation.",
+          "mechanism": "Scorecard Program KPI Version permissions under Program Publish."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Give internal Generation Delay grants while preserving controlled next-cycle creation and applied-record locks.",
+          "mechanism": "Scorecard Program Generation Delay permissions with existing grid action/lifecycle."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Give internal Participation grants with supplier/program identity and range/status checks retained.",
+          "mechanism": "Supplier Scorecard Participation object permissions."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Give internal Safety Benchmark grants with stable identity, uniqueness and Publish checks retained.",
+          "mechanism": "Safety Benchmark object permissions."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Give internal Benchmark Version grants subject to Publish-only creation and immutability.",
+          "mechanism": "Safety Benchmark Version object permissions and protected lifecycle."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Give Viewer Run View and Application Admin base CRUD while generation and coordinator/action checks prevail.",
+          "mechanism": "Supplier Scorecard Run object permissions."
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Give internal Scorecard grants without broad supplier rights or unrestricted historical graph changes.",
+          "mechanism": "Supplier Scorecard internal object permissions, separate from supplier inheritance."
+        },
+        {
+          "path": "configurationRows.20",
+          "requiredChange": "Give internal KPI Value grants with generated/value/stage/correction controls retained.",
+          "mechanism": "Scorecard KPI Value internal object permissions."
+        },
+        {
+          "path": "configurationRows.21",
+          "requiredChange": "Give internal Contribution Task grants with generation, assignment, completion and cancellation controls retained.",
+          "mechanism": "Scorecard Contribution Task object permissions."
+        },
+        {
+          "path": "configurationRows.22",
+          "requiredChange": "Inherit supplier View only through the exact Supplier link and require Scorecard Published termination.",
+          "mechanism": "Supported native Supplier Scorecard.Supplier permission inheritance and Published filter."
+        },
+        {
+          "path": "configurationRows.23",
+          "requiredChange": "Inherit direct KPI Value supplier View through Scorecard only and gate it by that Scorecard Published status.",
+          "mechanism": "Supported native Scorecard KPI Value.Scorecard View-only inheritance/filter."
+        },
+        {
+          "path": "configurationRows.24",
+          "requiredChange": "Enforce current supplier scope/publication on all entry paths and revoke derived access when source supplier access is lost.",
+          "mechanism": "Native current record authorization across direct/search/export/attachment/navigation paths."
+        },
+        {
+          "path": "configurationRows.25",
+          "requiredChange": "Keep internal rationales and administrative actions protected and reapply source security despite supplier record View.",
+          "mechanism": "Existing field/action/source authorization beneath inherited View."
+        },
+        {
+          "path": "configurationRows.26",
+          "requiredChange": "Supply reporting-cycle-specific review eligibility rather than deriving review powers from View or Use.",
+          "mechanism": "Existing current review authorization bound for later menu use."
+        },
+        {
+          "path": "configurationRows.27",
+          "requiredChange": "Keep base object grants subordinate to actual role, lifecycle, generated-record and controlled-action safeguards.",
+          "mechanism": "Existing object/field/workflow action checks beneath new internal grants."
+        },
+        {
+          "path": "configurationRows.28",
+          "requiredChange": "Check current supplier Group/role/source supplier authorization before publication without requiring draft access or app Use.",
+          "mechanism": "Existing publication recipient-resolution authorization binding before Publish."
+        },
+        {
+          "path": "configurationRows.29",
+          "requiredChange": "Recheck actual inherited Published View and current eligible membership before existing notification dispatch without supplier Use.",
+          "mechanism": "Postpublication recipient-authorization binding around unchanged dispatch."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Configure app/tab Use independently from internal object grants and retain Development/lifecycle boundaries.",
+          "mechanism": "Native application/tab Use and object permission settings."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Apply the supplied native View inheritance/current-access/Published controls before enabling supplier entry.",
+          "mechanism": "Native relationship permission inheritance and direct-path publication authorization."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Apply internal-field/source guards and supply current review eligibility to menu assembly.",
+          "mechanism": "Existing field/source controls and review eligibility binding."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Apply prepublication supplier eligibility and postpublication inherited View recheck around existing notification dispatch.",
+          "mechanism": "Existing publication-recipient authorization bindings before and after Published."
+        }
+      ],
+      "taskHash": "5d8e849aa125bbc88531c21b6bc03beb3b004a7ea3286a2f8e71e970d55638aa",
+      "renderedTaskHash": "181c870824b11b8268500327745111c45ee7383ae88773f6e4b52779aef3114b"
+    },
+    {
+      "id": "IMP-39",
+      "evidenceReview": "I reread the supplier-context profile/detail link rows, scope and acceptance using Supplier Scorecard App - Supplier User Security Group. They still consume the Group and grants from the same earlier tasks. The exact-name-only comparison confirms every menu label, path, destination, default and dependency is otherwise identical.",
+      "languageReview": "The corrected supplier Group name is consistent in the supplier entry instructions and checks. The distinction between internal app menus and supplier-context record entry remains clear; no added tab or new source-record access is implied by the naming correction.",
+      "meaningReview": "All 24 menu paths and Overview/Blank/Blank defaults remain unchanged, as do inherited Published supplier entry without app Use, internal-field/source protections, prerequisite IDs, roles and ownership. The new Group Name is used only as the existing supplier access principal, without changing its permissions or native entry mechanism.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Retain the complete approved menu and supplier-entry assignment while consuming Group/catalogue output from the catalogue task and access output from the access task.",
+          "mechanism": "Existing menu/view/default and supplier-context entry bindings using the revised named predecessor outputs."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add Scorecard Overview first in Performance & History and open the results/cycle/completion dashboard.",
+          "mechanism": "Supplier Scorecards menu destination binding to native overview views."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add Supplier Scorecards second and bind the filtered operational snapshot inventory.",
+          "mechanism": "Supplier Scorecard inventory menu binding with existing record/stage security."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add Supplier Scorecard History third and bind supplier company/facility profile history.",
+          "mechanism": "Supplier-profile navigation and related Scorecard history view binding."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add Contribution Progress first in its grouping as read-only task/Run completion reporting.",
+          "mechanism": "Native Scorecard Contribution Task/Run progress report menu binding."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add Scorecards in Review second and bind visibility to applicable-cycle review authorization.",
+          "mechanism": "Consolidated review view binding and supplied conditional reviewer visibility."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add Scorecard Programs first in setup and open Program authoring with existing controlled child grids.",
+          "mechanism": "Scorecard Program inventory/authoring menu binding."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add KPI Library second in setup and open KPI authoring and its immutable Versions.",
+          "mechanism": "Supplier Scorecard KPI authoring menu binding."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add Supplier Participation third and open exact supplier/program effective-period assignments.",
+          "mechanism": "Supplier Scorecard Participation inventory menu binding."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add Safety Benchmarks fourth and open benchmark authoring with immutable Versions.",
+          "mechanism": "Safety Benchmark authoring inventory menu binding."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add Scorecard Runs first in operations and open monitoring with existing action checks.",
+          "mechanism": "Supplier Scorecard Run inventory menu binding."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add Reported KPI Data second in operations and open governed values/provenance/points with native evidence.",
+          "mechanism": "Scorecard KPI Value report/view binding to native record audit and workflow history."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add Supplier Commodities first among business classifications and open its catalogue.",
+          "mechanism": "Supplier Commodity catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add NAICS Classifications second among business classifications and open its catalogue.",
+          "mechanism": "NAICS Classification catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add KPI Categories third among business classifications and open its catalogue.",
+          "mechanism": "KPI Category catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Add KPI Aggregation Methods first in scoring/value definitions and open supported method records.",
+          "mechanism": "KPI Aggregation Method catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Add KPI Value Types second in scoring/value definitions and open supported typed-value records.",
+          "mechanism": "KPI Value Type catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Add Safety Benchmark Metrics third in scoring/value definitions and open metric records.",
+          "mechanism": "Safety Benchmark Metric catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Add KPI Contribution Sources first in collection/initialization and open source classifications.",
+          "mechanism": "KPI Contribution Source catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Add KPI Collection Methods second in collection/initialization and open processing-method records.",
+          "mechanism": "KPI Collection Method catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Add KPI Initialization Methods third in collection/initialization and open initial-value method records.",
+          "mechanism": "KPI Initialization Method catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.20",
+          "requiredChange": "Add Scorecard Cadences first in Scheduling and open recurrence records.",
+          "mechanism": "Scorecard Cadence catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.21",
+          "requiredChange": "Add Generation Lag Time Increments second in Scheduling after the separately supplied target exists.",
+          "mechanism": "Generation Lag Time Increment catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.22",
+          "requiredChange": "Add KPI Value Origins first in provenance/exceptions and open provenance catalogue records.",
+          "mechanism": "KPI Value Origin catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.23",
+          "requiredChange": "Add Publication Exception Treatments second in provenance/exceptions and open treatment records.",
+          "mechanism": "Publication Exception Treatment catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.24",
+          "requiredChange": "Set Supplier Scorecards to display Scorecard Overview immediately when opened.",
+          "mechanism": "Supplier Scorecards tab default-view binding."
+        },
+        {
+          "path": "configurationRows.25",
+          "requiredChange": "Set Program Administration to open blank content until a menu item is selected.",
+          "mechanism": "Program Administration tab blank default-view setting."
+        },
+        {
+          "path": "configurationRows.26",
+          "requiredChange": "Set Program Development to open blank content until a menu item is selected.",
+          "mechanism": "Program Development tab blank default-view setting."
+        },
+        {
+          "path": "configurationRows.27",
+          "requiredChange": "Add supplier profile/related Scorecard links that open only currently authorized Published records without application or tab Use.",
+          "mechanism": "Existing Supplier Abstract.Scorecards profile/related view and supported no-app-Use entry binding."
+        },
+        {
+          "path": "configurationRows.28",
+          "requiredChange": "Add associated KPI Value detail entry inheriting the authorized Published Scorecard View and its current scope/source protections.",
+          "mechanism": "Existing Scorecard KPI Value.Scorecard relation and supported detail-entry binding."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Create the named overview and supplemental views using configured records, responsive forms and native reporting.",
+          "mechanism": "Native report/view configuration within the retained reporting task."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Apply the named Viewer/Application Admin Use eligibility, Administrators-only Development and current review condition to the exact 24 menu bindings.",
+          "mechanism": "Final menu/tab visibility bindings consuming the security amendment outputs."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Set the three explicit defaults and omit unapproved task, fourth-tab, abstract-catalogue and unrestricted-delay menus.",
+          "mechanism": "Application tab default-view and approved menu composition settings."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Bind supplier-profile/publication/KPI detail links to published inherited View without granting Use or bypassing source security.",
+          "mechanism": "Supported native supplier-context record-entry destination settings."
+        }
+      ],
+      "taskHash": "9640549aea7a1d583580e1711e519c488a6e635b2176e6db58b55125e3ab4596",
+      "renderedTaskHash": "341600ba50d83ab86ccb3cf31b3858d4e3e07f77aa5a132a88dc1cfc429e0174"
+    }
+  ],
+  "unchangedTaskHashes": {
+    "IMP-01": "802ff7a3a2329f10fc49c4617c2cecf20f89fe606ecdb3daf5c956ec10a48f3f",
+    "IMP-02": "d576d47d10fdbc4db12798424de4a3d598d9574a456143a573be34daa4534a60",
+    "IMP-03": "52c31f15b742db4a885745ac5f23e132b32ca6a3494b09c969f599af044c6119",
+    "IMP-04": "e788261857671021d0c021ee26b1871cbcce7c720570ad215a4ca99744c2d43c",
+    "IMP-05": "3490a484976293f59418a4d0b2f136e731faca41c0d032640ff0a9e7cdf269bf",
+    "IMP-06": "663bc5b4fbce462858f6bf6a4ae6d7addaccac94bb4bd26dce7a06bf14a86517",
+    "IMP-07": "f78456edebe594585d16653f1b139b88c5a697021b928f8c4a603862a948102c",
+    "IMP-08": "449618dd81f8f28644daf992bb4178bf662ba69b7220aee8ed20058192683ae9",
+    "IMP-09": "e0e4d00c08297998813ca3fa6ac8965b73aaed7a2bdffd076f69c5f8a150ab56",
+    "IMP-10": "a9265fb8630de2229da6f436f96e1f3a0ca2a9fba99c9f361b1acede0acd5518",
+    "IMP-11": "c19b73ce433cd26f06496a9cc064e182a3b0ea79c1af70b68b56a57575fe46d5",
+    "IMP-12": "d9ab0eefbc9111fdb8d8a2747a73d52987b7d0ef188123c13ceb3c6c18f34c58",
+    "IMP-13": "c5c7d230f50797000c574510a25f23fe8b8da4929ab92712627d50d84b82cac6",
+    "IMP-14": "63015588aedea5539eff94dd445e7bcced88a3dfadd1db8f528adf918dcb82da",
+    "IMP-15": "107b76842dc201564260b348cbd012ff4c5c8d3af08cf9a011c5233e546d09cb",
+    "IMP-16": "e9e223ac44b8adafb61d8530baeafa972e34ed7e22aba8615bc3c0c7ee19c7fe",
+    "IMP-17": "4e1530fac35facd324e310eb5955f18c083263cafa21d81bd846cf0e2aa0b9bb",
+    "IMP-18": "94fbc5661a3b782078dbe0c3445c0a2ab13f0b2d76334f32d002d8bccd56cbbd",
+    "IMP-19": "08530fa3426716a67a0b37b59b13dd986d6e7903dee42f33021e825699a61f04",
+    "IMP-20": "68207e6e103298a492a00ca59f304ee19b761ac795aafe52e6259d3102008897",
+    "IMP-21": "e2684c145f728d549d0195ccae0c88e9e343143a01cde71192e005f9922ae7e6",
+    "IMP-22": "dc2cb1ba67c27496378b44394cc4db5a4ad33b419fb96d009abfd2bdd60abefe",
+    "IMP-23": "0bb15f2dd63a040bb11fee8b8382489c005b3b7419666de205d29f42ae31e2ca",
+    "IMP-24": "7bd2cf9ce1cd43f8f27bb1e208e3b3513c466f4854d37f134ab9cbcb2b44d58e",
+    "IMP-25": "cc52b4e95af84a07eb29d7fb40a4f7479c46e3ec35d801a7876887ec7d6af0b2",
+    "IMP-26": "f0b49fb42a2232fca268b5a3e75859414f61ec19c0fa0d08d18404e64dbaf374",
+    "IMP-27": "c4333cb9109d3b48e3dba49a001439a72dbede6a5c3e5e7f5bd834c224235e62",
+    "IMP-28": "2ccc82048172f5d21e23ae59dd0032e9b598d275154d92d3decc342c3df67bf8",
+    "IMP-29": "e77321345797774fdd104e63cc38ff649056f515e91a162c4e33d366f163a6ae",
+    "IMP-30": "207ce11339300fb0580f9c2fce24d971909daf43d36b423233c61dbc75dab8b7",
+    "IMP-31": "8e2c8785f9cc5e8400fffb5c95cda4da27582d90c5bebe7a72965d3aa0fb6477",
+    "IMP-32": "00bba696f0886b9c04a65bd3a6218414159705251d5535e036952e67d831cbb6",
+    "IMP-33": "3d3c4d6d81e7aed82f54751fde6fabf473ae80473576b5e99d44bffa832e9aba",
+    "IMP-34": "9008a23c819e42da1572e5ee7c9d15de0fc1d68cfd8908f50deb5af6676fded0",
+    "IMP-35": "8a9c47eac2e7fb4db6dde2f14e7ea5a863910c4fe8ed73dd5c03471154718c1d",
+    "IMP-36": "391cb3b5d2384186f1ed87be47dca0b962f9b3397fb925629d2da149fb07ad29"
+  }
+}

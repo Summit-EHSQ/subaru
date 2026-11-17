@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "tasks": [
+    {
+      "id": "IMP-01",
+      "taskHash": "ba2190e84f8f0bc847c21ebd589e78de88564c8ca54ea415574f33bd614464f8",
+      "renderedTaskHash": "2f66cab4d74154e7c0b72197a0e180f775c5f6c6e9bd0caf2670990b7945d837",
+      "evidenceReview": "This subtask now contains only the new inherited catalogue object required for generation-lag increments. The original OBJ-02 task retains responsibility for the pre-existing catalogue hierarchy and is not rewritten.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Add only Generation Lag Time Increment beneath the existing abstract catalogue parent.", "mechanism": "Intelex object inheritance configuration"},
+        {"path": "configurationRows.0", "requiredChange": "Create one concrete catalogue child beneath the existing parent.", "mechanism": "New inherited catalogue object"},
+        {"path": "configurationRows.1", "requiredChange": "Reuse the parent's four fields without adding local duplicates.", "mechanism": "Field inheritance settings"},
+        {"path": "configurationRows.2", "requiredChange": "Allow records on the new child while keeping the parent abstract.", "mechanism": "Object behavior configuration"}
+      ]
+    },
+    {
+      "id": "IMP-02",
+      "taskHash": "443e40bb0e7c01fcf25178f441c7f643205cace0639ac9cdbe5a5402ac894334",
+      "renderedTaskHash": "19c72daa6fc9f5d736c20fbebf7445f974502f5a60b59f7501bdd53a9c7f95f1",
+      "evidenceReview": "This subtask adds only the administration and governance settings for the new increment catalogue. The broader catalogue configuration in CFG-03 remains unchanged, while the unresolved inherited-Code uniqueness behavior stays a narrow supplied input.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Configure the new increment catalogue's administration, filtering, audit, and permissions.", "mechanism": "Catalogue configuration"},
+        {"path": "configurationRows.0", "requiredChange": "Expose the inherited fields for increment administration.", "mechanism": "Child form and grid"},
+        {"path": "configurationRows.1", "requiredChange": "Exclude inactive increments from new selections.", "mechanism": "Relationship selection filter"},
+        {"path": "configurationRows.2", "requiredChange": "Prevent a catalogue-side consumer relationship for increment selections.", "mechanism": "Disabled inverse relationship"},
+        {"path": "configurationRows.3", "requiredChange": "Restrict maintenance and retain change evidence.", "mechanism": "Permissions and native audit"}
+      ]
+    },
+    {
+      "id": "IMP-03",
+      "taskHash": "1e6b4f3fbd02be0f6392245fcc2924c8b6d086a49d249fa7ce76b2017af329f4",
+      "renderedTaskHash": "8851a63e15ba3b6a758cd6e84644c18dc3becf984f86f806747360d9607c3be1",
+      "evidenceReview": "This subtask adds only the two case-sensitive increment records. The existing catalogue data task DAT-04 continues to own all previously planned catalogue records.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Add the two approved generation-lag increment records with exact case.", "mechanism": "Catalogue record configuration"},
+        {"path": "configurationRows.0", "requiredChange": "Create lowercase d for Days, active, sort 10.", "mechanism": "Generation Lag Time Increment record"},
+        {"path": "configurationRows.1", "requiredChange": "Create uppercase M for Months, active, sort 20.", "mechanism": "Generation Lag Time Increment record"}
+      ]
+    },
+    {
+      "id": "IMP-04",
+      "taskHash": "20f11f98286909ff15650d212b18305c31c496cd32c9060135d6cab127431897",
+      "renderedTaskHash": "2d3a1a3121e7bb245c09c7afd263bdf10baf07df2d63a0e2a79f52d199bf7822",
+      "evidenceReview": "This subtask adds only the six new scheduling fields to the Program and Program Version objects. Existing OBJ-10 fields remain outside its scope; executable DATEADD syntax is correctly retained as a supplied tenant input.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Add three Program scheduling fields and three matching Program Version fields.", "mechanism": "Object field configuration"},
+        {"path": "configurationRows.0", "requiredChange": "Add a required non-negative Program generation lag with default zero.", "mechanism": "Integer field"},
+        {"path": "configurationRows.1", "requiredChange": "Add the required active d-or-M Program increment selection.", "mechanism": "M:1 catalogue relationship"},
+        {"path": "configurationRows.2", "requiredChange": "Calculate and protect the Program Schedule Anchor.", "mechanism": "Read-only calculated Date"},
+        {"path": "configurationRows.3", "requiredChange": "Store the published lag on Program Version.", "mechanism": "Read-only Integer"},
+        {"path": "configurationRows.4", "requiredChange": "Store the published increment on Program Version.", "mechanism": "Read-only M:1 relationship"},
+        {"path": "configurationRows.5", "requiredChange": "Store the published anchor on Program Version.", "mechanism": "Read-only Date"}
+      ]
+    },
+    {
+      "id": "IMP-05",
+      "taskHash": "62a77ba7a8ee42df2a730226fb17c522aedad609c655441bbd41d4140c68b582",
+      "renderedTaskHash": "39e94f9ab96edcec1a014e6bf8ec5f486dd7e98262454d3a1f8a0d6e53098bc2",
+      "evidenceReview": "This subtask adds only the new scheduling controls and cycle-specific Delay changes to the existing forms and grid. It does not restate the original FRM-11 form configuration, and the complex controlled creation logic remains assigned to IMP-07.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Add schedule controls and make each Delay identify one system-assigned reporting cycle.", "mechanism": "Form, grid, and uniqueness configuration"},
+        {"path": "configurationRows.0", "requiredChange": "Add lag inputs and read-only anchor to the Program form.", "mechanism": "Program form layout"},
+        {"path": "configurationRows.1", "requiredChange": "Show the three published schedule values on Program Version.", "mechanism": "Read-only Program Version controls"},
+        {"path": "configurationRows.2", "requiredChange": "Add and protect reporting-period identity on Generation Delay.", "mechanism": "Required read-only Delay fields"},
+        {"path": "configurationRows.3", "requiredChange": "Prevent a second Delay for the same cycle and retain scheduled-date protection.", "mechanism": "Object uniqueness constraints"},
+        {"path": "configurationRows.4", "requiredChange": "Expose cycle dates and route creation through the controlled action.", "mechanism": "Generation Delays grid configuration"}
+      ]
+    },
+    {
+      "id": "IMP-06",
+      "taskHash": "53c776945089e1ffe272397fbe6ddd6553f8e951919c90d862c5913c46735248",
+      "renderedTaskHash": "b92ea1bdd4e3cabc2ace01bf71a56feabbd06856685219d4f3fd05b558782bde",
+      "evidenceReview": "This subtask adds only generation-schedule validation and copying to the existing Program Publish process. The rest of AUT-12 remains unchanged and continues to own the original all-or-nothing version graph.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Extend Publish with schedule checks and schedule-field copying only.", "mechanism": "Existing Program Publish handler"},
+        {"path": "configurationRows.0", "requiredChange": "Reject an invalid lag, increment, or anchor before version creation.", "mechanism": "Pre-publish validation"},
+        {"path": "configurationRows.1", "requiredChange": "Copy the three approved schedule values to Program Version.", "mechanism": "Program-to-Version field mapping"},
+        {"path": "configurationRows.2", "requiredChange": "Retain a final reporting cycle whose lagged date is after Effective To.", "mechanism": "Effective-range rule"},
+        {"path": "configurationRows.3", "requiredChange": "Include the new fields in the existing rollback boundary.", "mechanism": "Atomic Publish behavior"}
+      ]
+    },
+    {
+      "id": "IMP-07",
+      "taskHash": "55e475c7035e3beb34f8adfc4424c5eda8d8ed8d9c6129c7c8aa35f7b3c048b9",
+      "renderedTaskHash": "deba728c863a5d941749ca367d4811da53b261c292e3315d46fe2fb4e64c8356",
+      "evidenceReview": "This is a new specialist subtask for controlled next-cycle Delay creation. It is separately assignable beneath FRM-11 and contains the locking, calculation, duplicate protection, complete creation, and rollback behavior that ordinary form configuration cannot safely provide.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Add a controlled action that creates a Delay only for the next ungenerated cycle.", "mechanism": "New Delay for Next Generation handler"},
+        {"path": "configurationRows.0", "requiredChange": "Restrict the action and lock the Program during its decision.", "mechanism": "Action permission and Program lock"},
+        {"path": "configurationRows.1", "requiredChange": "Find the earliest cycle without a Run and offer no cycle picker.", "mechanism": "Program Run query"},
+        {"path": "configurationRows.2", "requiredChange": "Calculate and store both period boundaries and the original due date.", "mechanism": "Cadence and lag calculation"},
+        {"path": "configurationRows.3", "requiredChange": "Reject an existing Delay or Run for the selected cycle.", "mechanism": "Pre-creation checks"},
+        {"path": "configurationRows.4", "requiredChange": "Create protected fields together, then collect Delay Until and Reason.", "mechanism": "Complete child creation and form navigation"},
+        {"path": "configurationRows.5", "requiredChange": "Leave no partial Delay and release the lock after failure.", "mechanism": "Rollback and lock release"}
+      ]
+    },
+    {
+      "id": "IMP-08",
+      "taskHash": "9e3686885325036daa7efc085d2e7e03560dc4a2a73e49b6654543746d1001ba",
+      "renderedTaskHash": "b395355326b34be619eb141cbff4cfaad7a6c37c1c98a13d4186bd8a0156d858",
+      "evidenceReview": "This subtask adds only generation lag and revised cycle-specific Delay handling to the existing scheduled generation service. It explicitly leaves the original Run and child-record generation responsibilities with AUT-21.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Extend scheduled generation with lag calculation and one cycle-specific Delay.", "mechanism": "Existing scheduled generation service"},
+        {"path": "configurationRows.0", "requiredChange": "Calculate each cycle's scheduled date from the published lag and increment.", "mechanism": "DATEADD schedule logic"},
+        {"path": "configurationRows.1", "requiredChange": "Match a Delay by Program and reporting-period boundaries.", "mechanism": "Generation Delay query"},
+        {"path": "configurationRows.2", "requiredChange": "Hold the delayed cycle and later cycles until Delay Until.", "mechanism": "Sequential generation gate"},
+        {"path": "configurationRows.3", "requiredChange": "Record the applied Run and timestamp only after complete success.", "mechanism": "Post-success Delay update"},
+        {"path": "configurationRows.4", "requiredChange": "Keep a failed Delay unapplied and prevent duplicates on retry.", "mechanism": "Existing uniqueness and retry behavior"}
+      ]
+    },
+    {
+      "id": "IMP-09",
+      "taskHash": "fcd07630c3019a5ebd24f8c3508c60e2b71742c52dbc7702c8eca6abd51a0ac7",
+      "renderedTaskHash": "1ad031d6e8d2b29885ae3239bae6bb54f135ae5d0598eaf3f227a2e7b46a14b3",
+      "evidenceReview": "This subtask adds only generation-schedule values to the approved initial Programs. The existing DAT-35 task retains responsibility for all other initial Program, KPI, routing, and participation configuration.",
+      "checks": {"standaloneInstructions": true, "exactValuesIncluded": true, "dependenciesDescribeOutputs": true, "inputsAreLocalAndNarrow": true, "acceptanceDescribesChanges": true},
+      "instructions": [
+        {"path": "scope", "requiredChange": "Populate and review only the new schedule settings on each initial Program.", "mechanism": "Initial Program configuration"},
+        {"path": "configurationRows.0", "requiredChange": "Enter the approved non-negative lag and active d-or-M increment.", "mechanism": "Program schedule fields"},
+        {"path": "configurationRows.1", "requiredChange": "Review the calculated anchor and correct its editable source values before Publish.", "mechanism": "Schedule Anchor calculation"},
+        {"path": "configurationRows.2", "requiredChange": "Confirm the final reporting cycle remains scheduled after Effective To when lag requires it.", "mechanism": "Final-cycle schedule review"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+﻿Code,Name,Active?,Sort
+SAFETY,Safety,TRUE,10
+QUALITY,Quality,TRUE,20
+COST,Cost,TRUE,30
+DELIVERY,Delivery,TRUE,40

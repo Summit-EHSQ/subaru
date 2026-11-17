@@ -1,0 +1,211 @@
+classDiagram
+direction LR
+%% Target review model: extracted backbone plus Proposed supplier extensions; see field contract.
+class ActionPlans_ActionPlanAbsObject
+class ActionPlans_GlobActPlanAbsObject
+class AFW_AuditFindingObject
+class AuditMgmt_FindingObject
+class CauseAnalysis_CauseAnalysisObject
+class CauseAnalysis_RootCauseObject
+class CFW_FindingObject
+class ComplyFramework_CARAbstractObject
+class EventFwk_AbsEvidenceObject
+class EventFwk_CAPAObject
+class EventFwk_EventActionPlanObject
+class EventFwk_EventCostObject
+class EventFwk_EventObject
+class EventFwk_EventScenarioObject
+class EventFwk_EventTypeObject
+class EventFwk_LessonLearnedObject
+class EventFwk_NonConfAbstractObject
+class EventFwk_SeverityObject
+class EventFwk_TeamMemberObject
+class FragApplication_AbCorrectivActiObject
+class FragApplication_AbstractCostObject
+class FragApplication_ActionCostObject
+class FragApplication_BusFunctionsObject
+class FragApplication_ProcessObject
+class NonConf_CategoryObject
+class NonConf_NonconformancesObject
+class NonConf_NonconfPlatinumObject
+class NonConf_PriorityObject
+class RiskFmk_OpRiskObject
+class RiskFmk_RiskObject
+class SupplierMgmt_SRMNonConformObject
+class SupplierMgmt_SupAbstractObject
+class SupplierMgmt_SupNonconformObject
+class SupplierMgmt_SuppActionPlanObject
+class SupplierMgmt_SupplierContactObject
+class SupplierMgmt_SupplierNCRTypeObject
+class SysEmployeeEntity
+class SysLocationEntity
+class SysSubjectEntity
+class SysWorkflowInstanceEntity
+class SysWorkflowStageEntity
+class ComplyFramework_CARAbstractRelatedEventsToEventFwk_EventMapObject
+class NonConf_NonconformancesRelatedEventsToNonConf_NonconformancesMapObject
+FragApplication_AbCorrectivActiObject <|-- ActionPlans_ActionPlanAbsObject : inherits
+FragApplication_AbCorrectivActiObject <|-- ActionPlans_GlobActPlanAbsObject : inherits
+CFW_FindingObject <|-- AFW_AuditFindingObject : inherits
+AFW_AuditFindingObject <|-- AuditMgmt_FindingObject : inherits
+EventFwk_EventObject <|-- CFW_FindingObject : inherits
+FragApplication_AbCorrectivActiObject <|-- EventFwk_CAPAObject : inherits
+ActionPlans_ActionPlanAbsObject <|-- EventFwk_EventActionPlanObject : inherits
+FragApplication_AbstractCostObject <|-- EventFwk_EventCostObject : inherits
+EventFwk_EventScenarioObject <|-- EventFwk_EventObject : inherits
+ActionPlans_GlobActPlanAbsObject <|-- EventFwk_LessonLearnedObject : inherits
+EventFwk_EventObject <|-- EventFwk_NonConfAbstractObject : inherits
+FragApplication_AbstractCostObject <|-- FragApplication_ActionCostObject : inherits
+FragApplication_BusFunctionsObject <|-- FragApplication_ProcessObject : inherits
+EventFwk_NonConfAbstractObject <|-- NonConf_NonconformancesObject : inherits
+NonConf_NonconformancesObject <|-- NonConf_NonconfPlatinumObject : inherits
+RiskFmk_RiskObject <|-- RiskFmk_OpRiskObject : inherits
+EventFwk_EventScenarioObject <|-- RiskFmk_RiskObject : inherits
+SupplierMgmt_SupNonconformObject <|-- SupplierMgmt_SRMNonConformObject : inherits
+NonConf_NonconfPlatinumObject <|-- SupplierMgmt_SupNonconformObject : inherits
+ActionPlans_ActionPlanAbsObject <|-- SupplierMgmt_SuppActionPlanObject : inherits
+SysSubjectEntity <|-- SysEmployeeEntity : inherits
+EventFwk_EventObject --> FragApplication_AbCorrectivActiObject : AbsCorActPlan [cardinality unresolved]
+EventFwk_EventObject --> EventFwk_CAPAObject : CAPAs [cardinality unresolved]
+EventFwk_EventObject --> ComplyFramework_CARAbstractRelatedEventsToEventFwk_EventMapObject : CAREvent [m:n]
+ComplyFramework_CARAbstractRelatedEventsToEventFwk_EventMapObject --> ComplyFramework_CARAbstractObject : target [m:n]
+EventFwk_EventObject --> CauseAnalysis_CauseAnalysisObject : CauseAnalysis [cardinality unresolved]
+EventFwk_EventObject --> EventFwk_EventCostObject : Costs [cardinality unresolved]
+EventFwk_EventObject --> EventFwk_EventActionPlanObject : EventActionPlan [cardinality unresolved]
+EventFwk_EventObject --> EventFwk_AbsEvidenceObject : Evidence [cardinality unresolved]
+EventFwk_EventObject "0..*" --> "0..1" SysEmployeeEntity : FinalApprover
+EventFwk_EventObject "0..*" --> "0..1" SysEmployeeEntity : Investigator
+EventFwk_EventObject --> EventFwk_LessonLearnedObject : LessonsLearned [cardinality unresolved]
+EventFwk_EventObject "0..*" --> "0..1" SysEmployeeEntity : ReportedBy
+EventFwk_EventObject "0..*" --> "0..1" RiskFmk_OpRiskObject : Risk
+EventFwk_EventObject --> CauseAnalysis_RootCauseObject : RootCauses [cardinality unresolved]
+EventFwk_EventObject "0..*" --> "0..1" EventFwk_SeverityObject : Severity
+EventFwk_EventObject "0..1" --> "0..*" EventFwk_EventObject : Subs
+EventFwk_EventObject "0..*" --> "0..1" SysEmployeeEntity : TeamLeader
+EventFwk_EventObject --> EventFwk_TeamMemberObject : TeamMembers [cardinality unresolved]
+EventFwk_EventObject "0..*" --> "0..1" EventFwk_EventTypeObject : TypeOfEvent
+EventFwk_EventScenarioObject "0..*" --> "1..1" SysEmployeeEntity : CreatedBy
+EventFwk_EventScenarioObject "0..*" --> "1..1" SysLocationEntity : Location
+EventFwk_EventScenarioObject "0..*" --> "0..1" SysWorkflowInstanceEntity : Workflow
+FragApplication_AbCorrectivActiObject --> FragApplication_ActionCostObject : Costs [cardinality unresolved]
+FragApplication_AbCorrectivActiObject "0..*" --> "0..1" SysWorkflowInstanceEntity : Workflow
+NonConf_NonconfPlatinumObject "0..*" --> "0..1" NonConf_NonconfPlatinumObject : RefNonconforman
+NonConf_NonconformancesObject "0..*" --> "0..1" NonConf_CategoryObject : Category
+NonConf_NonconformancesObject "0..*" --> "0..1" NonConf_PriorityObject : Priority
+NonConf_NonconformancesObject "0..*" --> "0..1" FragApplication_ProcessObject : Process
+NonConf_NonconformancesObject --> NonConf_NonconformancesRelatedEventsToNonConf_NonconformancesMapObject : RelatedNonconf [m:n]
+NonConf_NonconformancesRelatedEventsToNonConf_NonconformancesMapObject --> NonConf_NonconformancesObject : target [m:n]
+NonConf_PriorityObject "0..*" --> "0..1" EventFwk_SeverityObject : SeverityMapping
+SupplierMgmt_SupAbstractObject "0..*" --> "1..1" SysLocationEntity : Location
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" SupplierMgmt_SupplierNCRTypeObject : NCRType
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" SupplierMgmt_SupplierContactObject : SupPersonRespon
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" SupplierMgmt_SupAbstractObject : SupplierAbs
+SupplierMgmt_SuppActionPlanObject "0..*" --> "0..1" SupplierMgmt_SupNonconformObject : RelatedSupNCR
+SupplierMgmt_SuppActionPlanObject "0..*" --> "0..1" SupplierMgmt_SupplierContactObject : SupPersonResp
+SupplierMgmt_SupplierContactObject "0..*" --> "0..1" SysEmployeeEntity : Employee
+SysWorkflowInstanceEntity "0..*" --> "0..1" SysWorkflowStageEntity : CurrentStage
+SysWorkflowInstanceEntity "0..*" --> "0..1" SysSubjectEntity : PersonResponsible
+class Supplier_Issue_Type
+class Supplier_Issue_Subtype
+class Supplier_Response_Tier
+class Supplier_Risk_Option
+class Disposition_Category
+class Warranty_Response_Outcome
+class Follow_up_Result
+class Supplier_Problem_Profile
+class Supplier_Impact_Level
+class Supplier_Defect_Classification
+class Supplier_NCR_Process_Configuration
+class Supplier_NCR_Stage_Rule
+class Supplier_NCR_Response_Rule
+class Supplier_NCR_Occurrence
+class Supplier_Response
+class Quick_Feedback_Response
+class Containment_Response
+class Root_Cause_Response
+class Corrective_Action_Response
+class Warranty_Response
+class Supplier_Cause_Method
+class Supplier_Cause_Entry
+class Supplier_NCR_Disposition
+class Supplier_NCR_RMA
+class Certified_Shipment
+class Supplier_NCR_Follow_up
+class Supplier_NCR_Output
+class Canonical_Part
+class Drawing
+class Incident
+class Pilot_Inspection_Failure
+class SPANF
+class Shared_Visibility_Classification
+class Supplier_Management_Role
+class Supplier_Specific_Role
+class Group
+EventFwk_EventObject "0..*" --> "0..1" EventFwk_EventObject : Parent_Event
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" Supplier_Problem_Profile : Problem_Profile
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" Supplier_Impact_Level : Impact_Level
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" Supplier_Defect_Classification : Defect_Classification
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" Pilot_Inspection_Failure : Source_Pilot_Failure
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" Incident : Source_Incident
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" SPANF : Source_SPANF
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" SupplierMgmt_SupNonconformObject : Replacement_NCR
+SupplierMgmt_SupNonconformObject "0..*" --> "1" Supplier_Issue_Type : Issue_Type
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" Supplier_Issue_Subtype : Issue_Subtype
+SupplierMgmt_SupNonconformObject "0..*" --> "1" Supplier_NCR_Process_Configuration : Configuration
+SupplierMgmt_SupNonconformObject "0..*" --> "1" Canonical_Part : Part
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" Drawing : Drawing
+SupplierMgmt_SupNonconformObject "0..*" --> "1" Shared_Visibility_Classification : Visibility_Classification
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" Supplier_Response_Tier : Response_Tier
+SupplierMgmt_SupNonconformObject "0..*" --> "1" Supplier_Specific_Role : Internal_Owner
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" Supplier_Specific_Role : Supplier_Owner
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" SupplierMgmt_SupNonconformObject : Source_Intake
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" SupplierMgmt_SupAbstractObject : Responsible_Manufacturer
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" Supplier_Risk_Option : Responsibility_Rating
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" Supplier_Risk_Option : Vehicle_Impact_Rating
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" Supplier_Risk_Option : Reporting_Area_Rating
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" Supplier_Risk_Option : Recurrence_Rating
+SupplierMgmt_SupNonconformObject "0..*" --> "0..1" SupplierMgmt_SupplierContactObject : Warranty_Contact
+Supplier_Issue_Subtype "0..*" --> "1" Supplier_Issue_Type : Issue_Type
+Supplier_NCR_Process_Configuration "0..*" --> "1" Supplier_Issue_Type : Issue_Type
+Supplier_NCR_Process_Configuration "0..*" --> "0..1" Supplier_Issue_Subtype : Issue_Subtype
+Supplier_NCR_Process_Configuration "0..*" --> "0..1" SysSubjectEntity : Holding_Subject
+Supplier_NCR_Process_Configuration "0..*" --> "0..1" Supplier_Management_Role : Internal_Owner_Role
+Supplier_NCR_Process_Configuration "0..*" --> "0..1" Supplier_Management_Role : Supplier_Quality_Role
+Supplier_NCR_Process_Configuration "0..*" --> "0..1" Supplier_Management_Role : Supplier_Warranty_Role
+Supplier_NCR_Process_Configuration "0..*" --> "0..1" Supplier_Management_Role : Warranty_Coordinator_Role
+Supplier_NCR_Process_Configuration "0..*" --> "0..1" Supplier_Management_Role : Group_Leader_Role
+Supplier_NCR_Stage_Rule "0..*" --> "1" Supplier_NCR_Process_Configuration : Configuration
+Supplier_NCR_Stage_Rule "0..*" --> "0..1" Supplier_Management_Role : Owner_Role
+Supplier_NCR_Response_Rule "0..*" --> "1" Supplier_NCR_Process_Configuration : Configuration
+Supplier_NCR_Response_Rule "0..*" --> "0..1" Supplier_Response_Tier : Tier
+Supplier_NCR_Response_Rule "0..*" --> "1" Supplier_Management_Role : Reviewer_Role
+Supplier_NCR_Occurrence "0..*" --> "1" SupplierMgmt_SupNonconformObject : NCR
+Supplier_NCR_Occurrence "0..*" --> "1" Canonical_Part : Part
+Supplier_Response "0..*" --> "1" SupplierMgmt_SupNonconformObject : NCR
+Supplier_Response "0..*" --> "1" Supplier_NCR_Response_Rule : Rule
+Supplier_Response "0..*" --> "0..1" SysEmployeeEntity : Submitted_By
+Supplier_Response "0..*" --> "1" Supplier_Specific_Role : Reviewer
+Supplier_Response <|-- Quick_Feedback_Response : inherits
+Supplier_Response <|-- Containment_Response : inherits
+Supplier_Response <|-- Root_Cause_Response : inherits
+Supplier_Response <|-- Corrective_Action_Response : inherits
+Supplier_Response <|-- Warranty_Response : inherits
+Warranty_Response "0..*" --> "0..1" Warranty_Response_Outcome : Outcome
+Supplier_Cause_Method "0..*" --> "1" Root_Cause_Response : Response
+Supplier_Cause_Entry "0..*" --> "1" Supplier_Cause_Method : Method
+Supplier_NCR_Disposition "0..*" --> "1" SupplierMgmt_SupNonconformObject : NCR
+Supplier_NCR_Disposition "0..*" --> "1" Supplier_NCR_Occurrence : Occurrence
+Supplier_NCR_Disposition "0..*" --> "1" Disposition_Category : Category
+Supplier_NCR_RMA "0..*" --> "1" SupplierMgmt_SupNonconformObject : NCR
+Supplier_NCR_RMA "0..*" --> "0..1" Supplier_NCR_Disposition : Disposition
+Supplier_NCR_RMA "0..*" --> "1" Supplier_Specific_Role : Supplier_Owner
+Certified_Shipment "0..*" --> "1" SupplierMgmt_SupNonconformObject : NCR
+Supplier_NCR_Follow_up "0..*" --> "1" SupplierMgmt_SupNonconformObject : NCR
+Supplier_NCR_Follow_up "0..*" --> "0..1" Supplier_NCR_Follow_up : Replaces_Check
+Supplier_NCR_Follow_up "0..*" --> "1" Supplier_Specific_Role : Owner
+Supplier_NCR_Follow_up "0..*" --> "0..1" Follow_up_Result : Result
+Supplier_NCR_Output "0..*" --> "1" SupplierMgmt_SupNonconformObject : NCR
+Supplier_NCR_Output "0..*" --> "1" SysEmployeeEntity : Generated_By
+Group <|-- Supplier_Management_Role : inherits
+Group <|-- Supplier_Specific_Role : inherits
+SysSubjectEntity <|-- Group : inherits

@@ -1,0 +1,1102 @@
+{
+  "version": 1,
+  "tasks": [
+    {
+      "id": "IMP-01",
+      "evidenceReview": "Reviewed the complete revised assignment against the user direction dated 2026-11-17 and specification sections 1, 2, 3, 7, 8, and 9. Product Integration is now a new application owning every integration object. The only tab has eleven direct menu targets, checked individually against the unchanged eleven-object inventory. This replaces the former existing-application reuse and Reference Data arrangement without claiming a tenant move.",
+      "languageReview": "The title and objective name the application and one-tab access outcome. Steps state application-before-object ordering, every object/menu name, exact same-name inventory binding, and the no-submenu condition. Role reasons and acceptance checks describe concrete configuration results. The assignment remains understandable with its source references hidden.",
+      "meaningReview": "The only design differences are new application ownership and one tab with eleven direct inventory menu items. Preserved all eleven object names including BOMECS Part API Recod, native identity, no explicit business inheritance, no existing-object connections, Associate Consultant ownership, separate reviewer, empty predecessor/input lists, and all field/integration rules in unchanged tasks IMP-02 through IMP-12. Coverage now assigns new application creation to IMP-01 instead of recording application reuse.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Create the standalone application, its only tab, eleven application-owned types, and eleven direct inventory access points.",
+          "mechanism": "Native Product Integration application, tab, object ownership, and inventory menu configuration."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Create Product Integration as a new application before adding its sole same-named tab.",
+          "mechanism": "Native application and tab creation with collision-free identifiers."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Create all eleven exactly named types under Product Integration rather than the existing Product Management application.",
+          "mechanism": "Native object creation and application ownership metadata for the eleven inventory entries."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Create eleven direct same-name inventory menu bindings on the only tab without a Reference Data submenu.",
+          "mechanism": "Product Integration tab menu configuration targeting each same-named local object inventory."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Constrain the newly created definitions to the isolated model without explicit inheritance, duplicate infrastructure fields, or existing-object connections.",
+          "mechanism": "New object inheritance and relationship configuration, reusing native identity/audit infrastructure."
+        }
+      ],
+      "taskHash": "40b23cb6c9c2a979a8ff7fcea2473ad71cc916e40f271613a3a7d48dd302038d",
+      "renderedTaskHash": "334dfd572a0ed5b108324179c9e6d7adca1c2427b53a4f11429f316f67e0d16b"
+    },
+    {
+      "id": "IMP-02",
+      "evidenceReview": "Read the complete reference/catalogue task and reconciled all nineteen field rows against their original types, requiredness, defaults, source paths, identity, and catalogue values. The five reference screens and manually maintained flag/role fields now name the two requested administration groups. No catalogue-administrator group remains an access prerequisite. The three exact local seeds, non-localizable codes, approved flag translations, and source descriptor ownership are preserved.",
+      "languageReview": "The screen instruction names both groups and distinguishes source-populated read-only controls from editable local fields. Every field row identifies the actual human access audience. Role recommendations still describe consultant delivery capability rather than product-user permissions.",
+      "meaningReview": "Only access audiences changed: both named administration groups see the reference fields and maintain the expressly editable local values. Source System/ID/Code immutability, 100/255 character limits, source Boolean activity, nullable Float ordering, TRUE role default, exact 10/20/30 seeds, and lack of membership Role default remain unchanged.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add five local reference/catalogue field sets and screens with exactly three locally governed role entries.",
+          "mechanism": "Program Reference, Supplier Reference, Part Flag, Part Tag, and Supplier Relationship Role configuration."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Create the reference screens for the two administration groups, distinguishing source-controlled controls from local editable catalogue fields.",
+          "mechanism": "New reference forms using the IMP-07 two-group access grants; no separate catalogue-administrator audience."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Seed MANUFACTURING, ASSEMBLY, and SEQUENCING with exact labels, TRUE activity, and sort 10/20/30, without a membership default.",
+          "mechanism": "Local Supplier Relationship Role catalogue entries and empty membership Role default."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Enable catalogue label localization while keeping codes stable and the supplied flag resource key literal until an approved translation exists.",
+          "mechanism": "Catalogue Name localization settings, non-localizable Code fields, and disabled consumer grids."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add required immutable Text(100) trusted namespace matching the receiving Part or Number. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "New Program Reference.Source System field; IMP-10/12 supply namespace. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add required immutable Text(100) identity using lowercase Part id and capitalized ECN Id. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Program Reference.External ID field and exact source-path mapping contract. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add required Text(255) source label without changing identity on rename. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Program Reference.Name field and source-controlled reading presentation. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add required source Boolean activity without cascade or loss of inactive links. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Program Reference.Active? Yes/No field. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add required immutable Text(100) source namespace for component-local supplier identity. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "New Supplier Reference.Source System field. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add required immutable Text(100) source supplier key without native supplier matching. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Supplier Reference.External ID field with source-key contract. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add required Text(255) local descriptor label without any existing supplier connection. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Supplier Reference.Name field and read-only source control. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add required source Boolean activity without changing existing supplier eligibility. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Supplier Reference.Active? Yes/No field. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add required immutable Text(100) namespace matching the received Part. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "New Part Flag.Source System field. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add required non-localizable immutable Text(100) code preserving the string 2. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part Flag.Code text field; source Flag.id mapping contract. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add required localizable Text(255) display label preserving the resource key and allowing only approved translations. Both named administration groups manage approved label translations; source-locale receipt and stable identity are unchanged.",
+          "mechanism": "Part Flag.Name source-locale value and catalogue localization settings. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add required source Boolean activity retaining inactive records and excluding future manual choices. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part Flag.Active? Yes/No field and specified selection contract. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add optional Float with NULL default maintained locally, never received from the API. Both named administration groups may maintain Sort; this remains a local nullable Float presentation setting, not an API-supplied value.",
+          "mechanism": "Part Flag.Sort numeric field and catalogue-administrator presentation. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add required immutable Text(100) namespace for exact local tag identity. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "New Part Tag.Source System field. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Add required immutable Text(100) exact tag value, with null/blank rejection and identical-value deduplication owned by receiving. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part Tag.Value field; IMP-10 tag validation contract. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Add required non-localizable Text(100) unique stable code, immutable after first use. Both named administration groups maintain the local Code, still immutable after first use and non-localizable.",
+          "mechanism": "New local Role.Code field and catalogue maintenance contract. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Add required localizable Text(255) catalogue label independent of identity. Both named administration groups may maintain the localizable role display label.",
+          "mechanism": "Supplier Relationship Role.Name field and localization metadata. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Add required Boolean with TRUE default, retaining old references after deactivation. Both named administration groups maintain activity, preserving TRUE default and retained existing references.",
+          "mechanism": "Supplier Relationship Role.Active? field with catalogue default and selector contract. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Add optional Float with NULL default for local presentation ordering only. Both named administration groups may maintain local presentation ordering without affecting identity.",
+          "mechanism": "Supplier Relationship Role.Sort numeric field. Human access consumes the IMP-07 two-group grants."
+        }
+      ],
+      "taskHash": "3f9708dac5e08ced2de0c516a53babef3634e038fd02854747f1cfffbf373819",
+      "renderedTaskHash": "568d8b1f24308af7b0c2e651e951bd755e628492cf2cf6bf88133f3d60e8ebb9"
+    },
+    {
+      "id": "IMP-03",
+      "evidenceReview": "Read all twenty Part rows, four steps, and checks against the original field contract. Human visibility, including Raw Payload and retained revisions, now names both administration groups instead of ordinary/technical readers. Source defaults, exact paths, four declaring relationships, two reverse lists, latest-feed filter, native raw storage, and unknown-structure exclusions remain intact.",
+      "languageReview": "The objective and screen step name the two groups directly. The rows use human-access wording without implying another reader group. Read-only source controls and inverse lists are explained as data behavior, so the named group administrative object Rights are not silently narrowed.",
+      "meaningReview": "Preserved every Part type/limit, optionality, create-only Name fallback, update-null rejection, Decimal(19,6), same-source links, inverse settings, retained-revision inclusion behavior, and raw-document limit. Both groups may view Raw Payload and retained rows. IMP-07 still owns grants and IMP-10 owns source population.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add all twenty Part field/list declarations and source reading presentation.",
+          "mechanism": "New BOMECS Part API Recod field definitions, local relationships, and reading form."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Create the Part reading layout with both administration groups able to inspect all declared information, including Raw Payload.",
+          "mechanism": "Part form controls using IMP-07 access bindings, with source-owned read-only behavior distinct from permissions."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Declare native Programs/Tags maps and optional Flag/Family links with only the Family inverse enabled.",
+          "mechanism": "Four Part relationship definitions and their specified inverse flags."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Show supplier/revision inverse lists and retained rows to both named administration groups without a separate reader audience.",
+          "mechanism": "Part inverse grids over IMP-05 declaring links and the unchanged included-by-default revision filter."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Configure the stored Name display label and omit unsupported projected fields from the new definition.",
+          "mechanism": "Part display-field metadata and the defined twenty-row field set; unknown structures stay in Raw Payload."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add required immutable Text(100) trusted source namespace, read only after creation. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "New Part.Source System field and IMP-10 trusted namespace contract. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add required immutable Text(100) source id, independent of native record identity. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part.External ID field and Source System + id match contract. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add required nonblank Text(100) business label whose change does not create another source identity. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part.Part Number field with source partNumber population. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add optional Text(255) default NULL, retaining spaces and allowing explicit-null clearing. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part.Part Name field and read-only source presentation. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add proposed optional Text(255) default NULL while leaving unsupported non-null meaning pending. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part.Future Part Name provisional text declaration and IN-07 constraint. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add proposed optional Text(100) default NULL without inferred links to another Part. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part.LS Part Number field and pending non-null producer contract. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add proposed optional Text(100) default NULL without inferred Part identity or relationships. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part.LE Part Number field and IN-07 constraint. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add provisional optional Decimal(19,6) default NULL, prohibiting rounding and leaving currency/unit/negative policy pending. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part.Unit Cost decimal declaration; native type binding IN-01 and producer semantics IN-07. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add optional Text(100) default NULL with no Drawing lookup. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part.Drawing Number scalar field. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add required source Boolean with no default, retaining records and links when false. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part.Active? Yes/No field and manual-selection contract. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add required stored Text(512) display label with create-only Part Number fallback and rejection of update-null. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part.Name field, display-field metadata, and IMP-10 create/update default contract. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add optional native many-to-many Program links, initially empty, with inverse disabled and source-owned membership replacement. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part.Programs native M:N relationship; IMP-10 owns membership operations. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add optional single local Flag link default NULL, no selector/inverse, allowing inactive source facts and explicit-null clear. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part.Flag M:1 relationship to local Part Flag. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add read-only inverse membership navigation without duplicate stored links. Both named administration groups may use inverse membership navigation; it is still a read-only list rather than another stored relationship.",
+          "mechanism": "Part.Supplier Relationships grid over Part Supplier Relationship.Part from IMP-05. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Add read-only inverse revision list with included-default filter and retained-row inspection without deletion. Both named administration groups may inspect included and retained revisions through the same inverse navigation and filter.",
+          "mechanism": "Part.Revisions grid over Part Revision Reference.Part and inclusion filter. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Add optional native many-to-many exact source tag links, initially empty with inverse disabled. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part.Tags native M:N relationship to local Part Tag. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Add optional Unicode long text up to proposed 65536 characters, default NULL, with escaped display and explicit-null clear. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part.Notes long-text field; IN-01 native storage and IN-07 format constraints. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Add optional same-source single Family reference default NULL and family-side inverse, updated by both Part and standalone Family operations. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part.Product Family M:1 relationship with Part Numbers inverse; IMP-10/11 population. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Add required source Boolean with no default and no security or Facility relationship effect. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part.Include All Facilities? Yes/No field. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Add required latest complete accepted Part document with proposed 1 MiB capacity and technical-only evidence access. Both named administration groups may inspect the complete Part payload; no separate technical-reader membership is required.",
+          "mechanism": "Part.Raw Payload native text/document binding IN-01; IMP-07/08/09/10 enforce access, retention, and saving. Human access consumes the IMP-07 two-group grants."
+        }
+      ],
+      "taskHash": "359b542eba4c86d27d6e2f82f3329f756c9052c6007198c738a2560c5a5c697a",
+      "renderedTaskHash": "d36d4a676dc6f2c198f801db1ebaf543c882a859c1e6046ab6fc1b873a974f44"
+    },
+    {
+      "id": "IMP-04",
+      "evidenceReview": "Reviewed the seven Family fields and every command-versus-descriptor condition. The two groups can see Family data and Raw Payload; inverse Part Numbers remains read-only navigation for data-model reasons. Conditional External ID, one-time ID assignment, standalone evidence requiredness, Name matching prohibition, and creation-path activity defaults are unchanged.",
+      "languageReview": "The screen instruction names the groups, and the inverse-list instruction explains that no direct editor is a data behavior rather than a human access restriction. Field rows retain all conditional identity and source timing details without a generic technical-reader audience.",
+      "meaningReview": "Preserved Text(100) keys, required Text(255) Name, optional 65536-character Notes, standalone-only TRUE activity, conditional raw evidence up to the proposed limit, one stored Part family reference and inverse-only Part Numbers. Membership and standalone evidence continue to have the same receiving owners.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add seven Family field/list declarations and a reading screen over the one stored Part family link.",
+          "mechanism": "New Product Family field definitions and form, consuming the IMP-03 declaring relationship."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add required immutable Text(100) trusted source namespace for Family identity. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Product Family.Source System text field. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add conditional Text(100) External ID, optional for native-identity standalone requests and immutable after its first verified assignment. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Product Family.External ID field with supplied native conditional settings and IMP-11 request validation. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add required nonblank Text(255) Name, preserving omission on update and rejecting null without name-based identity matching. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Product Family.Name source-controlled display field. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add optional Unicode Notes up to proposed 65536 characters, NULL initially, with standalone-only updates and escaped display. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Product Family.Notes long-text field; IMP-11 owns population. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add required Boolean activity with TRUE only on standalone create and explicit descriptor status on nested receipt. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Product Family.Active? field with request-dependent defaults supplied by IMP-11 and descriptor mapping by IMP-10/12. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add read-only Part Numbers reverse navigation with no duplicate collection or independent membership storage. Both named administration groups may inspect inverse Part membership; the list remains read-only because the declaring Part field stores the relationship.",
+          "mechanism": "Inverse grid over BOMECS Part API Recod.Product Family from IMP-03. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add conditional latest standalone raw evidence, absent on descriptor-only creation and protected from descriptor overwrites. Both named administration groups may inspect standalone Family evidence while descriptor-only optionality and write ownership stay unchanged.",
+          "mechanism": "Family.Raw Payload native text/document binding with proposed 1 MiB limit and technical permissions. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Create the Family form and Raw Payload presentation for both named administration groups.",
+          "mechanism": "Product Family form and the human access grants supplied by IMP-07."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Keep Part Numbers as inverse-only navigation without turning its no-direct-editor behavior into a group restriction.",
+          "mechanism": "Inverse grid over BOMECS Part API Recod.Product Family with no duplicate stored collection."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Configure the conditional external identity and one-time assignment rule without applying a universal TRUE activity default.",
+          "mechanism": "Family.External ID metadata and request-dependent checks owned by IMP-11."
+        }
+      ],
+      "taskHash": "baa8f2c2c56a45a00250933058a6d53d0ee87efd3db90c49279374c88ff92d38",
+      "renderedTaskHash": "eedcf414a671b3e6d8559578e060355a0e3bdf05f9018df115b6e42381812809"
+    },
+    {
+      "id": "IMP-05",
+      "evidenceReview": "Reconciled all eight association fields against the original source. The two groups now perform the explicit Role edit instead of requiring a local mapper membership. The Role editor edits the existing association and does not remove the administration group Create right. Revision/source identities, same-source membership, nullable Role, and inactive-choice behavior remain unchanged.",
+      "languageReview": "The scope and Role editor instruction state the two actual human groups. The text distinguishes a contextual existing-membership editor from permission to create objects. Rows identify human visibility without presenting a new mapper role as an access prerequisite.",
+      "meaningReview": "Preserved revision Part/ID immutability, required Name/Active?/inclusion, inclusion independent of activity, Part + Supplier identity, Role=NULL, active-only new choices, read-only inactive assigned roles, two declaring Part links, and source reconciliation ownership. Both administration groups can access the records and the Role editor.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Create revision/membership definitions and screens with the specified administration groups as their human audience and local Role editors.",
+          "mechanism": "Part Revision Reference and Part Supplier Relationship configuration consuming the IMP-07 group grants."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add required immutable one-Part revision link with Revisions inverse and same-source constraint. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part Revision Reference.Part M:1 relationship to the new Part type. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add required immutable Text(100) revision source ID unique within Part, never fabricated from labels. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part Revision Reference.External ID field; IMP-09 key enforcement. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add required Text(255) revision label with exact label-array corroboration owned by receiving. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part Revision Reference.Name field; IMP-10 reconciliation contract. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add required source Boolean activity independent of engineering-current status and retained links. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part Revision Reference.Active? Yes/No field. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add required read-only latest-feed inclusion, initially TRUE on identified receipt, retaining identity when omitted. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part Revision Reference.Included in Latest Part Feed? field populated by IMP-10. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add required immutable one-Part supplier-membership link and Supplier Relationships inverse. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part Supplier Relationship.Part M:1 relationship. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add required immutable Supplier link with inverse disabled and matching source namespace. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Part Supplier Relationship.Supplier M:1 to local Supplier Reference. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add optional Role=NULL with active choices, no source assignment/default, and retained inactive value read only. Both named administration groups assign Role through the existing-membership editor; active choices and inactive retained-value behavior remain data rules.",
+          "mechanism": "Part Supplier Relationship.Role M:1 to local Role catalogue and mapper control. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Create source reading screens with immutable identities and read-only source values.",
+          "mechanism": "Revision and supplier-membership form/control configuration."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Provide both groups the existing-membership Role editor while preserving active-choice and no-duplicate association behavior without removing Create rights.",
+          "mechanism": "Role field control and existing-membership editor, with actual object/access grants owned by IMP-07."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Create the declaring Part relationships without duplicate storage and leave reconciliation to its sole owner.",
+          "mechanism": "Native Part links consumed by IMP-03 reverse grids; IMP-10 owns membership changes."
+        }
+      ],
+      "taskHash": "0014099d59a66c0753dee0775107b0fd3ff59abfe4f96099b160c42bb6ee0bff",
+      "renderedTaskHash": "5993d6f6a9fad11562cfff8114f35e698a16a1eb90e6a8688126c8e657e3372d"
+    },
+    {
+      "id": "IMP-06",
+      "evidenceReview": "Read all fourteen Number/Scope rows and checks. Every human visibility statement now uses the two administration groups, including Scopes navigation and Raw Payload. Six local contexts, Number/Scope identity separation, null Part/Revision, retained revision validity, text ownership, and native row evidence are preserved.",
+      "languageReview": "The Scope screen step states the named groups and explicitly includes source evidence. Field rows retain their source paths and constraints while replacing vague staging/technical readers. The narrative separates source-controlled input behavior from administrative group permissions.",
+      "meaningReview": "Preserved required Number keys/label/activity and inverse Scopes; all six Scope relationships and inverse flags; matching Part/Revision condition; retained excluded revisions; optional exact text; and required raw row evidence. No source mapping, field capacity, release/approval meaning, or relationship was changed.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add Number/Scope fields and screens with nullable local context and independent source text/evidence.",
+          "mechanism": "New Engineering Change Number and Scope configuration."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add required immutable Text(100) trusted namespace for Number identity. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Engineering Change Number.Source System field. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add required immutable Text(100) external Number ID, distinct from row identity. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Engineering Change Number.External ID field. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add required nonblank Text(255) received Number label without parsing revision/release meaning. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Engineering Change Number.Name field and read-only presentation. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add required source activity Boolean without release, workflow, or approval effect. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Engineering Change Number.Active? field. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add read-only Scopes inverse navigation without another stored relationship. Both named administration groups may inspect the read-only inverse Scopes list without another staging-reader audience.",
+          "mechanism": "Number.Scopes grid over Scope.Engineering Change Number. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add required local Number anchor supplying source namespace and one scope-key component. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Scope.Engineering Change Number M:1 declaring relationship. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add optional local Supplier context, inverse disabled, without generating Part membership or Role. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Scope.Supplier M:1 relationship to Supplier Reference. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add nullable same-source Part context, required with Revision, never inferred from Name or family members. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Scope.Part M:1 relationship with conditional requirement. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add nullable retained Revision context requiring its matching Part even when excluded from latest feed. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Scope.Revision M:1 to Part Revision Reference with Revision.Part=Part rule. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add optional local Family context without modifying Part family membership. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Scope.Product Family M:1 relationship with inverse disabled. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add optional local Program context using capitalized source descriptor keys without changing Part Programs. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Scope.Program M:1 relationship to local Program Reference. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add optional Unicode Description up to proposed 65536 characters with exact source text and escaped display. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Scope.Description long-text field populated by IMP-12. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add optional provisional Unicode Comment up to 65536 characters with null-clear/omission-preserve and pending ownership confirmation. Human access to this field is for Administrators and Part Integration - Admin Security Group; original source ownership, immutability, defaults, and input-control behavior are unchanged.",
+          "mechanism": "Scope.Comment long-text field and IN-06 constraint. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add required latest complete row evidence with original casing/nulls and technical-only access. Both named administration groups may inspect complete Scope row evidence, while full envelopes remain native integration retention.",
+          "mechanism": "Scope.Raw Payload native text/document storage up to proposed 1 MiB; envelope retained separately. Human access consumes the IMP-07 two-group grants."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Create Number reading controls and inverse Scopes navigation using the declaring Scope link.",
+          "mechanism": "Number form and native inverse grid."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Create Scope reading/evidence presentation for both administration groups without another technical/staging-user audience.",
+          "mechanism": "Scope form and Raw Payload access through the IMP-07 two-group model."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Configure required matching Part for a populated Revision while allowing null context and retained revisions.",
+          "mechanism": "Scope relationship conditional settings; IMP-12 owns receive-time rejection/deferral."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Create separate escaped optional text controls and omit response-count/state/operational-trigger additions.",
+          "mechanism": "Scope Description/Comment controls and bounded Number/Scope field set."
+        }
+      ],
+      "taskHash": "d3fc03435be76eae8362708c5c2b613d285c7ca0f3ba7dd8c1f1da1ae0bf8881",
+      "renderedTaskHash": "94254a22293acc3544ad7b2a4bb047de72445057a32c6b7a57f8e95874741c66"
+    },
+    {
+      "id": "IMP-07",
+      "evidenceReview": "Read the full revised IMP-07 against the latest user direction and the established eleven-menu inventory. Each new Use target is the actual same-named menu item on the sole Product Integration tab, not its linked business object. Existing application/tab Use, all object Rights, the two human groups, source/data rules, service allowlist, and Everyone audit policy remain intact. IMP-01 already supplies menu creation; its consumed output now explicitly includes all menu identities.",
+      "languageReview": "The objective, scope, eleven individual setting rows, ordered menu instruction, and acceptance checks state exactly which menu receives Use and who receives it. The text distinguishes menu entry from app/tab entry and object operations. Totals explain thirteen Use grants plus forty-four object Rights without changing the audit audience.",
+      "meaningReview": "Added eleven menu-item Use Rights only: one per named inventory, producing thirteen Use targets and fifty-seven total Rights grants. Retained all 44 object grants and all 33 Everyone audit settings. No new menus, tabs, objects, groups, membership work, service scope, or lifecycle changes are introduced. Application/tab/inventory identities come from the same existing IMP-01 prerequisite.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Configure separate Use for application, tab, and all eleven menu items alongside the existing object Rights and Everyone audit.",
+          "mechanism": "Application/tab/menu Use Rights, object Rights, and unchanged native permission Audit Trail."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Set up the exact named administration Group once, without assigning users.",
+          "mechanism": "Native Group creation or exact existing Group reuse."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Grant the named integration administration group Use on the Product Integration application.",
+          "mechanism": "Application Use permission via Rights, using IMP-01 application identity."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Grant the named group Use separately on the sole Product Integration tab.",
+          "mechanism": "Tab Use permission via Rights, using IMP-01 tab identity."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Grant Create via Rights on all eleven local objects.",
+          "mechanism": "Each object Create permission Rights for the named administration group."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Grant View via Rights on all eleven local objects.",
+          "mechanism": "Each object View permission Rights for the named administration group."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Grant Edit via Rights on all eleven local objects.",
+          "mechanism": "Each object Edit permission Rights for the named administration group."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Grant Delete via Rights on all eleven objects including references/catalogues, with native integrity still applicable.",
+          "mechanism": "Each object Delete permission Rights, distinct from receiving-service deletion limits."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Enable Everyone Audit Trail on every object Create permission without granting access.",
+          "mechanism": "Native Create permission Audit Trail settings for Everyone."
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Enable Everyone Audit Trail on every object Edit permission without granting access.",
+          "mechanism": "Native Edit permission Audit Trail settings for Everyone."
+        },
+        {
+          "path": "configurationRows.20",
+          "requiredChange": "Enable Everyone Audit Trail on every object Delete permission without granting access.",
+          "mechanism": "Native Delete permission Audit Trail settings for Everyone."
+        },
+        {
+          "path": "configurationRows.21",
+          "requiredChange": "Retain the service application allowlist without expanding writes or group membership.",
+          "mechanism": "Authenticated receiving-service operation allowlist and application service permissions."
+        },
+        {
+          "path": "configurationRows.22",
+          "requiredChange": "Expose every human-facing form, field, retained view, document, and evidence route to the same two administration groups.",
+          "mechanism": "Native field/document/navigation/search/export bindings for the two named groups."
+        },
+        {
+          "path": "configurationRows.23",
+          "requiredChange": "Retain historical, failure, association, and local-change evidence with human access for the two specified groups.",
+          "mechanism": "Native audit/integration retention and group-aligned evidence bindings."
+        },
+        {
+          "path": "configurationRows.24",
+          "requiredChange": "Retain source and lifecycle behavior without expressing it as a reduction of administrative Rights.",
+          "mechanism": "Source-owned controls, immutable keys, native reference integrity, active-value filters, and inverse-list metadata."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Target the eleven local object definitions and distinguish all thirteen navigation Use targets from business objects.",
+          "mechanism": "The explicit object inventory plus existing application, tab, and menu identities from IMP-01."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Configure two separate Use Rights for the exact administration group.",
+          "mechanism": "Native Group and application/tab Use Rights settings."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Configure 44 object Rights in addition to thirteen separate Use grants, for 57 total Rights grants.",
+          "mechanism": "Object Create/View/Edit/Delete Rights plus application/tab/menu Use Rights for the named administration group."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Configure all 33 Everyone audit settings without Everyone access or a View audit change.",
+          "mechanism": "Object permission Audit Trail settings for Create/Edit/Delete."
+        },
+        {
+          "path": "steps.5",
+          "requiredChange": "Use only the two supplied administration groups for all human app access including Raw Payload and local field maintenance.",
+          "mechanism": "Native group access bindings with no extra reader/maintenance audiences."
+        },
+        {
+          "path": "steps.6",
+          "requiredChange": "Keep authenticated receiving writes narrow and retain evidence accessible to both administration groups.",
+          "mechanism": "Service allowlist, native retention/association audit, and user-zone native timestamps."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Grant Use separately on every one of the eleven existing same-named inventory menu items without substituting parent or object grants.",
+          "mechanism": "Each menu item Use permission via Rights for Part Integration - Admin Security Group on the sole Product Integration tab."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Grant Use on the Part source-record inventory menu, preserving the exact Recod spelling. The grantee is Part Integration - Admin Security Group.",
+          "mechanism": "Use via Rights on menu item BOMECS Part API Recod under the sole Product Integration tab; identity supplied by IMP-01."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Grant Use on the component-local Program Reference inventory menu. The grantee is Part Integration - Admin Security Group.",
+          "mechanism": "Use via Rights on menu item Program Reference under the sole Product Integration tab; identity supplied by IMP-01."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Grant Use on the local Supplier Reference inventory menu without any existing supplier master target. The grantee is Part Integration - Admin Security Group.",
+          "mechanism": "Use via Rights on menu item Supplier Reference under the sole Product Integration tab; identity supplied by IMP-01."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Grant Use on the retained revision inventory menu, separate from Part reverse-grid access. The grantee is Part Integration - Admin Security Group.",
+          "mechanism": "Use via Rights on menu item Part Revision Reference under the sole Product Integration tab; identity supplied by IMP-01."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Grant Use on the Product Family inventory menu, separate from family membership commands. The grantee is Part Integration - Admin Security Group.",
+          "mechanism": "Use via Rights on menu item Product Family under the sole Product Integration tab; identity supplied by IMP-01."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Grant Use on the local Part Flag catalogue inventory menu. The grantee is Part Integration - Admin Security Group.",
+          "mechanism": "Use via Rights on menu item Part Flag under the sole Product Integration tab; identity supplied by IMP-01."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Grant Use on the local Part Tag reference inventory menu. The grantee is Part Integration - Admin Security Group.",
+          "mechanism": "Use via Rights on menu item Part Tag under the sole Product Integration tab; identity supplied by IMP-01."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Grant Use on the explicit Part Supplier Relationship inventory menu. The grantee is Part Integration - Admin Security Group.",
+          "mechanism": "Use via Rights on menu item Part Supplier Relationship under the sole Product Integration tab; identity supplied by IMP-01."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Grant Use on the component-local Supplier Relationship Role catalogue inventory menu. The grantee is Part Integration - Admin Security Group.",
+          "mechanism": "Use via Rights on menu item Supplier Relationship Role under the sole Product Integration tab; identity supplied by IMP-01."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Grant Use on the Engineering Change Number inventory menu, distinct from Scope records. The grantee is Part Integration - Admin Security Group.",
+          "mechanism": "Use via Rights on menu item Engineering Change Number under the sole Product Integration tab; identity supplied by IMP-01."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Grant Use on the Engineering Change Scope inventory menu, distinct from the Number inverse grid. The grantee is Part Integration - Admin Security Group.",
+          "mechanism": "Use via Rights on menu item Engineering Change Scope under the sole Product Integration tab; identity supplied by IMP-01."
+        }
+      ],
+      "taskHash": "93b1e418d4520009e04206dc166c206af61a32ba557b37058c594c998c61d212",
+      "renderedTaskHash": "fc44479a0eae8542cbdc3c83cae2a8704e5d2f241acb3b7d7c7b22d1002df464"
+    },
+    {
+      "id": "IMP-08",
+      "evidenceReview": "Reread the complete IMP-08 assignment and compared it with the preceding task. Only the named IMP-07 predecessor output now includes inventory-menu Use. Its source validation, service identity, field authority, null/omission handling, raw capacity, retention, evidence audiences, and consistent-save routing are unchanged. The shared IN-04 paragraph also reflects the supplied menu targets.",
+      "languageReview": "The predecessor explanation now states application, tab, and inventory-menu Use in familiar navigation terms. All five receiving instructions and result checks retain their prior wording and observable behavior; no reader or group decision is delegated to an unspecified source.",
+      "meaningReview": "The consumed security output now includes eleven additional menu Use grants. Receiving behavior and all locally required inputs are unchanged; IMP-07 remains the sole grant owner. The inherited existing instruction-by-instruction decisions were reread and retained because none of those instructions changed.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add shared trusted receive entry, common validation, capacity protection, and native evidence bindings.",
+          "mechanism": "Proposed receiving configuration using supplied supported native service methods."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Connect all three logical operations to authenticated source bindings and constrain namespace/field authority.",
+          "mechanism": "Supplied connector entries, credentials, trusted namespaces, and component allowlist."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Reject malformed JSON and confirmed-contract violations while retaining unknown/raw-only structures.",
+          "mechanism": "Strict JSON parser with pre-mutation confirmed-mapping and capacity validation."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Apply exact omission/null behavior and case-sensitive descriptor type/consistency checks before mutation.",
+          "mechanism": "Common update validation and feed-specific descriptor mappings."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Store complete latest payloads and retain full envelopes/history with overflow failure evidence.",
+          "mechanism": "Supplied Unicode text/document storage and native integration retention, proposed 1 MiB pre-mutation limit."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Bind native outcomes and consistent-save routing so both named administration groups can inspect accepted and failed evidence through the supplied bindings.",
+          "mechanism": "Native receiving diagnostics/audit, IMP-09 save entry, and evidence access supplied by IMP-07."
+        }
+      ],
+      "taskHash": "220eb679c74bf9d8fbc71c2ff8eebf29a273a88325865278d76a447cab17da4c",
+      "renderedTaskHash": "aca05ecbc44711252fbb76f2f612fce37ef29cc617e212afd04f9b11c09d4b8d"
+    },
+    {
+      "id": "IMP-09",
+      "evidenceReview": "Compared current keys and save units to sections 3, 5.5, 5.11, and 6.1/6.3. Optional Family source identity and null-equal Scope identity are retained, as are locks/rechecks, whole-operation saving, native staging fallback, and retained create-request identity. Supported native execution and producer identity remain local supplied inputs; no unverified method is asserted.",
+      "languageReview": "The objective describes complete repeatable changes after failure or simultaneous receipt. Steps explain matching, protected writes, no partial results, retries, and competing producers through their consequences. The specialist grouping rationale explains why the protecting mechanism must stay coherent.",
+      "meaningReview": "All declared compound keys survive, including Family non-null uniqueness and Part-scoped revision/membership keys. Part/Family save all related changes together; ECN saves one row/descriptors with per-row outcomes. Identical Family key/body converges, conflicting body fails, and absent source versions create no stale-write or chronological guarantee.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add one consistent save mechanism spanning keys, simultaneous changes, replay identity, staging, and request mapping.",
+          "mechanism": "Supplied native persistence, uniqueness, locks, transactions/rollback, staging, and retained requests."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Enforce every exact source compound key including optional Family ID and Part-scoped revision/member identities.",
+          "mechanism": "Native compound uniqueness using supplied exact source comparison."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Match contexts with null equality and preserve distinct occurrences or corrected tuples.",
+          "mechanism": "Confirmed Scope six-reference key or supplied stable row identity."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Protect source keys, membership sets, and shared descriptors from simultaneous writes and duplicate retries.",
+          "mechanism": "Supplied native lock method/order with uniqueness rechecked under the same protection."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Save complete Part/Family or ECN-row units together and keep previous values on failure.",
+          "mechanism": "Verified native transaction/batch/rollback plus per-row outcomes."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Hold unsupported execution without exposing partial business records.",
+          "mechanism": "Supported native integration staging pending consistent execution design."
+        },
+        {
+          "path": "steps.5",
+          "requiredChange": "Reuse the created Family for identical key/body retries and reject conflicting body reuse.",
+          "mechanism": "Native retained request-to-created-Family mapping protected by the same save."
+        },
+        {
+          "path": "steps.6",
+          "requiredChange": "Gate competing producers on namespaces, authority, and delivery order without an invented version check.",
+          "mechanism": "Trusted feed configuration and writer enablement."
+        }
+      ],
+      "taskHash": "966d9d6d9bd725caf5d6a7e6e689bb60344fe25406bdf2efe6e5793ab6626908",
+      "renderedTaskHash": "e4c2288402362bb86b87b7669160344f480a1649c37f82dc09af6fbf00ade1ee"
+    },
+    {
+      "id": "IMP-10",
+      "evidenceReview": "Compared all current eight mapping steps and four outcomes to section 6.2, section 5 field contracts, the 24-property dictionary, and the Part JSON. All populated descriptor paths retain correct casing. The sample trailing space, false facility flag, string flag ID, source revision identity, and null-only values remain preserved. Unsupported non-null meaning stays an input, not an invented projection.",
+      "languageReview": "The assignment explains aligning received facts, keeping mapped supplier roles, and retaining revisions. Ordered instructions state actor, trigger, array presence, null/empty/omission differences, and what remains after withdrawal. Source paths are explicit configuration details; references contain no missing operative rule.",
+      "meaningReview": "Preserved create requirements and create-only Name fallback, update-null Name rejection, exact source keys, array replacement/null rejection/omission preservation, tag validation, revision-set corroboration and retained inclusion, supplier-role retention, descriptor reuse, raw-only unknown structures, exact cost conversion, and one consistent save. Part receive and Family command share only their declared link responsibilities.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add complete Part receive mapping and membership reconciliation without losing retained revisions or local roles.",
+          "mechanism": "PMAPI-PART mapping through validated entry and IMP-09 consistent saving."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Map Part scalar fields and trusted identity with exact create requirements, stored Name fallback, and update-null/omission rules.",
+          "mechanism": "PMAPI-PART scalar source-path mapping and pre-save create/update validation."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Resolve local programs, suppliers, flag, family, and tags using exact source paths and keys.",
+          "mechanism": "Descriptor mapping into local reference records and Part relationships."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Replace only present Part membership sets, distinguish empty/null/omitted values, validate tags, and protect reusable references/family standalone data.",
+          "mechanism": "Part membership reconciliation inside the validated consistent-save unit."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Reconcile identified revision IDs and independent feed-inclusion flags while retaining revision and Scope references.",
+          "mechanism": "Part Revision Reference key lookup and Included in Latest Part Feed? updates."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Reject conflicting revision label/ID sets before mutation and keep strings-only revision information raw.",
+          "mechanism": "Pre-save exact revLevels and identified revision reconciliation."
+        },
+        {
+          "path": "steps.5",
+          "requiredChange": "Preserve mapped Role on retained Part/Supplier membership and remove only withdrawn local associations.",
+          "mechanism": "Part + Supplier membership matching, NULL initial Role, and native removal audit."
+        },
+        {
+          "path": "steps.6",
+          "requiredChange": "Retain unknown structures without projections or inferred links and constrain provisional cost/text business use.",
+          "mechanism": "Complete Part.Raw Payload plus confirmed optional field mappings and IN-07 constraints."
+        },
+        {
+          "path": "steps.7",
+          "requiredChange": "Save the complete checked Part change set without any earlier consequential writes.",
+          "mechanism": "IMP-09 transaction or supported staging for fields, descriptors, links, flags, and latest evidence."
+        }
+      ],
+      "taskHash": "fb6c60f24debc6ff9ea111cca43ac68379e85e8a28e521c93cab020e66e968da",
+      "renderedTaskHash": "0a8d6ef1c738c5ddbc608db0f81aa1aef203b889cd6adcce56fdb4509bd8ff12"
+    },
+    {
+      "id": "IMP-11",
+      "evidenceReview": "Reconciled section 6.3 and seven Family rows with the three-property example. The body supplies no target identity or activity, so create/update context remains IN-05. The current assignment preserves no Name matching, native request mapping, all-ID prevalidation, one stored Part link, and distinct standalone versus descriptor effects.",
+      "languageReview": "The task states the business outcome of changing the intended Family without duplicate creation or unintended reassignment. Each instruction includes what create/update, omitted/null/empty, and conflicting membership mean. Waiting text names the actual missing identity and producer confirmations.",
+      "meaningReview": "Create sets confirmed TRUE only on that path, leaves source ID absent unless verified, and retains the complete standalone body. Update preserves identity/activity and omitted values, clears nullable Notes, rejects null Name, resolves full same-source selected IDs, and saves replacements together. Nested descriptors cannot clear standalone values or merge by label.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add trusted Family create/update mapping with complete validated membership replacement and standalone evidence retention.",
+          "mechanism": "PMAPI-FAMILY command using IMP-09 identity, request mapping, and consistent saving."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Configure standalone creation with native identity, required Name, confirmed create-only activity, optional external ID, and stable retry mapping.",
+          "mechanism": "Family create command and native retained request-to-record map."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Configure identified updates with no Name matching, preserved identity/activity, exact null/omission rules, and one-time source-ID assignment.",
+          "mechanism": "Trusted native/source-ID Family update binding and pre-save validation."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Resolve every selected same-source Part ID before mutation and reject unknown/cross-source/conflicting assignments.",
+          "mechanism": "Confirmed selectedPartNumbersIds mapping and full-set membership validation."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Replace only the identified Family memberships through Part.Product Family and save links/evidence together.",
+          "mechanism": "Declaring Part family relationship and IMP-09 save unit; Part Numbers remains inverse-only."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Keep nested descriptors from modifying standalone Notes, evidence, or other memberships and prohibit same-name merges.",
+          "mechanism": "Descriptor field allowlist and verified external-ID attachment mapping."
+        }
+      ],
+      "taskHash": "1eaffc61cd509036d162f956866878b8002cc85fe36cd74b3713434c49fc604d",
+      "renderedTaskHash": "3d18eff3407f1eaf2ab68fe07c4c5f36a30318cda9aae24de6f204b9178ee307"
+    },
+    {
+      "id": "IMP-12",
+      "evidenceReview": "Reviewed all current seven steps against section 6.4, nine Scope/five Number rows, dictionary casing, and the full ECN example. Number/scope identities remain distinct. Counts stay native response evidence. Missing contexts and unconfirmed non-null Part/Revision defer normalized mutation; page omission is never deletion. Source row/paging/text ownership decisions remain IN-06.",
+      "languageReview": "The task explains preserving separate contexts and records absent from later pages. Steps state required properties, exact capitalized Program keys, null and missing behavior, whole-row failure effects, and what pages cannot remove. Technical tuple language is paired with the named reference list and observable matching result.",
+      "meaningReview": "Preserved required data array/nonnegative 32-bit counts, exact lowercase descriptor keys except Program Id/Name/Status, all six context properties, null-equal matching or supplied stable row identity, conflict handling, same-source matched Part/Revision including retained rows, exact separate text, per-row saving, no Part membership effects, and no release/sequence inference.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add repeatable per-context ECN response mapping, retained page evidence, and explicit unresolved-row deferral.",
+          "mechanism": "PMAPI-ECN row mapper and supplied page binding using native evidence and IMP-09 saving."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Validate required response array and bounded integer counts while retaining envelope metadata outside business fields.",
+          "mechanism": "ECN envelope parser and native integration evidence/page-request binding."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Map each descriptor using exact source casing and reject conflicting source/entity descriptions before mutation.",
+          "mechanism": "Case-sensitive Number, Supplier, Family, and Program descriptor mappings."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Require complete context, defer omitted context, and match confirmed null-equal tuples or supplied stable row identity.",
+          "mechanism": "Pre-save six-context validation and IMP-09 Scope identity matching."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Accept null Part/Revision without inference, defer unconfirmed non-null rows, and enforce matched same-source retained revision references once mapped.",
+          "mechanism": "Context wire mapping and Part/Revision relationship validation."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Store exact separate Scope text/latest row evidence and apply identified update/key-change rules.",
+          "mechanism": "Scope.Description, Comment, Raw Payload mappings and explicit Part/Revision clear behavior."
+        },
+        {
+          "path": "steps.5",
+          "requiredChange": "Save each validated row/descriptors consistently with a per-row result and retain unresolved rows without partial business values.",
+          "mechanism": "IMP-09 transaction/staging and native per-row outcomes/evidence."
+        },
+        {
+          "path": "steps.6",
+          "requiredChange": "Keep omitted scopes and Part memberships unchanged and prohibit operational meaning inferred from labels/activity.",
+          "mechanism": "Omission-safe page reconciliation and bounded context/descriptor write allowlist."
+        }
+      ],
+      "taskHash": "e0b99983e937330aee063ce0913ed6d7c92c990537b70ac6560bb565b60f3b10",
+      "renderedTaskHash": "b404a6c07d01534ee07f4604221ce5049ce7eb3dfb3dfd85638e0a34eee05e7a"
+    }
+  ],
+  "unchangedTaskHashes": {
+    "IMP-01": "40b23cb6c9c2a979a8ff7fcea2473ad71cc916e40f271613a3a7d48dd302038d",
+    "IMP-02": "3f9708dac5e08ced2de0c516a53babef3634e038fd02854747f1cfffbf373819",
+    "IMP-03": "359b542eba4c86d27d6e2f82f3329f756c9052c6007198c738a2560c5a5c697a",
+    "IMP-04": "baa8f2c2c56a45a00250933058a6d53d0ee87efd3db90c49279374c88ff92d38",
+    "IMP-05": "0014099d59a66c0753dee0775107b0fd3ff59abfe4f96099b160c42bb6ee0bff",
+    "IMP-06": "d3fc03435be76eae8362708c5c2b613d285c7ca0f3ba7dd8c1f1da1ae0bf8881",
+    "IMP-09": "966d9d6d9bd725caf5d6a7e6e689bb60344fe25406bdf2efe6e5793ab6626908",
+    "IMP-10": "fb6c60f24debc6ff9ea111cca43ac68379e85e8a28e521c93cab020e66e968da",
+    "IMP-11": "1eaffc61cd509036d162f956866878b8002cc85fe36cd74b3713434c49fc604d",
+    "IMP-12": "e0b99983e937330aee063ce0913ed6d7c92c990537b70ac6560bb565b60f3b10"
+  },
+  "revision": {
+    "date": "2026-11-17",
+    "changedTaskIds": [
+      "IMP-07",
+      "IMP-08"
+    ],
+    "unchangedTaskIds": [
+      "IMP-01",
+      "IMP-02",
+      "IMP-03",
+      "IMP-04",
+      "IMP-05",
+      "IMP-06",
+      "IMP-09",
+      "IMP-10",
+      "IMP-11",
+      "IMP-12"
+    ],
+    "scope": "Eleven explicit inventory-menu Use grants and reconciled totals/shared input/consumed output. All other task values are frozen to the preceding snapshot."
+  }
+}

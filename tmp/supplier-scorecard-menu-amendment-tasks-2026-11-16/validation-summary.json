@@ -1,0 +1,31 @@
+{
+  "sourcePlanUnchanged": true,
+  "originalTaskRecordsUnchanged": 35,
+  "unchangedAmendmentTasks": [
+    "AMD-01"
+  ],
+  "taskCount": 39,
+  "groupCreationOwner": "AMD-02",
+  "cataloguePermissionOwner": "AMD-02",
+  "applicationAndRecordAccessOwner": "AMD-03",
+  "structuralGate": {
+    "passed": true,
+    "taskCount": 39,
+    "coverageCount": 58
+  },
+  "contentGate": {
+    "passed": true,
+    "scope": [
+      "AMD-02",
+      "AMD-03",
+      "AMD-04"
+    ],
+    "reviewedOperativeUnits": 110,
+    "frozenUnreviewedTasks": 36
+  },
+  "specificationSha256": "25d95cbe51f00d6bda26c2ee937242726e788969d5b995ad20b875b18e993cb3",
+  "sourcePlanSha256": "0e374fc2422eeaf6f8b0bd39d4fb6524ff37cd8b6983e255bc3f369c54c7524a",
+  "supplierGroupName": "Supplier Scorecard App - Supplier User Security Group",
+  "namingCorrectionOnly": true,
+  "staleReferences": 0
+}

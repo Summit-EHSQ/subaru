@@ -1,0 +1,370 @@
+{
+  "date": "2026-11-17",
+  "project_number": "P544",
+  "project_id": 594236,
+  "security_model": {
+    "group": "Part Integration - Admin Security Group",
+    "use_application": 1,
+    "use_tab": 1,
+    "use_inventory_menus": 11,
+    "total_use": 13,
+    "object_count": 11,
+    "rights_per_object": 4,
+    "total_object_rights": 44,
+    "total_rights": 57,
+    "everyone_audit_operations": [
+      "Create",
+      "Edit",
+      "Delete"
+    ],
+    "total_audit_settings": 33
+  },
+  "passed": true,
+  "checks": [
+    {
+      "name": "Eleven object inventory",
+      "passed": true,
+      "detail": "Objects: 11"
+    },
+    {
+      "name": "Exactly eleven direct inventory menu targets",
+      "passed": true,
+      "detail": "Menu definitions: 11"
+    },
+    {
+      "name": "Spec thirteen separate Use targets",
+      "passed": true,
+      "detail": "Use rows: 13"
+    },
+    {
+      "name": "Spec object rights and Everyone audit matrix",
+      "passed": true,
+      "detail": "Object security rows: 11"
+    },
+    {
+      "name": "Spec rights/audit targets match the complete object inventory",
+      "passed": true,
+      "detail": "Every inventory object appears exactly once in the four-right/three-audit matrix."
+    },
+    {
+      "name": "Menu Use — BOMECS Part API Recod",
+      "passed": true,
+      "detail": "Spec navigation, spec Use matrix, canonical task row, and coverage owner agree."
+    },
+    {
+      "name": "Menu Use — Program Reference",
+      "passed": true,
+      "detail": "Spec navigation, spec Use matrix, canonical task row, and coverage owner agree."
+    },
+    {
+      "name": "Menu Use — Supplier Reference",
+      "passed": true,
+      "detail": "Spec navigation, spec Use matrix, canonical task row, and coverage owner agree."
+    },
+    {
+      "name": "Menu Use — Part Revision Reference",
+      "passed": true,
+      "detail": "Spec navigation, spec Use matrix, canonical task row, and coverage owner agree."
+    },
+    {
+      "name": "Menu Use — Product Family",
+      "passed": true,
+      "detail": "Spec navigation, spec Use matrix, canonical task row, and coverage owner agree."
+    },
+    {
+      "name": "Menu Use — Part Flag",
+      "passed": true,
+      "detail": "Spec navigation, spec Use matrix, canonical task row, and coverage owner agree."
+    },
+    {
+      "name": "Menu Use — Part Tag",
+      "passed": true,
+      "detail": "Spec navigation, spec Use matrix, canonical task row, and coverage owner agree."
+    },
+    {
+      "name": "Menu Use — Part Supplier Relationship",
+      "passed": true,
+      "detail": "Spec navigation, spec Use matrix, canonical task row, and coverage owner agree."
+    },
+    {
+      "name": "Menu Use — Supplier Relationship Role",
+      "passed": true,
+      "detail": "Spec navigation, spec Use matrix, canonical task row, and coverage owner agree."
+    },
+    {
+      "name": "Menu Use — Engineering Change Number",
+      "passed": true,
+      "detail": "Spec navigation, spec Use matrix, canonical task row, and coverage owner agree."
+    },
+    {
+      "name": "Menu Use — Engineering Change Scope",
+      "passed": true,
+      "detail": "Spec navigation, spec Use matrix, canonical task row, and coverage owner agree."
+    },
+    {
+      "name": "Plan thirteen Use settings",
+      "passed": true,
+      "detail": "One application, one tab, eleven individual menu grants."
+    },
+    {
+      "name": "Plan four object rights and three audit operations",
+      "passed": true,
+      "detail": "Four rights and three Everyone audit operations apply to every object."
+    },
+    {
+      "name": "Totals are 13 Use plus 44 object rights equals 57; audit 33",
+      "passed": true,
+      "detail": "All current totals agree."
+    },
+    {
+      "name": "Existing Administrators bypass is reuse",
+      "passed": true,
+      "detail": "No new Administrators setup task is assigned."
+    },
+    {
+      "name": "Everyone audit does not grant Use or CRUD",
+      "passed": true,
+      "detail": "Everyone remains audit audience only."
+    },
+    {
+      "name": "All 68 field/grid human access references use the named groups",
+      "passed": true,
+      "detail": "Field/grid declarations checked: 68"
+    },
+    {
+      "name": "Spec field/grid access agrees with the two-group audience",
+      "passed": true,
+      "detail": "Specification field/grid access cells checked: 68"
+    },
+    {
+      "name": "No obsolete positive reader or old grant-count instructions",
+      "passed": true,
+      "detail": "Negative statements prohibiting extra access audiences are intentional."
+    },
+    {
+      "name": "Forecast IMP-01 / T26879",
+      "passed": true,
+      "detail": "Full description matches current canonical task, including every field row and shared input."
+    },
+    {
+      "name": "Forecast IMP-02 / T26880",
+      "passed": true,
+      "detail": "Full description matches current canonical task, including every field row and shared input."
+    },
+    {
+      "name": "Forecast IMP-03 / T26881",
+      "passed": true,
+      "detail": "Full description matches current canonical task, including every field row and shared input."
+    },
+    {
+      "name": "Forecast IMP-04 / T26882",
+      "passed": true,
+      "detail": "Full description matches current canonical task, including every field row and shared input."
+    },
+    {
+      "name": "Forecast IMP-05 / T26883",
+      "passed": true,
+      "detail": "Full description matches current canonical task, including every field row and shared input."
+    },
+    {
+      "name": "Forecast IMP-06 / T26884",
+      "passed": true,
+      "detail": "Full description matches current canonical task, including every field row and shared input."
+    },
+    {
+      "name": "Forecast IMP-07 / T26885",
+      "passed": true,
+      "detail": "Full description matches current canonical task, including every field row and shared input."
+    },
+    {
+      "name": "Forecast IMP-08 / T26886",
+      "passed": true,
+      "detail": "Full description matches current canonical task, including every field row and shared input."
+    },
+    {
+      "name": "Forecast IMP-09 / T26887",
+      "passed": true,
+      "detail": "Full description matches current canonical task, including every field row and shared input."
+    },
+    {
+      "name": "Forecast IMP-10 / T26888",
+      "passed": true,
+      "detail": "Full description matches current canonical task, including every field row and shared input."
+    },
+    {
+      "name": "Forecast IMP-11 / T26889",
+      "passed": true,
+      "detail": "Full description matches current canonical task, including every field row and shared input."
+    },
+    {
+      "name": "Forecast IMP-12 / T26890",
+      "passed": true,
+      "detail": "Full description matches current canonical task, including every field row and shared input."
+    },
+    {
+      "name": "Forecast IMP-07 contains every menu Use grant",
+      "passed": true,
+      "detail": "All eleven individual Use settings are present in the live description."
+    }
+  ],
+  "forecast_tasks": [
+    {
+      "plan_task_id": "IMP-01",
+      "task_number": "T26879",
+      "internal_id": 17033377,
+      "title_matches": true,
+      "project_matches": true,
+      "current_parent_id": 16732398,
+      "description_matches": true,
+      "description_characters": 4826
+    },
+    {
+      "plan_task_id": "IMP-02",
+      "task_number": "T26880",
+      "internal_id": 17033378,
+      "title_matches": true,
+      "project_matches": true,
+      "current_parent_id": 17033377,
+      "description_matches": true,
+      "description_characters": 17326
+    },
+    {
+      "plan_task_id": "IMP-03",
+      "task_number": "T26881",
+      "internal_id": 17033379,
+      "title_matches": true,
+      "project_matches": true,
+      "current_parent_id": 17033377,
+      "description_matches": true,
+      "description_characters": 20571
+    },
+    {
+      "plan_task_id": "IMP-04",
+      "task_number": "T26882",
+      "internal_id": 17033381,
+      "title_matches": true,
+      "project_matches": true,
+      "current_parent_id": 17033377,
+      "description_matches": true,
+      "description_characters": 11021
+    },
+    {
+      "plan_task_id": "IMP-05",
+      "task_number": "T26883",
+      "internal_id": 17033382,
+      "title_matches": true,
+      "project_matches": true,
+      "current_parent_id": 17033377,
+      "description_matches": true,
+      "description_characters": 10351
+    },
+    {
+      "plan_task_id": "IMP-06",
+      "task_number": "T26884",
+      "internal_id": 17033383,
+      "title_matches": true,
+      "project_matches": true,
+      "current_parent_id": 17033377,
+      "description_matches": true,
+      "description_characters": 16226
+    },
+    {
+      "plan_task_id": "IMP-07",
+      "task_number": "T26885",
+      "internal_id": 17033384,
+      "title_matches": true,
+      "project_matches": true,
+      "current_parent_id": 16732398,
+      "description_matches": true,
+      "description_characters": 20026
+    },
+    {
+      "plan_task_id": "IMP-08",
+      "task_number": "T26886",
+      "internal_id": 17033385,
+      "title_matches": true,
+      "project_matches": true,
+      "current_parent_id": 16732398,
+      "description_matches": true,
+      "description_characters": 7760
+    },
+    {
+      "plan_task_id": "IMP-09",
+      "task_number": "T26887",
+      "internal_id": 17033386,
+      "title_matches": true,
+      "project_matches": true,
+      "current_parent_id": 16732398,
+      "description_matches": true,
+      "description_characters": 9211
+    },
+    {
+      "plan_task_id": "IMP-10",
+      "task_number": "T26888",
+      "internal_id": 17033387,
+      "title_matches": true,
+      "project_matches": true,
+      "current_parent_id": 16732398,
+      "description_matches": true,
+      "description_characters": 8454
+    },
+    {
+      "plan_task_id": "IMP-11",
+      "task_number": "T26889",
+      "internal_id": 17033388,
+      "title_matches": true,
+      "project_matches": true,
+      "current_parent_id": 16732398,
+      "description_matches": true,
+      "description_characters": 5714
+    },
+    {
+      "plan_task_id": "IMP-12",
+      "task_number": "T26890",
+      "internal_id": 17033389,
+      "title_matches": true,
+      "project_matches": true,
+      "current_parent_id": 16732398,
+      "description_matches": true,
+      "description_characters": 7943
+    }
+  ],
+  "hierarchy_note": "IMP-02 through IMP-06 currently belong to T26879 (IMP-01); the other seven imported tasks remain direct children of T24730. Hierarchy was inspected without modification.",
+  "mutations": {
+    "created": 0,
+    "updated": 0,
+    "removed": 0
+  },
+  "limitations": "Checks specification/plan consistency and live Forecast descriptions; not verification of live Intelex configuration or native runtime behavior.",
+  "artifact_validation": {
+    "validate-plan-output-contract.cjs": {
+      "planContractVersion": 2,
+      "passed": true,
+      "taskCount": 12,
+      "coverageCount": 121,
+      "errors": [],
+      "limits": "Deterministic structure, snapshot/rendering, input, graph and ownership checks. Not semantic, language-quality, source-completeness or live-tenant certification."
+    },
+    "validate-implementation-task-contract.cjs": {
+      "contractVersion": 1,
+      "passed": true,
+      "scope": [
+        "IMP-01",
+        "IMP-02",
+        "IMP-03",
+        "IMP-04",
+        "IMP-05",
+        "IMP-06",
+        "IMP-07",
+        "IMP-08",
+        "IMP-09",
+        "IMP-10",
+        "IMP-11",
+        "IMP-12"
+      ],
+      "unreviewedTaskIds": [],
+      "errors": [],
+      "limits": "Automated wording, rendering and review-freshness checks plus recorded semantic review; not independent proof of configuration correctness or tenant verification."
+    }
+  }
+}

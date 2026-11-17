@@ -1,0 +1,811 @@
+{
+  "review_date": "2026-11-12",
+  "package_sha256": "88c39b04bd8a867b2ca871712f1752ac5409657ab9661014acc391bbff99897b",
+  "adrs": [
+    {
+      "adr": "ADR-009",
+      "path": "docs/apqp/ADR-009-model-each-apqp-for-a-specific-supplier-and-item-or-drawing-combination.md",
+      "status": "accepted",
+      "sha256": "f6d5270367fd4dc1d9bc6c08846d21425206513b5f17ff1eaafeef5f719d3abb",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-010",
+      "path": "docs/apqp/ADR-010-model-apqp-as-a-parent-plan-with-templated-child-task-records.md",
+      "status": "accepted",
+      "sha256": "c4e61132a0136da9899a395bcce04c47e5774a0897289f44afa8001dbd410115",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-011",
+      "path": "docs/apqp/ADR-011-use-one-standard-apqp-process-with-risk-based-12-step-oversight.md",
+      "status": "accepted",
+      "sha256": "db6187d6c1ae5905bf179f3e710ffecf9cefd5dd085fc38db54893aac5b4fdef",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-012",
+      "path": "docs/apqp/ADR-012-calculate-apqp-risk-from-structured-supplier-input-with-human-confirmation.md",
+      "status": "proposed",
+      "sha256": "c05ed9fb262ef5482183a909db7214b1319e52a663999f2d0013487ff7f252e6",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-013",
+      "path": "docs/apqp/ADR-013-maintain-sia-baseline-supplier-current-plan-and-actual-progress-separately.md",
+      "status": "accepted",
+      "sha256": "9a60c1e2917a2bb4e401b9e40d54f9937a1e86f2a4696af46ebba5631a999558",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-014",
+      "path": "docs/apqp/ADR-014-calculate-apqp-baseline-dates-from-drawing-release-and-sop-milestones.md",
+      "status": "proposed",
+      "sha256": "48472b0ac91c2e8a191c3c9b1d2292e3dee3d83abc1e99bf41e29f1a3013d807",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-015",
+      "path": "docs/apqp/ADR-015-support-multiple-finish-to-start-dependencies-between-apqp-tasks.md",
+      "status": "accepted",
+      "sha256": "843ef23254ec224f37087172abaa789e5048e7f61168ba42b43de2a4ea3f2536",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-016",
+      "path": "docs/apqp/ADR-016-use-a-master-model-or-program-schedule-record-to-drive-shared-milestones-and-reusable-dashboards.md",
+      "status": "proposed",
+      "sha256": "b0a46241e043d4d3d5adfba67df4a3b9227b72316504be0bdc27ac2250582769",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-017",
+      "path": "docs/apqp/ADR-017-treat-native-recurring-apqp-tasks-as-optional-and-prioritize-dependency-scheduling.md",
+      "status": "accepted",
+      "sha256": "515bd20c0959981a36a2bf6da635003c6c1af917df6379ce19ca209c8e553aa1",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-018",
+      "path": "docs/apqp/ADR-018-use-intelex-for-supplier-apqp-status-reporting-rather-than-internal-supplier-project-management.md",
+      "status": "accepted",
+      "sha256": "d2b3bde27efedd74cd62e9569d4496eaf5f14567162a0b6cb5a0228fdc43175d",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-019",
+      "path": "docs/apqp/ADR-019-close-apqp-through-supplier-ship-readiness-declaration-and-sia-acknowledgement.md",
+      "status": "accepted",
+      "sha256": "1f8c2072de468ae8809bae4ee64b3d504b5437b7f944bc78d54b8a694197bf58",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-020",
+      "path": "docs/apqp/ADR-020-retain-apqp-development-history-for-mass-production-handover-and-cross-functional-visibility.md",
+      "status": "accepted",
+      "sha256": "303e365226b1c0a8612fdbaf00d3131c10646143e861ea26c694b2fc1aeb67fa",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-008",
+      "path": "docs/audit-management/ADR-008-manage-supplier-audits-in-audit-management-and-link-them-to-supplier-records.md",
+      "status": "accepted",
+      "sha256": "45c6f9ee2fc9787734e98b89fe17804b779da626ed5edf57f3f7461840bccc9b",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-055",
+      "path": "docs/audit-management/ADR-055-create-audit-driven-compliance-ncrs-instead-of-isolated-finding-records.md",
+      "status": "superseded by ADR-087",
+      "sha256": "a55c97939a0f0ef665a228ac8ba0fa6beb6c09e91777bf92f47edab073e46961",
+      "applicability": "Superseded"
+    },
+    {
+      "adr": "ADR-087",
+      "path": "docs/audit-management/ADR-087-retain-audit-findings-and-launch-shared-cars-for-structured-corrective-action.md",
+      "status": "accepted",
+      "sha256": "c4c6115b98a968534757ac7467cafb0121fd78aa7c3bafe8c1d44d76c9993fb0",
+      "applicability": "Boundary"
+    },
+    {
+      "adr": "ADR-089",
+      "path": "docs/corrective-action-management/ADR-089-model-internal-cars-as-source-linked-parents-with-structured-cause-and-action-children.md",
+      "status": "accepted",
+      "sha256": "7de4399da8a54ad509186a8e6999abdc7daf71c11f165266d72b29f55e8092ce",
+      "applicability": "Boundary"
+    },
+    {
+      "adr": "ADR-090",
+      "path": "docs/corrective-action-management/ADR-090-gate-internal-car-actions-on-plan-approval-and-separate-implementation-from-effectiveness-verification.md",
+      "status": "accepted",
+      "sha256": "d1febc3bd33a08ba019fb10728417aebe55d0da954e931ae331dc0ad6753a339",
+      "applicability": "Boundary"
+    },
+    {
+      "adr": "ADR-037",
+      "path": "docs/dcr/ADR-037-use-workflow-ex-as-the-provisional-system-of-record-for-direct-supplier-dcrs-and-evaluate-intelex-reference-integration.md",
+      "status": "proposed",
+      "sha256": "9978bfa5462e9cca84bc799d3df12fd4fb66b606693a1757c3ef64e2a232c839",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-068",
+      "path": "docs/management-of-change/ADR-068-implement-distinct-change-processes-as-moc-subtypes-while-preserving-the-core-moc-framework.md",
+      "status": "accepted",
+      "sha256": "e83281a451feb706dfb80ba85951fa197212664453aefa7d363f8f36ff26769f",
+      "applicability": "Boundary"
+    },
+    {
+      "adr": "ADR-069",
+      "path": "docs/management-of-change/ADR-069-digitize-aas-as-a-flexible-authorization-workflow-linked-to-parts-suppliers-ppap-and-schedule-exceptions.md",
+      "status": "proposed",
+      "sha256": "f96d22f376ce90c0f83c62ad5fb4a23ba49f0b0686679123029683d2f6fe78da",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-032",
+      "path": "docs/pcr/ADR-032-use-supplier-initiated-pcr-with-context-specific-concept-outcomes.md",
+      "status": "accepted",
+      "sha256": "2a78521b7101db5b13ad299406638ed45731151716d34e2c7e364a5fa384da7a",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-033",
+      "path": "docs/pcr/ADR-033-derive-pcr-type-and-ppap-requirements-from-governed-business-rules.md",
+      "status": "accepted",
+      "sha256": "a23098f49dbcc2dc33ac1dec1e335a1f7c567d72beb70400f82ead5c12087785",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-034",
+      "path": "docs/pcr/ADR-034-use-configurable-cross-functional-parallel-pcr-concept-review.md",
+      "status": "accepted",
+      "sha256": "5c9ce1b619779b95cece24e8ffe8aa1373285b6f03d4998256c76bacb7f61d0a",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-035",
+      "path": "docs/pcr/ADR-035-consolidate-depot-change-into-pcr-with-conditional-ppap-routing.md",
+      "status": "accepted",
+      "sha256": "790c960ebd2818a53976bb923b05a74263ed7668cb45877dc26ad326efefc61d",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-036",
+      "path": "docs/pcr/ADR-036-reset-pcr-approvals-after-supplier-revisions-and-lock-final-approved-content.md",
+      "status": "accepted",
+      "sha256": "ee2da0d00d6498ff73870fa958212939e169b473ec62ee08898151be8d7f8e28",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-074",
+      "path": "docs/phase 1/document-control/ADR-074-monitor-intelex-file-storage-as-a-governed-capacity-and-cost-boundary.md",
+      "status": "accepted",
+      "sha256": "5111cd67438fd991a0e8ae9827ae0a6e1cdfb58a17e74e4c3040e280ade69b2e",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-060",
+      "path": "docs/phase 1/employee-management/ADR-060-provision-employee-records-through-a-resilient-successfactors-sftp-feed.md",
+      "status": "accepted",
+      "sha256": "d2c3169063308375769ab1935d68380549c6efea98b5e6296d1e2300b1e12104",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-061",
+      "path": "docs/phase 1/intelex-platform/ADR-061-use-entra-id-sso-for-internal-users-and-a-separate-local-authentication-supplier-portal.md",
+      "status": "accepted",
+      "sha256": "6c43da295b7f36e31cba9e2f631a12424c2deb158bc34da5c3ce7cd5b4ed5930",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-066",
+      "path": "docs/phase 1/intelex-platform/ADR-066-establish-central-intelex-product-ownership-and-cross-functional-governance.md",
+      "status": "accepted",
+      "sha256": "0567703c510e9648afc014add026f17fb70b9ff03c695f52a482ff802e937372",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-067",
+      "path": "docs/phase 1/intelex-platform/ADR-067-use-trained-internal-app-builders-for-phase-four-custom-applications-with-guided-implementation-support.md",
+      "status": "accepted",
+      "sha256": "9337e620323b6dcd4d3ed62af31360822c8c05f8a5f45d8405a701657c839941",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-082",
+      "path": "docs/phase 1/intelex-platform/ADR-082-use-one-profile-with-supplemental-location-group-access-for-cross-structure-internal-users.md",
+      "status": "proposed",
+      "sha256": "d70ab9b18528b44b39fde415218ec0d8df1f38e1307cb88c5971f42200b10b27",
+      "applicability": "Boundary"
+    },
+    {
+      "adr": "ADR-095",
+      "path": "docs/phase 2/meetings-management/ADR-095-manage-supplier-visits-and-7-4-activity-as-meetings.md",
+      "status": "proposed",
+      "sha256": "b1b8642b23bda43feac6f757a8d601c988a998953da98b9a2160b26fd6e19fa3",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-046",
+      "path": "docs/phase 2/non-conformance-management/ADR-046-model-supplier-ncr-as-one-end-to-end-record-with-integrated-investigation-and-corrective-action.md",
+      "status": "accepted",
+      "sha256": "42ad61d4dd248f9c62f0adbba4f74dc7e94b07ae2bf8956312914096dc0a18f2",
+      "applicability": "Core"
+    },
+    {
+      "adr": "ADR-047",
+      "path": "docs/phase 2/non-conformance-management/ADR-047-aggregate-repeated-occurrences-under-the-same-drawing-and-problem-ncr.md",
+      "status": "accepted",
+      "sha256": "97cfdaa72791124cb3eddbd86689d611c4190bdfb4362a601d48907095e6000a",
+      "applicability": "Core"
+    },
+    {
+      "adr": "ADR-048",
+      "path": "docs/phase 2/non-conformance-management/ADR-048-use-one-human-maintained-risk-analysis-to-determine-supplier-response-tier.md",
+      "status": "accepted",
+      "sha256": "d778dfd921a17b513b12ee0af7989631b9e71e3a04a6bc7618fec9e0bd50a15a",
+      "applicability": "Core"
+    },
+    {
+      "adr": "ADR-049",
+      "path": "docs/phase 2/non-conformance-management/ADR-049-delay-supplier-ncr-access-until-internal-intake-and-risk-classification-are-complete.md",
+      "status": "accepted",
+      "sha256": "abbbf1554e503749f39f4637b9db24a38244bb9e012b6f1471803dcb706544b2",
+      "applicability": "Core"
+    },
+    {
+      "adr": "ADR-050",
+      "path": "docs/phase 2/non-conformance-management/ADR-050-use-staged-supplier-responses-with-independent-approvals-drafts-and-rejection-history.md",
+      "status": "accepted",
+      "sha256": "211d13495b332f18a7bb9bb23dcb8d200afcff1853bd666125c5e2e1ae998b11",
+      "applicability": "Core"
+    },
+    {
+      "adr": "ADR-051",
+      "path": "docs/phase 2/non-conformance-management/ADR-051-automate-supplier-ncr-closure-review-and-repeatable-follow-up-workflows.md",
+      "status": "accepted",
+      "sha256": "8ee9b4753dbb80fbab0607c768154f126056dd258d8debef850bb512bc8b57ef",
+      "applicability": "Core"
+    },
+    {
+      "adr": "ADR-052",
+      "path": "docs/phase 2/non-conformance-management/ADR-052-generate-controlled-sia-corrective-action-outputs-from-supplier-ncr-data.md",
+      "status": "accepted",
+      "sha256": "2adfb989358e038fd0b4b7d0eb1541a45211b0ab394ddef4a2a76fcc0a1ccc82",
+      "applicability": "Core"
+    },
+    {
+      "adr": "ADR-053",
+      "path": "docs/phase 2/non-conformance-management/ADR-053-use-a-shared-supplier-issue-workflow-with-wcar-specific-configuration.md",
+      "status": "accepted",
+      "sha256": "4cf56a221314e69e5b38dc046d7f716a0f0a671694207a5fd56c3428c8f93fde",
+      "applicability": "Core"
+    },
+    {
+      "adr": "ADR-054",
+      "path": "docs/phase 2/non-conformance-management/ADR-054-separate-supplier-and-internal-ncr-architectures-under-a-shared-non-conformance-base.md",
+      "status": "accepted",
+      "sha256": "2cbc1e35b913f6d9dece9b35040a535ebea750138fb4964a1fcf827ffae8ee8f",
+      "applicability": "Core boundary"
+    },
+    {
+      "adr": "ADR-056",
+      "path": "docs/phase 2/non-conformance-management/ADR-056-use-a-common-internal-ncr-workflow-with-source-specific-triage-and-cause-analysis-rules.md",
+      "status": "accepted",
+      "sha256": "8864a3c10752894433187c92e34d3ef9b9f04e3eea4564a33a7263e6908377f5",
+      "applicability": "Boundary"
+    },
+    {
+      "adr": "ADR-057",
+      "path": "docs/phase 2/non-conformance-management/ADR-057-link-internal-ncrs-to-requirements-through-a-phased-compliance-relationship.md",
+      "status": "accepted",
+      "sha256": "a7fa6bdaa85c2795294a77d1ece2e04333ff9c2b225d974a9bbd2efc50149fb6",
+      "applicability": "Boundary"
+    },
+    {
+      "adr": "ADR-073",
+      "path": "docs/phase 2/non-conformance-management/ADR-073-provide-an-internal-part-history-workspace-from-supplier-ncrs.md",
+      "status": "accepted",
+      "sha256": "0ce9b94623b25ccebac75233b332738a1a8c39effa71c8791e3ffb1f221b6b76",
+      "applicability": "Core"
+    },
+    {
+      "adr": "ADR-088",
+      "path": "docs/phase 2/non-conformance-management/ADR-088-model-sqdiir-as-a-distinct-initial-investigation-with-sequential-review-and-optional-car.md",
+      "status": "accepted",
+      "sha256": "389d130001a08ab56e173f6045976484857ce321fd4b00e9daca99662d8e646d",
+      "applicability": "Boundary"
+    },
+    {
+      "adr": "ADR-093",
+      "path": "docs/phase 2/non-conformance-management/ADR-093-model-rma-as-a-disposition-linked-child-workflow.md",
+      "status": "accepted",
+      "sha256": "7c04db8313efd1ff831a35591654a08ffda780aea328726690f1bd79a8ad2c2d",
+      "applicability": "Core"
+    },
+    {
+      "adr": "ADR-094",
+      "path": "docs/phase 2/non-conformance-management/ADR-094-use-simple-record-identifiers-and-normalized-searchable-attributes.md",
+      "status": "accepted",
+      "sha256": "dd3a9482ab902f605c092dacb36a67108a7ac575b5dc2b667614bdcf7616fb93",
+      "applicability": "Core"
+    },
+    {
+      "adr": "ADR-096",
+      "path": "docs/phase 2/non-conformance-management/ADR-096-use-type-specific-car-determination-with-scored-environmental-escalation.md",
+      "status": "accepted",
+      "sha256": "83d5da66d6b93cb89126d207e0dafc6ba94980960bc3654de3edc08ff3dc7fb7",
+      "applicability": "Boundary"
+    },
+    {
+      "adr": "ADR-117",
+      "path": "docs/phase 2/non-conformance-management/ADR-117-process-supplier-reported-sap-part-problems-as-linked-ncr-intake-records.md",
+      "status": "accepted",
+      "sha256": "6d11e518f3e066bb7539981d01fa3ce5fc124de01948141bd9d04ddadfd45587",
+      "applicability": "Core"
+    },
+    {
+      "adr": "ADR-040",
+      "path": "docs/phase 2/pilot-part-data/ADR-040-capture-pilot-part-data-as-structured-sample-level-inspection-records.md",
+      "status": "accepted",
+      "sha256": "0c8375683320490f6ab3b66d42620534e99c5caeb8160110f0f83d9ef16a8c2e",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-041",
+      "path": "docs/phase 2/pilot-part-data/ADR-041-reuse-one-inspection-framework-across-pilot-part-ppap-sample-and-internal-safe-launch.md",
+      "status": "accepted",
+      "sha256": "caf64b73f3a14c0ad4240f461f87648a1787a68edeee663cbaf31cf8264c6b35",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-042",
+      "path": "docs/phase 2/pilot-part-data/ADR-042-route-inspection-ownership-through-part-level-development-and-production-assignments.md",
+      "status": "superseded by ADR-098",
+      "sha256": "d4b54581dc034e3257c9775017458112a8c689248a2064130b172a4b6ac491ad",
+      "applicability": "Superseded"
+    },
+    {
+      "adr": "ADR-043",
+      "path": "docs/phase 2/pilot-part-data/ADR-043-use-a-responsive-connected-browser-experience-for-pilot-inspections.md",
+      "status": "accepted",
+      "sha256": "dd0a34e558a076ee5878fc8370effa3cd21a8dbb52b7625b78927242a8614ed5",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-044",
+      "path": "docs/phase 2/pilot-part-data/ADR-044-use-inspection-plans-and-frequency-targets-instead-of-pre-creating-scheduled-inspections.md",
+      "status": "proposed",
+      "sha256": "d6c72819d00dfceb2e1cb6c939d96f434bfa3c06011a4e6821863573d94e554a",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-045",
+      "path": "docs/phase 2/pilot-part-data/ADR-045-route-pilot-inspection-failures-through-engineer-reviewed-failure-records.md",
+      "status": "accepted",
+      "sha256": "5003a98a843016b85c4d4644ed8301dd7daa73a27ff208263fadfeadf9f8af67",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-098",
+      "path": "docs/phase 2/pilot-part-data/ADR-098-initiate-pilot-part-programs-from-ppap-build-event-context.md",
+      "status": "accepted",
+      "sha256": "f80a09c69f0415a5b0c05ad11bfd5f87ab0b732056d8045fe24ac86a927caff2",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-099",
+      "path": "docs/phase 2/pilot-part-data/ADR-099-model-pilot-execution-through-event-scoped-shipments-and-receiving-assignment.md",
+      "status": "accepted",
+      "sha256": "6075846beb4410b40c1d3496f9dc5efaab1a0a5964af243906d9c132237a631d",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-100",
+      "path": "docs/phase 2/pilot-part-data/ADR-100-begin-pilot-part-data-without-historical-inspection-migration.md",
+      "status": "accepted",
+      "sha256": "a4539497318c00db39c02d8f0e6e9fc443f204a24c34ab5781dc113a518f54c7",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-021",
+      "path": "docs/phase 2/ppap/ADR-021-model-ppap-as-a-drawing-scoped-parent-with-selected-part-numbers-and-an-integrated-part-warrant.md",
+      "status": "accepted",
+      "sha256": "19e998ed87e7ee4930db4c8d4b3b869b70463945d3f2376c9fb714bce8995e54",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-022",
+      "path": "docs/phase 2/ppap/ADR-022-model-ppap-elements-as-independently-routed-child-workflows.md",
+      "status": "accepted",
+      "sha256": "2da4d9cf1034d81865ae4f6044915079533f4fa92dec76e5e5e78be5b15b716d",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-023",
+      "path": "docs/phase 2/ppap/ADR-023-version-and-reuse-approved-ppap-element-evidence.md",
+      "status": "accepted",
+      "sha256": "9490687b7495e08198b5546c88450835729ec23c0b03c590d8ab9df84fd5e54f",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-024",
+      "path": "docs/phase 2/ppap/ADR-024-keep-detailed-measurement-execution-outside-ppap.md",
+      "status": "accepted",
+      "sha256": "dbe74f0f03f577720fe483589bd93451441db0f9f738c6eab094c9b76669e7a6",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-025",
+      "path": "docs/phase 2/ppap/ADR-025-apply-conditional-overall-group-leader-approval.md",
+      "status": "accepted",
+      "sha256": "d0587b727a06286633b4ab169f4a5cc0b2c7c2e2d23accb1496bf3a6b1a3fc11",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-026",
+      "path": "docs/phase 2/ppap/ADR-026-route-ppap-work-through-stable-supplier-depot-and-internal-roles.md",
+      "status": "accepted",
+      "sha256": "c4c159e1510fc781741e6dea8b160150e6d4c6aab9f179f0847403dd13634298",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-027",
+      "path": "docs/phase 2/ppap/ADR-027-manage-concurrent-ppaps-through-explicit-scope-and-human-sequencing.md",
+      "status": "accepted",
+      "sha256": "1f5215b7b5774b24524b10fcb40e4d0c06f0d75e8bea4c6c432756d3200a6361",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-028",
+      "path": "docs/phase 2/ppap/ADR-028-generate-an-exportable-ppap-approval-certificate.md",
+      "status": "accepted",
+      "sha256": "bd85ef09512ed7a51e127d39328ad8ecddffd6715b375c1dc51335f9d0663cfa",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-029",
+      "path": "docs/phase 2/ppap/ADR-029-use-live-workflow-instances-for-ppap-operational-reporting.md",
+      "status": "accepted",
+      "sha256": "035ee09d0800b6a8d8114deb02baec0a0b4953032b249b46561a5c5b651bd85f",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-030",
+      "path": "docs/phase 2/ppap/ADR-030-stage-bomex-drawing-and-ecs-data-and-create-source-linked-draft-ppaps.md",
+      "status": "accepted",
+      "sha256": "49d8ce12ccda681c65ff9234d5947258a3591d59e4eafec5624c12aac709522a",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-031",
+      "path": "docs/phase 2/ppap/ADR-031-integrate-shipping-commitments-and-shipment-events-with-ppap-scheduling-and-compliance.md",
+      "status": "proposed",
+      "sha256": "ae3b543bc227871724db4f415205948a8dd0f33c90d3f543998a5b6f08f2020a",
+      "applicability": "Boundary"
+    },
+    {
+      "adr": "ADR-101",
+      "path": "docs/phase 2/ppap/ADR-101-manage-model-changes-as-scheduled-parents-over-related-ppaps.md",
+      "status": "accepted",
+      "sha256": "995687165e3e5275f64ed5cbf7c38b3baf91ac4e5c723f787ec73315fc97e0ec",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-102",
+      "path": "docs/phase 2/ppap/ADR-102-separate-ppap-evidence-snapshots-from-recurring-validation-records.md",
+      "status": "proposed",
+      "sha256": "78f78a07d126cc2a3f56b7d9926f25829bfb79b116c0edc423fa55fc5554bc55",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-104",
+      "path": "docs/phase 2/ppap/ADR-104-absorb-in-flight-engineering-changes-into-open-ppaps-and-start-new-ppaps-after-closure.md",
+      "status": "accepted",
+      "sha256": "97b9cbce386a6ca83f12542dc41947b0810dcf40d0ef72c15df14634e71c2f29",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-105",
+      "path": "docs/phase 2/ppap/ADR-105-place-minimum-supplier-ppap-request-in-ppap-and-keep-internal-pcr-in-moc.md",
+      "status": "rejected",
+      "sha256": "cfdbef1fb965aa226c8264dc82d0cc1de770f89d8a139420c4d30954ac2a30b2",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-107",
+      "path": "docs/phase 2/ppap/ADR-107-model-ppap-discussions-as-secured-threaded-related-records.md",
+      "status": "accepted",
+      "sha256": "aae617791e05a6d20447057484d08f84e35180b9aeb0819e079233c4e5c62976",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-108",
+      "path": "docs/phase 2/ppap/ADR-108-audit-ppap-task-due-date-changes-without-a-dedicated-extension-workflow.md",
+      "status": "accepted",
+      "sha256": "5e7cc504ffa598a2db575380a66f57a0b0ecf01cb5823c89e816eee8069ba14f",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-110",
+      "path": "docs/phase 2/ppap/ADR-110-use-a-responsive-connected-browser-experience-for-ppap.md",
+      "status": "accepted",
+      "sha256": "fa85e18fb6923c0bd8328826f67bd03f061d2a6952d7cc97646053660709f15a",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-038",
+      "path": "docs/phase 2/product-management/ADR-038-manage-versioned-part-inspection-specifications-in-product-management.md",
+      "status": "accepted",
+      "sha256": "76b4dd37c068d681b76a20b26a7ae5b01bdebf9dd202d497868c3902b8f1f221",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-039",
+      "path": "docs/phase 2/product-management/ADR-039-make-ecs-processing-gate-inspection-specification-review-and-revision.md",
+      "status": "accepted",
+      "sha256": "9699e9273985364d011b2fb4281f698a8a56de54bc29abd678de7945443f632b",
+      "applicability": "Boundary"
+    },
+    {
+      "adr": "ADR-062",
+      "path": "docs/phase 2/product-management/ADR-062-create-a-composite-part-master-from-bomex-and-partsmaster-data.md",
+      "status": "proposed",
+      "sha256": "b3466a8cd2a44bd7a78a7ef26a62f7289e9224834c20bb7051f115d2833e1ad9",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-092",
+      "path": "docs/phase 2/product-management/ADR-092-support-role-qualified-multiple-supplier-relationships-per-part.md",
+      "status": "accepted",
+      "sha256": "4071a04f814741bd8921625555210e53fd249c81c3ad74c8a31c9fb1d1f0c6a9",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-097",
+      "path": "docs/phase 2/product-management/ADR-097-represent-parent-child-part-hierarchies.md",
+      "status": "accepted",
+      "sha256": "104cddd8697414d855dac41ade616608ccb2d8aa0c4699ef7494ef2510951c0d",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-001",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-001-establish-supplier-relationship-management-as-the-official-supplier-portal-and-integration-hub.md",
+      "status": "superseded by ADR-083",
+      "sha256": "6fd065d940bc9aa8cd467c3cb392b969f7495d708517ed1ede411e15a6d3bc6c",
+      "applicability": "Superseded"
+    },
+    {
+      "adr": "ADR-002",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-002-begin-the-intelex-supplier-lifecycle-after-supplier-award.md",
+      "status": "accepted",
+      "sha256": "7475a2244ec04d811f6d2441e30f63aa2f70adccd654aa217fa86ac2531c01ff",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-003",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-003-centralize-external-supplier-contacts-by-standardized-relationship-roles.md",
+      "status": "accepted",
+      "sha256": "13f461c9154659744fdcef8e75579e4a3de4626282dd0b49526ee8e953ec89d9",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-004",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-004-centralize-internal-sia-supplier-ownership-roles-with-flexible-reassignment.md",
+      "status": "accepted",
+      "sha256": "30c344c591e527aa34b41344ccf16263ec0fecc8c37fc3d7a200e7de54cd49f4",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-005",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-005-use-supplier-type-onboarding-templates-to-generate-required-roles-documents-training-and-tasks.md",
+      "status": "accepted",
+      "sha256": "e223a9f012a59f1d53a5a2dc099ab736afb128cefab7d2f60fde7eab0a5237ce",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-006",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-006-allow-supplier-self-service-maintenance-of-external-roles-with-periodic-confirmation.md",
+      "status": "proposed",
+      "sha256": "b3357c6f4c2097e07fad42f00e371f0d3461b17db87e5aefe497b18117294369",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-007",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-007-deactivate-dormant-supplier-accounts-using-role-based-thresholds.md",
+      "status": "accepted",
+      "sha256": "bb8b101a1ad158fdc2677b4f22818e5ef941f722889604e8ef9242c6cd5d4bbb",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-063",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-063-provide-suppliers-current-period-scrap-visibility-while-keeping-financial-debit-processing-external.md",
+      "status": "accepted",
+      "sha256": "7391748c34a419dc60db10d3c1142794d6a85b16b2bc5eee87882330eadde238",
+      "applicability": "Boundary"
+    },
+    {
+      "adr": "ADR-076",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-076-model-suppliers-as-parent-companies-with-child-facilities-and-depots.md",
+      "status": "accepted",
+      "sha256": "b5a9bc2a36d151a95dfb5ece270d1589ebeb39c03d0e793bbaebc941bdd8a7fc",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-077",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-077-create-awarded-suppliers-through-reviewed-manual-intake.md",
+      "status": "accepted",
+      "sha256": "51a42ddf0eb4585ba0e71df7465d404c60859cc8e339c218cbf3bfefc0f104d6",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-078",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-078-scope-supplier-portal-access-through-supplier-entity-relationships.md",
+      "status": "accepted",
+      "sha256": "1342ecabf0ed6e837dea274c40cbeca80578727d2450395df3153179da11f663",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-079",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-079-govern-supplier-eligibility-through-auditable-lifecycle-statuses.md",
+      "status": "accepted",
+      "sha256": "c58becc6aadbb50c11f39e7a4496dafb2be42431dd5efe1404b689d429b4eb08",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-080",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-080-use-reusable-campaigns-for-supplier-information-requests.md",
+      "status": "proposed",
+      "sha256": "4e692b962cbe88156819f9dfb078220dbd836adef2c0efc50c231382ab142ab4",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-081",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-081-delegate-supplier-user-administration-with-soft-license-controls.md",
+      "status": "proposed",
+      "sha256": "27b50a6564f14c1770ddc3179f5504b153b6f99808ffe354770582a9f78b3899",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-083",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-083-retain-the-existing-supplier-portal-as-the-upstream-entry-point-and-use-intelex-as-the-supplier-quality-workspace.md",
+      "status": "accepted",
+      "sha256": "af43f48e4a194592a86c7fbe10de70a63bc06dfce19102ee59ede9c65b0de23c",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-084",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-084-apply-mutable-visibility-classifications-to-supplier-related-records.md",
+      "status": "accepted",
+      "sha256": "6ec1b1c0e8e9d8335208664e55235eb678cd569179946dcc503394db8369746d",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-085",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-085-manage-supplier-lot-approval-as-an-event-driven-supplier-submission.md",
+      "status": "accepted",
+      "sha256": "4bbca31b8a0685e029e0add29ced1c2a8e4d4cddcdbaf11fda4b4e4f8b1b2ccd",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-103",
+      "path": "docs/phase 2/supplier-relationship-management/adrs/ADR-103-use-a-shared-configurable-model-for-targeted-supplier-tasks.md",
+      "status": "proposed",
+      "sha256": "f1ba456f179f73ad3382367c59a6bad5ddfccab6153aeefa75c42737c7b36124",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-058",
+      "path": "docs/phase 2/supplier-scorecard/ADR-058-build-supplier-scorecards-as-scheduled-kpi-snapshots-from-integrated-source-data.md",
+      "status": "accepted",
+      "sha256": "f58c3e75c55184e923a7c90817b490762ede7947e1c4568f063b2cd7195af0ed",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-086",
+      "path": "docs/phase 2/supplier-scorecard/ADR-086-orchestrate-monthly-supplier-scorecard-data-entry-review-and-publication.md",
+      "status": "accepted",
+      "sha256": "2edcc6c10f111030d74b7809625157b6fa01085d428cb91fa8519a4f7af0a1f5",
+      "applicability": "Boundary"
+    },
+    {
+      "adr": "ADR-111",
+      "path": "docs/phase 2/supplier-scorecard/ADR-111-configure-kpi-initialization-carry-forward-and-explicit-applicability.md",
+      "status": "accepted",
+      "sha256": "182671bfb0c5a68b0bbdf3bdf5e2f02d115925f9ef53dc3423af2893c5fd5ddb",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-112",
+      "path": "docs/phase 2/supplier-scorecard/ADR-112-collect-safety-performance-through-cadence-specific-surveys-and-versioned-benchmarks.md",
+      "status": "accepted",
+      "sha256": "b7e62c0c50399b47ffa348495709506cdb3e321bdec8fb2b01ec4086ebaab3cb",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-113",
+      "path": "docs/phase 2/supplier-scorecard/ADR-113-separate-monthly-facility-scorecards-from-periodic-parent-company-assessment.md",
+      "status": "proposed",
+      "sha256": "0ceb2e9e699fd4695ea60711056f6f5ee04c59f346eda7f1eb90a9848ecb453c",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-114",
+      "path": "docs/phase 2/supplier-scorecard/ADR-114-snapshot-commodity-and-calculate-period-rankings-on-demand.md",
+      "status": "accepted",
+      "sha256": "65f73abc6911bf94e44413e5154fc2c3cc3d9cfc7970f32d5ec96efde4f98367",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-115",
+      "path": "docs/phase 2/supplier-scorecard/ADR-115-separate-aggregate-scorecard-access-from-source-record-security-and-restrict-administration.md",
+      "status": "accepted",
+      "sha256": "bf2f84ec9a21c02ef8c71244473fc043c503849d794428ea06d25a37ee7cbf4c",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-116",
+      "path": "docs/phase 2/supplier-scorecard/ADR-116-use-responsive-browser-scorecard-views-and-supplier-profile-drilldown.md",
+      "status": "accepted",
+      "sha256": "6a5695228da291071c5b53bc0668c169134cef77b96bfcea8ce85ad8fcd226b9",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-059",
+      "path": "docs/phase 2/warranty-analysis/ADR-059-model-warranty-analysis-reports-as-a-separate-recurring-supplier-obligation.md",
+      "status": "proposed",
+      "sha256": "9f83e4b97771869387013de00362278d04615bf4bf06815a1d7301b5b47bd6e5",
+      "applicability": "Boundary"
+    },
+    {
+      "adr": "ADR-064",
+      "path": "docs/phase 5/incident-management/ADR-064-integrate-ohm-medical-data-into-incident-management-while-preserving-initiation-flexibility.md",
+      "status": "proposed",
+      "sha256": "93b3be1431077ddc15e92193fea831c2f725e6f94c45187e4d032679da9c56c6",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-091",
+      "path": "docs/phase 5/incident-management/ADR-091-keep-incidents-and-non-conformances-separate-with-investigation-driven-linkage.md",
+      "status": "proposed",
+      "sha256": "fda5fd77b7129688b19690fdee889bfda611491ca34c99fca3c0deb0da7a2ae7",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-071",
+      "path": "docs/spanf/ADR-071-implement-spanf-as-a-supplier-initiated-advance-notification-with-issue-based-routing-and-optional-ncr-escalation.md",
+      "status": "accepted",
+      "sha256": "56f161f16fdd220fd73599b81371f9be97e392f5bc56dfb23e610cd31dd4ac13",
+      "applicability": "Interface"
+    },
+    {
+      "adr": "ADR-070",
+      "path": "docs/tact-tri/ADR-070-model-tact-tri-as-a-standalone-run-at-rate-application-linked-to-apqp-ppap-and-pcr.md",
+      "status": "accepted",
+      "sha256": "0cad963aa51177cc2c033c6cb9a7ba5d4e32a876b39737b52962691005e064c7",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-065",
+      "path": "docs/tooling-database/ADR-065-expose-ppap-and-tooling-milestones-for-future-sap-payment-automation.md",
+      "status": "proposed",
+      "sha256": "60e144983ddb73bb3d6fbbc3e7093fba5c479193a9cf8feec8ee9d0782a7cc63",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-075",
+      "path": "docs/training-management/ADR-075-use-the-existing-lms-for-e-learning-execution-and-integrate-completion-results-into-training-management.md",
+      "status": "proposed",
+      "sha256": "2892f55c882350a64f71b17cbe2ea45b33a84ba9adb698d4d22e92fdcfd8a29c",
+      "applicability": "Screened out"
+    },
+    {
+      "adr": "ADR-072",
+      "path": "docs/ts-request/ADR-072-fulfill-ts-requests-through-supplier-scoped-time-limited-access-to-controlled-documents.md",
+      "status": "accepted",
+      "sha256": "e8cd9a0232bccf7cb36646d18bd032c5e31ed1fcf0a83fd253291363165b3f52",
+      "applicability": "Screened out"
+    }
+  ]
+}

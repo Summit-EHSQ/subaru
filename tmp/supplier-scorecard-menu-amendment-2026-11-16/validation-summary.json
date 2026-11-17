@@ -1,0 +1,30 @@
+{
+  "draftOnly": true,
+  "sourcePlanUnchanged": true,
+  "sourceSpecificationUnchanged": true,
+  "sourcePlanSha256": "0e374fc2422eeaf6f8b0bd39d4fb6524ff37cd8b6983e255bc3f369c54c7524a",
+  "structuralGate": {
+    "passed": true,
+    "tasks": 35,
+    "coverage": 52
+  },
+  "contentGate": {
+    "passed": true,
+    "originalTaskScope": [
+      "APP-01",
+      "CFG-03",
+      "SEC-26",
+      "RPT-27"
+    ],
+    "validatorTaskScope": [
+      "IMP-01",
+      "IMP-03",
+      "IMP-26",
+      "IMP-27"
+    ],
+    "reviewedInstructionCount": 77,
+    "unreviewedTaskCount": 31
+  },
+  "menuMappingsMatchApprovedSpecification": true,
+  "humanAmendmentUsesOriginalTaskIds": true
+}

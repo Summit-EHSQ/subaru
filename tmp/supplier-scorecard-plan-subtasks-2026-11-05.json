@@ -1,0 +1,165 @@
+{
+  "tasks": [
+    {
+      "id": "IMP-01",
+      "objective": "Add the governed reference-list object needed to express a Program generation lag in days or months.",
+      "scope": "Add Generation Lag Time Increment as one new direct child of Supplier Scorecard Abstract Catalog Record. Inherit Code, Name, Active?, and Sort from the abstract parent and declare no local fields.",
+      "deliverable": "One new inherited Generation Lag Time Increment catalogue object.",
+      "configurationRows": [
+        ["Generation Lag Time Increment", "Add one concrete catalogue child beneath Supplier Scorecard Abstract Catalog Record."],
+        ["Inherited fields", "Inherit Code, Name, Active?, and Sort; do not create duplicate local fields."],
+        ["Object behavior", "Permit records on Generation Lag Time Increment while retaining the abstract parent's non-instantiable behavior."]
+      ],
+      "steps": [], "modifications": [],
+      "accept": ["Generation Lag Time Increment is a direct child of Supplier Scorecard Abstract Catalog Record.", "It exposes inherited Code, Name, Active?, and Sort without redeclaring them.", "Records can be created on the child but not on the abstract parent."],
+      "refs": ["Sections 4.2, 5, 7.1, and 7.12", "SC-033"],
+      "inputs": [], "suppliedInputDescriptions": []
+    },
+    {
+      "id": "IMP-02",
+      "objective": "Make Generation Lag Time Increment available as a controlled Program selection.",
+      "scope": "Add its administration form and grid, active-record filtering, audit, and administrator permissions. Disable inverse relationships on fields that select the increment and do not expose a catalogue-side consumer grid.",
+      "deliverable": "Configured administration, selection, relationship, audit, and permission behavior for Generation Lag Time Increment.",
+      "configurationRows": [
+        ["Administration surface", "Show inherited Code, Name, Active?, and Sort on the catalogue form and grid."],
+        ["New selections", "Return active Generation Lag Time Increment records only."],
+        ["Relationship behavior", "Disable the inverse option on every M:1 field that selects the increment; add no consumer grid to the catalogue."],
+        ["Permissions and audit", "Allow maintenance only by approved scorecard administrators and system administrators; enable ordinary object audit."]
+      ],
+      "steps": [], "modifications": [],
+      "accept": ["The form and grid show the four inherited fields.", "Inactive records are unavailable for new Program selections but remain valid on published records.", "No inverse relationship or catalogue-side consumer grid is exposed.", "Only authorized administrators can maintain records."],
+      "refs": ["Sections 6, 7.12, and 16.1", "SC-028", "SC-029", "SC-030", "SC-033"],
+      "inputs": ["inherited-code-uniqueness"],
+      "suppliedInputDescriptions": [{"id": "inherited-code-uniqueness", "description": "Supply whether Code uniqueness can be enforced within Generation Lag Time Increment; this determines the uniqueness setting used on the new child."}]
+    },
+    {
+      "id": "IMP-03",
+      "objective": "Provide the two approved units used by Program scheduling calculations.",
+      "scope": "Add Code `d`, Name Days, Active? TRUE, Sort 10 and Code `M`, Name Months, Active? TRUE, Sort 20. Preserve the exact case because scheduling uses Code rather than Name.",
+      "deliverable": "Two approved Generation Lag Time Increment records.",
+      "configurationRows": [["d", "Days | TRUE | 10"], ["M", "Months | TRUE | 20"]],
+      "steps": [], "modifications": [],
+      "accept": ["Code `d` exists once with Name Days, Active? TRUE, and Sort 10.", "Code `M` exists once with Name Months, Active? TRUE, and Sort 20.", "Both Codes retain their specified case."],
+      "refs": ["Section 7.12", "Section 21.2", "SC-033"],
+      "inputs": ["inherited-code-uniqueness"],
+      "suppliedInputDescriptions": [{"id": "inherited-code-uniqueness", "description": "Supply the approved uniqueness behavior or replacement Codes before the two increment records are added."}]
+    },
+    {
+      "id": "IMP-04",
+      "objective": "Add the Program values needed to calculate and preserve its generation schedule.",
+      "scope": "Add Generation Lag Time, Generation Lag Time Increment, and calculated Schedule Anchor to Scorecard Program. Add matching read-only fields to Scorecard Program Version for Program Publish to populate.",
+      "deliverable": "Six new Program scheduling fields across Scorecard Program and Scorecard Program Version.",
+      "configurationRows": [
+        ["Program.Generation Lag Time", "Add a required Integer with default 0 and minimum value 0."],
+        ["Program.Generation Lag Time Increment", "Add a required M:1 relationship to Generation Lag Time Increment; disable the inverse relationship and filter to active Code `d` or `M`."],
+        ["Program.Schedule Anchor", "Add a required read-only calculated Date using DATEADD with increment Code, lag, and Effective From."],
+        ["Program Version.Generation Lag Time", "Add a required read-only Integer populated by Program Publish."],
+        ["Program Version.Generation Lag Time Increment", "Add a required read-only M:1 relationship populated by Program Publish; disable the inverse relationship."],
+        ["Program Version.Schedule Anchor", "Add a required read-only Date populated by Program Publish."]
+      ],
+      "steps": [], "modifications": [],
+      "accept": ["Generation Lag Time rejects negative values.", "Only active Code `d` or `M` increments can be selected.", "Effective From 2026-01-01 with lag 1 and Code `M` calculates Schedule Anchor 2026-02-01.", "The three Program Version fields are read only."],
+      "refs": ["Sections 4.3, 9.1, and 9.3", "SC-033"],
+      "inputs": ["dateadd-syntax"],
+      "suppliedInputDescriptions": [{"id": "dateadd-syntax", "description": "Supply the supported tenant DATEADD expression and exact interval behavior for Codes `d` and `M`; this blocks Schedule Anchor."}]
+    },
+    {
+      "id": "IMP-05",
+      "objective": "Show the new Program schedule values and change Generation Delay so its reporting cycle is system-assigned rather than user-selected.",
+      "scope": "Add generation lag and Schedule Anchor controls to Program and Program Version forms. Add Reporting Period Start and Reporting Period End to Generation Delay; make Program, both period dates, and Scheduled Generation Date read only; add cycle-level uniqueness; replace unrestricted New access with New Delay for Next Generation.",
+      "deliverable": "Updated Program forms and cycle-controlled Generation Delay form and grid.",
+      "configurationRows": [
+        ["Program form", "Add Generation Lag Time and Generation Lag Time Increment, followed by read-only Schedule Anchor."],
+        ["Program Version form", "Add the published lag, increment, and Schedule Anchor as read-only controls."],
+        ["Generation Delay cycle fields", "Add required read-only Reporting Period Start and Reporting Period End; change Scheduled Generation Date from administrator-selected to required read only."],
+        ["Cycle uniqueness", "Add uniqueness for Program plus Reporting Period Start plus Reporting Period End; retain Program plus Scheduled Generation Date as a second safeguard."],
+        ["Generation Delays grid", "Add both reporting-period dates and place New Delay for Next Generation on the grid; remove unrestricted New access."]
+      ],
+      "steps": [], "modifications": [],
+      "accept": ["Program administrators can enter lag values and see, but not edit, Schedule Anchor.", "Generation Delay's Program, period dates, and Scheduled Generation Date cannot be changed by the administrator.", "A second Delay for the same Program/reporting period is rejected.", "The visible creation route is New Delay for Next Generation rather than unrestricted New."],
+      "refs": ["Sections 9.1, 9.3, 9.6, and 16.1", "SC-027", "SC-033", "SC-034"],
+      "inputs": [], "suppliedInputDescriptions": []
+    },
+    {
+      "id": "IMP-06",
+      "objective": "Validate and preserve the approved generation schedule whenever a Program Version is published.",
+      "scope": "Add pre-publish checks for Generation Lag Time, exact increment Code `d` or `M`, and Schedule Anchor. Copy the lag, increment relationship, and anchor to the new Program Version within the existing all-or-nothing Publish operation.",
+      "deliverable": "Generation-schedule validation and copy behavior added to Program Publish.",
+      "configurationRows": [
+        ["Before version creation", "Reject a negative lag, missing or inactive increment, increment Code other than exact `d` or `M`, or Schedule Anchor that does not equal DATEADD of Code, lag, and Effective From."],
+        ["Version creation", "Copy Generation Lag Time, the exact increment relationship, and Schedule Anchor to Program Version."],
+        ["Effective range", "Do not reject a final Scheduled Generation Date solely because its lag places it after Effective To."],
+        ["Failure handling", "Include these new schedule values in the existing Publish rollback boundary."]
+      ],
+      "steps": [], "modifications": [],
+      "accept": ["Invalid lag, increment, or anchor prevents Program Version creation.", "Valid schedule values are copied exactly to Program Version.", "A December reporting cycle may retain a January Scheduled Generation Date when its Program Version is effective through December 31.", "A failure leaves no partial version graph."],
+      "refs": ["Sections 9.3, 9.5, and 21.2", "SC-033"],
+      "inputs": ["dateadd-syntax", "cadence-rules"],
+      "suppliedInputDescriptions": [
+        {"id": "dateadd-syntax", "description": "Supply the supported DATEADD expression and exact `d` / `M` behavior used by the new Publish checks."},
+        {"id": "cadence-rules", "description": "Supply approved Frequency expressions and reporting-period boundary rules used to validate the new schedule fields."}
+      ]
+    },
+    {
+      "id": "IMP-07",
+      "objective": "Create one delay for the Program's next ungenerated reporting cycle without allowing a later cycle or duplicate delay to be selected.",
+      "scope": "Add New Delay for Next Generation to Program.Generation Delays. Lock the Program, calculate the earliest cycle without a Run, store its period boundaries and original Scheduled Generation Date, reject an existing Delay or concurrent Run, create the record as one complete operation, and open it for Delay Until and Reason entry.",
+      "deliverable": "Controlled New Delay for Next Generation action.",
+      "configurationRows": [
+        ["Access and lock", "Allow only Supplier Scorecard Application Administrators and system administrators; lock the Program before calculation."],
+        ["Find the cycle", "Find the earliest cadence-generated reporting cycle without a Run; do not offer a cycle picker."],
+        ["Calculate dates", "Calculate Reporting Period Start, Reporting Period End, and Scheduled Generation Date from the published schedule."],
+        ["Prevent duplicates", "Reject an existing Delay for the Program/reporting-period key and an existing or concurrent Run for the Scheduled Generation Date."],
+        ["Create and open", "Create all protected cycle fields together, then open the record for required Delay Until and Reason entry."],
+        ["Failure handling", "Create no Delay and release the Program lock if any step fails."]
+      ],
+      "steps": [], "modifications": [],
+      "accept": ["Only the earliest Program cycle without a Run can be delayed.", "The user cannot select or pre-stage a later cycle.", "The action stores and locks the Program, period dates, and Scheduled Generation Date.", "An existing Delay or Run prevents another Delay from being created for the cycle.", "A failure leaves no partial Delay and the action can be run again safely."],
+      "refs": ["Sections 9.6, 16.1, 18, and 21.2", "SC-027", "SC-034"],
+      "inputs": ["controlled-action-mechanism", "dateadd-syntax", "cadence-rules"],
+      "suppliedInputDescriptions": [
+        {"id": "controlled-action-mechanism", "description": "Supply the supported Program lock, complete child creation, and action-to-form navigation mechanism for the new action."},
+        {"id": "dateadd-syntax", "description": "Supply the supported DATEADD expression and exact `d` / `M` behavior used to calculate Scheduled Generation Date."},
+        {"id": "cadence-rules", "description": "Supply the approved Frequency and reporting-period boundary rules used to identify the next cycle."}
+      ]
+    },
+    {
+      "id": "IMP-08",
+      "objective": "Apply the published generation lag and one cycle-specific delay without changing the remainder of the scheduled generation process.",
+      "scope": "Add lagged Scheduled Generation Date calculation, cycle-key Delay matching, later-cycle blocking while an earlier cycle is delayed, and Applied Run/Applied At updates after successful generation. Retain the remaining Run, Scorecard, KPI Value, Contribution Task, participation, and workflow generation owned by AUT-21.",
+      "deliverable": "Generation lag and revised cycle-specific Delay handling added to scheduled generation.",
+      "configurationRows": [
+        ["Scheduled date", "Apply Program Version Generation Lag Time and exact increment Code independently to each reporting occurrence."],
+        ["Delay lookup", "Find the Delay by Program, Reporting Period Start, and Reporting Period End; require its stored Scheduled Generation Date to match the calculated date."],
+        ["Before Delay Until", "Create no Run for that cycle or any later Program cycle; retain the cycle for the next service execution."],
+        ["After successful generation", "Set Applied Run and Applied At only after the complete Run and child records succeed."],
+        ["Failed or repeated execution", "Leave the Delay unapplied after failure and use existing uniqueness keys so another execution creates no duplicates."]
+      ],
+      "steps": [], "modifications": [],
+      "accept": ["A Monthly Program effective 2026-01-01 through 2026-12-31 with lag 1 and Code `M` schedules January for 2026-02-01 and December for 2027-01-01.", "January, February, and March may each have one separate Delay as each becomes the next ungenerated cycle.", "A delayed January cycle prevents February from generating first.", "Changing Delay Until does not change the cycle's original Scheduled Generation Date.", "Applied Run and Applied At populate only after complete successful generation.", "Repeated execution creates no duplicate generated records or Delay application."],
+      "refs": ["Sections 9.6, 12.1, 13.1, and 21.2", "SC-007", "SC-027", "SC-033", "SC-034"],
+      "inputs": ["dateadd-syntax", "cadence-rules", "scheduler-calendar"],
+      "suppliedInputDescriptions": [
+        {"id": "dateadd-syntax", "description": "Supply the supported DATEADD expression and exact `d` / `M` behavior used by scheduled generation."},
+        {"id": "cadence-rules", "description": "Supply approved Frequency expressions and period-boundary rules used to generate Program cycles."},
+        {"id": "scheduler-calendar", "description": "Supply the scheduler timezone, generation time, and business-calendar behavior used by the existing service."}
+      ]
+    },
+    {
+      "id": "IMP-09",
+      "objective": "Populate the new schedule settings on each approved initial Program.",
+      "scope": "Enter the approved Generation Lag Time and Generation Lag Time Increment, review the calculated Schedule Anchor, and confirm the first and final Scheduled Generation Dates before publishing each initial Program.",
+      "deliverable": "Generation schedule values populated on every approved initial Program.",
+      "configurationRows": [
+        ["Generation lag", "Enter the approved non-negative Generation Lag Time and active increment Code `d` or `M`."],
+        ["Schedule Anchor", "Review the calculated date and correct the editable source values before Publish when it is not the approved first Scheduled Generation Date."],
+        ["Final cycle", "Confirm the final in-range reporting cycle remains scheduled when its lagged date falls after Effective To."]
+      ],
+      "steps": [], "modifications": [],
+      "accept": ["Every initial Program has an approved lag and active increment.", "Schedule Anchor equals the approved first Scheduled Generation Date.", "Effective From 2026-01-01 with lag 1 and Code `M` produces Schedule Anchor 2026-02-01.", "The final reporting cycle is not omitted because its generation date is after Effective To."],
+      "refs": ["Sections 7.12, 9, 20.2, and 21.2", "SC-033"],
+      "inputs": ["initial-program-values"],
+      "suppliedInputDescriptions": [{"id": "initial-program-values", "description": "Supply the approved Generation Lag Time and Generation Lag Time Increment for each initial Program."}]
+    }
+  ]
+}

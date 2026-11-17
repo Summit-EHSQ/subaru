@@ -1,0 +1,237 @@
+00:00 Dave McLean: Hello. Morning. Morning. Happy Thursday. Thursday, right? Thursday. That's what they say. Yes. Alright. This cold I'm fighting is altering the beat.
+00:16 Dave McLean: Perception 
+00:17 Emma Lister: of time. I bet. Kaiser Rick and Amanda both accepted. Do we want to wait for them or do we want to get started?
+00:27 Emma Lister: Uh, we can we 
+00:27 Giridhar Gani (6045): can probably get started. 
+00:30 Kyczar Aalbregtse: But you think so? 
+00:31 Giridhar Gani (6045): Yeah, Nadieh is not going to join. Let's wait for a minute. I don't know whether you'll join or not. 
+00:38 Emma Lister: She is. Hi 
+00:41 Amanda Raver (6414): Amanda. Hey, how are you? Good, how are you? Alright. 
+00:48 Emma Lister: You guys tell me if you want to wait a couple of another minute or 2 or we're going to jump in.
+00:57 Dave McLean: Yeah, it's been a minute for me. Yeah, we can, we can proceed. I guess and it 
+01:01 Emma Lister: is Nathan declined. So sure. 
+01:04 Giridhar Gani (6045): Perfect, 
+01:07 Dave McLean: OK, well, thank you guys very much for jumping on. Can you guys hear me OK? Yep. 
+01:15 Giridhar Gani (6045): Yes, 
+01:16 Dave McLean: perfect purpose of today's call. Similar to our integration call a couple of weeks ago. Is to get a little bit of information to on the data and underlying integration methods for supporting an integration point into the intellect supplier quality project.
+01:33 Dave McLean: This one in particular is specifically focused on parts of cost consumption or PPM is the name of the sort of data set that I have from our statement at work and for business context on the intellect side.
+01:47 Dave McLean: The purpose of it is primarily to drive some of the KPIs within supplier scorecard. So consolidating consumption data so that it can be referenced again, presumably in a series of different different scorecard metrics that are going to be used here for background.
+02:06 Dave McLean: Our statement of work has this set up as a fairly flat table. So again, number of fields really up to you guys to decide, but the model is that you guys would be integrating into a custom built intellects object, sending through a flat data object on whatever frequency you think makes the most sense 
+02:26 Dave McLean: on your guys, and using the intellects REST API. So, from that point of view, what I would ask is, uhm, just similar to what we were talking about with Partmaster and Bomex a couple of weeks ago.
+02:38 Dave McLean: I'd love to understand if there's an existing integration infrastructure in place. For this, are there web services pushing this into IntelliQuest, for example?
+02:46 Dave McLean: And if so, could we get either a data dictionary or a sample postcalls, something that we can use to assess the data?
+02:57 Dave McLean: What different data points that we need to build in IntelliQuest to be able to receive this data down the road, as well as what would be needed to kick off any sort of design project on your end to modify any integrations that you have, so that they can start sending to IntelliQuest instead of IntelliQuest
+03:13 Dave McLean: . Gary, I'm going to look to you to either either kind of lead the discussion from your end, or to redirect me if there's somebody better situated to speak to PPM.
+03:25 Giridhar Gani (6045): Yeah, Dave, I think sometime back we shared all the data points which we are. Currently communicating with IntelliQuest, current IntelliQuest, yeah, OK, 
+03:35 Dave McLean: so that that spreadsheet that you sent through when we're talking. I'm sorry that Nate sent through, which which one of those calls would sort of best correspond to.
+03:45 Dave McLean: PPM, I'll share my screen here to give us all a common frame of reference. Alright, 
+03:55 Giridhar Gani (6045): can you guys see? Yeah, we can see if we can make it bigger that we can see much better. Make it bigger screen for this one, yeah.
+04:09 Giridhar Gani (6045): Yeah, it's better. We have a backlist and all, but. But PPM, uhm, let me check and get back to 
+04:23 Dave McLean: you, Dave. OK, perfect. So again, what I'm taking, though, is that the somewhere embedded in here is is a sample of the call that we would need to be able to build and model off of.
+04:34 Dave McLean: Correct. OK, OK, sounds good. So once we identify which one it is that corresponds here with that consumption data, I think that the reason for this call was that it was identified in the last one that we we didn't necessarily have the right people to be able to speak on behalf of what an integration
+04:53 Dave McLean: for that data would look like to Intellec's. It sounded like it was maybe a different team. So I'll kind of open the floor here without knowing some of the new newcomers to the call here, without knowing some of your roles.
+05:04 Dave McLean: Is there, is there somebody in here that would be able to speak on behalf of what it would take to integrate this PPM data to Intellec's building a new new API call or adapting something that's already in use for IntelliQuest?
+05:19 Giridhar Gani (6045): Thank you. As far as my knowledge, I think only our team is currently communicating, working on this current process, so so we have a like I have a Sundar, Govind and Manohar.
+05:33 Giridhar Gani (6045): These are the three I have invited for this call. We are working on the same project. OK, OK, great. 
+05:41 Dave McLean: OK, so then. Actually, to be honest with you, I expect this will likely be a fairly short call then, because it sounds like everything sort of falls under the same rules and governance for what we were discussing with Bomex and PartMessage.
+05:54 Dave McLean: Yes, correct. 
+05:55 Giridhar Gani (6045): OK, so from I think you you are requesting what is the PPM call in this, right? So yeah, I can identify that and I'll let you know.
+06:06 Dave McLean: OK, sounds good. Yeah, let me know when you get a chance. What I'll do as a follow on from this one is once I once I know which one I'm working off of, I'll run a quick analysis.
+06:16 Dave McLean: Again, given that it's meant to be a flat table, it shouldn't take more than a couple of minutes to put together what an Intellects Data Dictionary for this would look like and how it will connect into.
+06:26 Dave McLean: The supplier profiles so that they'll be able to see it and that we can call it for scorecards. Once we've got that, then I think the next step, Gary, would be for both this as well as Bomex and Partmaster and the other integrations that we're tracking points for supplier quality.
+06:42 Dave McLean: I think we need to start looking at preparing some sample postman calls for Intellects to send over to you guys to start to analyze what sort of changes and adaptations you need to make to your integration configuration so that you can start to send that data to Intellects.
+07:01 Dave McLean: The data model is not identical. We're syncing it up as closely as possible, but it looks like, for example, just something that I noticed when I was putting the data there.
+07:14 Dave McLean: Uhm, one second, I just gotta zoom out so I can see a little bit more here. So if I take this one as an example, so creating an engineering change number, in this case, click the wrong button, the wrong cell, Uhm, it looked like, yeah, further down in the call, it looks like the way that your post call
+07:40 Dave McLean: is set up to push to IntelliQuest, that you're sending all of the underlying parts as part of the same call to create an engineering change number.
+07:50 Dave McLean: That is possible within Alexa's API. It's a little more complex to build the call given how IntelliQuest would need it in order to work.
+07:58 Dave McLean: You can't create the same, you can't create a parent record and then child records in the same call unless you use a batch request, which is basically wraps multiple calls together so that the subsequent call, the one that creates any child records, is directly referencing whatever returned identifier
+08:19 Dave McLean: . came from the first call. It's a bit of a technical nuance in, in in Alexa's API, but I think if we're trying to adapt this, the code that's generating this type of call, it's going to be something you're going to want to analyze through some sample, uhm, sample API calls that we can produce for you
+08:35 Giridhar Gani (6045): . Sure, that works. 
+08:37 Dave McLean: OK, sounds good. So then thinking through timelines of Geary, if you can identify the PPM table by ideally end of day Friday, then Monday I can put together the data dictionary for it and then by end of next week we can have we can have sample calls for you for everything.
+08:53 Dave McLean: We're just going to have somebody build out the tables to generate the end points. 
+08:57 Giridhar Gani (6045): Sure, that works. OK, sounds good. 
+09:00 Dave McLean: Sounds good. So then why don't we? Why don't we set our next connect then for? Why don't we say either Monday the 23rd or Tuesday the 24th.
+09:13 Dave McLean: That way it just gives us a little bit of runway, or gives us the runway we need next week to get you guys the calls, and then on either the 23rd or 24th we can review them 
+09:22 Giridhar Gani (6045): together. Sure. Sure, Dev, that works. Yep, sounds good. 
+09:28 Dave McLean: On your end, Giri, just throwing a time out there to see if it works. Would 3.30 Eastern time work on your end?
+09:37 Dave McLean: On the 23rd? 
+09:39 Giridhar Gani (6045): Yeah, that 
+09:40 Dave McLean: is fine. Perfect. OK, I'll send out a 45 minute call, uhm, uhm, specifically, uhm, Joel, Rick and Amanda. I'll send it to you guys as a starting point to forward on.
+09:52 Dave McLean: This will be more of a technical working session, so. Uhm, you know, I think we'll keep it. I'd ask you guys to keep your focus to the to the people that are actually going to be working on the integration itself.
+10:04 Dave McLean: By all means, if others want to come and listen in, that's OK, but I want to keep the focus on on fingers on keyboard for that one.
+10:10 Giridhar Gani (6045): Sure, and would it be. Would it be possible for you to schedule the same time like what we have it currently on the 23rd, 11, 
+10:18 Dave McLean: 11, 11 to 12? Yeah, yeah, I can make that work. 
+10:27 Rick Redman (6798): Yeah, Dave, we'll keep it more focused in the smaller group for the next one too. That's not 
+10:38 Dave McLean: a problem. Perfect, perfect, awesome. Uh, Integration Working Session. For Bomex, PartsMaster, and PPM, and Amanda, Joel, Rick.
+10:57 Dave McLean: Again, I ask you guys to forward on. Agenda. Uh, Review, Sample, Postman, Calls for Intellects, DPI, Endpoints, Bomex, PartsMaster, and 
+11:15 Giridhar Gani (6045): PPM. Uh, Dave, can you please explain a little bit more details of what you are expecting on the PPM 
+11:22 Dave McLean: side? So, what was framed up in our action from the last call was, uhm, that Bomex will send us some PartsMaster.
+11:32 Dave McLean: data, uhm, Part data that we have before a part is put into production, for example, whereas PartMaster would be sending us, uh, a subsequent payload that typically is going to come later in the part lifecycle, uh, once something moves to production.
+11:41 Dave McLean: The exact specific data points are, uhm, are not clear. It's only included in scope for us right now because it's something that IntelliQuest has, so I suspect that the, the file that you sent through, that, uh, that gives the payload for it, uh, my assumption was that that was inclusive of any properties
+12:06 Dave McLean: that are being pulled from PartMaster as well. Is that your understanding, or is this just coming from Pomex? 
+12:14 Giridhar Gani (6045): I think that is coming from Pomex, but I think later point of the time, if there is any. change, that goes through the VAL, but, yeah.
+12:22 Dave McLean: Okay, let me just check our statement of work and see if there is any indication of what specifically was looking for Pomex.
+12:40 Emma Lister: I don't think there is. I can confirm for you, but I'm pretty sure there's no specific reference beyond Pomex integration.
+12:52 Dave McLean: Parts will be input by integration with Parts Master to provide base part information. One-way client-developed API to bring in part details, part information is flat without any sub-relationships, and part data of up to eight fields is the extent of one.
+13:08 Dave McLean: What that means is that it likely was something that came up in a demo session, more with the business, and that they were identifying some specific properties that they were looking for.
+13:21 Dave McLean: So I think in that context, I'm Joel recommend, I think Luke would probably be the best one for us to ask for clarification on, hey, what, what specifically from Partmaster were they hoping to see in relation to each part record in Intellects?
+13:36 Dave McLean: Would that make sense, or am I pointing that in the right direction, or in the wrong direction? 
+13:39 Giridhar Gani (6045): Yeah, that is correct. I think Sundar correct me if I'm wrong. So when we are doing it with IntelliQuest, uh, uh, integration earlier in the Partmaster, we have only two fields.
+13:50 Giridhar Gani (6045): We are, uh, Vital Safety and other column. 
+13:53 Dave McLean: What was that, Sundar? Is that included here? Or would that be a different one? 
+13:59 Giridhar Gani (6045): Yeah, no, not. We 
+14:02 SundaraPandiyan Kanagasundaram: have VAL calls also included in that Excel right, Giri? Yes, correct. Can you scroll down? 
+14:11 Giridhar Gani (6045): I don't remember even. Yeah, here it is. Check VAL. If anything VAL. That means it's it's no, this is check.
+14:19 Giridhar Gani (6045): No, 
+14:20 SundaraPandiyan Kanagasundaram: no, this is check. Check part exists. Actually, this call is for any other VAL calls are there in the down in the text file is nothing but it's a 
+14:28 Giridhar Gani (6045): pot master, but yeah. 
+14:30 Dave McLean: Create supplier, uh, VAL, part, get part class. Yeah, yeah, this is the one. This is the one. Yep. Okay. So this is something you're extracting from IntelliQuest.
+14:47 Dave McLean: Am I reading that correctly or we 
+14:49 Giridhar Gani (6045): are updating IntelliQuest in case you're you're updating? OK, gotcha, gotcha, gotcha. Yeah, OK, so we are. I think there are two safety columns, right?
+14:59 Giridhar Gani (6045): So what was those 
+15:00 SundaraPandiyan Kanagasundaram: those items? Let me check, wait till I get 
+15:05 Dave McLean: it. Yeah, it looks like the only thing in this, sample payload is just a search 
+15:35 Giridhar Gani (6045): term. We are posting two items, but let me check it quickly. Quickly share the screen. 
+16:21 Dave McLean: Yeah, no 
+16:22 Giridhar Gani (6045): worries. Sundar, there are two columns. Stem. I'm checking on that. I'm sharing my screen, Sundar. You can check it. There are two columns I remember.
+16:35 Giridhar Gani (6045): We are posting it to them, right? Only when we selected that. Vital safety and important quality.
+16:49 Giridhar Gani (6045): These are the two columns. You see the screen? 
+16:55 SundaraPandiyan Kanagasundaram: Yeah, yeah, yeah, just just the two booleans. 
+16:58 Giridhar Gani (6045): Yeah, I guess these are the values. I think let me cross check and get back to you. Yeah, OK, 
+17:04 Govindarajan Kumar: sounds good. Important safety, important quality in general. These three values. 
+17:07 Giridhar Gani (6045): OK, vital safety and important quality in general, Divo. OK, 
+17:16 Dave McLean: OK, so once you can, let's let's assume for a second that that's confirmed. So those properties are so first of all, those are just additional additional properties in a payload, then.
+17:30 Dave McLean: I'm not actually seeing them in that 
+17:32 Giridhar Gani (6045): call will cross it. Maybe we might make them. The one 
+17:36 SundaraPandiyan Kanagasundaram: is called that one is called as a part classification. Another one is a destination code. Also, we are posting it.
+17:43 SundaraPandiyan Kanagasundaram: OK, Destination. There is a definition code. OK, when there is a change in destination code 
+17:48 Giridhar Gani (6045): also, we are posting it. OK, let me share the screen today. So we are referring this column. So this is the destination code.
+18:05 Giridhar Gani (6045): So basically, along with these three columns, when there is a destination code change, we are also posting by the time.
+18:08 Dave McLean: OK, uh, destination. OK, I see a destination codes field again.
+18:23 Dave McLean: The specific sample I've got is that it's a null value, But again, I'll take that as an alphanumeric in this case as far as vital safety.
+18:36 Dave McLean: I just searched vital. I'm not seeing a reference in any of the calls to vital safety or important quality, at least under those names.
+18:44 Dave McLean: So if you could, if you could let me know and give me a sample of one for each of these that actually has those properties populated so that I can cross-reference and make sure that we have the right place in Intellects to store those.
+18:56 Dave McLean: Again, it looks, it looks like it's just three fields that'll live on the parking lot. So I don't think it's complicated.
+19:02 Dave McLean: I just want to be sure of that before we go produce Postman 
+19:06 Giridhar Gani (6045): Collections for you guys to reference. Sure, that works. Thank you, appreciate it. And also, Sundar, when we are changing supply code, or any changes also we are posting.
+19:18 Giridhar Gani (6045): Yeah, yeah, like you right along with this. So we have a supplier code change. 
+19:23 SundaraPandiyan Kanagasundaram: Total three things. One is a part classification. Whatever we are saying here, vital, safety, general is there, right? Or import, important quality.
+19:32 SundaraPandiyan Kanagasundaram: So these are all comes under part classification and when there is a supplier change also we are posting and consignee code change.
+19:39 SundaraPandiyan Kanagasundaram: These are all the three. Items from part master we are posting actually whenever there is a change is happening in value.
+19:48 Dave McLean: That's great and you. You already have all the all the plumbing in place. I'm presumably in an integration layer that is pulling data from part master and Bomex separately and sort of bringing it together to the to then send to IntelliQuest, right?
+20:04 Dave McLean: The yes, OK, no, knowing that the Bomex data is tends to come first and potentially could be populated months before anything from part master.
+20:10 Dave McLean: So from our end, the way we would sort of see it coming through to intellects would be, if you imagine like a brand new part, one day we're going to get a new posted part record to us, which is primarily going to be comprised of data from 
+20:24 Giridhar Gani (6045): Fomex, and then at some point 
+20:26 Dave McLean: down the road, once that part moves to production, we'll start getting updates, uh, on that, on that part that contains these additional properties from part master.
+20:36 Dave McLean: That is correct. Got it. Okay, no problem. That's ideal on our end, rather than maintaining. What I'd sort of been envisioning was a scenario where it'd be two independent streams of integrations.
+20:49 Dave McLean: Therefore, we'd have to maintain a part record from Fomex and a part record from Partmaster, and then find a way in Intellects to consolidate them together into a true, forgive me for reusing the term here, but a true Partmaster record that represents the composite of those two different data sources
+21:08 Dave McLean: . If you're already doing that, doing that in the integration layer that makes things much simpler in our end. Yep. OK, should we 
+21:15 Giridhar Gani (6045): are doing that? 
+21:18 Dave McLean: Love it. To quote the A-team, I love it when a plan comes together. Sorry, next question, I don't have any A-team fans.
+21:29 Dave McLean: OK, awesome, uhm, Gary, the invite is over to Amanda, Joel and Rick now for a couple of weeks from now, so they'll disseminate to the folks that are needed.
+21:41 Dave McLean: Uhm, on your end, if you can send over the PPM data dictionary sample calls when you get them, ideally by Friday, uhm, and any clarification on the, uh, and the clarifications on the, uh, fields from Partmaster, uh, which ones and samples of calls that are populated, uhm, next week we'll build out the
+21:59 Dave McLean: tables for everything, uh, based off of those deliverables, and then put together some postman collections targeting, uh, next Friday, and we connect again the following Monday to start to review them together and figure out whether the integration is going to be fairly plug-and-play from what you've
+22:13 Dave McLean: seen we've got currently, or whether there's, uh, some, some changes that we're going to need to have. 
+22:19 Giridhar Gani (6045): Sure. That works too. Yeah. Thank you. Awesome. 
+22:22 Dave McLean: Perfect. Um, last one, um, once we've got that drafted, um, Joel, Rick, and Amanda, I suspect the answer is going to be this is mostly just a quick check from the business, but I would love to hear from at least one of the business side users, um, just to make sure that we're, we're conceiving of the
+22:41 Dave McLean: right data. Since we're building all of this off of what's currently going through to IntelliQuest, I suspect we're going to be broadly aligned.
+22:48 Dave McLean: This is what they're already used to looking at for, for data from these two systems. But I, I think we'd be remiss if we didn't get them to review, you know, just, hey, this is the list of fields that we expect to be receiving data from Bomex, Partmaster, and PPM.
+23:03 Dave McLean: Uhm, do they agree? Do they disagree? Uhm, or is there, are there changes that the business would like to see that maybe reflect any, any longstanding gaps that they've had with IntelliQuest?
+23:14 Dave McLean: It's always the risk of building this off of what's, what's in place right now, is that. That might not actually be an ideal solution from their point 
+23:22 Joel Frick (6124): of view. Yeah, and what would you have in mind when you say business side? Are you talking about the suppliers or just us?
+23:31 Dave McLean: I think it's primarily the, ah, sorry, not the suppliers themselves. I think it's, um, like your, your supplier management users, um, so the, the leading voices in most of our sessions on, on NCR, supplier scorecard, uh, supplier management.
+23:45 Dave McLean: Those folks I think would be the ones that we'd want to give the opportunity to review. 
+23:50 Joel Frick (6124): That's what I assume, but I kind of read more into it. 
+23:54 Dave McLean: All good. Sorry. You know, classic family trait. Why use, why use 10 
+23:58 Joel Frick (6124): words when you can use 100, right? Okay. 
+24:04 Dave McLean: Perfect. So once we've got that, once we've got that on paper, after I get those done. Remaining calls, um, I'll shoot it over to you guys to disseminate, um, we'll keep a fairly short rope on that.
+24:13 Dave McLean: It doesn't need to be a lengthy review. If they've got questions, then, you know, we can certainly schedule a call.
+24:18 Dave McLean: But otherwise, I'd expect it to give them 1 week to review and that review would not take the blocking towards any, any, uhm, further 
+24:26 Joel Frick (6124): integration work while they're reviewing it. OK, cool. 
+24:34 Dave McLean: Awesome, OK, Gary, is there anything you need from me in the meantime that? That I haven't already laid out? 
+24:41 Giridhar Gani (6045): No, for now, I'm good so I can check that PPM details and I'll get back to you there. 
+24:46 Dave McLean: Appreciate it very much, Sir, and thank you all very much for jumping on. I can give everybody a little bit of time in their day back here.
+24:51 Rick Redman (6798): Hey, Summit team, can I have you guys stick around for just about 2-3 minutes? Yeah, for sure. Okay, and then Joel and Amanda and I.
+24:57 Rick Redman (6798): Thanks. 
+24:58 Giridhar Gani (6045): Thank 
+24:58 Dave McLean: you. Sorry, 
+25:09 Rick Redman (6798): guys, one second. Hi, so yeah, from the emails I sent, we really need your guys' help, uhm, with, uhm, I know we get distracted and things go on, but, uhm, we really have been kind of in a fog.
+25:26 Rick Redman (6798): And I know Emma's been trying to be helpful with communicating that, you know, we're getting close on stuff, but specifically, uhm, this, uh, latest upload with the business hierarchy, uhm, you know, obviously the expectation was last Friday that it would be there, and we really haven't heard any details
+25:42 Rick Redman (6798): or any, you know, knowledge of why it hasn't happened yet, 
+25:45 Dave McLean: so, uhm, yeah, I mean, that, that's all me, uhm, I'm sorry, I apologize, I've been, I've been out sick for much of the last three or four days here, uhm, it is in place now in the test environment, uhm, just to clarify, so, uhm, specifically what I want is Eric to start, for watching.
+25:59 Dave McLean: Bye for now. Uhm, with review, I've, I've laid a couple of parameters out into the documents that we previously loaded into the system, I've just set them all as associate level for now, he can move them if he needs to, but, uh, I just, I didn't want to manufacture or, or invent something otherwise, 
+26:15 Dave McLean: so. Everything's in there in the test environment now for, uh, for document control, the config is in there as well for, uhm, inspections.
+26:24 Dave McLean: I did notice a couple of, I think, what are, I'm going to call them inconsistencies in inspections, where I think there were some security checks in changes made to inspections before we settled on the visibility classification.
+26:36 Dave McLean: Oh! Oh, Rick, uh, you got a bunch of people around, or is that, is that on MSI? Oh, sorry, that's me, I'll turn this off.
+26:44 Dave McLean: No, no, it's all good, it's all good. Just making sure I'm not hearing voices. Uhm, yeah. So, I don't, I don't think that that inspection side of it is blocking.
+26:55 Dave McLean: I think it's just when they get in there and they start to try to wrap their head around setting a visibility classification on an inspection, but then also marking it with it as confidential, for example, I think that might create questions.
+27:08 Dave McLean: The moment those questions start, have them reach out. We can schedule a call right away, or we can do that preemptively if we want to kind of hold their hands through the process of testing visibility classification.
+27:17 Dave McLean: I know the conversation was being driven more by Eric, than the rest of the group, and so they might, they might find that a little bit overwhelming when they go in to start to mess around with it.
+27:28 Joel Frick (6124): Okay, I, I think even in inspections, if we go ahead and make those changes now, that's, that's fine. Then we'll figure out if there's a, if there's an issue.
+27:37 Joel Frick (6124): We just want to make sure we don't lose any checklists in inspection, but the actual, uhm, functionality, we just need to make sure that that's going to be the, the final way.
+27:48 Joel Frick (6124): Like you said, we might have put some things in initially, but, uhm, yeah. Anything that you change that way, I don't think is going to have a huge impact, and it's a good test for us to find out right now if there's any issues.
+28:03 Dave McLean: Okay, sounds good. Then they should be good to go. Uhm, so would we, again, in the vein of making that testing process as smooth as possible for both sides of the fence there, would it make sense to schedule some, either some, like, guided testing sessions together?
+28:20 Dave McLean: I'm happy to make some time available either later today or tomorrow. Uh, to get started with some of them, or just preemptively get some feedback sessions in case there's any feedback that comes back, questions, hey, could you change this, this doesn't work the way we thought it would, anything 
+28:34 Joel Frick (6124): like that. Yeah, if you guys have some time available around 1.30 tomorrow. I know Rick's got a meeting at 2.30, but we can try to make something work, uhm, we've got some meetings between 11 and 1, and then we've got a meeting with you guys at 9.30, so I think around 1.30 might be best, or, we'll try
+28:57 Dave McLean: to move our Connect around and connect with Matt, that's fine. Yeah, so 1.30 to 2.30, do we want to wrap both inspections and Dock Control into that one, or do you want to focus on one stream for that 
+29:11 Joel Frick (6124): call? How long do you think, uhm, how long do you think that call will work if we start it out with the compliance group?
+29:28 Dave McLean: I think. I think document control could go either way. Right. I think everything with document control. You're being so nice.
+29:38 Dave McLean: Document control is hard to predict. I think inspections, we could certainly wrap inspections. In an hour, um, document control could be an hour.
+29:48 Dave McLean: It could be four hours. It sort of depends on all the different scenarios that we run into with it. Um, OK, so look if I had to, if I, if I got my way because I view the.
+30:01 Dave McLean: The document control ones is both more complex configurations as well as more complex use cases. Eric's got a really specific idea of how some of this needs to be laid out.
+30:12 Dave McLean: I would say that that one represents the higher risk that something requires some sort of rework, whereas. As on the inspection side, I think the same risk exists.
+30:20 Dave McLean: It's just lower because it's more straightforward configuration. If we end up having to, for example, drop the confidential feature because it's now the underlying need is now accounted for in visibility classification.
+30:33 Dave McLean: Or if we need to adapt something, it's easier to do that for inspections than it is for document control. So if we're going to get something first, I'd rather do document control.
+30:43 Dave McLean: It gives us a little more runway. 
+30:45 Joel Frick (6124): Okay, so why don't we do that? You can just go ahead and invite. Eric and Scott, 
+30:51 Emma Lister: uhm, on your, I got it, I 
+30:52 Joel Frick (6124): got it. Send out your invitation. Obviously Kaiser will be in there. 
+30:58 Emma Lister: Perfect, so we wanted to just document control for tomorrow or for Friday. Tomorrow is Friday. 
+31:04 Dave McLean: That would be my preference. And then if we can do a parallel or a similar session either after, like, later in the afternoon with the inspections group, that would be terrific.
+31:16 Dave McLean: Again, that might be, if we book it for an hour, that could be really straightforward. We run through it over the course of a half hour and everybody looks at it and goes, yeah, that's great.
+31:24 Dave McLean: Let's rock. It could also be a, no, let's, let's start to pick apart some of those other assumptions we made.
+31:30 Dave McLean: But I think an hour is good if we can get that afterwards with them. 
+31:34 Joel Frick (6124): And, uh, yeah, if we, if you guys have time after that. If you, if we want to schedule inspections at 2.30, we could do 
+31:42 Dave McLean: that, too. I can do that. Everything I've got tomorrow afternoon is all internal stuff that I can move around. 
+31:50 Emma Lister: I just sent the one for Dr. Mitchell. I will send another one for inspections from 2.30. That one, I will just send to you guys, and you guys can forward to whoever needs to participate in that one.
+32:02 Emma Lister: The docker control one, I just sent to Eric and Scott. Okay, and 
+32:08 Rick Redman (6798): then, yeah, moving forward again, just please. Please just, just, I mean, I'm not asking for personal medical information when you get sick, Dave, but just keep us in the loop.
+32:16 Rick Redman (6798): I mean, we may not be happy sometimes if there were delay, but as long as we understand what it is and what kind of timeframe we're looking at, we will work with you guys on that, but not knowing is, is.
+32:26 Rick Redman (6798): We can't, we can't do anything with that, so. No, I'm, I'm 
+32:29 Dave McLean: sorry about that, guys. I had every intention of trying to work through it yesterday and ended up, uh, ended up on, on my butt yesterday, so.
+32:38 Rick Redman (6798): Eh, sad to hear. Okay, I understand. Uhm. What should I say? I pity the fool that doesn't keep communicating with us.
+32:45 Rick Redman (6798): Would that go more along with your 18 kind of thing? If it 
+32:48 Emma Lister: makes you feel better. He didn't tell me either, so. 
+32:52 Dave McLean: I love it, Rick. Thank you. Thank you for, thank you for picking up that ball for me. 
+32:57 Rick Redman (6798): Well, thank you, guys. We really appreciate it. Thank you. 
+33:01 Emma Lister: Alright, awesome. Okay, so I've sent out the two invites for testing for tomorrow. Now, Dave, that covers document control and inspections.
+33:07 Emma Lister: Do we, do you think we need, do we need to do something as well for audit management? I'm less concerned about training management because training management is going to be used.
+33:14 Emma Lister: It's used as an offshoot of document control, primarily for, like, for GoLive. 
+33:18 Dave McLean: Yeah, sort of a joint solution, the way that it's used. But audit management, 
+33:22 Emma Lister: do we need to do group testing or is that a, like, let's see how it goes with inspections? Because I think it'll inform audit management, potentially.
+33:29 Dave McLean: Yeah, just a quick question. This might be a flawed assumption on my part. I was under the impression the inspections and audit users are basically one and the same.
+33:37 Dave McLean: Or were they actually two different groups? 
+33:40 Rick Redman (6798): Pretty close to the same, yeah. For intents and purposes. 
+33:46 Dave McLean: Let's keep it to just inspections. Let's make the call at the end of that one. I will run that session with it.
+33:53 Dave McLean: Hey, we're talking about inspections today. Consider the same on the audit side of things. I think from what I can see in the configuration, it seems to be very reciprocal in terms of in terms of those types of changes that have been made.
+34:05 Dave McLean: So if there's broader questions that apply only to inspection, then we can certainly schedule a follow up to dig into that one.
+34:12 Dave McLean: Let's see if we can knock it all out in just the inspection session itself by focusing on inspection and then adding on the audit side of the 
+34:22 Joel Frick (6124): fence. Yep, sounds good. OK, sounds good, awesome, perfect. Do you want Jillian 
+34:28 Emma Lister: on 
+34:31 Dave McLean: those calls? Jillian, if you're free. That'd be great, just because if there's any, any reconfig that we need to do, then it shortens the pipeline to you.
+34:41 Dave McLean: If you're not free, let's not, let's not move it around. 
+34:43 Emma Lister: Great, OK, cool. Thanks guys, appreciate it. Joel and Rick, are we good to cancel then the meeting that's currently scheduled at 1.30, or did you want to keep that one?
+34:59 Rick Redman (6798): Yeah, no, that, that's OK. This is just what I wanted to cover. We're fine. 
+35:02 Emma Lister: I appreciate it. I appreciate it. That's a problem. OK, well, I 
+35:05 Rick Redman (6798): got, well, I got your, did, did my email come out, make sense about the contract? 
+35:09 Emma Lister: Yeah, I responded. OK, all right. We can, I can, I can sequence send it, so I can send it to you first, and then the VP, and then I, then I would send it to Matt Roberts on my side for signature from the Summit side.
+35:19 Emma Lister: That's no problem if that helps with your coordinating internally for the change order. Thank Take care. 
+35:23 Rick Redman (6798): Yeah, thanks. We have a goofy way that we have to review certain contracts, so I appreciate it. No worries. 
+35:27 Emma Lister: No problem. Great. 
+35:30 Joel Frick (6124): Thank you. Just to reiterate what Rick was saying, if there's a better way to help us communicate with you guys, or vice versa, let us know if that's, you know, if you guys prefer it with Teams, we use email a lot, and I think Rick and I are most familiar with email, but if we need, if Teams helps, or
+35:45 Joel Frick (6124): if some other way, just let us know, and we can work that way too, to help, you know, even on our end, communicate with you guys, or vice versa, so just let 
+35:54 Dave McLean: us know. All right. Thank much, Emma, can I, can I get you for, like, 10 minutes this afternoon, just to talk through that, just as we're in a road to go live here, I wonder if there is a tweak that we can make to this, to whether it's a two or three time weekly stand up for 15 minutes, with the rest
+36:11 Dave McLean: of relevant technical players as well, so either Jillian, myself, Mae, whoever it is, but that might also shorten and, and remove dependencies on you and I, specifically, in order to keep things moving forward.
+36:22 Dave McLean: Uhm, so Joel, can, can you give us the day to come back to you with, ah, hey, we'd like to make a change.
+36:27 Dave McLean: On that, ah, possibility? Yeah, that'd be great. OK, awesome. 
+36:33 Emma Lister: Sounds good. Awesome. Thanks, guys. Appreciate it. Thank you very much. See you guys. Thanks, everybody. Bye. Bye.

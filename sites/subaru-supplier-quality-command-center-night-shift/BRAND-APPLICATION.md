@@ -2,7 +2,7 @@
 
 This directory is a third, independent concept derived from the Subaru command-center copy. It intentionally explores a much darker, more cinematic operational style and does not modify either the Intelex base or the earlier Subaru interpretation.
 
-This directory is an independent visual copy of `sites/supplier-quality-command-center`. The source command center remains the Intelex base-brand version.
+This directory is an independent visual copy of the Intelex base-brand command center, now maintained in the separate `home-page-development` repository at `sites/supplier-quality-command-center`.
 
 ## Standards applied
 

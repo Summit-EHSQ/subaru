@@ -1,0 +1,81 @@
+classDiagram
+%% Owned by Product Integration; one Product Integration tab with eleven direct inventory menu items.
+direction LR
+class BOMECS_Part_API_Recod {
+  +string SourceSystem
+  +string ExternalID
+  +string PartNumber
+  +string PartName
+  +boolean Active
+  +boolean IncludeAllFacilities
+  +json RawPayload
+}
+class Program_Reference {
+  +string SourceSystem
+  +string ExternalID
+  +string Name
+  +boolean Active
+}
+class Supplier_Reference {
+  +string SourceSystem
+  +string ExternalID
+  +string Name
+  +boolean Active
+}
+class Part_Revision_Reference {
+  +string ExternalID
+  +string Name
+  +boolean Active
+  +boolean IncludedInLatestPartFeed
+}
+class Product_Family {
+  +string SourceSystem
+  +string ExternalID
+  +string Name
+  +string Notes
+  +boolean Active
+  +json RawPayload
+}
+class Part_Flag {
+  +string SourceSystem
+  +string Code
+  +string Name
+  +boolean Active
+  +float Sort
+}
+class Part_Tag {
+  +string SourceSystem
+  +string Value
+}
+class Part_Supplier_Relationship
+class Supplier_Relationship_Role {
+  +string Code
+  +string Name
+  +boolean Active
+  +float Sort
+}
+class Engineering_Change_Number {
+  +string SourceSystem
+  +string ExternalID
+  +string Name
+  +boolean Active
+}
+class Engineering_Change_Scope {
+  +string Description
+  +string Comment
+  +json RawPayload
+}
+BOMECS_Part_API_Recod "0..*" --> "0..*" Program_Reference : Programs
+BOMECS_Part_API_Recod "0..*" --> "0..1" Product_Family : Product Family
+BOMECS_Part_API_Recod "0..*" --> "0..1" Part_Flag : Flag
+BOMECS_Part_API_Recod "0..*" --> "0..*" Part_Tag : Tags
+Part_Revision_Reference "0..*" --> "1" BOMECS_Part_API_Recod : Part
+Part_Supplier_Relationship "0..*" --> "1" BOMECS_Part_API_Recod : Part
+Part_Supplier_Relationship "0..*" --> "1" Supplier_Reference : Supplier
+Part_Supplier_Relationship "0..*" --> "0..1" Supplier_Relationship_Role : Role
+Engineering_Change_Scope "0..*" --> "1" Engineering_Change_Number : Engineering Change Number
+Engineering_Change_Scope "0..*" --> "0..1" Supplier_Reference : Supplier
+Engineering_Change_Scope "0..*" --> "0..1" BOMECS_Part_API_Recod : Part
+Engineering_Change_Scope "0..*" --> "0..1" Part_Revision_Reference : Revision
+Engineering_Change_Scope "0..*" --> "0..1" Product_Family : Product Family
+Engineering_Change_Scope "0..*" --> "0..1" Program_Reference : Program

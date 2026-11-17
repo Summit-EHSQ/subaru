@@ -1,0 +1,39 @@
+{
+  "objects": 79,
+  "field_rows": 290,
+  "baseline_fields": 91,
+  "duplicate_fields": [
+    [
+      "Event",
+      "Event Type"
+    ]
+  ],
+  "invalid_requiredness": [],
+  "missing_parents": [],
+  "deployment_ready": false,
+  "reason": "Business and tenant verification gates G-01 through G-12 remain open; see main specification.",
+  "known_extracted_caption_collision": "Event Type is separately declared as EventType (Text) and TypeOfEvent (reference); stable IDs and internal names distinguish them.",
+  "object_section_coverage": 79,
+  "baseline_field_coverage": 91,
+  "proposed_catalogue_inverse_violations": [],
+  "review_date": "2026-11-12",
+  "canonical_field_contract": "supplier-nonconformances-technical-specification.md#5-inherited-fields-and-supplier-specific-overrides",
+  "embedded_object_sections": 79,
+  "embedded_contract_markers": true,
+  "package_sha256": "88c39b04bd8a867b2ca871712f1752ac5409657ab9661014acc391bbff99897b",
+  "missing_diagram_objects": [],
+  "unregistered_diagram_objects": [],
+  "inheritance_cycles": [],
+  "invalid_inverse_grids": [],
+  "inverse_grid_count": 14,
+  "baseline_field_mapping_failures": [],
+  "implementation_contract_complete": false,
+  "semantic_limitations": [
+    "Ten baseline reverse relationship targets lack source-side field metadata; cardinality remains unresolved.",
+    "Business configuration G-01 through G-10 and tenant checks G-11/G-12 remain unresolved where explicitly identified in rows.",
+    "Structural coverage is not proof of resolved conditional business matrices, formulas, permissions or runtime behavior."
+  ],
+  "adr_files_screened": 115,
+  "adr_requirement_rows": 58,
+  "adr_screened_out_rows": 57
+}

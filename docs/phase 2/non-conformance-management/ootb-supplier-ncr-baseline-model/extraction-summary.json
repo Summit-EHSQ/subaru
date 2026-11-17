@@ -1,0 +1,171 @@
+{
+  "package": {
+    "Id": "d9aebd67-600a-4f72-bdec-263bfb7fc13f",
+    "Name": "Supplier NCR Extract",
+    "Version": "1.0.0.0",
+    "VersionId": "9e3122a1-e408-42b2-a90c-c2f10596fdcc"
+  },
+  "counts": {
+    "record_objects": 40,
+    "lookup_objects": 1,
+    "scalar_fields": 49,
+    "reference_fields": 42,
+    "owned_fields": 91,
+    "typed_fields": 91,
+    "inheritance_edges": 21,
+    "canonical_logical_relationships": 38,
+    "graph_relations": 1029
+  },
+  "object_type_counts": {
+    "ReferenceOnly": 1730,
+    "ApplicationTargetRequirement": 13,
+    "PlatformVersionTargetRequirement": 1,
+    "MetPropertyPackageItemData": 49,
+    "MetObjectPackageItemData": 40,
+    "BusinessObjectPackageItemData": 194,
+    "SubGraphPackageItemData": 27,
+    "SysConfigurableViewPackageItemData": 26,
+    "MetReferencePropertyPackageItemData": 42,
+    "WorkflowPackageItemData": 2
+  },
+  "unresolved": {
+    "graph_references": [],
+    "field_ownership": [],
+    "field_types": [],
+    "ownership_conflicts": [],
+    "type_conflicts": [],
+    "parent_conflicts": [],
+    "inheritance_cycles": [],
+    "duplicate_json_ids": [],
+    "duplicate_object_stable_ids": [],
+    "duplicate_field_stable_ids": []
+  },
+  "inheritance": [
+    {
+      "parent": "Abstract Cost",
+      "parent_internal": "FragApplication_AbstractCostObject",
+      "child": "Action Cost",
+      "child_internal": "FragApplication_ActionCostObject"
+    },
+    {
+      "parent": "Abstract Corrective Action",
+      "parent_internal": "FragApplication_AbCorrectivActiObject",
+      "child": "Action Plan Abstract",
+      "child_internal": "ActionPlans_ActionPlanAbsObject"
+    },
+    {
+      "parent": "Audit Finding (AFW)",
+      "parent_internal": "AFW_AuditFindingObject",
+      "child": "Audit Finding",
+      "child_internal": "AuditMgmt_FindingObject"
+    },
+    {
+      "parent": "Finding (CFW)",
+      "parent_internal": "CFW_FindingObject",
+      "child": "Audit Finding (AFW)",
+      "child_internal": "AFW_AuditFindingObject"
+    },
+    {
+      "parent": "Abstract Corrective Action",
+      "parent_internal": "FragApplication_AbCorrectivActiObject",
+      "child": "CAPA",
+      "child_internal": "EventFwk_CAPAObject"
+    },
+    {
+      "parent": "Subject",
+      "parent_internal": "SysSubjectEntity",
+      "child": "Employee",
+      "child_internal": "SysEmployeeEntity"
+    },
+    {
+      "parent": "Event Scenario",
+      "parent_internal": "EventFwk_EventScenarioObject",
+      "child": "Event",
+      "child_internal": "EventFwk_EventObject"
+    },
+    {
+      "parent": "Action Plan Abstract",
+      "parent_internal": "ActionPlans_ActionPlanAbsObject",
+      "child": "Event Action Plan",
+      "child_internal": "EventFwk_EventActionPlanObject"
+    },
+    {
+      "parent": "Abstract Cost",
+      "parent_internal": "FragApplication_AbstractCostObject",
+      "child": "Event Cost",
+      "child_internal": "EventFwk_EventCostObject"
+    },
+    {
+      "parent": "Event",
+      "parent_internal": "EventFwk_EventObject",
+      "child": "Finding (CFW)",
+      "child_internal": "CFW_FindingObject"
+    },
+    {
+      "parent": "Abstract Corrective Action",
+      "parent_internal": "FragApplication_AbCorrectivActiObject",
+      "child": "Global Action Plan Abstract",
+      "child_internal": "ActionPlans_GlobActPlanAbsObject"
+    },
+    {
+      "parent": "Global Action Plan Abstract",
+      "parent_internal": "ActionPlans_GlobActPlanAbsObject",
+      "child": "Lesson Learned",
+      "child_internal": "EventFwk_LessonLearnedObject"
+    },
+    {
+      "parent": "Nonconformance Base",
+      "parent_internal": "NonConf_NonconformancesObject",
+      "child": "Nonconformance",
+      "child_internal": "NonConf_NonconfPlatinumObject"
+    },
+    {
+      "parent": "Event",
+      "parent_internal": "EventFwk_EventObject",
+      "child": "Nonconformance Abstract",
+      "child_internal": "EventFwk_NonConfAbstractObject"
+    },
+    {
+      "parent": "Nonconformance Abstract",
+      "parent_internal": "EventFwk_NonConfAbstractObject",
+      "child": "Nonconformance Base",
+      "child_internal": "NonConf_NonconformancesObject"
+    },
+    {
+      "parent": "Risk",
+      "parent_internal": "RiskFmk_RiskObject",
+      "child": "Operational Risk Abstract",
+      "child_internal": "RiskFmk_OpRiskObject"
+    },
+    {
+      "parent": "Business Function",
+      "parent_internal": "FragApplication_BusFunctionsObject",
+      "child": "Process",
+      "child_internal": "FragApplication_ProcessObject"
+    },
+    {
+      "parent": "Event Scenario",
+      "parent_internal": "EventFwk_EventScenarioObject",
+      "child": "Risk",
+      "child_internal": "RiskFmk_RiskObject"
+    },
+    {
+      "parent": "Action Plan Abstract",
+      "parent_internal": "ActionPlans_ActionPlanAbsObject",
+      "child": "Supplier Action Plan",
+      "child_internal": "SupplierMgmt_SuppActionPlanObject"
+    },
+    {
+      "parent": "Supplier Nonconformance Base",
+      "parent_internal": "SupplierMgmt_SupNonconformObject",
+      "child": "Supplier Nonconformance",
+      "child_internal": "SupplierMgmt_SRMNonConformObject"
+    },
+    {
+      "parent": "Nonconformance",
+      "parent_internal": "NonConf_NonconfPlatinumObject",
+      "child": "Supplier Nonconformance Base",
+      "child_internal": "SupplierMgmt_SupNonconformObject"
+    }
+  ]
+}

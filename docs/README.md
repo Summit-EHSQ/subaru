@@ -63,9 +63,9 @@
 | ADR-059 | Use Supplier Surveys for Recurring Warranty Analysis Reporting | Supplier Relationship Management | Supplier Surveys, Supplier Portal, Warranty Claims, Supplier Scorecard | Proposes recurring Warranty Analysis surveys over supplier-secured claim data, with direct data access, evidence collection, scorecard outputs, and automatic no-claim closure. |
 | ADR-060 | Provision Employee Records Through a Resilient SuccessFactors SFTP Feed | Employee Management | SAP SuccessFactors, Intelex Platform | Uses a Subaru-hosted SFTP feed of current SuccessFactors employee states, with a rolling change window, to provision and update Intelex employees and users. |
 | ADR-061 | Use Entra ID SSO for Internal Users and a Separate Local-Authentication Supplier Portal | Intelex Platform | Supplier Portal, Employee Management, Training Management, Document Control | Uses Microsoft Entra ID SAML SSO for employees and SIA-identified contractors while retaining a separate local-authentication supplier portal. |
-| ADR-062 | Create a Composite Part Master from BOMEX and PartsMaster Data | Product Management | BOMEX / ECS, PartsMaster, Supplier Relationship Management, Production Part Approval Process (PPAP), Shipping, Receiving and Inspection (Pilot Part Data), Non-Conformance Management, Warranty Corrective Action Report (WCAR) | Composes one canonical Intelex part from separately retained engineering and logistics source records using governed field precedence and depot exceptions. |
+| ADR-062 | Create a Composite Part Master from BOMEX and PartsMaster Data | Product Management | BOMEX / ECS, PartsMaster, SIA integration layer, Supplier Relationship Management, Production Part Approval Process (PPAP), Shipping, Receiving and Inspection (Pilot Part Data), Non-Conformance Management, Warranty Corrective Action Report (WCAR) | Reuses upstream BOMEX/PartsMaster consolidation to create and enrich one canonical Intelex part while retaining governed field authority, engineering context, and depot exceptions. |
 | ADR-063 | Provide Suppliers Current-Period Scrap Visibility While Keeping Financial Debit Processing External | Supplier Relationship Management | Supplier Portal, Scrap Data, Supplier Scorecard | Loads current scrap data into the supplier portal for early visibility while leaving procurement debit memos and financial settlement in the existing process. |
-| ADR-064 | Defer OHM Flow Selection and Correlate Individual Injuries | Incident Management | OHM, Employee Management, Clinic | Defer the clinical exchange direction while requiring individual-injury correlation |
+| ADR-064 | Integrate OHM Medical Data into Incident Management While Preserving Initiation Flexibility | Incident Management | OHM, Employee Management | Proposes retaining OHM as the medical-data source and feeding injury information into Incident Management whether the initial digital AIR begins in OHM or Intelex. |
 | ADR-065 | Expose PPAP and Tooling Milestones for Future SAP Payment Automation | Tooling Database | Production Part Approval Process (PPAP), SAP | Proposes an outbound event interface from Intelex milestones to SAP so tooling payments can be released in controlled percentages. |
 | ADR-066 | Establish Central Intelex Product Ownership and Cross-Functional Governance | Intelex Platform | None | Assigns a central Intelex coordinator to own the platform and uses cross-functional governance to prioritize changes, releases, and future projects. |
 | ADR-067 | Use Trained Internal App Builders for Phase-Four Custom Applications with Guided Implementation Support | Intelex Platform | TACT-TRI, SPANF, TS Request | Builds Phase Four custom applications through trained internal app builders supported by structured workshops and targeted implementation assistance. |
@@ -92,7 +92,7 @@
 | ADR-088 | Model SQDIIR as a Distinct Initial Investigation with Sequential Review and Optional CAR | Non-Conformance Management | Corrective Action Management, Intelex Platform Workflow, Notifications | Separates rapid SQDIIR containment and sequential review from the optional related CAR lifecycle. |
 | ADR-089 | Model Internal CARs as Source-Linked Parents with Structured Cause and Action Children | Corrective Action Management | Non-Conformance Management, Audit Management, Reporting | Uses a reusable CAR parent linked to source issues with structured analysis, root-cause, action-plan, ownership, and team relationships. |
 | ADR-090 | Gate Internal CAR Actions on Plan Approval and Separate Implementation from Effectiveness Verification | Corrective Action Management | Action Plan Management, Non-Conformance Management, Audit Management, Notifications | Holds proposed actions until approval, records already-completed work, and separates execution review from immediate or scheduled effectiveness verification. |
-| ADR-091 | Keep Incidents and Non-Conformances Separate with Source-Appropriate Linkage | Incident Management | Audit Management, Non-Conformance Management, Corrective Action Management | Separate source records with explicit relationships and conditional application boundaries |
+| ADR-091 | Keep Incidents and Non-Conformances Separate with Investigation-Driven Linkage | Incident Management | Non-Conformance Management, Corrective Action Management | Keeps incident and NCR lifecycles separate while allowing investigations to launch related NCRs and relate repeat incidents directly. |
 | ADR-092 | Support Role-Qualified Multiple-Supplier Relationships per Part | Product Management | Supplier Relationship Management, Non-Conformance Management | Allows unrestricted typed manufacturer, assembler, sequencer, and service relationships and defaults NCR intake to the manufacturer while permitting correction. |
 | ADR-093 | Model RMA as a Disposition-Linked Child Workflow | Non-Conformance Management | Supplier Portal, Supplier Relationship Management | Keeps RMA separate from disposition, validates required relationships, and models third-party-sort instructions independently. |
 | ADR-094 | Use Simple Record Identifiers and Normalized Searchable Attributes | Non-Conformance Management | Reporting, Warranty Claims | Replaces search-oriented composite identifiers with a simple record number and separately searchable type, date, VIN, part, and supplier fields. |
@@ -117,55 +117,30 @@
 | ADR-115 | Separate Aggregate Scorecard Access from Source-Record Security and Restrict Administration | Supplier Scorecard | Supplier Relationship Management, Production Part Approval Process (PPAP), Non-Conformance Management, Supplier Portal | Allows complete aggregate scorecard visibility within supplier scope while restricting configuration and overrides to scorecard or system administrators. |
 | ADR-116 | Use Responsive Browser Scorecard Views and Supplier-Profile Drilldown | Supplier Scorecard | Supplier Relationship Management, Supplier Portal, Reporting | Uses responsive connected browser views, supplier-profile history navigation, and governed source reports for optional advanced analytics. |
 | ADR-117 | Process Supplier-Reported SAP-Part Problems as Linked NCR Intake Records | Non-Conformance Management | Supplier Relationship Management, Supplier Portal | Uses a supplier-visible NCR intake type for SAP-part problems, internal triage, and linked downstream PIR creation against the responsible manufacturer while remaining distinct from SPANF. |
-| ADR-118 | Group Separately Reported Incidents Through Safety Review | Incident Management | Safety Management, Environmental Management, Security intake | Separate typed incident intake with subsequent Safety-led event grouping |
-| ADR-119 | Use Security Intake for Ordinary Incidents and Clinic Intake for Hearing Conservation | Incident Management | Security intake, Clinic, Safety Management | Security creates separate typed EHS reports in Intelex |
-| ADR-120 | Apply the Staged Injury and PIT Review with a Hearing-Conservation Release Exception | Incident Management | Safety Management, PIT safety, Clinic | Supervisor review, Safety review/finalization, then Safety Manager approval |
-| ADR-121 | Sequence Supervisor and Safety Work While Allowing Clinical Contribution During Safety Review | Incident Management | Employee Management, Safety Management, Clinic | Sequential supervisor then Safety responsibility, with parallel clinical contribution during Safety review |
-| ADR-122 | Confirm Role and Department Visibility Before Granting Broad Incident Access | Incident Management | Safety Management, Environmental Management, Clinic, Intelex Platform | Confirm the role/type/department/detail matrix before granting broad access |
-| ADR-123 | Reopen Injury Cases for Reviewed Changes and Control Log Inclusion Through Recordability | Incident Management | Clinic, Safety Management, OSHA reporting, OHM | Reviewed reopening with explicit recordability controlling current-log inclusion |
-| ADR-124 | Vary Injury Analysis Requirements by Severity Within the Staged Review | Incident Management | Safety Management, Cause analysis, Countermeasures | Severity-based analysis requirements within the supervisor/Safety/manager sequence |
-| ADR-125 | Provide Grouped Event Summaries Without Requiring a Master Intake | Incident Management | Reporting, Action plans, Witness information | A summary view over reviewed event relationships, with the representation still to be confirmed |
-| ADR-126 | Use Equipment-Dependent Incident Questions While Confirming the Mobile Equipment Catalogue | Incident Management | PIT safety, Mobile equipment, Vehicle incidents, Property damage | Equipment-dependent questions within a scoped catalogue that remains to be confirmed |
-| ADR-127 | Trigger Operational Work from the Applicable Incident Stage and Case State | Incident Management | Notifications, Security intake, Clinic, Safety Management, Environmental Management | Typed-incident creation and stage/condition-based notifications |
-| ADR-128 | Preserve Separate Management and Associate Accounts in Injury Data Collection | Incident Management | Clinic, Safety Management, AIR, Job process analysis | Distinct management and associate contributions linked to the same injury case |
-| ADR-129 | Enter EHS Reports Directly in Intelex and Retain Resolver for Other Security Work | Incident Management | Resolver, Security intake, Environmental Management | Direct EHS entry in Intelex with Resolver retained for other Security work |
-| ADR-130 | Use Oversight-Led Environmental Response with Severity-Based Investigation and Review | Incident Management | Environmental Management, Incident oversight, Notifications | Oversight assessment, Environmental review/investigation by severity, and conditional Environmental Manager approval |
-| ADR-131 | Keep Cleanup Contractor Dispatch Outside Intelex and Record Oversight Results Internally | Incident Management | Security dispatch, Environmental Management, Cleanup contractors, Janitorial service | External contractor dispatch with oversight-entered cleanup records |
-| ADR-132 | Propose Audit Management for Inspection-Originated Notices of Violation | Audit Management | Incident Management, Environmental Management, Corrective Action Management | Use Audit Management for inspection-originated NOV tracking, subject to fit/scope confirmation |
-| ADR-133 | Distinguish Event-Based Near Misses from Unengaged Risk Conditions | Incident Management | Near-miss reporting, Safety Management, Manufacturing Way | Event-based near-miss classification distinct from unengaged risk conditions |
-| ADR-134 | Provide Low-Friction Near-Miss Intake with Safety Review if Intelex Is Selected | Incident Management | Near-miss reporting, Safety Management, Manufacturing Way, Employee access, Notifications | If Intelex is chosen, direct simple reporting to a Safety review path with optional/contextual supervisor involvement |
-| ADR-135 | Use Intelex for Operational Reporting and SIA-Owned API Extraction for Broader Analysis | Incident Management | Near-miss reporting, Reporting, Power BI, SIA integration team | Native operational reports plus SIA-owned API extraction for broader Power BI/other analysis |
-| ADR-136 | Capture Plant Coordinates and Transition Station Data from Interim Text to Governed Values | Incident Management | Near-miss reporting, Location reference data, Station data, Reporting | Plant coordinates plus organizational location, with interim station text until controlled station data is ready |
-| ADR-137 | Use Summed Establishment and Calendar-Year Exposure Data for Prospective Intelex Reporting | Incident Management | Hours-worked reporting, ADP, SIA integration team, OSHA reporting | Automated cumulative hours by establishment and calendar year, conditional on Intelex reporting ownership |
-| ADR-138 | Preserve the Issued Annual Summary PDF While Keeping Current Log Data Revisable | Incident Management | OSHA reporting, Document retention, Clinic, Safety Management | Save the issued summary PDF and distinguish it from current regenerated output |
-| ADR-139 | Provide a Clinic-Led Hearing-Conservation Variant with Deferred Investigation Release | Incident Management | Clinic, Hearing conservation, Safety Management, OSHA reporting | A clearly identified clinic-led hearing-conservation variant with provisional handling and defined later release |
-| ADR-140 | Change Capture Types Through Explicit New-Field Mapping and Historical Preservation | Incident Management | Data configuration, Station data, Historical reporting | Introduce the required typed field with explicit historical mapping and preservation of source values |
+| ADR-118 | Receive Parts Consumption Through a Flat REST-Fed Dataset | Supplier Scorecard | Parts Consumption, Supplier Relationship Management, SIA integration layer, Intelex REST API | Proposes a flat REST-fed consumption dataset for governed scorecard queries while preserving monthly reporting semantics and published snapshots. |
 
 ## Latest Revision Summary
 
-- **2026-11-13:** Consolidated [Phase 5 Incident Management](<phase 5/incident-management/README.md>) into 25 proposed ADRs using the latest text from the four workshop reviews.
-- **Existing proposed records updated:** ADR-064 and ADR-091.
-- **Workshop additions:** ADR-118 through ADR-140. No IDs were renumbered or reused.
-- **Accepted decisions and statuses:** Unchanged.
-- **Total ADRs:** 138.
-- **Current status distribution:** 90 accepted, 44 proposed, 1 rejected, and 3 superseded ADRs.
+- **Existing ADRs refined in the latest revision:** ADR-062, based on the November 12, 2026 integration call.
+- **New ADRs created in the latest revision:** ADR-118.
+- **Superseded ADRs:** ADR-001 is superseded by ADR-083; ADR-042 is superseded by ADR-098; ADR-055 is superseded by ADR-087.
+- **Status changes:** None in this revision.
+- **Total ADRs:** 116.
+- **Current status distribution:** 90 accepted, 22 proposed, 1 rejected, and 3 superseded ADRs.
 
-### Retained Quality Design Notes
+### Material Refinements to Existing ADRs
 
-- Supplier NCR now uses type and subtype configuration to activate stages, roles, timing, fields, guidance, notifications, validation, and supplier visibility after a minimal common intake.
-- WCAR adds conditional instructions and fields, Parts Collection Center notification, and tracking-number-controlled release to the supplier.
-- Warranty Analysis is proposed as a recurring Supplier Survey rather than a dedicated application or an NCR type.
-- SPANF remains the broader advance-notification process and excludes the supplier-reported SAP-part quality intake.
-- Supplier visits use supplier-linked meetings with related NCR agenda items and centralized Supplier Task follow-up.
-- RMA remains a child workflow separate from disposition, with third-party sort instructions modeled distinctly.
+- ADR-062 places BOMEX/PartsMaster consolidation in SIA's existing upstream integration layer and retains one canonical operational part in Intelex.
+- Production attribute types, source authority, and operational mapping beyond the isolated API Data component remain unresolved. Governed depot exceptions and engineering context are retained.
+- Earlier supplier NCR and adjacent workflow refinements remain recorded in the change log.
 
 ### New Architectural Areas
 
-- Supplier-reported SAP-part problems as supplier-visible NCR intake records with internal triage and linked downstream PIR creation against the responsible manufacturer.
+- ADR-118 defines the proposed consumption REST intake boundary alongside ADR-058's existing scorecard calculation and snapshot policy. Payload, matching, cadence, and correction details require confirmation.
 
 ## Source and Status Notes
 
-- The YAML `date` is the original ADR drafting date. Where workshop headers establish a date, Phase 5 records retain it as `discussion-date`; formal decision/approval dates are not inferred.
+- The YAML `date` records the ADR drafting date. Historical transcripts without meeting dates retain their unavailable `decision-date` values. The user confirmed the integration call as November 12, 2026, at 1:00 AM ET; ADR-118 records that discussion date without implying formal approval.
 - **Accepted** indicates that the discussion established and affirmed a clear architectural direction, even when configuration details remain open.
 - **Proposed** indicates that the direction was supported but important sequencing, scope, ownership, integration feasibility, or stakeholder confirmation remains incomplete.
 - Names appear only in YAML governance metadata. ADR body text uses roles and organizations rather than attributing decisions to individuals.

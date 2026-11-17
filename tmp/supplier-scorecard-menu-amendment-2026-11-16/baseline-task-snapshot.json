@@ -1,0 +1,2325 @@
+{
+  "sourceSha256": "0e374fc2422eeaf6f8b0bd39d4fb6524ff37cd8b6983e255bc3f369c54c7524a",
+  "tasks": [
+    {
+      "originalId": "APP-01",
+      "validatorId": "IMP-01",
+      "markdown": "### APP-01 — Create the Supplier Scorecard Application\n\n- **Task ID:** APP-01\n- **Title:** Create the Supplier Scorecard Application\n- **Category:** Application configuration\n- **Objective:** Establish the application container and navigation for Supplier Scorecard configuration and operations.\n- **Detailed scope:** Create the Supplier Scorecard application, application-level settings, navigation areas, and placeholders for administration, contribution, review, published results, and reporting. Do not modify the OOTB SRM application or workflows.\n- **Deliverable:** Configured Supplier Scorecard application shell with role-ready navigation.\n- **Strict technical prerequisites:** None\n- **Blocked status:** Not blocked.\n- **Recommended implementer role:** Associate Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** This is bounded application setup using an established Intelex pattern; Senior Consultant review protects the SRM boundary.\n- **Acceptance criteria:** The application opens; each planned navigation area is present; no OOTB SRM workflow or object is copied or changed.\n- **Specification references:** Sections 1, 3, 5, 16.3\n- **Assumptions and open questions:** Application naming follows the specification display name; internal system name remains tenant-generated/verified.",
+      "fields": {
+        "id": "APP-01",
+        "title": "Create the Supplier Scorecard Application",
+        "category": "Application configuration",
+        "objective": "Establish the application container and navigation for Supplier Scorecard configuration and operations.",
+        "scope": "Create the Supplier Scorecard application, application-level settings, navigation areas, and placeholders for administration, contribution, review, published results, and reporting. Do not modify the OOTB SRM application or workflows.",
+        "deliverable": "Configured Supplier Scorecard application shell with role-ready navigation.",
+        "prerequisites": "None",
+        "blockedStatus": "Not blocked.",
+        "implementer": "Associate Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "This is bounded application setup using an established Intelex pattern; Senior Consultant review protects the SRM boundary.",
+        "accept": "The application opens; each planned navigation area is present; no OOTB SRM workflow or object is copied or changed.",
+        "refs": "Sections 1, 3, 5, 16.3",
+        "assumptions": "Application naming follows the specification display name; internal system name remains tenant-generated/verified."
+      }
+    },
+    {
+      "originalId": "OBJ-02",
+      "validatorId": "IMP-02",
+      "markdown": "### OBJ-02 — Create the Scorecard Catalogue Objects\n\n- **Task ID:** OBJ-02\n- **Title:** Create the Scorecard Catalogue Objects\n- **Category:** Object configuration\n- **Objective:** Establish the inherited catalogue family required by all governed scorecard selections.\n- **Detailed scope:** Create non-instantiable `Supplier Scorecard Abstract Catalog Record` and its twelve direct children: Supplier Commodity, NAICS Classification, KPI Category, KPI Aggregation Method, KPI Value Type, KPI Contribution Source, KPI Collection Method, KPI Initialization Method, Safety Benchmark Metric, Scorecard Cadence, KPI Value Origin, and Publication Exception Treatment.\n- **Deliverable:** Abstract catalogue parent and twelve correctly inherited concrete child objects.\n- **Strict technical prerequisites:** APP-01\n- **Blocked status:** Blocked until APP-01 is complete.\n- **Recommended implementer role:** Senior Associate Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** The object work is routine, but inheritance and non-instantiable behavior require independent configuration judgment.\n- **Acceptance criteria:** Exactly twelve direct children inherit from the abstract parent; the parent cannot be instantiated or selected; no multiple parent or cycle exists.\n- **Specification references:** Sections 4.2, 5, 7.1, 21.1\n- **Assumptions and open questions:** None.",
+      "fields": {
+        "id": "OBJ-02",
+        "title": "Create the Scorecard Catalogue Objects",
+        "category": "Object configuration",
+        "objective": "Establish the inherited catalogue family required by all governed scorecard selections.",
+        "scope": "Create non-instantiable `Supplier Scorecard Abstract Catalog Record` and its twelve direct children: Supplier Commodity, NAICS Classification, KPI Category, KPI Aggregation Method, KPI Value Type, KPI Contribution Source, KPI Collection Method, KPI Initialization Method, Safety Benchmark Metric, Scorecard Cadence, KPI Value Origin, and Publication Exception Treatment.",
+        "deliverable": "Abstract catalogue parent and twelve correctly inherited concrete child objects.",
+        "prerequisites": "APP-01",
+        "blockedStatus": "Blocked until APP-01 is complete.",
+        "implementer": "Senior Associate Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "The object work is routine, but inheritance and non-instantiable behavior require independent configuration judgment.",
+        "accept": "Exactly twelve direct children inherit from the abstract parent; the parent cannot be instantiated or selected; no multiple parent or cycle exists.",
+        "refs": "Sections 4.2, 5, 7.1, 21.1",
+        "assumptions": "None."
+      }
+    },
+    {
+      "originalId": "CFG-03",
+      "validatorId": "IMP-03",
+      "markdown": "### CFG-03 — Configure the Scorecard Catalogues\n\n- **Task ID:** CFG-03\n- **Title:** Configure the Scorecard Catalogues\n- **Category:** Catalogue configuration\n- **Objective:** Make each catalogue usable as a governed Code-based selection source.\n- **Detailed scope:** Configure inherited `Code`, `Name`, `Active?`, and `Sort`; add `Description` to KPI Aggregation Method and `Frequency` to Scorecard Cadence; configure child administration forms, active-record filters, audit, and basic permissions. Do not expose inverse consumer grids.\n- **Deliverable:** Configured catalogue fields, forms, filters, audit, and permissions.\n- **Strict technical prerequisites:** OBJ-02\n- **Blocked status:** Blocked until OBJ-02 is complete; tenant capability results may block final constraint and recurrence configuration.\n- **Recommended implementer role:** Senior Associate Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** Inherited fields, recurrence presentation, and inverse suppression exceed simple catalogue setup.\n- **Acceptance criteria:** Common fields exist only on the parent; child-specific fields exist only where specified; active filters work; catalogue M:1 inverses and consumer grids are absent.\n- **Specification references:** Sections 6, 7, 16.1, 21.1\n- **Assumptions and open questions:** Exact uniqueness constraint and recurrence storage follow externally supplied tenant results.",
+      "fields": {
+        "id": "CFG-03",
+        "title": "Configure the Scorecard Catalogues",
+        "category": "Catalogue configuration",
+        "objective": "Make each catalogue usable as a governed Code-based selection source.",
+        "scope": "Configure inherited `Code`, `Name`, `Active?`, and `Sort`; add `Description` to KPI Aggregation Method and `Frequency` to Scorecard Cadence; configure child administration forms, active-record filters, audit, and basic permissions. Do not expose inverse consumer grids.",
+        "deliverable": "Configured catalogue fields, forms, filters, audit, and permissions.",
+        "prerequisites": "OBJ-02",
+        "blockedStatus": "Blocked until OBJ-02 is complete; tenant capability results may block final constraint and recurrence configuration.",
+        "implementer": "Senior Associate Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "Inherited fields, recurrence presentation, and inverse suppression exceed simple catalogue setup.",
+        "accept": "Common fields exist only on the parent; child-specific fields exist only where specified; active filters work; catalogue M:1 inverses and consumer grids are absent.",
+        "refs": "Sections 6, 7, 16.1, 21.1",
+        "assumptions": "Exact uniqueness constraint and recurrence storage follow externally supplied tenant results."
+      }
+    },
+    {
+      "originalId": "DAT-04",
+      "validatorId": "IMP-04",
+      "markdown": "### DAT-04 — Load the Scorecard Catalogue Records\n\n- **Task ID:** DAT-04\n- **Title:** Load the Scorecard Catalogue Records\n- **Category:** Initial configuration\n- **Objective:** Provide the approved catalogue values required by downstream configuration and automation.\n- **Detailed scope:** Load the specification-defined records for value type, contribution source, collection method, initialization method, safety metric, cadence, value origin, and publication exception treatment, plus approved commodity, NAICS, KPI category, and aggregation-method records. Preserve stable Codes and approved recurrence expressions.\n- **Deliverable:** Approved, audited records in every concrete catalogue.\n- **Strict technical prerequisites:** CFG-03\n- **Blocked status:** Blocked by CFG-03 and by approved catalogue content, recurrence expressions, and inherited-Code uniqueness outcome.\n- **Recommended implementer role:** Associate Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** Record loading is bounded once governance and platform constraints are supplied.\n- **Acceptance criteria:** Every approved record is present once on the correct concrete child; Codes are stable; inactive filtering works; cadence Frequency values are valid.\n- **Specification references:** Sections 7.2–7.13, 20.2, 21.2\n- **Assumptions and open questions:** No unapproved catalogue values are invented.",
+      "fields": {
+        "id": "DAT-04",
+        "title": "Load the Scorecard Catalogue Records",
+        "category": "Initial configuration",
+        "objective": "Provide the approved catalogue values required by downstream configuration and automation.",
+        "scope": "Load the specification-defined records for value type, contribution source, collection method, initialization method, safety metric, cadence, value origin, and publication exception treatment, plus approved commodity, NAICS, KPI category, and aggregation-method records. Preserve stable Codes and approved recurrence expressions.",
+        "deliverable": "Approved, audited records in every concrete catalogue.",
+        "prerequisites": "CFG-03",
+        "blockedStatus": "Blocked by CFG-03 and by approved catalogue content, recurrence expressions, and inherited-Code uniqueness outcome.",
+        "implementer": "Associate Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "Record loading is bounded once governance and platform constraints are supplied.",
+        "accept": "Every approved record is present once on the correct concrete child; Codes are stable; inactive filtering works; cadence Frequency values are valid.",
+        "refs": "Sections 7.2–7.13, 20.2, 21.2",
+        "assumptions": "No unapproved catalogue values are invented."
+      }
+    },
+    {
+      "originalId": "OBJ-05",
+      "validatorId": "IMP-05",
+      "markdown": "### OBJ-05 — Update Supplier Abstract for Scorecards\n\n- **Task ID:** OBJ-05\n- **Title:** Update Supplier Abstract for Scorecards\n- **Category:** Shared object configuration\n- **Objective:** Add scorecard classification and navigation to the authoritative supplier master.\n- **Detailed scope:** Add `Commodity` and `NAICS Classification` M:1 fields to `Supplier Abstract`, with catalogue inverses disabled, and add inverse grids for `Scorecard Participations` and `Scorecards`. Apply inherited behavior to Parent Company and Facility without creating another supplier object.\n- **Deliverable:** Supplier Abstract extensions and inherited Parent Company/Facility presentation.\n- **Strict technical prerequisites:** CFG-03\n- **Blocked status:** Blocked until CFG-03 is complete.\n- **Recommended implementer role:** Senior Associate Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** The fields are straightforward, but changes to an authoritative inherited object require careful cross-application configuration.\n- **Acceptance criteria:** Both catalogue fields are inherited by Parent Company and Facility; catalogue inverses remain disabled; navigation grids use the owned child relationships.\n- **Specification references:** Sections 3.1, 4.1, 10.2, 20.1\n- **Assumptions and open questions:** Existing `Type of Supplier Entity` is reused and not duplicated.",
+      "fields": {
+        "id": "OBJ-05",
+        "title": "Update Supplier Abstract for Scorecards",
+        "category": "Shared object configuration",
+        "objective": "Add scorecard classification and navigation to the authoritative supplier master.",
+        "scope": "Add `Commodity` and `NAICS Classification` M:1 fields to `Supplier Abstract`, with catalogue inverses disabled, and add inverse grids for `Scorecard Participations` and `Scorecards`. Apply inherited behavior to Parent Company and Facility without creating another supplier object.",
+        "deliverable": "Supplier Abstract extensions and inherited Parent Company/Facility presentation.",
+        "prerequisites": "CFG-03",
+        "blockedStatus": "Blocked until CFG-03 is complete.",
+        "implementer": "Senior Associate Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "The fields are straightforward, but changes to an authoritative inherited object require careful cross-application configuration.",
+        "accept": "Both catalogue fields are inherited by Parent Company and Facility; catalogue inverses remain disabled; navigation grids use the owned child relationships.",
+        "refs": "Sections 3.1, 4.1, 10.2, 20.1",
+        "assumptions": "Existing `Type of Supplier Entity` is reused and not duplicated."
+      }
+    },
+    {
+      "originalId": "AUT-06",
+      "validatorId": "IMP-06",
+      "markdown": "### AUT-06 — Configure Commodity Synchronization\n\n- **Task ID:** AUT-06\n- **Title:** Configure Commodity Synchronization\n- **Category:** Action Handler configuration\n- **Objective:** Keep Facility Commodity aligned with Parent Company Commodity under the initial no-override policy.\n- **Detailed scope:** Configure the Facility create/update handler and Parent Company Commodity update handler, including idempotent child updates, audit, failure reporting, and protection against metadata-only retriggers.\n- **Deliverable:** Two working Commodity synchronization handlers with controlled failure behavior.\n- **Strict technical prerequisites:** OBJ-05\n- **Blocked status:** Blocked by OBJ-05 and the approved Commodity override policy.\n- **Recommended implementer role:** Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** Cross-object child updates, idempotency, and partial failure reporting require Consultant-level automation judgment.\n- **Acceptance criteria:** Facility creation/parent change copies Commodity; Parent Company changes update related Facilities once; failures are reported without recursive updates.\n- **Specification references:** Section 10.2\n- **Assumptions and open questions:** Initial release does not permit Facility override.",
+      "fields": {
+        "id": "AUT-06",
+        "title": "Configure Commodity Synchronization",
+        "category": "Action Handler configuration",
+        "objective": "Keep Facility Commodity aligned with Parent Company Commodity under the initial no-override policy.",
+        "scope": "Configure the Facility create/update handler and Parent Company Commodity update handler, including idempotent child updates, audit, failure reporting, and protection against metadata-only retriggers.",
+        "deliverable": "Two working Commodity synchronization handlers with controlled failure behavior.",
+        "prerequisites": "OBJ-05",
+        "blockedStatus": "Blocked by OBJ-05 and the approved Commodity override policy.",
+        "implementer": "Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "Cross-object child updates, idempotency, and partial failure reporting require Consultant-level automation judgment.",
+        "accept": "Facility creation/parent change copies Commodity; Parent Company changes update related Facilities once; failures are reported without recursive updates.",
+        "refs": "Section 10.2",
+        "assumptions": "Initial release does not permit Facility override."
+      }
+    },
+    {
+      "originalId": "OBJ-07",
+      "validatorId": "IMP-07",
+      "markdown": "### OBJ-07 — Create the KPI Configuration Objects\n\n- **Task ID:** OBJ-07\n- **Title:** Create the KPI Configuration Objects\n- **Category:** Object configuration\n- **Objective:** Provide editable KPI definitions and immutable effective-dated versions.\n- **Detailed scope:** Create `Supplier Scorecard KPI` and `Supplier Scorecard KPI Version` with all specification fields, relationships, inverse grids, uniqueness rules, conditional requirements, and immutable version behavior.\n- **Deliverable:** Complete KPI authoring/version object and field configuration.\n- **Strict technical prerequisites:** CFG-03\n- **Blocked status:** Blocked until CFG-03 is complete.\n- **Recommended implementer role:** Senior Associate Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** Numerous conditional relationships and immutable version fields require independent configuration judgment but not advanced automation.\n- **Acceptance criteria:** Every Section 8.1/8.2 field exists with correct ownership, relationship, requirement, editability, and inverse behavior; version records are read only.\n- **Specification references:** Sections 4.3, 8.1, 8.2\n- **Assumptions and open questions:** Exact executable expressions are deferred to their automation tasks.",
+      "fields": {
+        "id": "OBJ-07",
+        "title": "Create the KPI Configuration Objects",
+        "category": "Object configuration",
+        "objective": "Provide editable KPI definitions and immutable effective-dated versions.",
+        "scope": "Create `Supplier Scorecard KPI` and `Supplier Scorecard KPI Version` with all specification fields, relationships, inverse grids, uniqueness rules, conditional requirements, and immutable version behavior.",
+        "deliverable": "Complete KPI authoring/version object and field configuration.",
+        "prerequisites": "CFG-03",
+        "blockedStatus": "Blocked until CFG-03 is complete.",
+        "implementer": "Senior Associate Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "Numerous conditional relationships and immutable version fields require independent configuration judgment but not advanced automation.",
+        "accept": "Every Section 8.1/8.2 field exists with correct ownership, relationship, requirement, editability, and inverse behavior; version records are read only.",
+        "refs": "Sections 4.3, 8.1, 8.2",
+        "assumptions": "Exact executable expressions are deferred to their automation tasks."
+      }
+    },
+    {
+      "originalId": "FRM-08",
+      "validatorId": "IMP-08",
+      "markdown": "### FRM-08 — Configure the KPI Administration Forms\n\n- **Task ID:** FRM-08\n- **Title:** Configure the KPI Administration Forms\n- **Category:** Form configuration\n- **Objective:** Give scorecard administrators a controlled KPI authoring and version-review experience.\n- **Detailed scope:** Configure KPI authoring and read-only version forms, active catalogue filters, conditional sections for contributor, defaults, query source, and safety benchmark settings, plus the Versions grid and Publish action placement.\n- **Deliverable:** Usable KPI authoring and immutable-version forms.\n- **Strict technical prerequisites:** OBJ-07\n- **Blocked status:** Blocked until OBJ-07 is complete.\n- **Recommended implementer role:** Senior Associate Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** The layout is sizeable and includes interdependent show/hide/clear/required behavior.\n- **Acceptance criteria:** Only relevant fields appear for each governed Code combination; hidden conditional fields clear as specified; published versions cannot be edited.\n- **Specification references:** Sections 8.1, 8.2, 16.1\n- **Assumptions and open questions:** None.",
+      "fields": {
+        "id": "FRM-08",
+        "title": "Configure the KPI Administration Forms",
+        "category": "Form configuration",
+        "objective": "Give scorecard administrators a controlled KPI authoring and version-review experience.",
+        "scope": "Configure KPI authoring and read-only version forms, active catalogue filters, conditional sections for contributor, defaults, query source, and safety benchmark settings, plus the Versions grid and Publish action placement.",
+        "deliverable": "Usable KPI authoring and immutable-version forms.",
+        "prerequisites": "OBJ-07",
+        "blockedStatus": "Blocked until OBJ-07 is complete.",
+        "implementer": "Senior Associate Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "The layout is sizeable and includes interdependent show/hide/clear/required behavior.",
+        "accept": "Only relevant fields appear for each governed Code combination; hidden conditional fields clear as specified; published versions cannot be edited.",
+        "refs": "Sections 8.1, 8.2, 16.1",
+        "assumptions": "None."
+      }
+    },
+    {
+      "originalId": "AUT-09",
+      "validatorId": "IMP-09",
+      "markdown": "### AUT-09 — Configure KPI Publish\n\n- **Task ID:** AUT-09\n- **Title:** Configure KPI Publish\n- **Category:** Action Handler configuration\n- **Objective:** Publish one complete, immutable KPI Version without overlap or partial creation.\n- **Detailed scope:** Configure validation, concurrency control, deterministic version numbering, effective-range overlap prevention, full authoring-to-version field mapping, rollback, administrator authorization, and native execution evidence.\n- **Deliverable:** Controlled KPI Publish action.\n- **Strict technical prerequisites:** OBJ-07, FRM-08\n- **Blocked status:** Blocked by OBJ-07 and FRM-08; final mechanism depends on tenant capability results.\n- **Recommended implementer role:** Senior Consultant\n- **Recommended reviewer/approver role:** Principal Consultant\n- **Role rationale:** Concurrency, atomicity, rollback, and immutable effective dating are consequential cross-record automation.\n- **Acceptance criteria:** One action creates exactly one complete version; invalid or overlapping data creates none; concurrent attempts cannot duplicate version numbers.\n- **Specification references:** Section 8.3; Sections 21.1–21.2\n- **Assumptions and open questions:** None.",
+      "fields": {
+        "id": "AUT-09",
+        "title": "Configure KPI Publish",
+        "category": "Action Handler configuration",
+        "objective": "Publish one complete, immutable KPI Version without overlap or partial creation.",
+        "scope": "Configure validation, concurrency control, deterministic version numbering, effective-range overlap prevention, full authoring-to-version field mapping, rollback, administrator authorization, and native execution evidence.",
+        "deliverable": "Controlled KPI Publish action.",
+        "prerequisites": "OBJ-07, FRM-08",
+        "blockedStatus": "Blocked by OBJ-07 and FRM-08; final mechanism depends on tenant capability results.",
+        "implementer": "Senior Consultant",
+        "reviewer": "Principal Consultant",
+        "rationale": "Concurrency, atomicity, rollback, and immutable effective dating are consequential cross-record automation.",
+        "accept": "One action creates exactly one complete version; invalid or overlapping data creates none; concurrent attempts cannot duplicate version numbers.",
+        "refs": "Section 8.3; Sections 21.1–21.2",
+        "assumptions": "None."
+      }
+    },
+    {
+      "originalId": "OBJ-10",
+      "validatorId": "IMP-10",
+      "markdown": "### OBJ-10 — Create the Program Configuration Objects\n\n- **Task ID:** OBJ-10\n- **Title:** Create the Program Configuration Objects\n- **Category:** Object configuration\n- **Objective:** Provide editable scorecard methodologies and immutable published Program graphs.\n- **Detailed scope:** Create `Scorecard Program`, `Scorecard Program KPI`, `Scorecard Program Version`, and `Scorecard Program KPI Version` with specified fields, M:1/M:N relationships, inverse grids, uniqueness, effective dating, rollup-source reference, and immutable version behavior.\n- **Deliverable:** Complete Program authoring/version object and field configuration.\n- **Strict technical prerequisites:** CFG-03, OBJ-07\n- **Blocked status:** Blocked until CFG-03 and OBJ-07 are complete.\n- **Recommended implementer role:** Senior Associate Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** The graph is larger than routine object setup and mixes child and M:N version content.\n- **Acceptance criteria:** All Section 9.1–9.4 fields and relationships exist; `Entity Level` and `Recurrence Definition` do not; version records and children are read only.\n- **Specification references:** Sections 4.3, 9.1–9.4, 21.1\n- **Assumptions and open questions:** None.",
+      "fields": {
+        "id": "OBJ-10",
+        "title": "Create the Program Configuration Objects",
+        "category": "Object configuration",
+        "objective": "Provide editable scorecard methodologies and immutable published Program graphs.",
+        "scope": "Create `Scorecard Program`, `Scorecard Program KPI`, `Scorecard Program Version`, and `Scorecard Program KPI Version` with specified fields, M:1/M:N relationships, inverse grids, uniqueness, effective dating, rollup-source reference, and immutable version behavior.",
+        "deliverable": "Complete Program authoring/version object and field configuration.",
+        "prerequisites": "CFG-03, OBJ-07",
+        "blockedStatus": "Blocked until CFG-03 and OBJ-07 are complete.",
+        "implementer": "Senior Associate Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "The graph is larger than routine object setup and mixes child and M:N version content.",
+        "accept": "All Section 9.1–9.4 fields and relationships exist; `Entity Level` and `Recurrence Definition` do not; version records and children are read only.",
+        "refs": "Sections 4.3, 9.1–9.4, 21.1",
+        "assumptions": "None."
+      }
+    },
+    {
+      "originalId": "FRM-11",
+      "validatorId": "IMP-11",
+      "markdown": "### FRM-11 — Configure Program and Generation Delay Forms\n\n- **Task ID:** FRM-11\n- **Title:** Configure Program and Generation Delay Forms\n- **Category:** Form configuration\n- **Objective:** Support Program authoring, version review, KPI membership, and occurrence-specific generation delays.\n- **Detailed scope:** Configure Program authoring/version forms and grids; create `Scorecard Program Generation Delay`; configure its contextual New form, calculated display, occurrence fields, audit, Applied Run evidence, and read-only applied state.\n- **Deliverable:** Program/version administration forms and Generation Delay object/form/grid.\n- **Strict technical prerequisites:** OBJ-10\n- **Blocked status:** Blocked until OBJ-10 is complete; valid occurrence selection depends on approved cadence rules.\n- **Recommended implementer role:** Senior Associate Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** This combines a larger administration form with contextual child creation and lifecycle-dependent editability.\n- **Acceptance criteria:** Program grids expose membership, versions, and delays; Program defaults/locks on new Delay; invalid dates, duplicate occurrence, and applied edits are prevented.\n- **Specification references:** Sections 9.1, 9.5, 9.6, 16.1\n- **Assumptions and open questions:** Exact display formulas and occurrence picker implementation use verified tenant syntax.",
+      "fields": {
+        "id": "FRM-11",
+        "title": "Configure Program and Generation Delay Forms",
+        "category": "Form configuration",
+        "objective": "Support Program authoring, version review, KPI membership, and occurrence-specific generation delays.",
+        "scope": "Configure Program authoring/version forms and grids; create `Scorecard Program Generation Delay`; configure its contextual New form, calculated display, occurrence fields, audit, Applied Run evidence, and read-only applied state.",
+        "deliverable": "Program/version administration forms and Generation Delay object/form/grid.",
+        "prerequisites": "OBJ-10",
+        "blockedStatus": "Blocked until OBJ-10 is complete; valid occurrence selection depends on approved cadence rules.",
+        "implementer": "Senior Associate Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "This combines a larger administration form with contextual child creation and lifecycle-dependent editability.",
+        "accept": "Program grids expose membership, versions, and delays; Program defaults/locks on new Delay; invalid dates, duplicate occurrence, and applied edits are prevented.",
+        "refs": "Sections 9.1, 9.5, 9.6, 16.1",
+        "assumptions": "Exact display formulas and occurrence picker implementation use verified tenant syntax."
+      }
+    },
+    {
+      "originalId": "AUT-12",
+      "validatorId": "IMP-12",
+      "markdown": "### AUT-12 — Configure Program Publish\n\n- **Task ID:** AUT-12\n- **Title:** Configure Program Publish\n- **Category:** Action Handler configuration\n- **Objective:** Publish the complete Program Version, KPI membership, and supplier-recipient roles as one controlled change.\n- **Detailed scope:** Configure graph validation, cadence and rollup checks, cycle prevention, deterministic version numbering, complete child and M:N copying, overlap prevention, concurrency control, rollback, and immutability.\n- **Deliverable:** Controlled Program Publish action.\n- **Strict technical prerequisites:** OBJ-10, FRM-11\n- **Blocked status:** Blocked by OBJ-10 and FRM-11; tenant M:N-copy result and approved rollup operating model may also block completion.\n- **Recommended implementer role:** Senior Consultant\n- **Recommended reviewer/approver role:** Principal Consultant\n- **Role rationale:** Atomic multi-record/M:N publication, cycle checks, and high rework risk require senior technical authority.\n- **Acceptance criteria:** A valid action creates one complete Program graph; invalid membership, cadence, routing, overlap, or rollup creates no partial version.\n- **Specification references:** Sections 9.5, 21.1–21.2\n- **Assumptions and open questions:** Rollup validation is enabled only if ADR-113 behavior is approved.",
+      "fields": {
+        "id": "AUT-12",
+        "title": "Configure Program Publish",
+        "category": "Action Handler configuration",
+        "objective": "Publish the complete Program Version, KPI membership, and supplier-recipient roles as one controlled change.",
+        "scope": "Configure graph validation, cadence and rollup checks, cycle prevention, deterministic version numbering, complete child and M:N copying, overlap prevention, concurrency control, rollback, and immutability.",
+        "deliverable": "Controlled Program Publish action.",
+        "prerequisites": "OBJ-10, FRM-11",
+        "blockedStatus": "Blocked by OBJ-10 and FRM-11; tenant M:N-copy result and approved rollup operating model may also block completion.",
+        "implementer": "Senior Consultant",
+        "reviewer": "Principal Consultant",
+        "rationale": "Atomic multi-record/M:N publication, cycle checks, and high rework risk require senior technical authority.",
+        "accept": "A valid action creates one complete Program graph; invalid membership, cadence, routing, overlap, or rollup creates no partial version.",
+        "refs": "Sections 9.5, 21.1–21.2",
+        "assumptions": "Rollup validation is enabled only if ADR-113 behavior is approved."
+      }
+    },
+    {
+      "originalId": "OBJ-13",
+      "validatorId": "IMP-13",
+      "markdown": "### OBJ-13 — Create Supplier Scorecard Participation\n\n- **Task ID:** OBJ-13\n- **Title:** Create Supplier Scorecard Participation\n- **Category:** Object configuration\n- **Objective:** Govern which exact supplier entities participate in each Program and effective period.\n- **Detailed scope:** Create `Supplier Scorecard Participation`, its Supplier and Program relationships, active/effective fields, display value, audit, inverse navigation, and prevention of overlapping active ranges for the same Supplier and Program.\n- **Deliverable:** Participation object, forms, relationships, audit, and range control.\n- **Strict technical prerequisites:** OBJ-05, OBJ-10\n- **Blocked status:** Blocked until OBJ-05 and OBJ-10 are complete.\n- **Recommended implementer role:** Senior Associate Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** Effective-range control and authoritative supplier relationships require more judgment than a basic child object.\n- **Acceptance criteria:** Parent Company or Facility can be selected without Program entity filtering; duplicate/overlapping ranges are blocked; status Deny cannot be overridden.\n- **Specification references:** Sections 10.1, 10.3\n- **Assumptions and open questions:** Capability records are supplied by the authoritative Supplier Status design.",
+      "fields": {
+        "id": "OBJ-13",
+        "title": "Create Supplier Scorecard Participation",
+        "category": "Object configuration",
+        "objective": "Govern which exact supplier entities participate in each Program and effective period.",
+        "scope": "Create `Supplier Scorecard Participation`, its Supplier and Program relationships, active/effective fields, display value, audit, inverse navigation, and prevention of overlapping active ranges for the same Supplier and Program.",
+        "deliverable": "Participation object, forms, relationships, audit, and range control.",
+        "prerequisites": "OBJ-05, OBJ-10",
+        "blockedStatus": "Blocked until OBJ-05 and OBJ-10 are complete.",
+        "implementer": "Senior Associate Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "Effective-range control and authoritative supplier relationships require more judgment than a basic child object.",
+        "accept": "Parent Company or Facility can be selected without Program entity filtering; duplicate/overlapping ranges are blocked; status Deny cannot be overridden.",
+        "refs": "Sections 10.1, 10.3",
+        "assumptions": "Capability records are supplied by the authoritative Supplier Status design."
+      }
+    },
+    {
+      "originalId": "OBJ-14",
+      "validatorId": "IMP-14",
+      "markdown": "### OBJ-14 — Create the Safety Benchmark Objects\n\n- **Task ID:** OBJ-14\n- **Title:** Create the Safety Benchmark Objects\n- **Category:** Object configuration\n- **Objective:** Provide effective-dated NAICS and metric benchmarks for safety scoring.\n- **Detailed scope:** Create `Safety Benchmark` and immutable `Safety Benchmark Version` with catalogue relationships, source evidence, effective ranges, inverse Versions grid, uniqueness, and administration/read-only forms.\n- **Deliverable:** Complete benchmark authoring/version configuration.\n- **Strict technical prerequisites:** CFG-03\n- **Blocked status:** Blocked until CFG-03 is complete; initial records depend on approved NAICS and benchmark governance.\n- **Recommended implementer role:** Senior Associate Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** Effective dating and governed catalogue combinations require independent configuration judgment.\n- **Acceptance criteria:** One stable benchmark exists per NAICS/Metric; version fields are immutable; catalogue inverses remain disabled.\n- **Specification references:** Sections 4.5, 11.1, 11.2\n- **Assumptions and open questions:** None.",
+      "fields": {
+        "id": "OBJ-14",
+        "title": "Create the Safety Benchmark Objects",
+        "category": "Object configuration",
+        "objective": "Provide effective-dated NAICS and metric benchmarks for safety scoring.",
+        "scope": "Create `Safety Benchmark` and immutable `Safety Benchmark Version` with catalogue relationships, source evidence, effective ranges, inverse Versions grid, uniqueness, and administration/read-only forms.",
+        "deliverable": "Complete benchmark authoring/version configuration.",
+        "prerequisites": "CFG-03",
+        "blockedStatus": "Blocked until CFG-03 is complete; initial records depend on approved NAICS and benchmark governance.",
+        "implementer": "Senior Associate Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "Effective dating and governed catalogue combinations require independent configuration judgment.",
+        "accept": "One stable benchmark exists per NAICS/Metric; version fields are immutable; catalogue inverses remain disabled.",
+        "refs": "Sections 4.5, 11.1, 11.2",
+        "assumptions": "None."
+      }
+    },
+    {
+      "originalId": "AUT-15",
+      "validatorId": "IMP-15",
+      "markdown": "### AUT-15 — Configure Safety Benchmark Publish\n\n- **Task ID:** AUT-15\n- **Title:** Configure Safety Benchmark Publish\n- **Category:** Action Handler configuration\n- **Objective:** Publish complete benchmark versions with controlled effective dates.\n- **Detailed scope:** Configure required-field validation, stable benchmark uniqueness, effective-range checks, deterministic version numbering, full field copying, concurrency control, rollback, authorization, and immutable published records.\n- **Deliverable:** Controlled Safety Benchmark Publish action.\n- **Strict technical prerequisites:** OBJ-14\n- **Blocked status:** Blocked until OBJ-14 is complete.\n- **Recommended implementer role:** Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** This is moderately complex publish automation using the already established version pattern.\n- **Acceptance criteria:** Valid publication creates one complete version; overlaps or missing data create none; published data cannot be edited.\n- **Specification references:** Section 11.2; Section 21.2\n- **Assumptions and open questions:** None.",
+      "fields": {
+        "id": "AUT-15",
+        "title": "Configure Safety Benchmark Publish",
+        "category": "Action Handler configuration",
+        "objective": "Publish complete benchmark versions with controlled effective dates.",
+        "scope": "Configure required-field validation, stable benchmark uniqueness, effective-range checks, deterministic version numbering, full field copying, concurrency control, rollback, authorization, and immutable published records.",
+        "deliverable": "Controlled Safety Benchmark Publish action.",
+        "prerequisites": "OBJ-14",
+        "blockedStatus": "Blocked until OBJ-14 is complete.",
+        "implementer": "Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "This is moderately complex publish automation using the already established version pattern.",
+        "accept": "Valid publication creates one complete version; overlaps or missing data create none; published data cannot be edited.",
+        "refs": "Section 11.2; Section 21.2",
+        "assumptions": "None."
+      }
+    },
+    {
+      "originalId": "OBJ-16",
+      "validatorId": "IMP-16",
+      "markdown": "### OBJ-16 — Create Run and Scorecard Objects\n\n- **Task ID:** OBJ-16\n- **Title:** Create Run and Scorecard Objects\n- **Category:** Object configuration\n- **Objective:** Establish the operational parent and supplier-period snapshot records.\n- **Detailed scope:** Create `Supplier Scorecard Run` and `Supplier Scorecard` with all specified scalar fields, supplier/program relationships, snapshots, inverse grids, Source Scorecards M:N, publication metadata, and uniqueness for Program occurrence and Run/Supplier.\n- **Deliverable:** Complete Run and Scorecard object/field/relationship configuration.\n- **Strict technical prerequisites:** OBJ-05, OBJ-10, OBJ-13\n- **Blocked status:** Blocked until OBJ-05, OBJ-10, and OBJ-13 are complete.\n- **Recommended implementer role:** Senior Associate Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** Snapshot and rollup relationships make this more consequential than routine object creation.\n- **Acceptance criteria:** Every Section 12.1/12.2 field exists; uniqueness is enforceable; ranks are not persisted; owned inverse grids do not duplicate relationships.\n- **Specification references:** Sections 4.4, 12.1, 12.2\n- **Assumptions and open questions:** Total calculations are configured in AUT-20.",
+      "fields": {
+        "id": "OBJ-16",
+        "title": "Create Run and Scorecard Objects",
+        "category": "Object configuration",
+        "objective": "Establish the operational parent and supplier-period snapshot records.",
+        "scope": "Create `Supplier Scorecard Run` and `Supplier Scorecard` with all specified scalar fields, supplier/program relationships, snapshots, inverse grids, Source Scorecards M:N, publication metadata, and uniqueness for Program occurrence and Run/Supplier.",
+        "deliverable": "Complete Run and Scorecard object/field/relationship configuration.",
+        "prerequisites": "OBJ-05, OBJ-10, OBJ-13",
+        "blockedStatus": "Blocked until OBJ-05, OBJ-10, and OBJ-13 are complete.",
+        "implementer": "Senior Associate Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "Snapshot and rollup relationships make this more consequential than routine object creation.",
+        "accept": "Every Section 12.1/12.2 field exists; uniqueness is enforceable; ranks are not persisted; owned inverse grids do not duplicate relationships.",
+        "refs": "Sections 4.4, 12.1, 12.2",
+        "assumptions": "Total calculations are configured in AUT-20."
+      }
+    },
+    {
+      "originalId": "OBJ-17",
+      "validatorId": "IMP-17",
+      "markdown": "### OBJ-17 — Create KPI Value and Contribution Task Objects\n\n- **Task ID:** OBJ-17\n- **Title:** Create KPI Value and Contribution Task Objects\n- **Category:** Object configuration\n- **Objective:** Establish operational KPI results and consolidated contributor work records.\n- **Detailed scope:** Create `Scorecard KPI Value` and `Scorecard Contribution Task` with typed values, points, applicability, confirmation, exception, override, source evidence, catalogue relationships, contributor assignment, inverse grids, and required uniqueness rules.\n- **Deliverable:** Complete KPI Value and Contribution Task object/field configuration.\n- **Strict technical prerequisites:** CFG-03, OBJ-07, OBJ-14, OBJ-16\n- **Blocked status:** Blocked until CFG-03, OBJ-07, OBJ-14, and OBJ-16 are complete.\n- **Recommended implementer role:** Senior Associate Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** The configuration is field-heavy and security-sensitive but automation is handled separately.\n- **Acceptance criteria:** Every Section 12.3/12.4 field exists with correct ownership, editability, inverse suppression, and unique keys; no custom status field is added.\n- **Specification references:** Sections 4.4, 12.3, 12.4\n- **Assumptions and open questions:** Executable calculation syntax is not set in this task.",
+      "fields": {
+        "id": "OBJ-17",
+        "title": "Create KPI Value and Contribution Task Objects",
+        "category": "Object configuration",
+        "objective": "Establish operational KPI results and consolidated contributor work records.",
+        "scope": "Create `Scorecard KPI Value` and `Scorecard Contribution Task` with typed values, points, applicability, confirmation, exception, override, source evidence, catalogue relationships, contributor assignment, inverse grids, and required uniqueness rules.",
+        "deliverable": "Complete KPI Value and Contribution Task object/field configuration.",
+        "prerequisites": "CFG-03, OBJ-07, OBJ-14, OBJ-16",
+        "blockedStatus": "Blocked until CFG-03, OBJ-07, OBJ-14, and OBJ-16 are complete.",
+        "implementer": "Senior Associate Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "The configuration is field-heavy and security-sensitive but automation is handled separately.",
+        "accept": "Every Section 12.3/12.4 field exists with correct ownership, editability, inverse suppression, and unique keys; no custom status field is added.",
+        "refs": "Sections 4.4, 12.3, 12.4",
+        "assumptions": "Executable calculation syntax is not set in this task."
+      }
+    },
+    {
+      "originalId": "WFL-18",
+      "validatorId": "IMP-18",
+      "markdown": "### WFL-18 — Configure the Scorecard Workflow Skeletons\n\n- **Task ID:** WFL-18\n- **Title:** Configure the Scorecard Workflow Skeletons\n- **Category:** Workflow configuration\n- **Objective:** Establish stable stages, statuses, responsibility, due-date fields, and basic transitions for stage-aware configuration.\n- **Detailed scope:** Configure simple workflows for Supplier Scorecard Run, Supplier Scorecard, and Scorecard Contribution Task using the stages and terminal outcomes in the specification, with basic responsibility and transition actions only.\n- **Deliverable:** Three workflow skeletons with stable stage system names.\n- **Strict technical prerequisites:** OBJ-16, OBJ-17\n- **Blocked status:** Blocked until OBJ-16 and OBJ-17 are complete.\n- **Recommended implementer role:** Associate Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** First-pass stages and straightforward responsibility are an established configuration pattern.\n- **Acceptance criteria:** Stages/outcomes exactly match Section 14; native stage/status is authoritative; no custom workflow-state field exists.\n- **Specification references:** Sections 14.1–14.3\n- **Assumptions and open questions:** Full validation and calculated behavior are deferred to WFL-24.",
+      "fields": {
+        "id": "WFL-18",
+        "title": "Configure the Scorecard Workflow Skeletons",
+        "category": "Workflow configuration",
+        "objective": "Establish stable stages, statuses, responsibility, due-date fields, and basic transitions for stage-aware configuration.",
+        "scope": "Configure simple workflows for Supplier Scorecard Run, Supplier Scorecard, and Scorecard Contribution Task using the stages and terminal outcomes in the specification, with basic responsibility and transition actions only.",
+        "deliverable": "Three workflow skeletons with stable stage system names.",
+        "prerequisites": "OBJ-16, OBJ-17",
+        "blockedStatus": "Blocked until OBJ-16 and OBJ-17 are complete.",
+        "implementer": "Associate Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "First-pass stages and straightforward responsibility are an established configuration pattern.",
+        "accept": "Stages/outcomes exactly match Section 14; native stage/status is authoritative; no custom workflow-state field exists.",
+        "refs": "Sections 14.1–14.3",
+        "assumptions": "Full validation and calculated behavior are deferred to WFL-24."
+      }
+    },
+    {
+      "originalId": "FRM-19",
+      "validatorId": "IMP-19",
+      "markdown": "### FRM-19 — Configure Operational Scorecard Forms\n\n- **Task ID:** FRM-19\n- **Title:** Configure Operational Scorecard Forms\n- **Category:** Form configuration\n- **Objective:** Provide responsive, stage-aware forms for Run coordination, contribution, review, correction, and published viewing.\n- **Detailed scope:** Configure Run, Scorecard, KPI Value, and Contribution Task forms and grids; typed-value visibility; stage containers; contributor editing; internal-only exception/override controls; source links; read-only publication views; and responsive connected-browser behavior.\n- **Deliverable:** Complete responsive operational form set.\n- **Strict technical prerequisites:** OBJ-17, WFL-18\n- **Blocked status:** Blocked until OBJ-17 and WFL-18 are complete.\n- **Recommended implementer role:** Senior Associate Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** Multiple large stage-aware forms and sensitive conditional controls require independent judgment.\n- **Acceptance criteria:** Only the matching typed field appears; stage/edit rules work; supplier views exclude internal rationale and controls; published views are read only.\n- **Specification references:** Sections 12, 14, 16.3\n- **Assumptions and open questions:** No native-mobile/offline forms are configured.",
+      "fields": {
+        "id": "FRM-19",
+        "title": "Configure Operational Scorecard Forms",
+        "category": "Form configuration",
+        "objective": "Provide responsive, stage-aware forms for Run coordination, contribution, review, correction, and published viewing.",
+        "scope": "Configure Run, Scorecard, KPI Value, and Contribution Task forms and grids; typed-value visibility; stage containers; contributor editing; internal-only exception/override controls; source links; read-only publication views; and responsive connected-browser behavior.",
+        "deliverable": "Complete responsive operational form set.",
+        "prerequisites": "OBJ-17, WFL-18",
+        "blockedStatus": "Blocked until OBJ-17 and WFL-18 are complete.",
+        "implementer": "Senior Associate Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "Multiple large stage-aware forms and sensitive conditional controls require independent judgment.",
+        "accept": "Only the matching typed field appears; stage/edit rules work; supplier views exclude internal rationale and controls; published views are read only.",
+        "refs": "Sections 12, 14, 16.3",
+        "assumptions": "No native-mobile/offline forms are configured."
+      }
+    },
+    {
+      "originalId": "AUT-20",
+      "validatorId": "IMP-20",
+      "markdown": "### AUT-20 — Configure KPI Value Calculations\n\n- **Task ID:** AUT-20\n- **Title:** Configure KPI Value Calculations\n- **Category:** Action Handler configuration\n- **Objective:** Maintain effective points, completeness, provenance, confirmation evidence, and Scorecard totals when KPI values change.\n- **Detailed scope:** Configure input recalculation, confirmation metadata, publication-exception and override handlers, `Value Origin` assignment, parent total/category recalculation, recursion protection, retry behavior, and `Last Calculated At`.\n- **Deliverable:** Verified KPI Value and parent-total calculation handlers.\n- **Strict technical prerequisites:** OBJ-17, FRM-19\n- **Blocked status:** Blocked by OBJ-17 and FRM-19; final mechanism depends on approved exception policy and tenant calculation results.\n- **Recommended implementer role:** Senior Consultant\n- **Recommended reviewer/approver role:** Principal Consultant\n- **Role rationale:** Cross-grid totals, recursion, retry, privileged changes, and scoring consequences require senior authority.\n- **Acceptance criteria:** All specified input combinations produce correct effective points/maxima, origin, completeness, metadata, totals, null-denominator behavior, and no recursive loop.\n- **Specification references:** Sections 12.2–12.3, 14.4, 15.2–15.4\n- **Assumptions and open questions:** Approved scoring ranges and exception policy are external inputs.",
+      "fields": {
+        "id": "AUT-20",
+        "title": "Configure KPI Value Calculations",
+        "category": "Action Handler configuration",
+        "objective": "Maintain effective points, completeness, provenance, confirmation evidence, and Scorecard totals when KPI values change.",
+        "scope": "Configure input recalculation, confirmation metadata, publication-exception and override handlers, `Value Origin` assignment, parent total/category recalculation, recursion protection, retry behavior, and `Last Calculated At`.",
+        "deliverable": "Verified KPI Value and parent-total calculation handlers.",
+        "prerequisites": "OBJ-17, FRM-19",
+        "blockedStatus": "Blocked by OBJ-17 and FRM-19; final mechanism depends on approved exception policy and tenant calculation results.",
+        "implementer": "Senior Consultant",
+        "reviewer": "Principal Consultant",
+        "rationale": "Cross-grid totals, recursion, retry, privileged changes, and scoring consequences require senior authority.",
+        "accept": "All specified input combinations produce correct effective points/maxima, origin, completeness, metadata, totals, null-denominator behavior, and no recursive loop.",
+        "refs": "Sections 12.2–12.3, 14.4, 15.2–15.4",
+        "assumptions": "Approved scoring ranges and exception policy are external inputs."
+      }
+    },
+    {
+      "originalId": "AUT-21",
+      "validatorId": "IMP-21",
+      "markdown": "### AUT-21 — Configure Scheduled Scorecard Generation\n\n- **Task ID:** AUT-21\n- **Title:** Configure Scheduled Scorecard Generation\n- **Category:** Event Service configuration\n- **Objective:** Generate each due Program occurrence exactly once, including delayed occurrences, supplier snapshots, KPI values, and contribution tasks.\n- **Detailed scope:** Configure cadence evaluation, period boundaries, Generation Delay gate, Program/KPI version resolution, participation and status checks, rollup selection, retry-safe graph creation by specified uniqueness keys, failure ownership, and transition to Data Entry only after complete generation.\n- **Deliverable:** Scheduled generation service with retry-safe occurrence processing.\n- **Strict technical prerequisites:** AUT-09, AUT-12, OBJ-13, OBJ-17, WFL-18\n- **Blocked status:** Blocked by all prerequisites and by approved cadence/calendar, operating-model, status-capability, and tenant scheduler results.\n- **Recommended implementer role:** Senior Consultant\n- **Recommended reviewer/approver role:** Principal Consultant\n- **Role rationale:** Multi-stage generation, delay gating, idempotency, version resolution, rollups, and failure recovery are advanced automation.\n- **Acceptance criteria:** Repeated execution creates no duplicates; delayed occurrences preserve the original anchor; missing versions/capability denials create no unauthorized Scorecard; partial work resumes safely.\n- **Specification references:** Sections 9.6, 10.3, 13.1, 13.5, 21.2\n- **Assumptions and open questions:** Parent rollup is configured only when externally approved.",
+      "fields": {
+        "id": "AUT-21",
+        "title": "Configure Scheduled Scorecard Generation",
+        "category": "Event Service configuration",
+        "objective": "Generate each due Program occurrence exactly once, including delayed occurrences, supplier snapshots, KPI values, and contribution tasks.",
+        "scope": "Configure cadence evaluation, period boundaries, Generation Delay gate, Program/KPI version resolution, participation and status checks, rollup selection, retry-safe graph creation by specified uniqueness keys, failure ownership, and transition to Data Entry only after complete generation.",
+        "deliverable": "Scheduled generation service with retry-safe occurrence processing.",
+        "prerequisites": "AUT-09, AUT-12, OBJ-13, OBJ-17, WFL-18",
+        "blockedStatus": "Blocked by all prerequisites and by approved cadence/calendar, operating-model, status-capability, and tenant scheduler results.",
+        "implementer": "Senior Consultant",
+        "reviewer": "Principal Consultant",
+        "rationale": "Multi-stage generation, delay gating, idempotency, version resolution, rollups, and failure recovery are advanced automation.",
+        "accept": "Repeated execution creates no duplicates; delayed occurrences preserve the original anchor; missing versions/capability denials create no unauthorized Scorecard; partial work resumes safely.",
+        "refs": "Sections 9.6, 10.3, 13.1, 13.5, 21.2",
+        "assumptions": "Parent rollup is configured only when externally approved."
+      }
+    },
+    {
+      "originalId": "AUT-22",
+      "validatorId": "IMP-22",
+      "markdown": "### AUT-22 — Configure KPI Initialization and Refresh\n\n- **Task ID:** AUT-22\n- **Title:** Configure KPI Initialization and Refresh\n- **Category:** Service and action configuration\n- **Objective:** Initialize operational KPI values and refresh one governed Query result without losing historical evidence or overrides.\n- **Detailed scope:** Configure no-default, static-default, and prior-period initialization; query capture metadata; open-period refresh; privileged targeted post-publication refresh; source evidence updates; total recalculation; and safeguards against background refresh of Published Scorecards.\n- **Deliverable:** Initialization component and targeted Refresh KPI Result action.\n- **Strict technical prerequisites:** AUT-20, AUT-21\n- **Blocked status:** Blocked by AUT-20 and AUT-21; post-publication behavior depends on the completed-parent capability result.\n- **Recommended implementer role:** Senior Consultant\n- **Recommended reviewer/approver role:** Principal Consultant\n- **Role rationale:** Historical carry-forward, privileged completed-record correction, and evidence preservation are high-consequence automation.\n- **Acceptance criteria:** Each initialization Code behaves as specified; prior override rationale is not copied; refresh affects one KPI only, preserves override, recalculates totals, and cannot be selected by background jobs after publication.\n- **Specification references:** Sections 13.2, 13.3, 15.3\n- **Assumptions and open questions:** Source-specific calculations are added by INT-28–INT-34.",
+      "fields": {
+        "id": "AUT-22",
+        "title": "Configure KPI Initialization and Refresh",
+        "category": "Service and action configuration",
+        "objective": "Initialize operational KPI values and refresh one governed Query result without losing historical evidence or overrides.",
+        "scope": "Configure no-default, static-default, and prior-period initialization; query capture metadata; open-period refresh; privileged targeted post-publication refresh; source evidence updates; total recalculation; and safeguards against background refresh of Published Scorecards.",
+        "deliverable": "Initialization component and targeted Refresh KPI Result action.",
+        "prerequisites": "AUT-20, AUT-21",
+        "blockedStatus": "Blocked by AUT-20 and AUT-21; post-publication behavior depends on the completed-parent capability result.",
+        "implementer": "Senior Consultant",
+        "reviewer": "Principal Consultant",
+        "rationale": "Historical carry-forward, privileged completed-record correction, and evidence preservation are high-consequence automation.",
+        "accept": "Each initialization Code behaves as specified; prior override rationale is not copied; refresh affects one KPI only, preserves override, recalculates totals, and cannot be selected by background jobs after publication.",
+        "refs": "Sections 13.2, 13.3, 15.3",
+        "assumptions": "Source-specific calculations are added by INT-28–INT-34."
+      }
+    },
+    {
+      "originalId": "AUT-23",
+      "validatorId": "IMP-23",
+      "markdown": "### AUT-23 — Configure Entry Cutoff Processing\n\n- **Task ID:** AUT-23\n- **Title:** Configure Entry Cutoff Processing\n- **Category:** Event Service configuration\n- **Objective:** Apply approved supplier-nonresponse behavior while keeping missing internal input visible and controlled.\n- **Detailed scope:** Configure the Entry Due At service to set only eligible supplier nonresponses to zero, stamp the governed origin, leave internal gaps unresolved, respect optional values, and preserve retry-safe execution evidence.\n- **Deliverable:** Scheduled entry-cutoff service.\n- **Strict technical prerequisites:** AUT-20, AUT-21\n- **Blocked status:** Blocked by AUT-20 and AUT-21 and by approved exception/nonresponse policy.\n- **Recommended implementer role:** Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** The service is bounded but changes scoring outcomes and must distinguish supplier from internal responsibility.\n- **Acceptance criteria:** Only configured supplier nonresponses become zero; internal gaps remain incomplete; repeat execution is safe; optional blanks remain distinguishable.\n- **Specification references:** Sections 13.4, 15.1\n- **Assumptions and open questions:** None.",
+      "fields": {
+        "id": "AUT-23",
+        "title": "Configure Entry Cutoff Processing",
+        "category": "Event Service configuration",
+        "objective": "Apply approved supplier-nonresponse behavior while keeping missing internal input visible and controlled.",
+        "scope": "Configure the Entry Due At service to set only eligible supplier nonresponses to zero, stamp the governed origin, leave internal gaps unresolved, respect optional values, and preserve retry-safe execution evidence.",
+        "deliverable": "Scheduled entry-cutoff service.",
+        "prerequisites": "AUT-20, AUT-21",
+        "blockedStatus": "Blocked by AUT-20 and AUT-21 and by approved exception/nonresponse policy.",
+        "implementer": "Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "The service is bounded but changes scoring outcomes and must distinguish supplier from internal responsibility.",
+        "accept": "Only configured supplier nonresponses become zero; internal gaps remain incomplete; repeat execution is safe; optional blanks remain distinguishable.",
+        "refs": "Sections 13.4, 15.1",
+        "assumptions": "None."
+      }
+    },
+    {
+      "originalId": "WFL-24",
+      "validatorId": "IMP-24",
+      "markdown": "### WFL-24 — Complete the Scorecard Workflows\n\n- **Task ID:** WFL-24\n- **Title:** Complete the Scorecard Workflows\n- **Category:** Workflow configuration\n- **Objective:** Enforce complete data entry, review-window, publication-ready, contribution-completion, return, cancellation, and due-date behavior.\n- **Detailed scope:** Add full validation, error handling, calculated responsibility and due dates, hidden parent-driven child transitions, Open/Close Review behavior, contribution completion/reopen rules, cancellation cascade, and native reminders.\n- **Deliverable:** Completed Run, Scorecard, and Contribution Task workflows.\n- **Strict technical prerequisites:** WFL-18, AUT-20\n- **Blocked status:** Blocked by WFL-18 and AUT-20 and by named groups, calendar, reminder, and exception-policy inputs.\n- **Recommended implementer role:** Senior Consultant\n- **Recommended reviewer/approver role:** Principal Consultant\n- **Role rationale:** Coordinated parent/child workflow, error recovery, and cancellation consequences require senior authority.\n- **Acceptance criteria:** Review opens only when data is complete/excepted; one window is maintained; contribution completion validates linked values; cancellation is retry-safe and stops reminders.\n- **Specification references:** Sections 14.1–14.3, 15.1\n- **Assumptions and open questions:** Silence at review deadline remains consent; no review-response object is added.",
+      "fields": {
+        "id": "WFL-24",
+        "title": "Complete the Scorecard Workflows",
+        "category": "Workflow configuration",
+        "objective": "Enforce complete data entry, review-window, publication-ready, contribution-completion, return, cancellation, and due-date behavior.",
+        "scope": "Add full validation, error handling, calculated responsibility and due dates, hidden parent-driven child transitions, Open/Close Review behavior, contribution completion/reopen rules, cancellation cascade, and native reminders.",
+        "deliverable": "Completed Run, Scorecard, and Contribution Task workflows.",
+        "prerequisites": "WFL-18, AUT-20",
+        "blockedStatus": "Blocked by WFL-18 and AUT-20 and by named groups, calendar, reminder, and exception-policy inputs.",
+        "implementer": "Senior Consultant",
+        "reviewer": "Principal Consultant",
+        "rationale": "Coordinated parent/child workflow, error recovery, and cancellation consequences require senior authority.",
+        "accept": "Review opens only when data is complete/excepted; one window is maintained; contribution completion validates linked values; cancellation is retry-safe and stops reminders.",
+        "refs": "Sections 14.1–14.3, 15.1",
+        "assumptions": "Silence at review deadline remains consent; no review-response object is added."
+      }
+    },
+    {
+      "originalId": "AUT-25",
+      "validatorId": "IMP-25",
+      "markdown": "### AUT-25 — Configure Publication and Notifications\n\n- **Task ID:** AUT-25\n- **Title:** Configure Publication and Notifications\n- **Category:** Action Handler configuration\n- **Objective:** Publish a complete Run safely and notify only authorized internal and supplier recipients without duplicates.\n- **Detailed scope:** Configure final validation, source-link safety checks, child and parent publication completion, publication stamps, recipient-role resolution, broad review notification, supplier publication notification, rollback or retry-safe partial-failure handling, and notification deduplication.\n- **Deliverable:** Publish Scorecards action and specified notification behavior.\n- **Strict technical prerequisites:** AUT-20, WFL-24\n- **Blocked status:** Blocked by AUT-20 and WFL-24 and by approved exception policy, recipient/security decisions, and tenant notification/transaction results.\n- **Recommended implementer role:** Senior Consultant\n- **Recommended reviewer/approver role:** Principal Consultant\n- **Role rationale:** Atomic multi-record publication and external recipient resolution carry substantial security and recovery consequences.\n- **Acceptance criteria:** All required validation passes before publication; partial failure is rolled back or resumes safely; unresolved required recipients hold only the affected publication; notifications are not duplicated.\n- **Specification references:** Sections 14.1, 16.2, 21.2\n- **Assumptions and open questions:** No supplier acknowledgement or dispute workflow is configured.",
+      "fields": {
+        "id": "AUT-25",
+        "title": "Configure Publication and Notifications",
+        "category": "Action Handler configuration",
+        "objective": "Publish a complete Run safely and notify only authorized internal and supplier recipients without duplicates.",
+        "scope": "Configure final validation, source-link safety checks, child and parent publication completion, publication stamps, recipient-role resolution, broad review notification, supplier publication notification, rollback or retry-safe partial-failure handling, and notification deduplication.",
+        "deliverable": "Publish Scorecards action and specified notification behavior.",
+        "prerequisites": "AUT-20, WFL-24",
+        "blockedStatus": "Blocked by AUT-20 and WFL-24 and by approved exception policy, recipient/security decisions, and tenant notification/transaction results.",
+        "implementer": "Senior Consultant",
+        "reviewer": "Principal Consultant",
+        "rationale": "Atomic multi-record publication and external recipient resolution carry substantial security and recovery consequences.",
+        "accept": "All required validation passes before publication; partial failure is rolled back or resumes safely; unresolved required recipients hold only the affected publication; notifications are not duplicated.",
+        "refs": "Sections 14.1, 16.2, 21.2",
+        "assumptions": "No supplier acknowledgement or dispute workflow is configured."
+      }
+    },
+    {
+      "originalId": "SEC-26",
+      "validatorId": "IMP-26",
+      "markdown": "### SEC-26 — Configure Supplier Scorecard Security\n\n- **Task ID:** SEC-26\n- **Title:** Configure Supplier Scorecard Security\n- **Category:** Security configuration\n- **Objective:** Restrict administration, contribution, aggregate viewing, corrections, publication, and supplier access while preserving source security.\n- **Detailed scope:** Configure application/object/record/workflow permissions for administrators, coordinators, reviewers, contributors, correction users, internal viewers, and supplier users; enforce supplier-entity scope, parent/child access rules, internal-only fields, read-only published results, and no access expansion from Group assignment.\n- **Deliverable:** Complete scorecard security configuration across all surfaces.\n- **Strict technical prerequisites:** FRM-19, WFL-24, AUT-25\n- **Blocked status:** Blocked by FRM-19, WFL-24, and AUT-25 and by approved groups, entity-scope, correction-role, and recipient decisions.\n- **Recommended implementer role:** Senior Consultant\n- **Recommended reviewer/approver role:** Principal Consultant\n- **Role rationale:** Nuanced cross-object, workflow, source, parent/facility, and supplier security requires senior technical authority.\n- **Acceptance criteria:** Contributors see only assigned/authorized values; Facility users cannot see siblings; parent-authorized access follows policy; suppliers see published results only; source links never grant source access.\n- **Specification references:** Sections 16.1–16.2; Section 21.1\n- **Assumptions and open questions:** Formal penetration/security testing is outside this plan.",
+      "fields": {
+        "id": "SEC-26",
+        "title": "Configure Supplier Scorecard Security",
+        "category": "Security configuration",
+        "objective": "Restrict administration, contribution, aggregate viewing, corrections, publication, and supplier access while preserving source security.",
+        "scope": "Configure application/object/record/workflow permissions for administrators, coordinators, reviewers, contributors, correction users, internal viewers, and supplier users; enforce supplier-entity scope, parent/child access rules, internal-only fields, read-only published results, and no access expansion from Group assignment.",
+        "deliverable": "Complete scorecard security configuration across all surfaces.",
+        "prerequisites": "FRM-19, WFL-24, AUT-25",
+        "blockedStatus": "Blocked by FRM-19, WFL-24, and AUT-25 and by approved groups, entity-scope, correction-role, and recipient decisions.",
+        "implementer": "Senior Consultant",
+        "reviewer": "Principal Consultant",
+        "rationale": "Nuanced cross-object, workflow, source, parent/facility, and supplier security requires senior technical authority.",
+        "accept": "Contributors see only assigned/authorized values; Facility users cannot see siblings; parent-authorized access follows policy; suppliers see published results only; source links never grant source access.",
+        "refs": "Sections 16.1–16.2; Section 21.1",
+        "assumptions": "Formal penetration/security testing is outside this plan."
+      }
+    },
+    {
+      "originalId": "RPT-27",
+      "validatorId": "IMP-27",
+      "markdown": "### RPT-27 — Configure Scorecard Views and Reports\n\n- **Task ID:** RPT-27\n- **Title:** Configure Scorecard Views and Reports\n- **Category:** Reporting and view configuration\n- **Objective:** Provide operational oversight, published detail, profile drilldown, category results, trends, and on-demand authorized ranking.\n- **Detailed scope:** Configure responsive entry/review/admin/published views, supplier-profile grids, overdue and completeness reports, snapshot-aware KPI reporting, category aggregation, current-measure workspace links, and secured overall/commodity rank calculation without persisted rank fields.\n- **Deliverable:** Native operational and published reports/views with profile navigation and on-demand ranks.\n- **Strict technical prerequisites:** AUT-20, SEC-26\n- **Blocked status:** Blocked by AUT-20 and SEC-26 and by approved ranking rules and tenant report/query results.\n- **Recommended implementer role:** Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** Cross-object reporting and secured query ranking require broader technical judgment but not bespoke UI architecture.\n- **Acceptance criteria:** Reports distinguish all value origins/states; ranks use only authorized published peers; profile drilldown performs without loading all history; no Power BI dataset is created.\n- **Specification references:** Sections 15.4–15.5, 16.3\n- **Assumptions and open questions:** Power BI and normalized staging remain unapproved and out of scope.",
+      "fields": {
+        "id": "RPT-27",
+        "title": "Configure Scorecard Views and Reports",
+        "category": "Reporting and view configuration",
+        "objective": "Provide operational oversight, published detail, profile drilldown, category results, trends, and on-demand authorized ranking.",
+        "scope": "Configure responsive entry/review/admin/published views, supplier-profile grids, overdue and completeness reports, snapshot-aware KPI reporting, category aggregation, current-measure workspace links, and secured overall/commodity rank calculation without persisted rank fields.",
+        "deliverable": "Native operational and published reports/views with profile navigation and on-demand ranks.",
+        "prerequisites": "AUT-20, SEC-26",
+        "blockedStatus": "Blocked by AUT-20 and SEC-26 and by approved ranking rules and tenant report/query results.",
+        "implementer": "Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "Cross-object reporting and secured query ranking require broader technical judgment but not bespoke UI architecture.",
+        "accept": "Reports distinguish all value origins/states; ranks use only authorized published peers; profile drilldown performs without loading all history; no Power BI dataset is created.",
+        "refs": "Sections 15.4–15.5, 16.3",
+        "assumptions": "Power BI and normalized staging remain unapproved and out of scope."
+      }
+    },
+    {
+      "originalId": "INT-28",
+      "validatorId": "IMP-28",
+      "markdown": "### INT-28 — Configure Supplier Survey Safety Capture\n\n- **Task ID:** INT-28\n- **Title:** Configure Supplier Survey Safety Capture\n- **Category:** Integration configuration\n- **Objective:** Capture LTIR, TRIR, and Safety Kaizen results from the authoritative Supplier Survey model with exact benchmark evidence.\n- **Detailed scope:** Configure supplier/period survey matching, completed-survey selection, NAICS/metric benchmark-version resolution, points calculation, nonresponse handling, Kaizen carry-forward, source references, and safe refresh behavior.\n- **Deliverable:** Governed safety Query KPI bindings and carry-forward behavior.\n- **Strict technical prerequisites:** AUT-15, AUT-22, SEC-26\n- **Blocked status:** Blocked by AUT-15, AUT-22, and SEC-26 and by approved survey identifiers/schedules, safety scoring, NAICS, and benchmark governance.\n- **Recommended implementer role:** Senior Consultant\n- **Recommended reviewer/approver role:** Principal Consultant\n- **Role rationale:** Cross-component effective dating, scoring, evidence, and nonresponse handling are consequential.\n- **Acceptance criteria:** Exact completed survey and benchmark version are stored; missing NAICS/benchmark is reported rather than guessed; Kaizen carry-forward follows the approved period rule.\n- **Specification references:** Sections 11, 13.4, 17\n- **Assumptions and open questions:** Supplier Survey implementation is supplied by its authoritative specification.",
+      "fields": {
+        "id": "INT-28",
+        "title": "Configure Supplier Survey Safety Capture",
+        "category": "Integration configuration",
+        "objective": "Capture LTIR, TRIR, and Safety Kaizen results from the authoritative Supplier Survey model with exact benchmark evidence.",
+        "scope": "Configure supplier/period survey matching, completed-survey selection, NAICS/metric benchmark-version resolution, points calculation, nonresponse handling, Kaizen carry-forward, source references, and safe refresh behavior.",
+        "deliverable": "Governed safety Query KPI bindings and carry-forward behavior.",
+        "prerequisites": "AUT-15, AUT-22, SEC-26",
+        "blockedStatus": "Blocked by AUT-15, AUT-22, and SEC-26 and by approved survey identifiers/schedules, safety scoring, NAICS, and benchmark governance.",
+        "implementer": "Senior Consultant",
+        "reviewer": "Principal Consultant",
+        "rationale": "Cross-component effective dating, scoring, evidence, and nonresponse handling are consequential.",
+        "accept": "Exact completed survey and benchmark version are stored; missing NAICS/benchmark is reported rather than guessed; Kaizen carry-forward follows the approved period rule.",
+        "refs": "Sections 11, 13.4, 17",
+        "assumptions": "Supplier Survey implementation is supplied by its authoritative specification."
+      }
+    },
+    {
+      "originalId": "INT-29",
+      "validatorId": "IMP-29",
+      "markdown": "### INT-29 — Configure the PPM Query KPI\n\n- **Task ID:** INT-29\n- **Title:** Configure the PPM Query KPI\n- **Category:** Integration configuration\n- **Objective:** Calculate the approved PPM score from chargeable supplier NCR quantities and consumed parts for the same supplier and period.\n- **Detailed scope:** Configure the governed source report/query binding, supplier and period mapping, included dispositions, parts-consumption input, aggregation and points logic, empty/failure behavior, correction handling, evidence link, and security-preserving drilldown.\n- **Deliverable:** One governed PPM Query KPI source integration.\n- **Strict technical prerequisites:** AUT-22, SEC-26\n- **Blocked status:** Blocked by AUT-22 and SEC-26 and by the complete PPM source contract.\n- **Recommended implementer role:** Senior Consultant\n- **Recommended reviewer/approver role:** Principal Consultant\n- **Role rationale:** Multi-source calculation and supplier-period reconciliation have substantial architectural and scoring consequences.\n- **Acceptance criteria:** Numerator/denominator use approved sources and period; missing/failure states are explicit; correction and refresh are safe; drilldown reapplies source security.\n- **Specification references:** Sections 17, 22.11\n- **Assumptions and open questions:** Parts-consumption transfer method is externally supplied.",
+      "fields": {
+        "id": "INT-29",
+        "title": "Configure the PPM Query KPI",
+        "category": "Integration configuration",
+        "objective": "Calculate the approved PPM score from chargeable supplier NCR quantities and consumed parts for the same supplier and period.",
+        "scope": "Configure the governed source report/query binding, supplier and period mapping, included dispositions, parts-consumption input, aggregation and points logic, empty/failure behavior, correction handling, evidence link, and security-preserving drilldown.",
+        "deliverable": "One governed PPM Query KPI source integration.",
+        "prerequisites": "AUT-22, SEC-26",
+        "blockedStatus": "Blocked by AUT-22 and SEC-26 and by the complete PPM source contract.",
+        "implementer": "Senior Consultant",
+        "reviewer": "Principal Consultant",
+        "rationale": "Multi-source calculation and supplier-period reconciliation have substantial architectural and scoring consequences.",
+        "accept": "Numerator/denominator use approved sources and period; missing/failure states are explicit; correction and refresh are safe; drilldown reapplies source security.",
+        "refs": "Sections 17, 22.11",
+        "assumptions": "Parts-consumption transfer method is externally supplied."
+      }
+    },
+    {
+      "originalId": "INT-30",
+      "validatorId": "IMP-30",
+      "markdown": "### INT-30 — Configure the Response Timeliness Query KPI\n\n- **Task ID:** INT-30\n- **Title:** Configure the Response Timeliness Query KPI\n- **Category:** Integration configuration\n- **Objective:** Score supplier response timeliness without charging internal review delay to the supplier.\n- **Detailed scope:** Configure the approved response source, supplier and period mapping, supplier submission timestamp, applicable due date, exclusions, scoring logic, correction handling, empty/failure behavior, and source-security-safe evidence link.\n- **Deliverable:** One governed response-timeliness Query KPI integration.\n- **Strict technical prerequisites:** AUT-22, SEC-26\n- **Blocked status:** Blocked by AUT-22 and SEC-26 and by the complete response-timeliness source contract.\n- **Recommended implementer role:** Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** This is a bounded report-fed source once its business contract is supplied.\n- **Acceptance criteria:** Scoring uses supplier submission and applicable due date only; internal review time is excluded; correction, failure, and evidence behavior match the source contract.\n- **Specification references:** Section 17\n- **Assumptions and open questions:** None.",
+      "fields": {
+        "id": "INT-30",
+        "title": "Configure the Response Timeliness Query KPI",
+        "category": "Integration configuration",
+        "objective": "Score supplier response timeliness without charging internal review delay to the supplier.",
+        "scope": "Configure the approved response source, supplier and period mapping, supplier submission timestamp, applicable due date, exclusions, scoring logic, correction handling, empty/failure behavior, and source-security-safe evidence link.",
+        "deliverable": "One governed response-timeliness Query KPI integration.",
+        "prerequisites": "AUT-22, SEC-26",
+        "blockedStatus": "Blocked by AUT-22 and SEC-26 and by the complete response-timeliness source contract.",
+        "implementer": "Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "This is a bounded report-fed source once its business contract is supplied.",
+        "accept": "Scoring uses supplier submission and applicable due date only; internal review time is excluded; correction, failure, and evidence behavior match the source contract.",
+        "refs": "Section 17",
+        "assumptions": "None."
+      }
+    },
+    {
+      "originalId": "INT-31",
+      "validatorId": "IMP-31",
+      "markdown": "### INT-31 — Configure the Scrap Query KPI\n\n- **Task ID:** INT-31\n- **Title:** Configure the Scrap Query KPI\n- **Category:** Integration configuration\n- **Objective:** Supply approved scrap results to Scorecards while leaving debit settlement outside Intelex.\n- **Detailed scope:** Configure the approved scrap source report, supplier and period mapping, aggregation and scoring rules, correction handling, empty/failure behavior, and secure evidence link; do not add debit settlement processing.\n- **Deliverable:** One governed Scrap Query KPI integration.\n- **Strict technical prerequisites:** AUT-22, SEC-26\n- **Blocked status:** Blocked by AUT-22 and SEC-26 and by the complete Scrap source contract.\n- **Recommended implementer role:** Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** This is a bounded source integration once the authoritative mapping and rules are supplied.\n- **Acceptance criteria:** Correct supplier-period scrap result is captured; debit processing is absent; correction/failure behavior is explicit; source security is preserved.\n- **Specification references:** Sections 2 (SC-023), 17\n- **Assumptions and open questions:** None.",
+      "fields": {
+        "id": "INT-31",
+        "title": "Configure the Scrap Query KPI",
+        "category": "Integration configuration",
+        "objective": "Supply approved scrap results to Scorecards while leaving debit settlement outside Intelex.",
+        "scope": "Configure the approved scrap source report, supplier and period mapping, aggregation and scoring rules, correction handling, empty/failure behavior, and secure evidence link; do not add debit settlement processing.",
+        "deliverable": "One governed Scrap Query KPI integration.",
+        "prerequisites": "AUT-22, SEC-26",
+        "blockedStatus": "Blocked by AUT-22 and SEC-26 and by the complete Scrap source contract.",
+        "implementer": "Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "This is a bounded source integration once the authoritative mapping and rules are supplied.",
+        "accept": "Correct supplier-period scrap result is captured; debit processing is absent; correction/failure behavior is explicit; source security is preserved.",
+        "refs": "Sections 2 (SC-023), 17",
+        "assumptions": "None."
+      }
+    },
+    {
+      "originalId": "INT-32",
+      "validatorId": "IMP-32",
+      "markdown": "### INT-32 — Configure the Warranty Query KPI\n\n- **Task ID:** INT-32\n- **Title:** Configure the Warranty Query KPI\n- **Category:** Integration configuration\n- **Objective:** Supply the approved warranty result from its authoritative source to the matching supplier-period KPI Value.\n- **Detailed scope:** Configure the approved warranty source binding, supplier and period mapping, inclusions, aggregation, points logic, correction timing, empty/failure behavior, evidence link, and source security.\n- **Deliverable:** One governed Warranty Query KPI integration.\n- **Strict technical prerequisites:** AUT-22, SEC-26\n- **Blocked status:** Blocked by AUT-22 and SEC-26 and by the complete Warranty source contract.\n- **Recommended implementer role:** Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** This is a bounded source integration once its contract is supplied.\n- **Acceptance criteria:** The approved result maps to the correct supplier/period; refresh and correction follow policy; failures are explicit; drilldown preserves source authorization.\n- **Specification references:** Section 17\n- **Assumptions and open questions:** None.",
+      "fields": {
+        "id": "INT-32",
+        "title": "Configure the Warranty Query KPI",
+        "category": "Integration configuration",
+        "objective": "Supply the approved warranty result from its authoritative source to the matching supplier-period KPI Value.",
+        "scope": "Configure the approved warranty source binding, supplier and period mapping, inclusions, aggregation, points logic, correction timing, empty/failure behavior, evidence link, and source security.",
+        "deliverable": "One governed Warranty Query KPI integration.",
+        "prerequisites": "AUT-22, SEC-26",
+        "blockedStatus": "Blocked by AUT-22 and SEC-26 and by the complete Warranty source contract.",
+        "implementer": "Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "This is a bounded source integration once its contract is supplied.",
+        "accept": "The approved result maps to the correct supplier/period; refresh and correction follow policy; failures are explicit; drilldown preserves source authorization.",
+        "refs": "Section 17",
+        "assumptions": "None."
+      }
+    },
+    {
+      "originalId": "INT-33",
+      "validatorId": "IMP-33",
+      "markdown": "### INT-33 — Configure the PPAP Query KPI\n\n- **Task ID:** INT-33\n- **Title:** Configure the PPAP Query KPI\n- **Category:** Integration configuration\n- **Objective:** Supply the approved PPAP result from its authoritative source to the matching supplier-period KPI Value.\n- **Detailed scope:** Configure the approved PPAP source binding, supplier and period mapping, inclusions, aggregation, points logic, correction timing, empty/failure behavior, evidence link, and source security.\n- **Deliverable:** One governed PPAP Query KPI integration.\n- **Strict technical prerequisites:** AUT-22, SEC-26\n- **Blocked status:** Blocked by AUT-22 and SEC-26 and by the complete PPAP source contract.\n- **Recommended implementer role:** Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** This is a bounded cross-application source integration once its contract is supplied.\n- **Acceptance criteria:** The approved result maps to the correct supplier/period; refresh and correction follow policy; failures are explicit; drilldown preserves PPAP security.\n- **Specification references:** Section 17\n- **Assumptions and open questions:** None.",
+      "fields": {
+        "id": "INT-33",
+        "title": "Configure the PPAP Query KPI",
+        "category": "Integration configuration",
+        "objective": "Supply the approved PPAP result from its authoritative source to the matching supplier-period KPI Value.",
+        "scope": "Configure the approved PPAP source binding, supplier and period mapping, inclusions, aggregation, points logic, correction timing, empty/failure behavior, evidence link, and source security.",
+        "deliverable": "One governed PPAP Query KPI integration.",
+        "prerequisites": "AUT-22, SEC-26",
+        "blockedStatus": "Blocked by AUT-22 and SEC-26 and by the complete PPAP source contract.",
+        "implementer": "Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "This is a bounded cross-application source integration once its contract is supplied.",
+        "accept": "The approved result maps to the correct supplier/period; refresh and correction follow policy; failures are explicit; drilldown preserves PPAP security.",
+        "refs": "Section 17",
+        "assumptions": "None."
+      }
+    },
+    {
+      "originalId": "INT-34",
+      "validatorId": "IMP-34",
+      "markdown": "### INT-34 — Configure the Delivery Query KPI\n\n- **Task ID:** INT-34\n- **Title:** Configure the Delivery Query KPI\n- **Category:** Integration configuration\n- **Objective:** Supply the approved delivery result from its authoritative source to the matching supplier-period KPI Value.\n- **Detailed scope:** Configure the approved delivery source binding, supplier and period mapping, inclusions, aggregation, points logic, correction timing, empty/failure behavior, evidence link, and source security.\n- **Deliverable:** One governed Delivery Query KPI integration.\n- **Strict technical prerequisites:** AUT-22, SEC-26\n- **Blocked status:** Blocked by AUT-22 and SEC-26 and by the complete Delivery source contract.\n- **Recommended implementer role:** Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** This is a bounded source integration once its contract is supplied.\n- **Acceptance criteria:** The approved result maps to the correct supplier/period; refresh and correction follow policy; failures are explicit; drilldown preserves source authorization.\n- **Specification references:** Section 17\n- **Assumptions and open questions:** None.",
+      "fields": {
+        "id": "INT-34",
+        "title": "Configure the Delivery Query KPI",
+        "category": "Integration configuration",
+        "objective": "Supply the approved delivery result from its authoritative source to the matching supplier-period KPI Value.",
+        "scope": "Configure the approved delivery source binding, supplier and period mapping, inclusions, aggregation, points logic, correction timing, empty/failure behavior, evidence link, and source security.",
+        "deliverable": "One governed Delivery Query KPI integration.",
+        "prerequisites": "AUT-22, SEC-26",
+        "blockedStatus": "Blocked by AUT-22 and SEC-26 and by the complete Delivery source contract.",
+        "implementer": "Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "This is a bounded source integration once its contract is supplied.",
+        "accept": "The approved result maps to the correct supplier/period; refresh and correction follow policy; failures are explicit; drilldown preserves source authorization.",
+        "refs": "Section 17",
+        "assumptions": "None."
+      }
+    },
+    {
+      "originalId": "DAT-35",
+      "validatorId": "IMP-35",
+      "markdown": "### DAT-35 — Configure the Initial Scorecard Configuration\n\n- **Task ID:** DAT-35\n- **Title:** Configure the Initial Scorecard Configuration\n- **Category:** Initial configuration\n- **Objective:** Make the approved direct-entry-first Scorecard configuration available for operational generation.\n- **Detailed scope:** Create and publish approved safety benchmark, KPI, and Program records; assign KPI membership and recipient roles; create effective-dated supplier Participations; configure required status-capability decisions; and verify that published configuration resolves by the intended period. Query KPIs remain Direct Entry until their integration task is complete.\n- **Deliverable:** Published initial benchmark/KPI/Program versions, Participations, routing, and capability configuration.\n- **Strict technical prerequisites:** DAT-04, AUT-09, AUT-12, OBJ-13, AUT-15\n- **Blocked status:** Blocked by all prerequisites and by the approved KPI catalogue, participant population, groups, status decisions, cadence/calendar, Commodity/NAICS governance, and operating model.\n- **Recommended implementer role:** Senior Associate Consultant\n- **Recommended reviewer/approver role:** Senior Consultant\n- **Role rationale:** This is controlled configuration-record setup using completed publish mechanisms; review protects the approved design baseline.\n- **Acceptance criteria:** Approved KPIs and Program publish without overlap; each intended supplier has one valid Participation; routing resolves; Direct Entry remains the default until each Query integration is ready.\n- **Specification references:** Sections 8–10, 20.2–20.3, 22.1–22.8\n- **Assumptions and open questions:** Historical spreadsheet import is excluded and would require a separate migration plan.",
+      "fields": {
+        "id": "DAT-35",
+        "title": "Configure the Initial Scorecard Configuration",
+        "category": "Initial configuration",
+        "objective": "Make the approved direct-entry-first Scorecard configuration available for operational generation.",
+        "scope": "Create and publish approved safety benchmark, KPI, and Program records; assign KPI membership and recipient roles; create effective-dated supplier Participations; configure required status-capability decisions; and verify that published configuration resolves by the intended period. Query KPIs remain Direct Entry until their integration task is complete.",
+        "deliverable": "Published initial benchmark/KPI/Program versions, Participations, routing, and capability configuration.",
+        "prerequisites": "DAT-04, AUT-09, AUT-12, OBJ-13, AUT-15",
+        "blockedStatus": "Blocked by all prerequisites and by the approved KPI catalogue, participant population, groups, status decisions, cadence/calendar, Commodity/NAICS governance, and operating model.",
+        "implementer": "Senior Associate Consultant",
+        "reviewer": "Senior Consultant",
+        "rationale": "This is controlled configuration-record setup using completed publish mechanisms; review protects the approved design baseline.",
+        "accept": "Approved KPIs and Program publish without overlap; each intended supplier has one valid Participation; routing resolves; Direct Entry remains the default until each Query integration is ready.",
+        "refs": "Sections 8–10, 20.2–20.3, 22.1–22.8",
+        "assumptions": "Historical spreadsheet import is excluded and would require a separate migration plan."
+      }
+    }
+  ],
+  "canonicalTasks": [
+    {
+      "id": "IMP-02",
+      "originalTaskId": "OBJ-02",
+      "title": "Create the Scorecard Catalogue Objects",
+      "category": "Object configuration",
+      "objective": "Establish the inherited catalogue family required by all governed scorecard selections.",
+      "scope": "Create non-instantiable `Supplier Scorecard Abstract Catalog Record` and its twelve direct children: Supplier Commodity, NAICS Classification, KPI Category, KPI Aggregation Method, KPI Value Type, KPI Contribution Source, KPI Collection Method, KPI Initialization Method, Safety Benchmark Metric, Scorecard Cadence, KPI Value Origin, and Publication Exception Treatment.",
+      "deliverable": "Abstract catalogue parent and twelve correctly inherited concrete child objects.",
+      "prerequisites": [
+        "IMP-01"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-01",
+          "description": "Configured Supplier Scorecard application shell with role-ready navigation."
+        }
+      ],
+      "blockedStatus": "Blocked until APP-01 is complete.",
+      "implementer": "Senior Associate Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "The object work is routine, but inheritance and non-instantiable behavior require independent configuration judgment.",
+      "assumptions": "None.",
+      "inputs": [],
+      "suppliedInputDescriptions": [],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Create non-instantiable `Supplier Scorecard Abstract Catalog Record` and its twelve direct children: Supplier Commodity, NAICS Classification, KPI Category, KPI Aggregation Method, KPI Value Type, KPI Contribution Source, KPI Collection Method, KPI Initialization Method, Safety Benchmark Metric, Scorecard Cadence, KPI Value Origin, and Publication Exception Treatment."
+      ],
+      "accept": [
+        "Exactly twelve direct children inherit from the abstract parent; the parent cannot be instantiated or selected; no multiple parent or cycle exists."
+      ],
+      "refs": [
+        "Original implementation-plan assignment OBJ-02. Sections 4.2, 5, 7.1, 21.1"
+      ]
+    },
+    {
+      "id": "IMP-04",
+      "originalTaskId": "DAT-04",
+      "title": "Load the Scorecard Catalogue Records",
+      "category": "Initial configuration",
+      "objective": "Provide the approved catalogue values required by downstream configuration and automation.",
+      "scope": "Load the specification-defined records for value type, contribution source, collection method, initialization method, safety metric, cadence, value origin, and publication exception treatment, plus approved commodity, NAICS, KPI category, and aggregation-method records. Preserve stable Codes and approved recurrence expressions.",
+      "deliverable": "Approved, audited records in every concrete catalogue.",
+      "prerequisites": [
+        "IMP-03"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-03",
+          "description": "Configured catalogue fields, forms, filters, audit, and permissions."
+        }
+      ],
+      "blockedStatus": "Blocked by CFG-03 and by approved catalogue content, recurrence expressions, and inherited-Code uniqueness outcome.",
+      "implementer": "Associate Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "Record loading is bounded once governance and platform constraints are supplied.",
+      "assumptions": "No unapproved catalogue values are invented.",
+      "inputs": [
+        "IN-01",
+        "IN-02",
+        "IN-03",
+        "IN-05"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-01",
+          "description": "Confirm per-concrete-child uniqueness for inherited `Code`, or provide approved globally unique replacement Codes."
+        },
+        {
+          "id": "IN-02",
+          "description": "Approve Commodity, NAICS, KPI Category, KPI Aggregation Method, Value Type, and any changes to the specification seed values."
+        },
+        {
+          "id": "IN-03",
+          "description": "Supply verified recurrence expressions, period-boundary rules, scheduler timezone, business calendar, generation time, entry/review cutoffs, reminders, and escalation behavior."
+        },
+        {
+          "id": "IN-05",
+          "description": "Approve `SET_TO_ZERO` and `EXCLUDE_FROM_DENOMINATOR`, or provide replacement policy."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Load the specification-defined records for value type, contribution source, collection method, initialization method, safety metric, cadence, value origin, and publication exception treatment, plus approved commodity, NAICS, KPI category, and aggregation-method records. Preserve stable Codes and approved recurrence expressions."
+      ],
+      "accept": [
+        "Every approved record is present once on the correct concrete child; Codes are stable; inactive filtering works; cadence Frequency values are valid."
+      ],
+      "refs": [
+        "Original implementation-plan assignment DAT-04. Sections 7.2–7.13, 20.2, 21.2"
+      ]
+    },
+    {
+      "id": "IMP-05",
+      "originalTaskId": "OBJ-05",
+      "title": "Update Supplier Abstract for Scorecards",
+      "category": "Shared object configuration",
+      "objective": "Add scorecard classification and navigation to the authoritative supplier master.",
+      "scope": "Add `Commodity` and `NAICS Classification` M:1 fields to `Supplier Abstract`, with catalogue inverses disabled, and add inverse grids for `Scorecard Participations` and `Scorecards`. Apply inherited behavior to Parent Company and Facility without creating another supplier object.",
+      "deliverable": "Supplier Abstract extensions and inherited Parent Company/Facility presentation.",
+      "prerequisites": [
+        "IMP-03"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-03",
+          "description": "Configured catalogue fields, forms, filters, audit, and permissions."
+        }
+      ],
+      "blockedStatus": "Blocked until CFG-03 is complete.",
+      "implementer": "Senior Associate Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "The fields are straightforward, but changes to an authoritative inherited object require careful cross-application configuration.",
+      "assumptions": "Existing `Type of Supplier Entity` is reused and not duplicated.",
+      "inputs": [],
+      "suppliedInputDescriptions": [],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Add `Commodity` and `NAICS Classification` M:1 fields to `Supplier Abstract`, with catalogue inverses disabled, and add inverse grids for `Scorecard Participations` and `Scorecards`. Apply inherited behavior to Parent Company and Facility without creating another supplier object."
+      ],
+      "accept": [
+        "Both catalogue fields are inherited by Parent Company and Facility; catalogue inverses remain disabled; navigation grids use the owned child relationships."
+      ],
+      "refs": [
+        "Original implementation-plan assignment OBJ-05. Sections 3.1, 4.1, 10.2, 20.1"
+      ]
+    },
+    {
+      "id": "IMP-06",
+      "originalTaskId": "AUT-06",
+      "title": "Configure Commodity Synchronization",
+      "category": "Action Handler configuration",
+      "objective": "Keep Facility Commodity aligned with Parent Company Commodity under the initial no-override policy.",
+      "scope": "Configure the Facility create/update handler and Parent Company Commodity update handler, including idempotent child updates, audit, failure reporting, and protection against metadata-only retriggers.",
+      "deliverable": "Two working Commodity synchronization handlers with controlled failure behavior.",
+      "prerequisites": [
+        "IMP-05"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-05",
+          "description": "Supplier Abstract extensions and inherited Parent Company/Facility presentation."
+        }
+      ],
+      "blockedStatus": "Blocked by OBJ-05 and the approved Commodity override policy.",
+      "implementer": "Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "Cross-object child updates, idempotency, and partial failure reporting require Consultant-level automation judgment.",
+      "assumptions": "Initial release does not permit Facility override.",
+      "inputs": [
+        "IN-12"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-12",
+          "description": "Confirm Commodity override policy, NAICS ownership, missing-code behavior, benchmark sources, and update procedure."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure the Facility create/update handler and Parent Company Commodity update handler, including idempotent child updates, audit, failure reporting, and protection against metadata-only retriggers."
+      ],
+      "accept": [
+        "Facility creation/parent change copies Commodity; Parent Company changes update related Facilities once; failures are reported without recursive updates."
+      ],
+      "refs": [
+        "Original implementation-plan assignment AUT-06. Section 10.2"
+      ]
+    },
+    {
+      "id": "IMP-07",
+      "originalTaskId": "OBJ-07",
+      "title": "Create the KPI Configuration Objects",
+      "category": "Object configuration",
+      "objective": "Provide editable KPI definitions and immutable effective-dated versions.",
+      "scope": "Create `Supplier Scorecard KPI` and `Supplier Scorecard KPI Version` with all specification fields, relationships, inverse grids, uniqueness rules, conditional requirements, and immutable version behavior.",
+      "deliverable": "Complete KPI authoring/version object and field configuration.",
+      "prerequisites": [
+        "IMP-03"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-03",
+          "description": "Configured catalogue fields, forms, filters, audit, and permissions."
+        }
+      ],
+      "blockedStatus": "Blocked until CFG-03 is complete.",
+      "implementer": "Senior Associate Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "Numerous conditional relationships and immutable version fields require independent configuration judgment but not advanced automation.",
+      "assumptions": "Exact executable expressions are deferred to their automation tasks.",
+      "inputs": [],
+      "suppliedInputDescriptions": [],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Create `Supplier Scorecard KPI` and `Supplier Scorecard KPI Version` with all specification fields, relationships, inverse grids, uniqueness rules, conditional requirements, and immutable version behavior."
+      ],
+      "accept": [
+        "Every Section 8.1/8.2 field exists with correct ownership, relationship, requirement, editability, and inverse behavior; version records are read only."
+      ],
+      "refs": [
+        "Original implementation-plan assignment OBJ-07. Sections 4.3, 8.1, 8.2"
+      ]
+    },
+    {
+      "id": "IMP-08",
+      "originalTaskId": "FRM-08",
+      "title": "Configure the KPI Administration Forms",
+      "category": "Form configuration",
+      "objective": "Give scorecard administrators a controlled KPI authoring and version-review experience.",
+      "scope": "Configure KPI authoring and read-only version forms, active catalogue filters, conditional sections for contributor, defaults, query source, and safety benchmark settings, plus the Versions grid and Publish action placement.",
+      "deliverable": "Usable KPI authoring and immutable-version forms.",
+      "prerequisites": [
+        "IMP-07"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-07",
+          "description": "Complete KPI authoring/version object and field configuration."
+        }
+      ],
+      "blockedStatus": "Blocked until OBJ-07 is complete.",
+      "implementer": "Senior Associate Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "The layout is sizeable and includes interdependent show/hide/clear/required behavior.",
+      "assumptions": "None.",
+      "inputs": [],
+      "suppliedInputDescriptions": [],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure KPI authoring and read-only version forms, active catalogue filters, conditional sections for contributor, defaults, query source, and safety benchmark settings, plus the Versions grid and Publish action placement."
+      ],
+      "accept": [
+        "Only relevant fields appear for each governed Code combination; hidden conditional fields clear as specified; published versions cannot be edited."
+      ],
+      "refs": [
+        "Original implementation-plan assignment FRM-08. Sections 8.1, 8.2, 16.1"
+      ]
+    },
+    {
+      "id": "IMP-09",
+      "originalTaskId": "AUT-09",
+      "title": "Configure KPI Publish",
+      "category": "Action Handler configuration",
+      "objective": "Publish one complete, immutable KPI Version without overlap or partial creation.",
+      "scope": "Configure validation, concurrency control, deterministic version numbering, effective-range overlap prevention, full authoring-to-version field mapping, rollback, administrator authorization, and native execution evidence.",
+      "deliverable": "Controlled KPI Publish action.",
+      "prerequisites": [
+        "IMP-07",
+        "IMP-08"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-07",
+          "description": "Complete KPI authoring/version object and field configuration."
+        },
+        {
+          "id": "IMP-08",
+          "description": "Usable KPI authoring and immutable-version forms."
+        }
+      ],
+      "blockedStatus": "Blocked by OBJ-07 and FRM-08; final mechanism depends on tenant capability results.",
+      "implementer": "Senior Consultant",
+      "reviewer": "Principal Consultant",
+      "rationale": "Concurrency, atomicity, rollback, and immutable effective dating are consequential cross-record automation.",
+      "assumptions": "None.",
+      "inputs": [
+        "IN-08"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-08",
+          "description": "Confirm Group responsibility, M:N version copying, inherited-Code behavior, aggregate recalculation, completed-parent child correction, report/query binding, recurrence rendering, and scheduler interpretation."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure validation, concurrency control, deterministic version numbering, effective-range overlap prevention, full authoring-to-version field mapping, rollback, administrator authorization, and native execution evidence."
+      ],
+      "accept": [
+        "One action creates exactly one complete version; invalid or overlapping data creates none; concurrent attempts cannot duplicate version numbers."
+      ],
+      "refs": [
+        "Original implementation-plan assignment AUT-09. Section 8.3; Sections 21.1–21.2"
+      ]
+    },
+    {
+      "id": "IMP-10",
+      "originalTaskId": "OBJ-10",
+      "title": "Create the Program Configuration Objects",
+      "category": "Object configuration",
+      "objective": "Provide editable scorecard methodologies and immutable published Program graphs.",
+      "scope": "Create `Scorecard Program`, `Scorecard Program KPI`, `Scorecard Program Version`, and `Scorecard Program KPI Version` with specified fields, M:1/M:N relationships, inverse grids, uniqueness, effective dating, rollup-source reference, and immutable version behavior.",
+      "deliverable": "Complete Program authoring/version object and field configuration.",
+      "prerequisites": [
+        "IMP-03",
+        "IMP-07"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-03",
+          "description": "Configured catalogue fields, forms, filters, audit, and permissions."
+        },
+        {
+          "id": "IMP-07",
+          "description": "Complete KPI authoring/version object and field configuration."
+        }
+      ],
+      "blockedStatus": "Blocked until CFG-03 and OBJ-07 are complete.",
+      "implementer": "Senior Associate Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "The graph is larger than routine object setup and mixes child and M:N version content.",
+      "assumptions": "None.",
+      "inputs": [],
+      "suppliedInputDescriptions": [],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Create `Scorecard Program`, `Scorecard Program KPI`, `Scorecard Program Version`, and `Scorecard Program KPI Version` with specified fields, M:1/M:N relationships, inverse grids, uniqueness, effective dating, rollup-source reference, and immutable version behavior."
+      ],
+      "accept": [
+        "All Section 9.1–9.4 fields and relationships exist; `Entity Level` and `Recurrence Definition` do not; version records and children are read only."
+      ],
+      "refs": [
+        "Original implementation-plan assignment OBJ-10. Sections 4.3, 9.1–9.4, 21.1"
+      ]
+    },
+    {
+      "id": "IMP-11",
+      "originalTaskId": "FRM-11",
+      "title": "Configure Program and Generation Delay Forms",
+      "category": "Form configuration",
+      "objective": "Support Program authoring, version review, KPI membership, and occurrence-specific generation delays.",
+      "scope": "Configure Program authoring/version forms and grids; create `Scorecard Program Generation Delay`; configure its contextual New form, calculated display, occurrence fields, audit, Applied Run evidence, and read-only applied state.",
+      "deliverable": "Program/version administration forms and Generation Delay object/form/grid.",
+      "prerequisites": [
+        "IMP-10"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-10",
+          "description": "Complete Program authoring/version object and field configuration."
+        }
+      ],
+      "blockedStatus": "Blocked until OBJ-10 is complete; valid occurrence selection depends on approved cadence rules.",
+      "implementer": "Senior Associate Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "This combines a larger administration form with contextual child creation and lifecycle-dependent editability.",
+      "assumptions": "Exact display formulas and occurrence picker implementation use verified tenant syntax.",
+      "inputs": [],
+      "suppliedInputDescriptions": [],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure Program authoring/version forms and grids; create `Scorecard Program Generation Delay`; configure its contextual New form, calculated display, occurrence fields, audit, Applied Run evidence, and read-only applied state."
+      ],
+      "accept": [
+        "Program grids expose membership, versions, and delays; Program defaults/locks on new Delay; invalid dates, duplicate occurrence, and applied edits are prevented."
+      ],
+      "refs": [
+        "Original implementation-plan assignment FRM-11. Sections 9.1, 9.5, 9.6, 16.1"
+      ]
+    },
+    {
+      "id": "IMP-12",
+      "originalTaskId": "AUT-12",
+      "title": "Configure Program Publish",
+      "category": "Action Handler configuration",
+      "objective": "Publish the complete Program Version, KPI membership, and supplier-recipient roles as one controlled change.",
+      "scope": "Configure graph validation, cadence and rollup checks, cycle prevention, deterministic version numbering, complete child and M:N copying, overlap prevention, concurrency control, rollback, and immutability.",
+      "deliverable": "Controlled Program Publish action.",
+      "prerequisites": [
+        "IMP-10",
+        "IMP-11"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-10",
+          "description": "Complete Program authoring/version object and field configuration."
+        },
+        {
+          "id": "IMP-11",
+          "description": "Program/version administration forms and Generation Delay object/form/grid."
+        }
+      ],
+      "blockedStatus": "Blocked by OBJ-10 and FRM-11; tenant M:N-copy result and approved rollup operating model may also block completion.",
+      "implementer": "Senior Consultant",
+      "reviewer": "Principal Consultant",
+      "rationale": "Atomic multi-record/M:N publication, cycle checks, and high rework risk require senior technical authority.",
+      "assumptions": "Rollup validation is enabled only if ADR-113 behavior is approved.",
+      "inputs": [
+        "IN-04",
+        "IN-08"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-04",
+          "description": "Approve or reject ADR-113 parent-periodic/facility-monthly rollup behavior."
+        },
+        {
+          "id": "IN-08",
+          "description": "Confirm Group responsibility, M:N version copying, inherited-Code behavior, aggregate recalculation, completed-parent child correction, report/query binding, recurrence rendering, and scheduler interpretation."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure graph validation, cadence and rollup checks, cycle prevention, deterministic version numbering, complete child and M:N copying, overlap prevention, concurrency control, rollback, and immutability."
+      ],
+      "accept": [
+        "A valid action creates one complete Program graph; invalid membership, cadence, routing, overlap, or rollup creates no partial version."
+      ],
+      "refs": [
+        "Original implementation-plan assignment AUT-12. Sections 9.5, 21.1–21.2"
+      ]
+    },
+    {
+      "id": "IMP-13",
+      "originalTaskId": "OBJ-13",
+      "title": "Create Supplier Scorecard Participation",
+      "category": "Object configuration",
+      "objective": "Govern which exact supplier entities participate in each Program and effective period.",
+      "scope": "Create `Supplier Scorecard Participation`, its Supplier and Program relationships, active/effective fields, display value, audit, inverse navigation, and prevention of overlapping active ranges for the same Supplier and Program.",
+      "deliverable": "Participation object, forms, relationships, audit, and range control.",
+      "prerequisites": [
+        "IMP-05",
+        "IMP-10"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-05",
+          "description": "Supplier Abstract extensions and inherited Parent Company/Facility presentation."
+        },
+        {
+          "id": "IMP-10",
+          "description": "Complete Program authoring/version object and field configuration."
+        }
+      ],
+      "blockedStatus": "Blocked until OBJ-05 and OBJ-10 are complete.",
+      "implementer": "Senior Associate Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "Effective-range control and authoritative supplier relationships require more judgment than a basic child object.",
+      "assumptions": "Capability records are supplied by the authoritative Supplier Status design.",
+      "inputs": [],
+      "suppliedInputDescriptions": [],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Create `Supplier Scorecard Participation`, its Supplier and Program relationships, active/effective fields, display value, audit, inverse navigation, and prevention of overlapping active ranges for the same Supplier and Program."
+      ],
+      "accept": [
+        "Parent Company or Facility can be selected without Program entity filtering; duplicate/overlapping ranges are blocked; status Deny cannot be overridden."
+      ],
+      "refs": [
+        "Original implementation-plan assignment OBJ-13. Sections 10.1, 10.3"
+      ]
+    },
+    {
+      "id": "IMP-14",
+      "originalTaskId": "OBJ-14",
+      "title": "Create the Safety Benchmark Objects",
+      "category": "Object configuration",
+      "objective": "Provide effective-dated NAICS and metric benchmarks for safety scoring.",
+      "scope": "Create `Safety Benchmark` and immutable `Safety Benchmark Version` with catalogue relationships, source evidence, effective ranges, inverse Versions grid, uniqueness, and administration/read-only forms.",
+      "deliverable": "Complete benchmark authoring/version configuration.",
+      "prerequisites": [
+        "IMP-03"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-03",
+          "description": "Configured catalogue fields, forms, filters, audit, and permissions."
+        }
+      ],
+      "blockedStatus": "Blocked until CFG-03 is complete; initial records depend on approved NAICS and benchmark governance.",
+      "implementer": "Senior Associate Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "Effective dating and governed catalogue combinations require independent configuration judgment.",
+      "assumptions": "None.",
+      "inputs": [
+        "IN-12"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-12",
+          "description": "Confirm Commodity override policy, NAICS ownership, missing-code behavior, benchmark sources, and update procedure."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Create `Safety Benchmark` and immutable `Safety Benchmark Version` with catalogue relationships, source evidence, effective ranges, inverse Versions grid, uniqueness, and administration/read-only forms."
+      ],
+      "accept": [
+        "One stable benchmark exists per NAICS/Metric; version fields are immutable; catalogue inverses remain disabled."
+      ],
+      "refs": [
+        "Original implementation-plan assignment OBJ-14. Sections 4.5, 11.1, 11.2"
+      ]
+    },
+    {
+      "id": "IMP-15",
+      "originalTaskId": "AUT-15",
+      "title": "Configure Safety Benchmark Publish",
+      "category": "Action Handler configuration",
+      "objective": "Publish complete benchmark versions with controlled effective dates.",
+      "scope": "Configure required-field validation, stable benchmark uniqueness, effective-range checks, deterministic version numbering, full field copying, concurrency control, rollback, authorization, and immutable published records.",
+      "deliverable": "Controlled Safety Benchmark Publish action.",
+      "prerequisites": [
+        "IMP-14"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-14",
+          "description": "Complete benchmark authoring/version configuration."
+        }
+      ],
+      "blockedStatus": "Blocked until OBJ-14 is complete.",
+      "implementer": "Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "This is moderately complex publish automation using the already established version pattern.",
+      "assumptions": "None.",
+      "inputs": [],
+      "suppliedInputDescriptions": [],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure required-field validation, stable benchmark uniqueness, effective-range checks, deterministic version numbering, full field copying, concurrency control, rollback, authorization, and immutable published records."
+      ],
+      "accept": [
+        "Valid publication creates one complete version; overlaps or missing data create none; published data cannot be edited."
+      ],
+      "refs": [
+        "Original implementation-plan assignment AUT-15. Section 11.2; Section 21.2"
+      ]
+    },
+    {
+      "id": "IMP-16",
+      "originalTaskId": "OBJ-16",
+      "title": "Create Run and Scorecard Objects",
+      "category": "Object configuration",
+      "objective": "Establish the operational parent and supplier-period snapshot records.",
+      "scope": "Create `Supplier Scorecard Run` and `Supplier Scorecard` with all specified scalar fields, supplier/program relationships, snapshots, inverse grids, Source Scorecards M:N, publication metadata, and uniqueness for Program occurrence and Run/Supplier.",
+      "deliverable": "Complete Run and Scorecard object/field/relationship configuration.",
+      "prerequisites": [
+        "IMP-05",
+        "IMP-10",
+        "IMP-13"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-05",
+          "description": "Supplier Abstract extensions and inherited Parent Company/Facility presentation."
+        },
+        {
+          "id": "IMP-10",
+          "description": "Complete Program authoring/version object and field configuration."
+        },
+        {
+          "id": "IMP-13",
+          "description": "Participation object, forms, relationships, audit, and range control."
+        }
+      ],
+      "blockedStatus": "Blocked until OBJ-05, OBJ-10, and OBJ-13 are complete.",
+      "implementer": "Senior Associate Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "Snapshot and rollup relationships make this more consequential than routine object creation.",
+      "assumptions": "Total calculations are configured in AUT-20.",
+      "inputs": [],
+      "suppliedInputDescriptions": [],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Create `Supplier Scorecard Run` and `Supplier Scorecard` with all specified scalar fields, supplier/program relationships, snapshots, inverse grids, Source Scorecards M:N, publication metadata, and uniqueness for Program occurrence and Run/Supplier."
+      ],
+      "accept": [
+        "Every Section 12.1/12.2 field exists; uniqueness is enforceable; ranks are not persisted; owned inverse grids do not duplicate relationships."
+      ],
+      "refs": [
+        "Original implementation-plan assignment OBJ-16. Sections 4.4, 12.1, 12.2"
+      ]
+    },
+    {
+      "id": "IMP-17",
+      "originalTaskId": "OBJ-17",
+      "title": "Create KPI Value and Contribution Task Objects",
+      "category": "Object configuration",
+      "objective": "Establish operational KPI results and consolidated contributor work records.",
+      "scope": "Create `Scorecard KPI Value` and `Scorecard Contribution Task` with typed values, points, applicability, confirmation, exception, override, source evidence, catalogue relationships, contributor assignment, inverse grids, and required uniqueness rules.",
+      "deliverable": "Complete KPI Value and Contribution Task object/field configuration.",
+      "prerequisites": [
+        "IMP-03",
+        "IMP-07",
+        "IMP-14",
+        "IMP-16"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-03",
+          "description": "Configured catalogue fields, forms, filters, audit, and permissions."
+        },
+        {
+          "id": "IMP-07",
+          "description": "Complete KPI authoring/version object and field configuration."
+        },
+        {
+          "id": "IMP-14",
+          "description": "Complete benchmark authoring/version configuration."
+        },
+        {
+          "id": "IMP-16",
+          "description": "Complete Run and Scorecard object/field/relationship configuration."
+        }
+      ],
+      "blockedStatus": "Blocked until CFG-03, OBJ-07, OBJ-14, and OBJ-16 are complete.",
+      "implementer": "Senior Associate Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "The configuration is field-heavy and security-sensitive but automation is handled separately.",
+      "assumptions": "Executable calculation syntax is not set in this task.",
+      "inputs": [],
+      "suppliedInputDescriptions": [],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Create `Scorecard KPI Value` and `Scorecard Contribution Task` with typed values, points, applicability, confirmation, exception, override, source evidence, catalogue relationships, contributor assignment, inverse grids, and required uniqueness rules."
+      ],
+      "accept": [
+        "Every Section 12.3/12.4 field exists with correct ownership, editability, inverse suppression, and unique keys; no custom status field is added."
+      ],
+      "refs": [
+        "Original implementation-plan assignment OBJ-17. Sections 4.4, 12.3, 12.4"
+      ]
+    },
+    {
+      "id": "IMP-18",
+      "originalTaskId": "WFL-18",
+      "title": "Configure the Scorecard Workflow Skeletons",
+      "category": "Workflow configuration",
+      "objective": "Establish stable stages, statuses, responsibility, due-date fields, and basic transitions for stage-aware configuration.",
+      "scope": "Configure simple workflows for Supplier Scorecard Run, Supplier Scorecard, and Scorecard Contribution Task using the stages and terminal outcomes in the specification, with basic responsibility and transition actions only.",
+      "deliverable": "Three workflow skeletons with stable stage system names.",
+      "prerequisites": [
+        "IMP-16",
+        "IMP-17"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-16",
+          "description": "Complete Run and Scorecard object/field/relationship configuration."
+        },
+        {
+          "id": "IMP-17",
+          "description": "Complete KPI Value and Contribution Task object/field configuration."
+        }
+      ],
+      "blockedStatus": "Blocked until OBJ-16 and OBJ-17 are complete.",
+      "implementer": "Associate Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "First-pass stages and straightforward responsibility are an established configuration pattern.",
+      "assumptions": "Full validation and calculated behavior are deferred to WFL-24.",
+      "inputs": [],
+      "suppliedInputDescriptions": [],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure simple workflows for Supplier Scorecard Run, Supplier Scorecard, and Scorecard Contribution Task using the stages and terminal outcomes in the specification, with basic responsibility and transition actions only."
+      ],
+      "accept": [
+        "Stages/outcomes exactly match Section 14; native stage/status is authoritative; no custom workflow-state field exists."
+      ],
+      "refs": [
+        "Original implementation-plan assignment WFL-18. Sections 14.1–14.3"
+      ]
+    },
+    {
+      "id": "IMP-19",
+      "originalTaskId": "FRM-19",
+      "title": "Configure Operational Scorecard Forms",
+      "category": "Form configuration",
+      "objective": "Provide responsive, stage-aware forms for Run coordination, contribution, review, correction, and published viewing.",
+      "scope": "Configure Run, Scorecard, KPI Value, and Contribution Task forms and grids; typed-value visibility; stage containers; contributor editing; internal-only exception/override controls; source links; read-only publication views; and responsive connected-browser behavior.",
+      "deliverable": "Complete responsive operational form set.",
+      "prerequisites": [
+        "IMP-17",
+        "IMP-18"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-17",
+          "description": "Complete KPI Value and Contribution Task object/field configuration."
+        },
+        {
+          "id": "IMP-18",
+          "description": "Three workflow skeletons with stable stage system names."
+        }
+      ],
+      "blockedStatus": "Blocked until OBJ-17 and WFL-18 are complete.",
+      "implementer": "Senior Associate Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "Multiple large stage-aware forms and sensitive conditional controls require independent judgment.",
+      "assumptions": "No native-mobile/offline forms are configured.",
+      "inputs": [],
+      "suppliedInputDescriptions": [],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure Run, Scorecard, KPI Value, and Contribution Task forms and grids; typed-value visibility; stage containers; contributor editing; internal-only exception/override controls; source links; read-only publication views; and responsive connected-browser behavior."
+      ],
+      "accept": [
+        "Only the matching typed field appears; stage/edit rules work; supplier views exclude internal rationale and controls; published views are read only."
+      ],
+      "refs": [
+        "Original implementation-plan assignment FRM-19. Sections 12, 14, 16.3"
+      ]
+    },
+    {
+      "id": "IMP-20",
+      "originalTaskId": "AUT-20",
+      "title": "Configure KPI Value Calculations",
+      "category": "Action Handler configuration",
+      "objective": "Maintain effective points, completeness, provenance, confirmation evidence, and Scorecard totals when KPI values change.",
+      "scope": "Configure input recalculation, confirmation metadata, publication-exception and override handlers, `Value Origin` assignment, parent total/category recalculation, recursion protection, retry behavior, and `Last Calculated At`.",
+      "deliverable": "Verified KPI Value and parent-total calculation handlers.",
+      "prerequisites": [
+        "IMP-17",
+        "IMP-19"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-17",
+          "description": "Complete KPI Value and Contribution Task object/field configuration."
+        },
+        {
+          "id": "IMP-19",
+          "description": "Complete responsive operational form set."
+        }
+      ],
+      "blockedStatus": "Blocked by OBJ-17 and FRM-19; final mechanism depends on approved exception policy and tenant calculation results.",
+      "implementer": "Senior Consultant",
+      "reviewer": "Principal Consultant",
+      "rationale": "Cross-grid totals, recursion, retry, privileged changes, and scoring consequences require senior authority.",
+      "assumptions": "Approved scoring ranges and exception policy are external inputs.",
+      "inputs": [
+        "IN-05",
+        "IN-08"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-05",
+          "description": "Approve `SET_TO_ZERO` and `EXCLUDE_FROM_DENOMINATOR`, or provide replacement policy."
+        },
+        {
+          "id": "IN-08",
+          "description": "Confirm Group responsibility, M:N version copying, inherited-Code behavior, aggregate recalculation, completed-parent child correction, report/query binding, recurrence rendering, and scheduler interpretation."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure input recalculation, confirmation metadata, publication-exception and override handlers, `Value Origin` assignment, parent total/category recalculation, recursion protection, retry behavior, and `Last Calculated At`."
+      ],
+      "accept": [
+        "All specified input combinations produce correct effective points/maxima, origin, completeness, metadata, totals, null-denominator behavior, and no recursive loop."
+      ],
+      "refs": [
+        "Original implementation-plan assignment AUT-20. Sections 12.2–12.3, 14.4, 15.2–15.4"
+      ]
+    },
+    {
+      "id": "IMP-21",
+      "originalTaskId": "AUT-21",
+      "title": "Configure Scheduled Scorecard Generation",
+      "category": "Event Service configuration",
+      "objective": "Generate each due Program occurrence exactly once, including delayed occurrences, supplier snapshots, KPI values, and contribution tasks.",
+      "scope": "Configure cadence evaluation, period boundaries, Generation Delay gate, Program/KPI version resolution, participation and status checks, rollup selection, retry-safe graph creation by specified uniqueness keys, failure ownership, and transition to Data Entry only after complete generation.",
+      "deliverable": "Scheduled generation service with retry-safe occurrence processing.",
+      "prerequisites": [
+        "IMP-09",
+        "IMP-12",
+        "IMP-13",
+        "IMP-17",
+        "IMP-18"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-09",
+          "description": "Controlled KPI Publish action."
+        },
+        {
+          "id": "IMP-12",
+          "description": "Controlled Program Publish action."
+        },
+        {
+          "id": "IMP-13",
+          "description": "Participation object, forms, relationships, audit, and range control."
+        },
+        {
+          "id": "IMP-17",
+          "description": "Complete KPI Value and Contribution Task object/field configuration."
+        },
+        {
+          "id": "IMP-18",
+          "description": "Three workflow skeletons with stable stage system names."
+        }
+      ],
+      "blockedStatus": "Blocked by all prerequisites and by approved cadence/calendar, operating-model, status-capability, and tenant scheduler results.",
+      "implementer": "Senior Consultant",
+      "reviewer": "Principal Consultant",
+      "rationale": "Multi-stage generation, delay gating, idempotency, version resolution, rollups, and failure recovery are advanced automation.",
+      "assumptions": "Parent rollup is configured only when externally approved.",
+      "inputs": [
+        "IN-03",
+        "IN-04",
+        "IN-07",
+        "IN-08"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-03",
+          "description": "Supply verified recurrence expressions, period-boundary rules, scheduler timezone, business calendar, generation time, entry/review cutoffs, reminders, and escalation behavior."
+        },
+        {
+          "id": "IN-04",
+          "description": "Approve or reject ADR-113 parent-periodic/facility-monthly rollup behavior."
+        },
+        {
+          "id": "IN-07",
+          "description": "Approve status/capability matrix entries and parent-restriction behavior for monthly and, if used, periodic generation."
+        },
+        {
+          "id": "IN-08",
+          "description": "Confirm Group responsibility, M:N version copying, inherited-Code behavior, aggregate recalculation, completed-parent child correction, report/query binding, recurrence rendering, and scheduler interpretation."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure cadence evaluation, period boundaries, Generation Delay gate, Program/KPI version resolution, participation and status checks, rollup selection, retry-safe graph creation by specified uniqueness keys, failure ownership, and transition to Data Entry only after complete generation."
+      ],
+      "accept": [
+        "Repeated execution creates no duplicates; delayed occurrences preserve the original anchor; missing versions/capability denials create no unauthorized Scorecard; partial work resumes safely."
+      ],
+      "refs": [
+        "Original implementation-plan assignment AUT-21. Sections 9.6, 10.3, 13.1, 13.5, 21.2"
+      ]
+    },
+    {
+      "id": "IMP-22",
+      "originalTaskId": "AUT-22",
+      "title": "Configure KPI Initialization and Refresh",
+      "category": "Service and action configuration",
+      "objective": "Initialize operational KPI values and refresh one governed Query result without losing historical evidence or overrides.",
+      "scope": "Configure no-default, static-default, and prior-period initialization; query capture metadata; open-period refresh; privileged targeted post-publication refresh; source evidence updates; total recalculation; and safeguards against background refresh of Published Scorecards.",
+      "deliverable": "Initialization component and targeted Refresh KPI Result action.",
+      "prerequisites": [
+        "IMP-20",
+        "IMP-21"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-20",
+          "description": "Verified KPI Value and parent-total calculation handlers."
+        },
+        {
+          "id": "IMP-21",
+          "description": "Scheduled generation service with retry-safe occurrence processing."
+        }
+      ],
+      "blockedStatus": "Blocked by AUT-20 and AUT-21; post-publication behavior depends on the completed-parent capability result.",
+      "implementer": "Senior Consultant",
+      "reviewer": "Principal Consultant",
+      "rationale": "Historical carry-forward, privileged completed-record correction, and evidence preservation are high-consequence automation.",
+      "assumptions": "Source-specific calculations are added by INT-28–INT-34.",
+      "inputs": [
+        "IN-08"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-08",
+          "description": "Confirm Group responsibility, M:N version copying, inherited-Code behavior, aggregate recalculation, completed-parent child correction, report/query binding, recurrence rendering, and scheduler interpretation."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure no-default, static-default, and prior-period initialization; query capture metadata; open-period refresh; privileged targeted post-publication refresh; source evidence updates; total recalculation; and safeguards against background refresh of Published Scorecards."
+      ],
+      "accept": [
+        "Each initialization Code behaves as specified; prior override rationale is not copied; refresh affects one KPI only, preserves override, recalculates totals, and cannot be selected by background jobs after publication."
+      ],
+      "refs": [
+        "Original implementation-plan assignment AUT-22. Sections 13.2, 13.3, 15.3"
+      ]
+    },
+    {
+      "id": "IMP-23",
+      "originalTaskId": "AUT-23",
+      "title": "Configure Entry Cutoff Processing",
+      "category": "Event Service configuration",
+      "objective": "Apply approved supplier-nonresponse behavior while keeping missing internal input visible and controlled.",
+      "scope": "Configure the Entry Due At service to set only eligible supplier nonresponses to zero, stamp the governed origin, leave internal gaps unresolved, respect optional values, and preserve retry-safe execution evidence.",
+      "deliverable": "Scheduled entry-cutoff service.",
+      "prerequisites": [
+        "IMP-20",
+        "IMP-21"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-20",
+          "description": "Verified KPI Value and parent-total calculation handlers."
+        },
+        {
+          "id": "IMP-21",
+          "description": "Scheduled generation service with retry-safe occurrence processing."
+        }
+      ],
+      "blockedStatus": "Blocked by AUT-20 and AUT-21 and by approved exception/nonresponse policy.",
+      "implementer": "Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "The service is bounded but changes scoring outcomes and must distinguish supplier from internal responsibility.",
+      "assumptions": "None.",
+      "inputs": [
+        "IN-05"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-05",
+          "description": "Approve `SET_TO_ZERO` and `EXCLUDE_FROM_DENOMINATOR`, or provide replacement policy."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure the Entry Due At service to set only eligible supplier nonresponses to zero, stamp the governed origin, leave internal gaps unresolved, respect optional values, and preserve retry-safe execution evidence."
+      ],
+      "accept": [
+        "Only configured supplier nonresponses become zero; internal gaps remain incomplete; repeat execution is safe; optional blanks remain distinguishable."
+      ],
+      "refs": [
+        "Original implementation-plan assignment AUT-23. Sections 13.4, 15.1"
+      ]
+    },
+    {
+      "id": "IMP-24",
+      "originalTaskId": "WFL-24",
+      "title": "Complete the Scorecard Workflows",
+      "category": "Workflow configuration",
+      "objective": "Enforce complete data entry, review-window, publication-ready, contribution-completion, return, cancellation, and due-date behavior.",
+      "scope": "Add full validation, error handling, calculated responsibility and due dates, hidden parent-driven child transitions, Open/Close Review behavior, contribution completion/reopen rules, cancellation cascade, and native reminders.",
+      "deliverable": "Completed Run, Scorecard, and Contribution Task workflows.",
+      "prerequisites": [
+        "IMP-18",
+        "IMP-20"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-18",
+          "description": "Three workflow skeletons with stable stage system names."
+        },
+        {
+          "id": "IMP-20",
+          "description": "Verified KPI Value and parent-total calculation handlers."
+        }
+      ],
+      "blockedStatus": "Blocked by WFL-18 and AUT-20 and by named groups, calendar, reminder, and exception-policy inputs.",
+      "implementer": "Senior Consultant",
+      "reviewer": "Principal Consultant",
+      "rationale": "Coordinated parent/child workflow, error recovery, and cancellation consequences require senior authority.",
+      "assumptions": "Silence at review deadline remains consent; no review-response object is added.",
+      "inputs": [
+        "IN-03",
+        "IN-05",
+        "IN-06"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-03",
+          "description": "Supply verified recurrence expressions, period-boundary rules, scheduler timezone, business calendar, generation time, entry/review cutoffs, reminders, and escalation behavior."
+        },
+        {
+          "id": "IN-05",
+          "description": "Approve `SET_TO_ZERO` and `EXCLUDE_FROM_DENOMINATOR`, or provide replacement policy."
+        },
+        {
+          "id": "IN-06",
+          "description": "Name administrator, coordinator, review, correction, contributor, and support groups and approve role separation."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Add full validation, error handling, calculated responsibility and due dates, hidden parent-driven child transitions, Open/Close Review behavior, contribution completion/reopen rules, cancellation cascade, and native reminders."
+      ],
+      "accept": [
+        "Review opens only when data is complete/excepted; one window is maintained; contribution completion validates linked values; cancellation is retry-safe and stops reminders."
+      ],
+      "refs": [
+        "Original implementation-plan assignment WFL-24. Sections 14.1–14.3, 15.1"
+      ]
+    },
+    {
+      "id": "IMP-25",
+      "originalTaskId": "AUT-25",
+      "title": "Configure Publication and Notifications",
+      "category": "Action Handler configuration",
+      "objective": "Publish a complete Run safely and notify only authorized internal and supplier recipients without duplicates.",
+      "scope": "Configure final validation, source-link safety checks, child and parent publication completion, publication stamps, recipient-role resolution, broad review notification, supplier publication notification, rollback or retry-safe partial-failure handling, and notification deduplication.",
+      "deliverable": "Publish Scorecards action and specified notification behavior.",
+      "prerequisites": [
+        "IMP-20",
+        "IMP-24"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-20",
+          "description": "Verified KPI Value and parent-total calculation handlers."
+        },
+        {
+          "id": "IMP-24",
+          "description": "Completed Run, Scorecard, and Contribution Task workflows."
+        }
+      ],
+      "blockedStatus": "Blocked by AUT-20 and WFL-24 and by approved exception policy, recipient/security decisions, and tenant notification/transaction results.",
+      "implementer": "Senior Consultant",
+      "reviewer": "Principal Consultant",
+      "rationale": "Atomic multi-record publication and external recipient resolution carry substantial security and recovery consequences.",
+      "assumptions": "No supplier acknowledgement or dispute workflow is configured.",
+      "inputs": [
+        "IN-05",
+        "IN-06",
+        "IN-08",
+        "IN-10"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-05",
+          "description": "Approve `SET_TO_ZERO` and `EXCLUDE_FROM_DENOMINATOR`, or provide replacement policy."
+        },
+        {
+          "id": "IN-06",
+          "description": "Name administrator, coordinator, review, correction, contributor, and support groups and approve role separation."
+        },
+        {
+          "id": "IN-08",
+          "description": "Confirm Group responsibility, M:N version copying, inherited-Code behavior, aggregate recalculation, completed-parent child correction, report/query binding, recurrence rendering, and scheduler interpretation."
+        },
+        {
+          "id": "IN-10",
+          "description": "Approve entity-scope rules, parent/facility access, supplier recipient roles, correction role, field visibility, and source-link expectations."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure final validation, source-link safety checks, child and parent publication completion, publication stamps, recipient-role resolution, broad review notification, supplier publication notification, rollback or retry-safe partial-failure handling, and notification deduplication."
+      ],
+      "accept": [
+        "All required validation passes before publication; partial failure is rolled back or resumes safely; unresolved required recipients hold only the affected publication; notifications are not duplicated."
+      ],
+      "refs": [
+        "Original implementation-plan assignment AUT-25. Sections 14.1, 16.2, 21.2"
+      ]
+    },
+    {
+      "id": "IMP-28",
+      "originalTaskId": "INT-28",
+      "title": "Configure Supplier Survey Safety Capture",
+      "category": "Integration configuration",
+      "objective": "Capture LTIR, TRIR, and Safety Kaizen results from the authoritative Supplier Survey model with exact benchmark evidence.",
+      "scope": "Configure supplier/period survey matching, completed-survey selection, NAICS/metric benchmark-version resolution, points calculation, nonresponse handling, Kaizen carry-forward, source references, and safe refresh behavior.",
+      "deliverable": "Governed safety Query KPI bindings and carry-forward behavior.",
+      "prerequisites": [
+        "IMP-15",
+        "IMP-22",
+        "IMP-26"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-15",
+          "description": "Controlled Safety Benchmark Publish action."
+        },
+        {
+          "id": "IMP-22",
+          "description": "Initialization component and targeted Refresh KPI Result action."
+        },
+        {
+          "id": "IMP-26",
+          "description": "Complete scorecard security configuration across all surfaces."
+        }
+      ],
+      "blockedStatus": "Blocked by AUT-15, AUT-22, and SEC-26 and by approved survey identifiers/schedules, safety scoring, NAICS, and benchmark governance.",
+      "implementer": "Senior Consultant",
+      "reviewer": "Principal Consultant",
+      "rationale": "Cross-component effective dating, scoring, evidence, and nonresponse handling are consequential.",
+      "assumptions": "Supplier Survey implementation is supplied by its authoritative specification.",
+      "inputs": [
+        "IN-12",
+        "IN-13"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-12",
+          "description": "Confirm Commodity override policy, NAICS ownership, missing-code behavior, benchmark sources, and update procedure."
+        },
+        {
+          "id": "IN-13",
+          "description": "Provide issued survey identifiers/schedules, supplier/period matching, completion rules, and exact LTIR/TRIR and Kaizen scoring."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure supplier/period survey matching, completed-survey selection, NAICS/metric benchmark-version resolution, points calculation, nonresponse handling, Kaizen carry-forward, source references, and safe refresh behavior."
+      ],
+      "accept": [
+        "Exact completed survey and benchmark version are stored; missing NAICS/benchmark is reported rather than guessed; Kaizen carry-forward follows the approved period rule."
+      ],
+      "refs": [
+        "Original implementation-plan assignment INT-28. Sections 11, 13.4, 17"
+      ]
+    },
+    {
+      "id": "IMP-29",
+      "originalTaskId": "INT-29",
+      "title": "Configure the PPM Query KPI",
+      "category": "Integration configuration",
+      "objective": "Calculate the approved PPM score from chargeable supplier NCR quantities and consumed parts for the same supplier and period.",
+      "scope": "Configure the governed source report/query binding, supplier and period mapping, included dispositions, parts-consumption input, aggregation and points logic, empty/failure behavior, correction handling, evidence link, and security-preserving drilldown.",
+      "deliverable": "One governed PPM Query KPI source integration.",
+      "prerequisites": [
+        "IMP-22",
+        "IMP-26"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-22",
+          "description": "Initialization component and targeted Refresh KPI Result action."
+        },
+        {
+          "id": "IMP-26",
+          "description": "Complete scorecard security configuration across all surfaces."
+        }
+      ],
+      "blockedStatus": "Blocked by AUT-22 and SEC-26 and by the complete PPM source contract.",
+      "implementer": "Senior Consultant",
+      "reviewer": "Principal Consultant",
+      "rationale": "Multi-source calculation and supplier-period reconciliation have substantial architectural and scoring consequences.",
+      "assumptions": "Parts-consumption transfer method is externally supplied.",
+      "inputs": [
+        "IN-14"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-14",
+          "description": "Select parts-consumption integration, map chargeable NCR dispositions/quantities, supplier keys, periods, scoring, corrections, and secure drilldown."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure the governed source report/query binding, supplier and period mapping, included dispositions, parts-consumption input, aggregation and points logic, empty/failure behavior, correction handling, evidence link, and security-preserving drilldown."
+      ],
+      "accept": [
+        "Numerator/denominator use approved sources and period; missing/failure states are explicit; correction and refresh are safe; drilldown reapplies source security."
+      ],
+      "refs": [
+        "Original implementation-plan assignment INT-29. Sections 17, 22.11"
+      ]
+    },
+    {
+      "id": "IMP-30",
+      "originalTaskId": "INT-30",
+      "title": "Configure the Response Timeliness Query KPI",
+      "category": "Integration configuration",
+      "objective": "Score supplier response timeliness without charging internal review delay to the supplier.",
+      "scope": "Configure the approved response source, supplier and period mapping, supplier submission timestamp, applicable due date, exclusions, scoring logic, correction handling, empty/failure behavior, and source-security-safe evidence link.",
+      "deliverable": "One governed response-timeliness Query KPI integration.",
+      "prerequisites": [
+        "IMP-22",
+        "IMP-26"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-22",
+          "description": "Initialization component and targeted Refresh KPI Result action."
+        },
+        {
+          "id": "IMP-26",
+          "description": "Complete scorecard security configuration across all surfaces."
+        }
+      ],
+      "blockedStatus": "Blocked by AUT-22 and SEC-26 and by the complete response-timeliness source contract.",
+      "implementer": "Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "This is a bounded report-fed source once its business contract is supplied.",
+      "assumptions": "None.",
+      "inputs": [
+        "IN-15"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-15",
+          "description": "Define authoritative source, supplier/period keys, due/submission timestamps, exclusions, scoring, corrections, and secure drilldown."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure the approved response source, supplier and period mapping, supplier submission timestamp, applicable due date, exclusions, scoring logic, correction handling, empty/failure behavior, and source-security-safe evidence link."
+      ],
+      "accept": [
+        "Scoring uses supplier submission and applicable due date only; internal review time is excluded; correction, failure, and evidence behavior match the source contract."
+      ],
+      "refs": [
+        "Original implementation-plan assignment INT-30. Section 17"
+      ]
+    },
+    {
+      "id": "IMP-31",
+      "originalTaskId": "INT-31",
+      "title": "Configure the Scrap Query KPI",
+      "category": "Integration configuration",
+      "objective": "Supply approved scrap results to Scorecards while leaving debit settlement outside Intelex.",
+      "scope": "Configure the approved scrap source report, supplier and period mapping, aggregation and scoring rules, correction handling, empty/failure behavior, and secure evidence link; do not add debit settlement processing.",
+      "deliverable": "One governed Scrap Query KPI integration.",
+      "prerequisites": [
+        "IMP-22",
+        "IMP-26"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-22",
+          "description": "Initialization component and targeted Refresh KPI Result action."
+        },
+        {
+          "id": "IMP-26",
+          "description": "Complete scorecard security configuration across all surfaces."
+        }
+      ],
+      "blockedStatus": "Blocked by AUT-22 and SEC-26 and by the complete Scrap source contract.",
+      "implementer": "Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "This is a bounded source integration once the authoritative mapping and rules are supplied.",
+      "assumptions": "None.",
+      "inputs": [
+        "IN-16"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-16",
+          "description": "Define authoritative source, supplier/period keys, aggregation, scoring, corrections, and secure drilldown."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure the approved scrap source report, supplier and period mapping, aggregation and scoring rules, correction handling, empty/failure behavior, and secure evidence link; do not add debit settlement processing."
+      ],
+      "accept": [
+        "Correct supplier-period scrap result is captured; debit processing is absent; correction/failure behavior is explicit; source security is preserved."
+      ],
+      "refs": [
+        "Original implementation-plan assignment INT-31. Sections 2 (SC-023), 17"
+      ]
+    },
+    {
+      "id": "IMP-32",
+      "originalTaskId": "INT-32",
+      "title": "Configure the Warranty Query KPI",
+      "category": "Integration configuration",
+      "objective": "Supply the approved warranty result from its authoritative source to the matching supplier-period KPI Value.",
+      "scope": "Configure the approved warranty source binding, supplier and period mapping, inclusions, aggregation, points logic, correction timing, empty/failure behavior, evidence link, and source security.",
+      "deliverable": "One governed Warranty Query KPI integration.",
+      "prerequisites": [
+        "IMP-22",
+        "IMP-26"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-22",
+          "description": "Initialization component and targeted Refresh KPI Result action."
+        },
+        {
+          "id": "IMP-26",
+          "description": "Complete scorecard security configuration across all surfaces."
+        }
+      ],
+      "blockedStatus": "Blocked by AUT-22 and SEC-26 and by the complete Warranty source contract.",
+      "implementer": "Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "This is a bounded source integration once its contract is supplied.",
+      "assumptions": "None.",
+      "inputs": [
+        "IN-17"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-17",
+          "description": "Define authoritative source, supplier/period keys, inclusions, aggregation, scoring, corrections, and secure drilldown."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure the approved warranty source binding, supplier and period mapping, inclusions, aggregation, points logic, correction timing, empty/failure behavior, evidence link, and source security."
+      ],
+      "accept": [
+        "The approved result maps to the correct supplier/period; refresh and correction follow policy; failures are explicit; drilldown preserves source authorization."
+      ],
+      "refs": [
+        "Original implementation-plan assignment INT-32. Section 17"
+      ]
+    },
+    {
+      "id": "IMP-33",
+      "originalTaskId": "INT-33",
+      "title": "Configure the PPAP Query KPI",
+      "category": "Integration configuration",
+      "objective": "Supply the approved PPAP result from its authoritative source to the matching supplier-period KPI Value.",
+      "scope": "Configure the approved PPAP source binding, supplier and period mapping, inclusions, aggregation, points logic, correction timing, empty/failure behavior, evidence link, and source security.",
+      "deliverable": "One governed PPAP Query KPI integration.",
+      "prerequisites": [
+        "IMP-22",
+        "IMP-26"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-22",
+          "description": "Initialization component and targeted Refresh KPI Result action."
+        },
+        {
+          "id": "IMP-26",
+          "description": "Complete scorecard security configuration across all surfaces."
+        }
+      ],
+      "blockedStatus": "Blocked by AUT-22 and SEC-26 and by the complete PPAP source contract.",
+      "implementer": "Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "This is a bounded cross-application source integration once its contract is supplied.",
+      "assumptions": "None.",
+      "inputs": [
+        "IN-18"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-18",
+          "description": "Define authoritative source, supplier/period keys, inclusions, aggregation, scoring, corrections, and secure drilldown."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure the approved PPAP source binding, supplier and period mapping, inclusions, aggregation, points logic, correction timing, empty/failure behavior, evidence link, and source security."
+      ],
+      "accept": [
+        "The approved result maps to the correct supplier/period; refresh and correction follow policy; failures are explicit; drilldown preserves PPAP security."
+      ],
+      "refs": [
+        "Original implementation-plan assignment INT-33. Section 17"
+      ]
+    },
+    {
+      "id": "IMP-34",
+      "originalTaskId": "INT-34",
+      "title": "Configure the Delivery Query KPI",
+      "category": "Integration configuration",
+      "objective": "Supply the approved delivery result from its authoritative source to the matching supplier-period KPI Value.",
+      "scope": "Configure the approved delivery source binding, supplier and period mapping, inclusions, aggregation, points logic, correction timing, empty/failure behavior, evidence link, and source security.",
+      "deliverable": "One governed Delivery Query KPI integration.",
+      "prerequisites": [
+        "IMP-22",
+        "IMP-26"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-22",
+          "description": "Initialization component and targeted Refresh KPI Result action."
+        },
+        {
+          "id": "IMP-26",
+          "description": "Complete scorecard security configuration across all surfaces."
+        }
+      ],
+      "blockedStatus": "Blocked by AUT-22 and SEC-26 and by the complete Delivery source contract.",
+      "implementer": "Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "This is a bounded source integration once its contract is supplied.",
+      "assumptions": "None.",
+      "inputs": [
+        "IN-19"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-19",
+          "description": "Define authoritative source, supplier/period keys, inclusions, aggregation, scoring, corrections, and secure drilldown."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Configure the approved delivery source binding, supplier and period mapping, inclusions, aggregation, points logic, correction timing, empty/failure behavior, evidence link, and source security."
+      ],
+      "accept": [
+        "The approved result maps to the correct supplier/period; refresh and correction follow policy; failures are explicit; drilldown preserves source authorization."
+      ],
+      "refs": [
+        "Original implementation-plan assignment INT-34. Section 17"
+      ]
+    },
+    {
+      "id": "IMP-35",
+      "originalTaskId": "DAT-35",
+      "title": "Configure the Initial Scorecard Configuration",
+      "category": "Initial configuration",
+      "objective": "Make the approved direct-entry-first Scorecard configuration available for operational generation.",
+      "scope": "Create and publish approved safety benchmark, KPI, and Program records; assign KPI membership and recipient roles; create effective-dated supplier Participations; configure required status-capability decisions; and verify that published configuration resolves by the intended period. Query KPIs remain Direct Entry until their integration task is complete.",
+      "deliverable": "Published initial benchmark/KPI/Program versions, Participations, routing, and capability configuration.",
+      "prerequisites": [
+        "IMP-04",
+        "IMP-09",
+        "IMP-12",
+        "IMP-13",
+        "IMP-15"
+      ],
+      "predecessorOutputs": [
+        {
+          "id": "IMP-04",
+          "description": "Approved, audited records in every concrete catalogue."
+        },
+        {
+          "id": "IMP-09",
+          "description": "Controlled KPI Publish action."
+        },
+        {
+          "id": "IMP-12",
+          "description": "Controlled Program Publish action."
+        },
+        {
+          "id": "IMP-13",
+          "description": "Participation object, forms, relationships, audit, and range control."
+        },
+        {
+          "id": "IMP-15",
+          "description": "Controlled Safety Benchmark Publish action."
+        }
+      ],
+      "blockedStatus": "Blocked by all prerequisites and by the approved KPI catalogue, participant population, groups, status decisions, cadence/calendar, Commodity/NAICS governance, and operating model.",
+      "implementer": "Senior Associate Consultant",
+      "reviewer": "Senior Consultant",
+      "rationale": "This is controlled configuration-record setup using completed publish mechanisms; review protects the approved design baseline.",
+      "assumptions": "Historical spreadsheet import is excluded and would require a separate migration plan.",
+      "inputs": [
+        "IN-02",
+        "IN-03",
+        "IN-04",
+        "IN-06",
+        "IN-07",
+        "IN-09",
+        "IN-12"
+      ],
+      "suppliedInputDescriptions": [
+        {
+          "id": "IN-02",
+          "description": "Approve Commodity, NAICS, KPI Category, KPI Aggregation Method, Value Type, and any changes to the specification seed values."
+        },
+        {
+          "id": "IN-03",
+          "description": "Supply verified recurrence expressions, period-boundary rules, scheduler timezone, business calendar, generation time, entry/review cutoffs, reminders, and escalation behavior."
+        },
+        {
+          "id": "IN-04",
+          "description": "Approve or reject ADR-113 parent-periodic/facility-monthly rollup behavior."
+        },
+        {
+          "id": "IN-06",
+          "description": "Name administrator, coordinator, review, correction, contributor, and support groups and approve role separation."
+        },
+        {
+          "id": "IN-07",
+          "description": "Approve status/capability matrix entries and parent-restriction behavior for monthly and, if used, periodic generation."
+        },
+        {
+          "id": "IN-09",
+          "description": "Supply KPI definitions, categories, maxima, initialization, applicability, missing-value behavior, aggregation, contacts, effective dates, Program membership, requiredness, and participant population."
+        },
+        {
+          "id": "IN-12",
+          "description": "Confirm Commodity override policy, NAICS ownership, missing-code behavior, benchmark sources, and update procedure."
+        }
+      ],
+      "configurationRows": [],
+      "modifications": [],
+      "steps": [
+        "Create and publish approved safety benchmark, KPI, and Program records; assign KPI membership and recipient roles; create effective-dated supplier Participations; configure required status-capability decisions; and verify that published configuration resolves by the intended period. Query KPIs remain Direct Entry until their integration task is complete."
+      ],
+      "accept": [
+        "Approved KPIs and Program publish without overlap; each intended supplier has one valid Participation; routing resolves; Direct Entry remains the default until each Query integration is ready."
+      ],
+      "refs": [
+        "Original implementation-plan assignment DAT-35. Sections 8–10, 20.2–20.3, 22.1–22.8"
+      ]
+    }
+  ],
+  "baselineTaskHashes": {
+    "IMP-01": "802ff7a3a2329f10fc49c4617c2cecf20f89fe606ecdb3daf5c956ec10a48f3f",
+    "IMP-02": "d576d47d10fdbc4db12798424de4a3d598d9574a456143a573be34daa4534a60",
+    "IMP-03": "52c31f15b742db4a885745ac5f23e132b32ca6a3494b09c969f599af044c6119",
+    "IMP-04": "e788261857671021d0c021ee26b1871cbcce7c720570ad215a4ca99744c2d43c",
+    "IMP-05": "3490a484976293f59418a4d0b2f136e731faca41c0d032640ff0a9e7cdf269bf",
+    "IMP-06": "663bc5b4fbce462858f6bf6a4ae6d7addaccac94bb4bd26dce7a06bf14a86517",
+    "IMP-07": "f78456edebe594585d16653f1b139b88c5a697021b928f8c4a603862a948102c",
+    "IMP-08": "449618dd81f8f28644daf992bb4178bf662ba69b7220aee8ed20058192683ae9",
+    "IMP-09": "e0e4d00c08297998813ca3fa6ac8965b73aaed7a2bdffd076f69c5f8a150ab56",
+    "IMP-10": "a9265fb8630de2229da6f436f96e1f3a0ca2a9fba99c9f361b1acede0acd5518",
+    "IMP-11": "c19b73ce433cd26f06496a9cc064e182a3b0ea79c1af70b68b56a57575fe46d5",
+    "IMP-12": "d9ab0eefbc9111fdb8d8a2747a73d52987b7d0ef188123c13ceb3c6c18f34c58",
+    "IMP-13": "c5c7d230f50797000c574510a25f23fe8b8da4929ab92712627d50d84b82cac6",
+    "IMP-14": "63015588aedea5539eff94dd445e7bcced88a3dfadd1db8f528adf918dcb82da",
+    "IMP-15": "107b76842dc201564260b348cbd012ff4c5c8d3af08cf9a011c5233e546d09cb",
+    "IMP-16": "e9e223ac44b8adafb61d8530baeafa972e34ed7e22aba8615bc3c0c7ee19c7fe",
+    "IMP-17": "4e1530fac35facd324e310eb5955f18c083263cafa21d81bd846cf0e2aa0b9bb",
+    "IMP-18": "94fbc5661a3b782078dbe0c3445c0a2ab13f0b2d76334f32d002d8bccd56cbbd",
+    "IMP-19": "08530fa3426716a67a0b37b59b13dd986d6e7903dee42f33021e825699a61f04",
+    "IMP-20": "68207e6e103298a492a00ca59f304ee19b761ac795aafe52e6259d3102008897",
+    "IMP-21": "e2684c145f728d549d0195ccae0c88e9e343143a01cde71192e005f9922ae7e6",
+    "IMP-22": "dc2cb1ba67c27496378b44394cc4db5a4ad33b419fb96d009abfd2bdd60abefe",
+    "IMP-23": "0bb15f2dd63a040bb11fee8b8382489c005b3b7419666de205d29f42ae31e2ca",
+    "IMP-24": "7bd2cf9ce1cd43f8f27bb1e208e3b3513c466f4854d37f134ab9cbcb2b44d58e",
+    "IMP-25": "cc52b4e95af84a07eb29d7fb40a4f7479c46e3ec35d801a7876887ec7d6af0b2",
+    "IMP-26": "f0b49fb42a2232fca268b5a3e75859414f61ec19c0fa0d08d18404e64dbaf374",
+    "IMP-27": "c4333cb9109d3b48e3dba49a001439a72dbede6a5c3e5e7f5bd834c224235e62",
+    "IMP-28": "2ccc82048172f5d21e23ae59dd0032e9b598d275154d92d3decc342c3df67bf8",
+    "IMP-29": "e77321345797774fdd104e63cc38ff649056f515e91a162c4e33d366f163a6ae",
+    "IMP-30": "207ce11339300fb0580f9c2fce24d971909daf43d36b423233c61dbc75dab8b7",
+    "IMP-31": "8e2c8785f9cc5e8400fffb5c95cda4da27582d90c5bebe7a72965d3aa0fb6477",
+    "IMP-32": "00bba696f0886b9c04a65bd3a6218414159705251d5535e036952e67d831cbb6",
+    "IMP-33": "3d3c4d6d81e7aed82f54751fde6fabf473ae80473576b5e99d44bffa832e9aba",
+    "IMP-34": "9008a23c819e42da1572e5ee7c9d15de0fc1d68cfd8908f50deb5af6676fded0",
+    "IMP-35": "8a9c47eac2e7fb4db6dde2f14e7ea5a863910c4fe8ed73dd5c03471154718c1d"
+  },
+  "originalToValidator": {
+    "APP-01": "IMP-01",
+    "OBJ-02": "IMP-02",
+    "CFG-03": "IMP-03",
+    "DAT-04": "IMP-04",
+    "OBJ-05": "IMP-05",
+    "AUT-06": "IMP-06",
+    "OBJ-07": "IMP-07",
+    "FRM-08": "IMP-08",
+    "AUT-09": "IMP-09",
+    "OBJ-10": "IMP-10",
+    "FRM-11": "IMP-11",
+    "AUT-12": "IMP-12",
+    "OBJ-13": "IMP-13",
+    "OBJ-14": "IMP-14",
+    "AUT-15": "IMP-15",
+    "OBJ-16": "IMP-16",
+    "OBJ-17": "IMP-17",
+    "WFL-18": "IMP-18",
+    "FRM-19": "IMP-19",
+    "AUT-20": "IMP-20",
+    "AUT-21": "IMP-21",
+    "AUT-22": "IMP-22",
+    "AUT-23": "IMP-23",
+    "WFL-24": "IMP-24",
+    "AUT-25": "IMP-25",
+    "SEC-26": "IMP-26",
+    "RPT-27": "IMP-27",
+    "INT-28": "IMP-28",
+    "INT-29": "IMP-29",
+    "INT-30": "IMP-30",
+    "INT-31": "IMP-31",
+    "INT-32": "IMP-32",
+    "INT-33": "IMP-33",
+    "INT-34": "IMP-34",
+    "DAT-35": "IMP-35"
+  }
+}

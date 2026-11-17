@@ -1,0 +1,505 @@
+{
+  "version": 1,
+  "reviewDate": "2026-11-16",
+  "scope": "Four task addenda only; original 31 imported assignments are frozen and unreviewed.",
+  "tasks": [
+    {
+      "id": "IMP-01",
+      "evidenceReview": "The original APP-01 assignment creates the application shell and generic navigation placeholders. The approved November 16 specification Section 16.4 supplies exactly three tab labels and nine grouping labels. The addendum keeps APP-01 as the prerequisite root and leaves the 24 menu destinations/defaults to the later view assignment. No existing live tenant menu or verified metadata ID is asserted.",
+      "languageReview": "I read the objective, expanded scope, twelve tab/group rows, two build steps, readiness text, role explanation and result checks. They state the user-visible tab/group result directly, preserve the supplied business labels, and distinguish shell creation from later bindings without requiring the assignee to interpret numbered requirements.",
+      "meaningReview": "I reconciled the exact ordered tab labels, the two/three/four group counts and all nine header spellings with the approved specification. APP-01 remains an Associate Consultant assignment reviewed by a Senior Consultant, has no predecessor, creates no extra contribution tab, and receives no dependency on reports or security work that would create a cycle.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Expand the original generic application-shell scope with the three fixed tab labels and nine named groupings, leaving final destinations and defaults to later work.",
+          "mechanism": "Native Application and Application tab/Menu grouping configuration."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Create Supplier Scorecards as the first application tab.",
+          "mechanism": "Application tab display-label and ordering settings."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Create Program Administration as the second application tab.",
+          "mechanism": "Application tab display-label and ordering settings."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Create Program Development as the third application tab.",
+          "mechanism": "Application tab display-label and ordering settings."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add Performance & History first beneath Supplier Scorecards.",
+          "mechanism": "Supplier Scorecards Menu grouping header and display order."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add Reporting Progress & Review second beneath Supplier Scorecards.",
+          "mechanism": "Supplier Scorecards Menu grouping header and display order."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add Program & Scoring Setup first beneath Program Administration.",
+          "mechanism": "Program Administration Menu grouping header and display order."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add Program Operations & Data Review second beneath Program Administration.",
+          "mechanism": "Program Administration Menu grouping header and display order."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add Business Classifications third beneath Program Administration.",
+          "mechanism": "Program Administration Menu grouping header and display order."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add Scoring & Value Definitions first beneath Program Development.",
+          "mechanism": "Program Development Menu grouping header and display order."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add Data Collection & Initialization second beneath Program Development.",
+          "mechanism": "Program Development Menu grouping header and display order."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add Scheduling third beneath Program Development.",
+          "mechanism": "Program Development Menu grouping header and display order."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add Result Provenance & Exceptions fourth beneath Program Development.",
+          "mechanism": "Program Development Menu grouping header and display order."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Create the application container together with the three ordered tab shells.",
+          "mechanism": "Native application/container and tab setup."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Populate the nine ordered grouping labels without introducing an extra contribution tab.",
+          "mechanism": "Native application menu grouping configuration."
+        }
+      ],
+      "taskHash": "2e3712c24247da281eb050df1ad5fc07bcdefc9881e4689d41df9cf14a9929db",
+      "renderedTaskHash": "fba0b26decd38b1567c9e0a8643f23e2d1ce2a4b2b5108ffa7f1e6f2f5f5dbde"
+    },
+    {
+      "id": "IMP-03",
+      "evidenceReview": "The original CFG-03 assignment owns catalogue forms, inherited fields, active filtering, audit and basic permissions. The updated specification Sections 7 and 16.1 explicitly replaces the blanket maintenance grant with three business and ten technical catalogues. I checked all thirteen names, the inherited Code/Name/Active?/Sort contract, Description on KPI Aggregation Method, and Frequency on Scorecard Cadence. The increment object/form is an earlier scheduling-amendment output, so only its privilege assignment waits for that target.",
+      "languageReview": "I read every catalogue row and each field-editability row without source references. Each identifies a concrete catalogue or field and names the allowed users, with lookup access explained separately. The task preserves the original catalogue setup scope and describes missing Group/target/capability information locally rather than turning it into a discovery assignment.",
+      "meaningReview": "I reconciled maintenance for Supplier Commodity, NAICS Classification and KPI Category to the application-admin group or Administrators, and all ten technical domains to Administrators only. The new grant applies across direct and administrative paths while Code first-use stability, used-Cadence Frequency immutability, inactive historical references, inherited field ownership, audit and inverse suppression remain as before. No field, Code, seed or inheritance change is assigned.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Replace the planned blanket catalogue grant with the explicit three-business/ten-technical division and retain consuming-record lookup access.",
+          "mechanism": "Concrete catalogue record permissions and inherited/direct field editability settings."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Limit Supplier Commodity maintenance to the application-admin group or Administrators across the assigned access paths.",
+          "mechanism": "Supplier Commodity record administration permissions."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Limit NAICS Classification maintenance to the application-admin group or Administrators across the assigned access paths.",
+          "mechanism": "NAICS Classification record administration permissions."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Limit KPI Category maintenance to the application-admin group or Administrators across the assigned access paths.",
+          "mechanism": "KPI Category record administration permissions."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Restrict KPI Aggregation Method maintenance to Administrators rather than ordinary application administrators.",
+          "mechanism": "KPI Aggregation Method catalogue record permissions."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Restrict KPI Value Type maintenance to Administrators rather than ordinary application administrators.",
+          "mechanism": "KPI Value Type catalogue record permissions."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Restrict KPI Contribution Source maintenance to Administrators rather than ordinary application administrators.",
+          "mechanism": "KPI Contribution Source catalogue record permissions."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Restrict KPI Collection Method maintenance to Administrators rather than ordinary application administrators.",
+          "mechanism": "KPI Collection Method catalogue record permissions."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Restrict KPI Initialization Method maintenance to Administrators rather than ordinary application administrators.",
+          "mechanism": "KPI Initialization Method catalogue record permissions."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Restrict Safety Benchmark Metric maintenance to Administrators rather than ordinary application administrators.",
+          "mechanism": "Safety Benchmark Metric catalogue record permissions."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Restrict Scorecard Cadence maintenance to Administrators, retaining its existing used-record scheduling restrictions.",
+          "mechanism": "Scorecard Cadence catalogue record permissions."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Assign Administrators-only maintenance to Generation Lag Time Increment when the separately supplied object/form exists.",
+          "mechanism": "Generation Lag Time Increment catalogue record permissions on the earlier output."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Restrict KPI Value Origin maintenance to Administrators rather than ordinary application administrators.",
+          "mechanism": "KPI Value Origin catalogue record permissions."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Restrict Publication Exception Treatment maintenance to Administrators rather than ordinary application administrators.",
+          "mechanism": "Publication Exception Treatment catalogue record permissions."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Apply the concrete-child maintainer rule to inherited Code without changing first-use stability or redeclaring the field.",
+          "mechanism": "Inherited Code editability enforced on concrete catalogue administration."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Apply the concrete-child maintainer rule to inherited Name while retaining localizable labels.",
+          "mechanism": "Inherited Name editability enforced on concrete catalogue administration."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Apply the concrete-child maintainer rule to inherited Active? without invalidating existing historical references.",
+          "mechanism": "Inherited Active? editability enforced on concrete catalogue administration."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Apply the concrete-child maintainer rule to inherited Sort without adding another field declaration.",
+          "mechanism": "Inherited Sort editability enforced on concrete catalogue administration."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Restrict the directly declared Description field to Administrators; record changes do not implement unsupported algorithms.",
+          "mechanism": "KPI Aggregation Method.Description field permission."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Restrict Frequency editing to Administrators before its first published Program Version use and retain the later stability lock.",
+          "mechanism": "Scorecard Cadence.Frequency field permission with existing publication-use condition."
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Separate lookup/read rights from maintenance so supported active values and historical inactive references remain usable.",
+          "mechanism": "Catalogue read/selection permissions on consuming configuration and operational records."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Apply the two maintainer sets at concrete record and inherited/direct field boundaries.",
+          "mechanism": "Catalogue object and field permission configuration."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Configure independent lookup rights for legitimate KPI, Program, benchmark and operational selections.",
+          "mechanism": "Catalogue read permission and existing active-selection filters."
+        }
+      ],
+      "taskHash": "2ece9b897e135551f122501fd113c847c16d54d9aeae154d89de878d11f58f0e",
+      "renderedTaskHash": "a995af000ff4671a09f394506674d3bbd878424416b876c15639f2bd8fc316d5"
+    },
+    {
+      "id": "IMP-26",
+      "evidenceReview": "The original SEC-26 task owns nuanced application/object/record/workflow security. The approved specification fixes the three tab audiences and reviewer-only menu, while retaining supplier scope and existing action controls. I checked that this addendum supplies policies rather than trying to bind menu records before the later reporting task creates them. Catalogue record/field maintenance is owned by CFG-03, avoiding duplicated configuration ownership.",
+      "languageReview": "I read the original retained security scope, added audience policies, current-review condition, local waiting information and acceptance examples. The task explains who receives each tab and why tab membership cannot grant operations. Native Group bindings remain supplied configuration inputs; no system-processing grant or invented principal is assigned.",
+      "meaningReview": "Supplier Scorecards remains internal and scoped. Program Administration allows the application-admin group and Administrators; Program Development permits Administrators only. Review eligibility is for the applicable cycle and is passed to final menu assembly. Existing form/workflow/publication predecessors remain; no dependence on later RPT-27 menu records or grant of contribution/override/publication actions through tab access was introduced.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Extend the existing security build with three tab-audience policies and a cycle-specific review condition for later binding.",
+          "mechanism": "Native application-user access policies and existing record/action permission controls."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Define the Supplier Scorecards audience as authorized internal SIA users within their existing supplier scope.",
+          "mechanism": "Internal-viewer application access policy."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Define the Program Administration audience as application admins or Administrators while preserving separate action checks.",
+          "mechanism": "Program Administration user-group access policy."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Define Program Development eligibility using Administrators membership only.",
+          "mechanism": "Program Development user-group access policy."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Supply the applicable reporting-cycle review authorization condition for conditional final navigation.",
+          "mechanism": "Existing reviewer authorization policy exposed for the later menu/view binding."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Keep tab eligibility separate from contributor, coordinator, correction, override and publication authority.",
+          "mechanism": "Record/workflow/action permission evaluation beneath navigation access."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Assign the three approved audience policies to the supplied native Groups and current eligibility.",
+          "mechanism": "Application user-group policy configuration."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Supply review eligibility for later menu visibility while retaining authoritative checks for followed and direct links.",
+          "mechanism": "Reviewer authorization output and record/action access enforcement."
+        }
+      ],
+      "taskHash": "370a8397260d13df031228a4b2d1bd43632014a6c3e7094acfad65b2a85a3edc",
+      "renderedTaskHash": "cd7b76929f4da3c53c34b7cc2c081d053a2492cfa48c0f3a7cad19b562006a5f"
+    },
+    {
+      "id": "IMP-27",
+      "evidenceReview": "The updated specification Section 16.4 supplies all 24 menu labels, nine tab/group placements, destination objects/views and three default views. I compared each rendered row with that table and the approved conversation. The retained RPT-27 scope already owns native views and reporting. KPI and Program form prerequisites are added because final navigation opens those experiences. Only unverified native binding support is an input; newly created identifiers are build outputs.",
+      "languageReview": "I read all 27 feature rows, three ordered instructions, result checks, predecessor outputs and task-local waiting statements. Each menu path names the tab, grouping and displayed item before stating what opens. Blank defaults, reviewer-only visibility and the increment-specific blocker are understandable without source references, and the original reporting/ranking responsibilities remain explicit.",
+      "meaningReview": "I reconciled the five/nine/ten menu counts, exact destinations and item order. Defaults remain Scorecard Overview, blank, blank. Final assembly consumes rather than redefines the security policies and catalogue privileges. No My Contribution Tasks menu, fourth tab, abstract-catalogue form, or unrestricted Generation Delay creation path is added. Native audit, immutable Versions and existing contribution links remain in use; the separate increment object/form is not created here.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Extend the retained views/reports assignment with 24 ordered menu links, security-policy bindings and three approved tab defaults.",
+          "mechanism": "Native report/view creation plus application menu destination/default bindings."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add Scorecard Overview first in Performance & History and open the results/cycle/completion dashboard.",
+          "mechanism": "Supplier Scorecards menu destination binding to native overview views."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add Supplier Scorecards second and bind the filtered operational snapshot inventory.",
+          "mechanism": "Supplier Scorecard inventory menu binding with existing record/stage security."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add Supplier Scorecard History third and bind supplier company/facility profile history.",
+          "mechanism": "Supplier-profile navigation and related Scorecard history view binding."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add Contribution Progress first in its grouping as read-only task/Run completion reporting.",
+          "mechanism": "Native Scorecard Contribution Task/Run progress report menu binding."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add Scorecards in Review second and bind visibility to applicable-cycle review authorization.",
+          "mechanism": "Consolidated review view binding and supplied conditional reviewer visibility."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add Scorecard Programs first in setup and open Program authoring with existing controlled child grids.",
+          "mechanism": "Scorecard Program inventory/authoring menu binding."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add KPI Library second in setup and open KPI authoring and its immutable Versions.",
+          "mechanism": "Supplier Scorecard KPI authoring menu binding."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add Supplier Participation third and open exact supplier/program effective-period assignments.",
+          "mechanism": "Supplier Scorecard Participation inventory menu binding."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add Safety Benchmarks fourth and open benchmark authoring with immutable Versions.",
+          "mechanism": "Safety Benchmark authoring inventory menu binding."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add Scorecard Runs first in operations and open monitoring with existing action checks.",
+          "mechanism": "Supplier Scorecard Run inventory menu binding."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add Reported KPI Data second in operations and open governed values/provenance/points with native evidence.",
+          "mechanism": "Scorecard KPI Value report/view binding to native record audit and workflow history."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add Supplier Commodities first among business classifications and open its catalogue.",
+          "mechanism": "Supplier Commodity catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add NAICS Classifications second among business classifications and open its catalogue.",
+          "mechanism": "NAICS Classification catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add KPI Categories third among business classifications and open its catalogue.",
+          "mechanism": "KPI Category catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Add KPI Aggregation Methods first in scoring/value definitions and open supported method records.",
+          "mechanism": "KPI Aggregation Method catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Add KPI Value Types second in scoring/value definitions and open supported typed-value records.",
+          "mechanism": "KPI Value Type catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Add Safety Benchmark Metrics third in scoring/value definitions and open metric records.",
+          "mechanism": "Safety Benchmark Metric catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Add KPI Contribution Sources first in collection/initialization and open source classifications.",
+          "mechanism": "KPI Contribution Source catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Add KPI Collection Methods second in collection/initialization and open processing-method records.",
+          "mechanism": "KPI Collection Method catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Add KPI Initialization Methods third in collection/initialization and open initial-value method records.",
+          "mechanism": "KPI Initialization Method catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.20",
+          "requiredChange": "Add Scorecard Cadences first in Scheduling and open recurrence records.",
+          "mechanism": "Scorecard Cadence catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.21",
+          "requiredChange": "Add Generation Lag Time Increments second in Scheduling after the separately supplied target exists.",
+          "mechanism": "Generation Lag Time Increment catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.22",
+          "requiredChange": "Add KPI Value Origins first in provenance/exceptions and open provenance catalogue records.",
+          "mechanism": "KPI Value Origin catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.23",
+          "requiredChange": "Add Publication Exception Treatments second in provenance/exceptions and open treatment records.",
+          "mechanism": "Publication Exception Treatment catalogue administration menu binding."
+        },
+        {
+          "path": "configurationRows.24",
+          "requiredChange": "Set Supplier Scorecards to display Scorecard Overview immediately when opened.",
+          "mechanism": "Supplier Scorecards tab default-view binding."
+        },
+        {
+          "path": "configurationRows.25",
+          "requiredChange": "Set Program Administration to open blank content until a menu item is selected.",
+          "mechanism": "Program Administration tab blank default-view setting."
+        },
+        {
+          "path": "configurationRows.26",
+          "requiredChange": "Set Program Development to open blank content until a menu item is selected.",
+          "mechanism": "Program Development tab blank default-view setting."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Create the named overview and supplemental views using configured records, responsive forms and native reporting.",
+          "mechanism": "Native report/view configuration within the retained reporting task."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Bind the full ordered menu mapping and apply the previously configured tab/review policies.",
+          "mechanism": "Application menu destination and visibility settings."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Set the three explicit defaults and omit unapproved task, fourth-tab, abstract-catalogue and unrestricted-delay menus.",
+          "mechanism": "Application tab default-view and approved menu composition settings."
+        }
+      ],
+      "taskHash": "a8efa79737943bf91bcce55f0025a8d751df3af78ec2932efbc417fff801d320",
+      "renderedTaskHash": "f0d2d76c7fa1341cb5823f226b1b9ab6b3e5158331a8bcfd6eaa12301262e93d"
+    }
+  ],
+  "unchangedTaskHashes": {
+    "IMP-02": "d576d47d10fdbc4db12798424de4a3d598d9574a456143a573be34daa4534a60",
+    "IMP-04": "e788261857671021d0c021ee26b1871cbcce7c720570ad215a4ca99744c2d43c",
+    "IMP-05": "3490a484976293f59418a4d0b2f136e731faca41c0d032640ff0a9e7cdf269bf",
+    "IMP-06": "663bc5b4fbce462858f6bf6a4ae6d7addaccac94bb4bd26dce7a06bf14a86517",
+    "IMP-07": "f78456edebe594585d16653f1b139b88c5a697021b928f8c4a603862a948102c",
+    "IMP-08": "449618dd81f8f28644daf992bb4178bf662ba69b7220aee8ed20058192683ae9",
+    "IMP-09": "e0e4d00c08297998813ca3fa6ac8965b73aaed7a2bdffd076f69c5f8a150ab56",
+    "IMP-10": "a9265fb8630de2229da6f436f96e1f3a0ca2a9fba99c9f361b1acede0acd5518",
+    "IMP-11": "c19b73ce433cd26f06496a9cc064e182a3b0ea79c1af70b68b56a57575fe46d5",
+    "IMP-12": "d9ab0eefbc9111fdb8d8a2747a73d52987b7d0ef188123c13ceb3c6c18f34c58",
+    "IMP-13": "c5c7d230f50797000c574510a25f23fe8b8da4929ab92712627d50d84b82cac6",
+    "IMP-14": "63015588aedea5539eff94dd445e7bcced88a3dfadd1db8f528adf918dcb82da",
+    "IMP-15": "107b76842dc201564260b348cbd012ff4c5c8d3af08cf9a011c5233e546d09cb",
+    "IMP-16": "e9e223ac44b8adafb61d8530baeafa972e34ed7e22aba8615bc3c0c7ee19c7fe",
+    "IMP-17": "4e1530fac35facd324e310eb5955f18c083263cafa21d81bd846cf0e2aa0b9bb",
+    "IMP-18": "94fbc5661a3b782078dbe0c3445c0a2ab13f0b2d76334f32d002d8bccd56cbbd",
+    "IMP-19": "08530fa3426716a67a0b37b59b13dd986d6e7903dee42f33021e825699a61f04",
+    "IMP-20": "68207e6e103298a492a00ca59f304ee19b761ac795aafe52e6259d3102008897",
+    "IMP-21": "e2684c145f728d549d0195ccae0c88e9e343143a01cde71192e005f9922ae7e6",
+    "IMP-22": "dc2cb1ba67c27496378b44394cc4db5a4ad33b419fb96d009abfd2bdd60abefe",
+    "IMP-23": "0bb15f2dd63a040bb11fee8b8382489c005b3b7419666de205d29f42ae31e2ca",
+    "IMP-24": "7bd2cf9ce1cd43f8f27bb1e208e3b3513c466f4854d37f134ab9cbcb2b44d58e",
+    "IMP-25": "cc52b4e95af84a07eb29d7fb40a4f7479c46e3ec35d801a7876887ec7d6af0b2",
+    "IMP-28": "2ccc82048172f5d21e23ae59dd0032e9b598d275154d92d3decc342c3df67bf8",
+    "IMP-29": "e77321345797774fdd104e63cc38ff649056f515e91a162c4e33d366f163a6ae",
+    "IMP-30": "207ce11339300fb0580f9c2fce24d971909daf43d36b423233c61dbc75dab8b7",
+    "IMP-31": "8e2c8785f9cc5e8400fffb5c95cda4da27582d90c5bebe7a72965d3aa0fb6477",
+    "IMP-32": "00bba696f0886b9c04a65bd3a6218414159705251d5535e036952e67d831cbb6",
+    "IMP-33": "3d3c4d6d81e7aed82f54751fde6fabf473ae80473576b5e99d44bffa832e9aba",
+    "IMP-34": "9008a23c819e42da1572e5ee7c9d15de0fc1d68cfd8908f50deb5af6676fded0",
+    "IMP-35": "8a9c47eac2e7fb4db6dde2f14e7ea5a863910c4fe8ed73dd5c03471154718c1d"
+  }
+}

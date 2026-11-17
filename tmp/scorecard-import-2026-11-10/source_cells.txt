@@ -1,0 +1,1351 @@
+
+SHEET: Supplier KPI Scorecard
+F1 | Supplier Name
+G1 | A315 Heartland Automotive, LLC | ='Historical tracking'!$I$1
+F2 | August 2026 Overall Ranking
+G2 | 166/171 | =VLOOKUP($G$1,[2]Scores!$A$3:$KU$205,286,FALSE)
+C3 | Quality Score:
+D3 | 0.3333333333333333 | ='Historical tracking'!P27
+F3 | Commodity Ranking
+G3 | 7/7 (Key-Alliance) | =VLOOKUP($G$1,[2]Scores!$A$3:$KU$205,291,FALSE)
+C4 | Overall Score:
+D4 | 0.39166666666666666 | ='Historical tracking'!P28
+E5 | 43891
+B6 | KPI
+C6 | Performance Target
+D6 | Purpose
+F6 | Maximum Points
+G6 | Awarded Points
+A7 | Safety
+(7%)
+B7 | Safety through Accountability and Recognition 
+C7 | Supplier's OSHA Incidence Rate and Lost Time rate less than the national average by category
+D7 | Subaru is responsible to ensure that our Supply Base promotes the Safety of their workforce.
+F7 | 5
+G7 | 3 | ='Historical tracking'!$P6
+H7 | Add Intelex survey or feature?
+B8 | Supplier Sustainability Performance
+C8 | Evaluate efforts to reduce landfill and energy consumption
+D8 | Subaru is responsible to ensure that our Supply Base protects our environment.
+F8 | 5
+G8 |   | ='Historical tracking'!$P7
+H8 | Add Intelex survey or feature?
+A9 | Quality
+(48%)
+B9 | PPM
+C9 | Less than 6 PPM for General; 0 PPM for Safety Vital
+D9 | Supplier must focus on why defects were made, why defects were shipped and what in the quality management system failed.
+F9 | 45
+G9 | 10 | ='Historical tracking'!$P8
+H9 | Intelex
+B10 | PRC's Answered On Time
+C10 | 14 days allowed to answer on-time and must be 100% on time for all PRC issued
+D10 | Promote and encourage improved communication on performance issues with SIA, in order to have a good countermeasure urgently implemented.
+F10 | 5
+G10 | 0 | ='Historical tracking'!$P10
+H10 | Intelex
+B11 | Changepoint Management
+C11 | Zero ECS PPAPs past due. ECS and PCR PPAPs approved prior to changepoint shipments
+D11 | Ensure changepoints are known, validated, and approved prior to shipment to SIA
+F11 | 5
+G11 | 5 | ='Historical tracking'!$P11
+H11 | Intelex
+B12 | Sorting Cost
+C12 | Zero Costs for sorts at SIA.
+All sorting costs paid in a timely manner
+D12 | Continuous Improvement should be the goal of every Subaru supplier.  Both Quality and Costs should be continuously improved.  By improving processes and systems using the PDCA cycle, sort costs should be eliminated.
+F12 | 10
+G12 | 0 | ='Historical tracking'!$P12
+H12 | Manual entry
+B13 | Recall / Service Campaign
+C13 | Zero Recall or Service Campaign
+D13 | We must protect the customer at all times. If we have a Recall or Service Campaign, we put the customer at risk and cause damage to the Subaru brand reputation.  
+F13 | 0
+G13 |   | ='Historical tracking'!$P13
+H13 | Add Intelex survey or feature?
+B14 | Supplier Monthly Warranty Analysis Reporting Summary
+C14 | 100%  Participation by due date
+D14 | More collaboration between Subaru and our supplier and all stages of the product life cycle can reduce the number and severity of warranty incidents.
+F14 | 5
+G14 | 5 | ='Historical tracking'!$P14
+H14 | Add Intelex survey or feature?
+B15 | WCAR's Answered On Time
+C15 | 100% Answered on time
+F15 | 5
+G15 | 5 | ='Historical tracking'!$P15
+H15 | Add Intelex survey or feature?
+A16 | Cost
+(19%)
+B16 | Height Cost Reduction
+C16 | Achieve provided targets by due date
+D16 | Missing targets affects the overall cost of the vehicle, which affects Subaru Customer's Satisfaction relating to vehicle cost.
+F16 | 20
+G16 |   | ='Historical tracking'!$P16
+H16 | Manual entry
+B17 | Overall Cost Reduction Program Achievement 
+C17 | Cost reduction progress towards meeting overall program targets
+D17 | Missing targets affects the overall cost of the vehicle, which affects Subaru Customer's Satisfaction relating to vehicle cost.
+F17 | 10
+G17 |   | ='Historical tracking'!$P17
+H17 | Manual entry
+A18 | Delivery
+(26%)
+B18 | On Time Delivery of Production Parts
+C18 | 100% of parts are provided on time
+D18 | Late delivery of orders can and often do cause downtime of the SIA production lines.  
+F18 | 5
+G18 | 5 | ='Historical tracking'!$P18
+H18 | Manual entry
+B19 | ASN Accuracy
+C19 | 100% of ASN's are accurate
+D19 | It is important to have visibility of what is incoming to SIA.  If ASN's are not accurate, it could impact production.
+F19 | 5
+G19 | 3 | ='Historical tracking'!$P19
+H19 | Manual entry
+B20 | Accurate Labeling of Production Parts
+C20 | 100% of parts are labeled correctly
+D20 | Inccorrectly labeled parts are a significant risk to SIA production.  Any mislabels are treated the same as a missed delivery.
+F20 | 5
+G20 | 0 | ='Historical tracking'!$P20
+H20 | Manual entry
+B21 | CANF's Answered On Time
+C21 | All CANF's answered on time
+D21 | Promote and encourage improved communication on performance issues with SIA, in order to have a good countermeasure urgently implemented.
+F21 | 5
+G21 | 0 | ='Historical tracking'!$P21
+H21 | Add Intelex survey or feature?
+B22 | On Time Delivery of Service Parts
+C22 | 100% of parts are provided on time required
+D22 | Late delivery of service orders affects Subaru Customer's Satisfaction, which affects sales, which affect Subaru and Suppliers profitability.
+F22 | 10
+G22 | 1 | ='Historical tracking'!$P22
+H22 | Manual entry
+B23 | On Time Delivery of Prototype Parts
+C23 | 100% of parts provided on-time, labeled correctly with zero damages
+D23 | Late delivery, no mislabels, or defective parts for prototype orders affects Subaru Corp's ability to verify the quality of development vehicles, which could affect customer satisfaction of a new model purchase.
+F23 | 5
+G23 | 5 | ='Historical tracking'!$P23
+H23 | Manual entry
+B24 | Compliance
+C24 | 100% COO compliance (2.5 points)
+D24 | To ensure that suppliers are submitting accurate information within the given timeframe.  
+F24 | 2.5
+G24 | 2.5 | ='Historical tracking'!$P24
+H24 | Manual entry
+C25 | 100% IMDS compliance (2.5 points)
+F25 | 2.5
+G25 | 2.5 | ='Historical tracking'!$P25
+H25 | Manual entry
+J25 | None | =IF(SUM(J6:J24)=0,"",SUM(J6:J24))
+K25 | None
+L25 | None
+M25 | None
+N25 | None
+O25 | None
+B26 | Downtime Occurrence
+C26 | Do not cause downtime at SIA
+D26 | Downtime at SIA is costly and greatly impacts production plans
+F26 | 0
+G26 |   | ='Historical tracking'!$P26
+H26 | Manual entry
+D68 | #N/A | =VLOOKUP($I$1,'[3]PPM Charting'!$A$2:$H$200,6,FALSE)
+E68 | #VALUE! | =H18*0.05
+F68 | #N/A | =VLOOKUP($I$1,'[4]Scorecard Tracking'!$A$3:$AI$206,10,FALSE)
+G68 | #N/A | =VLOOKUP($I$1,'[4]Scorecard Tracking'!$A$3:$T$206,11,FALSE)
+D69 | #N/A | =VLOOKUP($I$1,'[3]PPM Charting'!$A$2:$H$200,7,FALSE)
+F69 | #N/A | =VLOOKUP($I$1,'[4]Scorecard Tracking'!$A$3:$AI$206,13,FALSE)
+G69 | #N/A | =VLOOKUP($I$1,'[4]Scorecard Tracking'!$A$3:$T$206,14,FALSE)
+D70 | #N/A | =VLOOKUP($I1,'[3]PPM Charting'!$A$2:$H$200,8,FALSE)
+F70 | #N/A | =VLOOKUP($I$1,'[4]Scorecard Tracking'!$A$3:$AI$206,16,FALSE)
+G70 | #N/A | =VLOOKUP($I$1,'[4]Scorecard Tracking'!$A$3:$T$206,17,FALSE)
+F71 | #N/A | =VLOOKUP($I$1,'[4]Scorecard Tracking'!$A$3:$AI$206,19,FALSE)
+G71 | #N/A | =VLOOKUP($I$1,'[4]Scorecard Tracking'!$A$3:$T$206,20,FALSE)
+F72 | #N/A | =VLOOKUP($I$1,'[4]Scorecard Tracking'!$A$3:$AI$206,22,FALSE)
+F73 | #N/A | =VLOOKUP($I$1,'[4]Scorecard Tracking'!$A$3:$AI$206,25,FALSE)
+F74 | #N/A | =VLOOKUP($I$1,'[4]Scorecard Tracking'!$A$3:$AI$206,28,FALSE)
+F75 | #N/A | =VLOOKUP($I$1,'[4]Scorecard Tracking'!$A$3:$AI$206,31,FALSE)
+F76 | #N/A | =VLOOKUP($I$1,'[4]Scorecard Tracking'!$A$3:$AI$206,34,FALSE)
+
+SHEET: Historical tracking
+I1 | A315 Heartland Automotive, LLC
+I2 | Quality Score 
+N2 | Overall Score
+I3 | 12 month Average 
+L3 | 0.2588888888888889 | =Q27
+N3 | 12 month Average
+Q3 | 0.3108449820788531 | =Q28
+E4 | Monthly Historical Detail Score (Blank cells do not calculate in the total score)
+D5 | Key Performance Indicator (KPI)
+E5 | 45901 | =EDATE(F5,-1)
+F5 | 45931
+G5 | 45962
+H5 | 45992
+I5 | 46023
+J5 | 46054
+K5 | 46082
+L5 | 46113
+M5 | 46143
+N5 | 46174
+O5 | 46204 | =EDATE(P5,-1)
+P5 | 46235
+Q5 | 12 Months Average
+C6 | Safety               7%
+D6 | Safety 
+E6 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,5,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,5,FALSE))
+F6 | 1 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,6,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,6,FALSE))
+G6 | 1 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,7,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,7,FALSE))
+H6 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,8,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,8,FALSE))
+I6 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,9,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,9,FALSE))
+J6 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,10,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,10,FALSE))
+K6 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,11,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,11,FALSE))
+L6 | 1 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,12,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,12,FALSE))
+M6 | 3 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,13,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,13,FALSE))
+N6 | 3 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,14,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,14,FALSE))
+O6 | 3 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,15,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,15,FALSE))
+P6 | 3 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,16,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,16,FALSE))
+Q6 | 3.3333333333333335 | =IFERROR(AVERAGEIF(E6:P6,"<>"),"")
+D7 | Supplier Sustainability Performance
+E7 | 4.59 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,17,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,17,FALSE))
+F7 | 4.59 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,18,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,18,FALSE))
+G7 | 4.59 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,19,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,19,FALSE))
+H7 | 4.59 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,20,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,20,FALSE))
+I7 | 4.59 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,21,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,21,FALSE))
+J7 | 4.59 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,22,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,22,FALSE))
+K7 | 4.59 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,23,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,23,FALSE))
+L7 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,24,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,24,FALSE))
+M7 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,25,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,25,FALSE))
+N7 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,26,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,26,FALSE))
+O7 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,27,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,27,FALSE))
+P7 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,28,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,28,FALSE))
+Q7 | 4.589999999999999 | =IFERROR(AVERAGEIF(E7:P7,"<>"),"")
+C8 | Quality                         48%
+D8 | PPM Defects
+E8 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,29,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,29,FALSE))
+F8 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,30,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,30,FALSE))
+G8 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,31,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,31,FALSE))
+H8 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,32,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,32,FALSE))
+I8 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,33,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,33,FALSE))
+J8 | 10 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,34,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,34,FALSE))
+K8 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,35,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,35,FALSE))
+L8 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,36,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,36,FALSE))
+M8 | 10 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,37,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,37,FALSE))
+N8 | 10 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,38,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,38,FALSE))
+O8 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,39,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,39,FALSE))
+P8 | 10 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,40,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,40,FALSE))
+Q8 | 3.3333333333333335 | =IFERROR(AVERAGEIF(E8:P8,"<>"),"")
+A9 | 10
+A10 | 5
+D10 | PRC's answered on time
+E10 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,41,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,41,FALSE))
+F10 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,42,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,42,FALSE))
+G10 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,43,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,43,FALSE))
+H10 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,44,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,44,FALSE))
+I10 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,45,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,45,FALSE))
+J10 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,46,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,46,FALSE))
+K10 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,47,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,47,FALSE))
+L10 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,48,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,48,FALSE))
+M10 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,49,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,49,FALSE))
+N10 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,50,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,50,FALSE))
+O10 | 4 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,51,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,51,FALSE))
+P10 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,52,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,52,FALSE))
+Q10 | 1.1666666666666667 | =IFERROR(AVERAGEIF(E10:P10,"<>"),"")
+A11 | 5
+D11 | Changepoint Management
+E11 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,53,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,53,FALSE))
+F11 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,54,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,54,FALSE))
+G11 | 4 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,55,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,55,FALSE))
+H11 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,56,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,56,FALSE))
+I11 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,57,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,57,FALSE))
+J11 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,58,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,58,FALSE))
+K11 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,59,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,59,FALSE))
+L11 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,60,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,60,FALSE))
+M11 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,61,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,61,FALSE))
+N11 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,62,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,62,FALSE))
+O11 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,63,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,63,FALSE))
+P11 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,64,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,64,FALSE))
+Q11 | 4.916666666666667
+D12 | Sorting Cost 
+E12 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,65,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,65,FALSE))
+F12 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,66,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,66,FALSE))
+G12 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,67,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,67,FALSE))
+H12 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,68,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,68,FALSE))
+I12 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,69,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,69,FALSE))
+J12 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,70,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,70,FALSE))
+K12 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,71,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,71,FALSE))
+L12 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,72,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,72,FALSE))
+M12 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,73,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,73,FALSE))
+N12 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,74,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,74,FALSE))
+O12 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,75,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,75,FALSE))
+P12 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,76,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,76,FALSE))
+Q12 | 0 | =IFERROR(AVERAGEIF(E12:P12,"<>"),"")
+D13 | Recall / Service Campaign
+E13 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,77,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,77,FALSE))
+F13 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,78,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,78,FALSE))
+G13 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,79,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,79,FALSE))
+H13 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,80,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,80,FALSE))
+I13 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,81,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,81,FALSE))
+J13 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,82,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,82,FALSE))
+K13 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,83,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,83,FALSE))
+L13 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,84,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,84,FALSE))
+M13 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,85,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,85,FALSE))
+N13 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,86,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,86,FALSE))
+O13 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,87,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,87,FALSE))
+P13 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,88,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,88,FALSE))
+Q13 | None | =IFERROR(AVERAGEIF(E13:P13,"<>"),"")
+A14 | 5
+D14 | Warranty Analysis Report
+E14 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,89,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,89,FALSE))
+F14 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,90,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,90,FALSE))
+G14 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,91,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,91,FALSE))
+H14 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,92,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,92,FALSE))
+I14 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,93,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,93,FALSE))
+J14 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,94,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,94,FALSE))
+K14 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,95,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,95,FALSE))
+L14 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,96,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,96,FALSE))
+M14 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,97,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,97,FALSE))
+N14 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,98,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,98,FALSE))
+O14 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,99,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,99,FALSE))
+P14 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,100,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,100,FALSE))
+Q14 | 5
+A15 | 5
+D15 | WCAR's answered on time
+E15 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,101,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,101,FALSE))
+F15 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,102,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,102,FALSE))
+G15 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,103,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,103,FALSE))
+H15 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,104,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,104,FALSE))
+I15 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,105,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,105,FALSE))
+J15 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,106,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,106,FALSE))
+K15 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,107,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,107,FALSE))
+L15 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,108,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,108,FALSE))
+M15 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,109,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,109,FALSE))
+N15 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,110,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,110,FALSE))
+O15 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,111,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,111,FALSE))
+P15 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,112,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,112,FALSE))
+Q15 | 5
+C16 | Cost                     19%
+D16 | Height Cost Reduction
+E16 | 1 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,113,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,113,FALSE))
+F16 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,114,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,114,FALSE))
+G16 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,115,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,115,FALSE))
+H16 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,116,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,116,FALSE))
+I16 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,117,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,117,FALSE))
+J16 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,118,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,118,FALSE))
+K16 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,119,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,119,FALSE))
+L16 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,120,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,120,FALSE))
+M16 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,121,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,121,FALSE))
+N16 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,122,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,122,FALSE))
+O16 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,123,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,123,FALSE))
+P16 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,124,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,124,FALSE))
+Q16 | 0.14285714285714285
+D17 | Overall Cost Reduction Program
+E17 | 0.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,125,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,125,FALSE))
+F17 | 0.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,126,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,126,FALSE))
+G17 | 0.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,127,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,127,FALSE))
+H17 | 0.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,128,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,128,FALSE))
+I17 | 0.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,129,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,129,FALSE))
+J17 | 0.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,130,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,130,FALSE))
+K17 | 0.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,131,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,131,FALSE))
+L17 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,132,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,132,FALSE))
+M17 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,133,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,133,FALSE))
+N17 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,134,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,134,FALSE))
+O17 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,135,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,135,FALSE))
+P17 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,136,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,136,FALSE))
+Q17 | 0.5
+A18 | 10
+C18 | Delivery                                   26%
+D18 | On time Delivery of Production Parts
+E18 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,137,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,137,FALSE))
+F18 | 10 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,138,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,138,FALSE))
+G18 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,139,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,139,FALSE))
+H18 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,140,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,140,FALSE))
+I18 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,141,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,141,FALSE))
+J18 | 10 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,142,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,142,FALSE))
+K18 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,143,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,143,FALSE))
+L18 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,144,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,144,FALSE))
+M18 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,145,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,145,FALSE))
+N18 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,146,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,146,FALSE))
+O18 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,147,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,147,FALSE))
+P18 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,148,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,148,FALSE))
+Q18 | 2.0833333333333335
+D19 | ASN Accuracy
+E19 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,149,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,149,FALSE))
+F19 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,150,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,150,FALSE))
+G19 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,151,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,151,FALSE))
+H19 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,152,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,152,FALSE))
+I19 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,153,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,153,FALSE))
+J19 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,154,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,154,FALSE))
+K19 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,155,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,155,FALSE))
+L19 | 3 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,156,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,156,FALSE))
+M19 | 3 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,157,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,157,FALSE))
+N19 | 4 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,158,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,158,FALSE))
+O19 | 4 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,159,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,159,FALSE))
+P19 | 3 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,160,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,160,FALSE))
+Q19 | 3.4 | =IFERROR(AVERAGEIF(E19:P19,"<>"),"")
+D20 | Accurate Labeling of Production Parts
+E20 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,161,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,161,FALSE))
+F20 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,162,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,162,FALSE))
+G20 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,163,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,163,FALSE))
+H20 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,164,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,164,FALSE))
+I20 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,165,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,165,FALSE))
+J20 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,166,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,166,FALSE))
+K20 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,167,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,167,FALSE))
+L20 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,168,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,168,FALSE))
+M20 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,169,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,169,FALSE))
+N20 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,170,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,170,FALSE))
+O20 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,171,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,171,FALSE))
+P20 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,172,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$FP$205,172,FALSE))
+Q20 | 0
+D21 | CANF's Answered On Time
+E21 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,173,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,173,FALSE))
+F21 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,174,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,174,FALSE))
+G21 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,175,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,175,FALSE))
+H21 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,176,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,176,FALSE))
+I21 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,177,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,177,FALSE))
+J21 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,178,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,178,FALSE))
+K21 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,179,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,179,FALSE))
+L21 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,180,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,180,FALSE))
+M21 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,181,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,181,FALSE))
+N21 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,182,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,182,FALSE))
+O21 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,183,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,183,FALSE))
+P21 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,184,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,184,FALSE))
+Q21 | 0 | =IFERROR(AVERAGEIF(E21:P21,"<>"),"")
+A22 | 10
+D22 | On time Delivery of Service Parts
+E22 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,185,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,185,FALSE))
+F22 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,186,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,186,FALSE))
+G22 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,187,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,187,FALSE))
+H22 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,188,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,188,FALSE))
+I22 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,189,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,189,FALSE))
+J22 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,190,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,190,FALSE))
+K22 | 0 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,191,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,191,FALSE))
+L22 | 10 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,192,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,192,FALSE))
+M22 | 10 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,193,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,193,FALSE))
+N22 | 10 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,194,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,194,FALSE))
+O22 | 10 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,195,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,195,FALSE))
+P22 | 1 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,196,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,196,FALSE))
+Q22 | 3.4166666666666665
+D23 | On Time Delivery of Prototype Parts
+E23 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,197,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,197,FALSE))
+F23 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,198,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,198,FALSE))
+G23 | 4 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,199,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,199,FALSE))
+H23 | 3 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,200,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,200,FALSE))
+I23 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,201,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,201,FALSE))
+J23 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,202,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,202,FALSE))
+K23 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,203,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,203,FALSE))
+L23 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,204,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,204,FALSE))
+M23 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,205,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,205,FALSE))
+N23 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,206,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,206,FALSE))
+O23 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,207,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,207,FALSE))
+P23 | 5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,208,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$GZ$205,208,FALSE))
+Q23 | 4.75 | =IFERROR(AVERAGEIF(E23:P23,"<>"),"")
+D24 | Compliance: COO
+E24 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,209,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,209,FALSE))
+F24 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,210,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,210,FALSE))
+G24 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,211,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,211,FALSE))
+H24 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,212,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,212,FALSE))
+I24 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,213,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,213,FALSE))
+J24 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,214,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,214,FALSE))
+K24 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,215,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,215,FALSE))
+L24 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,216,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,216,FALSE))
+M24 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,217,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,217,FALSE))
+N24 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,218,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,218,FALSE))
+O24 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,219,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,219,FALSE))
+P24 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,220,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,220,FALSE))
+Q24 | 2.5
+D25 | Compliance: IMDS
+E25 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,221,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,221,FALSE))
+F25 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,222,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,222,FALSE))
+G25 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,223,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,223,FALSE))
+H25 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,224,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,224,FALSE))
+I25 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,225,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,225,FALSE))
+J25 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,226,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,226,FALSE))
+K25 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,227,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,227,FALSE))
+L25 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,228,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,228,FALSE))
+M25 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,229,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,229,FALSE))
+N25 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,230,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,230,FALSE))
+O25 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,231,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,231,FALSE))
+P25 | 2.5 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,232,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,232,FALSE))
+Q25 | 2.5
+D26 | Downtime Occurrence
+E26 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,233,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,233,FALSE))
+F26 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,234,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,234,FALSE))
+G26 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,235,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,235,FALSE))
+H26 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,236,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,236,FALSE))
+I26 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,237,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,237,FALSE))
+J26 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,238,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,238,FALSE))
+K26 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,239,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,239,FALSE))
+L26 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,240,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,240,FALSE))
+M26 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,241,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,241,FALSE))
+N26 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,242,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,242,FALSE))
+O26 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,243,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,243,FALSE))
+P26 |   | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,244,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,244,FALSE))
+Q26 | None
+D27 | Quality Score
+E27 | 0.2 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,319,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,319,FALSE))
+F27 | 0.2 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,320,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,320,FALSE))
+G27 | 0.18666666666666668 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,321,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,321,FALSE))
+H27 | 0.2 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,322,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,322,FALSE))
+I27 | 0.2 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,323,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,323,FALSE))
+J27 | 0.4 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,324,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,324,FALSE))
+K27 | 0.26666666666666666 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,325,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,325,FALSE))
+L27 | 0.2 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,326,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,326,FALSE))
+M27 | 0.3333333333333333 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,327,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,327,FALSE))
+N27 | 0.3333333333333333 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,328,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,328,FALSE))
+O27 | 0.25333333333333335 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,329,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,329,FALSE))
+P27 | 0.3333333333333333 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,330,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$LS$205,330,FALSE))
+Q27 | 0.2588888888888889
+C28 | Overall Score 
+E28 | 0.23283870967741938 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,269,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,269,FALSE))
+F28 | 0.26509677419354843 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,270,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,270,FALSE))
+G28 | 0.1876774193548387 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,271,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,271,FALSE))
+H28 | 0.21348387096774196 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,272,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,272,FALSE))
+I28 | 0.22638709677419358 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,273,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,273,FALSE))
+J28 | 0.38767741935483874 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,274,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,274,FALSE))
+K28 | 0.2586451612903226 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,275,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,275,FALSE))
+L28 | 0.325 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,276,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,276,FALSE))
+M28 | 0.425 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,277,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,277,FALSE))
+N28 | 0.43333333333333335 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,278,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,278,FALSE))
+O28 | 0.38333333333333336 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,279,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,279,FALSE))
+P28 | 0.39166666666666666 | =IF(VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,280,FALSE)="","",VLOOKUP($I$1,[2]Scores!$A$3:$KU$205,280,FALSE))
+Q28 | 0.3108449820788531
+D62 | Quality 
+C63 | Values
+D63 | Monthly PPM Defects
+F63 | Total
+C64 | 45901 | =$E$5
+D64 | 102.85594697627297 | =VLOOKUP($I$1,'[5]PPM Charting'!$A$2:$AL$210,27,FALSE)
+F64 | N/G
+C65 | 45931 | =$F$5
+D65 | 285.5732148337937 | =VLOOKUP($I$1,'[5]PPM Charting'!$A$2:$AL$210,28,FALSE)
+F65 | PPM
+C66 | 45962 | =$G$5
+D66 | 142.53902953666477 | =VLOOKUP($I$1,'[5]PPM Charting'!$A$2:$AL$210,29,FALSE)
+C67 | 45992 | =$H$5
+D67 | 110.95422981746466 | =VLOOKUP($I$1,'[5]PPM Charting'!$A$2:$AL$210,30,FALSE)
+C68 | 46023 | =$I$5
+D68 | 117.70558190697055 | =VLOOKUP($I$1,'[5]PPM Charting'!$A$2:$AL$210,31,FALSE)
+C69 | 46054 | =$J$5
+D69 | 71.158842273005 | =VLOOKUP($I$1,'[5]PPM Charting'!$A$2:$AL$210,32,FALSE)
+C70 | 46082 | =$K$5
+D70 | 117.31482165609047 | =VLOOKUP($I$1,'[5]PPM Charting'!$A$2:$AL$210,33,FALSE)
+C71 | 46113 | =$L$5
+D71 | 110.94985259061492 | =VLOOKUP($I$1,'[5]PPM Charting'!$A$2:$AL$210,34,FALSE)
+C72 | 46143 | =$M$5
+D72 | 72.8839580402373 | =VLOOKUP($I$1,'[5]PPM Charting'!$A$2:$AL$210,35,FALSE)
+C73 | 46174 | =$N$5
+D73 | 99.80974621662953 | =VLOOKUP($I$1,'[5]PPM Charting'!$A$2:$AL$210,36,FALSE)
+C74 | 46204 | =$O$5
+D74 | 170.31655034046278 | =VLOOKUP($I$1,'[5]PPM Charting'!$A$2:$AL$210,37,FALSE)
+C75 | 46235 | =$P$5
+D75 | 96.54412539124002 | =VLOOKUP($I$1,'[5]PPM Charting'!$A$2:$AL$210,38,FALSE)
+
+SHEET: Score Key
+B3 | Key Point Indicator
+C3 | Frequency
+D3 | Reporting Method
+E3 | Metrics
+A4 | Safety
+(7%)
+B4 | Safety through Accountability and Recognition 
+C4 | Safety Results = Monthly
+Kaizen = Biannual
+D4 | Report Safety data online monthly (2X per year for Kaizen). 
+E4 | Score methodology: (OSHA IR below national average for industry = 2 points),  (OSHA Lost Time below national average for industry = 2 points),  (Kaizen = 1 point)  
+F4 | Add Intelex survey or feature?
+B5 | Supplier Sustainability Performance
+C5 | Annual
+D5 | Annual survey return to SIA's Environmental Section
+E5 | Score methodology: (Participation = 1.5 points; Sustainability 2 points; Utility Reductions 1.5 points)
+F5 | Add Intelex survey or feature?
+A6 | Quality
+(48%)
+B6 | PPM
+C6 | Monthly
+D6 | Based on both Vital and General part quality combined (defective Parts Per Million) as recorded in the Supplier Collaboration Portal
+E6 | PPM Vital and PPM General are a combined score  
+F6 | Intelex
+B7 | PRC's answered on time
+C7 | Monthly
+D7 | Based on open time as recorded in the Supplier Collaboration Portal. Percentage of total PRC's answered on time.
+E7 | Score methodology: (100% = 5 points); (<100%, 0 points)
+Any past due PRC from previous months will be counted against score. 
+F7 | Intelex
+B8 | Changepoint Management
+C8 | Monthly
+D8 | Based on PPAPs generated by drawing change (ECS) or Process Change Requests (PCRs)
+E8 | For ECS PPAPs only - Score methodology: (0 Past Due = 5 points); (1 = 4 points); (2 = 3 points); 
+(3 = 2 points); (4 = 1 point); (>4 = 0 points)
+
+For all changepoints needing authorization (ECS and PCR) - 5 points will be deducted for any shipments not officially authorized. For example - by PPAP or preauthorized AAS approval. (once per changepoint)
+F8 | Intelex
+B9 | Sorting Cost
+C9 | Monthly
+D9 | Total Sorting costs as reported by SIA third party sort company
+E9 | Score methodology: ($ = 0, 10 points); (>0, ≤$2k, 9 points); (>$2k,≤ $4k, 8 points); 
+(>$4k,≤ $6k, 7 points); (>$6k,≤ $8k, 6 points); (>$8k,≤ $10k, 5 points); (>$8k,≤ $12k, 4 points);   (>$12k,≤ $14k, 3 points); (>$14k,≤ $16k, 2 points); (>$16k,≤ $18k, 1 point);(>$18k, 0 points)
+
+If any sort costs are more than 60 days overdue, the score will be 0 regardless of the cost that month.
+F9 | Manual entry
+B10 | Recall / Service Campaign
+C10 | Monthly
+D10 | Based on Recall or Service Campaign as determined by market quality
+E10 | Requirement is zero recalls or service campaigns.  In the event of a recall or service campaign, 35 Points will be deducted in this category for 24 consecutive months.
+F10 | Add Intelex survey or feature?
+B11 | Supplier Monthly Warranty Analysis Reporting Summary
+C11 | Monthly
+D11 | 100% Answered on time. 7 Days (168 hours) for monthly claim analysis.
+E11 | Score methodology:  (Accurate Warranty Claim Analysis = 2.5 points, Warranty Trend Charts Attachment = 2.5 points,  Late / No submission = 0 points)
+F11 | Add Intelex survey or feature?
+B12 | Warranty CAR's Answered On Time
+C12 | Monthly
+D12 | Based on WCARs turned in on time as recorded by Quality Engineering Group. Score judged by percentage of completed WCARs answered on time.
+E12 | Score methodology: (100% on time = 5 points); (75% - 99% = 3 points);(1% - 74% = 1 point); 
+(0% = 0 points)
+F12 | Add Intelex survey or feature?
+A13 | Cost
+(19%)
+B13 | Height Cost Reduction
+C13 | Biannual
+D13 | Results reported to SIA Procurement
+E13 | Score methodology: (100% of target = 20 points); (99.9% - 90% = 18 pts); (89.9% - 80% = 16 pts); (79.9% - 70% = 14 pts); (69.9% - 60% = 12 pts); (59.9% - 50% = 10 pts); (49.9% - 40% = 8 pts); (39.9% - 30% = 6 pts); (29.9% - 20% = 4 pts); (19.9% - 10% = 2 pt); (9.9% - 0.1% = 1 pt); (0% = 0 pts)
+F13 | Manual entry
+B14 | Overall Cost Reduction Program Achievement 
+C14 | Biannual
+D14 | Results reported to SIA Procurement
+E14 | Score methodology: (100% of target = 10 points); (99.9% - 90% = 9 pts); (89.9% - 80% = 8 pts); (79.9% - 70% = 7 pts); (69.9% - 60% = 6 pts); (59.9% - 50% = 5 pts); (49.9% - 40% = 4 pts); (39.9% - 30% = 3 pts); (29.9% - 20% = 2 pts); (19.9% - 10% = 1 pt); (9.9% - 0.1% = 0.5 pts); (0% = 0 pts)
+F14 | Manual entry
+A15 | Delivery
+(26%)
+B15 | On Time Delivery of Production Parts
+C15 | Monthly
+D15 | Compare Actual Ship Date of Production Parts to Required Ship Date on ASN.  ASN inaccuracies also impact delivery percentage. Data pulled from ANTS.
+E15 | Delivery: (100%< x≤ 99%, 5 pts); (98%< x≤ 98.9%, 4 pts); (97%< x≤ 97.9%, 3 pts); 
+(96%< x≤ 96.9%, 2 pts); (95%< x≤ 95.9%, 1 pts); (x < 95%, 0 pts)                                                                                                                                                                  
+F15 | Manual entry
+B16 | ASN Accuracy
+C16 | Monthly
+D16 | Validating the ASN information matches what is physically on the shipment.
+E16 | ASN Accuracy: (97%< x≤ 100%, 5 pts); (95%< x≤ 96.9%, 4 pts); (90%< x≤ 94.9%, 3 pts); 
+(85% < x≤ 89.9%, 2 pts); (80%< x≤ 84.9%, 1 pts);  (x < 80%, 0 pts)                                                                                                                                                                   
+F16 | Manual entry
+B17 | Accurate Labeling of Production Parts
+C17 | Monthly
+D17 | Based on CANF reports from SIA Materials.
+E17 | Score methodology: (0 Mislabels = 5 points); (1 = 4 points); (2 = 3 points); (3 = 2 points); 
+(4 = 1 point); (>4 = 0 points)
+F17 | Manual entry
+B18 | CANF's Answered On Time
+C18 | Monthly
+D18 | Corrective Action Notifications confirmed within 24 hours and if the 5 Why's, and the root cause analysis is not returned within the 3 day deadline points will deducted until the CANF is returned.
+E18 | Score methodology: (0 Past Due = 5 points); (1 = 4 points); (2 = 3 points); (3 = 2 points); 
+(4 = 1 point); (>4 = 0 points)
+F18 | Add Intelex survey or feature?
+B19 | On Time Delivery of Service Parts
+C19 | Monthly
+D19 | Compare Actual Ship Date of Service Parts to Required Ship Date on ASN. Data pulled from ANTS.
+E19 | Score methodology: (On Time ≥ 95.0%, 10 points); (94%< x≤ 94.9%, 4 points); (93%< x≤ 93.9%, 3 points); (92%< x≤ 92.9%, 2 points); (91%< x≤ 91.9%, 1 point); (91%< x, 0 points)                                                                                                                                                                               
+F19 | Manual entry
+B20 | On Time Delivery of Prototype Parts
+C20 | Monthly
+D20 | Compare Actual Ship Date of Preproduction Parts to Required Ship Date on ASN. Data pulled from ANTS.  Damaged and no mislabels reported by freight forwarding company.
+E20 | On Time ASN (On Time 100% = 2 points, On Time <100.0% = 0 points), 
+Damages (0 Damages = 2 points, >0 Damages = 0 points),
+ANTS Labels (0 Missing Labels = 1 point, >0 Missing Labels = 0 points).
+F20 | Manual entry
+B21 | Compliance
+C21 | Bi-Annual
+D21 | Required documentation for COO Compliance submitted by deadline
+E21 | Score methodology: (On Time = 2.5 points); (Late / No submission = 0 points)
+F21 | Manual entry
+C22 | Annual
+D22 | Required documentation for IMDS Compliance submitted by deadline
+E22 | Score methodology: (On Time = 2.5 points); (Late / No submission = 0 points)
+F22 | Manual entry
+B23 | Downtime Occurrence
+C23 | Monthy
+D23 | Internal SIA investigation
+E23 | Requirement is no downtime.  Score methodology: (No downtime = Blank score); 
+(2-4 Hours = -10 points for 3 months); (4+ Hours = -20 points for 3 months)
+F23 | Manual entry
+
+SHEET: PPM and Cost Charts data
+B1 | A315 Heartland Automotive, LLC | ='Historical tracking'!$I$1:$Q$1
+C1 | 0
+D1 | 0
+E1 | 0
+F1 | 0
+G1 | 0
+H1 | 0
+I1 | 0
+J1 | 0
+D3 | 45901 | ='Historical tracking'!E5
+E3 | 45931 | ='Historical tracking'!F5
+F3 | 45962 | ='Historical tracking'!G5
+G3 | 45992 | ='Historical tracking'!H5
+H3 | 46023 | ='Historical tracking'!I5
+I3 | 46054 | ='Historical tracking'!J5
+J3 | 46082 | ='Historical tracking'!K5
+K3 | 46113 | ='Historical tracking'!L5
+L3 | 46143 | ='Historical tracking'!M5
+M3 | 46174 | ='Historical tracking'!N5
+N3 | 46204 | ='Historical tracking'!O5
+O3 | 46235 | ='Historical tracking'!P5
+C4 | Total
+D4 | 1681964 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(D$3,'[5]Calculations '!$2:$2,0)-2),FALSE)
+E4 | 1124055 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(E$3,'[5]Calculations '!$2:$2,0)-2),FALSE)
+F4 | 1318937 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(F$3,'[5]Calculations '!$2:$2,0)-2),FALSE)
+G4 | 1279807 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(G$3,'[5]Calculations '!$2:$2,0)-2),FALSE)
+H4 | 1427290 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(H$3,'[5]Calculations '!$2:$2,0)-2),FALSE)
+I4 | 1461519 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(I$3,'[5]Calculations '!$2:$2,0)-2),FALSE)
+J4 | 1773007 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(J$3,'[5]Calculations '!$2:$2,0)-2),FALSE)
+K4 | 1559263 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(K$3,'[5]Calculations '!$2:$2,0)-2),FALSE)
+L4 | 1495528 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(L$3,'[5]Calculations '!$2:$2,0)-2),FALSE)
+M4 | 1462783 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(M$3,'[5]Calculations '!$2:$2,0)-2),FALSE)
+N4 | 1174284 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(N$3,'[5]Calculations '!$2:$2,0)-2),FALSE)
+O4 | 1481188 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(O$3,'[5]Calculations '!$2:$2,0)-2),FALSE)
+A5 | A315 | =LEFT(B1,4)
+C5 | N/G
+D5 | 173 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(D$3,'[5]Calculations '!$2:$2,0)-1),FALSE)
+E5 | 321 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(E$3,'[5]Calculations '!$2:$2,0)-1),FALSE)
+F5 | 188 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(F$3,'[5]Calculations '!$2:$2,0)-1),FALSE)
+G5 | 142 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(G$3,'[5]Calculations '!$2:$2,0)-1),FALSE)
+H5 | 168 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(H$3,'[5]Calculations '!$2:$2,0)-1),FALSE)
+I5 | 104 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(I$3,'[5]Calculations '!$2:$2,0)-1),FALSE)
+J5 | 208 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(J$3,'[5]Calculations '!$2:$2,0)-1),FALSE)
+K5 | 173 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(K$3,'[5]Calculations '!$2:$2,0)-1),FALSE)
+L5 | 109 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(L$3,'[5]Calculations '!$2:$2,0)-1),FALSE)
+M5 | 146 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(M$3,'[5]Calculations '!$2:$2,0)-1),FALSE)
+N5 | 200 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(N$3,'[5]Calculations '!$2:$2,0)-1),FALSE)
+O5 | 143 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,(MATCH(O$3,'[5]Calculations '!$2:$2,0)-1),FALSE)
+C6 | PPM
+D6 | 102.85594697627297 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,MATCH(D$3,'[5]Calculations '!$2:$2,0),FALSE)
+E6 | 285.5732148337937 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,MATCH(E$3,'[5]Calculations '!$2:$2,0),FALSE)
+F6 | 142.53902953666477 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,MATCH(F$3,'[5]Calculations '!$2:$2,0),FALSE)
+G6 | 110.95422981746466 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,MATCH(G$3,'[5]Calculations '!$2:$2,0),FALSE)
+H6 | 117.70558190697055 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,MATCH(H$3,'[5]Calculations '!$2:$2,0),FALSE)
+I6 | 71.158842273005 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,MATCH(I$3,'[5]Calculations '!$2:$2,0),FALSE)
+J6 | 117.31482165609047 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,MATCH(J$3,'[5]Calculations '!$2:$2,0),FALSE)
+K6 | 110.94985259061492 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,MATCH(K$3,'[5]Calculations '!$2:$2,0),FALSE)
+L6 | 72.8839580402373 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,MATCH(L$3,'[5]Calculations '!$2:$2,0),FALSE)
+M6 | 99.80974621662953 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,MATCH(M$3,'[5]Calculations '!$2:$2,0),FALSE)
+N6 | 170.31655034046278 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,MATCH(N$3,'[5]Calculations '!$2:$2,0),FALSE)
+O6 | 96.54412539124002 | =VLOOKUP($A$5,'[5]Calculations '!$4:$301,MATCH(O$3,'[5]Calculations '!$2:$2,0),FALSE)
+D10 | 45901 | =D3
+E10 | 45931 | =E3
+F10 | 45962
+G10 | 45992
+H10 | 46023
+I10 | 46054
+J10 | 46082
+K10 | 46113
+L10 | 46143
+M10 | 46174
+N10 | 46204
+O10 | 46235
+C11 | Sorting Cost
+D11 | 128203.96 | =VLOOKUP($A$5,'[6]Sorting Cost Data'!$A$4:$ZZ$231,(MATCH(D$10,'[6]Sorting Cost Data'!$2:$2,0)-1), FALSE)
+E11 | 228245.65 | =VLOOKUP($A$5,'[6]Sorting Cost Data'!$A$4:$ZZ$231,(MATCH(E$10,'[6]Sorting Cost Data'!$2:$2,0)-1), FALSE)
+F11 | 286177.54 | =VLOOKUP($A$5,'[6]Sorting Cost Data'!$A$4:$ZZ$231,(MATCH(F$10,'[6]Sorting Cost Data'!$2:$2,0)-1), FALSE)
+G11 | 236197.25 | =VLOOKUP($A$5,'[6]Sorting Cost Data'!$A$4:$ZZ$231,(MATCH(G$10,'[6]Sorting Cost Data'!$2:$2,0)-1), FALSE)
+H11 | 115824.42000000001 | =VLOOKUP($A$5,'[6]Sorting Cost Data'!$A$4:$ZZ$231,(MATCH(H$10,'[6]Sorting Cost Data'!$2:$2,0)-1), FALSE)
+I11 | 182700.06 | =VLOOKUP($A$5,'[6]Sorting Cost Data'!$A$4:$ZZ$231,(MATCH(I$10,'[6]Sorting Cost Data'!$2:$2,0)-1), FALSE)
+J11 | 172947.75 | =VLOOKUP($A$5,'[6]Sorting Cost Data'!$A$4:$ZZ$231,(MATCH(J$10,'[6]Sorting Cost Data'!$2:$2,0)-1), FALSE)
+K11 | 292378.92 | =VLOOKUP($A$5,'[6]Sorting Cost Data'!$A$4:$ZZ$231,(MATCH(K$10,'[6]Sorting Cost Data'!$2:$2,0)-1), FALSE)
+L11 | 206043.8 | =VLOOKUP($A$5,'[6]Sorting Cost Data'!$A$4:$ZZ$231,(MATCH(L$10,'[6]Sorting Cost Data'!$2:$2,0)-1), FALSE)
+M11 | 113203.15 | =VLOOKUP($A$5,'[6]Sorting Cost Data'!$A$4:$ZZ$231,(MATCH(M$10,'[6]Sorting Cost Data'!$2:$2,0)-1), FALSE)
+N11 | 158231.3 | =VLOOKUP($A$5,'[6]Sorting Cost Data'!$A$4:$ZZ$231,(MATCH(N$10,'[6]Sorting Cost Data'!$2:$2,0)-1), FALSE)
+O11 | 249141.35 | =VLOOKUP($A$5,'[6]Sorting Cost Data'!$A$4:$ZZ$231,(MATCH(O$10,'[6]Sorting Cost Data'!$2:$2,0)-1), FALSE)
+
+SHEET: SupplierMaintenance
+A1 | Supplier Code
+B1 | Supplier Name
+C1 | Supplier Name & Code
+A2 | A101
+B2 | ELSA LLC | =VLOOKUP($A2,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C2 | A101 ELSA LLC | =A2 &" "&B2
+A3 | A102
+B3 | Fuji Component Parts USA, Inc. | =VLOOKUP($A3,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C3 | A102 Fuji Component Parts USA, Inc.
+A4 | A105
+B4 | Gecom Corporation  | =VLOOKUP($A4,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C4 | A105 Gecom Corporation 
+A5 | A112
+B5 | ACS Industries, Inc. | =VLOOKUP($A5,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C5 | A112 ACS Industries, Inc.
+A6 | A117
+B6 | JAC Products Inc. | =VLOOKUP($A6,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C6 | A117 JAC Products Inc.
+A7 | A121
+B7 | Ahresty Wilmington Corporation | =VLOOKUP($A7,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C7 | A121 Ahresty Wilmington Corporation
+A8 | A123
+B8 | Indiana Automotive Fasteners, Inc. | =VLOOKUP($A8,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C8 | A123 Indiana Automotive Fasteners, Inc.
+A9 | A124
+B9 | Dexter Fastener Technologies, Inc. | =VLOOKUP($A9,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C9 | A124 Dexter Fastener Technologies, Inc.
+A10 | A125
+B10 | Uchiyama Marketing & Development America LLC | =VLOOKUP($A10,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C10 | A125 Uchiyama Marketing & Development America LLC
+A11 | A126
+B11 | Toyota Boshoku | =VLOOKUP($A11,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C11 | A126 Toyota Boshoku
+A12 | A130
+B12 | Franklin Precision Industry | =VLOOKUP($A12,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C12 | A130 Franklin Precision Industry
+A13 | A131
+B13 | U.S. Tsubaki Automotive, LLC | =VLOOKUP($A13,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C13 | A131 U.S. Tsubaki Automotive, LLC
+A14 | A133
+B14 | Chiyoda USA Corporation | =VLOOKUP($A14,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C14 | A133 Chiyoda USA Corporation
+A15 | A137
+B15 | Enkei America, Inc. | =VLOOKUP($A15,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C15 | A137 Enkei America, Inc.
+A16 | A138
+B16 | Mahle Filter Systems North America, Inc. | =VLOOKUP($A16,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C16 | A138 Mahle Filter Systems North America, Inc.
+A17 | A139
+B17 | THK Rhythm North America Co. Ltd | =VLOOKUP($A17,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C17 | A139 THK Rhythm North America Co. Ltd
+A18 | A140
+B18 | Mattoon Precision Manufacturing, Inc. | =VLOOKUP($A18,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C18 | A140 Mattoon Precision Manufacturing, Inc.
+A19 | A146
+B19 | Taiho Corporation of America | =VLOOKUP($A19,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C19 | A146 Taiho Corporation of America
+A20 | A148
+B20 | Denison Industries | =VLOOKUP($A20,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C20 | A148 Denison Industries
+A21 | A149
+B21 | Schaeffler Group USA, Inc. | =VLOOKUP($A21,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C21 | A149 Schaeffler Group USA, Inc.
+A22 | A150
+B22 | Katayama American Company, Inc. | =VLOOKUP($A22,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C22 | A150 Katayama American Company, Inc.
+A23 | A153
+B23 | PK U.S.A., Inc. | =VLOOKUP($A23,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C23 | A153 PK U.S.A., Inc.
+A24 | A168
+B24 | BorgWarner Morse Systems | =VLOOKUP($A24,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C24 | A168 BorgWarner Morse Systems
+A25 | A181
+B25 | Whitlam Group | =VLOOKUP($A25,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C25 | A181 Whitlam Group
+A26 | A203
+B26 | Clarios | =VLOOKUP($A26,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C26 | A203 Clarios
+A27 | A204
+B27 | Hosiden America Corporation | =VLOOKUP($A27,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C27 | A204 Hosiden America Corporation
+A28 | A206
+B28 | North American Lighting, Inc. | =VLOOKUP($A28,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C28 | A206 North American Lighting, Inc.
+A29 | A207
+B29 | SANOH America, Inc. | =VLOOKUP($A29,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C29 | A207 SANOH America, Inc.
+A30 | A208
+B30 | NASCO | =VLOOKUP($A30,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C30 | A208 NASCO
+A31 | A209
+B31 | Panasonic Automotive Systems Company of America | =VLOOKUP($A31,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C31 | A209 Panasonic Automotive Systems Company of America
+A32 | A211
+B32 | Marelli North America, Inc. | =VLOOKUP($A32,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C32 | A211 Marelli North America, Inc.
+A33 | A214
+B33 | Hi-Lex America, Inc. | =VLOOKUP($A33,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C33 | A214 Hi-Lex America, Inc.
+A34 | A217
+B34 | New Mather Metals, Inc. | =VLOOKUP($A34,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C34 | A217 New Mather Metals, Inc.
+A35 | A220
+B35 | Clarion Corporation of America | =VLOOKUP($A35,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C35 | A220 Clarion Corporation of America
+A36 | A222
+B36 | Fujikura Automotive America LLC | =VLOOKUP($A36,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C36 | A222 Fujikura Automotive America LLC
+A37 | A226
+B37 | Robert Bosch Automotive Steering LLC | =VLOOKUP($A37,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C37 | A226 Robert Bosch Automotive Steering LLC
+A38 | A228
+B38 | Harada Industry of America, Inc. | =VLOOKUP($A38,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C38 | A228 Harada Industry of America, Inc. | =A38 &" "&B38
+A39 | A230
+B39 | Gentex Corporation | =VLOOKUP($A39,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C39 | A230 Gentex Corporation
+A40 | A232
+B40 | Sensata Technologies | =VLOOKUP($A40,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C40 | A232 Sensata Technologies
+A41 | A233
+B41 | ASTEMO AMERICAS, INC | =VLOOKUP($A41,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C41 | A233 ASTEMO AMERICAS, INC
+A42 | A234
+B42 | NTN Bearing Corporation of America | =VLOOKUP($A42,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C42 | A234 NTN Bearing Corporation of America
+A43 | A235
+B43 | Diamond Electric Mfg. Corp. | =VLOOKUP($A43,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C43 | A235 Diamond Electric Mfg. Corp.
+A44 | A236
+B44 | Autoliv ASP, Inc. | =VLOOKUP($A44,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C44 | A236 Autoliv ASP, Inc.
+A45 | A241
+B45 | American Mitsuba Corporation | =VLOOKUP($A45,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C45 | A241 American Mitsuba Corporation
+A46 | A244
+B46 | T-RAD North America | =VLOOKUP($A46,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C46 | A244 T-RAD North America
+A47 | A245
+B47 | ZF Chassis Components LLC | =VLOOKUP($A47,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C47 | A245 ZF Chassis Components LLC
+A48 | A249
+B48 | Aumovio Automotive Systems, Inc. | =VLOOKUP($A48,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C48 | A249 Aumovio Automotive Systems, Inc.
+A49 | A250
+B49 | HARMAN/BECKER AUTOMOTIVE SYSTEMS | =VLOOKUP($A49,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C49 | A250 HARMAN/BECKER AUTOMOTIVE SYSTEMS
+A50 | A251
+B50 | NHK-NSPA | =VLOOKUP($A50,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C50 | A251 NHK-NSPA
+A51 | A254
+B51 | Sumitomo Electric Wiring System, Inc. | =VLOOKUP($A51,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C51 | A254 Sumitomo Electric Wiring System, Inc.
+A52 | A255
+B52 | DENSO International America, Inc. | =VLOOKUP($A52,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C52 | A255 DENSO International America, Inc.
+A53 | A256
+B53 | Magna Closures, Inc. | =VLOOKUP($A53,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C53 | A256 Magna Closures, Inc. | =A53 &" "&B53
+A54 | A258
+B54 | TPR America, Inc. | =VLOOKUP($A54,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C54 | A258 TPR America, Inc.
+A55 | A259
+B55 | Robert Bosch Corporation - Chassis | =VLOOKUP($A55,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C55 | A259 Robert Bosch Corporation - Chassis
+A56 | A261
+B56 | Yazaki North America, Inc. | =VLOOKUP($A56,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C56 | A261 Yazaki North America, Inc.
+A57 | A264
+B57 | Yokowo Manufacturing of America, LLC | =VLOOKUP($A57,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C57 | A264 Yokowo Manufacturing of America, LLC
+A58 | A265
+B58 | Litens Automotive Group | =VLOOKUP($A58,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C58 | A265 Litens Automotive Group
+A59 | A266
+B59 | Ansei America Inc. | =VLOOKUP($A59,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C59 | A266 Ansei America Inc.
+A60 | A267
+B60 | American Furukawa Inc. | =VLOOKUP($A60,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C60 | A267 American Furukawa Inc.
+A61 | A268
+B61 | dlhBOWLES, Inc. | =VLOOKUP($A61,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C61 | A268 dlhBOWLES, Inc.
+A62 | A271
+B62 | Proterial Cable America, Inc. | =VLOOKUP($A62,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C62 | A271 Proterial Cable America, Inc.
+A63 | A273
+B63 | NITTA MOORE MEXICO S. DE R.L. DE C.V. | =VLOOKUP($A63,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C63 | A273 NITTA MOORE MEXICO S. DE R.L. DE C.V.
+A64 | A276
+B64 | Astemo | =VLOOKUP($A64,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C64 | A276 Astemo
+A65 | A278
+B65 | Astemo Mexico, S.A. de C.V. | =VLOOKUP($A65,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C65 | A278 Astemo Mexico, S.A. de C.V.
+A66 | A279
+B66 | Foster Electric USA, Inc. | =VLOOKUP($A66,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C66 | A279 Foster Electric USA, Inc.
+A67 | A280
+B67 | ISS America, Inc. | =VLOOKUP($A67,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C67 | A280 ISS America, Inc.
+A68 | A281
+B68 | FUJI OOZX MEXICO, SA DE CV | =VLOOKUP($A68,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C68 | A281 FUJI OOZX MEXICO, SA DE CV
+A69 | A284
+B69 | Ishikawa Gasket America, Inc. | =VLOOKUP($A69,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C69 | A284 Ishikawa Gasket America, Inc.
+A70 | A285
+B70 | Dura Automotive Systems, Inc. | =VLOOKUP($A70,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C70 | A285 Dura Automotive Systems, Inc.
+A71 | A287
+B71 | Garrett Transportation I Inc. | =VLOOKUP($A71,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C71 | A287 Garrett Transportation I Inc.
+A72 | A289
+B72 | Mubea, Inc. | =VLOOKUP($A72,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C72 | A289 Mubea, Inc.
+A73 | A292
+B73 | Kosei St. Marys Corporation | =VLOOKUP($A73,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C73 | A292 Kosei St. Marys Corporation
+A74 | A293
+B74 | Murakami Manufacturing USA | =VLOOKUP($A74,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C74 | A293 Murakami Manufacturing USA
+A75 | A294
+B75 | Magna Electronics, LLC | =VLOOKUP($A75,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C75 | A294 Magna Electronics, LLC
+A76 | A296
+B76 | IEE S.A. | =VLOOKUP($A76,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C76 | A296 IEE S.A. | =A76 &" "&B76
+A77 | A297
+B77 | FSVAP USA, Inc. | =VLOOKUP($A77,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C77 | A297 FSVAP USA, Inc. | =A77 &" "&B77
+A78 | A298
+B78 | N.S. International, LTD | =VLOOKUP($A78,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C78 | A298 N.S. International, LTD
+A79 | A299
+B79 | SKF Automotive USA, Inc. | =VLOOKUP($A79,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C79 | A299 SKF Automotive USA, Inc.
+A80 | A315
+B80 | Heartland Automotive, LLC | =VLOOKUP($A80,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C80 | A315 Heartland Automotive, LLC | =A80 &" "&B80
+A81 | A316
+B81 | NHK Seating of America Inc. | =VLOOKUP($A81,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C81 | A316 NHK Seating of America Inc. | =A81 &" "&B81
+A82 | A317
+B82 | Prospira America | =VLOOKUP($A82,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C82 | A317 Prospira America
+A83 | A321
+B83 | TEPRO, INC. | =VLOOKUP($A83,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C83 | A321 TEPRO, INC.
+A84 | A323
+B84 | Schrader-Bridgeport International | =VLOOKUP($A84,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C84 | A323 Schrader-Bridgeport International
+A85 | A327
+B85 | UGN, Inc. | =VLOOKUP($A85,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C85 | A327 UGN, Inc.
+A86 | A333
+B86 | Gates Corporation | =VLOOKUP($A86,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C86 | A333 Gates Corporation
+A87 | A334
+B87 | Moriden America, Inc. | =VLOOKUP($A87,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C87 | A334 Moriden America, Inc.
+A88 | A340
+B88 | Newman Technology, Inc. | =VLOOKUP($A88,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C88 | A340 Newman Technology, Inc.
+A89 | A343
+B89 | Carlex Glass America, LLC | =VLOOKUP($A89,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C89 | A343 Carlex Glass America, LLC
+A90 | A344
+B90 | Bridgestone Americas Tire Operations LLC | =VLOOKUP($A90,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C90 | A344 Bridgestone Americas Tire Operations LLC | =A90 &" "&B90
+A91 | A347
+B91 | TG Missouri Corp. | =VLOOKUP($A91,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C91 | A347 TG Missouri Corp.
+A92 | A352
+B92 | EG Transpire | =VLOOKUP($A92,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C92 | A352 EG Transpire
+A93 | A353
+B93 | HP Pelzer Automotive Systems, Inc. | =VLOOKUP($A93,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C93 | A353 HP Pelzer Automotive Systems, Inc.
+A94 | A356
+B94 | AGC AUTOMOTIVE AMERICAS CO. | =VLOOKUP($A94,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C94 | A356 AGC AUTOMOTIVE AMERICAS CO.
+A95 | A357
+B95 | Nishikawa Cooper LLC | =VLOOKUP($A95,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C95 | A357 Nishikawa Cooper LLC
+A96 | A361
+B96 | Ashimori Industria de Mexico SA de CV | =VLOOKUP($A96,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C96 | A361 Ashimori Industria de Mexico SA de CV
+A97 | A363
+B97 | Maxxis International-USA | =VLOOKUP($A97,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C97 | A363 Maxxis International-USA
+A98 | A365
+B98 | Pilkington North America Inc. | =VLOOKUP($A98,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C98 | A365 Pilkington North America Inc.
+A99 | A366
+B99 | EAKAS Corporation | =VLOOKUP($A99,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C99 | A366 EAKAS Corporation
+A100 | A367
+B100 | Orotex Corporation | =VLOOKUP($A100,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C100 | A367 Orotex Corporation
+A101 | A368
+B101 | DaikyoNishikawa Corp. | =VLOOKUP($A101,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C101 | A368 DaikyoNishikawa Corp.
+A102 | A369
+B102 | The Goodyear Tire & Rubber Co. | =VLOOKUP($A102,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C102 | A369 The Goodyear Tire & Rubber Co.
+A103 | A370
+B103 | Daimay Automotriz de Mexico, S. de RL de CV | =VLOOKUP($A103,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C103 | A370 Daimay Automotriz de Mexico, S. de RL de CV
+A104 | A373
+B104 | Toyota Tsusho America, Inc. | =VLOOKUP($A104,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C104 | A373 Toyota Tsusho America, Inc.
+A105 | A374
+B105 | Kasai North America, Inc. | =VLOOKUP($A105,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C105 | A374 Kasai North America, Inc.
+A106 | A377
+B106 | Fuyao Glass America, Inc. | =VLOOKUP($A106,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C106 | A377 Fuyao Glass America, Inc.
+A107 | A379
+B107 | Piolax Corporation | =VLOOKUP($A107,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C107 | A379 Piolax Corporation
+A108 | A380
+B108 | Toyota Industries Electric Systems NA, Inc. | =VLOOKUP($A108,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C108 | A380 Toyota Industries Electric Systems NA, Inc.
+A109 | A381
+B109 | CTS Corporation | =VLOOKUP($A109,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C109 | A381 CTS Corporation
+A110 | A382
+B110 | Green Tokai Co., Ltd. | =VLOOKUP($A110,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C110 | A382 Green Tokai Co., Ltd.
+A111 | A384
+B111 | Meiwa Industry North America, Inc. | =VLOOKUP($A111,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C111 | A384 Meiwa Industry North America, Inc.
+A112 | A385
+B112 | Kinugawa Mexico S.A. de C.V. | =VLOOKUP($A112,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C112 | A385 Kinugawa Mexico S.A. de C.V.
+A113 | A386
+B113 | Sanko Gosei Technologies USA, Inc. | =VLOOKUP($A113,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C113 | A386 Sanko Gosei Technologies USA, Inc. | =A113 &" "&B113
+A114 | A387
+B114 | Aisan Industry Kentucky | =VLOOKUP($A114,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C114 | A387 Aisan Industry Kentucky
+A115 | A388
+B115 | Nichirin Tennessee Inc. | =VLOOKUP($A115,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C115 | A388 Nichirin Tennessee Inc.
+A116 | A389
+B116 | Wingard Quality Supply, LLC | =VLOOKUP($A116,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C116 | A389 Wingard Quality Supply, LLC | =A116 &" "&B116
+A117 | A390
+B117 | Sekisui Kasei USA, Inc. | =VLOOKUP($A117,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C117 | A390 Sekisui Kasei USA, Inc.
+A118 | A394
+B118 | PML, Inc. | =VLOOKUP($A118,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C118 | A394 PML, Inc.
+A119 | A395
+B119 | SumiRiko Ohio, Inc. | =VLOOKUP($A119,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C119 | A395 SumiRiko Ohio, Inc.
+A120 | A401
+B120 | Aumovio Systems, INC | =VLOOKUP($A120,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C120 | A401 Aumovio Systems, INC
+A121 | A402
+B121 | Denso Ten America Limited | =VLOOKUP($A121,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C121 | A402 Denso Ten America Limited
+A122 | A407
+B122 | Alps Alpine North America, Inc. | =VLOOKUP($A122,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C122 | A407 Alps Alpine North America, Inc.
+A123 | A408
+B123 | Resonac Corporation | =VLOOKUP($A123,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C123 | A408 Resonac Corporation
+A124 | A409
+B124 | FIC America | =VLOOKUP($A124,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C124 | A409 FIC America
+A125 | A410
+B125 | I I Stanley Company, Inc. | =VLOOKUP($A125,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C125 | A410 I I Stanley Company, Inc.
+A126 | A415
+B126 | Johnan De Mexico S.A. DE C.V. | =VLOOKUP($A126,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C126 | A415 Johnan De Mexico S.A. DE C.V.
+A127 | A417
+B127 | TRAM | =VLOOKUP($A127,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C127 | A417 TRAM
+A128 | A418
+B128 | Nisshinbo Automotive Manufacturing | =VLOOKUP($A128,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C128 | A418 Nisshinbo Automotive Manufacturing
+A129 | A420
+B129 | Aumovio Autonomous Mobility US, LLC | =VLOOKUP($A129,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C129 | A420 Aumovio Autonomous Mobility US, LLC
+A130 | A425
+B130 | Yokohama Tire Corporation | =VLOOKUP($A130,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C130 | A425 Yokohama Tire Corporation
+A131 | A427
+B131 | JTEKT COLUMN SYSTEMS NORTH AMERICA CORP | =VLOOKUP($A131,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C131 | A427 JTEKT COLUMN SYSTEMS NORTH AMERICA CORP
+A132 | A430
+B132 | YAMADA North America, Inc. | =VLOOKUP($A132,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C132 | A430 YAMADA North America, Inc.
+A133 | A434
+B133 | Mitsubishi Electric Automotive America, Inc. | =VLOOKUP($A133,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C133 | A434 Mitsubishi Electric Automotive America, Inc.
+A134 | A441
+B134 | Aisin World Corporation of America | =VLOOKUP($A134,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C134 | A441 Aisin World Corporation of America | =A134 &" "&B134
+A135 | A442
+B135 | Valeo North America Inc. | =VLOOKUP($A135,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C135 | A442 Valeo North America Inc.
+A136 | A445
+B136 | Johnan America, Inc. | =VLOOKUP($A136,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C136 | A445 Johnan America, Inc.
+A137 | A447
+B137 | MBL (USA) Corporation | =VLOOKUP($A137,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C137 | A447 MBL (USA) Corporation
+A138 | A450
+B138 | ZF Passive Safety US Inc. | =VLOOKUP($A138,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C138 | A450 ZF Passive Safety US Inc.
+A139 | A457
+B139 | Valeo Thermal Systems -- Front End Modules USA | =VLOOKUP($A139,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C139 | A457 Valeo Thermal Systems -- Front End Modules USA
+A140 | A458
+B140 | Niterra North America, Inc. | =VLOOKUP($A140,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C140 | A458 Niterra North America, Inc.
+A141 | A464
+B141 | Webasto Roof Systems Inc. | =VLOOKUP($A141,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C141 | A464 Webasto Roof Systems Inc.
+A142 | A477
+B142 | Kiriu USA Corporation | =VLOOKUP($A142,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C142 | A477 Kiriu USA Corporation
+A143 | A504
+B143 | Tigerpoly Mfg., Inc. | =VLOOKUP($A143,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C143 | A504 Tigerpoly Mfg., Inc.
+A144 | A505
+B144 | Veritiv Operating Company | =VLOOKUP($A144,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C144 | A505 Veritiv Operating Company
+A145 | A506
+B145 | Dunlop Tires North America | =VLOOKUP($A145,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C145 | A506 Dunlop Tires North America
+A146 | A526
+B146 | Ventek Solutions LLC | =VLOOKUP($A146,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C146 | A526 Ventek Solutions LLC
+A147 | A533
+B147 | Yasufuku USA, Inc. | =VLOOKUP($A147,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C147 | A533 Yasufuku USA, Inc.
+A148 | A539
+B148 | NIfCO America Corporation | =VLOOKUP($A148,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C148 | A539 NIfCO America Corporation
+A149 | A546
+B149 | Excell USA, Inc. | =VLOOKUP($A149,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C149 | A546 Excell USA, Inc.
+A150 | A547
+B150 | Nitto Denko Automotive, Kentucky Inc. | =VLOOKUP($A150,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C150 | A547 Nitto Denko Automotive, Kentucky Inc.
+A151 | A549
+B151 | TRQSS, Inc. | =VLOOKUP($A151,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C151 | A549 TRQSS, Inc.
+A152 | A552
+B152 | LINTEC OF AMERICA, INC. | =VLOOKUP($A152,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C152 | A552 LINTEC OF AMERICA, INC.
+A153 | A701
+B153 | MSSC | =VLOOKUP($A153,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C153 | A701 MSSC
+A154 | A702
+B154 | Somic America, Inc. | =VLOOKUP($A154,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C154 | A702 Somic America, Inc.
+A155 | A704
+B155 | Takumi Stamping | =VLOOKUP($A155,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C155 | A704 Takumi Stamping
+A156 | A709
+B156 | Superior Industries International, Inc. | =VLOOKUP($A156,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C156 | A709 Superior Industries International, Inc.
+A157 | A710
+B157 | Toyotetsu America, Inc. | =VLOOKUP($A157,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C157 | A710 Toyotetsu America, Inc.
+A158 | A711
+B158 | Fukai Toyotetsu Indiana Corp. | =VLOOKUP($A158,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C158 | A711 Fukai Toyotetsu Indiana Corp.
+A159 | A712
+B159 | Astemo | =VLOOKUP($A159,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C159 | A712 Astemo
+A160 | A715
+B160 | Pacific Manufacturing Ohio, Inc. | =VLOOKUP($A160,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C160 | A715 Pacific Manufacturing Ohio, Inc.
+A161 | A725
+B161 | KIRCHHOFF Automotive Canada Inc. | =VLOOKUP($A161,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C161 | A725 KIRCHHOFF Automotive Canada Inc.
+A162 | A730
+B162 | Akebono Brake Corporation | =VLOOKUP($A162,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C162 | A730 Akebono Brake Corporation
+A163 | A737
+B163 | INTAT Precision, Inc. | =VLOOKUP($A163,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C163 | A737 INTAT Precision, Inc.
+A164 | A738
+B164 | Mirai Casting America Inc | =VLOOKUP($A164,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C164 | A738 Mirai Casting America Inc | =A164 &" "&B164
+A165 | A739
+B165 | Austin Tri-Hawk Automotive, Inc. | =VLOOKUP($A165,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C165 | A739 Austin Tri-Hawk Automotive, Inc.
+A166 | A743
+B166 | Marwood International Inc. | =VLOOKUP($A166,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C166 | A743 Marwood International Inc.
+A167 | A745
+B167 | TWB Company LLC | =VLOOKUP($A167,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C167 | A745 TWB Company LLC
+A168 | A749
+B168 | TOA (USA), LLC | =VLOOKUP($A168,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C168 | A749 TOA (USA), LLC
+A169 | A750
+B169 | Cataler North America Corporation | =VLOOKUP($A169,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C169 | A750 Cataler North America Corporation
+A170 | A752
+B170 | Yorozu Automotive Tennessee | =VLOOKUP($A170,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C170 | A752 Yorozu Automotive Tennessee
+A171 | A757
+B171 | CMWA | =VLOOKUP($A171,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C171 | A757 CMWA
+A172 | A883
+B172 | 3M Company | =VLOOKUP($A172,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C172 | A883 3M Company
+C182 |  
+C183 |  
+C184 |   | =A184 &" "&B184
+C185 |  
+C186 |   | =A186 &" "&B186
+
+SHEET: SplrMaint Archive
+A1 | Supplier Code
+B1 | Supplier Name
+C1 | Supplier Name & Code
+A2 | A107
+B2 | Topy America, Inc. | =VLOOKUP($A2,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C2 | A107 Topy America, Inc. | =A2 &" "&B2
+A3 | A135
+B3 | BADA Division of Hennesy Industries | =VLOOKUP($A3,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C3 | A135 BADA Division of Hennesy Industries
+A4 | A136
+B4 | US Yachiyo Inc. | =VLOOKUP($A4,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C4 | A136 US Yachiyo Inc.
+A5 | A145
+B5 | YSK Corporation | =VLOOKUP($A5,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C5 | A145 YSK Corporation
+A6 | A157
+B6 | Tokyo Roki (USA), Inc. | =VLOOKUP($A6,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C6 | A157 Tokyo Roki (USA), Inc.
+A7 | A201
+B7 | Magna Mirrors of America, Inc. | =VLOOKUP($A7,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C7 | A201 Magna Mirrors of America, Inc.
+A8 | A372
+B8 | Mobis North America LLC | =VLOOKUP($A8,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C8 | A372 Mobis North America LLC
+A9 | A392
+B9 | Joyson Safety Systems Acquisition LLC | =VLOOKUP($A9,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C9 | A392 Joyson Safety Systems Acquisition LLC
+A10 | A416
+B10 | Mikuni American Corporation | =VLOOKUP($A10,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C10 | A416 Mikuni American Corporation
+A11 | A520
+B11 | Continental Tire North America, Inc | =VLOOKUP($A11,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C11 | A520 Continental Tire North America, Inc
+A12 | A535
+B12 | Joyson Safety Systems Acquisition LLC | =VLOOKUP($A12,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C12 | A535 Joyson Safety Systems Acquisition LLC
+A13 | A706
+B13 | HMA Inc. | =VLOOKUP($A13,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C13 | A706 HMA Inc.
+A14 | A507
+B14 | Dickten Masch Plastics | =VLOOKUP($A14,'[7]Supplier Contact List'!$A$3:$B$1500,2,FALSE)
+C14 | A507 Dickten Masch Plastics
+
+SHEET: Sheet1
+A1 | A397
+B1 | 3M Co. (Minnesota Mining and Mfg. Co.)
+C1 | A397 3M Co. (Minnesota Mining and Mfg. Co.)
+D1 | EXTERIOR DECORATIVE
+E1 | BF4 (2015)
+A2 | A418
+B2 | Nisshinbo Automotive Manufacturing
+C2 | A418 Nisshinbo Automotive Manufacturing
+D2 | brake pad
+E2 | BE5 (2016) BD6 (2017)
+A3 | A501
+B3 | Okamoto Sandusky MFG LLC
+C3 | A501 Okamoto Sandusky MFG LLC
+D3 | PVC leather (seat cloth)
+E3 | BF4 (2015)
+A4 | A551
+B4 | Midori Auto Leather North America Inc.
+C4 | A551 Midori Auto Leather North America Inc.
+D4 | leather seat cloth
+E4 | BF4 (2015)
+A5 | A552
+B5 | Lintec of America Inc.
+C5 | A552 Lintec of America Inc.
+D5 | garnish film dr
+E5 | BF4 (2015)

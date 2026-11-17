@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "objects": 28,
+  "fieldGridRows": 236,
+  "originalStructuralDiagramsUnchanged": 5,
+  "newPermissionFlowDiagram": 1,
+  "nonCataloguePermissionRows": 14,
+  "approvedMenusRetained": 24,
+  "requirements": "SC-038 through SC-040",
+  "nativeRuntimeBindings": "Unresolved; no tenant implementation claimed"
+}

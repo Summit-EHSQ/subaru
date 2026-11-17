@@ -1,6 +1,6 @@
 # Subaru brand application notes
 
-This directory is an independent visual copy of `sites/supplier-quality-command-center`. The source command center remains the Intelex base-brand version.
+This directory is an independent visual copy of the Intelex base-brand command center, now maintained in the separate `home-page-development` repository at `sites/supplier-quality-command-center`.
 
 ## Standards applied
 

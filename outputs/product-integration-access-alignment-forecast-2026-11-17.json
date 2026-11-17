@@ -1,0 +1,77 @@
+{
+  "project_number": "P544",
+  "project_id": 594236,
+  "parent_task_number": "T24730",
+  "parent_task_id": 16732398,
+  "created": 0,
+  "updated": 7,
+  "skipped": 0,
+  "removed": 0,
+  "failed": 0,
+  "tasks": [
+    {
+      "task_number": "T26880",
+      "internal_id": 17033378,
+      "plan_task_id": "IMP-02",
+      "title": "IMP-02 — Set up source references and local supplier roles",
+      "operation": "updated",
+      "verified": true,
+      "other_fields_preserved": true
+    },
+    {
+      "task_number": "T26881",
+      "internal_id": 17033379,
+      "plan_task_id": "IMP-03",
+      "title": "IMP-03 — Set up the Part record and reading screen",
+      "operation": "updated",
+      "verified": true,
+      "other_fields_preserved": true
+    },
+    {
+      "task_number": "T26882",
+      "internal_id": 17033381,
+      "plan_task_id": "IMP-04",
+      "title": "IMP-04 — Set up Product Families and their Part list",
+      "operation": "updated",
+      "verified": true,
+      "other_fields_preserved": true
+    },
+    {
+      "task_number": "T26883",
+      "internal_id": 17033382,
+      "plan_task_id": "IMP-05",
+      "title": "IMP-05 — Set up retained revisions and supplier memberships",
+      "operation": "updated",
+      "verified": true,
+      "other_fields_preserved": true
+    },
+    {
+      "task_number": "T26884",
+      "internal_id": 17033383,
+      "plan_task_id": "IMP-06",
+      "title": "IMP-06 — Set up engineering-change numbers and contexts",
+      "operation": "updated",
+      "verified": true,
+      "other_fields_preserved": true
+    },
+    {
+      "task_number": "T26885",
+      "internal_id": 17033384,
+      "plan_task_id": "IMP-07",
+      "title": "IMP-07 — Control component access and retain audit",
+      "operation": "updated",
+      "verified": true,
+      "other_fields_preserved": true
+    },
+    {
+      "task_number": "T26886",
+      "internal_id": 17033385,
+      "plan_task_id": "IMP-08",
+      "title": "IMP-08 — Connect and validate incoming source documents",
+      "operation": "updated",
+      "verified": true,
+      "other_fields_preserved": true
+    }
+  ],
+  "error": null
+}

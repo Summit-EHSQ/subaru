@@ -1,0 +1,7 @@
+﻿Code,Name,Active?,Sort
+NUMBER,Number,TRUE,10
+PERCENTAGE,Percentage,TRUE,20
+CURRENCY,Currency,TRUE,30
+DATE,Date,TRUE,40
+YES_NO,Yes/No,TRUE,50
+TEXT,Text,TRUE,60
