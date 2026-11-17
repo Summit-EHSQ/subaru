@@ -1,5 +1,11 @@
 # ADR Revision Change Log
 
+## Phase 5 Consolidation 2026-11-13
+
+- Consolidated 51 saved ADR versions into 25 current proposed records in [Incident Management](<phase 5/incident-management/README.md>), covering ADR-064, ADR-091, and ADR-118–ADR-140.
+- Selected the latest proposal per stable ID, preserved decision outcomes, statuses, original dates, and source citations, and updated repository navigation. Earlier workshop versions and review notes are retained in a verified history archive; source transcripts are unchanged.
+- Retained 13 open clarification topics. No decision was approved, superseded, or renumbered by this organization change.
+
 ## Supplier NCR Coverage and Adjacent Workflow Revision
 
 ### Superseded or Removed ADRs

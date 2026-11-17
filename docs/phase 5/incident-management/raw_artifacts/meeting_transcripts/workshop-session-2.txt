@@ -1,0 +1,640 @@
+0:00:00 Emma Lister: Oh, see, I was right. There are five, just five, five so far. Yep, uh, I agree.
+0:00:12 Joel Frick (6124): Oh, oh, yeah, see, I'm 
+0:00:14 Emma Lister: another student. 
+0:00:16 Joel Frick (6124): Do you 
+0:00:21 Emma Lister: guys want to wait for anybody else or we get to jump in? 
+0:00:32 Joel Frick (6124): I think we're good to go. 
+0:00:35 Emma Lister: All right, great. I know there was an email about the timing of lunch, so Shao will keep that in mind today for how we schedule that.
+0:00:42 Emma Lister: And then we will, Shao, it says there's a chance we may need somebody else. Some extra time, so we'll work to get that scheduled today as well.
+0:00:52 Emma Lister: All right, 
+0:00:53 Shao Ngoi: it's sent to that already for tomorrow, 9.30 to 11.30. 
+0:01:00 Emma Lister: Great, Shao, if you could just forward that to me, that'd be great. You never get a chance, thanks. 
+0:01:06 Shao Ngoi: I will do that now. 
+0:01:10 Emma Lister: All right, and then, Shao, if you want to start the recording whenever you're ready, just because you recorded yesterday, so it's all in the same place.
+0:01:20 Emma Lister: And if you're able to send that out, we'll get that. The meeting recording? No problem. I'll get Shao to give me access to Sounds good.
+0:01:35 Emma Lister: All right. Good morning, everyone. Day 2. 
+0:01:38 Shao Ngoi: Uhm, I know we kind of talk about the schedule at the end of yesterday's sessions, right? Given the availability for Monica, if I get the name right.
+0:01:50 Shao Ngoi: Yes. All right, uhm, we will, uhm, move the environmental incident and notice of violation towards the end of the day or tomorrow.
+0:02:01 Shao Ngoi: Okay, so for today, uhm, if I bring up my schedule here, what I'll do is really move up the property damage and notice any amiss.
+0:02:12 Shao Ngoi: Okay, uhm, obviously then we can talk about some of the reporting stuff, uhm, ultimately at the end of, you know, at the end of tomorrow, hopefully I'll get some, some, uh, with the two hours dedicated for tomorrow, we'll have the opportunity to talk about the to wrap up environmental and notice of violation
+0:02:29 Shao Ngoi: . Does that make sense? You good tomorrow? OK, cool. Alright, so before I get going with the property damage, I just want to do a quick recap of what we have touched on yesterday.
+0:02:41 Shao Ngoi: Uhm, so for yesterday sessions I kind of, you know, walk the team through on the essential version of the incident management right out of that what we have gathered or what I've got really.
+0:02:54 Shao Ngoi: The team here is really, really focused on the master incident. But in this case, when we call master incident, there's really no workflow on the master incident.
+0:03:03 Shao Ngoi: It's really just a portal for the security to initiate an event, right? Let's call it an event, and then the security will define what incident may happen within the event.
+0:03:17 Shao Ngoi: It could be either one incident or multiple incidents. And per each of the incident that's being, uh, initiated by the security, it goes straight into investigation to be investigated by you know, whatever the investigative team.
+0:03:31 Shao Ngoi: And ultimately, once the investigation is done, EHS will get the opportunity to review and approve the overall report. Any questions so far?
+0:03:43 Joel Frick (6124): Makes sense. Awesome. 
+0:03:46 Shao Ngoi: On my note here, the one parking lot item I have noted down is really on the integration with OHM, right?
+0:03:52 Shao Ngoi: We still need to understand what is that going to look like, what is being integrated with Intellects, how are we pushing the data in, so on and so forth.
+0:04:01 Shao Ngoi: So ultimately, that's the part where, uhm, it's still kind of up in the air based on yesterday's discussion. So that's kind of, uh, put every, uh, the injury reporting or slash master incident reporting into a new nutshell.
+0:04:18 Shao Ngoi: So for today, what I want to focus on is really on the property damage here, right? Ultimately, property damage, the way I see it, is another type of incident, right?
+0:04:28 Shao Ngoi: Let's say, uhm, you know, someone back a truck into a building or a property that damaged the property. They would call the same number, the 222 number, security will log that event, and ultimately put in the property damage sub-incident into the system.
+0:04:49 Shao Ngoi: Is that a fast statement? Or is there a different path for property damage? 
+0:04:55 Joel Frick (6124): That sounds correct. So the only caveat I would say is I don't know that, I would say that they would call security.
+0:05:02 Joel Frick (6124): I don't know that they would necessarily use the emergency line to call that if it's just a. Typical property damage, that's more minutiae in the weeks kind of thing, but just from a workflow, it would just be a general call to security, not the emergency line.
+0:05:15 Joel Frick (6124): I think we also need to make sure we're all on the same page about property damage, which means that that might mean something different to different people.
+0:05:21 Joel Frick (6124): I think for the. Use case of today, we're talking about what we refer to Power industrial truck. Incidences, not necessarily a semi from a vendor running into a wall.
+0:05:35 Joel Frick (6124): Like, that's a different thing. It's not PIT. So purposes, for the purposes of this, we were talking about a very specific thing called PIT.
+0:05:46 Joel Frick (6124): PIT is used specifically to talk about property. So, we're saying property, but I think for the use case of what we're trying to get at today.
+0:05:54 Joel Frick (6124): Is PIT. Oh, so I'll make sure we're all on the same page, because it, by standard, it is a lot of other things that it's going to default to, but we want very distinct paths, whether it is a PIT related incident or a property related damage, because we haven't fully fleshed out what property damage would
+0:06:13 Joel Frick (6124): need to look like today. That goes through you guys today, right? It does. Yeah, that's a totally separate thing that is probably out of scope for this phase, right?
+0:06:19 Joel Frick (6124): I don't want to speak for you. just say that. I guess, I don't, I can't, it's not because I don't know what the parameters are, but that's, I feel like that's a much more in-depth conversation.
+0:06:36 Joel Frick (6124): Yeah, I need to flesh out, and I'm happy to go with, this, this is real, this is focusing on safety-related issues and focus on that and then we can migrate down the road.
+0:06:49 Joel Frick (6124): Yeah, so I think for purposes of today, we're, if you have things on here that I think are going to, like, signal to us that this is for other things, we'll probably want to Thank you.
+0:06:58 Joel Frick (6124): Kind of pare down the selections here and make sure it's very clear that this is, like, a PIT-type related activity.
+0:07:07 Joel Frick (6124): So does he realize that that's not property damage? It's power and industrial vehicles. So this is irrelevant. Just 
+0:07:15 Shao Ngoi: for my note here, what does PIT mean? Power industrial truck. Okay. It's not always a truck.
+0:07:26 Shao Ngoi: I mean, it's never a 
+0:07:26 Joel Frick (6124): truck, right? Right. Depends what you're doing. Generalize. So under the previous list of incident types, they have property damage, but they also have vehicle type.
+0:07:39 Joel Frick (6124): So it's, are we then designating that as? You're hitting the nail on the head on what I'm going towards. Yeah, so, yes, that's kind of my point.
+0:07:51 Joel Frick (6124): It's like, clarification on this. Is there any way, because again, we were talking about very distinct activity, um, that isn't really necessarily property damage and vehicle damage.
+0:08:02 Joel Frick (6124): Which are, I think, very different things. I feel like, in the incident type list, if we just add one that specifically says that, yeah, whether it's under property damage or under vehicles, that would make it clear what we're talking about, because I think it needs to be in the incident type, like all
+0:08:30 Joel Frick (6124): the way as you start. Yeah, so if anything needed a workflow with a validation system. I think this is probably the one, because the, the, the, uhm, equipment that is damaged has different questions and different, well, you know, different workflows might get different questions.
+0:08:51 Joel Frick (6124): The questions are heavily dependent on the equipment. Am I correct on that, Nick? This is where we find our next 
+0:09:02 Nicholas Leuck: Sorry, can you repeat the question? 
+0:09:04 Joel Frick (6124): Yeah. So, the equipment. Yeah, I know. The equipment that is damaged changes the form pretty dramatically, correct? Uhm, yeah, 
+0:09:16 Nicholas Leuck: there's, like, Crane. Crane, uhm, I wouldn't say dramatically, uhm. More, like, slightly. Uhm, a lot of the questions are similar, but they do, certain questions only pertain to, like, uh, Forktruck Motrucks, uh, And some other, some other smaller, uh, powered, powered vehicles, and then there's, like
+0:09:49 Nicholas Leuck: , Crane. Crane has some different questions, or some different, uhm, maybe it's a slightly different workflow, but overall, very 
+0:09:56 Shao Ngoi: similar, just some slight differences. So then just for my understanding here, based on just hearing all this, essentially PIT in this case, or property damage in this case, when we are referring to it, is really to, well, what's being defined here as a power industrial truck.
+0:10:15 Shao Ngoi: Um, but I'm also hearing equipments, right? Is this, is anything, so I guess what would be categorized as a PIT in this incident?
+0:10:28 Shao Ngoi: Or what would be, what would you consider as a property damage in this case, right? That's the definition I'm still trying to draw a line on so that, um, we are all on the same page, right?
+0:10:39 Shao Ngoi: Are we talking about anything that is powered by certain forms, certain weights, I don't know, or equipments, uhm, or in this case, anything that owns by SIA, that is not a personal vehicle, that's not a building, how do we actually group this incident.
+0:10:59 Joel Frick (6124): Mobility things, so I just want to make sure I'm on line, line with where you're going. Yeah. You'd like to take this time to dive more into the process for any power industrial vehicle or for truck.
+0:11:15 Joel Frick (6124): The entire. Yeah, because not so much property damage, right? Because my question is, is that there may be instances where there was a PIT incident that there was property damage, property damage occurred.
+0:11:29 Joel Frick (6124): A rack of fingers got damaged. Yes. There needs to be a cost associated with that. That's not the, that's not the norm, but I agree, I think we should lay out what that process is for any PIT vehicle occurring inside the plant, not personal vehicles, et cetera, et cetera.
+0:11:46 Joel Frick (6124): So that would be a separate thing. These are things, because there's like non-mobile, you as the driver are not mobile, like cranes, right?
+0:11:54 Joel Frick (6124): So we have to give this a loose definition. Is it any vehicle or anything that's licensed and moving something? We currently categorize, I believe, cranes, underneath that PIT, correct?
+0:12:11 Joel Frick (6124): There's separate sub-serums in the program. They are, they don't exist. They don't fall under the same report structure if they have an accident.
+0:12:22 Joel Frick (6124): Okay. It's a special crane. Okay. But from an intake process, it's still part of the PIT process. But it changes the question.
+0:12:33 Joel Frick (6124): That's what I was getting at. Like, the PIT equipment you select, according to that slightly, slightly changes the question. So is there any way, when we say, is there any way we can like, I don't know, duplicate what PropertyData image means and call it PIT?
+0:12:53 Joel Frick (6124): Yeah, we could, 
+0:12:56 Shao Ngoi: right? I guess, from our side, whatever it is that you want to call it, right? Uhm, right now, obviously, out of the box, we have Environmental Injury Property and Vehicle.
+0:13:04 Shao Ngoi: That's why I'm just trying to understand, uhm, what's what is a property damage means in this case, right? Is it more leaning towards a vehicle version or a property version of the form?
+0:13:17 Shao Ngoi: Uhm, because property damage in, in intellects is really, uhm, we are not capturing much. Right. Can we call this something else?
+0:13:24 Shao Ngoi: Absolutely. Right. But I just also want to understand what categorize as a property in this case, because obviously, uhm, the reason I bring up vehicle is because power industrial truck, right?
+0:13:37 Shao Ngoi: Obviously there's something owned by, uhm, SIA, but would you capture something like the, uhm, the road condition, the driving, driving conditions as such 
+0:13:47 Joel Frick (6124): in your intake? So I think what he's saying is we're in this, in these two cases, we're on the road, we want to focus on vehicle inspections, or vehicle inspections.
+0:14:02 Joel Frick (6124): Yeah, because to me the property damage, in your example from earlier, is the rack, or the, sorry, in which case, in the overarching area.
+0:14:11 Joel Frick (6124): Incidents, again, you can have that, that's property damage, you can put property damage in there, uhm, you can put vehicle damage in there, right, it could be that a forklift ran into one of the vendor semis out front here, they weren't paying attention, then you have vehicle damage, and a PIT, and 
+0:14:27 Joel Frick (6124): then maybe even property damage because they, sort of, needed, well, see, on that initial list, the thing that sort of occurred to me, and I don't know if you want to do it this way, but, uhm, was instead of just vehicle incident, we have vehicle incident PIT, vehicle incident other, or outside, or some
+0:14:43 Joel Frick (6124): other designation, so you've got your PIT category, and then you've got everything else, because we have other, lots of other vehicles running around.
+0:14:50 Joel Frick (6124): Right. So, uhm, so, so, but, I feel like we do. That's another vehicle where we would have PIT. Awesome. So, one question on that, then.
+0:15:00 Joel Frick (6124): It says, if we have a PIT that happens, do the group leaders know to call it a PIT, or do they say it's a property damage of, we have two full trucks that hit each other, it's a PIT.
+0:15:12 Joel Frick (6124): Do they know to call it a PIT? Because, uhm, of course, security. They typically know, uhm, that's a PIT. Okay, because if security is going to be the dispatch, and we are having these, I, that's where I can see there be a, from a master of property damage, but really it's a PIT, as they're starting 
+0:15:31 Joel Frick (6124): to create an initial report. What is going to be adjusted from security to create the initial, we have to make sure the nomenclature is standard across, so that way obviously we can go back and change it, but from the initial call, I want to make sure that it's not just everyone calling in as an accident
+0:15:48 Joel Frick (6124): . It does, it does, it 
+0:15:51 Nicholas Leuck: does get tricky when you have like an incident, like a forked trunk, like a forked truck, uh, let's say bumps a rack, that rack runs into an associate, that's an, that's an injury incident.
+0:16:04 Nicholas Leuck: That's right. So, that's also a PIT incident as well. Uhm, it would be, the group leader would need to specify that this is an injury, but also, uhm, a PIT, and I guess, and property damage.
+0:16:21 Nicholas Leuck: Uhm, but, that, that's where I guess, from security standpoint, that's where that could get tricky. Is, if they're not given all that information, right?
+0:16:35 Nicholas Leuck: But the good 
+0:16:36 Joel Frick (6124): thing though, about this is this. They're creating the master, and so the other parties will come in and create the sub, the PIT, the personal injury, whatever that may be.
+0:16:46 Joel Frick (6124): And we want more than just PIT property damage. I mean, there could be all kinds of things. You could have somebody operating any piece of equipment.
+0:16:53 Joel Frick (6124): Even a fixed piece of equipment, even a robot in a jog mode and damage something, right? Or you can, I mean, set up a scaffolding correctly and collapse it and damage something without injury, right?
+0:17:03 Joel Frick (6124): So these are, there's lots of different ways we could have property damage that doesn't involve a vehicle. So I think having just that property damage subcategory would be helpful in certain cases.
+0:17:14 Joel Frick (6124): Does it ever get cloned in? If equipment, if a robot takes out something, does anybody fill out the form? No, but they're going to.
+0:17:23 Joel Frick (6124): Okay. That sounds interesting. That's part of it. So we're, there's a whole new thing that we're looking at called the good versus the lucky, right?
+0:17:32 Joel Frick (6124): And that would be one of those things that we want to look at. Like, why did that person, why did that, why did someone not get hurt when we had an injury like, all right, and property damage?
+0:17:41 Joel Frick (6124): Incident like that. It's not, we don't ignore it just because, we don't want to ignore it like we have been just because of what's going to follow up with the AT, for example, right?
+0:17:51 Joel Frick (6124): So you would, you would then, here, here in Eurates, you would want something that had equipment? Building, Vehicle, and PRT.
+0:18:13 Shao Ngoi: If someone, let's say, uhm, you know, back up a forklift, hit a pallet, pallet fall on someone, obviously they're multi, multi-incident event, right, uhm, would, someone would call the 222 numbers, uhm, would security right off the bat know, hey, the forklift is PIT versus something that's not a PIT?
+0:18:34 Shao Ngoi: Would you have a scenario where, let's say, another scenario where, uhm, let's call it, I know we don't have vehicle incident in place.
+0:18:42 Shao Ngoi: I'm just trying to think of the moving Let's say one of the dolly, I don't know if that is considered as a power industrial truck, one of those that I remember seeing on the shop floor for you guys, is really one of those automated robotic trolleys that, you know, grab the equipment and parts for people
+0:19:05 Shao Ngoi: to assemble. Let's say someone with a lift hit one of those trolley and then the trolley, you know, hit someone else.
+0:19:14 Shao Ngoi: Would that be a property and PIT or would both be PIT and an injury? What would 
+0:19:20 Joel Frick (6124): that be categorized as? PIT and injury unless there's a property damaged. Do you call it AGPs? PITs or do you it a property?
+0:19:32 Joel Frick (6124): You choose so many areas. To 
+0:19:36 Nicholas Leuck: my knowledge, they're not currently considered PIT. 
+0:19:39 Joel Frick (6124): Yeah, it's not a person. Uh, yeah, they're 
+0:19:43 Nicholas Leuck: not even on the 
+0:19:45 Joel Frick (6124): form. But if you had a category split, that would be, Let 
+0:19:53 Shao Ngoi: me ask a different, different, different question in this Uhm, for PIT, Dan, for PIT incident, what type of data are 
+0:20:22 Joel Frick (6124): It's probably just chat, it'll be easier 
+0:20:28 Nicholas Leuck: The Visio document? 
+0:20:30 Joel Frick (6124): If that has your questions on the PIT, yeah. 
+0:20:32 Nicholas Leuck: Uhm, let, yeah, give me a second here and let me see if I can try sharing. Sharing that in this, uh, 
+0:20:40 Joel Frick (6124): in this meeting chat. So go back to your scenario where the PIT hits the rack that hits the person. In our world, that is going to get called in as an injury, not as a PIT.
+0:21:03 Joel Frick (6124): Yeah, so I guess I'm trying to delineate, like, I wasn't here yesterday, but, you know, injuries, PIT related, and now we're talking about it.
+0:21:10 Joel Frick (6124): It's an incident that, we're calling it a PIT incident, that resulted in an injury, it was like that. You're correct.
+0:21:18 Joel Frick (6124): Manufacturing is aware that they had to submit different forms, depending on what took place. The problem we have today, is that they're all doing it, they're all going out and, doing the AIR, they're doing the PIT, they're doing all the things.
+0:21:30 Joel Frick (6124): The problem is that we don't have any way of bringing them back together to understand the collective incident, and so what we're introducing here is master incident or overarching incident, whatever you want to call it, and then, so when you call it in, you're like, hey, this happened.
+0:21:45 Joel Frick (6124): They put in their quick summary of what the call-in was, and then they say, hey, supervisor, it's master incident 1234.
+0:21:54 Joel Frick (6124): Make sure you're using that going forward. They then start all three of those processing steps. It's from that one incident.
+0:22:03 Joel Frick (6124): I don't know if you saw it. It was later in the day. I'm not sure if you were there at that point.
+0:22:06 Joel Frick (6124): But when you go to the master incident, it is literally just add incident button. Right. And you just click it, and then you say, this, and if you saw the dropdown earlier, it's like, pick one of these.
+0:22:15 Joel Frick (6124): Four categories, yeah. So they pick that category, it's an incident, or it's an injury. So they start the injury form, and then they're done with that, and like, I got sent to PIT, so they hit another plus sign, still have to come out the PIT.
+0:22:27 Joel Frick (6124): Then there's property damage, so they hit another plus sign, fill out property damage, but that's not it. That's not That's not yet.
+0:22:33 Joel Frick (6124): That's the supervisor. They're already doing that today with paper forms. So our process, or what we would say is future processes, is that we come in, regardless of what it is, we create the incident, security then says, your incident number is X.
+0:22:45 Joel Frick (6124): Right. Now the supervisor, and everybody else that's involved in that will create those sub-incidents based off of that, in that parent, or in that parent incident.
+0:22:54 Joel Frick (6124): They're just creating the master. So in this case that we just had, the master would be, we had an injury.
+0:23:01 Joel Frick (6124): And then everything else would fall under It's not as much of an injury. It's like, hey, if this happened, it's in folder.
+0:23:09 Joel Frick (6124): Yeah, so they're not even, like, labeling necessarily. They're just saying, they called and said X, Y, Z. Okay. And I apologize for not being conscious.
+0:23:17 Joel Frick (6124): Can you scroll up a little bit so we can see Master Incident number 27? Yeah, that's, that's what we're creating.
+0:23:23 Joel Frick (6124): Okay. I see. Look, and it's just like an incident description. And then down below is where the group leader starts adding incidents.
+0:23:33 Joel Frick (6124): Wait, we all get that your groups don't necessarily get full and complete incidents. Yeah, I just want to make sure that, yeah, we're And then Jason, just for context, after the Master Incident is created, we're going to have, correct me if anything's changed here, but we're going to have groups of people
+0:23:56 Joel Frick (6124): that would be all simultaneously able to work on different parts of the startup company. So, like, safety, the safety specialist for that job.
+0:24:06 Joel Frick (6124): You know, the clinic, the group leader, folks that will be, you know. So, I'm not sure if you saw Nick's comment, but the chat is not letting him drop in the file.
+0:24:18 Joel Frick (6124): Is there any way you can give him the permissions to do so, or do you want him to email it to you?
+0:24:22 Shao Ngoi: Probably have to email it to me. It's the permissions. 
+0:24:28 Nicholas Leuck: It's the permissions sharing it with outside of the organization. 
+0:24:32 Shao Ngoi: Yeah, I think this is SIA permissions. You will have to send it to me. Uhm, yeah, so just kind of looping back if let's say there's build specifics for PIT.
+0:24:47 Shao Ngoi: In this case, based on the type of equipment was not, I can take a look at that. But from a process standpoint, we are still sad still, right?
+0:24:55 Shao Ngoi: How, you know, based on this conversation that was going on here, we are still, let's say there's a PIT incident that happens.
+0:25:01 Shao Ngoi: The process is still someone called the 2-2-2 security put in the master incident saying, yep, this is what happened. And then they will create a PIT incident.
+0:25:10 Shao Ngoi: Correct. Maybe different phone number, but 
+0:25:13 Joel Frick (6124): yeah, that's that's, yeah, OK, 
+0:25:15 Shao Ngoi: uhm, does the process for PITs, uh, resemble the injury, right? In the way that we describe injury is really when master incidents being created when security initiate an injury record.
+0:25:29 Shao Ngoi: For example, right, the injury record goes straight to investigation. Basically, the investigator team, the investigation team will go and investigate this injury incident.
+0:25:41 Joel Frick (6124): So this is kind of where I was hesitant. On how the, how it should best flow, right? Because, because the questions in the investigation differ slightly, uhm, based on the equipment selected, would, do you think that would be a good process to have a validation step to pre-select everything that would
+0:26:04 Joel Frick (6124): go into the investigation? Or does it 
+0:26:15 Shao Ngoi: It's the supervisor, does it? The person that's 
+0:26:18 Joel Frick (6124): entering the form, pretty much. 
+0:26:21 Shao Ngoi: Okay. But it, sorry, alright, let me, let me take a step back. In this case, the supervisor is not the one entering the form, right?
+0:26:29 Shao Ngoi: It is being initiated by security. Bye. You want the supervisor 
+0:26:32 Joel Frick (6124): to get it first. So, yeah, same route, they call it in, they say, your incident number is 24, and then they come in here and they start adding the incidences, because there could be multiple PITs that are needed.
+0:26:47 Joel Frick (6124): So, they add a PIT, and then in that PIT, they need to select the equipment to drive what the investigation looks like.
+0:26:57 Joel Frick (6124): So, I feel like my question to you, does it, does it make sense to have a validation step for just the supervisor?
+0:27:03 Joel Frick (6124): Or is it just the entry person to select 
+0:27:06 Shao Ngoi: what type of equipment? Yeah, so that, before I answer that, I also want to clarify something. Let's say, someone called it in, right, uhm, uh, Forklift.
+0:27:19 Shao Ngoi: Forklift, run into, uh, uh, to the Trolley, Trolley, and let's just say that's it, that nobody got hurt, just run into Trolley.
+0:27:34 Shao Ngoi: It's a PIT. Right, we know that. Uh, what I'm trying to get to here is really, because someone called in, the 222 security is the one who initiated this event, from what I'm hearing, just right off at detail end there, supervisor is supposed to come in here and create the incident?
+0:27:54 Shao Ngoi: Yes. And it's not security? 
+0:27:56 Joel Frick (6124): Correct. They're just creating the overarching. 
+0:28:01 Shao Ngoi: Okay, so this is where it's slightly different, right? So for injury, it will be the security. The security who go, come here and go, right, based on what's being reported, there's an injury.
+0:28:12 Joel Frick (6124): No, no, no. They, they're, in all cases, I think they're just creating the overarching. The individuals who know what's taking place create the incidences that are relevant.
+0:28:24 Joel Frick (6124): Oh, okay. So that was not 
+0:28:28 Shao Ngoi: my answer. I thought yesterday when we talked about it, let's take this example. Someone would come, would call in, you know, the 222 number, tell, tell the security that, hey, they're too far away, talk to each other, two drivers got hurt, security would go, alright, based on what you have described
+0:28:45 Shao Ngoi: , this is what I, what I'm initiating for the investigator team 
+0:28:50 Joel Frick (6124): to go investigate. No, I don't know if they would have necessarily the training to pull these numbers. No, that's also things to be added later, and I think it just makes sense that the person doing the entry, that would be fill out the forms today.
+0:29:05 Joel Frick (6124): Let's continue to just initiate 
+0:29:06 Shao Ngoi: and fill out the forms tomorrow. That's not what I have in my notes. Because that's what we kind of touched on yesterday.
+0:29:14 Shao Ngoi: Or what if there's something that needs to be added on later? The answer I gotten yesterday was, well, safety would come in here and add or clinic would come in here and add one more.
+0:29:26 Shao Ngoi: Or someone would just call in and say, uhm, we're you know, from this incident that happens, you know, whatever date it is, I got my back hurt and a security would add that one 
+0:29:36 Joel Frick (6124): additional one in there. No, I think that was, sorry, I might have been a little, we were kind of going back and forth on that.
+0:29:42 Joel Frick (6124): I, I think the, what that is referring to is that when they call in, they may say, hey, my back hurts.
+0:29:50 Joel Frick (6124): I was in this accident, uh, two weeks ago. Uh, and I think it's related to that. And then maybe they would get the number.
+0:29:59 Joel Frick (6124): Uh, but that's what we're talking about. The clinic may, they reopen it because it's the same, same incident, which was a very rare case.
+0:30:09 Joel Frick (6124): But that would have to be, uh, the clinic making that call based on their own, like, medical, professional opinion. Right.
+0:30:15 Joel Frick (6124): Yeah, like the, the. The security team would not make that call, sorry, sorry for that confusion. So I think what makes it a little clearer is security will always create the master and then the other groups will go in and add the incidents.
+0:30:33 Joel Frick (6124): Right, but security needs to know the details to put it in the incident description. So the outside understands the sense, right?
+0:30:41 Joel Frick (6124): I think that's the future. 
+0:30:42 Shao Ngoi: So wouldn't that convolute the process? So let's say, for example, uhm. Alright, let's take this example here. I slip and broke, uh, break my elbow.
+0:30:56 Shao Ngoi: Do I notify, do I call the 222 number first? 
+0:30:59 Joel Frick (6124): Yes, yes. So 
+0:31:00 Shao Ngoi: security would create that. And who would create my injury record? The group 
+0:31:08 Joel Frick (6124): So, yeah, the member of management that takes me to the clinic. Okay, so, 
+0:31:13 Shao Ngoi: yeah, so in this case, it's not the security who will create my injury record, it's the group leader or the clinic.
+0:31:20 Shao Ngoi: Correct. Okay. You So in this case. There isn't that there's a gap between. Alright, clinic would create my injury record.
+0:31:29 Shao Ngoi: How would the clinic know that? What is the 
+0:31:32 Joel Frick (6124): master incident? I'm sorry, what was that? How would the clinic know which master incident to use? Because when they called it in they were provided a number.
+0:31:46 Joel Frick (6124): The clinic was provided a number, or the person that called it The person that called it The clinic would generate it, right?
+0:31:52 Joel Frick (6124): But I, I think we just. Yeah, so when they went in, so when they go into security and the people going in would have that number to give them.
+0:32:05 Joel Frick (6124): Correct. And then the person who is doing the initial input of data, up. Right, what we would call the AIR today, they would create the injury incidents and through his creation, because all the groups are on it, if I'm wrong here, it would also be on their dashboard for them to take action on the clinic
+0:32:23 Joel Frick (6124): that is because it's not been issued in the They're a part of the group that needs to take action on this incident.
+0:32:29 Joel Frick (6124): I think what he's saying is that if securities, if they stop at just the description and creating the, the master incident without going in and filling out all those individual incidents as well.
+0:32:42 Joel Frick (6124): No, it's going to, because those actually by creating those, that sends out the notification to all those individuals to start what they need to do.
+0:32:52 Joel Frick (6124): I see what you're saying. The individual that's calling in is the one that's typically filling this out anyways. And so instead of going in and downloading a PDF or whatever, Word document, or Excel, that they're editing, they'll submit, the process will now say, go to the thing that you, that was created
+0:33:08 Joel Frick (6124): , uh, when you called in and hit the plus sign. Essentially, it would change. But how are they going to get a notification to do that?
+0:33:18 Joel Frick (6124): For example, a clinic. They don't get involved in the initial process. So the clinic gets notified because when they go in to do what's called the AIR today, they're going to be a part of the group that needs to take action on that.
+0:33:30 Joel Frick (6124): So it's super important. The supervisor goes in there, starts doing the initial question and answers, and then because it's now created, because the member of management that took them in has started it, now they are aware of it.
+0:33:43 Joel Frick (6124): Okay, just to be a double-C advocate, if this is a life-threatening situation, and there's no time for anyone to get on the computer, anything, how's the clinic going to be aware that this is actually a group?
+0:33:54 Joel Frick (6124): I imagine the group leader would still do that, because they're probably not going to be too helpful in that incident.
+0:34:01 Joel Frick (6124): Uhm, and so, like, what they do today with the forms, right? They still fill them out, the process will change there.
+0:34:10 Joel Frick (6124): Again, instead of going out and downloading an Excel document, Word document, whatever it is, they would just come in here and hit the plus sign.
+0:34:17 Joel Frick (6124): Then everyone's aware. Nothing notifies them today to do that activity. That's part of the process. 
+0:34:27 Shao Ngoi: So this is where I just want to, uh, go back to yesterday's conversation. One of the things that you mentioned yesterday was to keep everything.
+0:34:38 Shao Ngoi: It's the same process, Now, with all these scenarios here, now we are deviating for all, you know, because one thing is like, whatever happens, always going to call 2-2-2.
+0:34:48 Shao Ngoi: But now, based on these different scenarios, you may or may not be called 2-2-2, right? As well as 2-2-2. 
+0:34:55 Joel Frick (6124): So you always call 2-2-2-2, and security will enter the top portion of what we see on this sheet right here.
+0:35:02 Joel Frick (6124): Right. Then going back 
+0:35:04 Shao Ngoi: to the question of the 
+0:35:06 Joel Frick (6124): and we believe the way it should work is other groups or people can then add to that information that's already been put up above.
+0:35:16 Joel Frick (6124): So they can add their incidents, whether it's environmental or injuries or vehicle incidents. Whatever they want to add, they can add it to that master.
+0:35:26 Joel Frick (6124): And I think what he's trying to get at is that there's a gap now between security creating this document, but no one is going to get notified of it.
+0:35:38 Joel Frick (6124): Because those, those other instances have not been put in to trigger those notifications. So that process, so he's trying to close that gap.
+0:35:47 Joel Frick (6124): Because he's under the assumption that our security people was going to do that. Right. But now there's no one going to do that.
+0:35:54 Joel Frick (6124): Yeah. The person that's making the call should be the one doing it. But, what if we say the master incident is then assigned to the person calling it in?
+0:36:07 Joel Frick (6124): Does that make sense? That way that it's now their turn. They have the ownership of the initial incident. Or we want to say safety needs to have the owner 
+0:36:14 Shao Ngoi: of the master incident. That may not work. Let's say I'm the one who's hurt. I called 222, I broke my elbow.
+0:36:21 Shao Ngoi: I'm not going to own this 
+0:36:22 Joel Frick (6124): and not put in the details. That's why I changed it to the master incident. That's why I changed it to safety.
+0:36:29 Joel Frick (6124): I caught myself on that one. I was going to say, sometimes we get anonymous calls. They won't read their name.
+0:36:36 Joel Frick (6124): That happens particularly with environmental incidents more than safety. But once that master is fixed. They're going to be given, whoever called in, here's your number, whoever called in, then usually is that the person that goes in and starts doing the incident report?
+0:36:57 Joel Frick (6124): But if there's an environmental spill, how is the environment going to go in and do that? I know, what do they do today?
+0:37:04 Joel Frick (6124): That's going to allow the group leader now to go in and actually assign all of those individual sub-incidences to be correct.
+0:37:13 Joel Frick (6124): That's what they need to do today. That's no different. They're doing that manually by looking at forms. So right now, once whoever calls in, they're going to be given a master number, and then they can start creating So they and notify.
+0:37:32 Joel Frick (6124): I don't know, is that true? It depends on who calls in. If it's just Johnny that's walking next and sees somebody waiting there, that's different than if the supervisor calls in.
+0:37:42 Joel Frick (6124): So, like he said, how do, once the master's graded out, how do they know, how do they know to get a hold of environmental or safety or their leader, or how do they do it today when they start filling out an incident report?
+0:37:57 Joel Frick (6124): How do they know to fill out an incident report? I'm Uhm, again, so I'm saying, like, just make the master incident unbiased safety, and if they see no, there's no sub-instances to this, then we probably need to reach out.
+0:38:18 Nicholas Leuck: But it'd be in your radar. Uhm, yeah. Sorry, what was the question? 
+0:38:26 Joel Frick (6124): When someone calls in, and it's not the immediate supervisor, or it's, you know, Sally on the floor, or a regular associate.
+0:38:34 Joel Frick (6124): How do we know who to assign the master incident to? So that it doesn't fall off the radar. It's not falling off now, right?
+0:38:48 Joel Frick (6124): Like, in general, it's not falling off. Correct. If I see you on the floor, right, and then I call it in, we still have the process.
+0:38:58 Joel Frick (6124): You guys dispatch. Right. You know, somebody's paying attention at least, but then it's, like, Thank you. And right but aren't.
+0:39:07 Joel Frick (6124): Is it, is 
+0:39:07 Nicholas Leuck: it our procedures? Doesn't it state in our procedures that even if you're not, you know, a supervisor or some sort, like, a supervisor is supposed to be notified.
+0:39:21 Joel Frick (6124): Right, I mean, I'm, I'm, let me 
+0:39:23 Nicholas Leuck: remember, like, I think it's just, I think the process is, like, written down somewhere, and it's just known that you're supposed to tell a supervisor.
+0:39:32 Nicholas Leuck: That's just my belief. I don't know that's 100% true, but I think it's written in some of those policies, in some of those procedures that you're supposed to notify a group leader or some sort of group leader or supervisor will be notified.
+0:39:46 Nicholas Leuck: So it 
+0:39:46 Joel Frick (6124): sounds like, as a generic method of moving us forward here, we just need a way to assign the master incident to somebody or some group.
+0:39:55 Joel Frick (6124): And I think that would satisfy all potential use cases. We can hammer down the process later, but I think that suffices for any potential leakage of this information.
+0:40:06 Joel Frick (6124): So, I'm hearing you right, Scott. It doesn't really matter who. Jumps in, but safety to be able to see this environment will be able to see it.
+0:40:17 Joel Frick (6124): So, the group leader of whoever this is, we'd be able to send it. And then we'll have an agent report as well and say, like, hey, no, 1's doing anything with this.
+0:40:25 Joel Frick (6124): It's sitting on the out there, follow up. You're just wanting to know how they will know. Yeah, I might want to know.
+0:40:33 Joel Frick (6124): I don't know how they know today. How do they know today? Well, if you're a group leader, of course you're going to follow that process.
+0:40:40 Joel Frick (6124): But if you're a group leader, are you now responsible for also reporting that PX? That could have occurred in another department.
+0:40:48 Joel Frick (6124): So there's two, it could be two PIT trucks that created an incident. So you've got this department over here, this department over here, this department over here, this department over here, this department here, there was a spill, now there's an environmental.
+0:40:59 Joel Frick (6124): You have all these moving trucks. There's moving parts and pieces that there's not one person that is truly dispatching this record.
+0:41:07 Joel Frick (6124): Sure. Correct? Yeah. Without the security doing this. No, no, no, that's not how it works. I think we're getting very hung up on process.
+0:41:19 Joel Frick (6124): We just need to make sure that it can actually handle the question tasks. Everyone gets their documentation done today with the current process.
+0:41:30 Joel Frick (6124): So the process hasn't really changed. The process is just going to be here instead of going out to a repository and downloading forms.
+0:41:38 Joel Frick (6124): Right, so, but still you have that one-to-one human-to-human connection. You still have that. Now, how are you going to have that when security's starting this and that's, and they've downed their job?
+0:41:48 Joel Frick (6124): And who's going to get a notification about that? Environmental lives in your not-very-often scenario. That's where we live all the time.
+0:41:57 Joel Frick (6124): We get phone calls of people calling in a spill. They don't leave their name. It's not a supervisor, it's whoever.
+0:42:04 Joel Frick (6124): That's fine. And you guys, yeah, for us to get notified, we are, we are literally waiting on somebody to think to pick up the phone and call us.
+0:42:13 Joel Frick (6124): Um, they will, security will dispatch, uh, the FBOs and if it needs to escalate to environmental, then they will. It's often the FBOs making that call.
+0:42:23 Joel Frick (6124): So, at that point, they would just assign it to those people. Right. So, for us to define who's gonna do the entry, like, that's pretty far.
+0:42:31 Joel Frick (6124): Who does the entry to that? So, we, the FBOs will, if it's, uh, for easier stuff, that closes it out, but for more complex stuff, we create our own documents.
+0:42:47 Joel Frick (6124): That's how the process works. That's how you do it tomorrow, too. It's the same process. You got notified, and then you entered it.
+0:42:56 Joel Frick (6124): So the FBO would say, hey, this is an environmental incident. Yeah. And, so then, that form would be there, and you guys, either they or the environmental would fill that.
+0:43:07 Joel Frick (6124): Ah, correct. For the part, for routine stuff, it would, I believe, it would be probably the FBOs, because they're just filling out the report.
+0:43:19 Joel Frick (6124): Because that's something the FBOs would fill out. Because they were notified through the current process. And I think what they want to know is, is there anybody 
+0:43:41 Shao Ngoi: I think there is a bit of a gap in the sense that, yeah, well, I understand that you want to tie all the incidents pertaining to an event together as one, so that you can report it.
+0:43:50 Shao Ngoi: Great. I still think that tie there between the incidents and the and the incident, uh, there is a bit of a lag, right?
+0:44:03 Shao Ngoi: In the sense that what if I go, you know, not what if, there could be a scenario where exactly what's being described here, someone calling anonymously, hey, there's a noise field.
+0:44:12 Shao Ngoi: Great. How do I know that noise field has not resulted from a vehicle damage or PIT, right? And then that may have led to an injury, someone sleeping on the noise field and hurt himself.
+0:44:26 Shao Ngoi: But someone could easily just call in and, hey, there's a 
+0:44:28 Joel Frick (6124): noise field. That's it. 100% could. And as a one-off, that's why we mentioned yesterday that we need to potentially be able to re-slot these and delete the master incident or archive or however you want to phrase it.
+0:44:43 Joel Frick (6124): That would be found out 
+0:44:44 Shao Ngoi: during the investigation. Right. So then, again, going back to, let's say, there's someone calling in. Yep, that's Oispiel. Great. Sourcetree put it in.
+0:44:53 Shao Ngoi: Oispiel, get address. Then another one, person calling. Yeah, you know what? I, I, I slipped today on a puddle of oil.
+0:45:01 Shao Ngoi: I hurt my elbow. Again, that, that is, this is where the gap comes into play. How would someone know to join them?
+0:45:08 Shao Ngoi: How would someone knows, hey, there's already an incident pertaining to that, that resulted in this injury? Or, hey, this Oispil is technically is coming from a, a, a, a 
+0:45:18 Joel Frick (6124): vehicle Everything as much as possible. The problem is today that we have no method of doing that. So I don't want to perfectionistly get in the way of progress here.
+0:45:42 Shao Ngoi: Okay, so then there was the difference of entering each of those individually. I'm still trying to grab the concept of multi-incident beside report.
+0:45:49 Shao Ngoi: Oh, go ahead. Can I catch on real quick? 
+0:45:53 Nicholas Leuck: If it results in an injury, we typically, the safety team, those are discussed almost on a daily basis. So, like, the next day, it gets discussed.
+0:46:08 Nicholas Leuck: Uhm, we discuss those. Like, we discuss, oh, hey, a PIT was involved. We discuss, oh, hey, like, someone slipped on this puddle of water.
+0:46:17 Nicholas Leuck: Uhm, you know, I think, safety could have the, the responsibility there, or the helping of, hey, we need to also, you know, get an environmental, environmental form completed, or we need to make sure that the PIT form gets completed.
+0:46:38 Nicholas Leuck: Um, I'm not saying that's the case for everything, but, like, if someone is, uh, is injured, those have, like, we, we discuss those on a daily basis.
+0:46:49 Nicholas Leuck: So, safety kind of has some insights there that, oh, this is also includes a PIT form. Let's make sure the PIT form is completed.
+0:46:57 Nicholas Leuck: Um, or, hey, this involves some sort of a spill. Let's make sure that we get environmental, talk to them, and make sure they get a form filled out, and then we can link those later.
+0:47:06 Nicholas Leuck: Uh, I think those one-off scenarios are could be resolved in, in those scenarios. Not the whole, I'm not saying that solves all scenarios.
+0:47:15 Nicholas Leuck: I'm saying it 
+0:47:16 Joel Frick (6124): could solve some of those scenarios. So, Nick, would you imagine the safety halos basically just turning into a case? Review where you bring up number 27.
+0:47:27 Joel Frick (6124): If you start adding those boxes right then and there. Too late at that. Okay, but if you need to say, oh, hey, actually, I submitted it.
+0:47:37 Joel Frick (6124): I'm just like, oh, that's like, oh, wait, we need to get a new network. Yeah, at that point, typically, when you're calling it, everyone kind of knows that this all happened.
+0:47:46 Joel Frick (6124): Right. But I guess what I'm saying is that is it confirming all those boxes are. Appropriately, I think that makes sense, right?
+0:47:54 Joel Frick (6124): It's like, yeah, yeah, yeah, if Larry. It's like, oh, no, it's not there yet. Hey, group leader, did you guys both up?
+0:48:07 Joel Frick (6124): You know, I forgot. Okay. Can you get that? Or yeah, I did it. I called it in later. They gave me an email.
+0:48:13 Joel Frick (6124): A new master ID, uhm, I didn't realize that it resulted in another injury. Okay, let's get that, let's get that added back over.
+0:48:21 Joel Frick (6124): And sometimes, they're gonna get missed. But is it better than we have, most or zero? I prefer whatever the case decision is to be pro-anthroversis-reactive.
+0:48:35 Joel Frick (6124): And, I don't want to go back into that. The goal of this is to make, to streamline our process. I don't want to be on the tail of being proactive, of playing catch-up, when we have an opportunity to have everything in place, afford, as it occurs.
+0:48:54 Joel Frick (6124): So, the events, what, what, the events is occurring as you do the entries. Like, what are the, the, uhm, the, uhh, security staff is initiating all of those, or the group leader is just hitting the plus sign.
+0:49:19 Joel Frick (6124): What's being reactive or proactive with it? Because they're not necessarily going to be trying to understand what needs to go where.
+0:49:28 Joel Frick (6124): And, I don't know, I might have a better turnover today, but there's still some outside source that may have some experienced turnover.
+0:49:39 Joel Frick (6124): We have experienced turnover here as well. It's not trained necessarily to what we needed to do. They weren't necessarily there.
+0:49:47 Joel Frick (6124): Was there a difference between them hitting the plus sign and 
+0:49:49 Shao Ngoi: the group that are hitting the plus sign? I just want to see. So let me, let me take a step back here.
+0:49:58 Shao Ngoi: Then, so from a master incident standpoint, I know, you know, let's put that aside who's entering it. I know we talk about security entering it.
+0:50:07 Shao Ngoi: For the purpose of the master incident, besides reporting, what does master 
+0:50:12 Joel Frick (6124): incident serve? To group them all together. 
+0:50:19 Shao Ngoi: Right, for reporting purposes, right? But is there any other purpose for a master incident? 
+0:50:26 Joel Frick (6124): Just to be able to quickly point to what all took place from the sense net. And having all of it underneath one, because you're not having to go around and do stuff.
+0:50:34 Joel Frick (6124): Now, we can't, oh, sorry, Nick, one more thing. If you have to have the, uhm, security team do all of the entries up front, that also means they have to create, and they have to be like, okay, incident number one, badge number one, two, three, four.
+0:50:51 Joel Frick (6124): Incident number two, badge number four, three, two, one. Forklift, this, crane, this, that. Uhm, so it's, they, you're gonna have to delay the process when you're doing that.
+0:51:05 Joel Frick (6124): Or, if everyone that has an understanding of what needs to take place, as they do today, they're hitting that plus sign, they're putting in the associated badge numbers, they're putting in the equipment that was damaged, whenever they are reasonably fit to do so, instead of delaying the potential care
+0:51:20 Joel Frick (6124): , delaying the activities, and having to explain to security what they need to do. They're going to be doing the work either way, whether it's on the phone explaining it to them, or just doing it when they see the plus sign in the clinic.
+0:51:35 Joel Frick (6124): So, the way I see it, if you're going to create a mastery, I would think security is capable of going, is this a spill?
+0:51:44 Joel Frick (6124): Is somebody injured? You know, I have questions, and you're going to have all of these checked off. You can always add or take away.
+0:51:51 Joel Frick (6124): So, which is what we do now. Right. Like, we ask those questions, but we're not going to get into, I think, the weed stuff of Asian records and all that stuff.
+0:52:04 Joel Frick (6124): Like, here's who, what, where, when, you know. Those are the four or five things, to your point, that we're going to get, and then that's going to be it.
+0:52:12 Joel Frick (6124): All that does is it just creates, now it's an environmental incident, it takes a vehicle incident, it'll take us to an entry, build this, attach to that master, somebody else goes in and fills that out.
+0:52:23 Joel Frick (6124): Yeah. At that point, it's awesome. At that point, it's the actual initial. And as soon as, you know, they click environmental, yeah, there's a spill, somebody from environmental gets, And it can change it appropriately, as far as we know.
+0:52:39 Joel Frick (6124): If you go in and it's not this, but this, I assume you can edit that, right? Yeah, the person, I'm not sure if you can edit it.
+0:52:50 Joel Frick (6124): Oh, no, I mean, of course. But then, but the thing, right? If, let's say, They go out there and there's not an environmental incident.
+0:52:58 Joel Frick (6124): They said you can get rid of it in the archive, but you can say, So, would it work that way?
+0:53:08 Joel Frick (6124): If the initial person that receives it, which would be security, they just, hey, they click whether we need an incident report for environmental, one for vehicle, and one for injury, they're just clicking a box, but they don't actually fill it out.
+0:53:26 Joel Frick (6124): Somebody else comes 
+0:53:27 Shao Ngoi: back in and fills it out. Yeah, so that's what I'm trying to understand, right? So you're going back to the whole master incident, purpose of the master incident, right?
+0:53:36 Shao Ngoi: It's mainly for reporting. And then based on what Nick has mentioned, really, uhm, every week or whatever the frequency, there is a review of hey, this all incident belongs to each other or, uhm, am I, are we missing anything?
+0:53:50 Shao Ngoi: Right, so those are the kind of things where, in, from, from a, from a data accuracy is really tying the incident to a master incident has to be some, somewhat of a review process by, by, by the group, right?
+0:54:08 Joel Frick (6124): I think where we're getting sidetracked is we have an initial incident and it's a panic. It's something happened. It's a security gets a call.
+0:54:18 Joel Frick (6124): They're going to check three boxes and they're done. Somebody else is going to go back in and fill out the reports.
+0:54:24 Joel Frick (6124): If we find out that somebody didn't fill out one of the reports later, a week later in a review or two days later, Bye An incident can be added to that master dump, right?
+0:54:40 Shao Ngoi: Yeah, yeah, no, that's where going back. Or if they find that, hey, 
+0:54:45 Joel Frick (6124): there really wasn't a spill, but there was this, that, you know, they can delete that from the original master. Well, can we just like, uh, let's just open it up and let's just go through 
+0:54:55 Shao Ngoi: it. I thought you had me answer that first. Alright, so in this case, that's where, let's say, uh, there's an incident.
+0:55:04 Shao Ngoi: That has multiple injuries, right? The, while the security can select, yep, there's injury, there's, there's, uh, property damage, so on and so forth, that is only one injury record, one property as a starting point, right?
+0:55:20 Shao Ngoi: The security will still have to, okay. But, but hold off 
+0:55:22 Joel Frick (6124): just a second. So, you can always add to it, right? Mhm. So, when the person goes out there to investigate, if they need to add a second injury, they can go ahead and do that, that group leader or the per, you know, safety or somebody in charge can add Okay.
+0:55:37 Joel Frick (6124): Incidents 
+0:55:38 Shao Ngoi: to it, correct? Yeah, they could, right? So, this is where yesterday we touched on who can add some incidents, right?
+0:55:46 Shao Ngoi: I think we land on security and clinic, but in this case, now we are exposing now to a big group audience here, right?
+0:55:54 Shao Ngoi: That's again, we can narrow down the security portion, who is responsible for what, can do what. Let, now, let's say, it is an environmental incident being reported, right?
+0:56:06 Shao Ngoi: um, security go up. Yeah, that's it. That's an environmental incident. I know the details, you know, let's assume all this come, come from, uh, the initial reporting, right?
+0:56:18 Shao Ngoi: Let's just say, oh, environmental It's an incident, it's medium, or it's a security, we'll still have to define those details, okay?
+0:56:31 Shao Ngoi: It's not like they just can leave it blank. They still have to tell the system, yup, there's an environmental incident of whatever severity.
+0:56:37 Shao Ngoi: Uhm, now let's say… But we can have boxes in there that… We can 
+0:56:41 Joel Frick (6124): say, like, 
+0:56:43 Shao Ngoi: spill, injury… It still gives you one record only, right? So going back to what I was mentioning before, we have boxes in here that tell the system, yup, there's an injury, there's an environmental involved.
+0:56:57 Shao Ngoi: There is a property or PIT involved, but that still only gives you one record of each. What if I have multiple spills, multiple injuries, and multiple properties?
+0:57:07 Shao Ngoi: Right, whoever 
+0:57:08 Joel Frick (6124): goes out there will then add more to it. 
+0:57:11 Shao Ngoi: Right, so now that… Because 
+0:57:13 Joel Frick (6124): The person that originally does it, all they're doing is just creating a master. They're just creating a master and a number.
+0:57:20 Joel Frick (6124): Somebody else is responsible for filling out the other document. So based on what they collect, that document will already be created and they can just start using If they need to add another incident 
+0:57:32 Shao Ngoi: to But by the investigation team on the environmental incident, they discovered, hey, there's a vehicle that's involved. There's a PIT that's involved that causes this oil spill.
+0:57:57 Shao Ngoi: So is it then the environmental investigation team? That's responsible to come back here and go, yep, there is a property damage, or PIT in this case, let's assume, that's involved.
+0:58:12 Shao Ngoi: And then I, you know, for them, this is high. So then now, PIT will be handled by a different investigation team.
+0:58:25 Shao Ngoi: Because yesterday we talked about, each of these will be, ah, managed and investigated separately. Right, so in this case, it will be an team already doing investigation.
+0:58:36 Shao Ngoi: They found out there's a PIT. They create a PIT. Now that investigation team, may or may not be the same investigation team, will investigate, ah, on this PIT incident.
+0:58:48 Shao Ngoi: And now let's assume that, ah, part of the investigation, there's an injury, right? Someone actually slip on the ice bill, hit, hurt the wrist.
+0:58:58 Shao Ngoi: I come in here, I end in injury. I basically define who got hurt. So, that, that's where, when it comes to that scenario, let's say it's Emma, Day, uhm, Medium, Sprain, Wrist, say that's it.
+0:59:22 Shao Ngoi: So, now I have three incidents, two being added as new, essentially an outcome from my initial incident investigation. So, while this is all possible, right, someone comes, comes in and add more to it.
+0:59:40 Shao Ngoi: Assuming the people who's adding the incident into this master incident is, you know, is, is the investigation team who knows what they're doing, right, they can define that, uhm, to a certain, certain degree.
+0:59:54 Shao Ngoi: To a accuracy, we can definitely have that. The questions here is really from a data standpoint. Can can everyone? See an injury record?
+1:00:07 Shao Ngoi: Is there a privacy concern exposing that? When 
+1:00:12 Joel Frick (6124): you say everyone, everyone that has that's in the. The security, sorry not the security, the safety, the clinic, and the environmental team.
+1:00:28 Joel Frick (6124): Basically anyone that's not a regular, regular, regular user. Yeah, now, everybody within defined groups. Yeah, yeah, security groups. Not, not Sally from the floor again.
+1:00:41 Joel Frick (6124): Nope. She shouldn't have access to it. Defined set of groups. Uhm, do we, do we, ah, this is a question for the team.
+1:00:48 Joel Frick (6124): Do we care if security has access to all of them? So, for level setting, I don't think that there's a legal reason that anyone in the building can't have access to it.
+1:01:01 Joel Frick (6124): But I think there's a management discretionary reason why. I think that's we wouldn't want to have everybody have access. I think that would be fine with security having access from that perspective.
+1:01:11 Joel Frick (6124): We could even narrow that down to like, Troy not having access. Well, then you give me the ones that created Oh, OK.
+1:01:19 Joel Frick (6124): We're going 
+1:01:20 Nicholas Leuck: to have There, there is a, there's one, one little issue is that sometimes the group leaders, maybe this is a coaching opportunity, is those group leaders sometimes put information in the AIR that is not related to the incident.
+1:01:41 Nicholas Leuck: It's personal medical information, uhm, that's not supposed to be seen by everyone. So, that's where I don't know if, you know, coaching needs to be advised on the group leaders or some sort of review on what they're putting in there needs to be done by the clinic, uhm, but they don't always put information
+1:02:06 Nicholas Leuck: that just pertains to 
+1:02:08 Joel Frick (6124): that incident in there. Yeah, I think that's going to have to just be treated as a coaching opportunity. I don't, if we're not doing the whole AI review thing, then, you know, it's a free text field.
+1:02:20 Joel Frick (6124): They can put crazy stuff in there. We just need to deal with it along the way. I don't understand what it means if they do do that.
+1:02:30 Joel Frick (6124): Yeah, I think it's something we need to keep in mind, especially when we do training. You're right, they do put in some irrelevant activities.
+1:02:38 Joel Frick (6124): That we need to keep in consideration. Can we, can we create, let's pretend, can we just do a quick run through, let's say that the security is going to create each of these incidents.
+1:02:52 Joel Frick (6124): Can we just like see what that looks like? Can we create a new master incident and then have them create a sub-incident?
+1:03:01 Shao Ngoi: Right, that's what you went through yesterday, right? So let's say some, uhm, you know, can we do one right now?
+1:03:05 Shao Ngoi: I wanna, I wanna do like a 
+1:03:06 Joel Frick (6124): role-playing, yeah, repetition is the key to learning, let's go, this is 
+1:03:12 Shao Ngoi: happening in a special project, bag. This is, from a screw standpoint, this is a medium severity, let's say instant description in this case is, uh, CIT, yeah, yeah, this is good, you can 
+1:03:25 Joel Frick (6124): go through this fast, cause you've probably done it a million times, can we go a little slower? for this crowd here, so, I, I, I'm the group leader calling in, Craig ran into, uh, Jason on a spork lift, on purpose, on purpose, uhm, and then, and then retaliation, Jason broke some property.
+1:03:46 Joel Frick (6124): Uhm, so, off right off the bat, initial severity, I just want to make sure, we, do we need to have that?
+1:03:55 Joel Frick (6124): Cause like, it's the master, you definitely should have everything that's involved in that incident, in that incident. That's, that's, that's a 
+1:04:06 Nicholas Leuck: lot for a group leader to sit there and describe everything to security. It should be very simple for security to just get the needed information, the, to get it started, and then everything else is handled in your A.I.
+1:04:19 Nicholas Leuck: Your digital forms, your P.I.T. forms, everything else, 
+1:04:23 Joel Frick (6124): detail-wise, is handled in there. Yeah, I don't know, that was my question for the team. Does security, would security know, do we know, if it, the severity of the incident, and on the 
+1:04:33 Shao Ngoi: initial call? So, if we don't need initial severity, that's fine, right? What we can do at the end of the day is really, ah, based on the sub-incident that's being entered, right?
+1:04:44 Shao Ngoi: Every single sub-incident has a severity value in it. We can take 
+1:04:47 Joel Frick (6124): the max of those. I think this might actually be the only one. That's only place where it really matters to have severity.
+1:04:54 Joel Frick (6124): Yes. Because we want to know what that immediate response needs to I mean, if it's life-threatening, we've got to know at this point.
+1:05:00 Joel Frick (6124): If you're calling 9-1-1 Dispatch, it's a 9-1-1 emergency. And they ask you for your address. And you don't give it to them, guess what happens?
+1:05:10 Joel Frick (6124): You die. So why is this any different? Yeah, but. Is it just two? Like, what's the difference in our minds between low, medium, and high?
+1:05:24 Joel Frick (6124): Yeah, we might just have, like, major, you know, red lights, and in-house, I don't know. Like, maybe there's an even simpler, but I think, to your point, it's gotta happen at this point.
+1:05:37 Joel Frick (6124): After this point, we have more information, we can just look at the case information and say, well, how bad was it?
+1:05:42 Joel Frick (6124): Right. You know. So, if it's a similar state, not a big deal. Yeah. Spring, spring, not a big deal. But we've had four life-threatening injuries just in this year.
+1:05:52 Joel Frick (6124): So, if it's life-threatening, do they say, put all of this on the phone, pause, get everyone out there right now, like, we'll figure this out later?
+1:06:00 Joel Frick (6124): No, I think there needs to be like a dispatch, there needs to be a dispatch call, but we don't want to delay care to that individual.
+1:06:07 Joel Frick (6124): Right, right. So, like, in this incident where it's life-threatening, we're not going to be like, okay, I'll pause. I'll call it out here in a second.
+1:06:13 Joel Frick (6124): How many workloads are involved? You see what I'm saying? Yeah, but I think, I think there's, so they do put the phone on the desk, right?
+1:06:22 Joel Frick (6124): Call the radio, okay, give me more information. I don't think it has to be computer. That's how it happens. Right, so there they'll call in, Larry got hit by a fork truck, his legs hanging on by a thread, right?
+1:06:34 Joel Frick (6124): No, they'll send it out, and then they'll start to get that information to add it in after that. Who, you know, was it a fork truck?
+1:06:43 Joel Frick (6124): What happened? And they, they do do a pretty decent job of getting that information put in there, so I, I think we can fill it out fairly descriptive.
+1:06:56 Joel Frick (6124): I, I would see this as your, your general information and then your incidents. Sure, sure. I'm just, I'm just, as we're walking through this, I'm making sure, like, initial severity, is it really just two options, life-threatening, not life-threatening?
+1:07:08 Joel Frick (6124): Can you just have major, minor? Like, is there a difference between life-threatening and, and I'm asking about safety team for that, where you can do is it?
+1:07:19 Joel Frick (6124): This 
+1:07:19 Shao Ngoi: is something that we can discuss, right? But what I want to point out is that this has to be applicable to incident type, not just injury.
+1:07:29 Shao Ngoi: Perfect. Right? It has to be, like, environmental as well. Think about incident where it's only environmental, whereas there's no injury.
+1:07:36 Shao Ngoi: Would the same, 
+1:07:38 Joel Frick (6124): you know, level be applicable? Sure. Yeah, I mean, because, yeah, environmental, it could also be life-threatening if it's, like, two chemicals are mixed and you may muscle your chest or 
+1:07:47 Shao Ngoi: something. Yeah, we can always decide on this, right? Sure. What the verbiage would be, we can even put some notes on it to guide the end user, but ultimately it's all 
+1:07:57 Joel Frick (6124): configurables, right? Perfect, that's what I needed out of that. So, yeah, we're gonna, so I have a question. And so is it possible that once security actually engage, you know, creates this master incident and saves it, and depending on the initial severity, if that's a criteria, choosing to make that
+1:08:21 Joel Frick (6124): criteria, can a group of individuals or emergency officers be immediately notified that this record was created? Yes, absolutely. Okay, and I feel better, because at least, regardless.
+1:08:36 Joel Frick (6124): Someone in safety is going to get a notification, if it was an environmental, if someone from environmental is going to get a notification, all key people are identified that this has been created so that we all have an alarm system that says we need to act on it.
+1:08:53 Joel Frick (6124): And depending on the severity, it escalates however it needs to. But I really feel uncomfortable with just getting basic information and making it that people are now dependent on being proactive to go do this stuff.
+1:09:09 Joel Frick (6124): People need to identified and notified when they need to do something. So this is where it's going to start getting a little more complicated.
+1:09:15 Joel Frick (6124): Not on that point. So yes, you guys can be notified. But when we get down to the sub-incidents, this is where I'm not going to I'm not even going down there.
+1:09:26 Joel Frick (6124): I'm just the actual dispatch to identify this has happened. They start, they start clicking those boxes and hit enter or something.
+1:09:37 Joel Frick (6124): That's when people are notified. Yeah, so, like, understanding the environmental safety. They need to be notified it's. It's going to get 2 steps down is where I'm I did not understand better.
+1:09:55 Joel Frick (6124): So, they called in, we give our. 
+1:09:57 Shao Ngoi: Descriptive description, uhm, let's say this one. Yeah, let's say Craig. Uh, drove. A power truck.
+1:10:10 Shao Ngoi: R.I and friend into, uh, 
+1:10:19 Joel Frick (6124): I don't know, uh, the, the doc and Jason fell hurting . 
+1:10:29 Shao Ngoi: his knee. I don't know. I'm just putting something like that, right? It has to be some conversational piece, right? So this is the piece where, uh, whoever that's just calling in describing the incident to, to the security, this is what they know, this is what they have described.
+1:10:48 Shao Ngoi: Security can ask more questions if they want to, right? Uhm, but again, it's all up to the training, right? What exactly the security should be asking so that they can get the accurate picture painted for the starting point.
+1:11:01 Shao Ngoi: So let's say, based on what's being described, uhm, Sourcetree goes, yep, definitely Jason got hurt, right? There's a property got damaged.
+1:11:09 Shao Ngoi: Well, hold on a second. So 
+1:11:10 Joel Frick (6124): we have Suspected Cause and Immediate Action. Do we feel like they should take that information in? Or the immediate action that's part of our, whatever you call it, what's it called today, what are you going to do for the first 24 hours, 48 hours, do we want Thank you.
+1:11:33 Joel Frick (6124): The security team to be entering this now, or is this part of. I later processes, I think is. I don't think it needs to be required field, but I think if they had the suspected cause of it.
+1:11:47 Joel Frick (6124): Could be done later. I don't think they need, I think, immediate action. That's where we as security say. I would say, say, FPO dispatch the ERT, person sent to the clinic.
+1:12:00 Joel Frick (6124): Outside assistance call, like, I think that would be our, we stand. That would be, it would maybe, like, you know, environmental notify or, you know what I mean?
+1:12:09 Joel Frick (6124): Like, whatever that looks like. I think that's what we would do. I don't think we would do suspected cause. I don't think we'd want to get, like, they tripped over the box.
+1:12:16 Joel Frick (6124): It's like, listen, it's obvious, like, there was a lightning strike, 
+1:12:20 Shao Ngoi: right? You know, but, you know, that's what I meant by intellect out of the box, right? We typically, like, most of my implementation, we remove suspected cause.
+1:12:29 Shao Ngoi: We do not want people to speculate. We do not need to call a calling in to say, yeah, I think, you know, Craig was a little, you know, tired or sleepy or sleepy.
+1:12:38 Shao Ngoi: No, we don't need that speculations, but we do need immediate actions. That's why in the essentials version of incident, we literally just capture the fact, right?
+1:12:49 Shao Ngoi: Where it happens, when it happens, what happens, and what is taking the immediate action taken? Quick question. 
+1:12:56 Nicholas Leuck: Does that immediate action populate the like throughout the like the separate forms? Or is that just the immediate action on this master incident on this 
+1:13:07 Shao Ngoi: event right so let's say this event here is Craig drove a power truck and ran into the dog. Jason fell on his knee.
+1:13:13 Shao Ngoi: Immediate action in this case, uhm, check on Craig and Jason, uh, Jason to the clinic, uhm, had the, uh, the truck towed away, right?
+1:13:33 Shao Ngoi: This is just really what, what happened and what immediate action being taken 
+1:13:38 Nicholas Leuck: during the incident. But that doesn't pop, because, like, you just showed another form and there was another column called immediate action.
+1:13:47 Shao Ngoi: Correct, right? So that we, we can define what should populate, right? Obviously, in the sub-incident, there are also immediate actions on each of those sub-incidents itself, right?
+1:13:57 Shao Ngoi: It can populate with what master instance is defined, you can modify it, you can add to it 
+1:14:01 Joel Frick (6124): per sub-incident. So we have the option to either propagate it or not propagate it. Okay. Okay. So, in this case, you know, there was, there was obvious injury.
+1:14:13 Joel Frick (6124): There was, we'll call it property damage, uhm, but we'll call it PIT in the future, and that's okay, right? We can, if we make a new incident type, it'll show here as a checklist item, correct?
+1:14:26 Joel Frick (6124): Correct. Okay. So, we'll, for purposes of time. For purposes of today, we'll just say property damage. Uhm, and then, initial reporter.
+1:14:36 Joel Frick (6124): So, that's you, as the person in taking it. Does that mean that you also now own the entirety of this incident?
+1:14:45 Joel Frick (6124): Or, how does 
+1:14:46 Shao Ngoi: that next step work? So, the master incident, based on what we've described, has no workflow, right? The security creates it, it's done.
+1:14:55 Shao Ngoi: Right? It propagates down to the sub-incident where it's being investigated on the sub-incidents. The way that Intel X has out of the box is that everything follows the master incident.
+1:15:09 Shao Ngoi: The sub-incident itself is just for data collection. But for you guys, every sub-incident is being investigated separately. 
+1:15:18 Joel Frick (6124): So if it automatically closes, does it automatically close all the sub-instances? No, no, 
+1:15:27 Shao Ngoi: no. In this case, it's just no workflow on master incident. It doesn't close the, uh, sub-incident workflow. The sub-incident, uh, will have its own 
+1:15:35 Joel Frick (6124): workflow on lifecycle. Do we, do we want it to have its own workflow so that we can put a globe on it and say, all related, all related activities to this incident have been finalized?
+1:15:49 Joel Frick (6124): Do we want to do that? Or do we just care? Do we truly just care about these sub-incidents as being completed?
+1:16:02 Joel Frick (6124): Any So maybe we want to work on it and we don't want to work on it. So, you checkmark these, you're the initial reporter, that's fine, because now we know who did the intake.
+1:16:13 Joel Frick (6124): I think that makes a lot of sense. Uhm, and then when we submit the notification, uhm, you're going to say if it's severe.
+1:16:22 Joel Frick (6124): You apply everyone right away. Otherwise this land in their dashboard for to-do items, right? 
+1:16:28 Shao Ngoi: Yeah, so let me just clarify something. Whatever that you see at the top here called submit for verification with the workflow.
+1:16:34 Shao Ngoi: None of those actually will apply, right? So imagine submit. Submit for verification just means create incidents, OK, which means now the system will create a master incident record that encapsulates whatever the sub incident that that security have selected.
+1:16:52 Shao Ngoi: It doesn't carries any workflow. There is no. Verification of the master incident. Essentially, whatever that's being reported, whoever called in doesn't need to be verified at the master incident level.
+1:17:03 Shao Ngoi: It will be verified during the investigation of the sub incident itself. So based on this example here. Right, uhm, security has selected.
+1:17:13 Shao Ngoi: Yep, the obvious one is injury. Craig got hurt. There's a property damage because there's a power truck. So each of this injury and property damage will be investigated separately by two investigators.
+1:17:27 Shao Ngoi: Investigation team may or maybe may or may not be the same investigation team, but they'll be investigated separately. So this is where on the way that is being configured right now.
+1:17:38 Shao Ngoi: Each of this has no workflow, but you can imagine there's a workflow on this one here where it goes. Investigate.
+1:17:43 Shao Ngoi: Investigation and approval and then close. OK, closing an injury will not close the property because injury and property, two separate records, two separate workflows, two separate lifecycle.
+1:17:58 Shao Ngoi: OK, let's say. A, you know, again, going back here for injury, this is where investigation team can go. All right.
+1:18:04 Shao Ngoi: What is the injury classification? They can start populating all these details, as you can see. So right 
+1:18:12 Joel Frick (6124): now, the security team has created a population. Effectively, three incidents, one master and two subs, and the safety team and the clinic are aware of these because they're defaulted as the groups that are upon all of them.
+1:18:31 Joel Frick (6124): The group leader, uhm, that may be taking this associate in, has not been made aware of because they're not an owner of anything yet.
+1:18:42 Joel Frick (6124): So, how would the group leader, have access to start filling out the injury, illness, incident? It wouldn't tell us if that starts to get filled out.
+1:18:56 Joel Frick (6124): But, they're the ones that fill it out. Are, are, are we saying that, on, while they're still on the phone, this is still security?
+1:19:03 Joel Frick (6124): No. Security is going to click into each of these incidences and assign it to people. Is that how that needs to work?
+1:19:09 Joel Frick (6124): Security just clicks a master of the incidents that are done by somebody. I think you're asking too much at that point.
+1:19:16 Joel Frick (6124): Just being honest. 
+1:19:20 Nicholas Leuck: It would be notified they would know that, hey, this, this is getting ready to happen. Like, right? 
+1:19:27 Joel Frick (6124): Like, so then what they are saying, they are giving them to my original question. If if there is a group of individuals that can be notified immediately, whenever any incidents are made, then definitely have a clinic as a part of that group so that they at least know where to go to access the information
+1:19:45 Joel Frick (6124): or to start populating their information. So, we're saying in this scenario, the clinic would then go in and assign that to the incoming supervisor, and for the PITs, safety would go in and assign these to the individual.
+1:20:07 Joel Frick (6124): Because the system, as of now, does not understand who these need to go to. The wider groups are made aware immediately, to your point, because they're part of the group that has ownership of these.
+1:20:17 Joel Frick (6124): But the individual that's doing the work on the forms has not been notified yet, because we don't know who that individual is.
+1:20:24 Joel Frick (6124): So what you're alluding to is, can security ask who that person is, if somebody's injured, and they enter that person's name, and then that's automatically, Can we do that now?
+1:20:38 Joel Frick (6124): ,sysadvised. Okay, but, so, to your question, we create these sub-incidents. How do we determine how, how would security, or anybody for that matter, know who the immediate supervisor is to get Software.
+1:20:50 Joel Frick (6124): Who? So, the system does generally know who your immediate supervisor is. General. 10% of the time it doesn't. But, 80-20, we're going to say this.
+1:21:03 Joel Frick (6124): So, when we add the associate that have been entered in this case, it will automatically assign to their immediate supervisor?
+1:21:12 Joel Frick (6124): Well, so that's the next one. So, we have these two instances. So, uhm, as security, I'm now going to click the pencil on incident 40, because I need to assign it both to a person, because we're not assigning it to a person, just a form.
+1:21:27 Joel Frick (6124): Right? And then, now I need to say who, who it is. Yeah, injured person. And, I'm assuming I need to assign it an owner.
+1:21:38 Joel Frick (6124): I'm not sure who the current owner is. Right. Is there a way to do that? 
+1:21:43 Shao Ngoi: Let me understand the, the process there. Alright, so yesterday we talked about once security created, it starts the investigation right away.
+1:21:51 Shao Ngoi: Correct. Is, then where would the, the, uh, I guess supervisor or the 
+1:21:59 Joel Frick (6124): leaders will come into play? So, after the call in, they're going to probably be heading straight up to the clinic.
+1:22:06 Joel Frick (6124): If the associate is not already being ushered up there through another avenue, they're going to be going up there to start filling out what we call currently the AIR.
+1:22:15 Joel Frick (6124): Okay, so this is. So, let me hold right here for just a second, because I think it'll help clear a lot of things up between Jason and Scott.
+1:22:25 Joel Frick (6124): When they call in and they click on an injury, is there a way for something to pop up to ask, you know, that person's name?
+1:22:33 Joel Frick (6124): And if they say yes, can that name be automatically put 
+1:22:37 Shao Ngoi: into this injury, uh, report? I could. I'm just trying to think of where, Would that person be stepping in, right?
+1:22:52 Shao Ngoi: Because, again, if you're starting, when, when, when, when security creates this master incident, when this is being generated, right, injury and property damage, I thought the first initial thing that they have to do, that they that, well, needs to happen is investigation.
+1:23:08 Joel Frick (6124): Someone needs to go take a look at it. Right. What Scott's trying to do is notify the supervisor so he knows to fill out the injury, uh, incident.
+1:23:20 Joel Frick (6124): Right. That needs to be a credit for them. Right. Okay. So 
+1:23:25 Shao Ngoi: from, from that, what are they populating? 
+1:23:29 Joel Frick (6124): Then we have a whole slew of questions that we need answered inside of the investigation. Um, But so the, the, the sorry, the member of manager that's going down to the clinic with the associate, they're going to be the working with the associates to start answering all the questions, the media action
+1:23:52 Joel Frick (6124): , all the media. I worked up doesn't really matter the shift, the, um, what, what took place? There's a ton of questions, right?
+1:24:03 Joel Frick (6124): So they're gonna be working with the associate and the clinic filling out all of these questions. We currently call it the AIR.
+1:24:08 Joel Frick (6124): We can get these questions to you. Um, I think Nick may have already sent them maybe to Uh, 
+1:24:15 Shao Ngoi: so, so they're working with the clinic. 
+1:24:19 Joel Frick (6124): They're gonna go into the clinic. Does the immediate supervisor. Member of management is gonna go through their list of questions with the associate.
+1:24:29 Joel Frick (6124): The clinic also has their own list of questions that they need to go through. That was called. I always forget what it's called.
+1:24:36 Joel Frick (6124): The job process analysis. I think I'm right. Uhm, yes, and so can they have their own set of questions? 
+1:24:45 Shao Ngoi: Can the clinic, does the clinic have to wait until the 
+1:24:48 Joel Frick (6124): leader finishes questions? That's generally how it works today. But they're not, they're not dependent on each other. They can be done concurrently, technically, I mean, physically they can't be done because they're asking questions to one person, but, uhm, it's not like the supervisor needs to have 
+1:25:07 Joel Frick (6124): their questions answered before the clinic can answer their questions. They can happen at any point in time to different questions.
+1:25:14 Shao Ngoi: Okay. In Intel X, then you have to be sequential. The leader will have to complete the questions first before the clinic can do it.
+1:25:23 Shao Ngoi: Because if it's concurrent, then that means going back to the, uh, in Intel X, the concept of personal responsible. Now, which means everyone will 
+1:25:32 Joel Frick (6124): have to be responsible. Correct. That was my understanding from yesterday's conversation. So what if we don't care whether it's a supervisor or somebody from safety or clinic, but it's in a group that's responsible?
+1:25:44 Joel Frick (6124): That's 
+1:25:44 Shao Ngoi: allowed to get it there. Yep, so that that's the investigation group that we talked about yesterday, right? Obviously, this cannot be by the individual who's injured supervisor.
+1:25:59 Shao Ngoi: It is a group of people. Either be safety or clinic or whatever the static number of peoples or members that you pop it into that group, that group of people will be able to modify the record as part of the overall 
+1:26:13 Joel Frick (6124): investigation team. That was up to. The deviation from what I understood yesterday. I thought we could do all three. Groups of people, so the clinic safety and the media supervisor is that.
+1:26:28 Joel Frick (6124): It has to be just the groups that are determined. 
+1:26:31 Shao Ngoi: Yeah, it's group members is not. Not because the injured person supervisor can change. Right, it's it's depending on who got hurt.
+1:26:41 Shao Ngoi: The supporter can change. Group management doesn't work that way. It's static. Let's say I I am in that investigation team.
+1:26:49 Shao Ngoi: Jason and Craig would be in the investigation team, then all three of us would be in that team, investigation team, all the time, unless someone changed me out.
+1:26:59 Joel Frick (6124): Then, I mean, maybe I'm wrong here. I don't, do we see an issue with it going to the immune system?
+1:27:05 Joel Frick (6124): Supervisor, or whomever is doing the entry, and then going to the clinic, and then going to safety. Let's see if you guys don't have access to it.
+1:27:14 Joel Frick (6124): Maybe not edit access. Does that delay anything on your end? We typically wait for a lot of information anyway. Yeah, sort of AIR comes from the group leader first, right, and then goes to the clinic.
+1:27:26 Joel Frick (6124): Right now? That happens at pretty, like, almost on occasion. Yeah, yeah. But, but, yes. But the group leader has to pull it out.
+1:27:31 Joel Frick (6124): Yes. Typically the order of operation is AIR and R. Yeah. Then job list analysis. Analysis. Yeah. Then the course is done first.
+1:27:37 Joel Frick (6124): Yeah. Yeah. AIR is done. You have to have the clinic with the job list. Yeah. Not to make it too, what do you do on the weekend when there's no supervisor here?
+1:27:50 Joel Frick (6124): That's why, that's why I keep saying that number of management. The person that brought you it. I know, but what you were gonna, what you're alluding to is, are we okay with the supervisor having that stage?
+1:28:01 Joel Frick (6124): It has to be done before it goes to the clinic. It's not the initial intake. It's not necessarily the, I mean, it's a record.
+1:28:08 Joel Frick (6124): It's whoever it is being assigned it. At that point in time. Now, the person that finishes it off might be Corrective Actions.
+1:28:15 Joel Frick (6124): That is, I think, generally the immediate supervisor. The person who does the Corrective Actions and the person that does the initial intake is not always the same person.
+1:28:24 Joel Frick (6124): So Amanda, Amanda's raised her hand. Virtualish, you want to know, maybe, should we flowchart this? We do have a flowchart, actually, for this already.
+1:28:34 Joel Frick (6124): We're hoping that we could work on this all concurrently. It's what we were hoping for yesterday. Okay. That introduced a new element that would be pretty neat.
+1:28:42 Joel Frick (6124): But it would, we're back on the side of it, can't we do actually have it flowcharted? Yeah. Can, 
+1:28:49 Nicholas Leuck: do we, I was going to send the email out to Rick, Amanda, and Joel. Would you like to also be cc'd on that?
+1:28:57 Nicholas Leuck: That has the Visio 
+1:28:58 Joel Frick (6124): diagram that we've created. Currently worked on. Yeah, 
+1:29:06 Shao Ngoi: So yeah, so I have further questions to that. So we talk about the supervisor, right? So let's say. Supervisor is going, has his own form, Sourcetree, uh, Clinic has his own form, right?
+1:29:22 Shao Ngoi: Clinic obviously populate something that is, uh, you know, let's say it's injury classifications and all the medical treatments, so on and so forth.
+1:29:30 Shao Ngoi: Let's say, let's assume the supervisor populates the details of the employee itself, because it's all on the same form. Uhm, is there any concern for the supervisor 
+1:29:43 Joel Frick (6124): to see all these details? No, I don't think we have any issue with that. Yeah, sorry, I kind of wanted to add something to that.
+1:29:53 Shao Ngoi: Yeah, no, there's no issue with that. Okay, because generally, from my experience, is that this verification stuff, with all the injury classifications, body parts, medical treatments, typically it's locked down for, you know, safety or claims or whoever it is.
+1:30:12 Joel Frick (6124): Is that the current medical treatments or previous, 
+1:30:15 Shao Ngoi: like, history? This is the current one, right 
+1:30:24 Joel Frick (6124): now, so I don't know why they wouldn't be able to see it. 
+1:30:31 Shao Ngoi: Like, let's say part of my cost analysis of 5Y, I discover that oh, this person got hurt because he was, uhm, you know, doing something, maybe he was a little drunk from yesterday's Halloween, what's not, right?
+1:30:46 Shao Ngoi: That's really, is there any concern of any of this private, private data exposed? to, beyond just the safety team? Not to say that it will happen, but this is where, uhm, generally, from what I've seen, is, while the leader can see the initial stuff, because that's my team member, but beyond that, it
+1:31:06 Shao Ngoi: is, uh, the, the, the, uh, medical staff, with the cause analysis, right, do we need to expose that? 
+1:31:15 Joel Frick (6124): Right now, it's not an issue. Why? For the supervisor to be able to see that. 
+1:31:23 Shao Ngoi: Okay, we can go 
+1:31:28 Joel Frick (6124): back and talk about it a little further on our side. I, I think we're generally okay with that. Can we report out on the body part and everything like that, um.
+1:31:36 Joel Frick (6124): And that's enough to be anything medical related in that. and there, uhm, just the entry. And when we do the reporting on anxiety masks, the individual, we just report on 
+1:31:46 Shao Ngoi: the outcomes. Okay, so let me then ask this differently. So let's say my supervisor is Jason, okay? I got hurt, but it was Craig who reported it.
+1:31:55 Shao Ngoi: Jason, you're not even, uh, uhm, on site. You're away somewhere. How would my supervisor, which is Jason in this case, know the details?
+1:32:05 Joel Frick (6124): So, yeah, and that's, that brings up a great point. The person that's on site, walking them into the clinic may not be the person that is doing the corrective actions.
+1:32:17 Joel Frick (6124): So, I, I'm assuming that's where they work together and partner with safety to, to do that activity. Uhm. I could be, like, doing one-on-one.
+1:32:28 Joel Frick (6124): Yeah, I don't think it's the rule by any means, but it definitely happens. It defaults to whoever that associates group leader is assigned Any group leader can take them down.
+1:32:41 Joel Frick (6124): They're not the person responsible for filling out the form. It defaults to their assigned group leader. It's not a person sitting in, it's someone who may escort them to death.
+1:32:51 Joel Frick (6124): What are you referring to? I'm sorry. Are you referring to corrective actions or the initial intake? Both. You think it's, so we're saying I'm John Doe, John Doe is the associate's assigned group leader, not Jane Doe.
+1:33:13 Joel Frick (6124): So Jane Doe is not responsible for corrective measures. It's the, the, the group leader that the associate is assigned No, that system, if we say default to the supervisor, it's going to default to you and then when they go into the clinic, they're not going to have access to it to fill out the initial
+1:33:42 Joel Frick (6124): intake form. That's not the system. Well, yeah, I mean, that there's a, there's no way of coming that, um, so that's what I'm like, is when they're doing the initial intake at security, do we want to click into the injury?
+1:34:03 Joel Frick (6124): And let's see. Assign it to a person at that point in time. Like, could one of the questions be, are you the person taking them to the clinic?
+1:34:14 Joel Frick (6124): Yes, great, give me your badge number. No, who's taking them in? I can get it assigned to them. 
+1:34:20 Shao Ngoi: OK, then how about the scenario of what Monica has described earlier, anonymous caller? Yeah, let's say I got hurt. Some, some, someone called in, hey, Xiao got hurt, I'm taking him into hospital, bye.
+1:34:36 Shao Ngoi: You know, it's like, how, it's really, do we really need to bog down to a singular person? That's what I'm trying to get to.
+1:34:43 Shao Ngoi: Or could this be handled as part of, you know, clinic or safety investigation, instead of, again, having the leader populates the AIR?
+1:34:52 Shao Ngoi: Or could this be expanded out for a clinic since they're filling it up anyway with the associates? Can this be public at that point in time?
+1:35:01 Shao Ngoi: So let's say I got to take to clinic. Part of the responsibility for the clinic is really, all right, Sha, what's your batch number?
+1:35:08 Shao Ngoi: What's your… What's your status? What's your shift? Really, as part of the clinic overall, uh, fill up of the form, instead of the leader, it would be on the clinic.
+1:35:23 Shao Ngoi: Because the moment we bought that would be a 
+1:35:26 Joel Frick (6124): damn good question, but that procedure change from the supervisor to the clinic filled out the initial incident report. I guess.
+1:35:35 Joel Frick (6124): Okay. Okay. I guess. Oh, I can speak to this a little bit. The AIR is not the associates perspective. It is the perspective of the supervisor that is taking that down there.
+1:35:45 Joel Frick (6124): That is why it doesn't make any sense for the client to do it. The associates perspective is gathered by the clinic without the group leader.
+1:35:52 Joel Frick (6124): So they can speak freely. So I guess that is why the person can't do taking them in needs to build that form because it's from their perspective.
+1:36:02 Joel Frick (6124): In both cases, the clinic isn't positioned to materially generate that content, correct? They just record it. Right. So, I mean, you could have the clinic interview the group leader.
+1:36:17 Joel Frick (6124): I guess. But that would be odd. Hand off. That'd be a game of telecom. Yeah, probably would do that. Jason, um, to your comment earlier, uhm.
+1:36:34 Joel Frick (6124): We've been playing in the world of this master incident with force and aerials. That's not our day-to-day. It may occur.
+1:36:45 Joel Frick (6124): That's not our day-to-day. Our day-to-day is, here's an injury. This person was injured. They're going to the clinic. This was a PIT incident.
+1:36:54 Joel Frick (6124): This is how we handle this. So, to your concern earlier about how much we're asking of the safety personnel to fill out, do you feel that if they are going to do, for example, an injury, a T** incident, and at that point, we're asking them what their group leader's name is, the name of the associate,
+1:37:18 Joel Frick (6124): what type of injury, close, save, done. T** incident, follow that same scenario. Now, when it gets to a scenario like Merritt, where there's a master incident with four or five issues or incidences, yes, I can see the complexity of that security personnel being trained to script it out and ask the right
+1:37:39 Joel Frick (6124): questions so that everybody's involved. But that's what I said. That's not our day-to-day, correct? So do you feel that if a security, if someone calls the security number, I'm not going to say the two students, but do you feel like it's in, it's safe to ask that question?
+1:38:16 Joel Frick (6124): Day-to-day, we do that already. Right. Because we spend a lot of time going through the most multiple incident scenario that's derailed of what we do on a day-to-day.
+1:38:27 Joel Frick (6124): And if we can have security truly be that dispatch, then it's going to make this a whole lot easier. So what we're doing right now is we're trying to find a solution for what I thought and shall thought was completed yesterday.
+1:38:44 Joel Frick (6124): And security is actually going through and filling out those individual incidences. And then it's being routed accordingly. But we started today saying, that's not the scenario.
+1:38:56 Joel Frick (6124): And that's where we lost the connection between where we started and where we're at today. So I'm on board with them doing it.
+1:39:05 Joel Frick (6124): We may have imagined that it was too much, but if you're on board, I'm on board. Because Jason saw the scenario of the Masters with four incidences, which is not our day-to-day.
+1:39:14 Joel Frick (6124): Sure. So now, now the current issue in my mind is, how do we get the person bringing it to us?
+1:39:21 Joel Frick (6124): So the clinic, I'm on board with them, clicking the checkboxes, adding the plus signs, whatever it is. Now we have to get it routed to the individual that's going to be filling out the form.
+1:39:31 Joel Frick (6124): Because the clinic will fill out their portion, but the initial piece of this is going to be the individual person.
+1:39:37 Joel Frick (6124): And that's the person who's going to be starting the process, just like what we're doing today. Security starts the process, and then they need to listen to the incident.
+1:39:53 Joel Frick (6124): The person who called, the group who called in the incident is already aware, security has given them that their incident number.
+1:40:01 Joel Frick (6124): But they don't have access yet. The problem is, so, what I only, the last piece of this is, can we then make, the person doing the call, give them ownership of that next step?
+1:40:15 Joel Frick (6124): And then it would go to the clinic to do their portion, as part of the workflow. So we can't, just because they put in the associates badge number, it doesn't automatically mean it's going to, be the person calling them.
+1:40:28 Joel Frick (6124): Well, in that scenario, it asks for the inspector or the terminology. Right, right. So that's why I just need to know that we can then route it based on an entry point.
+1:40:40 Joel Frick (6124): So you have the injured person. And then the next question is, who's going to be filling out the form, right?
+1:40:46 Joel Frick (6124): So, can we route it based on an input from here? Let's say it's an older person. Thank you. 
+1:40:58 Shao Ngoi: So, what you see here is really, again, back to the simplified essential version, is really, my initial pitch was really go, right, we don't go down the master instance, because, well, I mean, let me take a step back.
+1:41:12 Shao Ngoi: We need the master instance for reporting, okay? That master instance can be part of the analysis or review portion of it, but for an intake to simplify it, let's say someone got hurt, okay, uhm, someone called 222, right, Julian got hurt, right, uhm, we may strip out some of this field for the leader
+1:41:30 Shao Ngoi: to pop up, right, let's assume at this point in time, all, all the, uh, Sourcetree needs to know is, what, what was the, uh, injury, uh, incident description here?
+1:41:41 Shao Ngoi: Julian, uhm, let's say slipped on the oil and broke her ankle. Okay, that's all I need to know. Immediate action, someone took her to the clinic.
+1:41:56 Shao Ngoi: Okay, I say someone's because I may be the one who's calling the security number because I said I saw what happened and then someone, somebody else, you know, Julian broke her ankle.
+1:42:08 Shao Ngoi: Somebody else will obviously take her to the clinic as well. I make the phone call. So this is where I'm the ones reporting it.
+1:42:16 Shao Ngoi: Someone else took her to the clinic. I'm the I gave what I know at that point in time, simply just tell the security go, yep, Julian slipped on, on the oil and broke her ankle.
+1:42:28 Shao Ngoi: That was it. That's all I need to know. What we can do at this point is really, let's say this is moderate, right?
+1:42:36 Shao Ngoi: Let's say, uhm, if let's say we need the leader, right? Whoever Julian's supervisor to populate the details of her shift to try to find out what she was doing before the incident, we can route it that way.
+1:42:49 Shao Ngoi: But it still have to be one step. it. To the other, right? Uhm, let's say I submit this injury illness, right?
+1:42:55 Shao Ngoi: The leader could potentially get it, fill in whatever fields that they want, that we want the leader to fill in, the leader fill it in before they submit it for further investigations.
+1:43:07 Shao Ngoi: I know we have an investigation right now, but we could have a step in place where the leader gets it first, before it goes to the investigation team for investigation.
+1:43:19 Shao Ngoi: It's not simultaneous, it will be sequential. Alright, and then, let's assume this is being reported, and then part of the investigation of this injury and realize, oh, the oil actually came from a truck that hit something.
+1:43:37 Shao Ngoi: Now, the investigation team can easily just come in here and go, yep, this is actually an environmental incident, right? I can say, yep, this happened either before the date or time, or this may be something earlier, but the oil never cleaned up.
+1:43:54 Shao Ngoi: Again, you can, we assume, we always assume incident happens, all incident happens at the same time, but that's not necessarily true.
+1:44:02 Shao Ngoi: Right, the oil spill could happen yesterday, just that the cleanup didn't get cleaned up properly, but the incident was actually yesterday.
+1:44:10 Shao Ngoi: Truck, ran into a, uh, uh, uh, forklift. Okay. Immediate action, uh, clean up the oil. I know it's Maybe a clean up lunch hour, I guess.
+1:44:27 Shao Ngoi: I just realized the time. Contain the oil. That is my environmental incident. And this is minor. Okay. I want to, again, we can modify this to set it to specific, uh, team, right?
+1:44:42 Shao Ngoi: Uh, but this is where it would be based on stability. If it's minor enough, I know who can take a look at it.
+1:44:48 Shao Ngoi: I say, Angelo, go do it. But this all can be configurable. But the idea here is really, I can start off with one incident, investigation, go, yep, this is actually stemming from a truck ran into a forklift, and based on this alone, I know that for what has been reported, it's also caused a PIT.
+1:45:07 Shao Ngoi: So that's where I go, alright, this is actually for, you know, for Houston, for this, truck ran into, into the forklift, causing the forklift to damage.
+1:45:28 Shao Ngoi: Okay. Tore the truck away. As you can see here, this is where every single one is an entry of its own.
+1:45:39 Shao Ngoi: Instead of this, uh, basing on the security to enter this at that point in time, this is now, I am adding on to what has been discovered across a singular injury illness.
+1:45:55 Shao Ngoi: Now, I understand from a master incident standpoint, you want to link it back. So, this is where we can look into, alright, should the linking happen through an analysis, right?
+1:46:06 Shao Ngoi: What if Julian slipped on the oil? Great, it is from the truck or forklift, based on an incident where the truck ran into the forklift.
+1:46:17 Shao Ngoi: However, but what if that oil patch is really not from the truck? But throughout my investigation, I did discover that, hey, that was not being reported.
+1:46:26 Shao Ngoi: But what if she slipped on a patch of oil that is close to the site of the incident, but it's not from the actual incident?
+1:46:34 Shao Ngoi: Right, that's the part where I'm still trying to think of who actually make that analysis, who actually tie them, because by assumption, we are assuming Security will capture, will create a master, they will initiate all the sub incidents, right?
+1:46:49 Shao Ngoi: People can come in and add more, but who is actually doing the analysis that they are all accurately 
+1:46:55 Joel Frick (6124): tied as one event? I think the safety practitioner will either identify that through their investigative processes, or it's going to be a scenario where it's blatantly obvious that all this happened at the same time.
+1:47:08 Joel Frick (6124): But I think it's the responsibility of the safety practitioner. To tie all those together, because they're the ones who's going to be doing the initial investigation, but that doesn't necessarily mean that's going to happen in the silo and this all falls in safety.
+1:47:24 Joel Frick (6124): I think it's going to be with all those individuals that 
+1:47:29 Shao Ngoi: are incident that's been reported, right? Let's say, you know, maybe once a month, safety folks, environmental folks, uh, you know, PIT folks who sit down, right?
+1:47:49 Shao Ngoi: Guys, these are being reported for the same location around the same time, you know, at this all the same, same, uh, incident.
+1:47:56 Joel Frick (6124): Yes, and I, I'm seeing, I'm foreseeing master incidents as most likely being created by the safety practitioner versus security. There may be certain instances, like I said before, fewer than not, that we, we, we developed a solutus situation, but would that really happen?
+1:48:18 Joel Frick (6124): It could, but I think if it's not blatantly obvious, then the safety practitioner is going to be able to link everything together in a master incident.
+1:48:27 Joel Frick (6124): Correct. So that's 
+1:48:28 Shao Ngoi: what I, I am leading towards, right? The master incident allows you then, we call it master incident, let's call it an event record, right?
+1:48:35 Shao Ngoi: That event record, master incident record allows the safety folks or whoever doing the analysis actually put in the proper verbiage, put in the actual analysis summary.
+1:48:44 Shao Ngoi: Summary into it to tie all of those as one. Because right now, when we look at the master incident record, all it is is who went where, but it doesn't really give me that summary that someone actually did the analysis.
+1:48:59 Shao Ngoi: Go ahead, Nick. 
+1:49:01 Nicholas Leuck: I just wanted to say, does that not just defeat your purpose, then, of the whole automation? Like, now you're requiring safety to create the master incident, you're requiring safety to bring everything together, find the incident, find the PIT, find the environmental impact.
+1:49:17 Nicholas Leuck: Bring it all together. Doesn't that defeat the purpose of the whole trying to automate part of this process of trying to figure out what, what incident goes to, to, to this master 
+1:49:31 Joel Frick (6124): incident? How do 
+1:49:49 Shao Ngoi: And then we pick this back up after your lunch break. Maybe with a bit of, you know, break, then they'll clear up some of these these questions.
+1:50:00 Shao Ngoi: OK. OK. So then, what time do we want to get back here? 12.10? I'm just throwing out there. 
+1:50:12 Joel Frick (6124): You let me know. That's funny. Yeah. This game's 30. Yep. 
+1:50:18 Shao Ngoi: Yeah, 12.10 is fun. OK, I'll see you back in 12.10 then. Thank

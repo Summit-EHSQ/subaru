@@ -1,0 +1,2405 @@
+[P0001] Summit EHSQ  SIA  Incident Design-20261104_093418-Meeting Recording
+
+[P0002] 4 November 2026, 02:34pm
+
+[P0003] 2h 3m 58s
+
+[P0004] 
+Shao Ngoi started transcription
+
+[P0005] 
+Shao Ngoi   0:03
+My wife.
+Um, alright, it is recording now.
+
+[P0006] 
+Joel Frick (6124)   0:10
+Okay.
+
+[P0007] 
+Shao Ngoi   0:10
+Yeah, it is recording. Okay, so yeah, so what I want to do today is really, you know, after yesterday we reached some decisions here, so I took that and finally built to mock up some process flows here for at least injury and PIT. Okay, the decisions that we came to yesterday was really...
+All right, we don't really need master incident, right? Every single individual who called in, security will create that incident type separately. And then upon review, the incident, those incidents, right, that ties to a single event will be tied together by safety. We have to figure out, you know, what is the frequency, where is it going to store, so on and so forth.
+But overall, from a flow standpoint, right, let's say something happens.
+Again, don't take this name nomenclature or this naming here as something that's set in stone. This is something I put in place to visualize it. So I call it intake, right, simply because security is the one who will pick up the phone, right, and create each of the incident type upon a incident reporter calling in.
+That's the intake part. Once they put in the intake part where the security will define who, what, when, where, and how, they'll create that incident report. Upon creating the incident report, what I understood yesterday was the first person who should be looking at this would be the supervisor.
+In this case, I call out if it's an injury, the person injured supervisor will get the first pass. If it's a PIT, the driver involved supervisor will get the first pass. Make sense so far?
+
+[P0008] 
+Joel Frick (6124)   1:49
+Minh.
+
+[P0009] 
+Shao Ngoi   1:50
+Okay, and then once they have done with the first pass, I call it supervisor review, this is really to take a look at the incident reported, and then they fill in all the details that they need to fill in, and then they will submit that incident. This is where safety will get that task. Safety will conduct A5 why, define countermeasures,
+At the same time, we talk about clinic, we'll be able to go into the injury record to fill in the clinical stuff, right? The injury classifications, the medical informations, right? So simultaneously, this is still.
+owned by safety, but clinic will be able to go in and add the additional details. Make sense?
+
+[P0010] 
+Joel Frick (6124)   2:29
+Just, yes, just to clarify, the supervisor will be doing the initial 5 why's.
+
+[P0011] 
+Shao Ngoi   2:38
+Okay.
+
+[P0012] 
+Joel Frick (6124)   2:38
+Safety will still, you know, work with the countermeasures, but we also discuss, and I'll know if we solidified it, that what the terminology is for the supervisor's initial. How did you guys define it? Your initial counter measures? Temporary. Temporary.
+
+[P0013] 
+Shao Ngoi   2:59
+Initial. So for this temporary countermeasure, is it something simply just a supervisor to find or suggest what should be the countermeasure and then safety take a look at it and finally push it out?
+
+[P0014] 
+Joel Frick (6124)   3:12
+That's correct, yeah.
+
+[P0015] 
+Shao Ngoi   3:17
+And define.
+Show counter.
+Counter measure.
+Prior to safety, pushing it out. Okay, this is just me putting it out there. I need to finesse the text here.
+
+[P0016] 
+Joel Frick (6124)   3:39
+Yes.
+It also says workflow for injury and PIT. I think we were just going to say injury, property damage and vehicles. Is that right?
+We agreed on that, but then that catch catch that will be a subcategory of DIT. It might get wordy or lengthy, but would we be better off to say non-production vehicles just so that don't get confused with?
+If I damage a car online, we call it vehicle, you know what I mean? Yeah.
+Or we could even just say industrial vehicles. I know that's close to the IT.
+
+[P0017] 
+Shao Ngoi   4:09
+Yep.
+
+[P0018] 
+Joel Frick (6124)   4:17
+A non-production vehicle.
+I don't know, unless there's something else. Yeah, I just was, because I could see a lot of people thinking, oh, I hit a car. Well, that might be considered property, not not.
+
+[P0019] 
+Shao Ngoi   4:27
+Yeah.
+So that's the one piece I want to circle back with the team, right? Because ultimately, the way I see it is that, yeah, while we have that options in place right now, because our box, you know, we do include those common incident type. One thing I need to get back to or confirm is really from...
+
+[P0020] 
+Joel Frick (6124)   4:31
+Of.
+
+[P0021] 
+Shao Ngoi   4:50
+The statement of work itself.
+Technically, there is no vehicle incident being called out. I'm not sure if this is being left out on purpose, right? Or is this something that is just we discover right now? This is what I need to confirm with you guys.
+Really, what is the what is the incident type that we are capturing here that we want to capture here specifically, right? Do we need PIT?
+plus vehicle or property when I say property in the quotations, property could technically be your PIT as well, because one thing that I'm not seeing in the statement of work is really vehicle incident ultimately, right? There's nowhere in this says we need to capture vehicle incidents.
+However, can we include that? Absolutely. I just need to take it back and see how we can include that as part of the incident reporting, right? Because like I said, what's in place right now is really injury, illness, environmental incident, property damage, and notice of violation.
+Yeah.
+So I will park that, I'll get back to you guys on that, but from a flow standpoint, right? I know we want to include PIT, injury, and this is where I need to also see for near misses for environmental. I need to jump on notice of violation.
+and see how that's going to play into this flow here. Is it similar? Is it different? But ultimately, for now, this is what we have to find for at least injury and PIT.
+Finalize countermeasures. OK, right. Yeah, so upon safety review, right, this is where they they reviewed the the five the initial 5Y completed by the supervisor. They can final they can finalize the countermeasure by pushing it out, or they can simply create more countermeasure if they need to.
+And then ultimately, once that's all said and done, they will send it to the safety manager for review, and safety manager will ultimately give that stem of approval, which will essentially close off the incident report.
+While this is a flow straight from intake to close, I'm just wondering is at what point in time, let's say someone call in and say, all right, this incident is, this incident happened. So clearly just simply go, all right, great, put it in. At one point in time, someone would deem, hey, this incident did.
+didn't actually happen. Is it during the supervisor review?
+
+[P0022] 
+Joel Frick (6124)   7:37
+Yeah, I would say yes.
+
+[P0023] 
+Shao Ngoi   7:40
+So that they simply just go, yep, this didn't happen. I go cancel. This incident is no longer valid.
+
+[P0024] 
+Joel Frick (6124)   7:47
+I think that could happen at any time. Supervisor review, safety review, safety manager review. I mean, ideally it would be caught early, but I think any of those players should be able to cancel it.
+
+[P0025] 
+Shao Ngoi   8:00
+Okay. I'm a little hesitant being in the safety manager review because if it's being missed here, I guess the chances of it being missed by the safety.
+
+[P0026] 
+Joel Frick (6124)   8:11
+Yeah, not great.
+
+[P0027] 
+Shao Ngoi   8:12
+Yeah, simply because you have now finalized your 5Y, you actually have finalized your countermeasure, which means those things are out there.
+
+[P0028] 
+Joel Frick (6124)   8:20
+Okay.
+
+[P0029] 
+Shao Ngoi   8:21
+Right, again, I, again, that's the reason why Miller hasn't to have that cancellation at this point. I'm okay with supervisor, I'm okay with safety, because supervisor made me something, safety could go, you know what, supervisor, you missed this stuff. This is actually not a valid incident. I'm cancelling it.
+
+[P0030] 
+Joel Frick (6124)   8:38
+I think the only reason that it may get canceled at like a safety manager review is if if it changed its title like it.
+
+[P0031] 
+Shao Ngoi   8:38
+Make sense so far?
+
+[P0032] 
+Joel Frick (6124)   8:47
+It was a...
+
+[P0033] 
+Nicholas Leuck   8:48
+What are?
+
+[P0034] 
+Joel Frick (6124)   8:50
+you know, like we said yesterday, somebody hurt their back, but then they realized after further evaluation that that was a pre-existing condition and they didn't actually hurt their back in that incident. That would be where maybe at a late call like that, that it might, something like that might happen or occur.
+Or the clinic obviously defines that hits.
+
+[P0035] 
+Nicholas Leuck   9:11
+Agha.
+
+[P0036] 
+Joel Frick (6124)   9:14
+A personal versus a work-related injury, right?
+
+[P0037] 
+Nicholas Leuck   9:17
+That can occur months later.
+
+[P0038] 
+Joel Frick (6124)   9:20
+Right.
+
+[P0039] 
+Nicholas Leuck   9:20
+Also, there is no time frame for that to happen. It can happen months later.
+
+[P0040] 
+Shao Ngoi   9:28
+Yeah, so...
+
+[P0041] 
+Joel Frick (6124)   9:28
+And I understand months, Nick, because of the, for example, MSK, you know, time frame 30 to 45 days.
+
+[P0042] 
+Nicholas Leuck   9:38
+It's not it's not just MSK. It's also like work comp related as well.
+
+[P0043] 
+Joel Frick (6124)   9:44
+All the approval for work comp, yeah.
+
+[P0044] 
+Nicholas Leuck   9:45
+So like there, that's why I say like the, there's the possibility for that to not just to occur within a few days. It can occur within weeks or months later that an incident becomes, you know, it gets deemed not work related.
+
+[P0045] 
+Shao Ngoi   10:04
+Okay, so let me let me clarify certain things here, right? Obviously, status of an injury being reported could change down the road, right? Someone could go, yep, this is not work-related. The status could change. What I'm trying, what cancellation in this in this case would means.
+
+[P0046] 
+Joel Frick (6124)   10:05
+Mm-hmm.
+
+[P0047] 
+Shao Ngoi   10:24
+This is not a valid incident. Someone prank called, right? Title change, for example. Let's say someone hurt the back. This could be something that an existing issue. However, I do want to challenge that for a second because let's say I do have history of back pain.
+The accident happened. My back hurts.
+Do we, at this point, like in my mind, my back technically still hurt even though I have a history of back pain.
+Do we now exclude that back pain from the incident?
+just because I have a back pain history? Or, yeah, so to me, that still, even though I have a history of back pain, that incident still caused a back pain.
+
+[P0048] 
+Nicholas Leuck   11:08
+No.
+And that would be up for the clinic to further determine that. That wouldn't be safety, that wouldn't be like a manager, that, I mean, the clinic may work with safety, they may work with safety on that, but that's ultimately going to come up to a safety or a clinic review.
+
+[P0049] 
+Joel Frick (6124)   11:20
+Great.
+Yeah.
+
+[P0050] 
+Shao Ngoi   11:22
+Got it.
+
+[P0051] 
+Amanda Raver (6414)   11:25
+Now that we have.
+
+[P0052] 
+Nicholas Leuck   11:36
+they would be making that determination. And once again, that can be a few days, that could be weeks, that could potentially be months later.
+
+[P0053] 
+Shao Ngoi   11:43
+Okay, yep, so this is where we can potentially have the cancellation, because say clinic would know at this point, right, because they are working closely with the safety to complete the full details, right? We can have cancellation here. Once it's closed, we can also reopen the incident.
+Right, once we reopen it, I assume we are reopening it to the safety review, because whatever that's been changed, would technically needs to be reviewed by the safety manager as well.
+Dave.
+
+[P0054] 
+Joel Frick (6124)   12:20
+Yeah, makes sense.
+
+[P0055] 
+Shao Ngoi   12:23
+We just go then, probably reopen once it's closed.
+My mouse, but...
+That's how the flow for incident and PIT. All right, so now, sorry, before I get into environmental incident, any questions so far from what you guys have seen?
+Perfect. Okay, so for environmental, if let's say this is environmental incidents, let's say, I don't know, someone just walked by a barrel of fluid or oil, right, and knocked it off the counter, spilled onto the ground.
+That's an environmental incident. I would call, call 222, let Sikri know, hey, I spill, you know, a tub of oil onto the floor.
+In security, will create that.
+Environmental incident. Would the flow be following these steps here as well?
+What would that?
+
+[P0056] 
+Joel Frick (6124)   13:40
+Because we like making your life easy, we don't follow exactly that process.
+
+[P0057] 
+Shao Ngoi   13:46
+Okay.
+
+[P0058] 
+Joel Frick (6124)   13:46
+So, after security takes the call, they dispatch our emergency response group.
+
+[P0059] 
+Shao Ngoi   13:58
+Okay.
+
+[P0060] 
+Joel Frick (6124)   13:59
+Shall we call them OSCR, Council Emergency Response? Another acronym. I have to share. But if you call it emergency response, that immediately creates confusion with off-site emergency response, which is entirely different.
+Sure. So, onsite emergency response, but. OSCR. The words. I think in acronyms too. You guys can't do that to me.
+So, the on-site emergency response.
+And our spill our our spill cleanup Contractor.
+Should we say McMillan, or you have a comment I'll second? Well, currently it's in beta, it will be changing to McLean, but that's it's an alternate slow contractor.
+
+[P0061] 
+Shao Ngoi   14:48
+Okay.
+Okay, so instead of looking at this flow, how about in your current process, right, do you want to simply just high level describe what is, what will happen if someone spill oil on the ground?
+
+[P0062] 
+Joel Frick (6124)   15:12
+Yeah, that's exact. So they call 2222. They dispatch our on-site emergency response and the spill cleanup contractor.
+
+[P0063] 
+Shao Ngoi   15:14
+K.
+Dispatch emergency response.
+So, for the contractor, who managed the contractor?
+
+[P0064] 
+Joel Frick (6124)   15:33
+Environmental.
+
+[P0065] 
+Shao Ngoi   15:35
+environmental. So you have emergency response being dispatched at the same time the cleanup crew get dispatched as well.
+
+[P0066] 
+Joel Frick (6124)   15:43
+Yes.
+
+[P0067] 
+Shao Ngoi   15:48
+special emergency response and cleanup crew.
+
+[P0068] 
+Joel Frick (6124)   15:55
+Yep.
+
+[P0069] 
+Shao Ngoi   15:55
+Have.
+An environmental.
+Temult.
+
+[P0070] 
+Joel Frick (6124)   16:00
+It's not.
+It's not enough unless there's a problem.
+
+[P0071] 
+Shao Ngoi   16:03
+Yeah, I was.
+Got it. Okay. So emergency response, what do they do?
+If just, I'm just curious.
+
+[P0072] 
+Joel Frick (6124)   16:10
+So.
+They oversee the cleanup and ensure that it is done completely incorrectly.
+
+[P0073] 
+Shao Ngoi   16:21
+Okay, respond.
+
+[P0074] 
+Joel Frick (6124)   16:22
+They also do a bit of assessment on if it needs to be escalated.
+
+[P0075] 
+Shao Ngoi   16:31
+Let's call it assessment.
+for potential escalation. Okay.
+Cleanup crew. Okay, so that makes sense for cleanup crew in this case. You mentioned is a contractor.
+Let's say...
+if something spilled, is this the same cleanup crew for the whole company or is it only specific area of the company or someone will, you know, make additional call to say, hey, I have oil spilled, please send a crew over. How is that going to be managed in your current process?
+
+[P0076] 
+Joel Frick (6124)   17:15
+So, in our...
+Current process, if it is a chemical spill, the environmental cleanup contractor is dispatched. If it is a water spill, that falls under the janitorial service, so they would call that contractor.
+
+[P0077] 
+Shao Ngoi   17:33
+Got it.
+Chemical versus water.
+How about oil? Do you okay? Well, let me ask what...
+
+[P0078] 
+Joel Frick (6124)   17:42
+That's chemical. Anything other than water is a chemical.
+
+[P0079] 
+Shao Ngoi   17:46
+Got it, okay. Border versus everything else.
+Say, water.
+With his on water.
+Clean up crew, all right. So water is janitorial, non-water is a special team will manage it. So in this case for that, you mentioned someone will make a call. Who would make that call? Is it the intake person?
+
+[P0080] 
+Joel Frick (6124)   18:20
+Who would would make the call to dispatch those people that is security making that that phone call?
+
+[P0081] 
+Shao Ngoi   18:27
+To a cleaner crew.
+
+[P0082] 
+Joel Frick (6124)   18:29
+That security makes that call.
+
+[P0083] 
+Shao Ngoi   18:31
+Security makes that call, okay?
+So in this case, to me, the cleanup crew sounds like it's just a notification to a cleanup crew. Questions I have is that will the cleanup crew be part of the intellect system?
+
+[P0084] 
+Joel Frick (6124)   18:58
+They are ready to get into the system. They would not be going to rely on the FBO's to continue filling out the report the way that they do and potentially improve what they're reporting within that. The cleanup crew really just goes out there and is the cleanup.
+Because the IPOs are actually supervising those. That's that was always my understanding. Yeah. Whether or not my understanding was correct is absolutely a question.
+Sorry, did you hear all that?
+
+[P0085] 
+Shao Ngoi   19:35
+Not quite, I was gonna say so, I think.
+
+[P0086] 
+Joel Frick (6124)   19:37
+The cleanup crew does not enter information into Intellects.
+
+[P0087] 
+Shao Ngoi   19:43
+Got it.
+
+[P0088] 
+Joel Frick (6124)   19:44
+And I would anticipate that their notification is likely going to remain outside of intellects because they are not looking at their computers. They will need a phone call, they will need some other form of notification.
+They're also not emergency responders. So yeah, no, they are clean up. They're everything is controlled. They are non-emergency response people. So if you went to the previous flow chart, would the FPO take the place of a supervisor? Yeah, I think so.
+That's good.
+Did you hear that?
+
+[P0089] 
+Shao Ngoi   20:30
+Yeah, so this is where before we get further though.
+I just want to clarify something.
+For someone calling, obviously we have the dispatch of emergency response, and then same at the same time, the security, the intake person will notify the cleanup crew externally outside of Intellex.
+
+[P0090] 
+Joel Frick (6124)   20:54
+Yes.
+
+[P0091] 
+Shao Ngoi   20:55
+Okay, and then because emergency response supposed to oversee the cleanup and do assessment on it, I assume in this case emergency response will also document within this step here, who are the cleanup crew? Do we need to capture who are the cleanup crews?
+The details of the cleanup itself, do we need to document any of those?
+
+[P0092] 
+Joel Frick (6124)   21:18
+So the details of the cleanup itself, yes. As far as who?
+The cleanup crew is, that's the contractor has a number of people that they can pull from various jobs. So that's going to be, I don't know that that's necessarily as important.
+
+[P0093] 
+Shao Ngoi   21:37
+Okay, that's fine.
+
+[P0094] 
+Joel Frick (6124)   21:38
+Do you want to document that, though, just to have record that this is this actually came out to take care of this?
+We have not yet need, well, we verify training, but we verify training for all of their cleanup response people. If they screw up, that goes back to their management. Not necessarily, we don't necessarily deal with individual folks. So. It's like the name of the company if you have like multiple. Oh, yeah, I was going to know for the company.
+Is because we'll have a contract that they they will be the ones for a period of time. OK, I assume that's what he the question he was asking. Oh, I thought he meant the individual people responding.
+Anybody switch contractors, so I suppose 10 years from now there could be a question on which contractor it was on a particular date, but...
+Shao, does that answer your question?
+
+[P0095] 
+Shao Ngoi   22:38
+Yeah, yeah. So I just need to know like how, what's the detail that we need to capture for the cleanup crew, right? Or just even just a contracting company would be fine just so that down the road, exactly what you've mentioned there, you can go back and say, yep, this is being cleaned up by Contractor ABC. I may not necessarily need to know the
+crew name if we don't need to go down that details. But I'm just wondering what kind of details do we need to capture for the cleanup crew so that I have an idea of do we need an additional layer to capture those cleanup crew details.
+
+[P0096] 
+Joel Frick (6124)   23:12
+We have a contract with somebody, so we usually know who that. It's only one contractor, but currently it's two, it's going down to one. The only time another contractor would get involved is if we have a severe spill that exceeds their capability to do cleanup, in which case we have to call an off-site.
+company to come in that is a much larger scale thing, multiple Mayes. So.
+I really said day-to-day that doesn't.
+Would you need that for a placeholder in the future? Yeah, maybe as a placeholder for the future, give us, but you know, the only time it's going to go outside of our, again, on-site contractor is when we call in a third party and that's going to be not a different responder that is going to be an additional.
+responder. So still our on-site contractor will be involved and then the outside contractor is going to come in and then we got to make sure everybody is speaking to themselves. Before that outside contractor would ever come in, your FPO is going to be involved before that. Oh yeah, they're the first call. So it's not at your intake stage.
+If this would happen later, much later, yeah, or much later.
+
+[P0097] 
+Shao Ngoi   24:33
+Okay, yep, so again, just, we don't, yeah, again, just asking just so that I know if there's any additional stuff that I need to add in, right? Something that, you know, we can park it or don't have to decide at this point upon review, you can always add more to it. All right, okay, from emergency response side of things, is this a singular person or is it a...
+Team.
+
+[P0098] 
+Joel Frick (6124)   24:55
+It's a team.
+
+[P0099] 
+Shao Ngoi   24:56
+Is a team. OK, emergency response. This is a team.
+Okay, um, yeah, like, like, captured here, right? They always see the cleanup, they will do assessment, um...
+Just out of curiosity, because there's a potential of escalation in this case. What type of assessment are they doing in this case? Is it just a risk assessment? Is it a hazard assessment? What assessment are they doing?
+
+[P0100] 
+Joel Frick (6124)   25:22
+So...
+Because the people reporting a spill, they will give an XY or a location, but they don't owe it. Our security folks don't always get all of the detail when the.
+
+[P0101] 
+Shao Ngoi   25:36
+Mhm.
+
+[P0102] 
+Joel Frick (6124)   25:41
+emergency of the incident oversight. Let's go with that incident oversight, which which I have up to now been calling emergency response, but you know what that those folks they go out there. It is it.
+
+[P0103] 
+Shao Ngoi   25:47
+Incident, I was like, alright.
+
+[P0104] 
+Joel Frick (6124)   25:59
+Inside or outside, what's, you know, how big is it? Are we going to have problems with our on-site cleanup people responding?
+And is there a concern that it might be...
+might need to be escalated, like is it a severe...
+A severity assessment.
+
+[P0105] 
+Shao Ngoi   26:23
+Got it.
+
+[P0106] 
+Joel Frick (6124)   26:23
+So severity could be volume or it could be the type of chemical.
+
+[P0107] 
+Shao Ngoi   26:34
+size and type of chemical. Do they go through like specific steps to identify the severity or simply just go, based on my experience, this feels like a moderate versus a major. Is there like a guideline to guide them towards the final severity or is this simply just...
+
+[P0108] 
+Joel Frick (6124)   26:37
+If it's...
+
+[P0109] 
+Shao Ngoi   26:54
+A gut feel.
+
+[P0110] 
+Joel Frick (6124)   26:55
+They currently do not go through a checklist. It's more based on their experience. And if they have any concern at all, they escalate. If it's outside, you know, so inside versus outside, we automatically assume an out spill outside is
+a little higher priority because if it gets to a storm drain or gets in the soil, we have a different kind of cleanup versus if it's contained on asphalt or concrete.
+
+[P0111] 
+Shao Ngoi   27:29
+Got it. Okay, so it is just them go, just what we have in the essential model is really, obviously right now we have it at the beginning of the intake, but ultimately when it comes to the severity part,
+It would be the incident or was timed out.
+Just bear with me one second here.
+Um, so, in so based on what we have, that if you remember, we have the security of...
+minor, moderate, major, catastrophe, right? We can change the verbiage of that to better fit what you are currently using, right? Depending on the selection of that, when we talk about escalation, what is the escalation? Let me talk about what is the next step upon emergency response slash
+Incident oversight completes their assessment.
+
+[P0112] 
+Joel Frick (6124)   28:33
+In our base case, if our on-site...
+Contractor can clean it up. They would complete the cleanup.
+Um...
+and take any waste materials away and the emergency response team or oversight people would complete a report, send it in if that. So then I think we still want to close, so then it would come to environmental to close out the incident.
+
+[P0113] 
+Shao Ngoi   29:07
+and why men.
+
+[P0114] 
+Joel Frick (6124)   29:10
+Right now, they just e-mail us a report. So that essentially closes it out. And we do our own follow-up and assessment on it.
+
+[P0115] 
+Shao Ngoi   29:19
+Got it.
+I'm just putting here environmental team review essentially. If I'm hearing this correctly, right, ultimately, if there's an incident that's pertaining to environmental, it needs to be cleaned up, it needs to be cleaned up properly, it needs to assess what is the severity. Right, once it's all said and done, ultimately,
+
+[P0116] 
+Joel Frick (6124)   29:25
+Yes.
+Yep.
+
+[P0117] 
+Shao Ngoi   29:43
+Submit incident report for review.
+
+[P0118] 
+Joel Frick (6124)   29:47
+Right, so that process covers, I would say, 98, 99% of calls.
+
+[P0119] 
+Shao Ngoi   29:54
+Mhm.
+Okay, so now what is the, if it's an escalation that's more severe, like a critical one, it happens outside of the property, is a big spill. Let's say this is a corrosive chemical.
+
+[P0120] 
+Joel Frick (6124)   30:08
+Yeah.
+Yep, so at that point, somebody better be calling environmental real fast.
+So that's sweet. And then environmental comes in and we do our own assessment of.
+Is it reportable to a regulatory agency? Will there be a larger scale cleanup involved? We do notification to our leadership.
+of what the situation is to keep them apprised.
+We will also pull in safety simply because then you have more people working around chemicals that are.
+
+[P0121] 
+Shao Ngoi   31:00
+So let me ask then, so let's say this is a, I don't know, the one corrosive chemical I know is hydrochloric acid, right? Let's say that is something that's spilled. I still call the 222 number, right? Emergency response incident oversight still being dispatched.
+
+[P0122] 
+Joel Frick (6124)   31:01
+UpdePac.
+Yeah.
+Yeah.
+Yes.
+
+[P0123] 
+Shao Ngoi   31:19
+At this point, would an environmental team be involved? Or do they still have to wait for them to complete the assessment before they get involved?
+
+[P0124] 
+Joel Frick (6124)   31:28
+It depends on the information that security gets from the caller. If the caller says, this is bad.
+
+[P0125] 
+Shao Ngoi   31:37
+Mhm.
+
+[P0126] 
+Joel Frick (6124)   31:38
+same security would at that point probably pick up the phone and call us. But if the caller doesn't say anything, they just say, oh, there's a spill. We have, we wait, we don't know. And the emergency responders, the emergency response oversight folks,
+will go out there and they will escalate based on what they see.
+
+[P0127] 
+Shao Ngoi   32:03
+Got it.
+
+[P0128] 
+Joel Frick (6124)   32:04
+So that's where we are relying on whoever picks up the phone call security. We're relying on the information they give us. Sometimes we just don't know.
+
+[P0129] 
+Shao Ngoi   32:17
+That's fair. Right, so this is why I just want to make sure we have that cover in our use case here. Okay, so in your example there, let's say I am just someone who calling in, knowing that, hey, there's an oil spill, not knowing what type of oil, not knowing how it's going to flow into where.
+Simply just go, there is an oil spill.
+within the parking lot. Okay. So as the person taking this call here, right, I go, okay, that's a nice spill in the parking lot. In my mind, I would obviously security to ask, you know, questions just to define what exactly the severity of this, the spill itself.
+Moderate, let's call it moderate quantity. Quantity on the road. At this point in time, as the person who's taking the call, I could go, you know what, this is moderate, right? Nothing major.
+Right, let's call it moderate for now. At this point in time, we can tell the system based on the, let's call it initial assessment, right, by the person who's taking the call, we can then tell the system to either notify safety or not to notify safety.
+
+[P0130] 
+Joel Frick (6124)   33:39
+Ohh, no.
+
+[P0131] 
+Shao Ngoi   33:39
+Sorry, environmental, environmental.
+
+[P0132] 
+Joel Frick (6124)   33:41
+Yeah.
+So.
+At.
+At this point, so if it's outside, yeah, I'm going to agree it's a minimum of moderate. I would probably, unless they say it's running into a storm drain, I don't need them to notify environmental immediately. If it's oil in the parking lot, our cleanup crew can handle it.
+
+[P0133] 
+Shao Ngoi   34:04
+Right.
+Right, so this is where the person doing, picking up the call, hearing that, right? So would they know, let's say, moderate quantity on the road versus moderate quantity on the road, and seems like it's running into...
+into the storm drain.
+
+[P0134] 
+Joel Frick (6124)   34:30
+That's major.
+
+[P0135] 
+Shao Ngoi   34:32
+Right, so they would know it's gonna be major, right?
+
+[P0136] 
+Joel Frick (6124)   34:34
+We will, yes, we we will.
+Make sure that they understood, they they understand it.
+
+[P0137] 
+Shao Ngoi   34:41
+Okay, yeah, so really it's up to them to make that so-called the initial assessment, right, based on what's being told. So if I, if let's say the person calling in and if the intake person go, is it running to the storm rate? I don't know, right? So this is where they could end that dialogue.
+and go, yep, this is now moderate. Whereas if someone goes, yep, it is obviously is running the storm rain, they capture it and then they know that, hey, this is a major problem.
+
+[P0138] 
+Joel Frick (6124)   35:09
+Do you need a checkbox that asks that question, and there they know pretty well that.
+I mean, we can we can add a field to try to ask the question. Sometimes the folks calling in. Yeah, they won't know. Won't know, won't help hang up before they get done asking questions, whatever. I mean, they get whatever information they can, but we can certainly give them a list of prompts.
+that if the person is willing to stay on the phone, then they can they can ask. Because storm drain is the big one. Yeah, because if those prompts are there and they click it, then it would automatically delete you. Yeah, is it to soil? Is it to a storm drain? Storm drain is the big one. Soil, I mean, they. Right. That way it would notify you guys right away that they.
+It's something going into it, yeah, so, so we can give him a couple of prompts there.
+
+[P0139] 
+Shao Ngoi   35:59
+Yeah, we can structure how we can ask those questions, right? Because ultimately, the important person here, right, is the intake person, the security person who's doing the intake. Because they are ultimately is the one that goes, they ultimately the one that needs to know, hey, if it's running into this scenario or this situation, is this classification.
+If it's not, then it's moderate, right? If it's something that is lower, let's say to say a small oil spill, but is not a moderate quantity, a small quantity, maybe then it's a minor. They just need to know to make that classifications upon understanding the incident that's being reported.
+
+[P0140] 
+Joel Frick (6124)   36:35
+Yes.
+
+[P0141] 
+Shao Ngoi   36:37
+There is no, let's call it, there's no science behind it. It's up to the person understanding the situations to ultimately make the assessment. Not to say that once you make the assessment, it couldn't change, right? This is just that initial assessment at that point in time of what they know.
+
+[P0142] 
+Joel Frick (6124)   36:52
+Indeed.
+
+[P0143] 
+Shao Ngoi   36:53
+All right, so let's just say this is not running in storm drain yet. I don't know, because I just saw it. It's not really flowing yet, or maybe it's flowing slowly, right? The person doing the intake could go, yep, this is moderate. So based on the initial severity here, right, okay, we can define what severity should notify environmental.
+At this point, let's say moderate doesn't. I say, all right, create the, let's say investigator.
+We can set this to a group. This is all just set up, as I shown you guys before, right? Is that the way that it's set up right now? You have to pick a specific person, right? So, I, the intake person, the security person, now create that environmental incident report.
+
+[P0144] 
+Joel Frick (6124)   37:30
+Yep.
+
+[P0145] 
+Shao Ngoi   37:40
+In our flow here, we have that emergency response incident oversight being notified by the system. It's like, hey, team, you have an environmental incident that's being reported, go and take a look. So this is where they would do the assessment, right? The assessment would basically capture what materials that's being spilled.
+they can capture, well, this is mostly for escalation from what I've heard, right? But let's say in this case we have the severity assessment, just like you would see here. Instead of just the severity, now they can technically have a severity that define what is the actual severity of this incident, right?
+Based on that assessment, based on the material, based on the material that's captured, based on whatever that they understood upon going out and check on the environmental spill, right, then they can define what is the severity. Based on the severity, it can be escalated.
+to environmental team to fill in the additional part. In this case, is it reportable to external agency? If it's yes, right, which external agency? Is it EAP, EPA? And then is it being investigated?
+by the agency itself, right, if this release exceeded reporter quantity, so on and so forth. Again, we can change all this depending on what you're capturing in this moment, but these are the fields that is coming out-of-the-box.
+
+[P0146] 
+Joel Frick (6124)   39:13
+Yeah.
+
+[P0147] 
+Shao Ngoi   39:15
+Right, so now let me take a step back from a flow standpoint. So, if it's an from the intake standpoint, if it's a critical or major one.
+Environmental team get notified. The task is technically still owned by the emergency response team with the environmental team supporting them, correct?
+
+[P0148] 
+Joel Frick (6124)   39:36
+Yes.
+
+[P0149] 
+Shao Ngoi   39:39
+And then once they're done with the assessment, they still go to the environmental team for review.
+They still need to go, all right, even though I supported the incident oversight or emergency response team across this major environmental spiel, ultimately, I still need to go review and give my stem of approval upon the assessment.
+
+[P0150] 
+Joel Frick (6124)   40:05
+So I don't know if we need to create an additional step here because if it is a more severe incident, we are going to do something more like an investigation rather than just a review.
+
+[P0151] 
+Shao Ngoi   40:18
+Mhm.
+Got it. Okay. So what is that investigation would look like?
+
+[P0152] 
+Joel Frick (6124)   40:26
+So that investigation is going to be digging into
+Oh.
+The.
+the causes of the spill and assessment of any.
+system weaknesses or gaps.
+
+[P0153] 
+Shao Ngoi   40:43
+Let's call it 5Y root cause.
+
+[P0154] 
+Joel Frick (6124)   40:45
+Yeah, all those things, but that would be the environmental team doing those things.
+
+[P0155] 
+Shao Ngoi   40:47
+Got it. Awesome.
+Okay.
+
+[P0156] 
+Joel Frick (6124)   40:57
+Along with whatever area.
+Was involved.
+
+[P0157] 
+Shao Ngoi   41:01
+Got it.
+If it's major, let's call it or hire something, whatever classification it is. But now in this case, environmental team must do investigations, which would be your root cause, your 5 why, your preventative actions or countermeasures, right? The same similar components that we have talked about for injury.
+
+[P0158] 
+Joel Frick (6124)   41:22
+I guess environmental team and the area, the section leadership. So if it happens in the body shop, body shop leadership would be involved.
+
+[P0159] 
+Shao Ngoi   41:33
+Got it. But the owner of that is still the environmental team. They could work with the floor manager, whoever the owner of the body shop to figure it out. But the owner of that is still owned by the environmental team.
+
+[P0160] 
+Joel Frick (6124)   41:38
+Yep.
+
+[P0161] 
+Shao Ngoi   41:49
+Okay, and after that, do they need then additional review by?
+Let's call it the manager of the environmental team, or is that the end as well? Just that.
+They just need to do it with...
+
+[P0162] 
+Joel Frick (6124)   42:02
+Yeah, after all of that activity, there will be a final review, let's call it by the manager of environmental manager.
+
+[P0163] 
+Shao Ngoi   42:11
+Got it.
+The technically from then the flow is the same except this one step here. When I say it's the same incident for review, environmental.
+Manager of team reviews. OK, just notes here. So, ultimately, if I'm seeing the way that I'm seeing is that if it's a major, whatever the the...
+the severity of the spill, right, or a ramble incident is, whatever the severity of that, the first three-step is a must.
+The 4th step is optional depending on the severity.
+
+[P0164] 
+Joel Frick (6124)   43:03
+Yes.
+
+[P0165] 
+Shao Ngoi   43:03
+Right, the content on this step here may change depending on the severity, right? Let's say for minor and moderate, I don't need the five-y, I just need to have a place to capture my summary, and then I can close it off if it's a major.
+or let's say critical, right? The environmental team will still get the task to review everything, but on top of that, they need to then also complete the five why, the root cause, the countermeasure, so on and so forth.
+
+[P0166] 
+Joel Frick (6124)   43:37
+So hang on. So for moderate, which I'm saying anything outside is going to be a minimum of moderate. Sure. Do we want to include like cause analysis, you know, just some spill outside we have a little leaky roll off. We have, I don't know that we need it for moderate, but then we bump up to.
+
+[P0167] 
+Shao Ngoi   43:39
+Yeah.
+
+[P0168] 
+Joel Frick (6124)   43:57
+This is, you know, a little more serious than. So yeah, from at major, so at a step above moderate, we will need the 5Y and cause analysis.
+
+[P0169] 
+Shao Ngoi   44:09
+Yeah, so the beauty with that is that if I go back to what we call the implementation manager, so these are all options that we already baked in for you guys to configure, right, how you want to manage it. So let's say for example, for this is for environmental incident, for moderate, what I can do.
+for moderate is that I can enable, you know, let's say I want, maybe I don't need witness, right? I need cost analysis, I need root cause, I need countermeasure, right? But you can see that I don't require them, it's an optional.
+Kim.
+
+[P0170] 
+Joel Frick (6124)   44:46
+Okay, yeah, so we can set that up with Kaiser. Yeah.
+
+[P0171] 
+Shao Ngoi   44:50
+Right, so, and then for major, on the other hand, this is where the similar setup could happen, right? I still want the three components of cause analysis, root cause, and countermeasure, but I can tell the system I must require at least one cause analysis.
+
+[P0172] 
+Joel Frick (6124)   45:06
+Yeah.
+
+[P0173] 
+Shao Ngoi   45:07
+Right, so it forces them to enter at least one cost analysis if it's a major or higher. So these are all the options that's already pre-baked in into this version of incident management, so that we don't have to go go and...
+Reconfigure what Intellect has provided. So it's already an options in place that you can simply just go in and go, yep, based on the severity, this is what I want the investigator, in this case, environmental team, to do. And then the system will enforce it upon submission. So let's say I've set those up.
+And if it's moderate.
+I have the options of putting in the cost analysis or not, right? However, the system will not enforce it. In the May, in the major severity environmental incident, if I don't put any of those in, if I tell the system that, hey, I must have at least one cost analysis, when the environmental team tried to submit it for review, the system will tell.
+tell the end user along the line of, hey, you cannot submit this because you must have at least one cost analysis.
+Okay, so this enforces that rules that you have to find in the setup page.
+
+[P0174] 
+Joel Frick (6124)   46:20
+Yep, perfect.
+
+[P0175] 
+Shao Ngoi   46:21
+Good.
+Right, yep, so like I say, this one here, let me just put it in a slightly different format so that it's clear.
+My diamond.
+Bui.
+Oh.
+Let's call it major or higher, right?
+So this is where the systems can also make the decisions by going, if it's a major or higher, it goes to the...
+the environmental manager for a review. If it's not, then it's simply go close.
+This is way up.
+And close.
+Makes sense so far?
+
+[P0176] 
+Joel Frick (6124)   47:38
+Yep.
+
+[P0177] 
+Shao Ngoi   47:39
+All right.
+
+[P0178] 
+Joel Frick (6124)   47:40
+Yeah. Yeah.
+
+[P0179] 
+Shao Ngoi   47:47
+So now, upon review, obviously the environmental team, upon the review by the manager of the environmental team, they can also just close it after that. Right? They approve and close the incident report. Is there any other steps after that?
+
+[P0180] 
+Joel Frick (6124)   48:03
+Yes.
+No.
+No, that's it.
+
+[P0181] 
+Shao Ngoi   48:20
+Based on this, right, similar to what we have talked about here, at what point in time would, you know, someone figure out, hey, this is not actually a spill? Or let's say, I thought it's an oil spill, but it's actually just water.
+
+[P0182] 
+Joel Frick (6124)   48:35
+So the so are the people that we call emergency response or incident oversight.
+
+[P0183] 
+Shao Ngoi   48:41
+Nope, sorry. These folks can then, they can cancel it or they change the category.
+
+[P0184] 
+Joel Frick (6124)   48:41
+That sucks.
+Yes.
+
+[P0185] 
+Shao Ngoi   48:51
+Because ultimately part of that is also, let's say I call in thinking that it's an oil spill, right? So as the person doing the intake, well, obviously based on the note here, they will call the cleanup crew.
+Upon showing up on site, emergency response go, hey, this is not oil, this is just water.
+Alright, instead of the cleanup crew, they would they should be calling the janitorial.
+
+[P0186] 
+Joel Frick (6124)   49:18
+Yes.
+
+[P0187] 
+Shao Ngoi   49:18
+How is that being managed in your process right now? Do they just send the cleanup crew home and then just call the emergency responders call up the Jennifer?
+
+[P0188] 
+Joel Frick (6124)   49:28
+Yeah.
+They all work together enough to help each other.
+
+[P0189] 
+Shao Ngoi   49:33
+Okay, okay. Okay, so it's basically all being managed at this point if anything changes.
+
+[P0190] 
+Joel Frick (6124)   49:40
+Yeah.
+And we have on occasion had disagreement on.
+It sounds ridiculous, but what is water, what is not? So, we...
+We have defined, we have had to define that anything mixed with water is no longer water. It is a dilute form of that chemical. So we are clear on whose responsibility it is. It sounds silly, but.
+
+[P0191] 
+Shao Ngoi   50:13
+I was gonna say, like, that's pretty distinct to me, but okay, I can see.
+
+[P0192] 
+Joel Frick (6124)   50:16
+That, that was that was a week-long conversation.
+With fighting between 2 contractors, so it was it was ridiculous. It was real.
+
+[P0193] 
+Shao Ngoi   50:23
+Can you?
+Okay, for me it's just as simple as can you consume it?
+
+[P0194] 
+Joel Frick (6124)   50:35
+Yeah.
+And.
+I like your definition better.
+
+[P0195] 
+Shao Ngoi   50:44
+Right, can you consume it? No? Great, there's no water.
+
+[P0196] 
+Joel Frick (6124)   50:47
+Okay.
+
+[P0197] 
+Shao Ngoi   50:51
+Okay, so all right, the emergency response can cancel it. Can environmental team at this point also go upon review, they can cancel it as well?
+
+[P0198] 
+Joel Frick (6124)   50:59
+Yes.
+
+[P0199] 
+Shao Ngoi   51:00
+OK, and...
+
+[P0200] 
+Joel Frick (6124)   51:01
+Although, really, if it gets past those emergency responders, I have not yet seen one that would require cancellation.
+
+[P0201] 
+Shao Ngoi   51:08
+Yeah, because to me, cancellation in this case would mean that, hey, there's a spill. When I show up, there's no spill, right? Let's say it's water. I show up, it's all dried up. Would that be considered as a cancellation? Or would that still be something that, hey, is it a true incident just that when we show up, there's no longer any residue of water?
+
+[P0202] 
+Joel Frick (6124)   51:29
+Um...
+I don't know. I don't know that we cancel it. We'd really just close it because then the issue's been resolved. So we wouldn't dig into it too far. You know, we're after did something, you know, is there a broken pipe? Is there something that caused it? But if somebody cleans it up and it's no longer there, great, we'll just close it.
+
+[P0203] 
+Shao Ngoi   51:34
+Got it.
+Okay, so instead of straight closing it, should they still get the environmental team to go, yeah, okay, this is, you know, just close. Doesn't have to do anything.
+
+[P0204] 
+Joel Frick (6124)   52:00
+Oh.
+Well, so we would go back to sort of our base case where the sort of the wrap up by the oversight folks is really going to effectively close the incident. The environmental team will see it, but we're not going to quibble with it. We'll end up spending more time quibbling over cancel versus close than
+
+[P0205] 
+Shao Ngoi   52:19
+Got it.
+
+[P0206] 
+Joel Frick (6124)   52:25
+It's worth, so we would disclose it.
+
+[P0207] 
+Shao Ngoi   52:27
+Got it. Okay, so that's really no cancellation in your scenario. It's really just go, hey, if someone could prank call, I show up, nothing is there. And we just go, all right, everyone goes home. I write my report, oriental team, take a look at it. It's like, okay, makes sense, close it. That's your base case.
+
+[P0208] 
+Joel Frick (6124)   52:42
+Yeah, because that was a time commitment by the oversight folks, right? They had to go respond.
+So we are capturing that.
+
+[P0209] 
+Shao Ngoi   52:54
+Awesome.
+We didn't talk about fields, which we can talk about fields in a bit, but I also want to know how is that now this play into...
+If any of these will play into a notice of violation, or let's talk about notice of violation for a second.
+
+[P0210] 
+Joel Frick (6124)   53:13
+Okay, so I am not quite sure how notice of violation made your list. A notice of violation is going to be the result of a regulatory inspection that we have in the facility that we have a regulatory non-compliance.
+
+[P0211] 
+Shao Ngoi   53:31
+Agha.
+
+[P0212] 
+Joel Frick (6124)   53:31
+that that is where those come from. So not actually sure that's an incident. I may actually end up managing those under like the audit section of intellects.
+
+[P0213] 
+Shao Ngoi   53:46
+Got it, so alright.
+
+[P0214] 
+Joel Frick (6124)   53:47
+So I'm not quite sure if I would call that an incident.
+
+[P0215] 
+Shao Ngoi   53:52
+Yep, so generally, in my experience of when it comes to notice violation, what if you know...
+Let's call it EPA comes and then notice that, hey, there's a spill that I see oil stain or whatever oil in your drainage. You get sited. Where would that fall into?
+
+[P0216] 
+Joel Frick (6124)   54:17
+Well, that was why I was thinking it would actually go under, perhaps, because...
+The whole process of...
+You know, they come, you get an inspection finding, and they say, we're referring you to enforcement, and that's where the NOV comes from. We will have corrective corrections that we need to make.
+stemming from the notice of violation.
+But it is often not a discrete incident that creates the notice of what, right? It's an inspection finding by a regulatory agency. So it follows a very different path. And I don't know that it's a discrete incident because we just had an inspection.
+
+[P0217] 
+Shao Ngoi   54:53
+Mhm.
+
+[P0218] 
+Joel Frick (6124)   55:04
+the other day, and there were, you know, there was a finding on labeling, there was a lid not closed, there was, you know, something not sitting on its containment. That's, you know, that's sort of three very different things all stemming from one inspection. So I would almost handle it under auditor inspections rather than incidents.
+
+[P0219] 
+Shao Ngoi   55:15
+Right.
+Okay, now that makes...
+
+[P0220] 
+Joel Frick (6124)   55:27
+That was why I made the comment yesterday that I wasn't sure that belonged in this conversation.
+
+[P0221] 
+Shao Ngoi   55:36
+Okay. Yeah, no, that also makes sense, right? That's why I asked, like, let's say, yeah, an governing agency comes, right? They do their own inspections, not your inspections, right? They do their own inspections, they found something, they have citations, right? Obviously,
+The way that...
+I've seen it done is really I need to capture that citation somewhere. I need to then go back and tell them how am I managing this issue that you have identified in your inspection. When I say your inspection, not SIA inspections, but the counting agency inspections, right?
+
+[P0222] 
+Joel Frick (6124)   56:14
+Right, which under intellect terminology, I would probably frame that under the audit portion of intellect's software, simply because that gives me the flexibility to have everything in one place with a variety of different issues.
+
+[P0223] 
+Shao Ngoi   56:34
+Got it. Okay. The audit module can fall in there as well, right? Just that I just want to make sure that the no, well, it has to be captured somewhere if it falls under audit. I guess let's say once the citation happens.
+What would be the first step of that process? Would someone just go, all right, we need to do an internal audit of why this happened?
+
+[P0224] 
+Joel Frick (6124)   57:01
+Yes, so what we get is we get when the when the inspector leaves, we get their preliminary concerns.
+
+[P0225] 
+Shao Ngoi   57:08
+Mhm.
+
+[P0226] 
+Joel Frick (6124)   57:09
+And anything they say that is a preliminary concern, we immediately start investigating and ensuring that we understand our regulatory obligations and our position on those obligations.
+
+[P0227] 
+Shao Ngoi   57:16
+Done.
+Got it. And typically, that's your audit. You kind of go through your process, go through a series of checklists to make sure that there is an understanding of that.
+
+[P0228] 
+Joel Frick (6124)   57:34
+And then we get the inspectors sort of final report. That's usually that's typically a week later. We'll get their final report that shows generally it stays the same as the concerns. Sometimes there's a few additions or changes from what they said when they were on site. At that point, we have an actual
+
+[P0229] 
+Shao Ngoi   57:39
+Agha.
+
+[P0230] 
+Joel Frick (6124)   57:54
+written communication that details exactly what we're facing with the regulatory agency.
+So really that report would be the first formal.
+thing that I have that I would probably enter into in a Lex.
+I still got it.
+
+[P0231] 
+Shao Ngoi   58:14
+Got it.
+
+[P0232] 
+Joel Frick (6124)   58:14
+Bye, thanks.
+
+[P0233] 
+Shao Ngoi   58:20
+No, that makes sense as well. The reason, again, I, that's where I need to then take it back, just kind of see from a scoping standpoint, how can we, you know,
+Not exclude, but take NOV out of incident and put it as the audit portion.
+If that is the case, then, yeah, I guess then for incident, what we are capturing based on what I've noted here is really, we have injury, we have PIT, we have...
+Environmental, right? Obviously, in scope, what I have here would include the NOE. So, if NOE is not as part of the incident management, is this would the audit module enough for you to capture the NOE?
+Details, or do we need additional components right for you to capture NOE details within audits?
+
+[P0234] 
+Joel Frick (6124)   59:31
+Um...
+From what I have seen of the audit.
+module have we have we began development? What have we done without it so far? Because where I lose track is you guys are doing this with quality and other people and I'm not necessarily in those meetings. But I assume the overall structure of their audit module will work for me. It should. And I know Jess has been in there a lot.
+She would probably tell you.
+Actually, I'm going to look at him because he's okay. I feel like the audit module would work for documenting tracking, you know, and status and follow-ups and corrective actions. Okay, and then as an outcome of that, beyond the regulatory actions that get taken, he end up with...
+a list of regulatory determinations from
+from this, this and other activities. So we, so saving those, call it lessons learned or regulatory determinations, we are creating a library of stuff we need to keep track of forever, because that's why we run our plant the way we do. That is an outcome of that type of inspection.
+So, just...
+We create those and we save those as well, but I don't know that that.
+Necessarily lands anywhere it wants.
+
+[P0235] 
+Shao Ngoi   1:01:04
+Let me take that back and see on the quality side, right, what is audit is being used right now. Obviously, while it works, I just need to see if there's a place that we can fit the...
+environmental portion into it without convoluting what we already have in place.
+Right, I...
+
+[P0236] 
+Joel Frick (6124)   1:01:28
+That's my audits will, and well, and truly, and I think our project management team knows this, Joel, that audits are something my team does regularly. We have internal audits, we will have external audits, we will have regulatory inspections, all of those things.
+Uh, because there is what we call inspections are actually audit center intellects, correct? So, I'm going to live in the audit module A lot, so I need space in there, and if...
+that makes quality uncomfortable, then we need to have conversation. No, I think, yeah, whatever we need.
+Make sure we're provided if there's.
+you know, huge attachments or something, you know, we may have to. That's fine, we can manage that separately, but I don't need, usually it's a photo, it's a write-up, it's a, you know, you know, however, so it's not huge attachments, it's documentation of what we see and what we corrected. Yeah, yeah, there shouldn't be an issue at all.
+Right, does that help, Shao?
+
+[P0237] 
+Shao Ngoi   1:02:36
+Yep, yep, so like I said, let me take it back and just see what's currently in audit, right? Like I said, while it makes sense on my side, I just want to make sure that even on our side, all the solution makes sense as well. Okay, so that is then, I guess, then we'll...
+
+[P0238] 
+Joel Frick (6124)   1:02:51
+Good.
+
+[P0239] 
+Shao Ngoi   1:02:55
+park NOV until I get further clarifications. The next thing I also want to simply touch on for environmental, let me just make sure I have my agenda up here.
+Oh, environmental, there is an integration with resolver.
+Right, so that's this one item here, environmental incident resolver API.
+
+[P0240] 
+Joel Frick (6124)   1:03:20
+So for that one I need, Jason, because I don't know what they're doing. I just, so that was listed for me because Resolver is the software that security is currently using for their intake as their intake platform interface. I don't know, whatever. That's what they type things into.
+So, I, so my concern was I need a way for whatever security is using.
+to communicate with the thing I am using, which is going to be in Alex.
+And that is way outside of my wheelhouse, so I'm going to point you back to Joel.
+
+[P0241] 
+Kreig King (7163)   1:03:54
+Mona.
+Yeah.
+Monica, can you hear me?
+
+[P0242] 
+Joel Frick (6124)   1:04:01
+Yeah, yeah.
+
+[P0243] 
+Kreig King (7163)   1:04:02
+Yeah, this is Craig. So from that standpoint, since we are having security create the spill or hazmat events now in Intellex and then having the FPO reports and everything like that being brought into here, I don't think that there's a requirement now or need for any kind of connection between Resolver and Intellex.
+
+[P0244] 
+Joel Frick (6124)   1:04:21
+Fantastic. I didn't know what changes have been made. I just knew it was a thing when we originally talked about it. So I'm good.
+
+[P0245] 
+Kreig King (7163)   1:04:27
+Yeah, there is, yeah, there's not any native API connectors between the two. And so we'd have to go through a custom integration, which costs money, costs time. And so that was kind of my angle at the beginning of having security be the focal point of all the calls coming in to be able to create these events within Intellex.
+So that way, one, we're not doing double duty of, you know, multiple points of entry into resolver and intellects, but then also all your information will be in here now, so we don't have to rely on resolver at all.
+
+[P0246] 
+Joel Frick (6124)   1:05:01
+Perfect. You guys are right ahead of me on that, but way back when we were first talking about it, it was a thing. So thank you for fixing my problems.
+
+[P0247] 
+Kreig King (7163)   1:05:02
+This is.
+Yes, yep, yep, yep, absolutely.
+Yeah, of course.
+
+[P0248] 
+Joel Frick (6124)   1:05:12
+So, for my information, will resolve or eventually maybe go away, or will we still need that for other opportunities?
+
+[P0249] 
+Kreig King (7163)   1:05:21
+So right now, Resolver will be still being used for all of security information. So things like the car accidents that happen out in our parking lots, anything like lost and found that gets brought in when they, excuse me, when they transport associates to
+Athletico for rehabilitation, stuff like that. So like, there's still a lot of things that they would currently use it for. Now, what does future state entail? That I can't answer. That would be definitely a Jason and Troy question, I think, going forward. But I know there has been conversations based off of what
+Once we get in into, once we get into intellects, I think everything is open for discussion.
+
+[P0250] 
+Joel Frick (6124)   1:06:08
+Yeah, and yeah, take baby steps to work what we can, what we need to do right now. So it sounds like right now, really, EH&S incidents we are targeting toward intellects and security will know to go to the intellects platform for that. Perfect.
+
+[P0251] 
+Kreig King (7163)   1:06:13
+Yeah, yeah, and I mean...
+Correct. Correct. And so the, you know, the conversation then is, would we potentially, is there a potential match for this for security going forward? Of course there is, but we also want to be mindful of the scope of where we're at in these phases of intellects and not try to hijack and come in and delay what is currently in scope.
+You know, so once we get in and we start logging in these incidents, I think Joel, from your standpoint and your team standpoint, that would be the next kind of, you know, whatever next phase would be is to visit with Jason and Troy and just say like, now that you're in it, do we see viability going forward for the...
+other incidents that are happening with security.
+
+[P0252] 
+Joel Frick (6124)   1:07:02
+My stuff is simpler because I don't deal with the clinic. I only deal with security, really. That's as far as entry. Great. Sounds like you guys have it going in the right direction. Appreciate it.
+
+[P0253] 
+Shao Ngoi   1:07:17
+So then on my side, obviously, you know, this is decisions from the SI need to make. On my side, the one thing I do see can be confusing with the intake person, right? The security person, would they know now dealing with two systems, would they know what falls into what, right? Let's say I called in.
+Like they have to know, like basically they need a proper guideline to properly enter something based on someone calling in.
+
+[P0254] 
+Joel Frick (6124)   1:07:44
+And out of a conversation that I had with their manager yesterday, I believe he has controls in place to guide them to the correct decision there.
+
+[P0255] 
+Shao Ngoi   1:07:56
+Awesome. Yeah, to me, that's the important piece because that is the intake person is the first person, right, essentially, that enters data into the system, either intellects or resolver, right, but they are the first point of entry. So this is where proper guideline will help them to find what is the point of entry.
+
+[P0256] 
+Joel Frick (6124)   1:08:10
+Yeah.
+
+[P0257] 
+Shao Ngoi   1:08:16
+Right, and then now you would reduce your correction later on.
+
+[P0258] 
+Joel Frick (6124)   1:08:20
+Yep.
+
+[P0259] 
+Shao Ngoi   1:08:22
+Okay, cool. Then I'll, you know, park this for now. So essentially, this is probably not.
+Required at this point in time, right? If it, if we need to resurface this later on, we could, but at this point I'll park this, and I'll let internally that this is not currently required by SIA.
+
+[P0260] 
+Joel Frick (6124)   1:08:36
+Yes.
+True. Perfect.
+
+[P0261] 
+Shao Ngoi   1:08:43
+All right, awesome. Next piece I have here is Nimis. Do we have the right folks in the room?
+
+[P0262] 
+Joel Frick (6124)   1:08:52
+Well, before we divert to near miss, do you have for your, from your perspective, is this reporting of hours worked, is that a safety thing or an environmental thing?
+
+[P0263] 
+Shao Ngoi   1:09:06
+To meet that.
+Mostly a safety thing because hours work in this case, it ties back to your OSHA reporting.
+
+[P0264] 
+Joel Frick (6124)   1:09:16
+Oh, okay. In that case, I think you guys may be done with me. Larry, shall I dump this on you?
+I'll accept it. Eat the time. Thank you. I will hand it over nicely. She won't throw it at you. Sometimes I have to throw things in. All right, Shao, I appreciate your help and.
+Please do let me know if there are any questions that follow up from me, from the stuff that I touch.
+
+[P0265] 
+Shao Ngoi   1:09:51
+Yeah, yeah, will do.
+
+[P0266] 
+Joel Frick (6124)   1:09:51
+I make up answers for other people, but they don't seem to like it.
+
+[P0267] 
+Shao Ngoi   1:09:55
+I will do. One thing I'll probably have to reach out is essentially your field list, right? Because right now we didn't really talk about, hey, what do you want to capture for environmental incident? Right, we do have a... Okay.
+
+[P0268] 
+Joel Frick (6124)   1:10:05
+I can stick around, but I'm not sure if we're going to have time for that today. I do have sort of a draft put together of what I think I might want it to look like.
+
+[P0269] 
+Shao Ngoi   1:10:13
+Right, so that's why I purposely kind of do not want to talk about field list first because that is a bit of a tedious exercise to do on call, right? So if you have a draft, feel free to send it to us and then we can do cross-reference between what we have in Intel Lex versus what you're asking for.
+
+[P0270] 
+Joel Frick (6124)   1:10:27
+Perfect. Thank you.
+Thank you.
+
+[P0271] 
+Shao Ngoi   1:10:30
+Right, thank you.
+Alright then, for near miss in this case, Joel, looking at you, do we have the right folks on the call or?
+
+[P0272] 
+Joel Frick (6124)   1:10:43
+Nick, are you on the line? Scott, are you on the line?
+
+[P0273] 
+Nicholas Leuck   1:10:46
+Yeah, yes, but I was going to jump off in 15 minutes to go to a meeting.
+
+[P0274] 
+Joel Frick (6124)   1:10:52
+Oh, yes, our standing meeting. Okay. We'll use it for the next 15 if you got it. I just want to make sure that I, you know, keep me honest and I don't want to misspeak on something that I may not get. Very good.
+
+[P0275] 
+Nicholas Leuck   1:10:55
+Yeah.
+The thing is, is Dan in the room?
+
+[P0276] 
+Joel Frick (6124)   1:11:10
+You have to leave to go to a compliance meeting.
+
+[P0277] 
+Nicholas Leuck   1:11:12
+Okay, so near miss is very much up in the air on whether or not we were going to use near miss and intellects or use near miss in another application. And that was from Dan. But I think we still wanted to see what the intellects near miss would look like.
+But to like walk through it, I don't know. Like, I don't know if I can answer questions on like, hey, we're 100% using near miss and intellects.
+
+[P0278] 
+Joel Frick (6124)   1:11:43
+Gotcha. And we could approach it, we could just approach it if we would use it in intellects, what would it look like? I think that'd be a good idea and we could decide after that. Yeah.
+
+[P0279] 
+Nicholas Leuck   1:11:44
+So.
+Okay.
+
+[P0280] 
+Scott Bailey (6347)   1:11:54
+Yeah, this is the area where I'm like the least confident. I think he does want to use it. And here it's just the definitions around what near miss means.
+
+[P0281] 
+Joel Frick (6124)   1:12:05
+Exactly, yeah.
+
+[P0282] 
+Shao Ngoi   1:12:05
+Got it. I was gonna stop with De.
+
+[P0283] 
+Scott Bailey (6347)   1:12:06
+that I'm not, yeah, I'm not overly confident that I have an idea of the direction there. This is the one I'm least confident about.
+
+[P0284] 
+Joel Frick (6124)   1:12:08
+Exactly.
+
+[P0285] 
+Shao Ngoi   1:12:15
+Got it.
+Okay, then that, yeah, so generally speaking, that that's where one of the biggest conversation would have around near miss, right? What is a near miss? Again, I'm leaning on on you guys to to provide the definitions of near miss in SIA context, right?
+You know, based on your current experience, right, what type of near miss example that you have logged so far?
+Would you call it?
+
+[P0286] 
+Joel Frick (6124)   1:12:48
+Scott, can you, can you kind of, or Nick, can you kind of?
+give like an introductory of what our concerns are in regards to how we internally define near misses and how it should be defined as a near miss. So he kind of has an idea of kind of like the predicament that we're in.
+
+[P0287] 
+Scott Bailey (6347)   1:13:06
+I think Dan's message.
+I don't, I'm going to say this is Dan's message, but don't quote me on it. Is that something that could have resulted in an injury and did not.
+
+[P0288] 
+Joel Frick (6124)   1:13:14
+Okay.
+Correct.
+
+[P0289] 
+Shao Ngoi   1:13:22
+That it's.
+
+[P0290] 
+Scott Bailey (6347)   1:13:22
+Beyond that definition, I know that's pretty surface level, but that is my understanding. I don't know how else to go deeper than that.
+
+[P0291] 
+Joel Frick (6124)   1:13:25
+Mhm.
+
+[P0292] 
+Shao Ngoi   1:13:30
+Jacob.
+
+[P0293] 
+Joel Frick (6124)   1:13:30
+Right. I think that is, I think there's been this long history of using near miss.
+in the wrong context internally, that we just need to either train and change that behavior. But I think we're all in agreeance, at least on the call, that that is our definition of what a near miss is.
+a true definition of a near miss. Let me ask a question too, maybe it'll make it more confusing, but let's say there was an incident where somebody got hurt, but it could have been worse. It's still an incident, it's not a near miss. Okay, good. All right.
+
+[P0294] 
+Shao Ngoi   1:14:08
+Incident, yeah.
+Yeah, so yeah, so...
+
+[P0295] 
+Joel Frick (6124)   1:14:12
+I just want to make sure, because sometimes you hear that, that somebody considers that a near miss, so I wanted to make sure that was clicked again. OK.
+
+[P0296] 
+Shao Ngoi   1:14:20
+Yeah, so yeah, so in my experience, right, anything that has resulted to something that ends, that's an incident.
+
+[P0297] 
+Joel Frick (6124)   1:14:27
+Yeah.
+
+[P0298] 
+Shao Ngoi   1:14:28
+Right, to I think Scott's point here, if something that almost resulted in something that's a near miss, but that almost is a gray area, right? So in this case, let's say for example, I'm driving a froklift, I almost hit the barrel.
+Which contain, you know, oil.
+Now, is that a new miss?
+
+[P0299] 
+Joel Frick (6124)   1:14:56
+Yes, I consider that as a near miss because there was no, there was no incident with the motor truck and there was no property damage and there was no incident to or harm to an associate.
+
+[P0300] 
+Shao Ngoi   1:14:57
+Yeah.
+Yep, that is a clear cut right. Now, let's take a different example. If I have a dangling cable, a live dangling cable.
+Is that a near miss or is that a hazard?
+
+[P0301] 
+Joel Frick (6124)   1:15:21
+Is it elect? Is it electrically charged?
+
+[P0302] 
+Shao Ngoi   1:15:24
+Yeah.
+Yeah.
+
+[P0303] 
+Joel Frick (6124)   1:15:27
+Well, I think it's still considered a near miss because unless someone touches it and gets electrocuted, then that's a fatal incident.
+
+[P0304] 
+Shao Ngoi   1:15:35
+Right, so that's where it becomes a little gray, right? It could be, is that a hazard identification, like, hey, I see a hazard, a live cable dangling, but nobody's getting close to it yet. But I can also argue in your context that if someone touches it, someone gets electrocuted.
+
+[P0305] 
+Joel Frick (6124)   1:15:51
+Right.
+
+[P0306] 
+Shao Ngoi   1:15:53
+Right, so again, this is where, again, we have near miss in that sense where, while we have the module, it really comes down to the definitions, right? Assuming anything that could lead to an outcome of an incident, right, that is a near miss. Okay, so this is where we typically have it as just a simple form of...
+Right, where was the near miss being identified? Right, the same thing, where, who, when, where? Right, let's call this. There was a live electricly charge.
+Oh my goodness, charge cable.
+on the floor.
+Obviously, when we say near miss category, we pick the highest severity, right? This is not going to cause any environmental, but this would cause an injury if someone touches that cable.
+
+[P0307] 
+Joel Frick (6124)   1:16:50
+Do we have the option of choosing more than one?
+
+[P0308] 
+Shao Ngoi   1:16:54
+Not really, simply because whatever category that you choose here, let's say someone go.
+Well, this is a clear one, but let's say someone go, all right, I got a paper cut. You know what? To Joel's point, maybe I thought it's a near miss because I could have cut off my finger, but instead of getting my finger cut off, I got a paper cut.
+So one would treat that as, oh, you know what, this is a near miss because I didn't lose my finger. I almost lose my finger, but I didn't.
+
+[P0309] 
+Joel Frick (6124)   1:17:26
+and how we should categorize that as an incident, because there was some kind of entry to the associate.
+
+[P0310] 
+Shao Ngoi   1:17:35
+Right, so this goes back to who actually do the intake. Is it security as well?
+
+[P0311] 
+Joel Frick (6124)   1:17:43
+I think at this point, that's because we are in this limbo area of trying to decide what our direction is. I can't really honestly answer that.
+
+[P0312] 
+Shao Ngoi   1:17:52
+Got it. Yeah, because ultimately same thing, right? Whoever entering it needs to know that definitions. Because I, if I imagine I call it, oh my goodness, I almost lose my finger, but I didn't. It's just a bandit at this point. Someone would treat that, oh, you know what? He said he almost lose his finger. It's a near miss because, you know, I treat that as, well, he didn't lose his finger.
+Almost did, right? So, it's now it's a put, you know, that that's the kind of scenario where people could could fall into that gray area of not fully clear of the definitions of DMS. Thank you.
+
+[P0313] 
+Joel Frick (6124)   1:18:23
+Okay, so here would be an example of why.
+If possible, I might have the option of choosing more than one of those categories. We'll say that we had a forklift that was driving down one of the aisles. There was something in the aisle and the forklift
+
+[P0314] 
+Shao Ngoi   1:18:38
+Mhm.
+
+[P0315] 
+Joel Frick (6124)   1:18:43
+Murdered or of must swerve to avoid.
+that object that was in the aisle, but then also it was during lunchtime and there were associates that were walking in the wall aisle, but the forklift.
+I had to go into the drive aisle.
+
+[P0316] 
+Shao Ngoi   1:19:04
+Okay.
+
+[P0317] 
+Joel Frick (6124)   1:19:04
+Luckily, there was no one hit, but that could have been, you know, an injury.
+and also involving a powered industrial vehicle.
+
+[P0318] 
+Shao Ngoi   1:19:14
+Right, so this is where I was referring to, right? We pick the highest one, right? So let's say this truly become an incident. We know that these are multi-incident.
+
+[P0319] 
+Joel Frick (6124)   1:19:26
+Right. And that's so for me, as a practitioner, when I go to evaluate that near miss to ensure that it doesn't happen in the future, I would need to know that this was potentially a near miss with a vehicle as well as could have caused injury to an associate.
+
+[P0320] 
+Shao Ngoi   1:19:26
+Right.
+Mm-hmm.
+
+[P0321] 
+Joel Frick (6124)   1:19:45
+Not to say this is our day-to-day, but just if we're planning this out, you know, options that we possibly need in the future.
+
+[P0322] 
+Shao Ngoi   1:19:47
+Mhm.
+Got it. Okay, so one of the reasons why also we have a single selection is because injury, if it's injury, my potential outcome is...
+This right, I I could have a, you know, this one here, let's say intentional form, but if I do, hey, this is an environmental incident, my potential outcome is now different.
+
+[P0323] 
+Joel Frick (6124)   1:20:15
+So, can we, like in the previous incident reporting tutorial, can we merge 2 near misses together?
+
+[P0324] 
+Shao Ngoi   1:20:21
+Mhm.
+Can we merge 2 near Mrs. S and tie them together? Yeah, we could do that as well.
+
+[P0325] 
+Joel Frick (6124)   1:20:31
+As a master, like master, master near miss.
+
+[P0326] 
+Shao Ngoi   1:20:35
+Who?
+
+[P0327] 
+Joel Frick (6124)   1:20:38
+Kind of like, kind of like we're doing with the others at the end, we we've taken two different incidents and pulling up together.
+Yeah.
+
+[P0328] 
+Shao Ngoi   1:20:55
+This is the example here, right? Well, I can see that, yeah, they could be a could cause a rental spill, they could cause a property, you know, forklift damage, property damage, it could cause the injury. The reason why we don't have all these multiple and link it back, because ultimately near misses could be just a near miss, right? It's just a lesson learned.
+There's no need, I guess, in my view, there is less of that criticality in terms of trying to figure out what is the five why, what I mean, you would need root causes and countermeasures so that it doesn't happen and it will lead to actual incident. But from a near miss side of things, typically there's no like.
+The 5 wide in depth of what you would expect for an incident.
+
+[P0329] 
+Joel Frick (6124)   1:21:40
+Okay, another example on an actual event. So we had a near miss in our stamping department where a die that was elevated and they weighed tons, it fell off of the hoist.
+
+[P0330] 
+Shao Ngoi   1:21:42
+Mhm.
+Yeah.
+Uh-huh.
+
+[P0331] 
+Joel Frick (6124)   1:21:59
+And there was an associate that was in the area.
+So not only would there be property damage from the die hitting the ground, but that also could have killed that associate. But all we had at that point was, I mean, yes,
+
+[P0332] 
+Shao Ngoi   1:22:04
+Mm-hmm.
+Absolutely.
+
+[P0333] 
+Joel Frick (6124)   1:22:19
+I guess I'm talking myself through this. That would be considered property damage, but it's still a near miss for...
+
+[P0334] 
+Shao Ngoi   1:22:25
+Injury.
+
+[P0335] 
+Joel Frick (6124)   1:22:26
+A injury.
+
+[P0336] 
+Shao Ngoi   1:22:28
+Right, so again, that's why I said we always pick the highest one because, yeah, well, there's probably damage, but let's say that truly happened. The first thing that we'll address is the injury.
+
+[P0337] 
+Joel Frick (6124)   1:22:39
+Okay.
+
+[P0338] 
+Shao Ngoi   1:22:41
+Because, let's say it's a OK.
+
+[P0339] 
+Joel Frick (6124)   1:22:41
+I think it easier. I think it easier for a safety specialist or practitioner to make that determination.
+If that incident, if that type of incident occurred, I would just be leery about someone on the plant floor being able to break that down to that level.
+
+[P0340] 
+Shao Ngoi   1:23:01
+Right, so again, that that's where that initial person intake intake person would need to know that, right? Obviously, yeah, like I said, if we need to make the multi-selection, I just need to see how we can make that multi-selections, but just pointing out the potential outcome based on the selection changes.
+right? If it's near miss, I can have all these different type of potential injury, right, to a person, right? If it says, let's say property damage, now my thing changes, right? This could be either a cost-driven or a specific property-driven.
+
+[P0341] 
+Joel Frick (6124)   1:23:37
+Mmh.
+
+[P0342] 
+Shao Ngoi   1:23:37
+not tied to any injury. That's the reason why it's single selections because ultimately I want to know the worst case. If this truly happened, what is the worst case?
+
+[P0343] 
+Joel Frick (6124)   1:23:47
+Right. And I think if there was a workaround, if we did run into that situation and not go beyond the scope of work, is that we would just literally create 2 near misses. Yeah.
+
+[P0344] 
+Shao Ngoi   1:24:00
+Okay.
+
+[P0345] 
+Joel Frick (6124)   1:24:02
+And, like Larry said, if we can pull those two together, like we're talking about with the other incidents, and at the end, that'd be great, but if not, we'll figure it out.
+
+[P0346] 
+Shao Ngoi   1:24:11
+Yeah, but, but the...
+Okay, let me take a look at that, right? Definitely something that I noted down here, right, as part of...
+Parking on my parking lot item on my side to get back to you on it.
+
+[P0347] 
+Joel Frick (6124)   1:24:33
+Okay.
+
+[P0348] 
+Shao Ngoi   1:24:34
+OK.
+
+[P0349] 
+Joel Frick (6124)   1:24:34
+And then for what I would see that could avoid some confusion on your notes on the right, whether it's minor, moderate, major, I would think the first two would even be in there if it was a near miss.
+Well, it depends on the narrative. It could be like, you know, versus the exam we gave before.
+I can't give you another example, but I can see how you can define the individual disparities. I think because of how you, whichever one you choose, it asks you the appropriate questions that are related to that. Yeah. Usually, though, if it's a minor injury or a minor something, you don't necessarily fill out the near miss.
+Somebody could have had a paper, you know, a paper cut, we probably are going to. But yeah, they could have lost a finger, which I think starts getting into a major piece. But that's just my personal opinion, but we should we could leave it.
+Hey, Dan's here so he can answer all our questions.
+
+[P0350] 
+Shao Ngoi   1:25:36
+And we have one minute before everyone has to drop off.
+
+[P0351] 
+Joel Frick (6124)   1:25:40
+Right, but please continue. I don't mean to keep it off track.
+
+[P0352] 
+Shao Ngoi   1:25:45
+Okay, yep, so from from a near me side of thing, like I say, the process generally is a Leo Leo straightforward, right? So let's say I'm just gonna fill up all these first type of action, action taken, let's say taken.
+
+[P0353] 
+Joel Frick (6124)   1:25:59
+So, since the others are probably going to drop off here in a second, earlier where we left, Dan, where we were at is we explained that we may not use an elect system for a near miss, that there might be another application that you guys were looking at. Manufacturing, right? Yeah.
+So we just were going to go through it in case we didn't get there. Yes. So that they understand. But I guess we all understand that we may, that may be a different direction. There's a decision to be made. Yeah, I need to talk to Perkins about that. Okay. But I would definitely like to not close the door on using it.
+Yeah, yeah, so we, that's why we were just continuing where we were at with, yeah, if we go this direction, at least it's set up and we're able to.
+
+[P0354] 
+Shao Ngoi   1:26:49
+Yeah, so what we have are about is really every single near misses reported needs to be looked into, right? Obviously, either minor, major, moderate, everything needs to be looked into just so that we don't just simply assume it's not going to happen again, right? If it's happened again, now this near misses may potentially lead to an actual incident.
+So far, all right, so the flow here is truly straightforward. Someone reported it, right, and then ultimately assume this is, you know, safety team or whoever team it is, right? Again, goes back to that whole injury near miss category. Who should technically be looking into this near miss? If it's injury, then the safety would look into it. If it's environmental, then environmental team would look into it, so on and so forth.
+
+[P0355] 
+Joel Frick (6124)   1:27:12
+Minh.
+Mhm.
+Mmh.
+
+[P0356] 
+Shao Ngoi   1:27:34
+Right, so yeah, so in this case, whoever it is, will look into it. They can, you know, have all these options to either go, yep, we don't really need to do anything. This is truly just a, you know, user error, right? But what we can do is that, right, just make sure that...
+everyone's, it's mindful of, you know, whatever the signage or where the PPE was not as an countermeasure for the floor manager to go address it with his team. And then I can close it off. Simply put, any near misses being reported, we do not want to just ignore it and assume that, hey.
+this is not going to happen again. That's why we have the next step in this process is strictly go, all right, this has been reported, just go take a look and see what we can do to prevent this from turning into a real incident.
+Okay, so that is the idea around the nearest module in intellects, right? The form is straightforward, who, what almost happens, right? What was the action taken at that point in time, right, by the person reporting it, right? May or may not have anything, but ultimately, once reported, someone go out there and go, yep, do we need to do anything?
+to address this near miss.
+
+[P0357] 
+Joel Frick (6124)   1:28:47
+And just for my clarity of understanding SIA, and maybe we don't know for sure, because, you know, definition of near misses. So let's say E4 overhead door, for some reason it's not coming down and it's open. It's a winter, snow is blowing in, floor is wet. Is that a near miss or not?
+No, that's just a that's just a risk condition. Okay. A near miss is tied to an event of some kind of some kind. And I know that you could say like, well, the door breaking would be an event, but it means like near miss in that case would be someone walks across that, splits and catches themselves and doesn't get hurt. Yeah. Right. But if you just have a risk.
+and nobody engages with that risk, that's not insured near risk. Okay. Because one of his examples was...
+Yeah, a wire or a cable's hanging down that's live.
+But nobody touched it, nobody. It's just hanged there. Is that a near miss? That's just a risky condition. Yeah. Yes. So how would we handle those risk conditions? The example would be.
+Water did leak from the roof onto the concrete floor.
+but it's always in this in a wall pile. And it's an area, a heavy traffic area that it could potentially be a very high risk, you know, there was no event. But when we want to resolve that issue,
+and have it fixed so that it definitely become an incident. Yes, and that's where the manufacturing waste safety concerns list comes in.
+The problem is, there could be a lot of those, and we have to find, so, but, but if I had full control and autonomy on this whole thing, it would be the pieces, it would be, it would be, it would be sit, rest the pieces, and right, and so, like, that's the real way of thinking about it.
+Yeah. Do we get to roll that out to the whole organization and have them understand it? Probably not. So, you know, how do we separate those things? So I think manufacturing waves already a system that stands up and it has a safety concerns list. That's why I think maybe a true near miss actually belongs to near miss. Exactly, event based. Yes. Yeah.
+That's kind of why I was referencing where they had to screen before. We had minor and some, you know, we had one, two, three, 4. I said, usually, in my experience, we don't fill this out unless it could be a three or a four. Okay, you know, but
+Like you said, if somebody does slip on the floor and nothing happens, I guess it still would be a minor, but you'd want to go ahead and say. Well, I would want to know about it if I can. And again, it's by matter of degree. If we know about it, that's one less that we don't know about. So it's, you want to ask people to do it, but it's okay to have better, less than a perfect score on reporting.
+Yeah, right. Because we're piecemealing what we can get, we're trying to solve. And so my question on that is that, because this is where we're hung up on manufacturing way, can I output a report of, let's say I have, you know, over the course of six months, I have 500 near misses that are reported.
+and they're in all different degrees of completion. Some of them have a 5Y, some of them are just like 5 words in the whole thing, right? Can I output a report that has all of those records so that I can feed it into an AI with a very specific request and find the things that I'm actually concerned with?
+I would say, not he's going to answer that yes or no, but Cheryl, if you could go back to the nearness example, I think where we have defined the individual severities, I would think that's where we would define the differences. So then when we do reporting, we could get very specific.
+
+[P0358] 
+Shao Ngoi   1:32:34
+Yeah.
+
+[P0359] 
+Joel Frick (6124)   1:32:51
+On the different types of...
+that are related to that near. Yes. Yeah, and we could even have it on here. We could say, I mean, instead of instead of minor, moderate, major, I mean, could we change those words to say,
+risk or safety risk, someone almost got hurt, something broke and someone almost got hurt. You know what I mean? Like, or repetitive, or maybe like recurring safety risk. That way we can, if the definition is right there on the button. This makes sense. So you got two, you got two questions to answer, Chad. I'm sorry.
+
+[P0360] 
+Shao Ngoi   1:33:25
+So, questions?
+No questions then, because I know we are talking a lot of safety, like injury related near misses. How about near misses for pit or environmental?
+
+[P0361] 
+Joel Frick (6124)   1:33:36
+Well, let's answer those questions first, and then we'll get into that, what you're talking about.
+
+[P0362] 
+Shao Ngoi   1:33:43
+Yeah, so the wording here can change, right? But like I said, based on what being described, it really geared towards an injury, right? Like I said, if it's a near miss, someone almost get hurt, right? Someone could, you know, potentially have a recurring.
+Safety incident, right? But that is again going back to a safety incident, right? But if it's a near miss, do we want to capture only the safety near miss, or do we also want to potentially capture environmental incidents near misses where someone almost knocked down, you know?
+A bottle of chemical.
+
+[P0363] 
+Kreig King (7163)   1:34:25
+So Dan, jumping in real quick, this is Craig. One thing to consider too is that's going to be information that's going to have to be relayed to security since this is the initial part of the reporting. Is this more prudent to be in the investigative aspect of this?
+
+[P0364] 
+Joel Frick (6124)   1:34:27
+Was to handle that or not.
+
+[P0365] 
+Kreig King (7163)   1:34:45
+Just trying to think of, you know, if we're looking at reoccurring or, you know, known issue, whatever that may be from the severity assessment or the near miss category, do we, my concern is we are already getting information sometimes that comes in that's not correct. Like we like we discussed about if it's a personal
+medical versus a work-related medical, how it comes in on the call. Obviously, we can go back and we can change those things, but is that something that is more beneficial to being later with the safety specialist as opposed to being in the initial reporting with security?
+
+[P0366] 
+Joel Frick (6124)   1:35:21
+I think so. Yes, for an injury. Yeah. For an injury, not for a near miss. Right. I'm thinking near misses don't go to security. Exactly. All right. Yeah.
+
+[P0367] 
+Kreig King (7163)   1:35:32
+So, a near misses would not go through security.
+
+[P0368] 
+Joel Frick (6124)   1:35:34
+I don't think so. I think near miss is we just have like a QR code posted all around the facility and say, hey, you got a near miss, use this form or something like that and it feeds into one of these. Does that make sense?
+
+[P0369] 
+Shao Ngoi   1:35:46
+So then that could help simplify the intake as well as then we might want to take a look at and see, do we want those, you know, people who's reporting the new users be identifying what category it is? Or can we simply just say, all right, where it happened, when it happened, what happened?
+
+[P0370] 
+Joel Frick (6124)   1:35:59
+Correct, yes.
+
+[P0371] 
+Shao Ngoi   1:36:03
+you know, if there's any action taken, what was the action taken? Right, or what do you recommend?
+
+[P0372] 
+Joel Frick (6124)   1:36:07
+I would like to ask them to categorize it, but I'm at the point right now where I think we'll take whatever information we can get on it. If they have a partially completed form, I'd take that over nothing.
+And then maybe later we can make, if we get a lot of good activity, we can make certain fields required. Yeah.
+
+[P0373] 
+Shao Ngoi   1:36:22
+Yeah.
+Right, yeah, so in that scenario, typically what I've seen is...
+
+[P0374] 
+Joel Frick (6124)   1:36:31
+Get request Johnny almost punched Ray over here. He doesn't keep his mouth shut. That's an associate's.
+
+[P0375] 
+Shao Ngoi   1:36:39
+Yeah, no, that I, that that's that's a very valid use case, right? Typically, when we open up that that intake to a wider group, right, we really want them to just focus on the fact, you know, anything can.
+
+[P0376] 
+Joel Frick (6124)   1:36:52
+But that's okay. I mean, like I would rather have over reporting. Normally I'd say let's filter that stuff out as much as possible, but with the advent of AI, we can over report all day long and I can filter that out. Yeah.
+
+[P0377] 
+Shao Ngoi   1:37:05
+Yeah, yeah, okay. So, yeah, so again, going back to what we have, you know, for near misses in the intellects is simply, you know, who, when, where, what almost happened, right? What was the action taken? If there's any, let's say there's an oil spill, what did I do? Or maybe let's call it water, not even water, no, those are incidents already.
+Let's say.
+Yeah, so this is where I almost back my forklift into a building, right? Almost back my forklift into the...
+
+[P0378] 
+Joel Frick (6124)   1:37:37
+Are you thinking about it, decided not to, or? The mirror was off. That's every day. What are you talking about? I had no rear view mirrors. I just sleep with mine. That's every fork to it.
+
+[P0379] 
+Shao Ngoi   1:37:50
+Right. So I did that. There's no action taken. I basically just hit a break. I didn't hit it. But the recommendation I feel like that would help me in my job in the future is to really recommendation of preventive actions, in this case, countermeasure, right, is to
+
+[P0380] 
+Joel Frick (6124)   1:38:02
+Hello!
+
+[P0381] 
+Shao Ngoi   1:38:09
+Increase the lighting and signage.
+Signage.
+around the work area.
+Right, that is my suggestions. That does not mean.
+This needs to be implemented, implemented, S-I-G-N, there you go, implemented, but this is what I suggest that would help me to prevent this from me actually hitting the building in the future.
+OK, in my mind, OK.
+
+[P0382] 
+Joel Frick (6124)   1:38:43
+This is, yeah, go ahead, go ahead.
+
+[P0383] 
+Shao Ngoi   1:38:46
+No, in my mind, this is a, could potentially be a major problem because I could hurt my back, I could get hurt, what's not. Or maybe at that point, I'm not thinking me getting hurt, I'm thinking, oh, you know what? The vehicle could get hurt, could get damaged. Maybe this is moderate. All this really comes down to do we want me as a reporter of the near miss to define or do we want to leave this out?
+for the investigator to define what's actually that qualify as the severity as well as what's the category. Because as a person reporting it, I just really need to know, instead of speculating, right, I know the fact, right? This happened, this is what happened, this is what I suggest to happen.
+To have to have it in place, so that it can prevent future incident. Let's say I say injury for now.
+
+[P0384] 
+Joel Frick (6124)   1:39:33
+Like, like Dan said, I would see the words on the right would change, so it'd be more specific, so they could fill it out.
+
+[P0385] 
+Shao Ngoi   1:39:40
+Yeah.
+X movie, let's call it.
+
+[P0386] 
+Joel Frick (6124)   1:39:41
+And then it could always be changed by safety.
+Once they receive it, then maybe somebody considered it something, but then...
+It's up, Dave.
+
+[P0387] 
+Shao Ngoi   1:39:53
+Just say contact, yeah, we can change the verbiage, and let's say, okay, we have to define who should be responsible first, right? But ultimately, once I've reported that, now it goes into that, again, the investigative stage of, right, someone has reported this near miss, or someone being me reported this near miss.
+Right, we need to define who should be looking into the near miss reported, right? Again, in this case, without any assumptions, every single near miss should be looking to, so that it doesn't cause actual incident from happening. So, this is where, in as part of the investigation, do I need any 5 why?
+If I need to do a 5-5 sure, can I identify any root cause? Maybe, right? And then action plan could simply, or a countermeasure could simply be, well, the person suggested this, does it really make sense? Or is it this person just requires a better forklift training, right? So though all those could.
+be part of the investigation portion of the near miss, right, where someone really go do an analysis on what being reported.
+
+[P0388] 
+Joel Frick (6124)   1:40:55
+Yes.
+Yeah.
+
+[P0389] 
+Shao Ngoi   1:41:04
+That is basically the near miss portion of intellects, right? Someone report it, someone look into it, and once it's done, I simply just go close off the near miss and that's it.
+
+[P0390] 
+Joel Frick (6124)   1:41:15
+And that would be the safety group that would do the investigation. Would you rather assign it to a specific person or just leave it open? Well, I have a question before I answer that. Is it possible to have an anonymous near miss report?
+Like, it's somebody somebody scans the QR code and it brings us to this form and they don't even log in.
+
+[P0391] 
+Shao Ngoi   1:41:37
+Ye.
+
+[P0392] 
+Joel Frick (6124)   1:41:37
+They have to get in here to use us, so you'll know their e-mail, I think.
+
+[P0393] 
+Shao Ngoi   1:41:42
+So let me answer that.
+
+[P0394] 
+Joel Frick (6124)   1:41:42
+So then, here's where I'm going with this show. If we know who they are, we could route it to their group leader first or group leader and put it in a big basket that safety can see and evaluate. If we don't know who they are, then that would just go to safety.
+
+[P0395] 
+Shao Ngoi   1:42:05
+So let me then follow up with from the near misses, there are different type of near misses, right? Should everything, again, going back to the category, we are talking a lot of safety here.
+Are we looking to enter environmental near miss, PIT near miss? Would all those also route to the safety group, if anything?
+
+[P0396] 
+Joel Frick (6124)   1:42:31
+Yeah, I think all of it would.
+Again, I'd rather have more information coming in.
+
+[P0397] 
+Shao Ngoi   1:42:38
+So everything goes to the safety.
+
+[P0398] 
+Joel Frick (6124)   1:42:41
+Everything goes to safety, and if we know who it is, I think it also goes to the intellect inbox of the leader supervisor.
+
+[P0399] 
+Shao Ngoi   1:42:51
+Right, that's for the supervisor, it's just a need to know, right? Let's say I reported it, my supervisor is, let's say, Dan, you're my supervisor, right? So you've reported it, you will get a notification from the system saying, hey, Shao reported this near miss.
+
+[P0400] 
+Joel Frick (6124)   1:43:05
+Yes, but I think it would say, Shao reported this near miss. Please, please look at it and
+I don't know, add countermeasures or have some kind of request. I don't want to make it like cumbersome on them, but I think that there could be a lot of value added from a group leader or supervisor who knows the context in which that happened to be able to shed some light on that. But again, I want to be careful how much
+new requirements we're adding to group leaders.
+
+[P0401] 
+Shao Ngoi   1:43:37
+Uh-huh.
+I was gonna say, with that additional steps to it.
+
+[P0402] 
+Joel Frick (6124)   1:43:48
+So one question I have, if we have a QR code if we're scanning.
+That would require them to log in, is that correct?
+
+[P0403] 
+Shao Ngoi   1:44:02
+Traditionally, yes. When I say traditionally, so that's not currently not in, I know it is currently not in scope. So I hear from what Dan was saying and also Joe, what you're asking here is really intellects do have this capability of, you know, what we call, what they call a public forum.
+That form alone can be configured such that it does not require people to log in. It's a URL, you hit on the URL, it takes to your page. It doesn't capture the individual reporting it.
+
+[P0404] 
+Joel Frick (6124)   1:44:37
+I would rather it have the individual if we could, but what I wouldn't want to do is like, let's say somebody is, you know, they use a personal phone, they scan a QR code, and they don't remember their login. I don't want that to be an inhibitor to getting information.
+And they have a pretty big requirement on intellects and password changes quite often, so that if they've never been in there before or never logged in, so we're not gonna have single sign-on when failing. Well, if they scan it with their phone, if...
+It depends. It'll be single sign-on.
+But because of the, correct me if I'm wrong, but my understanding is your passwords change quite often. Is that correct?
+
+[P0405] 
+Shao Ngoi   1:45:27
+Yeah, it depends on your policy, right? Because you have single sign on, it should be addressed through your domain or a single authenticator.
+
+[P0406] 
+Joel Frick (6124)   1:45:35
+Okay.
+But you would, the user would never see that password change though, right, because of single sign-on.
+
+[P0407] 
+Shao Ngoi   1:45:42
+Correct.
+
+[P0408] 
+Joel Frick (6124)   1:45:44
+But if they're doing it from their phone, I don't, they still have to somehow know who it was on their phone. Could we have the QR code for that?
+
+[P0409] 
+Scott Bailey (6347)   1:45:52
+They still get authenticated. It's still single sign-on. They still get authenticated. There's not two avenues.
+
+[P0410] 
+Joel Frick (6124)   1:45:57
+Okay.
+Could be similar to the other apps that we have on our phone. So it wouldn't be that restrictive to have to require them to sign in to their single sign on from a personal phone.
+
+[P0411] 
+Shao Ngoi   1:46:13
+It would still have that initial sign in to your domain, right? So let's say right now if you log in to SIA through your phone, you do have that multi-factor, right? I assume, right? You still have to enter your domain username and domain password.
+
+[P0412] 
+Joel Frick (6124)   1:46:30
+Yeah.
+Yeah, that could be a process.
+
+[P0413] 
+Shao Ngoi   1:46:33
+Yes.
+
+[P0414] 
+Scott Bailey (6347)   1:46:34
+Yep, that is correct.
+
+[P0415] 
+Joel Frick (6124)   1:46:35
+Development to, if it's an associate, report it to your team leader or leader, yeah, yeah, yeah, yeah, but I agree with you, I think it's important to least capture.
+From an intake standpoint, when this enter the name of the associate or person who identified it so that if we as petitioners want to investigate that, we have a point of contact to ask them specific questions.
+I mean, is there a way to also have a button when you scan it to say enter as a guess?
+
+[P0416] 
+Shao Ngoi   1:47:11
+I mean, that goes back to the whole, what's the us here, right? Because we have 3 Ave. From what I'm hearing, we are looking at 3 scenarios. One, without sign in, one sign in, one sign in, but as a anonymous, as a guest, basically.
+Right. So those are the three scenarios I'm hearing here. Do we want to address all three?
+
+[P0417] 
+Joel Frick (6124)   1:47:37
+I would say your last two, because the guess kind of is the same as the first one.
+And if you had the guest, you might be able to say, I'm here as a guest, but...
+I can also select my group leader from a dropdown so they still see it, but it's anonymous. And instead of guest, you might say anonymous.
+
+[P0418] 
+Shao Ngoi   1:48:00
+So I guess because this is a near miss, right?
+I guess I can see where the anonymous come in, because this is typically what happened. I guess the anonymous is simply because, oh, I saw Sal driving this fork with and he almost hit something, but he didn't report it.
+
+[P0419] 
+Joel Frick (6124)   1:48:19
+Yeah, or it's, hey, you know, this near miss happened, and by the way, I'm reporting it for a friend, right? Because it was me. Right.
+
+[P0420] 
+Shao Ngoi   1:48:30
+Right, right. So in this case, then, who should be looking into that near miss? Is it still my reporter supervisor?
+Is it still my supervisor looking into the news? Because my supervisor wouldn't know the contact either. Because someone else's.
+
+[P0421] 
+Joel Frick (6124)   1:48:46
+Well, that's why I think you could have a drop-down of a drop-down list of group leaders. Report it to. Yeah, to report it to, or it could just go into an anonymous basket and see if he has to look at it.
+
+[P0422] 
+Shao Ngoi   1:48:59
+Right, because I'm a little hesitant with the pick list is simply because, as a person reporting it, I can simply pick someone that I think should be the person, or typically is the first person in the list, right?
+
+[P0423] 
+Joel Frick (6124)   1:49:12
+This, this is true. This is true. He told what you named it. Your last name.
+
+[P0424] 
+Shao Ngoi   1:49:14
+You.
+Right, so, so the first person on the list will be busy.
+
+[P0425] 
+Joel Frick (6124)   1:49:24
+And remember on this, snitches get stitches.
+
+[P0426] 
+Shao Ngoi   1:49:28
+Right, again, this really goes down to, yeah, I've seen all this before, is really how do you want to manage it?
+
+[P0427] 
+Joel Frick (6124)   1:49:33
+It's right. He said that in about being a Fortner. OK, so I think we beat that. I was just going to your time. I think you beat that one enough, but I think if you could answer Dan's question in regards to reporting.
+
+[P0428] 
+Shao Ngoi   1:49:51
+Yeah, so from a reporting side, again, if we are trying, I guess this is mainly your question as well, like, how do we tie all these near misses into multiple near misses into one near miss? All right, before I get down to the reporting that Dan is asking for, as long from a reporting side of things.
+Generally, the idea is really if the data is in intellects, we can report it out. However, the concept of tying multiple near misses into one near misses, I do still want to clarify on that a little bit, right? Does that happen a lot, right? Or do we still?
+
+[P0429] 
+Joel Frick (6124)   1:50:21
+Yeah.
+
+[P0430] 
+Shao Ngoi   1:50:31
+down to just capturing one near miss and define the most severe category. I'm still not sure if we landed anywhere around that idea of multiple near misses versus 1 near misses being...
+
+[P0431] 
+Joel Frick (6124)   1:50:45
+That's like a tertiary concern to me. I mean, I don't even think that that's. Well, I gave him the example of the two incidents. One, we had two incidents in the scanning where the die was elevated, fell down. Oh, that kind of linking, like linking as in associated to a similar problem.
+Yes, and not like these two things happen together. Okay. Facility. Okay. And injury. Oh, that's actually, yeah. But I think by the related incidences, if we can have the ability to do that, that's a big plus. Yeah.
+Yeah, yeah. It's almost like near miss category.
+
+[P0432] 
+Shao Ngoi   1:51:24
+Yep.
+
+[P0433] 
+Joel Frick (6124)   1:51:25
+But a little bit more. Yeah. Yeah.
+
+[P0434] 
+Shao Ngoi   1:51:28
+Yeah, so if you are just talking about, all right, this forklift almost hit the shelf where, you know, do their loves associate, well, this is the near miss, nothing get hurt. Let's say down the road, somebody got hurt from a shelf that fell because of forklift. You can technically look back and go, yep, this is now related to this one incident.
+Or, there is that tie.
+Maybe now this is related to this specific incident where Gillian slipped on the oil and broke her ankle. Because throughout the investigation, the oil spill is from the forklift hitting the shelf that was holding a bottle of oil.
+
+[P0435] 
+Joel Frick (6124)   1:52:04
+Now, to the bigger question about the reporting, that what you just described, later on, somebody gets hurt because of the shelf situation at the lunchtime area, and you can tie it in later, that requires a human to remember that this near miss happened. So from a reporting perspective, can we get it all into one giant
+
+[P0436] 
+Shao Ngoi   1:52:14
+Mhm.
+Correct.
+
+[P0437] 
+Joel Frick (6124)   1:52:25
+report, database, whatever, like, can I say, hey, spit out this huge thing? Or even, I mean, this is getting a little further down the road to have like an AI client on it. But can I output everything and say, hey, were there any incidents or near misses? Were there any other incidents or near misses in this specific area? Search. And then pull all that out and then.
+You know, and the reason the use case I'm thinking of is like, you know, when we have on Thursday this week, we've got an executive safety patrol. I would love to be able to take a big data set and say, look through this for things that are related that we might also want to consider while we're talking about this.
+
+[P0438] 
+Shao Ngoi   1:53:04
+Absolutely. So for your example there, we have those data points, right? As long, going back to as long as we have the data point, we have, we know where, right? We know when, right? We can, we even know the severity. Let's say you want to exclude the minor stuff, you want to look anything moderate or higher, right? You want to look specifically for.
+any near misses that could lead to an injury, you want to see, let's say, maybe specific root causes that you have to find in the investigation, you can pull all those out. As long as, again, the data point is in Intellect, you can pull all those data out.
+
+[P0439] 
+Joel Frick (6124)   1:53:38
+And I can multi-factor search all those at the same time.
+
+[P0440] 
+Shao Ngoi   1:53:42
+Not in intellects though. We can give you the data, but not the analysis, not in intellects.
+
+[P0441] 
+Joel Frick (6124)   1:53:48
+Would it just be like a CSV or something?
+
+[P0442] 
+Shao Ngoi   1:53:50
+It could be a CSV if you are using, let's say, you know, Power BI or whatever AI agent that you're using. There is an OData connector, right? But generally speaking, the reporting tool you need to like can give you that list.
+
+[P0443] 
+Joel Frick (6124)   1:53:57
+Okay, cool.
+And does the AI component within Intellects, would that be usable in this scenario where we want to use the AI to summarize that for us?
+
+[P0444] 
+Shao Ngoi   1:54:14
+So, intellect.
+
+[P0445] 
+Joel Frick (6124)   1:54:14
+I know that's not in that scope, but just hypothetically, just would like to know that information.
+
+[P0446] 
+Shao Ngoi   1:54:19
+So, as it stands right now, Intellect don't have that AI functionality yet, so whatever they're referring to is just a simple reporting tool. I wouldn't say simple. It's a reporting tool from Intellect that allows you to report data out. Okay, within that reports that you build, you have the OData connector that allows you to connect directly to a BI tool, let's say Power BI or...
+Power BI is the most common one, right, that you can pull directly into your Power BI to your analysis. In term of the output, right, let's say you want to output it as a CSV, right, there are multiple.
+Format you can output a report in the intellects, right? PDF, Excel, or CSV, or even XML format.
+
+[P0447] 
+Joel Frick (6124)   1:55:01
+Okay.
+And one thing, just as a reminder, when Dan was talking about a certain area, all of these will want that location to be X, Y, A, B. So they're specific to the areas of our plan. And then we'll figure out if we can get that to the map or whether we just have to understand.
+
+[P0448] 
+Shao Ngoi   1:55:18
+Mhm.
+
+[P0449] 
+Joel Frick (6124)   1:55:24
+Yeah, that's it.
+
+[P0450] 
+Shao Ngoi   1:55:27
+Yep, so on that note, I know we have one minute. On that note, can we, Scott, one second, can we, can I have an example of that X, Y, and A&B type of location so that I can get a visual element on it to see if we can actually put that into the system?
+
+[P0451] 
+Joel Frick (6124)   1:55:43
+Those are our coordinates of the different shops. So they increase, you know, as you go north or whatever, they increase in number. So it's just an XY coordinate. So Y is 1 direction, X is the other direction, and the numbers increase or decrease depending on where you're at. And it's based on columns. Yeah.
+
+[P0452] 
+Shao Ngoi   1:55:51
+Mhm.
+
+[P0453] 
+Joel Frick (6124)   1:56:03
+Of the building.
+
+[P0454] 
+Shao Ngoi   1:56:05
+Okay.
+
+[P0455] 
+Joel Frick (6124)   1:56:06
+So it's the same process we would have for our regular incidents. It's the same conversation we had when we discussed incidences.
+It's just some of our, some of our shops might have a, like our new paint shop has A&B instead of X&Y, but it's the same concept.
+
+[P0456] 
+Shao Ngoi   1:56:26
+Got it. Is this a floor floor floor plan of the shop floor?
+
+[P0457] 
+Joel Frick (6124)   1:56:30
+Yes, yes.
+And then, like we said, we have some things we're looking at that we might be able to relate those X, Y's to the world coordinates that we might be able to do something on our end to be able to display that better, but you go to enough decimal places on the longitude and latitude.
+
+[P0458] 
+Shao Ngoi   1:56:34
+Yeah.
+Mm-hmm.
+
+[P0459] 
+Joel Frick (6124)   1:56:53
+Branka.
+And then all I did, I didn't remember, do we ask in the near miss for intake form if if we ask like a department or section like in the incident reporting?
+outside of just the coordinates? Or if not, can we add in a field that defines our different departments and sections? I think that'd be under the location. Would it be? I don't remember what the location works the same way. Okay. Because I know we put that up the last time I just brought up the map.
+Yeah, our location should be related to our locations in our...
+Location structure kind of thing, shouldn't it?
+
+[P0460] 
+Shao Ngoi   1:57:36
+Yeah, yeah, it is your whatever in your location structure.
+
+[P0461] 
+Joel Frick (6124)   1:57:36
+Okay.
+So, each shop would have a location, so body, paint, trim.
+Well, we where we may have to.
+We may have to end up creating a few extra locations for things like this would be office, cafeteria. It's the whole facility. Yeah. I mean, we could also have, can you tell me, but you know, you're talking about associating X&Y with coordinates. Could you also associate X&Y with like X?
+27 to X 39, Y 16 to Y, you know, 42 are those like that area anywhere in there and then you have to find it further for weird in croppings. That's stamping or that's trim or you know what I mean? So it automatically populates that name? I think so, but you're going to pull when you.
+When you have your drop-down list for location, that's going to be off of our location structure.
+
+[P0462] 
+Shao Ngoi   1:58:34
+Yes.
+
+[P0463] 
+Joel Frick (6124)   1:58:35
+Yes, but when you put in the XY's, I'm sure we could coordinate something that it shows which shop you're in. What about, are there any other specific XY, there's AB, is there anything for like service parts or any other areas that have a? I don't know how service parts does there.
+coordination.
+
+[P0464] 
+Shao Ngoi   1:58:59
+So yeah, so I need to take a look at the location structure what's being set up right now.
+
+[P0465] 
+Joel Frick (6124)   1:59:02
+So, under under manufacturing would be...
+A good list.
+Those are what most of our areas are. And then outside of that, that would be your detailed list. And then the other ones would be
+Like here you got manufacturing, engineering, material management, those.
+Might be a list, or you wouldn't necessarily have to drop down into all the details. Do we not have IPC?
+There would be IPC in there.
+See it.
+
+[P0466] 
+Shao Ngoi   1:59:44
+IPC.
+
+[P0467] 
+Scott Bailey (6347)   1:59:44
+Your service parts question, they're part of body. I don't, they wouldn't be represented here on the drop-down list.
+
+[P0468] 
+Joel Frick (6124)   1:59:51
+Dave.
+Quality control, can you click on quality control? This is for my city.
+
+[P0469] 
+Shao Ngoi   1:59:56
+Quality Control.
+
+[P0470] 
+Joel Frick (6124)   1:59:59
+There it is, OK, never mind.
+Yeah.
+So those are kind of your groups, but when it gets to the manufacturing, those are, we would want that to be in the drop-down menu because that's mostly a lot of the areas that we deal with. Yes, and it's not that big a list.
+
+[P0471] 
+Shao Ngoi   2:00:18
+I know there's a questions from Scott on the chat, right? We have you have API connections that you can feed your AI with via MCP.
+
+[P0472] 
+Scott Bailey (6347)   2:00:29
+That's more of a statement than a question. I was just letting the team know that we have methods of doing what Dan was asking for earlier about synthesizing all that text data. We have an Ave. for which we can do that.
+
+[P0473] 
+Shao Ngoi   2:00:36
+Got it.
+Awesome.
+
+[P0474] 
+Joel Frick (6124)   2:00:42
+Branka.
+
+[P0475] 
+Scott Bailey (6347)   2:00:43
+Correct. Yeah. Now, if I do really like the built-in AI for them to use it to help them not like share medical information in the text box or something like that, that was pretty cool. But I don't think we ended up going with it. Correct, Joel?
+
+[P0476] 
+Joel Frick (6124)   2:00:59
+I didn't completely understand what you just said.
+
+[P0477] 
+Scott Bailey (6347)   2:01:02
+The AI in Intellects, we did not get that piece, correct?
+
+[P0478] 
+Joel Frick (6124)   2:01:05
+Agha.
+Yeah, I no, I didn't see anything with AI in there, yeah.
+
+[P0479] 
+Scott Bailey (6347)   2:01:11
+Yeah, our demos, they had a pretty cool demo where it was like, it would look at your input and give you a score and suggestions. It was very useful.
+
+[P0480] 
+Shao Ngoi   2:01:20
+Yeah, so that is...
+
+[P0481] 
+Joel Frick (6124)   2:01:20
+There's some sorting, there's some sorting capabilities, but I wouldn't call it AI.
+
+[P0482] 
+Shao Ngoi   2:01:26
+Well, yeah, so in the sense that that is a new, new, new thing that's from Intellects, right? It's what Intellects call an input AI. So if you hear anything from input AI is exactly what's being mentioned here. You can put in text into, let's say, an incident description. As a best practice, you never actually put someone's name into an incident description.
+So in this scenario here, I put in Craigs, drove a power truck, and ran into the dock, and Jason fell, hurting his knee. The input AI will be able to identify, hey, you have people's name in here. Part of the privacy is like you do not want to identify people's name at this point in time. As well as it also tells you the quality of the text is actually describing
+You know, you can obviously set rules in what do you what can you expect in this text. The system can then also speed up some suggestions, some recommendation, and the score of the text of the user, right? So, this is really go back to from a data completeness as well as data privacy.
+So if I simply go, yeah, I rode a bicycle and failed. Well, tell me more, right? How did you fail? Like what happened? And so on and so forth, right? That is what that input AI is able to do to make sure that the, you know, for a given text, that's in this case, instant description, is actually complete enough to describe.
+What actually happens?
+
+[P0483] 
+Joel Frick (6124)   2:02:50
+Except Peter, you just...
+
+[P0484] 
+Shao Ngoi   2:02:50
+Without, yeah, without the private stuff.
+
+[P0485] 
+Joel Frick (6124)   2:02:54
+Minh.
+Right, except we're pointing it out, right now, right, right, right?
+
+[P0486] 
+Shao Ngoi   2:03:03
+Yeah.
+I know we are 7 minutes over, and then I know we are also meeting later today. Is there any last questions before I wrap this up?
+
+[P0487] 
+Joel Frick (6124)   2:03:12
+What do you plan on covering this afternoon that we haven't covered yet?
+
+[P0488] 
+Shao Ngoi   2:03:17
+Some of the reporting stuff.
+
+[P0489] 
+Joel Frick (6124)   2:03:20
+Okay. Okay.
+
+[P0490] 
+Shao Ngoi   2:03:21
+Yeah, OK.
+Right, I will talk, okay.
+
+[P0491] 
+Joel Frick (6124)   2:03:25
+Yeah, we can be back at 12:35, but...
+
+[P0492] 
+Shao Ngoi   2:03:30
+What time is the meeting? No, I think...
+
+[P0493] 
+Joel Frick (6124)   2:03:32
+It's scheduled for 1230.
+
+[P0494] 
+Shao Ngoi   2:03:34
+Oh, yeah, yeah, yeah, sounds good.
+Okay, talk to you guys later.
+
+[P0495] 
+Joel Frick (6124)   2:03:37
+Anything else before we leave?
+
+[P0496] 
+Shao Ngoi   2:03:43
+No, not on my side.
+
+[P0497] 
+Joel Frick (6124)   2:03:44
+Yeah.
+
+[P0498] 
+Shao Ngoi   2:03:45
+Okay. All right. Thank you all. Talk to you guys later.
+
+[P0499] 
+Joel Frick (6124)   2:03:47
+Thank you, Emily.
+
+[P0500] 
+Shao Ngoi   2:03:49
+Okay, bye-bye.
+
+[P0501] 
+Joel Frick (6124)   2:03:50
+Thanks.
+I just want to make sure they sent that out yesterday. I got to make sure I guess there were any other than that issue.
+
+[P0502] 
+Shao Ngoi stopped transcription

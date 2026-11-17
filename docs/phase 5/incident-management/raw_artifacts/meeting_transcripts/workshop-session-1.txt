@@ -1,0 +1,1118 @@
+0:00:04 Emma Lister: I feel like I joined at the wrong time of that conversation, guys. 
+0:00:16 (Amanda Raver (6414)): Good morning, everybody. That's right, we found out Dave's not familiar with the Cinemagraphic Classic. Yes, Dave would not say that, yes.
+0:00:28 (Amanda Raver (6414)): He went down a little bit in our eyes when we heard that, yes. 
+0:00:32 Emma Lister: All right, you guys tell me, are we waiting? I know there's some others that are on the invite list, but I don't, I can't, I can't tell us 
+0:00:44 (Amanda Raver (6414)): precisely who's in the room with you. Thank you. No, we're not waiting on anybody else right now in the room with us.
+0:00:52 (Amanda Raver (6414)): Uh, if you want to, we'll go around the room and everybody, for the purposes of the recording device, we can, we can say our names.
+0:01:01 (Amanda Raver (6414)): That would be great. I'll start. Monica Klein. I did invite one of my team members here just a few minutes ago, so he may be coming in late.
+0:01:13 (Amanda Raver (6414)): That will be Eric Johnson. 
+0:01:15 Emma Lister: Great. Nice to see you, Monica. You are just 
+0:01:18 (Amanda Raver (6414)): in time for introductions. And I went first, so now I'm going to go backward. I'm B.J. Marlin. I'm working with Kajsa from the IT group.
+0:01:27 (Amanda Raver (6414)): Rick Redman, Project Management Section. Cole Frick, Project Manager.
+0:01:39 (Amanda Raver (6414)): Kaiser Albertstein. I'm an NLX Administrator. Uh, Craig King, uhm, HRIS. Scott Milley, HRIS. And 
+0:01:51 Emma Lister: then, Dan just joined us. Dan 
+0:01:52 (Amanda Raver (6414)): just joined us. And your manager for safety? Larry Sears behind me. Okay. And Larry, Larry Beard, Larry Beard. Larry Beard from Safety as well will be in here in just a moment.
+0:02:04 (Amanda Raver (6414)): We don't have to wait. 
+0:02:08 Emma Lister: Great. And then, Jason is joining virtually. Do you want to introduce yourself, Jason? 
+0:02:13 Jason Huber (6809): Yep, Jason, you were manager of security and emergency services. Great. 
+0:02:19 Nicholas Leuck: And Nicholas. Yeah, my name is Nick. I'm in, uh, HRS as well. Great. And Troy. 
+0:02:29 Troy Harris (6117): Good morning, Troy Harris, group leader with emergency services. 
+0:02:33 Emma Lister: Great. Okay, great. That is the Subaru team. Uh, for those of you who don't know me, my name is Emma Lister, and for the purposes of this project, I am the project manager, and I will turn it over to Xiao to introduce himself and then our other colleagues who are also on 
+0:02:48 Shao Ngoi: the call, He and Tracy. Good morning, everyone. Uhm, I think I may probably have met one person in the room, as far as I remember.
+0:02:57 Shao Ngoi: When I was down for the blueprinting, I think I remember, actually two, Rick and Joel. Anyway, for, my name is Xiao-Wei Ngoi, for this project here, I am the solution lead for the EHS implementation.
+0:03:13 Shao Ngoi: Alright, so Tracy, do 
+0:03:18 Emma Lister: you want to introduce yourself, Tracy? 
+0:03:21 Tracy Bui: Hi, good morning, everyone. My name is Tracy Bui, and I'm a senior associate at Summit, and I'm very happy to be here.
+0:03:29 Tracy Bui: Joining the show and the team 
+0:03:31 Emma Lister: to support you on this project. Thanks, Tracy and Heat. 
+0:03:37 Heet Narechania: Hi everyone, good morning. My name is Heat and I'll be supporting show and sharing. 
+0:03:43 Emma Lister: Great, alright, everybody. So, as mentioned, Xiao is going to be your lead solution architect for incident management, and he's going to walk you through the agenda for today to get the ball rolling.
+0:03:57 Emma Lister: I will also share a copy of the agenda with Joel, Rick, and Amanda, and they can distribute it accordingly just to coordinate.
+0:04:03 Emma Lister: If people need to be coming and going as these sessions are taking place between today and tomorrow, um, we can use the agenda to help facilitate that, and or if anything needs to be moved around, that's no problem.
+0:04:15 Emma Lister: For the purposes of today, as Xiao's walking you through these discussions surrounding the configuration of incident management, please feel free to interject with any questions as they arise.
+0:04:26 Emma Lister: We'll also make sure to share the meeting recordings with the team afterwards in case in the case that anybody who might need to know is not able to join us and they want to catch up after the fact.
+0:04:38 Emma Lister: Before I turn it over to Xiao to walk you through the agenda and to dig in, are there any questions?
+0:04:50 Emma Lister: All right, sounds good. I'm going to send you guys a copy of the PDF of the agenda that Xiao is going to share right now to Joel, Rick, and Amanda, and then you guys can share it with everybody else that's needed.
+0:04:59 Emma Lister: Okay. Thank you. Thank you. All right, Xiao, take it away. 
+0:05:04 Shao Ngoi: All right. So, in kind of to what Emma has mentioned, we have an agenda here, and we also have a pretty tight, tight schedule.
+0:05:12 Shao Ngoi: Uhm, so for today's focus, what I really want to talk to the team here is really starting with just injury illness, because typically that is the more critical one.
+0:05:22 Shao Ngoi: Uhm, but before I get into it. And OK, it's kind of want to understand from a team is really knowing that.
+0:05:29 Shao Ngoi: Uh, as I appreciate this easy management applications for my understanding, it's really trying to hear from the team is really what is the, uhm.
+0:05:38 Shao Ngoi: The one issue that we're not one issue what it would be the components that we're trying to solve here or problem statements.
+0:05:46 Shao Ngoi: If we have one, right? And what would be a success criteria would look like for the team? I simply that I want to make sure to put everyone in that mind frame of what exactly are we trying to solve for?
+0:05:58 Shao Ngoi: And what exactly a success solution? Successful solution will look like for 
+0:06:02 (Amanda Raver (6414)): everyone on the call. Yeah, uhm. Easy integration to a system that's easy to follow. That gives us a pathway from, uh, production associate all the way through completion of a, of an effective countermeasure for something that happens.
+0:06:24 (Amanda Raver (6414)): And safety is perspective and and burn. And, uh, I align really well with that, uh, for us. We, we currently end up with, um, so improved notification for serious incidents, um, rather than the panic phone call method.
+0:06:42 (Amanda Raver (6414)): And then, uh, follow-up, you know, so, so having one place where we can go, um, to follow through all of the corrective actions or correct, you know, all of the follow-on, um, activities that, that might happen, um, again, rather than multiple below.
+0:06:58 (Amanda Raver (6414)): Different documents that we're, that we're managing and emails and stuff. And then also, for me, over time, um, I'm interested in being able to evaluate the data that comes up for the different types of spills that we have so we can target, um, some of the ones that are really pulling a lot of our resources
+0:07:19 (Amanda Raver (6414)): . Awesome. 
+0:07:20 Shao Ngoi: Right, um, no, those are great, right? From what I'm hearing, it's really, uh, you know, just to summarize, it's really, uh, effective processes that helps you.
+0:07:30 Shao Ngoi: You documents and report all your incidents, right? One place to store all the data so that you can, at the end of the day, be able to run some kind of, uh, reporting or analysis, uh, with all the data over time.
+0:07:42 Shao Ngoi: Right, just really in a quick high-level summarization. So that to me is really, alright, that's what a successful implementation would look like, but in your current process, if there are specific scenarios or a problem that we are trying to solve as well, could it be something along the line of, hey
+0:07:59 Shao Ngoi: , I want to standardize the process or, uhm, the process right now is too convoluted, I want to simplify it, anything of that problem or issues that we are trying to solve here?
+0:08:11 Shao Ngoi: It's both of 
+0:08:12 (Amanda Raver (6414)): those things. So, we have some lack of standardization, but we also have, uhm, a little bit of the default and without be too complicated a scenario.There are also systems that don't exist here that we want to exist.
+0:08:24 (Amanda Raver (6414)): And to Monica's point about, uhm, you know, the panicked phone call you know, that, that is, that is filling a void for a system that doesn't exist to solve that and we'll alleviate that.
+0:08:36 (Amanda Raver (6414)): Uhm, you're talking about implementation, a good implementation, but the first thing I mentioned, it's easy to to implement. And the reason we talked about this last week as our group, uhm, the reason for that statement is yeah, I know that Intel X can have an out-of-the-box setup, kind of, uh, standard
+0:08:58 (Amanda Raver (6414)): setup. We don't, if we don't have to make something custom, we want to just keep it the way it is and make it smoother and also implement, uhm, so as we're talking and, you know, if we have a requirement that we needed to be able to do, if you know of something that's similar, that's already built, then
+0:09:21 (Amanda Raver (6414)): please, uhm, you know, Bye-bye. Make your voice heard, and give that option, because it may also work, and it may just be a different, a different means to the same end, uhm, and that would be fine with us in most cases.
+0:09:33 (Amanda Raver (6414)): Keep your thumb on code. Yeah, and I already know of one company that has a nicely built out incident management system.
+0:09:39 (Amanda Raver (6414)): Right, Seal. Yes, I agree with that. I agree with Dan. Alright, alright, 
+0:09:45 Shao Ngoi: uhm, yeah, so those are all good things to know, right? That's why I say I just want to understand from from team here as well as just kind of put everyone on the same page of what is there, what is it that we're trying to get to, right?
+0:09:59 Shao Ngoi: And then as well as what is the high level, what is the problem that we're trying to solve? So now to, to, to, uhm, to the point of, yeah, IntelliX has Outlook solutions, and then, uhm, from an implementation side, you want it to be easy.
+0:10:11 Shao Ngoi: Alright, so this is where you'll see line item here, the second line item, right? What IntelliX has provided is really, uhm, if I may be blunt, uhm, what IntelliX has provided is really just a canvas, right?
+0:10:26 Shao Ngoi: Uhm, it's up to you guys to, uhm, typically up to, not you guys, up to the clients to paint whatever they want on the piece of canvas.
+0:10:33 Shao Ngoi: That generally could take, you know, uhm, a longer implementation time, could tend to get overcomplicated, what's not. So instead of starting with IntelliX OuterBox solution, which is, which I believe most of you probably have seen it already during the application overview, what I want to introduce 
+0:10:49 Shao Ngoi: you is what we call Essentials. Essentials, essentially, it's a pre-configured incident management application by Summit, right? Bye. We take our years of experience implementing incident management, we put into a Summit solutions, in what we call an essential solutions, because we try to, again, going
+0:11:12 Shao Ngoi: back to the whole, make it easy, make it simple, approach to an incident management. One thing that I'll walk you guys through in a bit is really, one thing that you'll see is that, uhm, the navigation is pretty straightforward, and then, then one big difference in this case is really, it's a, a risk-based
+0:11:30 Shao Ngoi: or severity-based workflow, right? What that means is that, uhm, miner will go through these workflow stages, me, uh, major could work, uh, moderate would go through these stages, so on and so forth.
+0:11:42 Shao Ngoi: Right, all those essentially comes down to four major steps, right, uhm, ultimately someone would report it, right, someone would, uhm, verify it, someone would investigate, and someone would approve, and what we have made within this application is that all those could be toggled on and off easily without
+0:12:02 Shao Ngoi: making a lot of configuration changes. What Intellect has, uhm, out of the box is really, yup, we have all this capability, we can build all this to you, uhm, but none of those are being built in.
+0:12:14 Shao Ngoi: Makes sense so far? Yes. Okay, so if I may just toggle my screen here for a second. Let me know you see my screen.
+0:12:26 Shao Ngoi: Yes. Okay, alright. So, uhm, don't worry about the the pictures was not those are just layering on top of what we have done for summit solutions, right?
+0:12:40 Shao Ngoi: But ultimately you should be familiar with this layout. Here is an intellect solution on within intellect platform. It's still called the EHS system management applications.
+0:12:51 Shao Ngoi: First tab is still your list of incidents, right? If I go here, that's where I can see, you know, all the reported injury, illness, the vehicle incidents, so on and so forth.
+0:12:59 Shao Ngoi: So again, this familiar, but at the same time, the moment I want to add a new incident. Again, today we focus on injury illness.
+0:13:10 Shao Ngoi: OK, what we have here is really, this is where Summit has pre-configured this solution based on Intellect's platform configuration. Right, using all their experience or our various type of implementations across multiple years, multiple clients, right?
+0:13:27 Shao Ngoi: We have come to a consensus that, hey, most clients ask for this simple stuff, right? So, hence, instead of Intellect's application as our box solution, where it's a blank canvas, we pre-built some of these features for you guys, for some clients who will utilize this, right, as a starting point.
+0:13:48 Shao Ngoi: When I say this is a severity-based workflow, right, this is where, as a person who's reporting an injury illness, besides just the injury, uh, incident details, we have the severity assessment.
+0:14:02 Shao Ngoi: Depending on if it's a minor or a moderate or a major or a catastrophic, uh, type of injury, uh, incident, this, we can tell the system to do certain things, right?
+0:14:12 Shao Ngoi: If it's, let's say, for a minor, I don't need to have verifications, but I still need investigations. Uh, maybe I don't need approval.
+0:14:20 Shao Ngoi: We can tell the system to skip those steps by simply, you know, defining what should a minor incident look like.
+0:14:27 Shao Ngoi: Let's say if it's a catastrophe, uhm, I don't need to verify, right? It should go straight to investigation, but must be approved.
+0:14:34 Shao Ngoi: So we can also tell the system to do the same thing, right? Just through, uh, little tick boxes, is. Thank you.
+0:14:40 Shao Ngoi: I wish I can show you guys how to manage those, right? So like I said, this is all pre-configured already within this essential version of incident management in Intellects.
+0:14:51 Shao Ngoi: So, uhm, before I get into it, let me just show you from from a reporting side of things, right? Let me just say I have an incident that happens in Houston, right?
+0:15:01 Shao Ngoi: Uhm, if I have a specific location, this could be something like LoadingDock, let's say. LoadingDock. It happens today. Uhm, at this 944 AM Eastern Time, right?
+0:15:16 Shao Ngoi: The person injured in this case, let's say it's Andy. Uhm, he is a full time employee, right? He is working during daytime.
+0:15:25 Shao Ngoi: Activities before incident could be, uhm. Driving the forklift. Incident description, uhm.
+0:15:39 Shao Ngoi: A box. Landed on his toe, let's say. Alright, immediate actions basically could be take him to the clinic. So these are just simple fields.
+0:15:58 Shao Ngoi: The reason, again, why we always say we keep it simple is because as a person who's reporting an incident. The person could be anybody on the floor.
+0:16:08 Shao Ngoi: Could be, you know, just a regular employee. We want them to be able to just. Be able to enter all this data as.
+0:16:17 Shao Ngoi: Straight for us as possible as quickly as possible with a certain degree of accuracy. The moment we load this initial reporting page with a lot of fields.
+0:16:26 Shao Ngoi: Now we're taking a lot of time from the end user to fill up all this as well as the more.
+0:16:33 Shao Ngoi: So complex stuff we add on to here, the more that they have to think about in terms of populating the data.
+0:16:39 Shao Ngoi: If they don't think about it, the downside of that is really now I don't get the accurate data that I should be getting.
+0:16:45 Shao Ngoi: Does that make sense? Yes. Yes. So typically this is where we would ask who, what, when, where type of questions, right?
+0:16:53 Shao Ngoi: And then as a person entering this, you know, I look at this first thing I go, yep, this could be moderate, right?
+0:16:59 Shao Ngoi: It's up to your definitions of what minor, moderate, major, etc. means, right? We can add some notes on to it.
+0:17:05 Shao Ngoi: Just to guide the end user as well as anything that you see at the top here, this all can be configured to your web page.
+0:17:12 Shao Ngoi: Anything that can help the end user to drive the end user or guide the end user in terms of what to do when they see something to report something.
+0:17:21 Shao Ngoi: All these are pre, uhm, can be configured and it's all built in as part of setup versus configuration. Right, so let's say, uhm, you know, oh, the one thing I also want to show here is let's say I have, I have a specific coordinates that I want to show, right, I can go Houston, Texas, this will bring
+0:17:45 Shao Ngoi: up the Google map, you can ultimately zoom in and go, alright, this is the specific location, Once I have said that, the moment I say submit injury or illness, current configuration, right, again, I say moderate, current configuration, it will go to the verification stage, or steps, uhm, it In this case
+0:18:10 Shao Ngoi: , the person that responsible in verifying this incident would be your EHS manager. That person can also change. So, let's say, for example, if it's a minor incident, I don't need EHS manager to verify.
+0:18:24 Shao Ngoi: Maybe I want the immediate supervisor of the reporter to verify it instead of EHS. So those are the kind of flexibility that we have built in place without configuring.
+0:18:36 Shao Ngoi: These are all part of the setup. Same thing for due date. We can tell the system how many days do we, ah, expect the person responsible for that stage to complete the task.
+0:18:47 Shao Ngoi: What that means is the moment I receive the task, the clock starts ticking. Right, if I say, uhm, this is three days, so now I have until November the 5th to complete my request.
+0:18:58 Shao Ngoi: What that means is is going receive the the first one. The second one is the last one and the is the last one.
+0:19:10 Shao Ngoi: So last one. All so let's go back to the So is to here as by the ESS manager, you'll be able to see that.
+0:19:18 Shao Ngoi: I can verify the severity that's being defined by the initial reporter. The initial reporter go. Oh, it's moderate, but upon understanding the problem.
+0:19:28 Shao Ngoi: You know the ESS manager identifies that. I agree with it, I want this to be investigated, so I go here and pick an investigator.
+0:19:43 Shao Ngoi: I want Alright, uhm, investigate, investigate why the box would fall from the pallet.
+0:20:00 Shao Ngoi: Now, in this case, I can, uhm, complete my verification. Upon completing the verifications, it will send Dave the de-investigation task to investigate this incident.
+0:20:10 Shao Ngoi: However, like in the case where someone either report an incident that's invalid or incident that's in the wrong category, so on and so forth, um, the EHS incident, uh, EHS manager or whoever verifying this incident can cancel off this incident.
+0:20:25 Shao Ngoi: A cancelled incident means the incident is invalid, it'll still sit in your, uhm, list of incident, so that down the road you can also run analysis.
+0:20:34 Shao Ngoi: This in terms of, alright, how many incidents do I have, uh, has been cancelled across the year, right? I can also do an analysis of why is it being cancelled.
+0:20:44 Shao Ngoi: Is it because I need to, uh, change my, uh, training for the end user? Is it because of, you know, certain patterns?
+0:20:50 Shao Ngoi: Uh, patterns that basically, uh, deem an incident to be invalid, right? Those are the things that you can take as a, uhm, uh, opportunity for improvements to, again, to better accurately report an incident down the road.
+0:21:03 Shao Ngoi: That's it. Assuming this is a valid incident, I complete my verifications. Now, the next step in the workflow here is really, right, I said Dave, Dave is the investigator, now Dave gets the, uhm, the task to go investigate.
+0:21:22 Shao Ngoi: Right, again, we have some notes up here out of the essential version of this incident management as a note for the end user to go tell them, alright, what exactly do they need to do, so on and so forth.
+0:21:37 Shao Ngoi: These all can be customized. Alright, so from, again, from an investigator, investigator view, right, they can see the detail of the incident that's been reported, right, they can take a look at what's the verification details that's been populated and for them to go ahead and start the investigation
+0:21:57 Shao Ngoi: , basically, as the investigator, you know, once I click on edit, they can modify anything that they want to modify, or we can lock it down, right, but ultimately they can go, alright, I know that this is a medical treatment, actually, This could be a lot.
+0:22:11 Shao Ngoi: Last time, immediately, someone broke his toe, right, uhm, exposure here, uh, what you will see here, this all dropdowns, all can be customized, but we start off with the essential version, with whatever data that we can find, uh, mined from your Department of Labor.
+0:22:30 Shao Ngoi: So all this comes from not just Summit making this up, this is essentially, uh, a list of data that we, we pull from your Department of Labor.
+0:22:40 Shao Ngoi: So, let's say, not violent air transportation in China. Incident, this is, let's say, transportation incident, sort of injury, illness, uhm, this could be machinery, uhm, the other one thing that you'll see here is that, uhm, for body part here, right, again, all this list can, that you see here, can
+0:23:04 Shao Ngoi: be customized, right, again, we start off with not just a simple A, B, C, D, what's not, these are all data pulled from the Department of Labor.
+0:23:13 Shao Ngoi: So, let's say I want to go, alright, instead of trunk, lower extremity, this is my foot, and then this is my toe, okay, and then the injury, injury, illness, in this case, uhm, I don't know, let's call it, uuuh, surface, bruise, contusion, okay, save, exit, so what you'll see now, I've added a body part
+0:23:41 Shao Ngoi: , so injury of the person, right, throughout my investigation, right, this is for bruises and contusions, uhm, and then medical treatment, if any, right, uhm, we know that the person has been sent to clinic, so this is occupational clinic, date of treatment is, let's say, today, if any medical facility
+0:24:00 Shao Ngoi: that's been entered into the data that you want to track, right, this is where we can pick that medical facilities, if there is none, right, let's say you don't store a medical facility, but you still want to capture, uhm, uh, the medical facility details, you can simply say, not in directory, you can
+0:24:19 Shao Ngoi: say, tell the system what is the doctor's name, so on and so forth. Okay, uhm, let's say, doctor, uh, let's say, shall for now, lost time tracking, again, this is, uh, very similar to what we have out of the box for Intellects, right?
+0:24:34 Shao Ngoi: We didn't change this, but we kind of laid out slightly different for essential version of the incident management to make it, uhm, more summit-based, okay, uhm, what you'll see here, Take care.
+0:24:46 Shao Ngoi: It's really, uhm, you have two options to capture the times away, right? Either by period or by duration. Period simply means you could define the date from and to when the person is away.
+0:24:59 Shao Ngoi: By duration means the hours that person is away for. And then, uhm, you define what is the hours per day for the individual who's working, working in that shift.
+0:25:10 Shao Ngoi: Let's say this is a, an 8-hour shift. 8 hours is the default. Let's say this is an 8-hour shift and duration I'm away for is 40 hours, right?
+0:25:18 Shao Ngoi: In this case, the system knows that the person is away for 5 days. Generally speaking, duration is rarely something that, uhm, I see clients use.
+0:25:27 Shao Ngoi: Most clients use periods. Let's say I know that the person is away today. I don't have to define when the person is coming back from work.
+0:25:35 Shao Ngoi: I simply just need to capture when the person is away at this point. When the person is back to work, that's when I can come back into this record and tell the system, alright, this person came back on this date and now the system knows, right, between 5 in the to and from how many days the person is
+0:25:53 Shao Ngoi: being away for. Makes sense so far? Yeah, yeah. Right, uhm, obviously the other one thing that that the system also capture, which also critical for some KPIs.
+0:26:07 Shao Ngoi: If the person is away for a restricted days or days away or a simple, simply a job transfer. So let's say I stump my toes.
+0:26:16 Shao Ngoi: I'm away for the whole week. Right, when I come back instead of my regular shift, right? I am being transferred to a lighter shift, so that's the job transfer and then restricted day.
+0:26:30 Shao Ngoi: Obviously it restrict, restrict my, my full responsibilities as a regular employee prior to the injury illness. Those are should be predetermined.
+0:26:39 Shao Ngoi: So be straightforward, so let's say I save and save for now. So that's how you would capture the days away within Intellects.
+0:26:53 Shao Ngoi: Anything that you want to modify, you can simply just click on this. This cell here, you can go, alright, this person is actually working for, on a 10 shift, 10 hour shift versus 8 hour shift.
+0:27:02 Shao Ngoi: Okay, I need to tell the investigation result first before I modify. Uhm, person was, no. The box fell because of a faulty rope.
+0:27:20 Shao Ngoi: Okay, uhm, the other one important thing here is really this portion here, regulatory reporting. If I say yes, what that will mean is that it will now become a OSHA recordable incident, right?
+0:27:34 Shao Ngoi: The system will give you a OSHA 301 report that you can generate and submit to OSHA. Same thing for this incident will also roll up to your, uhm, yearly summary for that location so that when you generate your 300, 300A, this incident will be part of that OSHA 300 and 300A summary.
+0:28:00 Shao Ngoi: I don't have anything loaded here. Some data is not being loaded. It need to load some data into these two drop down, but ultimately these two drop down here populates your OSHA 301 as well as it ties back to your 300 summary.
+0:28:32 Shao Ngoi: Alright, and uhm, so far what you've seen makes sense to the team here? Yes. Uhm, the other one thing I also want to point out is that as you can see as I navigated through to step so far, we purposely also color sections in blue so that whoever is responsible at what stage, the blue section is the focus
+0:28:58 Shao Ngoi: section. Anything that's white essentially it is optional. As an investigator, my response is my responsibility is to fulfill the injury classification, to find if it's a OSHA recordable, not recordable, fill in the investigation details.
+0:29:12 Shao Ngoi: All these are blue sectioned for that given stage. If I am in investigation, verification stage, you'll see that. Verification stage would be colored blue.
+0:29:26 Shao Ngoi: But for now I'm in investigation. These are all the mandatory sections that I need to populate and part of the investigation as well.
+0:29:35 Shao Ngoi: We have what we call, uhm, investigation tools, right? You can do cost analysis. You can define your root causes. You can define any corrective action plans if you need to.
+0:29:45 Shao Ngoi: Uhm, all these options can be toggled on and off. Intellect's Outerbox has. I think we have, I six. Witnesses, evidence, root cause, cause analysis, action plan, and, and the cost, as well as the lesson learned.
+0:30:05 Shao Ngoi: I've turned those all off, right, uhm, simply because I, I can't, I want to show you how we can turn it, uh, on as well rather easily just based on toggles in the backend without actual configurations.
+0:30:16 Shao Ngoi: However, the, also the reason why I turned it off is because for, for moderate, uh, incident, I, uhm, first thing first, I rarely see, uh, witnesses being used, you typically, it's mainly for more of a major or catastrophe incident, and then evidence simply because in intellect, every single object, 
+0:30:42 Shao Ngoi: we have this supporting details, this allows you to attach documents already, evidence, on the other hand, is also another component that allows you to attach documents, so those are the kind of things where while intellect put it in place, we find it, uhm, a bit more complicated or convoluted in terms
+0:31:00 Shao Ngoi: of, hey, what is the actual place for me to upload a document? Is it under the evidence or is it under the supporting details?
+0:31:08 Shao Ngoi: You find the evidence and the supporting details serve the same purpose but in different places. Hence, you know, for essentials, we purposely to hide it so that we only have a place to attach your documents instead of having two places.
+0:31:23 Shao Ngoi: Uhm, and then I mentioned cost and lesson learned. Again, those are the two types of stuff that we rarely see any client use, especially when it comes to cost.
+0:31:34 Shao Ngoi: When it comes to cost, unless you're doing some kind of cost analysis where, uhm, you know, this person got the toes dumped, and then you kind of do analysis on, alright, what is the medical cost for this person to have this injury addressed, okay?
+0:31:51 Shao Ngoi: Or what is the corrective actions that I am implementing will cost the company, right? I rarely see those kind of cost analysis for safety purpose, right?
+0:31:59 Shao Ngoi: Uhm, hence, one of the reasons why we hide it is because we don't see it enough, uhm, but if, let's say, for the team, you are interested in that, we can also turn it back on.
+0:32:10 Shao Ngoi: Just to show you how to turn it back on, uhm, I can show you the setup page in a bit.
+0:32:15 Shao Ngoi: And the other components left here is the lesson and learn. Most of the time, the lesson learn, what Intellect has given us, is really just a, a page of messaging, and then who do you want to send that message to.
+0:32:30 Shao Ngoi: We find a better use case for a lesson learn is more, towards, I don't remember who was the lady who mentioned, you want to be able to evaluate the data over time.
+0:32:41 Shao Ngoi: We find those lessons learned down the road, when you have enough data to evaluate, right, make more sense than a lesson learned for a given session.
+0:32:50 Shao Ngoi: Scenario or a given incident. Hence, again, we only leave the three common pieces that we usually see, right, uhm, for essentials.
+0:33:00 Shao Ngoi: But if we, let's say we want cause, if we need witnesses, we want evidence, those are simple. We just turn on and off in the back that I can show the team in a bit.
+0:33:09 Shao Ngoi: Make sense so far? Alright, so let's say I'm done with my investigation. I, all I need to do is submit this investigation for approval.
+0:33:19 Shao Ngoi: Uhm. In the approval step, if I now again take a look at all the sessions that I have defined, if I collapse all this, you'll see that in the approval section the blue section is the sections that's in focus right now to tell the user right this is the sessions pertaining to you.
+0:33:37 Shao Ngoi: You need to populate the data within this within this box. Right, so for the approver, right, uhm, they can review everything.
+0:33:47 Shao Ngoi: They can go. Alright, all looks good. Approval would be defaulted to now, right? And then it will default to me.
+0:33:59 Shao Ngoi: Let's say this is being approved by someone else, right? I can also say, alright, it's Ethan who approved it. Now I can close to close the incident or let's say there's a certain component that I realize is missing in my review and approval process.
+0:34:16 Shao Ngoi: Let's say I take a look at the action plan. There's no action plan, but it should have an action plan.
+0:34:21 Shao Ngoi: I can return this to prior stage. What that means is that I can go in my approval. I need corrective action to avoid similar future incident.
+0:34:42 Shao Ngoi: Now I can technically send it back to prior stage. Don't have that data populated here. This is days away.
+0:34:55 Shao Ngoi: This is for injury. Return to prior stage. Now I'm essentially sending back to the investigation stage again. OK, so this is just in a nutshell of, you know, a workflow of four stages, right?
+0:35:11 Shao Ngoi: Someone reports it, someone verifies it, someone investigates it, and so on. Someone approves it. All these stages can be turned on and off based on severity.
+0:35:22 Shao Ngoi: OK, before we go down that, uhm, options of turning them on and off, how closely is this process fits SIA?
+0:35:31 Shao Ngoi: The 
+0:35:31 (Amanda Raver (6414)): EHS process right now. Question I want to ask is not right now, but how closely does it fit our plans, right?
+0:35:41 (Amanda Raver (6414)): We're not just replacing it. It's just that we're kind of creating a first system, but I think this is pretty close to what we want to have.
+0:35:53 (Amanda Raver (6414)): There's going to be nuance Well, um, so most of the initial, uh, initial, uh, initial report stuff is most likely, I think, going to be filled out by the folks at 2222, so the security folks.
+0:36:12 (Amanda Raver (6414)): They're going to be typing it in based on information they received from a phone call. So I'll have to work with a lot of what's new, just a bit, because then there's usually some follow-up information, so they're going to complete information from those initial reports, uhm, and then I'm going to, you
+0:36:32 (Amanda Raver (6414)): know, look back at it. I've got a few questions.
+0:36:42 (Amanda Raver (6414)): It would not be a good time to go through questions. Yes, please do. Okay, so, uhm, do you have your location coordinates?
+0:36:50 (Amanda Raver (6414)): Is it possible to put a, like a custom background of the plant and have that overlay with our XY, uh, common coordinates?
+0:36:58 (Amanda Raver (6414)): But if I say it's X32, Y14, it drops a pin there? Is it, is it, is that possible or? Like, does this just only live in the real world?
+0:37:08 (Amanda Raver (6414)): Uhm, 
+0:37:10 Shao Ngoi: this one, obviously, ties to the Google Maps, so it's not possible. This is an integration to Google Maps. We are 
+0:37:20 (Amanda Raver (6414)): working on a method to Uhm, essentially we would take your XYs from here and we're, this is like how the body, the new body, the visual works.
+0:37:30 (Amanda Raver (6414)): We're going to potentially do the same thing. So we would need a method of, because it's not always XYs, right, sometimes it's Xs.
+0:37:38 (Amanda Raver (6414)): And then sometimes it's whatever we, yeah, there's a couple of different flavors, the oddball ones out there, right? And then there's like parking lots.
+0:37:47 (Amanda Raver (6414)): So again, what we're going to do with parking lots, the ideal would be to put like, hey, this intersection is actually probably a problem, uhm, be more, like, where it's at in the parking lot.
+0:37:57 (Amanda Raver (6414)): So we would need flexibility to, you know, kind of have them pre-select what an XY would look like, and then have some follow-on questions that would, uh, kind of drill into where it's actually happening.
+0:38:10 (Amanda Raver (6414)): So on Google, if I go to Google and type in, uh, my Lab 1 and Lab 2, and I get it wrong, then I can just say, okay, I guess that's not exactly what I thought it was, and I can drag up into where I want it to be instead.
+0:38:25 (Amanda Raver (6414)): There's, like, two different input routes. Can I do, can we do that with this, like, where we say x, y, and oh, no, that doesn't work here.
+0:38:32 (Amanda Raver (6414)): And rather than having rules for all the one-offs, we can just drag it in to the map. I know Engineering was working on a, so, like, Azure has, like, a method kind of like that, and I think Engineering was kind of working on something like that, maybe, that we could have a more realistic map of the floor
+0:38:53 (Amanda Raver (6414)): , uhm, I don't know where that ever landed. That was a year ago. I mean, even if it was just a map that had coordinates on it, you can zoom into it, drop it in, like, a detailed map of what the lines look like and equipment and stuff, and you just drop it in where you know it is, as a group leader, or
+0:39:15 (Amanda Raver (6414)): something. I do believe Google does have the ability to do custom For example, Forge, for instance, has been around for several years, and they still offer that ability, but you can actually create your own map Like Google My Maps, for example?
+0:39:29 (Amanda Raver (6414)): No, it's actually a Google Map that you can find. Okay. Okay. Engineering prior to late last year, all of the sections had their own 3D AutoCAD drawings of their sections.
+0:39:58 (Amanda Raver (6414)): The first time we drew that all together, one comprehensive map, and we've created this. We've done that in AutoCAD and in a PDF form so that anybody can see, but as far as having interconnectivity, what he was talking about, there's been nothing I'm aware of that's been scored for just having that AutoCAD
+0:40:16 (Amanda Raver (6414)): and PDF. We probably want to just toggle off this world map. I don't know if that gives us anything really.
+0:40:23 (Amanda Raver (6414)): That was in the parking lot. Yeah, and then just say, have it have a text field where you can say this is X, Y, or at the base of the staircase to whatever, you don't know.
+0:40:39 (Amanda Raver (6414)): So, would you, so let's discuss that while we're talking about it. Would you want to have a free form text?
+0:40:46 (Amanda Raver (6414)): Would you want to have a drop down where it would only select three things for A or B and X and Y?
+0:40:50 (Amanda Raver (6414)): I mean, what would you guys envision? That's fine. Well, it would be a lot less dirty data if we had drop downs with, like, let's shop.
+0:40:59 (Amanda Raver (6414)): Yeah, so this, this looks a tad different than our MLX that we have access to. It has that, so it has our location.
+0:41:08 (Amanda Raver (6414)): When you drop down, like, that area, and then it has an additional text field if you want to put in, it's, it was at this staircase.
+0:41:16 (Amanda Raver (6414)): I was going to say, you're always going to need that, you know, additional text field. Yeah. For the specifics of where something happened, because even in it's, yeah.
+0:41:24 (Amanda Raver (6414)): Be good. So, I know, go ahead, go ahead, Samatin. Yeah, so I was just going to 
+0:41:31 Shao Ngoi: say, depending on what we're trying to report out at the end of the day, or what we're trying to trend at the end of the day, right, defining a text field or drop down would, would be critical, right?
+0:41:40 Shao Ngoi: video. Obviously we cannot really trend accurately with the text field, right? But let's say, uhm, for a drop down, right?
+0:41:47 Shao Ngoi: So what you see here, we only have other. We can technically define specific location by a specific location, uh, I don't want to say, same thing, a specific area by a specific location.
+0:41:59 Shao Ngoi: Let's say I'm selected Houston right now, right? I can tell the system for Houston, what are the applicable areas, right?
+0:42:06 Shao Ngoi: Let's say, maybe Houston have, uh, loading dock, uh, machinery, uh, welding areas. But for Toronto, maybe I only have shipping areas, right?
+0:42:18 Shao Ngoi: Those dropdowns by the location can be configured in the system to tell you, all right, for a given location, what would be the specific areas applicable to me?
+0:42:29 Shao Ngoi: Right, versus just other where you can type in, you know, uh, obviously a specific location here, or let's call it area, right, I can tell the system, all right, give me more as part of the setup, right, give me more, uh, areas that's applicable only to this Toronto location, and then if I toggle it 
+0:42:48 Shao Ngoi: to Houston, right, obviously the system will give you Houston-specific areas, but at the same time, let's say for a, you know, an area called Loading Dock, what the text box could help you then is to really define what specific part of the Loading Dock that this person got hurt.
+0:43:07 Shao Ngoi: At the same time, do we need to get down to the granular, uhm, details? Is there any value from your reporting side?
+0:43:14 Shao Ngoi: Are you trending against that value? Those are the kind of things I would recommend. If I had my loaders, it would be nice to have a station.
+0:43:25 Shao Ngoi: You 
+0:43:25 (Amanda Raver (6414)): know, they change over time. But ideally, it would be nice to have, uh, stations for, say, really, zero in on an incident, and it's occurring once, twice, three times, on an issue that our kids didn't read.
+0:43:47 (Amanda Raver (6414)): And I do know that the stations don't change over time, so. So, you have to, then, manage that issue. Depending on how much it is to manage it.
+0:43:54 (Amanda Raver (6414)): So, I don't know. I have my laurels, that would be I see location being shot. In some cases, zero. But, I see up there instead of, I see it in the shop, and then, like you said, you can have other specific locations, XY's, AB's, that's a, you click on those, and then, uh, and then, if you need an ad 
+0:44:23 (Amanda Raver (6414)): station, you can type in other information and step up the stairs next to them. Well, this, this, this structure, I anticipate being used for environmental instance as well, so then we're into, walkways and parking lots and, you know, just basically any place somebody can spill something, they're going
+0:44:43 (Amanda Raver (6414)): to spill it at some point. Yes, that's what I think, the south part of the connection. Yeah. So, specific location.
+0:44:51 (Amanda Raver (6414)): So, John, just, just confirm, specific location. Specific location, there would be, you know, over a hundred in many instances that would be associated with a location.
+0:45:00 (Amanda Raver (6414)): Is the system capable of that? 
+0:45:02 Shao Ngoi: Yeah, very much so. Alright, so we can set those up as long as we know, you know, what are the, let's say, let's call it the specific locations per a given location.
+0:45:13 Shao Ngoi: So could we 
+0:45:14 (Amanda Raver (6414)): have the specific location, XY dropdowns, and the other spot that we think we need to fit in there, and then and then maybe the L10, or maybe add to that.
+0:45:26 (Amanda Raver (6414)): I mean, it may change, but we also have a date associated with it, so we can say, well, what was it at that time?
+0:45:31 (Amanda Raver (6414)): Figure that out, right? Or even, or maybe even just a description. Part of what pretext we want there. So, I know that they were working on that, and I know that Steve in IT's group was working on something like that.
+0:45:49 (Amanda Raver (6414)): I don't know. Hey, Gabby, what did you say in my office? You always know. I've done that. I thought I'd remember.
+0:45:56 (Amanda Raver (6414)): Uhm. But we do, I mean, today it's free texting and it's not the greatest way of collecting because everyone calls them something different.
+0:46:07 (Amanda Raver (6414)): But I know that part of Eric's implementation needs the stations in there as well. So I'm going to have a day 1.
+0:46:14 (Amanda Raver (6414)): But it is, so we probably need to take this as a homework for us to have a discussion because we have to figure out who would be the ones updating patients and who would be the ones updating the administration.
+0:46:30 (Amanda Raver (6414)): Yeah, I believe the patients are still somewhere. I know they need it for another program as well, the rotation application.
+0:46:38 (Amanda Raver (6414)): If we can import those to here, that would be fantastic, right? But yeah, that would be helpful. Just to behold that, what would happen if it was like, if Cell 10 today has two processes associated with it and we split those tomorrow, which one does it go with?
+0:46:56 (Amanda Raver (6414)): That's why it'd be difficult to do that. It'd be difficult for the stations to do that. If we have any model change, sometimes we're slowed down or spewed up, then all gets thrown out the window.
+0:47:07 (Amanda Raver (6414)): I mean, in that case, most of the time it would work, but could we also just have like a descriptive, and maybe even that system could auto-populate this as what's happening at that station.
+0:47:20 (Amanda Raver (6414)): Even if the station number changed, you'd still have it, so it wouldn't be bad information. If you tried to track information based on the station number and that changed, it wouldn't be there, but you could still reference it.
+0:47:33 (Amanda Raver (6414)): You know, so let's say it's the same for a year, you can have two years. You still can reference that, but if it's 10 years, everybody has to realize that, hey, the station number might have changed, or, you know, at that point, yeah, it doesn't, yeah, that's sort of a 
+0:47:48 Shao Ngoi: quick answer. Seems like there are some homework, right? Obviously, some decisions and homework that we need from you guys, right?
+0:47:54 Shao Ngoi: So for today's discussions, though, without taking specifically at the fields, right, hearing that you currently have no process, sorry, no system that you are moving with, of moving from, right?
+0:48:07 Shao Ngoi: If we start with this process here, someone reporting, someone verifying, someone investigate, and someone approval, would this process alone work for the team?
+0:48:17 Shao Ngoi: Is this like a starting point? Yeah, can 
+0:48:19 (Amanda Raver (6414)): we have an automatic assignment of, I an investigator rather than having to select an investigator? Maybe, like, the injured person's group leader is always assigned to the initial investigator, or the safety specialist assigned to that shop, or something like that.
+0:48:34 (Amanda Raver (6414)): And just to piggyback that, I was wondering if there's an opportunity to do Yeah, yeah, because that would be a primary investigator So, 
+0:48:44 Shao Ngoi: again, now, great questions, right? So this is where, as part of the essential, uhm, version here is that instead of, you know, coming up with all these configurations and all these options being, uhm, you know, set in stone, what we have built in is really from, from essential side of things, we have
+0:49:06 Shao Ngoi: , oh, no, it's implementing, uhm, this is just a layering that IntSummit has put on top to help guide end-user in terms of, hey, instead of waiting for someone to configure it for you, as the, uhm, as the end-user, you can simply utilize what we call this Implementation Manager to help you with your 
+0:49:25 Shao Ngoi: setup. Okay? So what you see here is really per injury, ah, incident, we have minor, minor, minor, moderate, major, and catastrophic.
+0:49:36 Shao Ngoi: That's the, the, uhm, the categories that we went through, right? So let's say, for example, for a minor injury, right, going back to, who do I want to investigate?
+0:49:46 Shao Ngoi: Maybe I want my supervisor if it's a minor. Maybe I want EHS specialist if it's something that's, you know, moderate or beyond.
+0:49:54 Shao Ngoi: So this is where, as the, uhm, as part of the setup that we have built here for, uh, for end users, really, when it comes to the workflow action, I can tell the end user, uh, tell the system, You can, bear in mind, this is for minor.
+0:50:09 Shao Ngoi: I may even bypass verification stage. I don't need verification stage for, uhm, for minor incident, right? If, uh, for minor incident, I need an investigation, right?
+0:50:20 Shao Ngoi: Once I enable it, so you can disable it, but once I enable it, first thing that you'll see is that, who should be doing this investigation?
+0:50:28 Shao Ngoi: Is it a specific person? Is it the immediate supervisor of the person who's reporting it? Right, or a specific role, in this case, uhm, let's say EHS, uhm, the existing role, or it's a new role that we can create for SIA, right, let's say it's an existing role, I want EHS manager to investigate.
+0:50:48 Shao Ngoi: Going back there, how many days would this investigator have to, uh, complete the investigation? Because this is a minor incident, I tell, I can tell the system, the investigator will have three days to investigate, and at the same time, this is where you can turn on and off those little blue buttons
+0:51:06 Shao Ngoi: at the, at the bottom, the investigation tool, right, I want to have Bye-bye. Maybe no cost analysis, all I need to know is really action plan, right, what is the corrective actions or preventative actions to prevent this minor incident from happening again.
+0:51:21 Shao Ngoi: I can even enforce, uhm, enforce the rules such that for me to complete my investigation, I must have at least one action plan, okay.
+0:51:33 Shao Ngoi: So these are all the options without any configuration is there for you guys to, uh, I guess, set up or manipulate in such a way that best fits your requirements.
+0:51:43 Shao Ngoi: So this is, sorry Glenn. No, I was just going to say, this is only for minor, right? You can do the same thing, change the configuration for a different level of severity, okay?
+0:51:59 Shao Ngoi: What the? What that means is really, let's say this is minor, I don't need verification. If I go Save Exit here, now if I go down here for Moderate, what you'll see is that you'll have the same setup, but this is for the Moderate incident, okay?
+0:52:16 Shao Ngoi: I'm sorry, not Moderate, Moderate Level Injury Illness Incident, Uhm, same thing here, now I can tell the system, for Moderate, I want it to be verified, and who should be verifying it?
+0:52:29 Shao Ngoi: I want it to be investigated, who should be investigating it? If I say Specific Person, which means now the person who's verifying the incident needs to tell the system who is the investigator, okay?
+0:52:42 Shao Ngoi: So this is, uhm, Specific Person, Specific Person just means the person before, in the prior stage, which is the verification stage, needs to tell the system specifically who is that one person doing the investigation.
+0:53:00 Shao Ngoi: You have all these options, right? Immediate supervisor role, or even like, expression, this is where you can do your if statement here, just to define, alright, who should ultimately be the investigator.
+0:53:14 Shao Ngoi: This is a bit more complex, but generally speaking, right, if you have a role or immediate supervisor role, or a specific person, those are the scenarios that cover 
+0:53:23 (Amanda Raver (6414)): 80% of the time. So, in the event that, we'll say, for t********** purposes, the EHS manager is not available, or a safety specialist practitioner is not available, how is it tracking in the event they're out of the office and it doesn't just stick in their inbox and it goes, it's escalated either to
+0:53:45 (Amanda Raver (6414)): their manager or to another safety practitioner? Ah, so in this 
+0:53:50 Shao Ngoi: case, obviously, the intellect system does not have any integration with Outlook, so it doesn't know who is away, who is, who is, you know, out sick, what's not.
+0:54:00 Shao Ngoi: The task will sit in, in the queue for the person in intellect system. However, we can set up schedule where, let's say, for an incident, uh, anything that is five days overdue, I want the system to send a notification or reminder to the person responsible, as well as the supervisor of the person responsible
+0:54:22 Shao Ngoi: , uhm, maybe, uhm, along with EHS as well. So this is where the system doesn't know who is away, who is out of office, but the system does know if a task is overdue, and that's what we can utilize to send reminders or escalations, email, to 
+0:54:41 (Amanda Raver (6414)): whoever we want to send it to. Thank you. And we'll know who's out, so we may, I mean, that may just be a manager reassignment type thing.
+0:54:51 (Amanda Raver (6414)): So I have a couple of questions on just things, uh, maybe personal preference, but, um, because the list is so long for, uh, so one, I want to make sure that if there are multiple people involved that you can add more than one name to the, uh, injured person list.
+0:55:13 Shao Ngoi: So in that, uh, good questions there. So in that scenario, what we have here is really each of those person injured must be a record of its own, right?
+0:55:22 Shao Ngoi: Simply because you need to file 301 
+0:55:26 (Amanda Raver (6414)): separately. OK, uhm, and then. And, uh, in a past life for the injury, we had, uhm, sort of a back body diagram, kind of like you see on fractions, uhm, just a, just a, you know, just a silhouette of the person.
+0:55:47 (Amanda Raver (6414)): Yeah, yeah, yeah. Kind of click on that. That prevents a lot of scrolling because that list of body parts is very, very long.
+0:55:54 Shao Ngoi: Right. So that's why in, in, in the essential component here, we purposely do not use the body map. We find the body map while it's visually helpful, but it's not really helpful.
+0:56:07 Shao Ngoi: Simply because you need to know which, which area of the body to scroll over to see the options to select the, the injury, the injury at that body part.
+0:56:17 Shao Ngoi: In this scenario, what we find from, at least from our experience, is that this helps the end user a little bit more.
+0:56:23 Shao Ngoi: Now I can specifically go down the hierarchy. In the body map itself, the other one thing that we don't have is the hierarchy.
+0:56:31 Shao Ngoi: Over here we can go, all right, it's a nest, it's exterior, interior. Is it a trunk? If it's a trunk, then for the abdomen, do I need more specific?
+0:56:43 Shao Ngoi: If it's intestines, do I need to go further down? Like I said, this has four levels based on your Department of Flavors.
+0:56:47 Shao Ngoi: We don't have to go down this depth. But this option here without the image allows us to have this hierarchy, which means from your reporting side of things, you can report based on a specific body part or a 
+0:57:03 (Amanda Raver (6414)): category of body parts. Can we have a search field that we all might be talking about? 
+0:57:11 Shao Ngoi: Search fields, uh, we can look into having a search field. But at the same time, from a searching side of things, because we have so many options, I'm just trying to think from an end user, do I 
+0:57:26 (Amanda Raver (6414)): even know what to search for? And to Monica's point, that is a very extended, a very, very extended long list of body parts to understand and the benefits of having it at that granular level.
+0:57:37 (Amanda Raver (6414)): However, from a data input perspective, it is a lot. 
+0:57:43 Shao Ngoi: Right, again, going back to we don't have to go with this list, this is just a starting list that we pull from the Department of Labor.
+0:57:51 Shao Ngoi: Let's say you have something that is more, ah, simplified. Right, we can cater this list, body part list, nature of injury, illness list, to your, ah, 
+0:58:00 (Amanda Raver (6414)): your reporting needs. What, ah, another, that kind of leads into my next question, ah, so the medical facility that we have on site.
+0:58:09 (Amanda Raver (6414)): Does a lot of this, and they can, they take notes on the injury itself. Can, can we have that individual do this part?
+0:58:17 (Amanda Raver (6414)): And if so, could it be done out of order? Good, you know, just, you, we have these four steps you've gone through.
+0:58:23 (Amanda Raver (6414)): Can they be done? Do they have to be done in that sequential order? Like, what if we have a, an expert that's early in the process that would know about those things before we would have information about what happened, like, injury specifics before we know, you know, the cause, root cause, or something
+0:58:39 (Amanda Raver (6414)): like that. 
+0:58:40 Shao Ngoi: Uh, yeah. Yes and no. So, the reason why it's yes and no is that none of this data needs to go in order, right?
+0:58:49 Shao Ngoi: Obviously, injury classification, you have ordered your body parts, your investigation details, so on and so forth. None of this needs to go in order.
+0:58:56 Shao Ngoi: However, the no part is important. The reason that not everybody can just come in here and modify the record. If I'm in an investigation stage, in this example, the person responsible is the investigator, either the person I selected or the person who is verifying the incident selected, or is it a role
+0:59:16 Shao Ngoi: , or is it a supervisor. So in Intel X, this is a task-based workflow, right, or task-based system. So essentially, the person responsible for a given stage, for a given record, will be the person responsible for to come into the system and modify it, unless I have a higher level of permissions, such
+0:59:34 Shao Ngoi: as the system admin, who has the added permissions to go edit the record. It's not simply just anyone who can access the 
+0:59:41 (Amanda Raver (6414)): system can modify the record. Is it possible to just, have an all-time allowable...I mean, like, always have the input from the clinic You know what I'm saying?
+0:59:55 (Amanda Raver (6414)): Like, the clinic specialist would always have the authority to change specifically the injury details part, rather than only the person responsible.
+1:00:10 Shao Ngoi: Now, let me ask, before I answer that, are we expecting the clinic specialist to come in here into interview? Yeah, yes.
+1:00:21 (Amanda Raver (6414)): OK. 
+1:00:21 Shao Ngoi: Uh, we can potentially look into that, just having the clinic to modify the, uh, I guess the clinic portion of it.
+1:00:33 Shao Ngoi: a configuration change, right? Currently, it doesn't behave that way, uhm, because the more we have, the more hands that we touch a record, the likelihood of that record being, you know, data being dirty, it's, it's, that nobody knows what is the source code.
+1:00:49 Shao Ngoi: And in my 
+1:00:52 (Amanda Raver (6414)): field, in our current process, we have not a lot, we have multiple individuals who are going to be filling out information that's related to this, particular incident.
+1:01:03 (Amanda Raver (6414)): So for example, our sequence of someone calls 222 or 322, uh, security, I'm not expecting security to see all this information.
+1:01:14 (Amanda Raver (6414)): I'm expecting security to just see the relevant information that they're needing to fill out to start this record. And at that point, then either, and we're still looking at this process, but at that point, you go to the group leader, and the group leader has information to fill out, out.
+1:01:37 (Amanda Raver (6414)): Is that possible versus having all this combined into one long extended form? And then my second question is, is that, would the CARE case management application within NCEPS allow, uh, would that information be allowable to transfer?
+1:01:53 (Amanda Raver (6414)): Transfer into this individual, individual records. So all the clinical information is then facilitated by the clinician, not by a group leader or, uhm, uh, security setter.
+1:02:08 Shao Ngoi: Let me answer the first one there. First, uhm, so from a security side of things, right? Uhm, this is where I'm just a system admin right now.
+1:02:16 Shao Ngoi: I can see everything, right? But generally speaking for any given application within Intelix, right? I will have the standard four permissions, right?
+1:02:26 Shao Ngoi: Who can create or ultimately who can report an incident? Whoever can report an incident be able to, you know, click on this add entry to find, all right, what is the incident I'm reporting?
+1:02:37 Shao Ngoi: Secondly, then, who can view the reported incident? Right, uhm, let's say I am, uhm, a supervisor. Maybe I can view my team's incident, but not all locations, right?
+1:02:48 Shao Ngoi: So it comes about, comes down to, uh, as a user, what is my login location, right? What is the hierarchy I belong, which, which hierarchy I belongs to?
+1:02:57 Shao Ngoi: So the system be able to define those location and hierarchy filter, and given the view permission that I have, those are the things that I can see.
+1:03:08 Shao Ngoi: Now from, for the next level up is the edit permission. Okay, as the person with edit permission, I will be able to edit someone else's record.
+1:03:17 Shao Ngoi: So in this case, uh, in this scenario here, I'm a system admin, obviously I will have edit permission. Even though Dave is the person responsible here, but as you can see, I can come in here and modify his record.
+1:03:31 Shao Ngoi: I can make modification to here. I can hit save. That is a modifications to a record that Dave is responsible for.
+1:03:39 Shao Ngoi: That is the edit permission. Delete permission, on the other hand, simply just a permissions that we all typically use. Typically granted for system admin only, where, uhm, you know, just like what it would say, I can delete an incident record from the system.
+1:03:57 Shao Ngoi: Now that said, those are the four permissions. However, if I am a person responsible at a given time. Even just, I'm just a regular person who can report an incident.
+1:04:09 Shao Ngoi: But if I am a person responsible for a given record at that point in time. I will be, I'll automatically be granted the view permission.
+1:04:19 Shao Ngoi: And the added permission to that record at that stage. Okay, so for example, let's say Dave here is just a regular employee.
+1:04:30 Shao Ngoi: He's, he only have the permissions to report incidents. That's it. However, if because he's being selected as the person responsible to do investigation for this record, when Dave log in, he will see this record on his task list.
+1:04:48 Shao Ngoi: While he is the person responsible at this stage for this record, he can view the details of this record and he will be able to edit this record that belongs to him.
+1:05:00 Shao Ngoi: The moment he's done, right, the moment someone that's not the person responsible anymore, that privilege to be able to view this value and edit is being removed from that person and revert back to how it was before.
+1:05:12 Shao Ngoi: So in this case, let's say Dave is done with his investigation. He's submitted for investigation, submit the investigation for approval.
+1:05:19 Shao Ngoi: He is now no longer able to view this record anymore because he's no longer the person responsible. Make sense so far?
+1:05:29 Shao Ngoi: So what? 
+1:05:30 (Amanda Raver (6414)): Right, so 
+1:05:32 Shao Ngoi: there are the two concepts in this like as regular user and then as a person responsible. Regular user, you have that four level of permission that you can get.
+1:05:44 Shao Ngoi: Either be able to report, view, edit, or delete and and or all combinations of the four. If I'm the person responsible with none of those permission.
+1:05:56 Shao Ngoi: Because I'm the person responsible, the system will have this special person responsible permissions granted to that person at that stage.
+1:06:04 Shao Ngoi: At that point in time where they're responsible. At that point in time, they will automatically be granted the view and the edit permission.
+1:06:14 Shao Ngoi: To that one record only, not across the application, to that one record only, where they are responsible. Once it's done, he's no longer have access anymore to the record, he's back to how he was before.
+1:06:29 Shao Ngoi: It's just as a regular employee. So those are the two separation within Intel X that you'll see across the board, where person responsible is a special group and they will always have the view and edit permission.
+1:06:43 Shao Ngoi: If not, they can be removed. Complete what their response, what they supposed to do as a person responsible. I see, yeah.
+1:06:53 Nicholas Leuck: Oh sorry, I just was going to ask. Does edit mean delete? No, I didn't mean just change. Change the, 
+1:07:01 Shao Ngoi: uh, the data on the record. Okay, thank you. 
+1:07:05 (Amanda Raver (6414)): I have one other question. Sorry, go ahead. No, go ahead. Oh, well, this has to do with, again, this might be personal preference, but further down where you have your.
+1:07:16 (Amanda Raver (6414)): Your cause analysis, your action plans, and that sort of, it will, it must be separated out to be in a, uh, so, so you scroll up and down instead of having to flip those tabs across.
+1:07:32 (Amanda Raver (6414)): Yeah, 
+1:07:34 Shao Ngoi: we can have it go scroll up and down, uhm, the reason why we have it sideways also because some people don't like scrolling so much to get to an action plan.
+1:07:46 Shao Ngoi: Let's say I make this up and down. Sure, right, just that now for me to get to action plan now I have to scroll all the way to the 
+1:07:53 (Amanda Raver (6414)): bottom to see Yep, I understand, I'm only, in my past life I had a hell of a time getting people to click across tabs, so they would always forget the action plan.
+1:08:04 (Amanda Raver (6414)): I'm trying to make it so people, because by the time you get, it they wouldn't see the other tabs, they would skip it, and it absolutely made me crazy.
+1:08:20 (Amanda Raver (6414)): Right, so, okay, so kind of the plan here is that the clinic needs to be able to enter information, but we also don't want to stop the next person from starting the investigation to the point earlier.
+1:08:36 (Amanda Raver (6414)): Right? And so. The clinic's information is somewhat fluid throughout the process, right? We get updates, they end up going to the hospital, whatever.
+1:08:44 (Amanda Raver (6414)): We get updates throughout the time. We don't necessarily want the person that has the form at that point in time to, one, maybe even see that information.
+1:08:51 (Amanda Raver (6414)): But two, definitely don't want to communicate them, so they have to go in and update it. And the fluid nature of the clinic may change the severity of the injury, which would then require additional information, like the corrective action, or whatever that happens to be.
+1:09:10 (Amanda Raver (6414)): Is that possible? So, like, the associate comes in, they, they bump their head, like, I'm generally fine. Uh, they get off the work that night, they end up having a concussion, and they go to the hospital.
+1:09:22 (Amanda Raver (6414)): Bye-bye. That changed the severity pretty dramatically, and the clinic would be made aware of that, I think, within 24 hours or so, but the process has gone on, where maybe, bump the head, you know, it didn't really require a whole lot, but then it's like, well, the night, the they're concussed, and 
+1:09:40 (Amanda Raver (6414)): they're gonna miss work, and there's all these other things that play along now, that's gonna change severity, and it's gonna change the requirements that aspire fields.
+1:09:50 (Amanda Raver (6414)): Can it handle that, or does it really have to be, like, this, like, rigid process? One step to the next, and not restarting based on new information throughout the investigation.
+1:10:02 (Amanda Raver (6414)): Right, 
+1:10:02 Shao Ngoi: uhm, so, anything that is Mark as mandatory, which means I need to populate data before I can save. Now, that being said, let's say I need I am the investigator.
+1:10:14 Shao Ngoi: I don't know any of this, uh, information yet, right? I can still do what I, what are the mandatory, uhm, fields that I need to populate.
+1:10:24 Shao Ngoi: I can still continue my investigation. I can hit save. I can follow with a clean name. I can do my follow up with whoever that I need to follow up with.
+1:10:31 Shao Ngoi: I can still come back to this record, right? Because ultimately, as long as Dave doesn't go, all right, I think I'm done with this investigation.
+1:10:38 Shao Ngoi: He can still continue to do investigation, do updates to this record as he sees fit, right? But I need to explain it to the also, at the same 
+1:10:47 (Amanda Raver (6414)): time, in parallel, be making 
+1:11:00 Shao Ngoi: Because we have multiple people touching this record, ultimately, who is responsible for a, who is, who is the champion who, who would know that this investigation 
+1:11:12 (Amanda Raver (6414)): is now done? So there's like, there's like 3 lanes here that have to take place, ultimately, landing with safety.
+1:11:26 (Amanda Raver (6414)): But there is the clinic aspect, there's, well, initially, there's the security aspect, but beyond that. You have the clinic swim lane, you have the supervisor swim lane, you have the, uh, safety specialist swim lane, and all these things kind of work in parallel.
+1:11:45 (Amanda Raver (6414)): But they have different, very distinct areas. They might be viewing the other people, but they have their own portions to them, not, like, overriding each other, they're doing their own portions to the investigation.
+1:11:58 (Amanda Raver (6414)): And that's why I asked the question if the Care and Case Management Competition would close that gap. So, 
+1:12:09 Shao Ngoi: in that scenario, is it then make more sense to have day follow-up with those different different, I know, tree, tree, tree, tree, tree link can simultaneously happen, be happening, right?
+1:12:21 Shao Ngoi: The clinic, the security, the classification, what's not, let's call it the EHS portion. Should then be the person assigned as the investigator be following up with this tree party, versus having tree party coming into here and modify this record?
+1:12:38 Shao Ngoi: Each party needs to 
+1:12:39 (Amanda Raver (6414)): be able to log in and update their own specific areas. Yeah, like, I feel like security, I don't know how often they necessarily get involved after that initial report.
+1:12:51 (Amanda Raver (6414)): Yeah, so they do the initial report. They hit enter. And it goes on, and then the other, the other people are the ones that need to do things concurrently.
+1:13:01 (Amanda Raver (6414)): Yes. Does that help? 
+1:13:06 Shao Ngoi: Okay. So the expectation is that. For them to come in to Intellect to modify it versus having these investigators to do follow up with those parties.
+1:13:18 Shao Ngoi: Correct. So, 
+1:13:21 (Amanda Raver (6414)): uhm, so you 
+1:13:22 Shao Ngoi: mentioned security. You mentioned the clinic. Uh, who else should be responsible that comes in and do something within this record here?
+1:13:33 Shao Ngoi: There's, there's 
+1:13:35 (Amanda Raver (6414)): the safety specialist. So the person that, the actual safety rep, or you guys, am I saying the right term here?
+1:13:41 (Amanda Raver (6414)): Safety specialist. Um, there is the supervisor, uh, and then there is the clinic. 
+1:13:51 Shao Ngoi: Alright, so let me then further understand the portion of investigations then. So obviously, someone report an incident, someone could, could, may or may not need verifications.
+1:14:03 Shao Ngoi: Let's say everything has been verified and deemed as a valid incident. So is this where the, um, the clinic, the safety specialist, the supervisor start doing their own thing and then come in in whenever they have the data to update this record?
+1:14:19 (Amanda Raver (6414)): Yeah, so, so we kind of walked through an incident, right? Uhm, because there could also be the, the security portion of this is actually to create that master record.
+1:14:29 (Amanda Raver (6414)): Because there could be multiple incidents. There could be involved. We want to be able to link them all together. So let's, let's put that aside, right?
+1:14:36 (Amanda Raver (6414)): So an incident happens, the supervisor brings the associate into the clinic and they, and they kick off the initial, uhm, writing down of what happened.
+1:14:45 (Amanda Raver (6414)): We call it the AIR. Right? They, they gather all the information right there. The clinic then works with the associate to enter the job process analysis.
+1:14:55 (Amanda Raver (6414)): That's a separate set of questions. The clinic also has information. So, like, did they go out? How long were they out?
+1:15:01 (Amanda Raver (6414)): Is this OSHA required? They have their own aspect of this that is somewhat fluid and ongoing. While the clinic is working with the associate, the supervisor could go back to the floor and start working on their root cause analysis, their quick wins, or whatever you want to call it.
+1:15:18 (Amanda Raver (6414)): Uhm, and then start doing the long-term planning. While all of that is going on, the safety specialist can start viewing all this information, going out, maybe getting statements, maybe reviewing reenactments, things like that, and then entering their own notes along the way.
+1:15:33 (Amanda Raver (6414)): So they have their own note-taking area. So all these, all these three lanes here kind of taking place all at the same time to keep things flowing, ultimately landing with the safety person, this gets them to go back, like, hey, you're five-wise, not sufficient, maybe this angle, this approach, this 
+1:15:51 (Amanda Raver (6414)): lean-to, incorrect or, you know, whatever happens to be, or doing the final approval of like, yeah, this is it. Now we're into the monitoring phase of 30, 60, 90, or whatever that needs to be.
+1:16:03 (Amanda Raver (6414)): And then they are then saying at the end of that review, process that, yep, your countermeasures are working, and then closing that out.
+1:16:17 Shao Ngoi: So, OK, so then, before I jump into understanding more, so who then is the person? The person that says, alright, now this is all done, is ready to, OK, safety person.
+1:16:31 Shao Ngoi: Then how do I know, as a safety person, that the clinic has populated everything that the clinic needs to populate, as well as whoever doing the root cause has completed the root cause?
+1:16:39 Shao Ngoi: That's why I asked 
+1:16:41 (Amanda Raver (6414)): the question if the C.A.R.E. case management application is synchronized with these individual incident records. 
+1:16:53 Nicholas Leuck: Can I chime in and ask a question, please? 
+1:16:56 (Amanda Raver (6414)): Yeah. 
+1:16:57 Nicholas Leuck: Uhm, where we have, so you currently have investigation highlighted. What I wonder is, we, we don't necessarily have one person, uhm, being responsible.
+1:17:09 Nicholas Leuck: Because there's different responsibilities within the investigation. Is it, is it possible to have draft verification and then have either parallel investigations going on, so you have the clinic Okay.
+1:17:26 Nicholas Leuck: You have the safety specialist, you have the supervisor, or is it possible to add, uh, steps somewhere, you know, add additional investigation steps, so in between verification and investigation, you have clinic or something, uhm, you modify this current workflow that you are showing, uhm, to be able
+1:17:50 Nicholas Leuck: to meet the responsibility, uh, requirements, uhm, is that possible within this, this current software? 
+1:18:00 Shao Ngoi: Yeah, we can always add steps into it, right? Uhm, even for investigation right now, we have it as a individual, right?
+1:18:08 Shao Ngoi: But part of the setup, we can also tell the system to have it as a group or a role, right?
+1:18:12 Shao Ngoi: Which means for a given location, let's say for Houston, right? This is for Houston. Maybe for Houston, uhm, I can define an investigation role or slash group of people, right?
+1:18:25 Shao Ngoi: Who could, who made up of the safety specialist, the, uhm, the clinic person, in. The, uhm, the root cause analysis individuals, right?
+1:18:35 Shao Ngoi: We can add those people into that one group so that that one group of people will be responsible in completing the investigation as a whole, right?
+1:18:45 Shao Ngoi: Let's say, for example, in that investigation, in that investigation group, I have, you know, Xiao, you have Dave, you have Emma as the investigator, right?
+1:18:53 Shao Ngoi: I am responsible for the clinic, Dave is the safety specialist, and then Emma is the, uhm, uh, the root cause analysis person.
+1:19:03 Shao Ngoi: The three of us will get a task in our task list. It's the same record that we are responsible for, right, just that I would need to know what I'm modifying, Dave would need to know what he's modifying, Emma needs to know what she's modifying, so that Bye.
+1:19:19 Shao Ngoi: It's a coordinated effort to get the investigation done. Now, however. As the person, me, who's responsible for the clinic details, can I see everything?
+1:19:33 Shao Ngoi: In the initial report, in the verification statement? I don't know if it really 
+1:19:41 (Amanda Raver (6414)): matters, but for ease of entry, I think it would be, I think it would be, because like you mentioned, there's a lot of scrolling here.
+1:19:50 (Amanda Raver (6414)): From my perspective, please join me in thanking that they would see what is only relevant to them, not because of security reasons necessarily from my perspective, but just for a use of, yeah, I need to get in, I need a clinic logged in, I need to see medical treatment, and I need to see OSHA.
+1:20:07 (Amanda Raver (6414)): Exactly. It's just easier for them if we need to do something like sharing of information. That's what reporting is for, from my perspective.
+1:20:18 (Amanda Raver (6414)): Yeah, I guess a better example would be if we had a, for example, a master incident where there was someone who was injured, and we can say they were severely injured because of a PIT or a lift truck incident, and that also resulted in an environmental spill, for conversation's sake.
+1:20:39 (Amanda Raver (6414)): That's what reporting is for. This is two separate incidents. You may have to note somewhere that there's an environmental component, but I think they have a link.
+1:20:47 (Amanda Raver (6414)): That's a nice thing with the master incidents that you have. Yes, they should all share, they're individual, they should all link together.
+1:20:52 (Amanda Raver (6414)): I'm just giving you an example of the number of people that could be potentially involved. Yeah, in one particular instance.
+1:21:00 (Amanda Raver (6414)): Yeah, so 
+1:21:00 Shao Ngoi: you have to again to Monika's right? I think I got a point is you have to create separate incident and then relate them.
+1:21:08 Shao Ngoi: OK. Uhm, again, uhm. I think going back to the two from a scrolling standpoint to only see the sessions that you're responsible for.
+1:21:20 Shao Ngoi: We will not be able to cleanly do this unless we tell the system. Hey, this stage is for the cleaning.
+1:21:27 Shao Ngoi: This stage is for safety. This stage is for the root cause. We will not be able to cleanly go, alright, one investigation stage, whoever log in.
+1:21:35 Shao Ngoi: The system will not be able to tell, right, if I am responsible for injury classification and then someone else is responsible for the medical treatment and then someone else is responsible for the root cause.
+1:21:45 Shao Ngoi: The system will not be able to tell that because all it knows is that at that point in time, we are the responsible person.
+1:21:53 Shao Ngoi: That's it. It's a group of people. If it's at 
+1:21:56 (Amanda Raver (6414)): a different, can you update more than one stage if it's set up that way? Yeah, it 
+1:22:02 Shao Ngoi: can go through multiple stages. There's that now, uhm, one of the caveat to that, the next stage will have to depend on the previous stage completion.
+1:22:11 Shao Ngoi: So no, 
+1:22:13 (Amanda Raver (6414)): the answer is no. 
+1:22:14 Shao Ngoi: Yeah, it's not sequential. This is linear. You just said it's not simultaneous. It's a sequential. OK. 
+1:22:25 (Amanda Raver (6414)): So how would we make that happen if we needed multiple people to be working on the same? Incident at the same time.
+1:22:37 Shao Ngoi: That's where I mentioned they have to coordinate internally in terms of who's responsible for what for what, right? If it's a group of people, it's just a coordination within the team to know.
+1:22:48 Shao Ngoi: Alright, today I'm going I am doing my injury classification or someone else will be doing the regulatory reporting, for example, and then someone else would be doing the medical treatment portion, right?
+1:22:59 Shao Ngoi: The system will not will not be able to tell within the team who is doing what. Yeah, it sounds like you assign a group 
+1:23:08 (Amanda Raver (6414)): of people, not a single responsible person, I guess, so that so then how do we, when everybody's done entering, that's, that's where the tricky bit comes in, because how do we know all those people are done so that we can close out that portion of the exercise and move on to the next one?
+1:23:34 (Amanda Raver (6414)): Like, at that point, I think it has, it's always going to come back to the safety of the person is going to be the one that has to make sure all the stuff is entered to move on to the next.
+1:23:44 (Amanda Raver (6414)): Can, can we just have a checkbox at the bottom that says, I validate this section is done? Oh, for each section?
+1:23:51 (Amanda Raver (6414)): So, like, under medical treatment, under lost time tracking? Can we a little checkbox that says this section is done? 
+1:23:59 Shao Ngoi: So, again, going back to, is it done done? Or is it just done at this point? What if 
+1:24:03 (Amanda Raver (6414)): there's a future update? While we're thinking about that, before I forget, can Dan fill out lost time tracking while I fill out regulate, regulating, or reporting down at the bottom?
+1:24:22 (Amanda Raver (6414)): Regulatory reporting. Two different parts. Same form, same note, 
+1:24:39 Shao Ngoi: We're in investigation stage with multiple people, uhm, be responsible for it, right? Taking a step back, do we need to break out this into more steps in the process?
+1:24:53 Shao Ngoi: Or are we okay with a group of people? The reason we 
+1:24:56 (Amanda Raver (6414)): don't want more steps is because what you referenced earlier, you have to complete that step before the next person can work on it.
+1:25:03 (Amanda Raver (6414)): We need multiple people working on it at the same time. Right, so then we, so. So that brings back the request.
+1:25:12 (Amanda Raver (6414)): The original question on the investigation, can more than one person be filling out the investigation at the same time? 
+1:25:21 Shao Ngoi: Yes, just that again. The system will not be able to identify who is responsible for what. It's a collaboration within that team.
+1:25:28 Shao Ngoi: Can we 
+1:25:30 (Amanda Raver (6414)): assign more than one group? So it's like, the clinic group, the safety group, and then the person who started it, which is the supervisor?
+1:25:40 (Amanda Raver (6414)): Can, can, you can have more than one group? And then, so what are groups? Do groups hold permissions or no?
+1:25:49 Shao Ngoi: It do both, right? So groups can hold permission. Let's say I have a clinic group. That clinic group may not have access to report anything, but I can still assign that clinic group as a person.
+1:26:01 Shao Ngoi: Inside the permission 
+1:26:03 (Amanda Raver (6414)): group, can I say you do not have access to approver comments? Can I pinpoint pieces of the form to say you don't have access to this?
+1:26:17 (Amanda Raver (6414)): Regardless of you own the form or 
+1:26:22 Shao Ngoi: Not by sections, right? So let's say, for example, right now, Investigation. You can see that everything is editable. We can lock down sections by stage, not by user.
+1:26:33 Shao Ngoi: Alright, so, uhm, because you can see that I, this, this approval, this record has went through approval and has been pushed back to the previous stage.
+1:26:43 Shao Ngoi: As the person responsible here, either person or group responsible, even if I click on edit right now, I am not able to edit the approval comments.
+1:26:52 Shao Ngoi: But I can edit everything else. I can, uhm, yeah, like I said, I can lock down fields by stage, by section, but I will not be able to lock down within the same 
+1:27:04 (Amanda Raver (6414)): stage by person. And there's no html background and stuff that we can, because the 
+1:27:17 Shao Ngoi: system doesn't recognize who's responsible. The system doesn't know who's responsible for it. All the system knows is who's responsible for this record at this stage.
+1:27:30 Shao Ngoi: Right. What I'm 
+1:27:31 (Amanda Raver (6414)): thinking is, can the html understand me as a logged in user and then I can hide elements via html? Because I'm assigned this user group.
+1:27:42 (Amanda Raver (6414)): So if user group, clinic, don't show, hide html element. It's still there, obviously, in the background. If they do an inspect, they can probably figure it out.
+1:27:52 (Amanda Raver (6414)): But it is hidden via html. Based on the logged in perspective. 
+1:28:00 Shao Ngoi: That's, that's potentially possible. But then we are getting down to what we call a field level security, right? Uhm, that would potentially increase.
+1:28:10 Shao Ngoi: I wouldn't say potentially increased. Depending on what we are hiding, that may or may not introduce what we call a performance issue, simply because now the system have to evaluate for a person access every single time a person accessing this one record, the system needs to go figure out if this person
+1:28:31 Shao Ngoi: have the right permissions, first of all, to access the record. If it does, now I have to go further down to go tell the system what fields should be visible for me.
+1:28:43 (Amanda Raver (6414)): We're just trying to figure out a way that multiple departments or sections can be filling out the incident report at the same time.
+1:28:52 (Amanda Raver (6414)): And it not being closed to move to the next person because there'll be multiple people active, multiple groups. 
+1:28:59 Shao Ngoi: How would we do that if we don't have to wait on one being complete It requires collaboration. Alright, so let's say safety specialist is the one that ultimately has the final say.
+1:29:21 Shao Ngoi: It is up to the safety specialist to make sure that the clinic person has done, completed all the portions. The supervisor has done all the root causes that's required.
+1:29:33 Shao Ngoi: So, there is some sort of collaborations that needs to happen, because the system just will not be able to tell if something is being, is complete or not.
+1:29:41 Shao Ngoi: So, that's why I was asking about the checkbox, not that the checkbox would be forever and always is the last say in the matter.
+1:29:50 Shao Ngoi: But, at this point, it's just a, it's just a sticky note for the next person coming to look at it to say, hey, this, this person's happy with it the way it is.
+1:30:00 Shao Ngoi: Yep, we get nice checkboxes to it, right? Uhm. It's just a matter of where do you want to add them at them?
+1:30:06 Shao Ngoi: Is it medical for every single sections, right? Uhm, and bear in mind because. The same group of people have the same view, have the same access.
+1:30:19 Shao Ngoi: Uhm, for all the members within the same group, right? Again, the collaboration still could be that, hey, clinic is responsible for the medical treatment.
+1:30:29 Shao Ngoi: It doesn't stop the supervisor for checking. Obviously, the system will tag who checked it, right? Uhm, it's just that it doesn't stop anyone within the same group responsible to modify someone else's record, right?
+1:30:43 Shao Ngoi: That collaboration 
+1:30:44 (Amanda Raver (6414)): will still have to happen. Your concern is somebody goes in and fills out the wrong portion. If, let's say, medical treatment is, uh, whose responsibility, they go in there, they're not the person that's supposed to be modifying that, somebody else goes in behind them in a different department, a different
+1:31:05 (Amanda Raver (6414)): section and starts filling out that portion. No, I wouldn't I was trying to sort it out, sort of, just with our current process and who I think, I think the clinic, the safety folks, and whatever, I think they're perfectly capable of finding their appropriate things, but you guys are right, I mean, Thank
+1:31:23 (Amanda Raver (6414)): you. This could certainly stretch out for days, weeks, months, whatever, so just trying to make sure people can get through what they need to get through, I think.
+1:31:37 (Amanda Raver (6414)): I'm not familiar with how you guys use this. I didn't know it was a possibility. If you've got an initial inputter, right, you've got an instance in place, I'm just going to put the generic information.
+1:31:47 (Amanda Raver (6414)): That's secure. Is there a way to have the medical portion and the lost time portion be totally separate? Those people get a task, right?
+1:31:59 (Amanda Raver (6414)): The medical piece goes to the clinic. The lost time goes to whoever, I mean, that way they have their own, it would still be tied back to the main incident, but.
+1:32:07 (Amanda Raver (6414)): I'm going to point back at safety for this, because my environmental stuff functions a little bit differently. That's why I asked, I asked them to pose the question, if the case management, care management application, will work independently, but collaboratively, working on the same record, in their
+1:32:24 (Amanda Raver (6414)): own system, because that would be a whole different thing. It's asking the same questions that's on this form. And they should be talking to each other.
+1:32:35 (Amanda Raver (6414)): So that's why I posed that question, which I don't know if he's had a chance to answer it yet. I just didn't know, like, inside this system that we have here, can the medical treatment portion, because that's only going to be filled out by the clinic, correct?
+1:32:49 (Amanda Raver (6414)): I mean, we shouldn't, that's the clinic's responsibility, is that portion. Could that just be, you know, how you've got your button at the top, that the medical portion just needs to go to whoever's responsible in the clinic, the clinic is responsible for this, and we'll have to see any of the other 
+1:33:04 (Amanda Raver (6414)): stuff? Well, that's what I think they said, is if we do a group, because of the five steps at the top, we're in, uh, what, the investigation stage?
+1:33:12 (Amanda Raver (6414)): In the investigation stage, if there is a group, we're a group of people, uhm, safety clinic and group leader, whoever else, uhm, they will all be able to see the portions of this that are open at that time, and they will all be able to, technically, if they wanted to go rogue, they could go fill in 
+1:33:30 (Amanda Raver (6414)): a bunch of stuff. They should not. Right. I just didn't know if there would be, like, let's say, this is step 2, let's say, could there be a 2A, a 2B, and a 2C, where A goes here, B goes here, and C goes here.
+1:33:40 (Amanda Raver (6414)): And you're stuck with, so for their sequence, their step sequencing at the top, it is sequential. Right. You have to do it in order.
+1:33:49 (Amanda Raver (6414)): So know that at that point, you're taking away the ability for multiple people to get in there and update their own stuff.
+1:33:55 (Amanda Raver (6414)): So we have to train and trust that people can fill out their own stuff and not mess with other people's stuff.
+1:34:02 (Amanda Raver (6414)): This is a pretty small group, so I don't think I'll be able Yeah, I mean, they're adults, right? Yeah, I'll be able to, I'm so far behind.
+1:34:09 (Amanda Raver (6414)): But, uhm, yeah. I don't, I don't think this should be a hillbilly diet. I think it is too So then, just to confirm, more than one person can be in the investigation, modifying it at the same time, correct?
+1:34:28 (Amanda Raver (6414)): Correct, correct. So this is where, 
+1:34:31 Shao Ngoi: uhm, what intellects call it the, uhm, location role. Right, so in part, in part of the, uhm, implementation manager, right, instead of defining the individual person here, so let's say for investigation stage, specifically, uh, pick moderate for now.
+1:34:50 Shao Ngoi: Uh, part of the investigation is that instead of a specific person, you want to pick a role, right? So this is where, when it comes to a role, uhm, it's based on location, right?
+1:35:03 Shao Ngoi: So we say, let's say, uhm, DHS met, let's call it, I create a new role. So for a given role, you can tell the system who should be responsible.
+1:35:18 Shao Ngoi: So instead of a group responsible for everything, as I, right, you can tell, tell the system who is responsible for investigating an incident for a given location.
+1:35:30 Shao Ngoi: Right, so let's call it Investigator for now. Investigation team. Allow many employees, right? I can even say allows parent location.
+1:35:45 Shao Ngoi: I'll tell you what that means. It's really, uhm, for a given location. So now this is, this is just an example location I've created.
+1:35:56 Shao Ngoi: So let's say something, uh, you know, Houston, picking Houston, for example, I can tell the system for Houston location who should be in the investigator.
+1:36:09 Shao Ngoi: Maybe in this case, I will tell the system, alright, the person, the investigator, should be Xiao. And let's call it, uh, Dave, and let's say Ethan.
+1:36:32 Shao Ngoi: Okay. What I've done essentially, just tell the system, who are the investigators for Houston? Now, to, uh, to the questions of can I have groups in here?
+1:36:44 Shao Ngoi: Yes, I can have groups in here as well. So in this case, in this example here, I have simply just defined who would be the investigation in the investigation team for Houston.
+1:36:57 Shao Ngoi: I can set up the same thing for different locations. So let's say now for New York, it's a different team, different members in it.
+1:37:05 Shao Ngoi: I could now define maybe it's Tracy, maybe it's Emma, and then maybe someone else. All right, so what I've done again, the flexibility here is really you are able to define the investigation team, uh, for a given location.
+1:37:26 Shao Ngoi: If let's say in my location structure. I've only done it for New York and Houston. What happened to Los Angeles, Denver, that has no investigation team defined?
+1:37:36 Shao Ngoi: So this is where you can define a team at a higher level. So maybe for US, I can have a team of Joel and Monica, so on and so forth.
+1:37:45 Shao Ngoi: as that team at the US level. So for any location below it that has no investigation team defined, we'll automatically roll up to the parent location team.
+1:37:57 Shao Ngoi: So going back to, I 
+1:37:58 (Amanda Raver (6414)): think we're going to have to be pretty creative because we have one plan. We have different shops, but it's usually always the same teams that are going to be working on this incident.
+1:38:09 (Amanda Raver (6414)): So it's not the same team. So the architecture accommodates this, though. I'm not too concerned with this one. Right. What think is bringing up to me on the side conversations, you might have it in the chat, I'm not sure if you're, uhm, is that it's not just the two groups, right?
+1:38:25 (Amanda Raver (6414)): We have these defined groups of people that are going to interacting with us, but it's also the individual's immediate supervisor.
+1:38:34 (Amanda Raver (6414)): Accommodate those, those two kind of hard-coded groups and then the dynamic, whoever the, uhm, point of reference supervisor is. I, okay, so the way that I thought of that.
+1:38:50 (Amanda Raver (6414)): And I could be wrong, but the draft is security, the verification, I thought, would go to the immediate supervisor, go out there, look at what happened, enter what you know, then they're kind of out of it, then the, if there's ongoing stuff, that sort of shifts to, to this other set of people, the clinic
+1:39:09 (Amanda Raver (6414)): , the safety. Now the supervisor is involved all the way through, because they're the ones creating the countermeasures and things like that.
+1:39:18 (Amanda Raver (6414)): So all the hierarchy structure that we've set up for the other, um, NLX software be available on this also? Yes, yes.
+1:39:28 Shao Ngoi: I figured. So I think we'll use more of that direction and location instruction. So, uhm. Let me ask this, because I heard just now a supervisor will be involved from the beginning to the end.
+1:39:47 Shao Ngoi: In this case, supervisor is, who would be reporting an incident? Is it the person that actually got hurt, 
+1:39:56 (Amanda Raver (6414)): or is it the supervisor? It is most likely going to be their immediate supervisor, but that's not always 100% true.
+1:40:05 (Amanda Raver (6414)): You know, because if it's the person from materials, they could be on the floor, they could, you know. Something happens out there, not near their immediate supervisor, their supervisor is on vacation, whatever it may be.
+1:40:16 (Amanda Raver (6414)): Yeah, it could be the floor outside. So it could be any number of leadership, but I think the conclusion of this, it needs to wrap up with their immediate supervisor.
+1:40:26 (Amanda Raver (6414)): Am I correct, Dan? Like, I could be reporting Dan's injury, but Dan would need to be the one that actually does all the conclusion work.
+1:40:40 (Amanda Raver (6414)): Yeah, and going back to. Location, like, it's like, you know, Denver and Los Angeles are, are all trim shop and, right?
+1:40:50 (Amanda Raver (6414)): And then, and then in that, so you could have a group per location. So, for example, if it was powertrain, the group for that.
+1:40:58 (Amanda Raver (6414)): That would have Larry in it. It wouldn't have Josh or other Larry, or, right? Because, because then, then they wouldn't be encumbered 
+1:41:07 Nicholas Leuck: by having all those requests. Does that make sense? I don't know. I agree with That's the same question I was gonna try to ask, because, like, you wouldn't need, if we made groups, like, you wouldn't need all of TRIM to be able, like, Thank Uhm, that's why the supervisor, like, I don't know how we would
+1:41:45 Nicholas Leuck: , like, the supervisor, wouldn't this be its own group? 
+1:41:49 Shao Ngoi: It needs to be a, like, It's on the individual's metadata. Yeah. Part of the. Profile, it, it tells you who their immediate supervisor So is the immediate supervisor of the person injured or the person reporting it?
+1:42:08 Shao Ngoi: So that's what I'm just trying to clarify still. Who is that immediate? Injured associate. Okay. So in this case, let's say Andy, Andy is hurt here and the supervisor is, is Xiao.
+1:42:18 Shao Ngoi: So now I'm responsible for overseeing everything from beginning to the end. Well, the initial intake might be done by any member of leadership because they were the nearest member of leadership, so they can be doing all of the initial intake, but everything from the investigation point on, that would
+1:42:38 Shao Ngoi: be their immediate, the injured associate's immediate supervisor. Yeah, so prior to the investigation, just a very important verification stage. Yes.
+1:42:48 Shao Ngoi: So that's just being completed by the immediate supervisor, correct? Yeah, that's fine. That's again part of the setup is really in the verification stage who should be verifying this.
+1:42:59 Shao Ngoi: I can simply tell the system is the immediate supervisor. Yep. OK, so the immediate supervisor will verify if this is a valid incident.
+1:43:11 Shao Ngoi: If it does, send 
+1:43:12 Nicholas Leuck: it for investigation. Uh, that's 
+1:43:15 (Amanda Raver (6414)): not. Oh, so, excuse me. OK, so, yes, you're right on that.
+1:43:30 (Amanda Raver (6414)): Um, they're asking to take a step back for a second. The initial input, so. So, we have a lot of things that are, one of the identified gaps is that we have these multi-involved incidents where it is, let's say, two forklifts that bump into each other and there's a spill, there's one injury, and then
+1:43:50 (Amanda Raver (6414)): , you know, X, Y, Z, right? So, the idea is that we have one injury point. The, the supervisor that, or whoever calls in to the security, they get the master incident.
+1:44:04 (Amanda Raver (6414)): Security's gonna enter the general description of what happened. And then provide that to everyone that needs to then go out and do their pieces.
+1:44:12 (Amanda Raver (6414)): So, if they need to create a, uhm, an injury like we are doing here, or they need to create a chemical spill, or they need to create a, uhm, damaged property, uhm, aspect to this, all of them are then going to build off of that master incident that security, uhm, has set up for them.
+1:44:36 (Amanda Raver (6414)): And then I also like to change the name of the master incident to primary incident. Uhm, I don't have to keep saying that, but does that make sense from your perspective that we have this overarching incident and then all of the related incidents then live underneath it based on that initial call to 
+1:44:52 (Amanda Raver (6414)): the command center? Okay. 
+1:44:55 Shao Ngoi: So, yeah, to help kind of clarify some of it, I was going to ask what is security in this case, in your context.
+1:45:02 Shao Ngoi: Uhm, yeah, so let's say, to your example, there are two forklifts that hit each other, uhm, both drivers got hurt, so instead of, you know, the individual who got hurt, or the team member, whoever the supervisor individual who got hurt, or the owner of the forklift, who started reporting, you have security
+1:45:20 Shao Ngoi: starts the, uh, reporting first. Yes, they have a, a generic overriding overarching, uhm, incident, right? And then they're gonna be like, hey, you, uh, going forward when you create anything off of this, because the two forklifts may have two different supervisors.
+1:45:39 Shao Ngoi: Uhm, and then there might be, uh, a spill involved with this, and that's gonna be a whole nother team, right?
+1:45:43 Shao Ngoi: So this thing happens. It happens on the floor. Somebody picks up the phone, calls security, and says, here's what happened.
+1:45:50 Shao Ngoi: And security is responsible for typing all of that stuff in the draft stage in. So that's. So let's say, what if I just, you know, me walking down the floor, I slipped on a puddle of oil, broke my elbow.
+1:46:11 Shao Ngoi: No forklift, no other injury, just myself who got injured. Who reports that? You or, or somebody in the area, every associate, if anything happens, the first thing they're supposed to do, assuming they're able, is, because if you broke your ankle, you're not going to be near a phone.
+1:46:32 Shao Ngoi: Uhm, but they are supposed to call, the first thing is to call 2222, report it to security. That is supposed to be our primary intake point for any information regarding any kind of incident.
+1:46:47 Shao Ngoi: Okay, so, all we have to do, whether it's somebody walking by, somebody is supposed to call 2222. Okay, so always put the entry point into the system, always going to be security.
+1:47:01 Shao Ngoi: Yeah, always security will enter that information. To start. Okay, to start. Okay, now that kind of makes sense in terms of what is security.
+1:47:10 Shao Ngoi: For a moment I thought this is the security details of the public, but in this instance what you're referring to is really the singular point of entry regardless of multi-people, multi-event, right?
+1:47:24 Shao Ngoi: Or a singular event, it's always going to be a security first. Yes, yes. And is this going to change once we implemented this where the input individual 
+1:47:37 (Amanda Raver (6414)): themselves entering the data? So, we're toying with that. I don't know, because really the only part where the associate enters any data is what I called earlier the job process analysis, right?
+1:47:50 (Amanda Raver (6414)): And they, today, they do that. The clinic actually does all that. I'll call it entry. They write all paper. So, it's really just that aspect.
+1:48:01 (Amanda Raver (6414)): It's really just their perspective. They're not really doing anything else. The incident details for the most part is being done by the associate.
+1:48:08 (Amanda Raver (6414)): The person who brought them to the clinic, again, usually that, that, that first level supervisor, uhm, but it could be someone else.
+1:48:19 (Amanda Raver (6414)): So, the associate, I don't know if we've fully landed on if the associate will be logging in and doing this yet.
+1:48:24 (Amanda Raver (6414)): Are they going to have logins? Have we nailed that down yet? I mean, every, every person will have one, right?
+1:48:31 (Amanda Raver (6414)): Every person will have a login, so they know they're able to edit things. Because of document control, everybody has to have that.
+1:48:37 (Amanda Raver (6414)): Okay, services, perfect. Uhm, so. I don't know. We have fully nailed it. I don't know if you have a strong opinion on if the clinic should do the entry for the associate, or do you want the associate to be able to enter it that way?
+1:48:49 (Amanda Raver (6414)): It's like, kind of signed off by them. I don't know if we have an opinion on that quite yet. We haven't even seen it yet.
+1:48:57 (Amanda Raver (6414)): It's fact reporting. This is not like there's not a lot of perspective in it, right? Talk about job process analysis.
+1:49:04 (Amanda Raver (6414)): It's just, it's their intent on what took place. So just use all that fact perspective, whatever you want. So it's not, we're not asking what happened.
+1:49:16 (Amanda Raver (6414)): Oh, 
+1:49:16 Shao Ngoi: the job process analysis, there is a bit of that, yeah. So then just let me, from my understanding, then the intention here is that still, you know, for now, security is still going to be the person.
+1:49:29 Shao Ngoi: Putting the fingers on the keyboard, entering the data into the system. The initial overarching incidence, yes. Right, right, right. When you say overarching, I'm also considering if it's just a single person, right?
+1:49:43 Shao Ngoi: Where I sleep on a puddle of oil, I broke my elbow. That is not an overarching, it's a singular person got injured because of, you know, slippery floor.
+1:49:51 Shao Ngoi: Well, if you're sleeping on the 
+1:49:52 (Amanda Raver (6414)): floor, that could be an environmental spill of some kind. So therefore, there wouldn't be two incidents. In that, yeah, in your example, there would be two incidents.
+1:50:02 (Amanda Raver (6414)): One, uhm, one health and safety, one environmental. But if I was walking outside and I stepped off a ledge and rolled my ankle, that's a singular person with all the only one body involved.
+1:50:14 (Amanda Raver (6414)): Yeah, it's still going to be security. We need a way of security to intervene. Yeah, my thought was like, hey, they would say, hey, your master incident is one, two, three, four.
+1:50:24 (Amanda Raver (6414)): Make sure you use this as your reference going forward. And then anyone that calls in a reference to that would get that, whether it be two forklifts, environmental on an incident, whatever it would be, they all have been brought up as one incident.
+1:50:42 Shao Ngoi: Okay, so, okay, so then, again, regardless of what scenario, it's always going to be the same. The security, putting the finger on the keyboard, entering in the data, okay, so that's clarified.
+1:50:53 Shao Ngoi: So once the security enters those information into the initial reporting portion into the system, right, and this is where the security would go, alright, it's either, it's either, single person injured or there are multiple other event that has happened or incident that has happened for this event.
+1:51:12 Shao Ngoi: So in this case, let's say going back to the example of two forklifts and two persons injured, the security will go, all right, these are two vehicles.
+1:51:20 Shao Ngoi: Accidental incident or property incident, right, and then there are two injuries. So now I have four incidents per this event.
+1:51:29 Shao Ngoi: Yes. Are those four incidents being 
+1:51:33 (Amanda Raver (6414)): investigated separately? Thank you for your questions. Yes. Yes. Okay. But we need to be able to roll them together so we can keep everything tracked, which is kind of a gap today.
+1:51:43 (Amanda Raver (6414)): Umm, so, uh, can you elaborate more in terms of what do you mean by roll everything together? Is it as it may be?
+1:51:52 (Amanda Raver (6414)): Being able to see that this is part of a larger incident. So if I'm looking at Forklift A, I also need to be able to understand that what's going on with Forklift B, what's going on with injuries, and being able to click into that overarching incident.
+1:52:08 (Amanda Raver (6414)): I believe allows me to see all these things that are related. Yeah, either related or incident. Right. Okay. I don't, I don't, I don't think there's a primary incident of which we can just end up with.
+1:52:21 (Amanda Raver (6414)): No, no, yeah, there's, it's called master, it's called master incident, is what it's called. In there, yes. 
+1:52:27 Shao Ngoi: Okay, yep, so we can roll all those, right? But just that, that I just need to understand for a given incident, right?
+1:52:33 Shao Ngoi: They are being investigated individually. Uhm, the details, the classifications are being filled in differently, obviously. The person, in this example here, two person got injured, right?
+1:52:45 Shao Ngoi: Uhm, they have different body parts, different injury classifications, different medical treatment, different lost time tracking, so on and so forth.
+1:52:51 Shao Ngoi: Yes. I just want to make sure that those are all different. They're all different. Okay, perfect. Uhm, and then when it comes back to rolling up into the overall event record, right, obviously we have the initial reporting, we have the individual incident, what else should be sitting on the overarching
+1:53:13 Shao Ngoi: ? It's really just that initial intake. Okay. So, maybe you, I don't even think you put in batch numbers because that's part of the, the lower level incidents.
+1:53:24 Shao Ngoi: It's just the initial intake of what took place. Maybe, maybe they hand type in names if they have them. But the initial intake is really just a simple text field, I believe.
+1:53:36 Shao Ngoi: And then everything else gets filled out from there. So that's when you start collecting the individuals, the property damage, the, the spills, whatever it is, those live on end.
+1:53:45 Shao Ngoi: Individualized reports, where you gather the information. Uhm, because this is being entered by security, do we still need to go through verification steps for each of these incidents?
+1:53:56 Shao Ngoi: I think there should be verification for security in the draft. Well, I mean, actually, so, because you're on an individual at this point, I don't know, I think you would just start with investigation, right?
+1:54:11 Shao Ngoi: I don't, I don't know what draft and verification is for you. So, in my mind, draft, draft is, so, security typing in what they're hearing on the phone, right?
+1:54:21 Shao Ngoi: And so that's actually a separate incident. And this new classification that I've been introducing to you right now, I understand, is called master incident.
+1:54:29 Shao Ngoi: So, it's like, not a part of this at all. It's just referenced. It's just reference to that. That master incident.
+1:54:36 Shao Ngoi: OK, OK, no, that makes sense. Yeah, so let's say security enter it, initial intake it, then whatever incident that the security has defined, let's say in this example here, two forklift to injury.
+1:54:49 Shao Ngoi: Does anyone needs to go where? Verify that, hey, this event or incident is actually valid. Before investigation starts. Well, I don't think so, because I don't think they're going to be But I also don't want to delay anyone, right?
+1:55:09 Shao Ngoi: So I think we would validate that afterwards, no? Well, I saw it 
+1:55:14 (Amanda Raver (6414)): in the verification phase. That's where he's actually setting up stuff. And the assignments and so forth. And then it goes into the investigation phase.
+1:55:22 (Amanda Raver (6414)): Yeah, but the 
+1:55:25 Shao Ngoi: setting up of assignments is all predetermined. So the focus is the person, the person that's primary focus, the injured person, their immediate supervisor.
+1:55:39 Shao Ngoi: And then the predetermined groups. So, I don't know what you would actually commemorate there, because it's all going to be predetermined.
+1:55:46 Shao Ngoi: I'd have to go back Yeah. You got a raised hand? So, just to confirm, right, everything that the security is entering in the team, sorry, excuse me, everything that the security is entering in the system, we consider as valid?
+1:56:02 Shao Ngoi: Yes. What if I, you know, just blink there, well, OK, I'm not sure how frequent this happens, or if this happens at all, right?
+1:56:10 Shao Ngoi: Is there a security scenario where a singular person, right, I sleep on a puddle of water, I fell, broke my ankle, I call security, security enter it, uhm, how do, again, assuming security will go through some kind of a pre-processing.
+1:56:27 Shao Ngoi: Uhm, is there a scenario where I may just report a 
+1:56:32 (Amanda Raver (6414)): an invalid incident? The spill wasn't a spill, so I mean, if that's the case, we can delete it after the fact.
+1:56:39 (Amanda Raver (6414)): I don't know of any. I don't know if routing is a scenario, it for someone else to look at it would yield anything different than it coming through.
+1:56:48 (Amanda Raver (6414)): And also, because, especially because the investigation part, there is a time right here. the person, the member of leadership that brings them into the room, they need to be able to jump into that right away.
+1:56:59 (Amanda Raver (6414)): Without having to wait for someone else to approve the initial intake. It really just needs to be intake, and then start.
+1:57:09 (Amanda Raver (6414)): still dispatch the emergency responders there, so I'm just going to FBS, securitycallsfbs.com. So go do the thing. FBO's saying there's no cure, or yes, there's somebody there, slip it off.
+1:57:23 (Amanda Raver (6414)): Yes, except it might not be FBO's. Well, there may be a change to that. Yeah, whoever the future FBO's saying is.
+1:57:31 (Amanda Raver (6414)): So future FBO, because that's what happens now. Security gets called, security dispatches FBO's. FBO's are the ones who report to the scene, right?
+1:57:44 (Amanda Raver (6414)): Like, they report to, as near as I know, Bye-bye. Every incident, maybe not right away. Every incident. For the verification.
+1:57:53 (Amanda Raver (6414)): For the verification, yeah, for the verification. Yes, it's real. Does someone ever call in an incident, and then it's like, LOL, just kidding?
+1:58:02 (Amanda Raver (6414)): Like, what are we talking about? The thing that we have seen on the environmental side, and I'm not touching the safety side because it's stickier, but on the environmental side, there's a water spill.
+1:58:18 (Amanda Raver (6414)): No, it's a caustic spill. So it's water with caustic. Like, then there's fighting over what spill. Sure, sure. Who cares?
+1:58:24 (Amanda Raver (6414)): There's a spill. Somebody clean it up. But the FBO, you know, like, like, they, they go out and they're like, oh, it's not, you know, you said it was a 50-gallon spill.
+1:58:33 (Amanda Raver (6414)): It's actually, like, three gallons that happened. Full time. So, you know, just you would still need that, but the FBOs are, for me, always the ones who they go out and lay eyeballs on it.
+1:58:47 (Amanda Raver (6414)): My team isn't big enough. We don't actually respond to the spill. Unless it's really big or really severe. So, it sounds like that they would need to be part of your investigation piece.
+1:59:00 (Amanda Raver (6414)): The spill happened, right? It's not like they went out there and, like, it evaporated and didn't exist and they can't find it.
+1:59:06 (Amanda Raver (6414)): I mean, to my knowledge. I don't think people call them this casually for false information. 
+1:59:19 Shao Ngoi: Just playing devil's advocacy, right? So, uh, yeah. So, let's just play this and then just assume that didn't happen all the time, right?
+1:59:23 Shao Ngoi: We just simply… Something happens. CoinSecurity, DeSecurity put in place. Everything is valid. It's being investigated right away. Each of those incidents will be investigated separately, although they all tie back to the overarching one.
+1:59:37 Shao Ngoi: When it comes to approval, is it approval each of those incidents separately as well? I 
+1:59:41 (Amanda Raver (6414)): think so, yeah. Let's say like it didn't happen for some weird reason.
+1:59:54 (Amanda Raver (6414)): We can always go to the admin and have the delete label for the extreme one. That's what I'm thinking. Like, don't make it the rule, make it the exception.
+2:00:03 (Amanda Raver (6414)): And therefore, like, I don't know why you need draft or verification if everything's predetermined. We're getting pretty close here. Like, I don't want to let the perfect video get a good.
+2:00:12 (Amanda Raver (6414)): Yeah. 
+2:00:12 Nicholas Leuck: Can I ask a question? Oh, yeah. Each one will be approved separately. And before we get too far, Christopher, did you have a question?
+2:00:24 Nicholas Leuck: Oh, sorry, Nicholas, did you have a question? Yes, I have a quick question, uhm, instead of, so if verification.
+2:00:38 Nicholas Leuck: Is it possible to change verification, and the only reason I'm thinking from a, uhm, I'm thinking from only a safety aspect, like an injury incident only, uhm, could that just be where the, instead of, You instead of verification, can it just be the, the clinic, and the clinic entering their information
+2:01:00 Nicholas Leuck: , and if, so if I, if, uhm, for an example, like we talked about, uhm, two fork trucks running, you know, if a fork truck runs into another fork truck, uhm, let's say that step is now, instead of verification, it's now clinic, and, okay, but maybe there wasn't any injury, so then you would skip it, and
+2:01:21 Nicholas Leuck: just go straight to investigation, but if there was injuries, then the verification would then be going to come clinic, and you would enter all your clinic information.
+2:01:31 Nicholas Leuck: Does that make more sense, or not? That's an open discussion 
+2:01:35 Shao Ngoi: question. Well, I'm still waiting for an answer for my question, if the care at the Spanish Hemp would alleviate this whole problem of the gap.
+2:01:43 Shao Ngoi: So, they're working on their own system. That's still going to be tied back to the original record. Well, I think it's valid.
+2:01:52 Shao Ngoi: I do think it's out of scope for the particular project, though. So, I think we do need to get that answered.
+2:01:56 Shao Ngoi: I just don't know if it's relevant to the current phase. I think that needs to come at a later phase.
+2:02:03 Shao Ngoi: What we're doing right now, though, kind of impacts how that would happen. Exactly. Can we set it up for that as a possibility?
+2:02:10 Shao Ngoi: This is pretty much out of the box. For the context for others in the room, the clinic maybe informally made it clear that they would be open to, I need to have this discussion with Julia, but they made it clear that they would be open to using a different care management system because they don't have
+2:02:35 Shao Ngoi: to as an OHM. So it's possible that they could directly input into this. I think to Scott's point, we can earmark a couple of places to come back to.
+2:02:43 Shao Ngoi: But for the conversations this week, it needs to focus on what this can do. But we can earmark anywhere. I don't think any other conversations with them about Larry's question.
+2:02:51 Shao Ngoi: Yeah, I just wouldn't want to do something that would make, now, that would make that not possible. It's the same questions that are in those applications that we're asking.
+2:02:59 Shao Ngoi: Yeah. Yeah. And if we could just take it out of here later, move it over, that's fine. So, yeah, I think we, I think we do need to get those answers.
+2:03:09 Shao Ngoi: I think we need to come back to those. But Nick, you bring up a point that just kind of hit me.
+2:03:15 Shao Ngoi: The verification process, not everyone, you're right, not everyone does need to be involved with that. Bye-bye. Is the initial step, the person, the supervisor, the member of leadership that is filling out the initial intake on the person, I'm almost thinking that's where they would select that, you 
+2:03:33 Shao Ngoi: know, this, well, how do I say this? How does it work when you're doing a forklift, like a property damage investigation versus an injury?
+2:03:42 Shao Ngoi: That's a totally separate entry point, correct? Or is it still part of this? This is just injury and illness, right?
+2:03:50 Shao Ngoi: Or no? This is injury, illness only. Thank you. Injury, illness only. Right. We will be covering, uh, what does my agenda say?
+2:03:59 Shao Ngoi: Environmental in a, uh, in, well, we blew past it, uh, we will be covering environmental incident in a bit. Uhm, it is a separate point of entry.
+2:04:09 Shao Ngoi: Simply because every single, the way that it's being said right now, uhm, every single incident is an entry of its own.
+2:04:18 Shao Ngoi: Right. There is no master incident concept. That's why I ask all these questions. Simply because from what I'm hearing, you have this master incident concept.
+2:04:25 Shao Ngoi: Before we get down to the whole master incident concept, obviously, master incident is required when you have multiple, uh, incident type involved.
+2:04:36 Shao Ngoi: Just out of curiosity, how often you will have this type of incident master incident? Where you have multiple people or multiple forklift properties, what's not being reported?
+2:04:50 Shao Ngoi: It happens. I think it's not, is it the rule? I would say no, but it's. Not enough where it's a one-off.
+2:05:01 Shao Ngoi: That's why we're just trying to standardize it to meet the most common thing that suits everything. Right, so the most common one is it usually one person, one, uh, one person each?
+2:05:13 Shao Ngoi: One injured, one vehicle damage, like, one environmental incident. What is the more common one? I'm going to say the most common one would be, uhm, a PIT or, uhm, a vehicle injury with an injury.
+2:05:27 Shao Ngoi: Or, vehicle incident that is included in the hazard injury cost as a result of that. Okay, vehicle with an injury.
+2:05:36 Shao Ngoi: Yeah. That's what we were just thinking, like, make it, make all points of injury the same to standardize it and not saying, well, if it's this, then I got to do that or whatever.
+2:05:50 Shao Ngoi: Like, you know, it's like, this is common enough and it's as minimal friction as possible. So let's give them all the same.
+2:06:00 Shao Ngoi: Yeah. Yeah. No, that's just. That's definitely something that's to be considered, right? Because again, most of the time when we hear about multiple incident happening for an event, most of the time, those are the extreme cases.
+2:06:15 Shao Ngoi: As far as my experience goes, You usually may be 20% of the time. Do we need to cater the 20% to that concept, or do we just fulfill the 80% of what is being typically reported?
+2:06:30 Shao Ngoi: I generally agree, 
+2:06:31 (Amanda Raver (6414)): but I think in this case, because the lift from the lift from my perspective is relatively the same, and it commonizes the practice, I think let's go with the 20% because it's all-encompassing and minimal friction.
+2:06:43 (Amanda Raver (6414)): And it's a gap, it's a big gap that we have right now. Yeah, it's one of our 
+2:06:47 Shao Ngoi: identified gaps that we want to solve. The 20% of the incidents, while it's small, it causes 90% of our headaches or whatever, so we'll say.
+2:06:57 Shao Ngoi: So then going back, I'm sorry, real quick, when I was talking about the validation piece. Because these are each individualized different entry points, I'm back on the opinion of, like, I don't know why we would need a validation point.
+2:07:13 Shao Ngoi: I was thinking validation point would then be how you navigate out to your specific forms, but if they're individualized forms that you have to select.
+2:07:22 Shao Ngoi: Then I don't know why we would need the validation point again. Yep, because if everything's been called in, uhm, security is the one that's entering it.
+2:07:33 Shao Ngoi: At that point in time, it's assumed already it's a valid incident. Uhm, now, let's say it again goes back to, uhm, let's say I reported an incident, right?
+2:07:47 Shao Ngoi: I slipped on something, I broke my elbow. First thing first, I called security, security will enter, right, someone got hurt.
+2:07:54 Shao Ngoi: Upon investigation, right, let's say found out that, hey, Xiao broke his elbow because he slipped on a puddle of oil, so now that's an environmental incident, how would one go back and add environmental incident into the overarching event?
+2:08:18 Shao Ngoi: I think the safety practitioner would probably identify that gap, I would just make the assumption, if it wasn't originally reported in the beginning, we're going to find out one way or another, if it's reported.
+2:08:26 Shao Ngoi: So, ideally, again, the idea of standardizing the system, we minimize that backtracking. Is it going to be perfect?
+2:08:39 Shao Ngoi: No, we might have to do some after the fact, but that means the overall system overarching case is already there for us to do that activity.
+2:08:46 Shao Ngoi: That's why, again, standardizing that initial overarching, uh, makes it so much easier if we fail to follow the instructions out of the gate.
+2:08:54 Shao Ngoi: Yep. So, in this case, in this scenario, if throughout my investigation of, you know, the injury itself, I found out that this is actually a noise spill, do I now call security again to tell them, hey, security, for this reported incident, it's actually an, a, around.
+2:09:13 Shao Ngoi: an environmental incident as well, and then security go at the environmental incident? No, I think the plumber is doing the entry for environmental incidents, but just tie it to the master.
+2:09:22 (Amanda Raver (6414)): Then tie it to the master, at that point. 
+2:09:25 Shao Ngoi: Again, now we are talking to a separate point of entry, right? Because one single point of entry is… master, that what you are referring to, to standardize it, a single point of entry regardless of scenario, and now we are referring to if someone who is doing the investigation realized this is an incident
+2:09:41 Shao Ngoi: , now I have to go in and add an incident that is not a master incident. Okay, so, yeah, let me back up.
+2:09:47 Shao Ngoi: All of these, so you have the master incident that holds the generic information out the gate, and then you create new incidences underneath that master incident.
+2:09:58 Shao Ngoi: So, the supervisor, whoever is doing these entries, they are always creating new incidents with their provided master incident number. Got it.
+2:10:12 Shao Ngoi: Unless you have a better approach to that. That's how I was working it, when I was playing around with the test environment.
+2:10:22 Shao Ngoi: OK, so which means then it pose a challenge because now become questions of who can edit a master incident. Security.
+2:10:34 Shao Ngoi: But then for me to add an incident into the master, I'm now editing the master because I'm adding new info 
+2:10:40 (Amanda Raver (6414)): into the master incident. Yeah, that's where I need your input then, I guess. I guess we're seeing it more as you can just tie the incident to a master.
+2:11:01 (Amanda Raver (6414)): So on today's day the car fell off the lift and. Three things were spilled, four people were injured, and eight machines were damaged.
+2:11:11 (Amanda Raver (6414)): Well, the initial incident was the car fell off the lift till today at this time. And then there could be nine different incidents that all tied to that one call to security.
+2:11:22 (Amanda Raver (6414)): And they all don't have to see anything. The environmental doesn't have to see who got injured. People who got injured don't have to see what property was damaged, but they're all tied back to that initial action of the car fell off.
+2:11:35 (Amanda Raver (6414)): That's what we're thinking, I think, as we're sitting in here. 
+2:11:39 Shao Ngoi: So I think we might just be overcomplicating this a little bit. So going back to the simplifications, I'm not opposed to master incident concept that's being mentioned here, but part of me also, let's say, taking an incident of, hey, if I fall, two forklifts hit each other, two injuries, first thing 
+2:12:01 Shao Ngoi: I would typically address is the injury itself, right? Um, let's say, all right, I add an injury as a, as a, as a security person.
+2:12:10 Shao Ngoi: I define who got hurt. Great. Now, then I go define who's the next person who got hurt, right off the bat, whatever I enter in, I can tell the system, do not need to, I don't need to verify.
+2:12:23 Shao Ngoi: So, let's say I turn verification stage off. For moderate, investigation role, let's say this is for the issues manager for now.
+2:12:40 Shao Ngoi: So, as a security person who gets the phone call, this is telling me, alright, there are two forklifts, hit each other, two person got, got hurt.
+2:12:50 Shao Ngoi: First thing the security would go ahead and ask, okay, who got hurt? Where, where, where did did they get hurt?
+2:12:57 Shao Ngoi: Let's say, oh, they got hurt in Toronto at this time. If I have a specific location, I'll do it. And then Xiao got hurt, Xiao is a full-time, day shift, driving forklift, let's say, uhm, and then this is for moderate.
+2:13:15 Shao Ngoi: Once I launch this, because I've told the system moderate, I don't need verification, right, everything that's entered by security is straight into investigation.
+2:13:27 Shao Ngoi: You can see that right off the bat, it can be investigated already. Now, let's say, part of the call, and I can go, alright, who's the second person to get hurt?
+2:13:39 Shao Ngoi: Alright, so same thing, this is happening in Toronto, for today's date, the person injured in this case is, let's say, Dave, full time, day shift, also driving forklift.
+2:13:50 Shao Ngoi: Please, uh, FL002, for example, and also moderate, right, maybe upon hearing that, oh, Dave actually got hurt a bit more, I can escalate that to a higher level severity, right.
+2:14:11 Shao Ngoi: Uhm, so this is where per intake is not generalized under one severity, right. Uhm, this is now per entry. I can tell the system, well, well, Charles got hurt, but his injury is only moderate.
+2:14:26 Shao Ngoi: Maybe Dave got hurt, but his injury is really just a scrape. So I can also set that information at the point of entry of intake, right, so that I don't have to generalize everything under one.
+2:14:39 Shao Ngoi: Okay, so now in this case, I submit it, it can go into investigation as well. I didn't change the settings.
+2:14:44 Shao Ngoi: No, I did change it. So for minor, it goes straight to investigation. So this is where you can see that once, once it's in there, I need I can relate the incident back to each other.
+2:14:55 Shao Ngoi: I can tell the system, well, this is actually related to the one that I just reported, 328. Now for this incident, I can see that 329 and 328 are linked as one.
+2:15:08 Shao Ngoi: And then I can go, part of the intake as well is, all right, now tell me, right, whoever calling in, now tell me who got, what are the property or vehicle that, that involve.
+2:15:19 Shao Ngoi: And maybe now it's four vehicle. So now I get a more vehicle-specific details. Right. Um, that's not related to the injury itself.
+2:15:28 Shao Ngoi: Let's say, okay, this happened in Toronto, uh, where it happens, what happens, uh, forklift 001, uh, back into forklift 001.
+2:15:41 Shao Ngoi: Okay, nothing, not, uh, maybe this, this forklift got damaged quite a bit, or maybe I want to say it's a major.
+2:15:50 Shao Ngoi: Alright, again, I didn't change the configuration. Didn't set up the configuration for vehicle, right, uhm, it requires me to select investigator, but if I set it up just as injury, I can tell the system immediately to go, who should we go, who should investigate, investigate this vehicle incident.
+2:16:09 Shao Ngoi: So now, part of my, uuuh, entry, I can also tell the system, alright, this is all related back to 328, right, or I can say, alright, this related incident is not just 328, but also 329.
+2:16:25 Shao Ngoi: So from an overall picture, well, it's not the master incident concept. This really allows you to go line by line item of, alright, whoever called in, tell me who got hurt, tell me what are the vehicle involved.
+2:16:40 Shao Ngoi: Is there any, uh? Environmental spill. Let's say, part of the call go, yep, there's oil spill on the ground. Now, as the security guy who's doing the data entry, I know that this is an environmental spill.
+2:16:52 Shao Ngoi: Alright, I can go oil spilled. Onto the ground, right, and then this is a moderate event. Uh, contain the oil with, I don't know, barrier.
+2:17:11 Shao Ngoi: So, yeah. As you can see here, as part of the person taking the call, instead of creating a generic, uh, master incident, this is where I can do it as part of the interview.
+2:17:24 Shao Ngoi: Right, I can tell, I can ask all these questions where it's just go, oh yeah, there's two per, two person got hurt.
+2:17:29 Shao Ngoi: Because two, two forklifts crash into each other, and then the investigator, uh, the security guy who's doing the intake have to go dissect the information, versus go, alright, almost like a dialogue that tells, tells me the detail of what happened.
+2:17:45 (Amanda Raver (6414)): Does that make sense? I see where you're coming from, and I did toy with this. The thing is, as you add them, I now need to go to all of the other ones and update their linkings as well.
+2:17:57 (Amanda Raver (6414)): That's why I thought having the initial intake of just the verbiage, uh, while that happened, and then one incident. That way, when I make all these lower-level ones, I only have to reference one incident, versus constantly going back and updating all the other ones as I go through.
+2:18:12 (Amanda Raver (6414)): Well, I think what's, what the system's developed is that it handles it by case-by-case. scenarios, so each incident has its own record, and then those four or five records are then put into basically a folder, but it still shows the relationship between them individually, and that way, if mine can just
+2:18:32 (Amanda Raver (6414)): go in and work on the environmental, Thank you. incident, Larry can work on the PIT, then I can go to the injury and illness, and work on those simultaneously.
+2:18:41 (Amanda Raver (6414)): Yeah, but in order for you to have reference to those other ones, we have to go into each of them and add all three, or the other two, I guess, but you can do it in three separate ways.
+2:18:51 (Amanda Raver (6414)): Well, I think if you click on, you should, in that way, if you go to click on any of those, all those linked should show up.
+2:19:00 (Amanda Raver (6414)): You have to mainly do that, though. So, there's five, you have to go and reference them. You have to go in and add these four, and then for each of these four, you have to go in and add the other four.
+2:19:11 (Amanda Raver (6414)): We do it ourselves, like, literally create a, an incident, don't know if there's a cat, but we call it Master Incident, and then then just everything links back to that instead of doing your thing of linking all of them to one another.
+2:19:29 (Amanda Raver (6414)): That whole thing you just showed me is not my idea. My whole idea is exactly what you just said. You have one incident, right?
+2:19:36 (Amanda Raver (6414)): We can create that ourselves. I don't know that they have to. 
+2:19:42 Shao Ngoi: So I guess our question is, is there access to show a folder that you all of the related instances in one example?
+2:19:53 Shao Ngoi: In one example, I guess. 321, and 330, and 329, and 327 were all linked together.
+2:20:06 Shao Ngoi: Is there, just like a contact management database, if I click on that link, it should bring up everything that's related to that record.
+2:20:14 Shao Ngoi: security. Is there a location in Intellects where I could go and see all five of those instances in one, one scenario?
+2:20:26 Shao Ngoi: It doesn't group that way, uhm, to, I don't know who is the person, right? So this is where. As the intake, they have to relate them, right?
+2:20:36 Shao Ngoi: If I look into the overall list of incidents, it doesn't show you, you know, this one incident, environmental incident, it's tied to vehicle incident injury.
+2:20:46 Shao Ngoi: I can show it as, uh, on the side here as what are the related ones, but there is no one folder that gives you one record for everything.
+2:20:56 Shao Ngoi: Because each of these reported incidents are independent. Technically independent in the sense that they are being investigated, they are separately, they are approved separately, they have their own life cycle, but they are one event.
+2:21:12 Shao Ngoi: If we made it a master event, would you have a view like that? Or would they just be separate entries under that?
+2:21:21 Shao Ngoi: It would be a separate entry, right? We can potentially, you know, have the master, but I'm just really trying to understand, you know, from a use case standpoint, would this be better, or would it be master be better?
+2:21:34 Shao Ngoi: Because, again, going back to, I could have a master as the point of entry, but if there's any additional incident that's being 
+2:21:40 (Amanda Raver (6414)): reported, now what? What if someone forgot to link them, you know, just skipped a step, because that'll happen. And then, we just have individual entries hanging out there that are associated, but they're not associated in Atlassian.
+2:21:52 (Amanda Raver (6414)): I think the practitioner would be go in and link that. Right. If we never know, then we don't. Yeah, right.
+2:21:59 (Amanda Raver (6414)): But it would be easier to 
+2:22:00 Shao Ngoi: understand that if they didn't have a master. If they have one master, then I can create reporting, say, give me all of the incidents reported to this one incident.
+2:22:10 Shao Ngoi: It helps me kind of map that data a lot easier than one incident or five instances. Incidences all referencing for other instances of a data perspective.
+2:22:22 Shao Ngoi: It's much cleaner. And if they don't have a mask, because everything we need to have a mask. Master and therefore you would know if they're not now.
+2:22:29 Shao Ngoi: If you create two masters, well, then I would know. But if you're forced to link all of them to a master, then you would know right away if it's linked or not linked because they don't have a master.
+2:22:42 Shao Ngoi: So that's where I gonna lead to as well is if as I call in saying, oh, two vehicle, motor vehicle, sorry, two forklift hit each other, two motor vehicle hit each other, and then two injury.
+2:22:55 Shao Ngoi: Great. Security create a master. Incident with those four incident, and then part of the thing that I go call back is like, oh, I forgot the death and environmental spill as well.
+2:23:09 Shao Ngoi: If I don't mention the details, security would treat that potentially as a setback. That's a incident. The security would potentially create a new master incident of that one environmental incident.
+2:23:22 Shao Ngoi: Can you show us an example of how we would create a master incident? Uhm, for now, we, for, ah, essential, we don't have master incidents yet.
+2:23:31 Shao Ngoi: Same concept, everything is singular. Master incident, if, ah, if I am to put it out there, it's simply just a, just like any intake, you have your initial reporting, and then you have a portion that allows you to add sub-incidents.
+2:23:47 Shao Ngoi: Let me bring out your, ah, right. Again, most of the time, the master incident concept, it's not commonly used because of that, but at the same time, has it been used, I would say, the use case 
+2:24:08 (Amanda Raver (6414)): is probably on the lesser side than the individual. But, I think for us, though, the master is going to really work because, like we're saying, an incident happens, we don't care what the incident is.
+2:24:18 (Amanda Raver (6414)): When it involves all the teams, or one team, period, we don't care. Every one of those teams is going to go out and do their own thing.
+2:24:24 (Amanda Raver (6414)): If there's a spill, environmental is going to go out, and they're going to say, we had three spills here, they might all three be separate instances, but they're tying to XYZ that just happened when the car fell off the lift.
+2:24:35 (Amanda Raver (6414)): Same way we would do with the N3 stuff. We need to have that mastered, because if not, then none of those are going to be tied together.
+2:24:41 (Amanda Raver (6414)): If someone then calls in later, they're probably not going to call security again and say, oh, environmental forgot the spill.
+2:24:47 (Amanda Raver (6414)): Environmental is going to have gone out there to realize there was a spill. They're going to have to be contacted Okay.
+2:24:51 (Amanda Raver (6414)): Or they'll be contacted when the investigation happens from one other group, right? Safety goes out there and says, well, this guy certainly slipped in that stuff.
+2:25:02 (Amanda Raver (6414)): Well, they'll still tie that back to that master record of this is the event that took place. I think that's what Scott's trying to say with this master being convenient, because now we only have to tie it to the master.
+2:25:14 (Amanda Raver (6414)): The environmental doesn't have to be tied to the injury, because it's still tied to that initial master, that security is entering just a blank form, bill called, car crashed, send it out to people that are going to go.
+2:25:26 (Amanda Raver (6414)): And then all the incidences are going to take place underneath that, separately, depending on what's needed. 
+2:25:35 Shao Ngoi: So I still need to understand then, you know, while the intake can add all those initial https://otter.ai stuff. All right.
+2:25:41 Shao Ngoi: Let's take this example here. Uh, this is an injury. Dave hurt his elbow. He was drawing a forklift that ran back into something else.
+2:25:51 Shao Ngoi: As part of the investigation, I also realized that, oh, again, Thank you. Depending on what's being investigated. Right now, I'm focusing on just Dave.
+2:26:01 Shao Ngoi: Right? Dave was hurt, driving a forklift that he backed into something. This is my focus. 
+2:26:06 (Amanda Raver (6414)): This would be step two after the master's already put in. Right. And this one would just be, Joe called from the line, 2222 was dialed.
+2:26:15 (Amanda Raver (6414)): This incident took place. This master incident took place. All the groups will then go out, and they'll submit that Dave was injured, or Bill was injured, or that there was gasoline on the floor.
+2:26:25 (Amanda Raver (6414)): All tied to that master record of who called the 2222. Simple security entered a form. Yeah, and again, going back to the 80-20 rule, I see where you're coming from.
+2:26:34 (Amanda Raver (6414)): Going back to the 80-20 rule, I would say 99% of the time, they're probably going to know all of the potential avenues which need to be opened at that point in time.
+2:26:44 (Amanda Raver (6414)): Right? It's not going to be like, something happened, someone got hurt, and then they realized after the fact there was a spill.
+2:26:49 (Amanda Raver (6414)): Right? You typically know there's going to be a spill at the point of calling 2222. So, if I have to go to the 20-80 rule, I'm going to say 80% of the time, minimum, they're going to know all potential avenues that need to take place.
+2:27:04 (Amanda Raver (6414)): Now, could new injuries pop up, or the change in severities of injuries pop up? That could happen. But, the new injuries will pop up later.
+2:27:12 (Amanda Raver (6414)): Those are usually hard to pinpoint, because they'll say, like, oh, it was, repetition, or whatever, and that happens three months down the road.
+2:27:20 (Amanda Raver (6414)): We may not be able to tie that one back. Uhm, they might say that I was involved when that car, that car crashed into a wall, for some reason.
+2:27:30 (Amanda Raver (6414)): Maybe, and we can reference that one, uhm, but it's not going to be linked to the master one. It's probably going to be a new injury, uhm, based on whatever happens with that investigation.
+2:27:39 (Amanda Raver (6414)): But with the investigation, you could then tie it back. You could, yeah. Potentially. If you don't have the master record, then you're never going to know those other eight things that happened.
+2:27:46 (Amanda Raver (6414)): Yeah. You're going to submit a new injury and say, I didn't know what to tie it back to. Right. With the master, you just have the option.
+2:27:52 (Amanda Raver (6414)): Right. The problem we see today is that you have an injury, you have a workload thing, and we have no way of tying it back together.
+2:27:58 (Amanda Raver (6414)): Let me ask you a quick question. Just tell me straight up if this is impossible. But, what if, I mean, you're going through all these pages, I think it took, like, seven minutes to add three of these things, and we were doing very short entries.
+2:28:15 (Amanda Raver (6414)): So, and I know you were explaining at the same time, but in an effort to try to reduce the number of pages that the software security personnel is, you know, clicking through, uh, because the call might say, you know, hey, and I think, to Scott's point, the call, if the call said, hey, there's a pork
+2:28:31 (Amanda Raver (6414)): lift, it hits something, there's a spill, and there are two people that are injured, you just put all that into the description of the master to get it started.
+2:28:37 (Amanda Raver (6414)): Um, but if we had to do that, it's for individual pages. That would take a long time for the security person.
+2:28:44 (Amanda Raver (6414)): But also, um, the question then is, as you're going through this, how disruptive in our setup process would it be to just have the form ask those questions?
+2:28:55 (Amanda Raver (6414)): Like, as it comes, as they add one thing that they're entering and it says, was there a person hurt? Yes.
+2:29:02 (Amanda Raver (6414)): Click here. Click here to add a second person that was hurt. And if it's not, you just don't click it.
+2:29:07 (Amanda Raver (6414)): Or, was there equipment damage? Click here and there's a dropdown of all of our favorite equipment damage categories. Like, can we do something like that in one single form?
+2:29:15 (Amanda Raver (6414)): Or would that just totally change the architecture of what we're working with? 
+2:29:19 Shao Ngoi: It will change the architecture a little bit. That's where it's going to get to while I was trying to load your, uh, development site for Intellect's Outerbox Master Incident Concept.
+2:29:29 Shao Ngoi: It doesn't reduce the number of clicks. In fact, it's more clicks. What I'll show you right now. So, this is your development site.
+2:29:39 Shao Ngoi: So for a master incident, right, so this is the master incident concept. I want to report, in this case, someone call in, right, there are two forklifts hit each other.
+2:29:49 Shao Ngoi: There are two injuries. Bye-bye. I can tell the system, alright, this happens at the, uh, I don't know, safety, human resource portion.
+2:29:59 Shao Ngoi: I'm just simply selecting something. This is a medium severity, uhm, two, two forklifts hit two forklifts, uh, backed into each other, two drivers, got hurt.
+2:30:18 Shao Ngoi: Thank you. Oh, I can skip those. Just based on that description, I know that they are injuries. They'll be, uh, vehicle.
+2:30:30 Shao Ngoi: Okay. Uh, it's basically, so let's say I initiate this. I'm not even, uh, we can rename all those buttons, but essentially I say, let's say if this must be an incident, the system will initiate this.
+2:30:44 Shao Ngoi: However, what you'll see here, even though I selected they are, they are injuries and they are motor vehicle, all the system will do is give you a record as a starting point.
+2:30:56 Shao Ngoi: See, even though I say there are two injuries, two, two forklifts, it still gives you one record only. As the security person entering this data, I have to manually go add.
+2:31:08 Shao Ngoi: Alright, what do I want to add? I want to add injury to this master incident. Now I have the 
+2:31:13 (Amanda Raver (6414)): same It goes, hey, everyone, I called it in, it's 27, so when you go out and do your pieces, whether it be equipment, whether it be entry 3, 4, or 5, use 27, but love 27.
+2:31:41 (Amanda Raver (6414)): Now, did I introduce potential issues? Yeah, because they could get confused. Yeah, but also, if you log in, and you're going to see, hey, it just happened, it's two forklifts hitting each other, and two people got hurt.
+2:31:52 (Amanda Raver (6414)): What are the odds? Two of those are the same stuff. 
+2:31:56 Shao Ngoi: If we have an error, we'll be able to fix it later. That shouldn't be an intellect. Yeah, so I just wanted to point out that the number of clicks is actually not less or more in either scenario.
+2:32:09 Shao Ngoi: In fact, I, you know, master incident, you have to be mindful to go in and click on add more new incident, versus, uhm, select selecting what, uh, what incident involves.
+2:32:21 Shao Ngoi: Because whatever's selected, the system will only give you one. 
+2:32:23 (Amanda Raver (6414)): We're not too worried about the number of clicks. We're more worried about losing data and missing records that should be tied up.
+2:32:30 (Amanda Raver (6414)): Yeah, it's better to automatically tie up. It's so much better. It's so serious. 
+2:32:37 Shao Ngoi: Hey, hey, hey, Chow. Chow. Yeah. Yeah, 
+2:32:42 (Amanda Raver (6414)): so, uhm, looking at the agenda, uhm, we didn't have a chance to give any feedback. We actually need to take lunch, and we probably need about 40 minutes for that lunch here to make it work for us.
+2:32:59 (Amanda Raver (6414)): So, probably now might be a good time to break unless you think we can get another five minutes of conversation, but we gotta get down to the cafeteria before it closes.
+2:33:06 Shao Ngoi: Yeah, we can take a break right now. I'm just trying to look at the time. So, right now it's 12.04 my time, uhm, so we want to meet back up, what time?
+2:33:17 Shao Ngoi: 12.45, we round things up here. Okay, 12.45. 12.45, that sounds good to me. I'll see you guys in a bit then.
+2:33:25 Shao Ngoi: Thank you. Okay, bye 
+3:11:48 Joel Frick (6124): It's not going to Yeah, so he did that and that's all that's on it now, but it was interesting to finish.
+3:11:59 Joel Frick (6124): Hello, welcome back. It's just 
+3:12:14 Shao Ngoi: going to give a few minutes for folks to, uh, rejoin. 
+3:12:21 Joel Frick (6124): Sure, I'll get on the watch, man. I'll get on the watch with you. Alright. That's all I have to say.
+3:12:37 Joel Frick (6124): It must be a good thing that everyone's out of battery. I'm telling you that through the bird's-eye view, You're starting to slow to me.
+3:13:02 Joel Frick (6124): I made this. Doesn't matter what you rely on as long as you're good at something. And I'm making use of my God-given Alright, so while we're waiting on the last couple, just a quick confirmation, ah, what you were just showing us is part of the, ah, is, would be considered in our scope if we wanted to
+3:14:12 Shao Ngoi: use it that way, is that correct? Yeah, so I have to take it back, uhm, obviously, uhm, you know, what I've shown you from an essential side of things versus the Astrum team having a master incident, ah, master incident and the incident itself, top incident itself has a workflow, right, uhm, obviously
+3:14:31 Shao Ngoi: , you know, instead of having one workflow per incident type, now there's an additional master incident workflow that has to be, well, even though there's no workflow, but we just have to figure out, uhm, how to manage the security treaty, right, and where, who, who can add the sub-incident and tie it
+3:14:51 Shao Ngoi: back to the master incident, those are additional configuration, they'll have to take it back and give you an estimate of how much effort that's gonna take, uhm, yeah, so, when you say in scope, it's really be.
+3:15:02 Shao Ngoi: In the scope itself, as far as I, I can tell, there is no specific call out master incident or not master incident, right, it's really just, uh, an incident management that allows you to report an incident in place, which is 
+3:15:16 Joel Frick (6124): really, uhm, and I think it, in this case, uh, when you're talking about, uh, accessibility or confidentiality, I think the people that are able to fill out the incident report would, would be the people that would be the restriction, if somebody can, if any one of those groups can see the old role master
+3:15:36 Joel Frick (6124): , and that's just general information, would that be a true statement? 
+3:15:44 Shao Ngoi: Yeah, so we, I still have to, well, flesh out the Then we'll give a click on each individual, 
+3:15:49 Joel Frick (6124): um, incident, but they might be able to see, to see a general information, uh, I guess that 
+3:15:57 Shao Ngoi: would be my understanding. Yeah, um, yeah, no, definitely need to flesh that flesh a bit more out in terms of security.
+3:16:11 Shao Ngoi: But before we get there, just making sure if everyone is back. Not sure if Troy, Nicholas, you guys are there?
+3:16:23 Shao Ngoi: Yes, I'm here. Awesome. Alright, we'll come back to the second half or the last one third of the of the sessions here.
+3:16:39 Shao Ngoi: Uhm, yeah, so kind of just keep everyone on the same page, what, uhm, Joel's mentioned here is really, uhm, if we are going down the path of the master incident, what I was mentioning earlier is really just identify with this Thank you.
+3:16:54 Shao Ngoi: Bye-bye. gap that I've proposed with essential in place, right? What is the, uh, lift to configure the, the ask here, right?
+3:17:03 Shao Ngoi: Uhm, but before I can tell you how much it's going to take to, to build the way that SIA is asking for, I also need to flush a couple of things, right?
+3:17:13 Shao Ngoi: Mainly around, uhm, security, right? So we have mass incident concept. We have the sub incident concept. Let me just bring up my screen here for a second.
+3:17:24 Shao Ngoi: Great. If we are Bye bye. You know, set on the mass incident concept. So this is where as the intake person, right?
+3:17:35 Shao Ngoi: The security person doing the reporting. They will have the screen. They can click on add entry. They can enter the details.
+3:17:43 Shao Ngoi: Besides the security, who can click on add entry? Is there anyone else who 
+3:17:48 Joel Frick (6124): can do the intake? In the event that we have an injury that doesn't get called in and comes straight to the clinic, we would.
+3:17:59 Joel Frick (6124): We would potentially want the clinic 
+3:18:01 Shao Ngoi: to be able to start that intake. Is that possible? So would the clinic start it 
+3:18:09 Joel Frick (6124): as a master incident? Would the clinic start it as a master incident? Yes, yes. And I would say that the clinic will 
+3:18:20 Shao Ngoi: follow So in a sense that both the security and the clinic will be able to, you know, look at the master incident screen and click on the add entry.
+3:18:40 Shao Ngoi: They will have the same access here. They can report on injury, most likely, right? But at the same time, the options then will still be available for them to add whatever incident type if they need to.
+3:18:57 Shao Ngoi: There's no segregation between, hey, clinic can only add injury, security can add all types. It's one screen for everyone. Alright, so knowing that that group can add, uhm, going back then, for whatever that's being added into the system, who can view?
+3:19:20 Shao Ngoi: Yeah. Like basically, who can view master incidents?
+3:19:31 Shao Ngoi: Without a sub incident, just the details, right? Let's say, for example, as a regular user, right, can I see the incident that happens within my hierarchy?
+3:19:43 Joel Frick (6124): I think we, just again, correct me if I'm wrong, but when we were setting up the whole organizational structure, we decided we didn't care anymore.
+3:19:50 Joel Frick (6124): We didn't want anyone to see that stuff, right? It just, that wasn't the priority, kind of. When it came to this, though, it was just legality.
+3:19:59 Joel Frick (6124): Okay. Whatever legal reasons if somebody gets injured, but what legal, I don't know. I don't think any of the information is important, but it appears to protect any So, should it be?
+3:20:17 Joel Frick (6124): Uhm, the, what we were aiming for in our last conversation was that leadership, all members of leadership should be able to see across the organization for all incidences, however, and, and including, ah, safety.
+3:20:34 Joel Frick (6124): However, there are members of the floor who are individualized, individualized, individually selected people, they should only be able to see inside of their section.
+3:20:46 Joel Frick (6124): There are, I don't know, what do you guys refer to them as, safety reps? Safety reps, and they're not definable, these are people that are.
+3:20:54 Joel Frick (6124): I thought we had to just kind of handpick to a group, it's not a lot, it's a very, uh, static, uhm, group of people, uhm, they're easily tracked, but we can't do it automatically based on their attributes of a person, but they would need to be able to see just inside of their section.
+3:21:13 Joel Frick (6124): Yeah, right, and then, yeah, even below leadership should not have access. We have the same situation with the environmental liaisons 
+3:21:23 Shao Ngoi: as with the safety reps. Okay, anyone? Just to clarify, what do you mean by the sections that are visible for them?
+3:21:31 Shao Ngoi: What does that mean? In the 
+3:21:33 Joel Frick (6124): hierarchy, in the org structure, at least there's a section level, so if they live in that section, then they should have access to that section.
+3:21:43 Shao Ngoi: So, based on the hierarchy, but not the section in the form? 
+3:21:53 Joel Frick (6124): No, but not the section in the form. Can you specify what you mean by that? 
+3:21:58 Shao Ngoi: Right, so that's what I'm saying. Based on the section, which would be an SI, 
+3:22:02 Joel Frick (6124): not the section inside the form. We use the word section here like some people would use the word department. Got it, got 
+3:22:10 Shao Ngoi: it. We word department differently. Got it, okay. That's why I wanted to realign the terminology. Sections in my head is sections.
+3:22:18 Shao Ngoi: This little sections here, but in your in your definition, section is departments, but we also have departments, yes. Then from an.
+3:22:31 Shao Ngoi: Edit 10 standpoint, who can edit a master incident record in the sense that who can modify this information here, who can add sub incidents from 
+3:22:43 Joel Frick (6124): a master incident, the from a master incident? Security, Clinic, and you submit to the environmental.
+3:22:56 Joel Frick (6124): Is that just you guys? You literally your team? Okay. And then 
+3:23:00 Nicholas Leuck: the environmental section. Okay. Thank you. And then we would maybe also add safety. Yeah, safety. 
+3:23:07 Shao Ngoi: Okay, so it's a specific set of user. Okay. 
+3:23:10 Joel Frick (6124): I think that's all right. Okay, 
+3:23:12 Shao Ngoi: uhm, whatever that's being added in as a master incident, assume. You know, uhm? Is there a scenario?
+3:23:23 Shao Ngoi: I think we touched on this most likely. High chance that this will be a valid incident. It will not just be someone just calling in for fun.
+3:23:32 Shao Ngoi: So that we don't need a verification stage. We don't need to cancel. The cancel step is simply just a container to launch the incident stuff.
+3:23:41 Joel Frick (6124): That would be able to be deleted, right? If they entered a master record, then they did some investigation and realized this was nothing.
+3:23:51 Joel Frick (6124): You can obviously just 
+3:23:52 Shao Ngoi: delete that. That master record, right? Do you delete the master record? What do you want to say? 
+3:24:01 Joel Frick (6124): Let's say security takes a phone call and it's a prank. It doesn't happen, but let's say they pranked it. So security entered a master record.
+3:24:08 Joel Frick (6124): And by the way, kernel goes out there and they're like, there's nothing out here. Obviously that master record could then be deleted, right?
+3:24:14 Joel Frick (6124): I would assume. Because nothing would tie to it. 
+3:24:21 Shao Ngoi: You will have an 
+3:24:22 Joel Frick (6124): environmental incident. Right, 
+3:24:25 Shao Ngoi: because the master does not actually hold the incident stuff. The master is just an intake to tell what happened. And then you will have an environmental incident.
+3:24:35 Shao Ngoi: Security gets a phone call that 
+3:24:38 Joel Frick (6124): my man messed in the bathroom. And so that's what that's just a joke. We don't know that, though, until Environmental goes out there to check it.
+3:24:45 Joel Frick (6124): Obviously, Environmental is not going to add an incident to it now because there's nothing that exists. Then we just have a master record that has nothing underneath it.
+3:24:53 Joel Frick (6124): Could that master record 
+3:24:53 Shao Ngoi: then be deleted? The master record will have to be because, to your point there, Environmental person has to go out to see it.
+3:25:01 Shao Ngoi: At that point in time, an Environmental incident record would have to exist already in the system. 
+3:25:08 Joel Frick (6124): Which is fine. At that point, we would document this was a prank, and we would close it out. And it gets to the closure real fast.
+3:25:15 Joel Frick (6124): All VMs need to be closed. Yeah. 
+3:25:19 Shao Ngoi: So this is what will have to happen first. For Environmental to go out and take a look, and then during the investigation, that's where they probably go.
+3:25:26 Shao Ngoi: You know what? Nothing 
+3:25:27 Joel Frick (6124): happens here. Close it out. Example from the safety standpoint would be if an incident is reported as a work related and turns out to be a person injured or vice versa.
+3:25:41 Joel Frick (6124): I mean, exactly. The person in the middle second. So, um, I think we'll capture that, but that'd be insane. Yeah.
+3:25:52 Shao Ngoi: I'm really hoping I don't have to use that. All right, so we have that kind of iron out, right?
+3:26:03 Shao Ngoi: Uhm, then, just kind of going back to, I think, one, one, one item that I kind of put aside on my note here is really the case of, you know, we have this example here, TwoForkLive running she's other, two person got hurt, vehicle got injured, there's a noise spill, let's assume, based on what I've heard
+3:26:25 Shao Ngoi: , most of the time, 80-90% of the time, you would know all the, uh, adverse event that ties together as one.
+3:26:34 Shao Ngoi: Well, that's great. What happens when there is, let's say, not in this scenario, two cars hit each other, first driver, obviously he's hurt, second driver, didn't think he got hurt, nothing, nothing, nothing hurts at all.
+3:26:50 Shao Ngoi: At that time. Adrenaline was not, nothing hurts. Two days 
+3:26:54 Joel Frick (6124): later, my back hurts. Now what? So that was kind of the scenario that I brought up earlier today, was like, you know, is it really, really, that is a repetitive nature.
+3:27:10 Joel Frick (6124): Maybe we go back and through conversations, we end up, we end up mapping it later, uhm, back to the original incident, uhm, if it proves to be truly related.
+3:27:22 Joel Frick (6124): And you're excited about a scenario that probably is truly related, but it's like, oh, you actually, when you're not driving that, you're on the line, and you have to bend over three times every one minute and nine seconds, and, oh, yeah, actually, when we're looking through all of your incidents, we
+3:27:38 Joel Frick (6124): found that you had other reports of back injury, and so, like, maybe this is an accumulation of all of these other credentials, and then maybe it's an, it's an analysm.
+3:27:47 Joel Frick (6124): So, it could be either, right? So, if you're unsure. You started as a new incident. Yes, it's neither. You still do the link.
+3:28:06 Joel Frick (6124): So, yeah, so in this case, 
+3:28:08 Shao Ngoi: let's say my back hurts, right? As a person who is hurting right now, what should I do? Do I call the 2-2-2 number?
+3:28:18 Shao Ngoi: Or do I tell my supervisor? What is it that I'm supposed to do? 
+3:28:22 Joel Frick (6124): You tell your supervisor, and then, and that's what we're going to be talking about. If it's something that's repetitive in nature, they're probably not dialing the, uh, security, and then that's where your entry point might be.
+3:28:37 Joel Frick (6124): The clinic opens the case. Yeah, that's, they would tell their supervisor, their supervisor would. Take them to the clinic, and the clinic would be the one starting, um, the report.
+3:28:50 Joel Frick (6124): We just need to make sure that the clinic is primed to ask that question. Have you called 2222? Have you started to say, Mark, do we need to do it right now?
+3:28:57 Joel Frick (6124): Yeah, why wouldn't we have to go through security? So, that was my question that I was just thinking about is.
+3:29:05 Joel Frick (6124): Out, and if we're treating security as dispatch, much like in any real world thing that is out there with the dispatch, even if like a officer goes up on a call, they.
+3:29:15 Joel Frick (6124): If the individual is coming into the clinic, we want the clinic to be able to do what they need to do with the individual.
+3:29:21 Joel Frick (6124): Yeah, if they call security and say, hey, we need a master number based off of what I've seen here. That would take 2 minutes for the security officer to create a master and say, here's your number.
+3:29:33 Joel Frick (6124): So it always goes through security, because I think from that standpoint, as you're reporting out, that gives Jason his team an understanding of exactly how many calls that they've had versus what, you know, well, this gives us control to do that because right now, there's no control, so it kind of comes
+3:29:49 Joel Frick (6124): from wherever it comes from, right? So there are things that, so the current reality is, there are some things that do have security, but this gives us the control to force it that way.
+3:29:59 Joel Frick (6124): Yeah, absolutely. And I think, you know, from that standpoint, it creates a unique unified front where now everything's coming to security, so the repetition is there, so there's not any mistakes that are going to be made.
+3:30:09 Joel Frick (6124): It gives, I think, from that standpoint, a reporting hub for Jason's team, for Dan, for us, that information's rolling up.
+3:30:16 Joel Frick (6124): And it allows the clinic to do what they need to do, take care of the associated tests. I'm not going to argue with you.
+3:30:21 Joel Frick (6124): I think that's a much better, better flow. 
+3:30:25 Shao Ngoi: OK, so everything flows through security then. OK, alright, so that's where security will need to know. Let's, I don't know how.
+3:30:35 Shao Ngoi: You know, the dialogue is going to work currently, right? Let's say this is what's being reported by me, right? I, I, sorry, I pick up the phone, someone told me this what happened.
+3:30:46 Shao Ngoi: I put this all this information today like now. Two days later I I am away from my shift or maybe someone else will be picking the call from, let's say, Dave who's calling in that his back hurt.
+3:30:59 Shao Ngoi: He claims that it is from incident that happens two days ago. Would the person who picked up the phone call at that time I assume, right, they would know how to go back to the master incident, figure out what are the details and then go take a look at the incident details and then at that time add Dave's
+3:31:17 Shao Ngoi: incident as part of the overall overarching event? Yeah, could, could, let's say, again, two days later, Dave called in, his back hurts from, from this incident, so security will go in, yep, this is, ah, from Dave, Dave report that his back hurts from the accident.
+3:31:37 Shao Ngoi: You know, so we have to put in all this stuff again, and save it as part of the overall, ah, master incident details.
+3:31:47 Joel Frick (6124): I don't think so. I we can count on security to know and remember off the top of their head that that had happened a couple days earlier, but I think their caller would have to make that reference, and then security would be able to look up that by a badge number or, you know, their identification number
+3:32:01 Joel Frick (6124): . And in that case, they would notify, so if that happened again, they'd come in and say, hey, two days ago, we had this incident.
+3:32:10 Joel Frick (6124): Security would see that there was that incident. They would then notify the group, environmental or safety or whatever. They wouldn't, they wouldn't enter the safety set themselves, but they would notify and just say, reach out to safety, there's another incident for the same master, right?
+3:32:22 Joel Frick (6124): I mean, security is not going I think intellects would send that push to the person. Sure, sure. Yeah. Now, if, if they say, like, hey, badge, 20631 is here with a back injury, I'm taking him to the clinic, would they be able to search all of the incidences to see if there are any relevant active cases
+3:32:48 Joel Frick (6124): for that person underneath the master's name? When they're taking that intake, would they need to put all their badges in there, in the master, for it to show up properly?
+3:32:57 Joel Frick (6124): Or can 
+3:32:59 Shao Ngoi: Can they search by person? Yeah, they can search by person, right, if I can see it. Right, it's really, who should, before we get into the more detail, is that, yeah, well, we have those data to be searched by, right?
+3:33:19 Shao Ngoi: In your person, what's not. But most of the time, this is where, when it comes to privacy, right, whoever can see it should be limited, right, uhm, in the sense that nobody can really see who got it hurt.
+3:33:34 Shao Ngoi: Okay, so when you say search by name, can security see it? A person, I guess they should, because they're the intech person, right, uhm, in that scenario, yes, security will be able to search by name and tie it back.
+3:33:54 Shao Ngoi: But I do have a question. Questions on that, so let's say Dave, going back before we get further out, so Dave call in saying that his back hurts from this accident.
+3:34:04 Shao Ngoi: Security, pick it up, simply add it in. What But if it turns out the back itself is a, what, uh, being mentioned here is that it's a repetitive motion that caused the back hurt, not the accident.
+3:34:20 Joel Frick (6124): That is where we would probably then split it out. We say, okay, you can keep it here necessarily, maybe, but it also needs to live on its own as well, uhm, as part of a repetitive nature.
+3:34:33 Joel Frick (6124): Also, it's probably going to be safety making that fall in conjunction with the clinic. So, at that point, somebody can close out the one end of the back.
+3:34:43 Joel Frick (6124): That's what we want to do or just relink it to something else. But I imagine you'd want to keep these separate.
+3:34:54 Joel Frick (6124): So you have the injury, I mean, the original case and then it's like, well, it actually, well, it was rather.
+3:35:00 Joel Frick (6124): I don't know how that's going to look from a reporting perspective, from a safety perspective.
+3:35:13 Joel Frick (6124): Is that going to like. Increase the number of incidents and what we're trying to calculate our incident rate. Is that 
+3:35:20 Nicholas Leuck: going to inflate our numbers? I would say I would say that. Though a case like what we're going over is rare.
+3:35:30 Nicholas Leuck: Yeah, but yes, you would. Then, from a reporting perspective, from what I currently do, you would now show 
+3:35:38 Joel Frick (6124): two injuries. Yeah. We can fix that. We can identify it. Right? I mean, we would just merge them 
+3:35:46 Shao Ngoi: together. But now you have to add two records in the system. 
+3:35:54 Joel Frick (6124): But, I mean, in today's world, again, it's rare. We're spending a lot of time on the 1% right now, but to entertain that, uhm.
+3:36:04 Joel Frick (6124): It would be two incidences today, right? Just because they got hurt three weeks ago, they come back, they get again, uhm, they just reopen the old case?
+3:36:15 Nicholas Leuck: This, okay, so the clinic will sometimes, once again, rare cases. The clinic will sometimes take an incident, like, I, let's say I have a wrist injury, I reported a wrist injury today, I report that same wrist injury, uhm, a week from now, they will take that one that I report a week from now, and they
+3:36:39 Nicholas Leuck: will attach it to the one I reported today. Rare cases, but that does happen. 
+3:36:47 Joel Frick (6124): They will not attach it, or they will? 
+3:36:48 Nicholas Leuck: They will. They'll, they'll take it from when you, if it's the same injury, that I reported today, and I go, and a week from now, I report the same injury.
+3:37:00 Nicholas Leuck: Sometimes, the clinic will take that injury and merge it to the previous case, so now 
+3:37:06 Joel Frick (6124): you just have one case. And so that is effectively, for layman's terms, re-opening that case, because that old case becomes opening, and there's not a new number associated, right?
+3:37:21 Joel Frick (6124): It's just the old case turned back on with 
+3:37:24 Nicholas Leuck: new information added to it. It's doesn't, it could, the first case could have never been closed. It's just, hey, we're taking, yeah, yeah, we're just, we're taking, uh, this new report.
+3:37:34 Nicholas Leuck: It's really, it's exactly what you reported a week ago. It's the same thing. And the current process, the clinic, uh.
+3:37:41 Nicholas Leuck: They may attach that to that previous incident, and then it, then you, you, like, you basically, from a data perspective right now, we lose it.
+3:37:51 Nicholas Leuck: It's just now merged into that previous case. So it's just one case. 
+3:37:57 Shao Ngoi: When you 
+3:38:00 Nicholas Leuck: say merge, uhm, does that mean? That append, or, you know, it's added. It's not, 
+3:38:08 Shao Ngoi: it's not its own, right, it. It's not standalone. 
+3:38:12 Nicholas Leuck: Yeah, it's not standalone anymore. So, like, from a data perspective, currently, I don't see it anymore, because it's now been added to a previous case.
+3:38:23 Nicholas Leuck: That's the current process. Now, that's not every single time. I'm just saying that that's, you know. If that does happen, that, that, that's a 
+3:38:33 Joel Frick (6124): scenario where that can happen. So, is there any issue of opening 
+3:38:38 Shao Ngoi: a closed case? No, not, not in Intellects. I'm just trying to see, you know. How do we categorize that, right?
+3:38:48 Shao Ngoi: So, obviously, I know this is rare, maybe we're too deep into it. Obviously, one could really got hurt from the actual accident itself, right?
+3:39:00 Shao Ngoi: That's being tied to an accident. Let's say, through an investigation, the back hurt is actually not really from the accident, that accident may trigger it, but it's the source of the back hurt is from the repetitive motion.
+3:39:14 Shao Ngoi: We can reopen this case. Alright, uhm, but should this case still be tied to this master incident, or should there be a new master incident being created where we move this over to that incident itself?
+3:39:29 Shao Ngoi: I'm saying in 
+3:39:30 Joel Frick (6124): the case that it is independent of those, uh, instances. But if it's still related to those other instances, then I think it's still striking.
+3:39:40 Shao Ngoi: Or from a reporting side, what should it be fall under, right? Should it be fall under, hey, this incident did trigger this backhurt?
+3:39:50 Shao Ngoi: Right, this technically did get hurt from it, even though, yes, I do have a history of back pain from a repetitive motion, but this incident did cause my back to hurt.
+3:39:59 Shao Ngoi: That's going to be a decision that has to be 
+3:40:02 Joel Frick (6124): made through the clinic, too. Yeah, yeah. Case by case. Case by case. That's right. Yeah. That's good. That's going to be a medical professional decision.
+3:40:10 Joel Frick (6124): So 
+3:40:12 Nicholas Leuck: The clinic wouldn't then create a separate AIR for that. They would just say, yes, while you may have had previous history, What?
+3:40:22 Nicholas Leuck: the incident, this, your injury was caused because of this incident. They wouldn't go, well, you have history, so we're just going to create a new incident.
+3:40:32 Nicholas Leuck: That, if, if, if this incident caused you to have 
+3:40:36 Shao Ngoi: that injury, then it stays there. That's what I'm used to, right, because it doesn't matter what my history, this incident caused this injury, even though I have a history of that, it still stays to the incident.
+3:40:54 Shao Ngoi: That's why I'm trying to understand the merge portion, because let's say my back hurts tomorrow, let's say a month from now, not related to incident, this accident anymore.
+3:41:06 Shao Ngoi: At this point in time, it is back hurting, not from the accident, but from a history or repetitive motions that I've been doing, now that would count as a new incident, which means on your .
+3:41:20 Shao Ngoi: . record, or your reporting, you have . . . you will have two injury illness with the same person getting back hurt, but one is tied to this master incident from a forklift, one is a standalone where, you know, from a repetitive 
+3:41:36 Joel Frick (6124): motion. I think the better answer to your question, if we find that that incident isn't related, can we pull it out and keep it its own incident if that back injury is from repetitive motion?
+3:41:47 Joel Frick (6124): Take it away from the master and just keep it its own. Can that be done? 
+3:41:57 Shao Ngoi: Yeah, we could, right? Who is supposed to do that? 
+3:42:01 Joel Frick (6124): The 
+3:42:01 Shao Ngoi: clinic. clinic. So clinic basically have full reign of editing the, ,injury record. Yes.
+3:42:15 Shao Ngoi: Just our crew CD is. Clinic.
+3:42:25 Shao Ngoi: Obviously, when I say clinic, this is, uh, not someone who, is, is this someone who work at a clinic or just 
+3:42:32 Joel Frick (6124): medical professionals? It's medical professionals here at SIA, I assume. They are under a different It would be vendor or at-level access, that would make sense, but they won't come over on my queue.
+3:42:51 Joel Frick (6124): Super quickly, can I interrupt and be completely off-topic for a moment? I'm looking at tomorrow's schedule, and I have a meeting I cannot move or miss from, uh, 1030 to 11.
+3:43:10 Joel Frick (6124): And that happens to be the time where you can have NODs scheduled, which I need to be a part of.
+3:43:18 Joel Frick (6124): So can 
+3:43:19 Shao Ngoi: we move that, please? I think we are a little behind schedule at this point because we didn't 
+3:43:27 Joel Frick (6124): really touch on environmental. I know we had Wednesday also scheduled, but think probably no need to be in events. Yeah, yeah, we just needed.
+3:43:40 Joel Frick (6124): I would just like to be in the room when we talk about NODs, please. 
+3:43:42 Shao Ngoi: Okay, environmental and NODs should go ahead. No hand in hand? Yes. Okay, I can move that and then tomorrow what we can, what I can do is cover property damage and nemesis.
+3:43:58 Shao Ngoi: And then there is, then we can lump environmental and NOES1 in, in a time that works for you. Perfect, thank you.
+3:44:04 Shao Ngoi: Okay, 
+3:44:05 Joel Frick (6124): okay. I hope that's helped. 
+3:44:10 Shao Ngoi: All right, then from, um, just to understand from an integration side of things, right?
+3:44:21 Shao Ngoi: Um, so Injury is supposed to have integrations with OHM. Um, obviously part of the scope is that, um, SIA is supposed to configure the API to send OHM data into IntelliJ.
+3:44:34 Shao Ngoi: I just need to understand what does it mean by, you know, first report of injury creations investigation. What is it that's essentially being sent into IntelliJ?
+3:44:46 Shao Ngoi: What is it that's, uhm, in the payload? Do we know at this point, what are we integrating? 
+3:44:54 Nicholas Leuck: Nick, do you want to cover that part? Uhm, well, I'm not sure what come first report of injury creation and 
+3:45:05 Joel Frick (6124): investigation. I'm not sure what that. Oh, that was when I'm sorry that that was when we were originally thinking that maybe Resolver could initialize security and making that initial creation of the process.
+3:45:22 Joel Frick (6124): We were hoping that. Because they're already doing it in one system, we were hoping that it could kick off in our system, but it looks like we would be delayed and timing will be able to do it in real time.
+3:45:33 Joel Frick (6124): So that part, I guess we don't have to worry about so much right now, but the data flowing from OHM.
+3:45:39 Joel Frick (6124): Uhm, we do collect some information from that, I think we do want to get over 
+3:45:43 Nicholas Leuck: into Intellects. So, yeah, in. At that point, instead of, uhm. That's where I don't know, do we want to just open already put it in, like, somewhere in Intellect where the clinic has to enter it, uhm, or are they entering that into their OHM and sending it, because they only send that four times a day
+3:46:09 Nicholas Leuck: , so our current data feed from OHM is four times a day. Uhm, I don't know if doing this API would, would change that, 
+3:46:17 Shao Ngoi: uh, more frequently or not. Uhm. So, just high level, what are we feeding into Intellect?
+3:46:28 Nicholas Leuck: I think that still needs to be figured out. If we're just going, it would be, currently right now, it would be determining whether or not the injury is a first aid or becomes an OSHA record loss.
+3:46:44 Nicholas Leuck: Uhm, it could become an OSHA, so I could have a first aid today, and then a week later, it gets determined that it's an OSHA recordable.
+3:46:54 Nicholas Leuck: That would trigger a, a, a change, uhm, you would, you would then have a, a, a, an 
+3:47:03 Shao Ngoi: OSHA date with that, uhm. So essentially you're looking for your OSHA system to define what is the injury classification and if it's 
+3:47:15 Nicholas Leuck: recordable or not recordable. That's just, that's one example, uhm, you could have cases that months later, uhm, it's determined that it's not work-related, so that typically comes over as a switch, but maybe that's that would just be handled in Intellix itself, uhm, where we're not feeding that data
+3:47:37 Nicholas Leuck: over. I think we need to solve the aspect of it, of, we need to identify all the data points that we would need from the clinic.
+3:47:48 Nicholas Leuck: And whether or not those data points could just live in these forms, and then we're not having to worry 
+3:47:53 Joel Frick (6124): about the data feed anymore. Yeah, uhm, we are meeting, Dan and I are meeting with the, hold on, we have a moment.
+3:48:03 Joel Frick (6124): We're meeting this afternoon. With the clinic leadership team at 4 o'clock, uhm, and my plan is to bring this up at that point on to make sure that they're on board with entering this information and then us actually feeding the information back to them.
+3:48:16 Joel Frick (6124): Yeah, so, so we would be the point of entry and then we would feed back to them. So, 
+3:48:22 Nicholas Leuck: so the big key to this, the big key is currently when an incident goes into the current OHM system, they create a case number.
+3:48:34 Nicholas Leuck: That case number is a unique identifier. That's what I use to tie everything kind of back together. Uhm, so, if we're feeding data, uh, from intellects to the clinic or from the clinic to the intellects, the key piece is going to be what that unique ID becomes, or, you know, the start in intellects and
+3:49:01 Nicholas Leuck: then the clinic has to enter that in somewhere, or do we send, uhm, Thank you. Intellects the unique ID, which I, I don't think we would be doing it from to intellects.
+3:49:18 Nicholas Leuck: That's just the current current process. 
+3:49:20 Shao Ngoi: So based on what I'm hearing, then, uh, essentially you have. You know, clinic entering data outside of intellects, and then you're hoping that data is going to feed back into intellects.
+3:49:31 Shao Ngoi: Uhm, well, that's due to be decide what's going to be feedback into intellects. One thing from what we have discussed early, just touch on earlier.
+3:49:41 Shao Ngoi: Was that clinic supposed to have full reign on the injury record? Kind of to, uh, uh, next point, if, if what is it that, that, uhm, clinic is entering outside of intellects, that's not in intellects.
+3:49:55 Shao Ngoi: Is there an opportunity to do to keep all in intellects? Do they need to go separate system? Because ultimately, if they have full reign of injury record in intellects, technically they can do whatever they want with the injury record.
+3:50:10 Nicholas Leuck: Correct. So, go ahead, Nick, go ahead. Oh. I was just going to say, correct, yes, and that's where, like, Scott, when you ask about the APIs, is it potential that it's only just a handful of data points, and if it's just a handful of data points, could we just incorporate those data points into, uh, 
+3:50:28 Nicholas Leuck: it. Their medical treatment notes or wherever, 
+3:50:32 Joel Frick (6124): wherever it needs to live. Uhm, yeah, yeah, and they, I think, said as much. I think Randy said that. She wouldn't have any problem doing parallel, right?
+3:50:41 Joel Frick (6124): Right? Yeah, so we can feed it back to them. We can feed the report to back to them, and then, because today this is all done on paper.
+3:50:48 Joel Frick (6124): So, like, even though we're not reducing anything, I think we can still make the process easier for them. Because today they have to read handwriting.
+3:50:56 Joel Frick (6124): Tomorrow, it's up to the internet to make a copy and paste from a report that's crafted in a way that they have specified.
+3:51:03 Joel Frick (6124): That's like, OK, I copied this, then I copied this, then I copied that, uhm, so it's still going to be easier.
+3:51:08 Joel Frick (6124): We haven't, we haven't lost anything. We haven't really gained anything. We made the process a little easier in between. That is all dependent on today's meeting saying, where they're like, yes, we are humps and on board with logging into your systems and entering information.
+3:51:23 Joel Frick (6124): Uh, I don't know why they would be against that, but I don't want to assume, uhm. Hey, we kind of pitched that, so I don't think that there's any perspective.
+3:51:32 Joel Frick (6124): No, brandy perspective. Yes, but. Oh, right, yeah, so that's something I need to get on board. Well, I did talk to him about it to some degree when I talked to their corporate people and they didn't seem to have any issue with doing whatever they needed.
+3:51:49 Joel Frick (6124): I didn't get into specifics though, so it's afternoon. Yeah, I don't suspect anything crazy from after this afternoon, but just confirmations.
+3:51:56 Joel Frick (6124): And I'll still keep you safe. So either way, you may use an API to grab information. You can send it that way, or last person.
+3:52:09 Joel Frick (6124): I think today I'm probably going to need an API to pull data the last what? So whether it be to the clinic, or it be to myself?
+3:52:15 Joel Frick (6124): Right. I'm going to have to do that activity. Yeah, 
+3:52:19 Shao Ngoi: so then yeah, whatever the discussion would be or direction would be, right? If we if we are using this API to push data into intellects to next points, right?
+3:52:30 Shao Ngoi: The sequence of event is that secretion of 3D will still have to enter the incident to intellects and then on your OSHAM system there, the clinic will have to put in somewhere, some place to identify, hey, this is related to this specific injury record in intellects.
+3:52:54 Shao Ngoi: Right, because a master incident could have multiple injury. Right, let's take this for example. My master incident is number 27.
+3:53:02 Shao Ngoi: Okay, but from an injury standpoint, I have two injuries. One is 30 and 32. The clinic team will have to capture 32 and 30 as part of the identifier in the system.
+3:53:16 Shao Ngoi: In your OSM system so that whatever they're updating, the system know that they're updating record 32 or record 30 or whatever the record number it is, or whatever the injury record 
+3:53:26 Joel Frick (6124): it is in intellects. Right, makes sense. 
+3:53:32 Shao Ngoi: OK, so yeah, I put that as a note on my side to follow up right as a parking lot item.
+3:53:40 Shao Ngoi: But from what I can see, just can't. I know we have five minutes only. Let me just do quick recap here.
+3:53:45 Shao Ngoi: Just from our discussion this morning, right? We have going down the path of the master incident concept. There's really no need for a workflow here.
+3:53:53 Shao Ngoi: It's just an intake. And then the intake will define what are the incident involved with this overall master incident, right?
+3:54:01 Shao Ngoi: And then for each of these sub incidents here, Take care. Which we only touch on injury illness only, but assumption here, which I can confirm tomorrow session as well, is that whatever is being added here, it's initiating the investigation to start.
+3:54:17 Shao Ngoi: Right? I don't need verifications. I don't need, uhm, drafts. In draft stage, intake happens, uh, intake define what are the incidents upon creating those incident investigation starts right away.
+3:54:31 Shao Ngoi: Once started, each of the incident type will have its own lifecycle, own workflow, own investigation. On its own, right? Which means this could be, you know, it takes one day to figure out all the details.
+3:54:44 Shao Ngoi: Maybe the next one would take, uh, three days or more. Whatever the timeline would be. They're independent from each other.
+3:54:50 Shao Ngoi: They have their own investigation details. They have their own actions, but they all tie 
+3:54:55 Joel Frick (6124): back to the master incident. So, on the screen that you're showing, if you pick a particular sub-incident, like, uh, number 30, hurt elbow, all the other tabs that go across the top of that table, if you click into those, that is, if you are working on incident number, record number 30, and I click over
+3:55:17 Joel Frick (6124): to action plans. They exist in multiple places. So, you see that here on the master, I can also see it inside the incident.
+3:55:27 Joel Frick (6124): I see where you're going. So, if you wanted to create a witness for the overall thing, you could. If you want to create a witness to a very specific thing, you can do that as well.
+3:55:36 Joel Frick (6124): Well, that's, yeah, that was the question, because action plan is going to perhaps be different between the two. Each one of those where witnesses are likely common.
+3:55:45 Joel Frick (6124): This screen here, I believe, is just for the master. Then you click in the incident to see. And then go through that same.
+3:55:52 Shao Ngoi: This gives you the summary of all the items pertaining to each of these. This incident type. Alright, let's say for example number 32 has three action plan.
+3:56:04 Shao Ngoi: Number 30 has one. Number 28 has one. When I click into action plan here, it shows me all five, right?
+3:56:12 Shao Ngoi: It gives me all the summary. Summary of whatever that's being added from the sub incident side of things. That's why it's called the sub incident summary.
+3:56:20 Shao Ngoi: It gives you the summary of all that ties to the sub incident itself. Alright, thank you. 
+3:56:29 Joel Frick (6124): Awesome, so that's where this like master thing is kind of neat, because like you can have all these costs being totaled up in all these different areas, and then like rolling out.
+3:56:37 Joel Frick (6124): It's pretty neat. Well, I have an 
+3:56:40 Shao Ngoi: observation that it does need to be. Uhm, and then from a flow standpoint. We only touch on injury, right, which I again for other sub incident type I can confirm tomorrow for every single for every single injury.
+3:56:56 Shao Ngoi: Obviously we need investigation with every single injury requires 
+3:57:01 Joel Frick (6124): an approval as well. What do you mean by approval? 
+3:57:07 Shao Ngoi: So let's say I completed my investigation. Do you need someone to approve, hey, this investigation is all completed to its details, all the action?
+3:57:16 Shao Ngoi: I'll be the safety specialist. Okay, so once the safety specialist say yes, that closes off the, the, the record. 
+3:57:24 Joel Frick (6124): Yeah, now things that are required, we can get to this tomorrow, but things that are required within the incidents. Peace.
+3:57:34 Joel Frick (6124): Are driven by the severity and I think we're going to get a little unique when we get to that tomorrow.
+3:57:40 Joel Frick (6124): Because, like, we require 1, 5, but. Require for detail or something like that. Yeah, if I want to talk about, like, in people machines, yeah, I think we need to talk about that.
+3:57:59 Joel Frick (6124): It's like, again, that might be perfect. You're going to be good. Like, man, we just need to have a simple 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, it feels like we're 
+3:58:23 Shao Ngoi: And it kind of going back to what I've shown the team this morning is really from the essential side of things.
+3:58:30 Shao Ngoi: We do have those, uh, criteria built in, right? Just need to baked in, in a sense that if I, if I'm to include.
+3:58:37 Shao Ngoi: Master incident, what would that look like? So what I mean by that is for every single investigation stage for every single severe ready type, you can tell the system you, let's say for this is for moderate.
+3:58:54 Shao Ngoi: For moderate, I can tell the system I could have optional cost analysis, but it's not required. But I must require at least one root cause.
+3:59:04 Shao Ngoi: If I need to, I select that. If I need to have at least one action plan, I select that. And let's say for a higher severity, let's say this is for major, right, for the same setup, I can say, alright, for major severity, I must have at least 
+3:59:17 Joel Frick (6124): one cost analysis as well. I think it differs a little bit, but hopefully we're going to change it. It's like, it's part of the cost analysis.
+3:59:27 Joel Frick (6124): We would have to do, like, five of them, and not at least one, but at least five, and they're very pointed five, like, we have a definition of what each of the five are, and so, like, that's where things get a little, a little unique, I think.
+3:59:43 Shao Ngoi: Okay, so that's the five Ys that you were referring to just now? Yeah, like, Spanning 
+3:59:48 Joel Frick (6124): five Ys. 
+3:59:49 Shao Ngoi: Yeah, yeah. Okay, yeah, we can touch on that in more, in a little details in terms of what is to ask here for each of the SLA reads type.
+3:59:59 Shao Ngoi: We do have five Ys. But right now, it's, it doesn't really enforce the level of five, uh, the level of Ys.
+4:00:06 Shao Ngoi: It's simply just a place for you to do your cause analysis. Okay, so let's say five Ys. Yeah, it doesn't enforce anything.
+4:00:14 Shao Ngoi: But an 
+4:00:15 Joel Frick (6124): image of, like, our data? Definitions, if need be. And then again, the safety person has to sign off on it.
+4:00:19 Joel Frick (6124): So if they say, like, hey, you didn't complete this to the expected degree, try again. But wouldn't it just ask to at least require five entries?
+4:00:28 Joel Frick (6124): Oh, yeah, it would be. Yeah. That way, we don't have just this. Always have a touchpoint, even if it's, you know.
+4:00:34 Joel Frick (6124): Yeah. I 
+4:00:36 Shao Ngoi: know we have Uhm, anyone have any questions before 
+4:00:46 Joel Frick (6124): we wrap this up? Uh, before we go, should we go ahead and schedule Wednesday? It looks like we're falling behind.
+4:00:53 Joel Frick (6124): I know originally we were going to schedule that with Emma, but, uh, she said people kind of awaited it. It should be 930 to 1130, right?
+4:01:00 Joel Frick (6124): Yeah, 930 to 
+4:01:01 Shao Ngoi: 1130 on Wednesday. Okay. Okay, I will do that right now. 930 to 1130. Yes, and we'll 
+4:01:10 Joel Frick (6124): remind this topic to the time where she is. Yeah, sorry, too 
+4:01:15 Shao Ngoi: early. I'll reach out to Emma, we'll send out the, uh, the, uh, meeting invites, uhm, and then, Joel, you can 
+4:01:23 Joel Frick (6124): obviously share it with the team. Okay. Sure. Okay. Alright. Thank you. Thank you all. Have a
