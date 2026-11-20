@@ -1,0 +1,158 @@
+{
+  "collections": 11,
+  "requests": 22,
+  "tenantRequestsExecuted": 0,
+  "environmentKeyBlank": true,
+  "results": [
+    {
+      "object": "Supplier Relationship Role",
+      "requests": 2,
+      "keysAndBindingsMatchAuditedSchema": true,
+      "scriptMocksPassed": true,
+      "coveredFieldCaptions": [
+        "Code",
+        "Name",
+        "Active?",
+        "Sort"
+      ]
+    },
+    {
+      "object": "Part Flag",
+      "requests": 2,
+      "keysAndBindingsMatchAuditedSchema": true,
+      "scriptMocksPassed": true,
+      "coveredFieldCaptions": [
+        "Source System",
+        "Code",
+        "Name",
+        "Active?",
+        "Sort"
+      ]
+    },
+    {
+      "object": "Part Tag",
+      "requests": 2,
+      "keysAndBindingsMatchAuditedSchema": true,
+      "scriptMocksPassed": true,
+      "coveredFieldCaptions": [
+        "Source System",
+        "Value"
+      ]
+    },
+    {
+      "object": "Program Reference",
+      "requests": 2,
+      "keysAndBindingsMatchAuditedSchema": true,
+      "scriptMocksPassed": true,
+      "coveredFieldCaptions": [
+        "Source System",
+        "External ID",
+        "Name",
+        "Active?"
+      ]
+    },
+    {
+      "object": "Supplier Reference",
+      "requests": 2,
+      "keysAndBindingsMatchAuditedSchema": true,
+      "scriptMocksPassed": true,
+      "coveredFieldCaptions": [
+        "Source System",
+        "External ID",
+        "Name",
+        "Active?"
+      ]
+    },
+    {
+      "object": "Product Family",
+      "requests": 2,
+      "keysAndBindingsMatchAuditedSchema": true,
+      "scriptMocksPassed": true,
+      "coveredFieldCaptions": [
+        "Source System",
+        "External ID",
+        "Name",
+        "Notes",
+        "Active?",
+        "Raw Payload"
+      ]
+    },
+    {
+      "object": "BOMECS API Record",
+      "requests": 2,
+      "keysAndBindingsMatchAuditedSchema": true,
+      "scriptMocksPassed": true,
+      "coveredFieldCaptions": [
+        "Source System",
+        "External ID",
+        "Part Number",
+        "Part Name",
+        "Future Part Name",
+        "LS Part Number",
+        "LE Part Number",
+        "Unit Cost",
+        "Drawing Number",
+        "Active?",
+        "Name",
+        "Programs",
+        "Flag",
+        "Tags",
+        "Notes",
+        "Product Family",
+        "Include All Families?",
+        "Raw Payload"
+      ]
+    },
+    {
+      "object": "Part Revision Reference",
+      "requests": 2,
+      "keysAndBindingsMatchAuditedSchema": true,
+      "scriptMocksPassed": true,
+      "coveredFieldCaptions": [
+        "Part",
+        "External ID",
+        "Name",
+        "Active?",
+        "Included in Latest Part Feed?"
+      ]
+    },
+    {
+      "object": "Part Supplier Relationship",
+      "requests": 2,
+      "keysAndBindingsMatchAuditedSchema": true,
+      "scriptMocksPassed": true,
+      "coveredFieldCaptions": [
+        "Part",
+        "Supplier",
+        "Role"
+      ]
+    },
+    {
+      "object": "Engineering Change Number",
+      "requests": 2,
+      "keysAndBindingsMatchAuditedSchema": true,
+      "scriptMocksPassed": true,
+      "coveredFieldCaptions": [
+        "Source System",
+        "External ID",
+        "Name",
+        "Active?"
+      ]
+    },
+    {
+      "object": "Engineering Change Scope",
+      "requests": 2,
+      "keysAndBindingsMatchAuditedSchema": true,
+      "scriptMocksPassed": true,
+      "coveredFieldCaptions": [
+        "Engineering Change Number",
+        "Supplier",
+        "Product Family",
+        "Program",
+        "Description",
+        "Comment",
+        "Raw Payload"
+      ]
+    }
+  ]
+}

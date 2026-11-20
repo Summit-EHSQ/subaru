@@ -1,0 +1,316 @@
+{
+  "reviewDate": "2026-11-19",
+  "scope": "Independent offline semantic review against audited metadata and section5; no HTTP or credential access",
+  "collectionCount": 11,
+  "requestCount": 22,
+  "relationshipBindingPropertiesChecked": 12,
+  "issues": [],
+  "checks": [
+    "Exactly11business-object collections and POST/PATCH only,22requests",
+    "All body system-name keys exist exactly in audited metadata",
+    "All binding targets agree with audited Type.Name; Programs/Tags arrays, other bindings scalar",
+    "All current default-detail form mandatory inputs are included in POST",
+    "Immutable source identities and association/scope keys omitted from PATCH",
+    "PartTag PATCH resends identical Value variable with explicit user instruction for manual native IDs",
+    "Inverse grids and nativeM:Nmap objects omitted",
+    "Exported apiKey value blank; auth is variable-based",
+    "All referenced Postman variables declared in shared environment",
+    "RawPayload values parse as complete illustrative JSON strings"
+  ],
+  "notes": [
+    "Part Tag no-op depends on user setting partTagValue to the selected existing record exact current Value; it is not server immutability validation.",
+    "Scope POST correctly omits Part/Revision while RawPayload explicitly retains source nulls; optional native examples and unresolvedwire distinction are described.",
+    "BOMECS sends actual InclAllFamilies and clearly separates it from missing IncludeAllFacilities mapping.",
+    "Collections are explicitly nativeCRUD samples and do not claim receive-service upsert/reconciliation/atomic processing.",
+    "M:N arrays appear only in POST; no unverified replacement/clear semantics are asserted.",
+    "Live mutation success, permissions, native decimal/text capacities and runtime identity enforcement are not established by this review."
+  ],
+  "requests": [
+    {
+      "file": "01_Supplier_Relationship_Role.postman_collection.json",
+      "object": "Supplier Relationship Role",
+      "method": "POST",
+      "bodyKeys": [
+        "Code",
+        "Name",
+        "Active",
+        "Sort"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "01_Supplier_Relationship_Role.postman_collection.json",
+      "object": "Supplier Relationship Role",
+      "method": "PATCH",
+      "bodyKeys": [
+        "Name",
+        "Active",
+        "Sort"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "02_Part_Flag.postman_collection.json",
+      "object": "Part Flag",
+      "method": "POST",
+      "bodyKeys": [
+        "SourceSystem",
+        "Code",
+        "Name",
+        "Active",
+        "Sort"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "02_Part_Flag.postman_collection.json",
+      "object": "Part Flag",
+      "method": "PATCH",
+      "bodyKeys": [
+        "Name",
+        "Active",
+        "Sort"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "03_Part_Tag.postman_collection.json",
+      "object": "Part Tag",
+      "method": "POST",
+      "bodyKeys": [
+        "SourceSystem",
+        "Value"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "03_Part_Tag.postman_collection.json",
+      "object": "Part Tag",
+      "method": "PATCH",
+      "bodyKeys": [
+        "Value"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "04_Program_Reference.postman_collection.json",
+      "object": "Program Reference",
+      "method": "POST",
+      "bodyKeys": [
+        "SourceSystem",
+        "ExternalID",
+        "Name",
+        "Active"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "04_Program_Reference.postman_collection.json",
+      "object": "Program Reference",
+      "method": "PATCH",
+      "bodyKeys": [
+        "Name",
+        "Active"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "05_Supplier_Reference.postman_collection.json",
+      "object": "Supplier Reference",
+      "method": "POST",
+      "bodyKeys": [
+        "SourceSystem",
+        "ExternalID",
+        "Name",
+        "Active"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "05_Supplier_Reference.postman_collection.json",
+      "object": "Supplier Reference",
+      "method": "PATCH",
+      "bodyKeys": [
+        "Name",
+        "Active"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "06_Product_Family.postman_collection.json",
+      "object": "Product Family",
+      "method": "POST",
+      "bodyKeys": [
+        "SourceSystem",
+        "ExternalID",
+        "Name",
+        "Notes",
+        "Active",
+        "RawPayload"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "06_Product_Family.postman_collection.json",
+      "object": "Product Family",
+      "method": "PATCH",
+      "bodyKeys": [
+        "Name",
+        "Notes",
+        "RawPayload"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "07_BOMECS_API_Record.postman_collection.json",
+      "object": "BOMECS Part API Recod",
+      "method": "POST",
+      "bodyKeys": [
+        "SourceSystem",
+        "ExternalID",
+        "PartNumber",
+        "PartName",
+        "FuturePartName",
+        "LSPartNumber",
+        "LEPartNumber",
+        "UnitCost",
+        "DrawingNumber",
+        "Active",
+        "Name",
+        "Programs@odata.bind",
+        "Flag@odata.bind",
+        "Tags@odata.bind",
+        "Notes",
+        "ProductFamily@odata.bind",
+        "InclAllFamilies",
+        "RawPayload"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "07_BOMECS_API_Record.postman_collection.json",
+      "object": "BOMECS Part API Recod",
+      "method": "PATCH",
+      "bodyKeys": [
+        "PartName",
+        "Name",
+        "UnitCost",
+        "Notes",
+        "RawPayload"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "08_Part_Revision_Reference.postman_collection.json",
+      "object": "Part Revision Reference",
+      "method": "POST",
+      "bodyKeys": [
+        "Part@odata.bind",
+        "ExternalID",
+        "Name",
+        "Active",
+        "iLatestPartFeed"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "08_Part_Revision_Reference.postman_collection.json",
+      "object": "Part Revision Reference",
+      "method": "PATCH",
+      "bodyKeys": [
+        "Active",
+        "iLatestPartFeed"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "09_Part_Supplier_Relationship.postman_collection.json",
+      "object": "Part Supplier Relationship",
+      "method": "POST",
+      "bodyKeys": [
+        "Part@odata.bind",
+        "Supplier@odata.bind"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "09_Part_Supplier_Relationship.postman_collection.json",
+      "object": "Part Supplier Relationship",
+      "method": "PATCH",
+      "bodyKeys": [
+        "Role@odata.bind"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "10_Engineering_Change_Number.postman_collection.json",
+      "object": "Engineering Change Number",
+      "method": "POST",
+      "bodyKeys": [
+        "SourceSystem",
+        "ExternalID",
+        "Name",
+        "Active"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "10_Engineering_Change_Number.postman_collection.json",
+      "object": "Engineering Change Number",
+      "method": "PATCH",
+      "bodyKeys": [
+        "Name",
+        "Active"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "11_Engineering_Change_Scope.postman_collection.json",
+      "object": "Engineering Change Scope",
+      "method": "POST",
+      "bodyKeys": [
+        "EngChangeNumber@odata.bind",
+        "Supplier@odata.bind",
+        "ProductFamily@odata.bind",
+        "Program@odata.bind",
+        "Description",
+        "Comment",
+        "RawPayload"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    },
+    {
+      "file": "11_Engineering_Change_Scope.postman_collection.json",
+      "object": "Engineering Change Scope",
+      "method": "PATCH",
+      "bodyKeys": [
+        "Description",
+        "Comment",
+        "RawPayload"
+      ],
+      "auditedKeyAndBindingCheck": "Pass",
+      "currentMandatoryPostFieldsOmitted": []
+    }
+  ]
+}

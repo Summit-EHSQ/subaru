@@ -1,0 +1,32 @@
+{
+  "review_date": "2026-11-17",
+  "confirmed_decisions": 42,
+  "superseded_decisions": [
+    {
+      "id": "PPAP-EVIDENCE-003",
+      "superseded_by": "PPAP-CHANGE-001",
+      "valid": true
+    }
+  ],
+  "duplicate_decision_ids": [],
+  "unresolved_internal_references": [],
+  "pending_inputs": [
+    {
+      "id": "PPAP-INPUT-001",
+      "description": "Current controlled SIA PPAP procedure, IntelliQuest requirement library, and applicable template/classification matrix.",
+      "status": "pending",
+      "question_number": "11a",
+      "user_answer": "Record the source material as pending and continue",
+      "handling": "Continue clarifying business rules; retain this input as outstanding for source-backed catalogue and template reconciliation."
+    }
+  ],
+  "consistency_notes": [
+    "Engineering changes requiring PPAP create a new PPAP; older open PPAPs normally continue for their original revision.",
+    "Non-engineering evidence correction may reopen an element while its PPAP remains open; the prior approved snapshot remains reusable under the agreed eligibility rules.",
+    "Safety/quality/regulated classification locks are distinct from governed security-visibility handover.",
+    "The OOTB baseline remains separate and unchanged."
+  ],
+  "business_rule_questions_complete": true,
+  "source_backed_catalogue_configuration_complete": false,
+  "structural_checks_pass": true
+}

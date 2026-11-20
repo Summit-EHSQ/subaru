@@ -1,0 +1,5 @@
+{
+  "error":{
+    "code":"","message":"No HTTP resource was found that matches the request URI 'http://preprod-na.intelex.com/Login3/SIA-SummitDEV/api/v2/object/SysModuleEntity(d4d16046-89c1-41c4-921d-923a112f835a)/Objects(79ac6837-4646-47ce-be48-9bf0dbb8752e)/ObjectProperties(553885e8-a505-4875-9531-c1cad49d03cf)/Intelex.MetSimplePropertyEntity?$expand=*'."
+  }
+}

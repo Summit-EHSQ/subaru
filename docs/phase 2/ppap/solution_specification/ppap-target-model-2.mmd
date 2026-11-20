@@ -1,0 +1,54 @@
+classDiagram
+direction LR
+class ppap_type["PPAP Type"]
+class work_pattern["PPAP Work Pattern"]
+class answer_type["PPAP Answer Type"]
+class requirement_category["PPAP Requirement Category"]
+class phase["PPAP Schedule Phase"]
+class stage["PPAP Manufacturing Stage"]
+class no_ppap_reason["PPAP Drawing Review Exception Reason"]
+class requirement["PPAP Requirement"]
+class requirement_version["PPAP Requirement Version"]
+class question["PPAP Question"]
+class question_version["PPAP Question Version"]
+class template["PPAP Template"]
+class template_version["PPAP Template Version"]
+class template_line["PPAP Template Requirement"]
+class template_line_version["PPAP Template Requirement Version"]
+class policy["PPAP Operating Policy"]
+class management_role["Supplier Management Role"]
+<<external>> management_role
+class employee["Employee"]
+<<external>> employee
+class group["Group"]
+<<external>> group
+requirement "0..*" --> "1" requirement_category : Category
+requirement "0..*" --> "1" work_pattern : Work Pattern
+requirement "0..*" --> "0..1" management_role : Routing Role
+requirement_version "0..*" --> "1" requirement_category : Category
+requirement_version "0..*" --> "1" work_pattern : Work Pattern
+requirement_version "0..*" --> "0..1" management_role : Routing Role
+requirement_version "0..*" --> "1" requirement : Authoring Record
+requirement_version "0..*" --> "1" employee : Published By
+question "0..*" --> "1" requirement : Requirement
+question "0..*" --> "1" answer_type : Answer Type
+question_version "0..*" --> "1" requirement_version : Requirement Version
+question_version "0..*" --> "1" question : Authoring Question
+question_version "0..*" --> "1" answer_type : Answer Type
+template "0..*" --> "1" ppap_type : Type
+template_version "0..*" --> "1" ppap_type : Type
+template_version "0..*" --> "1" template : Authoring Record
+template_version "0..*" --> "1" employee : Published By
+template_line "0..*" --> "1" template : Template
+template_line "0..*" --> "1" requirement : Requirement
+template_line "0..*" --> "0..1" phase : Schedule Phase
+template_line_version "0..*" --> "1" template_version : Template Version
+template_line_version "0..*" --> "1" template_line : Authoring Requirement Row
+template_line_version "0..*" --> "1" requirement_version : Requirement Version
+template_line_version "0..*" --> "0..1" phase : Schedule Phase
+policy "0..*" --> "1" group : PPAP Administrators
+policy "0..*" --> "0..1" group : Default Management Approver Pool
+policy "0..*" --> "1" management_role : Model Engineer Role
+policy "0..*" --> "1" management_role : Running Change Engineer Role
+policy "0..*" --> "1" management_role : Process Change Engineer Role
+group <|-- management_role : shared authority inheritance

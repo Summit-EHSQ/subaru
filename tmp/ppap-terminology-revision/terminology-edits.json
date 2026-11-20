@@ -1,0 +1,41 @@
+{
+  "purpose": "Object/Record terminology only; no configuration change",
+  "replacements": [
+    {
+      "from": "An object is a type of record. ",
+      "to": "",
+      "count": 1
+    },
+    {
+      "from": "Record types",
+      "to": "Objects",
+      "count": 1
+    },
+    {
+      "from": "record types",
+      "to": "Objects",
+      "count": 10
+    },
+    {
+      "from": "record type",
+      "to": "Object",
+      "count": 6
+    },
+    {
+      "from": "type of record",
+      "to": "Object",
+      "count": 1
+    },
+    {
+      "from": "Record setup",
+      "to": "Object setup",
+      "count": 1
+    },
+    {
+      "from": "32new Objects",
+      "to": "32 new Objects",
+      "count": 1
+    }
+  ],
+  "gateChange": "Honor explicitly recorded scoped reviews and frozen unchanged task hashes."
+}

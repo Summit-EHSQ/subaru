@@ -1,0 +1,31 @@
+{
+  "date": "2026-11-17",
+  "result": "PASS (static documentation validation)",
+  "model_objects": 50,
+  "active_field_rows": 335,
+  "documented_field_rows": 335,
+  "object_subsections": 50,
+  "mermaid_diagrams": 4,
+  "mermaid_nodes_covered": 50,
+  "mermaid_declared_edges": 117,
+  "mermaid_validation": "Local structural grammar and endpoint validation; full Mermaid rendering not performed",
+  "current_decisions_covered": 42,
+  "adr_ids_referenced": 34,
+  "acceptance_scenario_ids": 56,
+  "local_links_checked": 148,
+  "preserved_packages_verified": 5,
+  "checks": {
+    "exact_object_subsection_coverage": true,
+    "canonical_field_rows_match_machine_contract": true,
+    "current_requirement_table_coverage": true,
+    "complete_diagram_node_coverage": true,
+    "catalogue_inverse_disabled": true,
+    "no_business_catalogue_inheritance_invented": true,
+    "no_executable_formula_proposals": true,
+    "baseline_hash_preserved": true,
+    "source_package_hashes_match_preserved_manifest": true
+  },
+  "errors": [],
+  "warnings": [],
+  "runtime_acceptance_executed": false
+}

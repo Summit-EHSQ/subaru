@@ -1,0 +1,1030 @@
+{
+  "version": 1,
+  "tasks": [
+    {
+      "id": "IMP-07",
+      "taskHash": "1be8ff79e6d4b03ae239238c98ed24cbc8fa93217f5fa75d69bf0a43d0f3e8e4",
+      "renderedTaskHash": "26c83c924f07c17feddc3ace5ff5f88f844039dc5ba929ba0c57a1cdad2f7f82",
+      "evidenceReview": "Compared all 50 field/list rows with the Requirement, Requirement Version, Question and Question Version declarations. Author Code is stable and unique, copied Code repeats across versions, question Code scopes differ correctly, all content/file/protection/routing fields mirror, and source content remains blocked by the requested SIA library and shared Routing Role identifiers. Native publication execution is deliberately owned by IMP-08.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "languageReview": "Read the authoring/version assignment without source references: the editable versus published screens, per-field settings, source-content waiting text and observable administrator outcomes are understandable. Technical field names remain exact and SIA PPAP Engineer is not substituted for the configuration administrator.",
+      "meaningReview": "Reconciled text capacities 100/255/16000/1000/2000/8000, nullable versus required fields, localized display content, Boolean defaults, question types/order, suppressed catalogue inverses, independent instruction files and the three inverse lists. The publication action supplies stored values and actor/time; source seeds are not invented.",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Create the editable requirement/question library and its immutable publication structures without loading invented SIA content.",
+          "mechanism": "Requirement/Question authoring and version fields, ordinary administration forms and source-backed configuration entry."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add the stable requirement key, limited to 100 characters and locked after its first publication.",
+          "mechanism": "PPAP Requirement.Code field and administrator authoring control."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add the required localized requirement name with a 255-character limit.",
+          "mechanism": "PPAP Requirement.Name field and editable authoring control."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add required localized requirement instructions up to 16000 characters.",
+          "mechanism": "PPAP Requirement.Instructions field and authoring editor."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add the required active category selector and leave catalogue reverse navigation disabled.",
+          "mechanism": "PPAP Requirement.Category M:1 field to PPAP Requirement Category."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add the required active work-pattern selector without a catalogue reverse list.",
+          "mechanism": "PPAP Requirement.Work Pattern M:1 field to PPAP Work Pattern."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add an optional reference to the shared routing-role library, without treating its group membership as assignees.",
+          "mechanism": "PPAP Requirement.Routing Role M:1 field to Supplier Management Role."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add explicit supplier visibility, default false, forcing supplier work visible and internal work hidden.",
+          "mechanism": "PPAP Requirement.Supplier Visible? Boolean and Work Pattern conditional control."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add the protection flag, initially false until controlled source requirements supply the mandate.",
+          "mechanism": "PPAP Requirement.Protected? Boolean authoring field."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add a required nonnegative whole-number minimum file count with initial value zero.",
+          "mechanism": "PPAP Requirement.Minimum Files Integer field and nonnegative validation."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add an optional 1000-character declarative extension list; null leaves native restrictions in effect.",
+          "mechanism": "PPAP Requirement.Allowed File Extensions text field."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add the independent required-result acceptance flag with initial value false.",
+          "mechanism": "PPAP Requirement.Inspection Acceptance Required? Boolean field."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add a required 1000-character source-procedure reference for governed content provenance.",
+          "mechanism": "PPAP Requirement.Source Procedure Reference text field."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add authoring activation that blocks new selection/publication without changing issued content.",
+          "mechanism": "PPAP Requirement.Active? Boolean field and new-selection/publication eligibility."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add native editable instruction attachments whose published files are independent copies.",
+          "mechanism": "PPAP Requirement.Instruction Attachments native collection."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Add a required copied requirement Code that may repeat between versions of one author.",
+          "mechanism": "PPAP Requirement Version.Code stored publication-copy field."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Add the immutable published localized name copied from the authoring requirement.",
+          "mechanism": "PPAP Requirement Version.Name field and Publish Requirement copy default."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Add the immutable published instructions preserving the 16000-character capacity.",
+          "mechanism": "PPAP Requirement Version.Instructions field and named authoring copy."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Add the immutable published category reference, validating activation only at publication.",
+          "mechanism": "PPAP Requirement Version.Category M:1 field and publication resolution."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Add the immutable published work-pattern reference while preserving inactive historical references.",
+          "mechanism": "PPAP Requirement Version.Work Pattern M:1 field."
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Add the published shared routing-role reference as a stored copy rather than a live lookup.",
+          "mechanism": "PPAP Requirement Version.Routing Role M:1 field."
+        },
+        {
+          "path": "configurationRows.20",
+          "requiredChange": "Add the published supplier-visibility flag copied once from the authoring requirement.",
+          "mechanism": "PPAP Requirement Version.Supplier Visible? Boolean publication field."
+        },
+        {
+          "path": "configurationRows.21",
+          "requiredChange": "Add the published protection flag so later authoring changes cannot alter issued mandates.",
+          "mechanism": "PPAP Requirement Version.Protected? Boolean publication field."
+        },
+        {
+          "path": "configurationRows.22",
+          "requiredChange": "Add the immutable copied nonnegative minimum-file requirement.",
+          "mechanism": "PPAP Requirement Version.Minimum Files Integer publication field."
+        },
+        {
+          "path": "configurationRows.23",
+          "requiredChange": "Add the immutable copied extension rule without converting declarative text into executable code.",
+          "mechanism": "PPAP Requirement Version.Allowed File Extensions text publication field."
+        },
+        {
+          "path": "configurationRows.24",
+          "requiredChange": "Add the immutable required-result acceptance flag from the authoring requirement.",
+          "mechanism": "PPAP Requirement Version.Inspection Acceptance Required? publication field."
+        },
+        {
+          "path": "configurationRows.25",
+          "requiredChange": "Add the immutable copied procedure reference for the published requirement.",
+          "mechanism": "PPAP Requirement Version.Source Procedure Reference publication field."
+        },
+        {
+          "path": "configurationRows.26",
+          "requiredChange": "Add native published instruction attachments that are copied independently and cannot be edited by users.",
+          "mechanism": "PPAP Requirement Version.Instruction Attachments native collection."
+        },
+        {
+          "path": "configurationRows.27",
+          "requiredChange": "Add the required source-author relationship and its read-only Versions navigation.",
+          "mechanism": "PPAP Requirement Version.Authoring Record M:1 and PPAP Requirement.Versions inverse."
+        },
+        {
+          "path": "configurationRows.28",
+          "requiredChange": "Add a whole-number publication version allocated from the author family under a lock.",
+          "mechanism": "PPAP Requirement Version.Version Number field and Authoring Record+Version Number uniqueness."
+        },
+        {
+          "path": "configurationRows.29",
+          "requiredChange": "Add publication-managed activation so one complete version replaces its predecessor.",
+          "mechanism": "PPAP Requirement Version.Active? Boolean controlled by Publish Requirement."
+        },
+        {
+          "path": "configurationRows.30",
+          "requiredChange": "Add the UTC publication timestamp, displayed in the user timezone and not editable.",
+          "mechanism": "PPAP Requirement Version.Published At Date/Time field."
+        },
+        {
+          "path": "configurationRows.31",
+          "requiredChange": "Add the required authenticated publishing actor relationship without an inverse.",
+          "mechanism": "PPAP Requirement Version.Published By M:1 to Employee."
+        },
+        {
+          "path": "configurationRows.32",
+          "requiredChange": "Add the required authoring question-to-requirement link and its Questions navigation.",
+          "mechanism": "PPAP Question.Requirement M:1 and PPAP Requirement.Questions inverse."
+        },
+        {
+          "path": "configurationRows.33",
+          "requiredChange": "Add the question key unique within its authoring requirement and limited to 100 characters.",
+          "mechanism": "PPAP Question.Code text field and scoped uniqueness."
+        },
+        {
+          "path": "configurationRows.34",
+          "requiredChange": "Add the required localized question prompt up to 2000 characters.",
+          "mechanism": "PPAP Question.Prompt text field and authoring control."
+        },
+        {
+          "path": "configurationRows.35",
+          "requiredChange": "Add the required active answer-type selector without a catalogue reverse list.",
+          "mechanism": "PPAP Question.Answer Type M:1 to PPAP Answer Type."
+        },
+        {
+          "path": "configurationRows.36",
+          "requiredChange": "Add the independent question-required flag with initial value true.",
+          "mechanism": "PPAP Question.Required? Boolean authoring field."
+        },
+        {
+          "path": "configurationRows.37",
+          "requiredChange": "Add optional localized question instructions up to 8000 characters with null initial value.",
+          "mechanism": "PPAP Question.Instructions text field and authoring control."
+        },
+        {
+          "path": "configurationRows.38",
+          "requiredChange": "Add finite decimal display ordering with initial value zero.",
+          "mechanism": "PPAP Question.Sort Float field."
+        },
+        {
+          "path": "configurationRows.39",
+          "requiredChange": "Add the required link binding each copied question to the complete new requirement version.",
+          "mechanism": "PPAP Question Version.Requirement Version M:1 and version Questions inverse."
+        },
+        {
+          "path": "configurationRows.40",
+          "requiredChange": "Add immutable lineage to the exact authoring question rather than a new publication family.",
+          "mechanism": "PPAP Question Version.Authoring Question M:1 field."
+        },
+        {
+          "path": "configurationRows.41",
+          "requiredChange": "Add copied question Code unique within the receiving Requirement Version.",
+          "mechanism": "PPAP Question Version.Code stored publication field and scoped uniqueness."
+        },
+        {
+          "path": "configurationRows.42",
+          "requiredChange": "Add the immutable copied localized question prompt preserving its 2000-character limit.",
+          "mechanism": "PPAP Question Version.Prompt publication field."
+        },
+        {
+          "path": "configurationRows.43",
+          "requiredChange": "Add the immutable copied answer-type reference and validate active selection at publication.",
+          "mechanism": "PPAP Question Version.Answer Type M:1 publication field."
+        },
+        {
+          "path": "configurationRows.44",
+          "requiredChange": "Add immutable question-requiredness copied once from the authoring question.",
+          "mechanism": "PPAP Question Version.Required? Boolean publication field."
+        },
+        {
+          "path": "configurationRows.45",
+          "requiredChange": "Add immutable optional question instructions copied once without changing old versions.",
+          "mechanism": "PPAP Question Version.Instructions publication field."
+        },
+        {
+          "path": "configurationRows.46",
+          "requiredChange": "Add immutable question order copied as a finite Float from authoring Sort.",
+          "mechanism": "PPAP Question Version.Sort publication field."
+        },
+        {
+          "path": "configurationRows.47",
+          "requiredChange": "Expose requirement versions through the existing declaring author relationship, with no second stored link.",
+          "mechanism": "PPAP Requirement.Versions inverse 1:M over Requirement Version.Authoring Record."
+        },
+        {
+          "path": "configurationRows.48",
+          "requiredChange": "Expose authored questions through their declaring requirement relationship only.",
+          "mechanism": "PPAP Requirement.Questions inverse 1:M over Question.Requirement."
+        },
+        {
+          "path": "configurationRows.49",
+          "requiredChange": "Expose copied questions through their declaring version relationship only.",
+          "mechanism": "PPAP Requirement Version.Questions inverse 1:M over Question Version.Requirement Version."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Separate editable preparation from read-only publication and enforce author/version/question key scopes.",
+          "mechanism": "Requirement and Question administration screens and scoped Code uniqueness rules."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Populate only supplied controlled SIA content, including source references and approved instruction attachments.",
+          "mechanism": "Requirement/Question authoring entries keyed by supplied Code, not display-name matching."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Configure visibility forcing and protected applicability as separate explicit behaviors.",
+          "mechanism": "Work Pattern-dependent Supplier Visible? control and Protected? mandate setting."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Validate nonnegative minimum files and keep optional extension text declarative.",
+          "mechanism": "Minimum Files Integer validation and Allowed File Extensions authoring control."
+        }
+      ]
+    },
+    {
+      "id": "IMP-08",
+      "taskHash": "c6def82b817b7ca1e887166595e2ddf5878593f22c44a0c47d1be8fec104ef63",
+      "renderedTaskHash": "aded8178a42b82181610fa2344684959921119ce4678ffeaedbbd2a0b88412c5",
+      "evidenceReview": "Compared the publication action with all Requirement/Question authoring-to-version mappings. Every published scalar/reference, all question components and instruction files are named; author Active? is intentionally not copied. The supported whole-save, lock, independent-file-copy and retry method remains a local external input rather than an invented platform call.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "languageReview": "The task explains a complete unchangeable copy, a failed component preserving the previous version, and repeat-safe execution in direct configuration language. Its predecessor supplies the actual authoring/version fields and its waiting text isolates the native save/copy method.",
+      "meaningReview": "Confirmed maximum version+1 starting at one, source-author locking, exact field maps, question lineage, UTC actor/time, complete validation before active-version switch, scoped uniqueness and no historical rewrite. IMP-07 supplies every relationship/field consumed by these steps.",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add complete requirement publication rather than exposing partially copied questions or files as current.",
+          "mechanism": "Proposed Publish Requirement Action Handler over Requirement/Question authoring and version records."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Permit only valid active administrator-owned publication and serialize version allocation per author.",
+          "mechanism": "Publish Requirement authorization/validation and author-identity lock before Version Number allocation."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Copy every named requirement property and independent instruction file, excluding authoring activation.",
+          "mechanism": "Publish Requirement stored value mappings and native Instruction Attachment copies."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Create all question-version components with exact author lineage and six named copied properties.",
+          "mechanism": "Publish Requirement child creation for PPAP Question Version."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Activate only a complete validated graph and switch prior versions off together; failed work preserves the former version.",
+          "mechanism": "Publish Requirement complete-save boundary and publication actor/time stamps."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Return the original publication on retry and enforce family/question uniqueness without rewriting history.",
+          "mechanism": "Native action correlation plus author/version and version/question Code uniqueness."
+        }
+      ]
+    },
+    {
+      "id": "IMP-09",
+      "taskHash": "b6d38d8bbacacd20b0ef91dc539595e3ea45df9a953ed924c880c0591231c5c6",
+      "renderedTaskHash": "a5656e36234d35a6c04d4ca3edad1790d709fa8fbc9f8c4ea49a7fad2bc964cc",
+      "evidenceReview": "Compared all 38 rows against Template, Template Version, Template Requirement and Template Requirement Version. Author stable Requirement references transform into exact version references; eight row properties mirror; version metadata and three inverse lists are complete. Actual SIA matrix/protected rows remain pending and are not inferred from OOTB element count.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "languageReview": "Read the task without traceability: it explains the administrator matrix, independent safety/quality/regulated conditions and the exact source values still awaited. Per-field types and links are retained, with separate fields rather than combined shorthand.",
+      "meaningReview": "Confirmed 100/255/1000-character limits, required Type, activation behavior, uniqueness by Template+Requirement, classification OR aggregation, negative calendar offsets, finite sort, version-scoped copied Codes, immutable stored publication values and no catalogue inverses. Publication execution is owned by IMP-10 rather than duplicated here.",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add editable PPAP template matrices and immutable version structures with source-backed applicability/date content.",
+          "mechanism": "Template and Template Requirement authoring/version fields and administration forms."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add the stable required template key with a 100-character capacity and first-publication lock.",
+          "mechanism": "PPAP Template.Code text field and authoring uniqueness."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add the required localized template name up to 255 characters.",
+          "mechanism": "PPAP Template.Name text field and authoring control."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add the required active PPAP Type relationship without a catalogue inverse.",
+          "mechanism": "PPAP Template.Type M:1 field to PPAP Type."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add the required controlled procedure reference up to 1000 characters.",
+          "mechanism": "PPAP Template.Source Procedure Reference text field."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add activation for new template selection/publication without changing old packages.",
+          "mechanism": "PPAP Template.Active? Boolean field."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add copied template Code that may repeat between versions of its authoring record.",
+          "mechanism": "PPAP Template Version.Code stored publication field."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add immutable copied localized template Name.",
+          "mechanism": "PPAP Template Version.Name publication field."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add immutable copied Type, validating active catalogue selection only when publishing.",
+          "mechanism": "PPAP Template Version.Type M:1 publication field."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add immutable copied source-procedure provenance.",
+          "mechanism": "PPAP Template Version.Source Procedure Reference publication field."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add source-author lineage and the read-only Versions navigation.",
+          "mechanism": "PPAP Template Version.Authoring Record M:1 to PPAP Template."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add publication version numbers scoped to the author, beginning at one.",
+          "mechanism": "PPAP Template Version.Version Number field and author/version uniqueness."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add publication-managed active-version selection instead of copying author activation.",
+          "mechanism": "PPAP Template Version.Active? Boolean controlled by Publish Template."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add the immutable UTC publication timestamp displayed in user timezone.",
+          "mechanism": "PPAP Template Version.Published At Date/Time field."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add the authenticated publishing actor relationship without an inverse.",
+          "mechanism": "PPAP Template Version.Published By M:1 to Employee."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Add each authoring matrix row to exactly one template and enable its Requirements navigation.",
+          "mechanism": "PPAP Template Requirement.Template M:1 field."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Select a stable active requirement author having a published version, unique within its template.",
+          "mechanism": "PPAP Template Requirement.Requirement M:1 field and Template+Requirement uniqueness."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Add a distinct always-applicable switch initially true.",
+          "mechanism": "PPAP Template Requirement.Always Applicable? Boolean authoring field."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Add the safety applicability trigger as a separate switch initially false.",
+          "mechanism": "PPAP Template Requirement.On Important Safety? Boolean field."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Add the quality applicability trigger as a separate switch initially false.",
+          "mechanism": "PPAP Template Requirement.On Important Quality? Boolean field."
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Add the regulated applicability trigger as a separate switch initially false.",
+          "mechanism": "PPAP Template Requirement.On Regulated? Boolean field."
+        },
+        {
+          "path": "configurationRows.20",
+          "requiredChange": "Add row-specific protection independently from requirement-level protection.",
+          "mechanism": "PPAP Template Requirement.Protected? Boolean authoring field."
+        },
+        {
+          "path": "configurationRows.21",
+          "requiredChange": "Add an optional active phase selector without a catalogue reverse list.",
+          "mechanism": "PPAP Template Requirement.Schedule Phase M:1 to PPAP Schedule Phase."
+        },
+        {
+          "path": "configurationRows.22",
+          "requiredChange": "Add required integer calendar offsets, initially zero and allowing negative values.",
+          "mechanism": "PPAP Template Requirement.Offset Days Integer field."
+        },
+        {
+          "path": "configurationRows.23",
+          "requiredChange": "Add finite decimal row order with initial zero.",
+          "mechanism": "PPAP Template Requirement.Sort Float field."
+        },
+        {
+          "path": "configurationRows.24",
+          "requiredChange": "Bind each copied matrix row to its immutable receiving template version.",
+          "mechanism": "PPAP Template Requirement Version.Template Version M:1 and version Requirements inverse."
+        },
+        {
+          "path": "configurationRows.25",
+          "requiredChange": "Retain lineage to the exact authoring matrix row.",
+          "mechanism": "PPAP Template Requirement Version.Authoring Requirement Row M:1."
+        },
+        {
+          "path": "configurationRows.26",
+          "requiredChange": "Store the exact active requirement version resolved from the stable authoring reference.",
+          "mechanism": "PPAP Template Requirement Version.Requirement Version M:1."
+        },
+        {
+          "path": "configurationRows.27",
+          "requiredChange": "Add immutable copied always-applicable behavior.",
+          "mechanism": "PPAP Template Requirement Version.Always Applicable? publication field."
+        },
+        {
+          "path": "configurationRows.28",
+          "requiredChange": "Add immutable copied safety applicability behavior.",
+          "mechanism": "PPAP Template Requirement Version.On Important Safety? publication field."
+        },
+        {
+          "path": "configurationRows.29",
+          "requiredChange": "Add immutable copied quality applicability behavior.",
+          "mechanism": "PPAP Template Requirement Version.On Important Quality? publication field."
+        },
+        {
+          "path": "configurationRows.30",
+          "requiredChange": "Add immutable copied regulated applicability behavior.",
+          "mechanism": "PPAP Template Requirement Version.On Regulated? publication field."
+        },
+        {
+          "path": "configurationRows.31",
+          "requiredChange": "Add immutable copied row-protection behavior.",
+          "mechanism": "PPAP Template Requirement Version.Protected? publication field."
+        },
+        {
+          "path": "configurationRows.32",
+          "requiredChange": "Add immutable copied optional phase reference and preserve historical inactive values.",
+          "mechanism": "PPAP Template Requirement Version.Schedule Phase M:1 publication field."
+        },
+        {
+          "path": "configurationRows.33",
+          "requiredChange": "Add immutable copied integer calendar offset without a later live lookup.",
+          "mechanism": "PPAP Template Requirement Version.Offset Days publication field."
+        },
+        {
+          "path": "configurationRows.34",
+          "requiredChange": "Add immutable copied finite decimal row order.",
+          "mechanism": "PPAP Template Requirement Version.Sort publication field."
+        },
+        {
+          "path": "configurationRows.35",
+          "requiredChange": "Show template versions through their author link without duplicate storage.",
+          "mechanism": "PPAP Template.Versions inverse 1:M over Template Version.Authoring Record."
+        },
+        {
+          "path": "configurationRows.36",
+          "requiredChange": "Show authored matrix rows through their template link only.",
+          "mechanism": "PPAP Template.Requirements inverse 1:M over Template Requirement.Template."
+        },
+        {
+          "path": "configurationRows.37",
+          "requiredChange": "Show published matrix rows through their version link only.",
+          "mechanism": "PPAP Template Version.Requirements inverse 1:M over Template Requirement Version.Template Version."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Prevent duplicate authoring matrix requirements and keep stable author identity separate from its resolved publication.",
+          "mechanism": "Template+Requirement uniqueness and authoring Requirement relationship."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Expose independent applicability switches and combine enabled classifications with the stated OR rule.",
+          "mechanism": "Template Requirement applicability controls and matrix evaluation."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Populate only supplied controlled templates and protect source-mandated requirements while keeping version Code scope correct.",
+          "mechanism": "SIA-backed template/matrix entries, protection flags and Code uniqueness rules."
+        }
+      ]
+    },
+    {
+      "id": "IMP-10",
+      "taskHash": "7872fae0e51f2bf801f7c6003f57a2ff45cacb36be1270511d63f57cc23ea1fd",
+      "renderedTaskHash": "6b1709937a768909d77233ff05564eb6a8d0a2720666526a18376503b4b120cf",
+      "evidenceReview": "Checked the template publication instructions against every authoring/version matrix field and the requirement publication output. All eight row values, exact Requirement Version, author-row lineage and four template scalar/reference values are explicit. The local native complete-save/lock input is a genuine execution blocker.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "languageReview": "The task explains preserving the exact rules used by each PPAP, finding the current published requirement during publication, and retaining the old template after a failed copy. It does not ask the builder to recover missing settings from another document.",
+      "meaningReview": "Confirmed active author authorization, unique row identities, next version allocation, complete question/file dependency, exact resolved requirement versions, one successful active switch, preserved existing PPAP configuration and no recursive requirement publication. IMP-08 and IMP-09 supply the actual prior operations and fields.",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add whole-template publication that freezes its matrix and exact requirement versions.",
+          "mechanism": "Proposed Publish Template Action Handler."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Restrict publication to valid active templates with one row per stable requirement and allocate a family-scoped version under lock.",
+          "mechanism": "Publish Template validation and template-identity lock."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Copy template identity/content and create each version row with exact authoring lineage.",
+          "mechanism": "Template Version and Template Requirement Version creation mappings."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Resolve exact active requirement versions and copy all eight named applicability/protection/date/order values.",
+          "mechanism": "Publish Template requirement-version resolution and matrix stored copies."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Switch active versions only after complete validation and return prior success on retry without changing existing PPAPs.",
+          "mechanism": "Publish Template complete-save activation and native action correlation."
+        }
+      ]
+    },
+    {
+      "id": "IMP-11",
+      "taskHash": "0dcd533e1a6f6b3397d896958aa936f646f11e60e4d6c4a815e79304434d82bd",
+      "renderedTaskHash": "e6157b24307ccbd4233701e3b62291b983d5683f7c15e9b2a1e86a84f189c027",
+      "evidenceReview": "Compared the 21 rows with all Model Change, Model Date and Build Event fields plus the three PPAP scheduling links. Separate event start/end dates, model/phase/stage uniqueness, active-value filters and three inverse lists are complete. Controlled phase/stage entries remain supplied SIA input; field structures can proceed.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "languageReview": "The assignment begins with the model lead business result and explains physical builds separately from the milestone matrix. Every field/control retains its exact type and conditions, and waiting text specifies which phase/stage choices are missing.",
+      "meaningReview": "Confirmed inclusive start/end dates and equality for same-day events, one governing NEW_MODEL context, required stage when model exists, forced false connection with no model, warned Draft clearing and issued context locks. Cascade calculations remain owned by IMP-16; no physical build-date movement silently recalculates PPAP dates.",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add shared model milestone and physical-event forms with one governing PPAP context.",
+          "mechanism": "Model Change/Model Date/Build Event setup and PPAP model/stage/connection controls."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add the unique 100-character model/program key, locked after first related issue.",
+          "mechanism": "PPAP Model Change.Code field."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add the required model display name up to 255 characters with audit.",
+          "mechanism": "PPAP Model Change.Name field."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add the designated model lead without assigning that person ownership of linked PPAPs.",
+          "mechanism": "PPAP Model Change.Model Lead M:1 to Employee."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add model activation that blocks new connections but preserves existing work.",
+          "mechanism": "PPAP Model Change.Active? Boolean field."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add a milestone row to one model and enforce one model/phase/stage cell.",
+          "mechanism": "PPAP Model Date.Model Change M:1 and scoped matrix uniqueness."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add an active phase selector whose used identity cannot be retargeted.",
+          "mechanism": "PPAP Model Date.Phase M:1 catalogue field."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add an active manufacturing-stage selector with used-key protection.",
+          "mechanism": "PPAP Model Date.Manufacturing Stage M:1 catalogue field."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add the auditable required calendar milestone that later date logic watches.",
+          "mechanism": "PPAP Model Date.Planned Date field and named Model-date Update trigger."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add a mandatory change explanation when the milestone date changes, retaining prior reasons in audit.",
+          "mechanism": "PPAP Model Date.Change Reason text field and conditional requiredness."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Bind each physical build event to one model independently of the milestone matrix.",
+          "mechanism": "PPAP Build Event.Model Change M:1."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add the 100-character event Code unique within its model and stable after use.",
+          "mechanism": "PPAP Build Event.Code field and scoped uniqueness."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add the required event display name up to 255 characters.",
+          "mechanism": "PPAP Build Event.Name field."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add active manufacturing-stage context for the physical event without using it as a milestone cell.",
+          "mechanism": "PPAP Build Event.Manufacturing Stage M:1 catalogue field."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add inclusive required event start and prevent it exceeding the event end.",
+          "mechanism": "PPAP Build Event.Start Date field and date-range validation."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Add inclusive required event end, permitting a same-day event and preventing reversal.",
+          "mechanism": "PPAP Build Event.End Date field and Start Date<=End Date validation."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Add one governing model link, required for NEW_MODEL and locked after issue.",
+          "mechanism": "PPAP.Model Change M:1 field and Type-dependent form behavior."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Add a required stage when a model is selected, otherwise clear and hide it.",
+          "mechanism": "PPAP.Manufacturing Stage M:1 and Model Change conditional control."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Add connection state defaulted from model selection and controlled by warned schedule actions.",
+          "mechanism": "PPAP.Schedule Connected? Boolean and Disconnect/Reconnect controls."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Expose linked PPAPs through their declared Model Change field without duplicate storage.",
+          "mechanism": "PPAP Model Change.PPAPs inverse list."
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Expose date cells through their declared Model Change field only.",
+          "mechanism": "PPAP Model Change.Dates inverse list."
+        },
+        {
+          "path": "configurationRows.20",
+          "requiredChange": "Expose physical events through their declared Model Change field only.",
+          "mechanism": "PPAP Model Change.Build Events inverse list."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Enforce one matrix date per model/phase/stage and require an audited reason for date changes.",
+          "mechanism": "Model Date uniqueness and ordinary Model Lead date-maintenance controls."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Keep physical event dates inclusive and validate their order independently of PPAP milestones.",
+          "mechanism": "Build Event Start Date/End Date validation."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Require correct model/stage context, force disconnected state without a model and protect issued context.",
+          "mechanism": "PPAP model selection, conditional stage controls and warned Draft clearing."
+        }
+      ]
+    },
+    {
+      "id": "IMP-16",
+      "taskHash": "5954d9653469159294e74aa087cd96a0cfaa8229a9f465a151425d88e26a1723",
+      "renderedTaskHash": "6fb772afcc33ad3e2e39e82f2a0c2a08a59ef30fe5ced481e5c73429058acd36",
+      "evidenceReview": "Matched all six scheduling steps to the accepted model-date, manual-date, Move Schedule Phase and disconnect/reconnect rules. Predecessors provide owning PPAP fields, element fields, model cells and current authority; local inputs cover calendar expressions, business timezone, audit history and safe batch execution.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "languageReview": "The task describes the shared-date business effect before naming handlers, explains unchanged issued commitments, and gives explicit warnings and missing-cell behavior. It does not use a formal-testing or discovery assignment to obtain supported methods.",
+      "meaningReview": "Confirmed Planned Date+Offset Days in calendar days, manual-first precedence, matching open connected Draft/In Progress population, no completed/closed updates, disconnected exclusion from phase move, safe reconnection and issue-time refresh before baseline freeze. First-submission facts and existing issued dates cannot be rewritten.",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add controlled recalculation and explicit date/phase/connection changes while keeping historical commitments intact.",
+          "mechanism": "Model-date and Element-date Action Handlers plus four named schedule actions."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Recalculate exact matching open connected elements from their model/phase/stage milestone and offset.",
+          "mechanism": "Model-date Update Action Handler watching Planned Date and Change Reason."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Apply manual-date precedence without recursion or alteration of issued/submission deadline evidence.",
+          "mechanism": "Element-date Update Action Handler and write-only-if-changed calculation."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Allow the responsible engineer to change one or selected open dates with reason and overdue warning.",
+          "mechanism": "Change Due Dates action and native overall/element date reason history."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Move connected open elements within one model to a valid active phase, clearing only warned incompatible manual dates.",
+          "mechanism": "Move Schedule Phase action with model/stage cell validation."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Disconnect by preserving current dates and reconnect only after valid recalculation can safely replace overrides.",
+          "mechanism": "Disconnect Schedule and Reconnect Schedule protected actions."
+        },
+        {
+          "path": "steps.5",
+          "requiredChange": "Refresh before Issue freezes its first baseline and retain complete native date-change evidence.",
+          "mechanism": "Issue-callable date refresh/validation operation and native audited history."
+        }
+      ]
+    },
+    {
+      "id": "IMP-19",
+      "taskHash": "9f64aaef023f35e5397a1f8349307695f0092cb946c65cec4043e98f5700a4e1",
+      "renderedTaskHash": "9dd70befc43f010b46ccc3e33a2bb9971e35e5b4403198af62dd738ab0e5d330",
+      "evidenceReview": "Compared initialization and Draft adjustment against exact published template/requirement/question structures and the final requirement-lock decisions. The revised action explicitly restricts all four setup operations to the current responsible internal engineer. Source-inapplicable unprotected rows receive the literal generated explanation, while inconsistent excluded mandatory content is rejected. SIA mandates and native whole-save/reset behavior remain supplied inputs.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "languageReview": "The task explains preparing one controlled requirement set, disallows arbitrary requirement types and identifies the specific content still waiting. Its predecessor descriptions name the saved configuration, date and authority outputs consumed by setup.",
+      "meaningReview": "Confirmed one element per PPAP/stable requirement, one working answer per exact question, OR applicability, combined protection, governed additions with no template row, Draft-only exclusion/reset and no partial usable preparation after failure. Issued scope and evidence are outside reset authority.",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add controlled pre-issue initialization, governed additions and exclusions without post-issue waiver paths.",
+          "mechanism": "Initialize Elements, Add Governed Element, Reset Draft Elements and Exclude/Require Element actions."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Initialize only authorized Draft preparation from one exact active type-matched template version.",
+          "mechanism": "Initialize Elements protected action with current responsible-engineer authorization."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Generate one stable requirement element with explicit OR applicability and combined source protection.",
+          "mechanism": "Initialize Elements matrix evaluation and exact version field copies."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Create exact-version answers, eligible assignments and dates; explain source-inapplicable unprotected rows without creating a waiver.",
+          "mechanism": "Initialize Elements generation, literal Not applicable under template classification rules. explanation and no-work rule for excluded rows."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Add only an existing published requirement with a reason, true requiredness and its own protection flag.",
+          "mechanism": "Add Governed Element Draft action, uniqueness and explicit date-rule controls."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Permit reasoned unprotected Draft exclusions only and clear the reason when requiredness is restored.",
+          "mechanism": "Exclude/Require Element action with protection and supplier-denial checks."
+        },
+        {
+          "path": "steps.5",
+          "requiredChange": "Reset only unissued preparation under warning and preserve either the former usable set or no partial usable result.",
+          "mechanism": "Reset Draft Elements action and Issue-callable prepared-set validation."
+        }
+      ]
+    },
+    {
+      "id": "IMP-21",
+      "taskHash": "1bb424e9ce4cc7d7d291c9a1c846217b1b6fbbca20239d69b25bcf7760cda41c",
+      "renderedTaskHash": "d0712d56f5f3711d6f9c11b04533d425e31381367d3984ec76f371351f05e75d",
+      "evidenceReview": "Compared submission with exact working/snapshot answer fields, result/version evidence and first-complete supplier metrics. All field/file validation precedes copying and stage change; safe native copying, actor binding, file constraints, timezone and the newly local supported calendar-date method remain explicit supplied inputs, including IN-14 for the five-day review calculation.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "languageReview": "The assignment explains freezing exact submitted evidence and measuring the first complete submission in familiar action language. It explicitly distinguishes incomplete attempts, supplier versus internal work, the two deadlines and later rejection/resubmission.",
+      "meaningReview": "Confirmed Work In Progress and issued In Progress gates, current assignee/capability checks, supplier scope confirmation, valid zero/FALSE values, locked per-element sequence, independent files/answers/results, UTC actor/time, configurable five-day review target and write-once first-event/both-deadline stamps. Failed copies cannot advance or record timeliness.",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add complete submission that freezes exact evidence and first supplier timing facts before engineer review.",
+          "mechanism": "Submit Element action over working content and PPAP Evidence Snapshot."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Permit current eligible assignees to submit only issued In Progress work and enforce supplier-only scope confirmation.",
+          "mechanism": "Submit Element action authorization and native stage preconditions."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Reject missing required answers/files or invalid result evidence before creating a first performance event.",
+          "mechanism": "Submit Element required-answer/file/result validation before snapshot mutation."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Allocate a unique sequence and copy all working content into an independent complete snapshot.",
+          "mechanism": "Submit Element element lock, Evidence Snapshot/Answer creation and native file copy."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Stamp actual submission actor/time, current review due date and the two first-supplier deadline facts exactly once.",
+          "mechanism": "Submit Element stored timestamp/deadline mappings and policy-based review date."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Advance only after complete save and return the same successful snapshot on retry.",
+          "mechanism": "Submit Element complete-save boundary, native action correlation and engineer-review event."
+        }
+      ]
+    },
+    {
+      "id": "IMP-22",
+      "taskHash": "223fdc0ced063f493a64a9e321b7e2ef897dcffc3d56bf7ac6f4c3821c8cb481",
+      "renderedTaskHash": "a3d29c2a586bba15f6417d29a5148ab08c4bfee9309e0b18db3e674d8ceb11c6",
+      "evidenceReview": "Compared independent element decisions with native workflow transitions, immutable rejected/approved snapshots and the final non-engineering correction rule. Required result acceptance remains supplied by its named predecessor; native reopen/history and hidden cancellation methods remain local external inputs.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "languageReview": "The task says accept or return one element, explains what remains visible to the assignee and preserves the prior approved content during correction. It keeps engineering change initiation distinct and avoids requiring another reviewer for engineer-completed internal work.",
+      "meaningReview": "Confirmed explicit engineer approval/self-review, mandatory safe return feedback, immutable rejected history, no whole-package rejection, open same-context correction only, retained latest approved eligibility, new replacement approval and hidden cancellation limited to active work/review with terminal history preserved.",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add independent element approval, return, permitted correction and cancellation effects without disturbing unrelated approvals.",
+          "mechanism": "Approve Element, Return Element, Reopen for Correction and hidden Cancel Element Work actions."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Approve a current submitted element after required result acceptance and retain the actual internal engineer decision.",
+          "mechanism": "Approve Element Engineer Review transition and write-once snapshot approval metadata."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Return only the current element with required safe feedback and retain the rejected submission internally.",
+          "mechanism": "Return Element workflow action, rejection stamp and correction event."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Reopen approved work only for a reasoned non-engineering correction on an open In Progress PPAP.",
+          "mechanism": "Reopen for Correction action and verified native reopen/review-instance mechanism."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Preserve the old approved baseline while fresh correction content is prepared and reviewed.",
+          "mechanism": "Latest Approved Snapshot retention and fresh working answer/file/result preparation."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Expose cancellation only to its owning PPAP cascade and leave completed/previously cancelled work intact.",
+          "mechanism": "Hidden Cancel Element Work action and direct-invocation denial."
+        }
+      ]
+    },
+    {
+      "id": "IMP-23",
+      "taskHash": "c843f2fbbd00f5284625329da3247cbd3e79547469bef5440ef314e8e926d56f",
+      "renderedTaskHash": "855036d8284e677a43c0f84c10d46c335bc1482739cb540074d1dbba67ca3ae2",
+      "evidenceReview": "Compared retained-evidence behavior with facility/drawing/stable requirement eligibility, cancelled-source exclusion, reasoned older-version choice, immutable receiving copies and retained original Question Versions. The revised action expressly checks current responsible engineer, receiving Work In Progress and issued PPAP In Progress, then allocates the receiving sequence under lock, copies the source comment and updates both current/latest pointers. Copy/protection/concurrency methods remain supplied inputs.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "languageReview": "The assignment explains why compatibility confirmation and an independent copy are required, clearly separates older-version selection from the default suggestion, and says retention is not a supplier submission. Source security and the exact copied content remain understandable.",
+      "meaningReview": "Confirmed approved-only candidates, same facility/drawing/requirement, current non-cancelled owner, latest approval ordering with stable tie-breaker, engineer confirmation for different revisions/parts, required receiving-answer reconciliation, source lineage, actual internal actor, complete-copy-before-approval and no retrospective transitive invalidation.",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add engineer-controlled reuse that preserves complete independent receiving evidence and source lineage.",
+          "mechanism": "Candidate selection and Retain Evidence action for compatible approved snapshots."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Allow only current responsible engineers on receiving Work In Progress and issued In Progress packages; filter approved non-cancelled sources.",
+          "mechanism": "Retain Evidence receiving-stage authorization and automatic/manual candidate query."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Suggest the latest eligible version and require engineer compatibility confirmation plus an older-selection reason.",
+          "mechanism": "Retain Evidence candidate ordering and Compatibility Confirmation/Nonlatest Selection Reason controls."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Recheck at commit and copy complete evidence, original question versions and accepted result links into the receiving package.",
+          "mechanism": "Retain Evidence protected copy action and receiving-answer reconciliation."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Allocate a unique receiving sequence, copy the source comment and stamp current/latest retained approval without supplier timing facts.",
+          "mechanism": "Retain Evidence element lock, sequence uniqueness, snapshot/element metadata mappings and Approved termination."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Return previous success on retry and preserve existing receiving copies if a source is later cancelled.",
+          "mechanism": "Retain Evidence native action correlation and prospective candidate-eligibility policy."
+        }
+      ]
+    }
+  ]
+}

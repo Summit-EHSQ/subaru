@@ -1,0 +1,9 @@
+{
+  "method": "GET",
+  "url": "https://preprod-na.intelex.com/Login3/SIA-SummitDEV/api/v2/object/MetObjectEntity(79ac6837-4646-47ce-be48-9bf0dbb8752e)?$expand=*",
+  "status": 404,
+  "contentType": "application/json; odata.metadata=minimal",
+  "responseBytes": 104,
+  "evidenceFile": "C:\\Users\\DaveMcLean\\OneDrive - Summit EHSQ Inc\\Documents\\GitHub\\subaru\\tmp\\prodintegration-api-audit-2026-11-19\\evidence\\bomecs-object-expanded.json",
+  "observedAtUtc": "2026-11-19T19:52:51.9830636Z"
+}

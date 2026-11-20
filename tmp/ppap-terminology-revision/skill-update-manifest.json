@@ -1,0 +1,16 @@
+[
+  {
+    "target": "C:\\Users\\DaveMcLean\\.codex\\skills\\intelex-implementation-planner\\SKILL.md",
+    "staged": "C:\\Users\\DaveMcLean\\OneDrive - Summit EHSQ Inc\\Documents\\GitHub\\subaru\\tmp\\ppap-terminology-revision\\SKILL.md.proposed",
+    "expectedBeforeSha256": "24615157c1ab607f44ac1f4e680674c4a02a200c69dd2fd6862c719868f49df1",
+    "expectedAfterSha256": "de2e0c9e2002ea840be4722a74bf50a609a9eed094bac4677cb062d69cbd7d76",
+    "changes": 1
+  },
+  {
+    "target": "C:\\Users\\DaveMcLean\\.codex\\skills\\intelex-implementation-planner\\references\\business-language-contract.md",
+    "staged": "C:\\Users\\DaveMcLean\\OneDrive - Summit EHSQ Inc\\Documents\\GitHub\\subaru\\tmp\\ppap-terminology-revision\\business-language-contract.md.proposed",
+    "expectedBeforeSha256": "877481cb485ddbb47e01e233ba718d66f16dc09098b9df17e79820c12922dc04",
+    "expectedAfterSha256": "ee4e9940e94c4e772bab717809f6f1c222846c5bdcc25483e65a8143f9f8fcb9",
+    "changes": 4
+  }
+]

@@ -1,0 +1,172 @@
+{
+  "info": {
+    "_postman_id": "f913e3a9-2d43-4b2f-87b2-aa0f15a208ea",
+    "name": "Product Integration - BOMECS API Record",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Native Intelex Object Data API examples for the SIA-SummitDEV development tenant. Exact object and field system names come from the read-only ProdIntegration audit on 2026-11-19.\n\nImport and select the included environment. Set apiKey locally, set the verified sourceSystem namespace where required, and review the illustrative values. The exported API key is blank.\n\nPOST creates a new native record, not a source-key upsert. On success it stores the native Id in the shared environment for PATCH and related-object bindings. To PATCH a pre-existing record, set the object-specific ID variable manually and send PATCH alone. Each POST clears its old saved ID before sending so a failed create cannot cause a subsequent PATCH to target a stale record.\n\nRelated IDs are native data-record GUIDs, not source ExternalID values or metadata IDs. Every referenced source-owned record must use the same source namespace. Omitted properties in PATCH are preserved; these examples do not clear relationships or demonstrate native M:N replacement semantics.\n\nRawPayload values are illustrative complete source documents/rows serialized as Unicode text. They do not execute the PMAPI-PART, PMAPI-FAMILY, or PMAPI-ECN receive logic. These native CRUD calls do not implement compound-key upserts, association reconciliation, conditional validation, source immutability, or multi-object transactions.\n\nThe requests were generated and validated without sending any POST or PATCH to the tenant. Previously identified tenant configuration gaps remain. The two physical M:N map objects are implementation objects and have no separate collections.\n\nAPI syntax: https://developers.intelex.com/ . Collection format: https://schema.postman.com/collection/json/v2.1.0/draft-07/docs/index.html .\n\nObject: BOMECS API Record\nSystem name: ProdIntegration_BOMECSAPIRecordObject\nRecord ID variable: bomecsPartId\n\nThe live caption is BOMECS API Record and its verified system name is used in the URL. IMPORTANT: InclAllFamilies is the actual current Include All Families? field. Its meaning has not been verified against the missing Include All Facilities? field. Its false value here is a separate native-field example, not a mapping from the includeAllFacilities source property retained in RawPayload. No nonexistent Facilities field is sent. SuRelationships and Revisions are inverse grids, created through the child objects' Part references. PATCH omits Programs and Tags; native binding-array replacement/clear semantics have not been tested. UnitCost 12.345678 illustrates the proposed 19/6 decimal contract; actual tenant precision remains unverified."
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "ApiKey {{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "POST - Create new record",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "(function () {",
+              "  function stop(message) { console.error(message); pm.execution.skipRequest(); }",
+              "  if (!pm.environment.get(\"apiBaseUrl\")) return stop(\"Import and select the supplied SIA-SummitDEV environment first.\");",
+              "  const template = pm.request.url.toString() + \"\\n\" + (pm.request.body && pm.request.body.raw || \"\");",
+              "  const names = Array.from(new Set([\"apiKey\", ...Array.from(template.matchAll(/\\{\\{([^{}]+)\\}\\}/g), match => match[1])]));",
+              "  const missing = names.filter(name => !String(pm.variables.get(name) == null ? \"\" : pm.variables.get(name)).trim());",
+              "  if (missing.length) return stop(\"Set these environment variables before sending: \" + missing.join(\", \"));",
+              "  const baseUrl = String(pm.variables.get(\"apiBaseUrl\"));",
+              "  if (!/^https:\\/\\/[^\\s?#]+\\/api\\/v2$/.test(baseUrl)) return stop(\"apiBaseUrl must be an HTTPS application API root ending in /api/v2, without a trailing slash.\");",
+              "  const guid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;",
+              "  const invalidIds = names.filter(name => /Id$/.test(name) && !guid.test(String(pm.variables.get(name))));",
+              "  if (invalidIds.length) return stop(\"Use native Intelex record GUIDs for: \" + invalidIds.join(\", \") + \". Do not use source ExternalID values or object metadata IDs.\");",
+              "  try { JSON.parse(pm.variables.replaceIn(pm.request.body.raw)); }",
+              "  catch (error) { return stop(\"The body is not valid JSON after variable substitution. Check values containing quotes or backslashes.\"); }",
+              "  pm.environment.set(\"bomecsPartId\", \"\");",
+              "  // Prevent a later PATCH from using a stale ID when this POST fails.",
+              "})();"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Record created (HTTP 201)\", function () { pm.expect(pm.response.code).to.eql(201); });",
+              "if (pm.response.code === 201) {",
+              "  let body = null;",
+              "  try { body = pm.response.json(); } catch (error) { /* Location can carry the new record URL. */ }",
+              "  const record = body && body.value && !Array.isArray(body.value) ? body.value : body;",
+              "  const location = pm.response.headers.get(\"Location\") || (record && record[\"@odata.id\"]) || \"\";",
+              "  const match = String(location).match(/\\(([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\\)/i);",
+              "  const id = record && record.Id || match && match[1];",
+              "  const valid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(id || \"\"));",
+              "  pm.test(\"Response provides a native Intelex record Id\", function () { pm.expect(valid).to.eql(true); });",
+              "  if (valid) pm.environment.set(\"bomecsPartId\", String(id));",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json; charset=utf-8",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"SourceSystem\": \"{{sourceSystem}}\",\n  \"ExternalID\": \"{{examplePrefix}}-PART\",\n  \"PartNumber\": \"{{examplePrefix}}-PARTNO\",\n  \"PartName\": \"POSTMAN DEMO PART\",\n  \"FuturePartName\": null,\n  \"LSPartNumber\": null,\n  \"LEPartNumber\": null,\n  \"UnitCost\": null,\n  \"DrawingNumber\": \"{{examplePrefix}}-DRAWING\",\n  \"Active\": true,\n  \"Name\": \"{{examplePrefix}}-PARTNO (POSTMAN DEMO PART)\",\n  \"Programs@odata.bind\": [\n    \"{{apiBaseUrl}}/object/ProdIntegration_PrograReferenceObject({{programReferenceId}})\"\n  ],\n  \"Flag@odata.bind\": \"{{apiBaseUrl}}/object/ProdIntegration_PartFlagObject({{partFlagId}})\",\n  \"Tags@odata.bind\": [\n    \"{{apiBaseUrl}}/object/ProdIntegration_PartTagObject({{partTagId}})\"\n  ],\n  \"Notes\": null,\n  \"ProductFamily@odata.bind\": \"{{apiBaseUrl}}/object/ProdIntegration_ProductFamilyObject({{productFamilyId}})\",\n  \"InclAllFamilies\": false,\n  \"RawPayload\": \"{\\\"partName\\\":\\\"POSTMAN DEMO PART\\\",\\\"partNumber\\\":\\\"{{examplePrefix}}-PARTNO\\\",\\\"futurePartName\\\":null,\\\"lsPartNumber\\\":null,\\\"lePartNumber\\\":null,\\\"unitCost\\\":null,\\\"drawingNumber\\\":\\\"{{examplePrefix}}-DRAWING\\\",\\\"id\\\":\\\"{{examplePrefix}}-PART\\\",\\\"partClassification\\\":null,\\\"program\\\":null,\\\"programs\\\":[{\\\"id\\\":\\\"{{examplePrefix}}-PROGRAM\\\",\\\"name\\\":\\\"Postman demo program\\\",\\\"status\\\":true}],\\\"status\\\":true,\\\"name\\\":\\\"{{examplePrefix}}-PARTNO (POSTMAN DEMO PART)\\\",\\\"Flag\\\":{\\\"id\\\":\\\"{{examplePrefix}}-FLAG\\\",\\\"name\\\":\\\"Postman demo flag\\\",\\\"status\\\":true},\\\"customers\\\":[],\\\"suppliers\\\":[{\\\"id\\\":\\\"{{examplePrefix}}-SUPPLIER\\\",\\\"name\\\":\\\"Postman demo supplier\\\",\\\"status\\\":true}],\\\"revLevels\\\":[\\\"DEMO-REVISION\\\"],\\\"partNumberRevLevels\\\":[{\\\"id\\\":\\\"{{examplePrefix}}-REVISION\\\",\\\"name\\\":\\\"DEMO-REVISION\\\",\\\"status\\\":true}],\\\"tags\\\":[\\\"{{partTagValue}}\\\"],\\\"measures\\\":[],\\\"notes\\\":null,\\\"productFamily\\\":{\\\"id\\\":\\\"{{examplePrefix}}-FAMILY\\\",\\\"name\\\":\\\"Postman demo family\\\",\\\"status\\\":true},\\\"includeAllFacilities\\\":false,\\\"facilities\\\":[]}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{apiBaseUrl}}/object/ProdIntegration_BOMECSAPIRecordObject",
+        "description": "Creates one BOMECS API Record record. On HTTP 201, saves the returned native Id as bomecsPartId.\n\nThe live caption is BOMECS API Record and its verified system name is used in the URL. IMPORTANT: InclAllFamilies is the actual current Include All Families? field. Its meaning has not been verified against the missing Include All Facilities? field. Its false value here is a separate native-field example, not a mapping from the includeAllFacilities source property retained in RawPayload. No nonexistent Facilities field is sent. SuRelationships and Revisions are inverse grids, created through the child objects' Part references. PATCH omits Programs and Tags; native binding-array replacement/clear semantics have not been tested. UnitCost 12.345678 illustrates the proposed 19/6 decimal contract; actual tenant precision remains unverified."
+      },
+      "response": []
+    },
+    {
+      "name": "PATCH - Patch existing record",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "(function () {",
+              "  function stop(message) { console.error(message); pm.execution.skipRequest(); }",
+              "  if (!pm.environment.get(\"apiBaseUrl\")) return stop(\"Import and select the supplied SIA-SummitDEV environment first.\");",
+              "  const template = pm.request.url.toString() + \"\\n\" + (pm.request.body && pm.request.body.raw || \"\");",
+              "  const names = Array.from(new Set([\"apiKey\", ...Array.from(template.matchAll(/\\{\\{([^{}]+)\\}\\}/g), match => match[1])]));",
+              "  const missing = names.filter(name => !String(pm.variables.get(name) == null ? \"\" : pm.variables.get(name)).trim());",
+              "  if (missing.length) return stop(\"Set these environment variables before sending: \" + missing.join(\", \"));",
+              "  const baseUrl = String(pm.variables.get(\"apiBaseUrl\"));",
+              "  if (!/^https:\\/\\/[^\\s?#]+\\/api\\/v2$/.test(baseUrl)) return stop(\"apiBaseUrl must be an HTTPS application API root ending in /api/v2, without a trailing slash.\");",
+              "  const guid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;",
+              "  const invalidIds = names.filter(name => /Id$/.test(name) && !guid.test(String(pm.variables.get(name))));",
+              "  if (invalidIds.length) return stop(\"Use native Intelex record GUIDs for: \" + invalidIds.join(\", \") + \". Do not use source ExternalID values or object metadata IDs.\");",
+              "  try { JSON.parse(pm.variables.replaceIn(pm.request.body.raw)); }",
+              "  catch (error) { return stop(\"The body is not valid JSON after variable substitution. Check values containing quotes or backslashes.\"); }",
+              "})();"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Record patched (HTTP 200 or 204)\", function () { pm.expect([200, 204]).to.include(pm.response.code); });",
+              "// A successful HTTP 204 has no JSON body to parse."
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json; charset=utf-8",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"PartName\": \"POSTMAN DEMO PART UPDATED\",\n  \"Name\": \"{{examplePrefix}}-PARTNO (POSTMAN DEMO PART UPDATED)\",\n  \"UnitCost\": 12.345678,\n  \"Notes\": \"Updated through the native BOMECS PATCH example.\",\n  \"RawPayload\": \"{\\\"partName\\\":\\\"POSTMAN DEMO PART UPDATED\\\",\\\"partNumber\\\":\\\"{{examplePrefix}}-PARTNO\\\",\\\"futurePartName\\\":null,\\\"lsPartNumber\\\":null,\\\"lePartNumber\\\":null,\\\"unitCost\\\":12.345678,\\\"drawingNumber\\\":\\\"{{examplePrefix}}-DRAWING\\\",\\\"id\\\":\\\"{{examplePrefix}}-PART\\\",\\\"partClassification\\\":null,\\\"program\\\":null,\\\"programs\\\":[{\\\"id\\\":\\\"{{examplePrefix}}-PROGRAM\\\",\\\"name\\\":\\\"Postman demo program\\\",\\\"status\\\":true}],\\\"status\\\":true,\\\"name\\\":\\\"{{examplePrefix}}-PARTNO (POSTMAN DEMO PART UPDATED)\\\",\\\"Flag\\\":{\\\"id\\\":\\\"{{examplePrefix}}-FLAG\\\",\\\"name\\\":\\\"Postman demo flag\\\",\\\"status\\\":true},\\\"customers\\\":[],\\\"suppliers\\\":[{\\\"id\\\":\\\"{{examplePrefix}}-SUPPLIER\\\",\\\"name\\\":\\\"Postman demo supplier\\\",\\\"status\\\":true}],\\\"revLevels\\\":[\\\"DEMO-REVISION\\\"],\\\"partNumberRevLevels\\\":[{\\\"id\\\":\\\"{{examplePrefix}}-REVISION\\\",\\\"name\\\":\\\"DEMO-REVISION\\\",\\\"status\\\":true}],\\\"tags\\\":[\\\"{{partTagValue}}\\\"],\\\"measures\\\":[],\\\"notes\\\":\\\"Updated through the native BOMECS PATCH example.\\\",\\\"productFamily\\\":{\\\"id\\\":\\\"{{examplePrefix}}-FAMILY\\\",\\\"name\\\":\\\"Postman demo family\\\",\\\"status\\\":true},\\\"includeAllFacilities\\\":false,\\\"facilities\\\":[]}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{apiBaseUrl}}/object/ProdIntegration_BOMECSAPIRecordObject({{bomecsPartId}})",
+        "description": "Updates the native record identified by bomecsPartId. Populate this variable from POST or enter an existing native record Id. Identity fields are preserved.\n\nThe live caption is BOMECS API Record and its verified system name is used in the URL. IMPORTANT: InclAllFamilies is the actual current Include All Families? field. Its meaning has not been verified against the missing Include All Facilities? field. Its false value here is a separate native-field example, not a mapping from the includeAllFacilities source property retained in RawPayload. No nonexistent Facilities field is sent. SuRelationships and Revisions are inverse grids, created through the child objects' Part references. PATCH omits Programs and Tags; native binding-array replacement/clear semantics have not been tested. UnitCost 12.345678 illustrates the proposed 19/6 decimal contract; actual tenant precision remains unverified."
+      },
+      "response": []
+    }
+  ]
+}

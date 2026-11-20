@@ -1,0 +1,58 @@
+classDiagram
+direction LR
+class model["PPAP Model Change"]
+class model_date["PPAP Model Date"]
+class build_event["PPAP Build Event"]
+class release["PPAP Engineering Release"]
+class release_part["PPAP Engineering Release Part"]
+class review["PPAP Drawing Review"]
+class employee["Employee"]
+<<external>> employee
+class phase["PPAP Schedule Phase"]
+class stage["PPAP Manufacturing Stage"]
+class drawing["Operational Drawing Revision"]
+<<external>> drawing
+class ppap_type["PPAP Type"]
+class supplier_abstract["Supplier Abstract"]
+<<abstract>> supplier_abstract
+<<external>> supplier_abstract
+class facility["Supplier Facility"]
+<<external>> facility
+class part["Operational Part"]
+<<external>> part
+class supplier_role["Supplier Specific Role"]
+<<external>> supplier_role
+class policy["PPAP Operating Policy"]
+class no_ppap_reason["PPAP Drawing Review Exception Reason"]
+class ppap["PPAP"]
+class inspection_specification_version["Released Inspection Specification Version"]
+<<external>> inspection_specification_version
+class group["Group"]
+<<external>> group
+class project["Project Framework Project"]
+<<abstract>> project
+<<external>> project
+model "0..*" --> "1" employee : Model Lead
+model_date "0..*" --> "1" model : Model Change
+model_date "0..*" --> "1" phase : Phase
+model_date "0..*" --> "1" stage : Manufacturing Stage
+build_event "0..*" --> "1" model : Model Change
+build_event "0..*" --> "1" stage : Manufacturing Stage
+release "0..*" --> "1" drawing : Drawing Revision
+release "0..*" --> "1" ppap_type : Change Type
+release "0..*" --> "1" supplier_abstract : Routing Entity
+release "0..*" --> "0..*" facility : Candidate Manufacturing Facilities
+release "0..*" --> "0..1" release : Corrects Release
+release_part "0..*" --> "1" release : Engineering Release
+release_part "0..*" --> "1" part : Part
+review "0..*" --> "1" release : Engineering Release
+review "0..*" --> "1" employee : Responsible Engineer
+review "0..*" --> "1" supplier_abstract : Routing Entity
+review "0..*" --> "1" ppap_type : Change Type
+review "0..*" --> "1" supplier_role : Engineer Role
+review "0..*" --> "1" policy : Operating Policy
+review "0..*" --> "0..1" no_ppap_reason : Exception Reason
+review "0..*" --> "0..1" ppap : Already Created PPAP
+review "0..*" --> "0..1" inspection_specification_version : Released Inspection Specification Version
+supplier_abstract <|-- facility : shared authority inheritance
+group <|-- supplier_role : shared authority inheritance

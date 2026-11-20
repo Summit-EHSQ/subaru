@@ -1,0 +1,21 @@
+{
+  "installedSkillFiles": [
+    {
+      "file": "C:\\Users\\DaveMcLean\\.codex\\skills\\intelex-implementation-planner\\SKILL.md",
+      "matchesReviewedContent": true
+    },
+    {
+      "file": "C:\\Users\\DaveMcLean\\.codex\\skills\\intelex-implementation-planner\\references\\business-language-contract.md",
+      "matchesReviewedContent": true
+    }
+  ],
+  "skillQuickValidator": "PASS (official quick_validate.py with isolated PyYAML dependency)",
+  "outputContractPassed": true,
+  "contentContractPassed": true,
+  "changedTasksReviewed": 16,
+  "untouchedTasks": 20,
+  "terminologyOnly": true,
+  "remainingPlanProxyTerms": 0,
+  "taskCount": 36,
+  "coverageCount": 455
+}

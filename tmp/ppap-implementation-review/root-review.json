@@ -1,0 +1,795 @@
+{
+  "version": 1,
+  "tasks": [
+    {
+      "id": "IMP-02",
+      "taskHash": "138c1325b1df07c7ec8430b321c7df32a281bb7d310f75582ea64a9b08adc9ef",
+      "renderedTaskHash": "63a03ee849a4b701b51887812613f77b5164411a4de5be53db6868b770b2a31a",
+      "evidenceReview": "Reviewed all seven concrete catalogue definitions, the fourteen Operating Policy fields and eleven supplied starting entries against the target model. The missing four SIA value sets, shared role/group references and business timezone are explicitly local inputs; no OOTB library parity or live memberships are assumed.",
+      "languageReview": "Read the complete list/policy assignment without its references. Titles and controls explain what administrators select, what inactive values do and why policy activation waits. Exact Codes, numeric defaults and field names remain unchanged; the policy rule ID was removed from operative wording.",
+      "meaningReview": "Checked Code100/Name255, localizable Name and stable Code, TRUE activation defaults, Float order, nonnegative integer day values and interval minimum1. Confirmed 3/7/7/5/5 defaults, fixed14 drawing review, one active default, inactive historical retention and separate shared group/library-role references.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Create the seven independent lists and complete policy form with only approved values; partial readiness is stated precisely.",
+          "mechanism": "Catalogue object/field configuration and Operating Policy setup"
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add the stable unique100-character PPAP type key, locked after reference.",
+          "mechanism": "PPAP Type.Code field and administration control"
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add the required255-character localizable type label with no default.",
+          "mechanism": "PPAP Type.Name field and administration control"
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add active type selection control defaultTRUE while retaining inactive history.",
+          "mechanism": "PPAP Type.Active? Boolean and selection behavior"
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add optional Float type order with Code as deterministic tie breaker.",
+          "mechanism": "PPAP Type.Sort field and list ordering"
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add the stable unique100-character work-pattern key, locked after reference.",
+          "mechanism": "PPAP Work Pattern.Code field and administration control"
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add required localizable255-character work-pattern display text.",
+          "mechanism": "PPAP Work Pattern.Name field and administration control"
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add defaultTRUE work-pattern activation that affects new use only.",
+          "mechanism": "PPAP Work Pattern.Active? Boolean and selection behavior"
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add optional finite Float ordering for the work-pattern list.",
+          "mechanism": "PPAP Work Pattern.Sort field and list ordering"
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add a stable unique100-character answer-type Code without translating it.",
+          "mechanism": "PPAP Answer Type.Code field and administration control"
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add required localizable255-character answer-type display label.",
+          "mechanism": "PPAP Answer Type.Name field and administration control"
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add defaultTRUE answer-type activation and retain former references.",
+          "mechanism": "PPAP Answer Type.Active? Boolean and selection behavior"
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add optional finite Float answer-type ordering then Code.",
+          "mechanism": "PPAP Answer Type.Sort field and list ordering"
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add unique stable100-character requirement-category key for supplied values.",
+          "mechanism": "PPAP Requirement Category.Code field and control"
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add required localizable255-character category label without invented seeds.",
+          "mechanism": "PPAP Requirement Category.Name field and control"
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Add defaultTRUE category activation controlling new selection only.",
+          "mechanism": "PPAP Requirement Category.Active? Boolean and selector rules"
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Add optional Float category order with Code tie breaking.",
+          "mechanism": "PPAP Requirement Category.Sort field and ordering"
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Add unique stable100-character schedule-phase key.",
+          "mechanism": "PPAP Schedule Phase.Code field and administration control"
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Add required localizable255-character phase name for supplied content.",
+          "mechanism": "PPAP Schedule Phase.Name field and administration control"
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Add defaultTRUE phase activation, preserving historic references.",
+          "mechanism": "PPAP Schedule Phase.Active? Boolean and selection behavior"
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Add optional finite Float schedule-phase ordering.",
+          "mechanism": "PPAP Schedule Phase.Sort field and list ordering"
+        },
+        {
+          "path": "configurationRows.20",
+          "requiredChange": "Add the stable unique100-character manufacturing-stage key.",
+          "mechanism": "PPAP Manufacturing Stage.Code field and administration control"
+        },
+        {
+          "path": "configurationRows.21",
+          "requiredChange": "Add the required localizable255-character manufacturing-stage label.",
+          "mechanism": "PPAP Manufacturing Stage.Name field and administration control"
+        },
+        {
+          "path": "configurationRows.22",
+          "requiredChange": "Add defaultTRUE manufacturing-stage activation without deleting history.",
+          "mechanism": "PPAP Manufacturing Stage.Active? Boolean and selectors"
+        },
+        {
+          "path": "configurationRows.23",
+          "requiredChange": "Add optional finite Float manufacturing-stage sort value.",
+          "mechanism": "PPAP Manufacturing Stage.Sort field and list ordering"
+        },
+        {
+          "path": "configurationRows.24",
+          "requiredChange": "Add stable unique100-character no-PPAP exception key awaiting SIA content.",
+          "mechanism": "PPAP Drawing Review Exception Reason.Code field"
+        },
+        {
+          "path": "configurationRows.25",
+          "requiredChange": "Add required localizable255-character exception explanation label.",
+          "mechanism": "PPAP Drawing Review Exception Reason.Name field"
+        },
+        {
+          "path": "configurationRows.26",
+          "requiredChange": "Add defaultTRUE exception activation, disabling only new use when false.",
+          "mechanism": "PPAP Drawing Review Exception Reason.Active? Boolean"
+        },
+        {
+          "path": "configurationRows.27",
+          "requiredChange": "Add optional finite Float exception-list order then Code.",
+          "mechanism": "PPAP Drawing Review Exception Reason.Sort field"
+        },
+        {
+          "path": "configurationRows.28",
+          "requiredChange": "Add required100-character PPAP_DEFAULT key and enforce one active default.",
+          "mechanism": "PPAP Operating Policy.Code field and default-policy check"
+        },
+        {
+          "path": "configurationRows.29",
+          "requiredChange": "Add required100-character native timezone identifier without assuming Toronto.",
+          "mechanism": "PPAP Operating Policy.Business Time Zone field and activation check"
+        },
+        {
+          "path": "configurationRows.30",
+          "requiredChange": "Add policy activation and prevent a missing or duplicate default.",
+          "mechanism": "PPAP Operating Policy.Active? field and form validation"
+        },
+        {
+          "path": "configurationRows.31",
+          "requiredChange": "Add whole-number reminder lead default3, without changing issued dates.",
+          "mechanism": "PPAP Operating Policy.Reminder Lead Days field"
+        },
+        {
+          "path": "configurationRows.32",
+          "requiredChange": "Add whole-number overdue interval default7 and require at least1.",
+          "mechanism": "PPAP Operating Policy.Overdue Reminder Interval Days field"
+        },
+        {
+          "path": "configurationRows.33",
+          "requiredChange": "Add whole-number escalation threshold default7 with audit.",
+          "mechanism": "PPAP Operating Policy.Escalation Overdue Days field"
+        },
+        {
+          "path": "configurationRows.34",
+          "requiredChange": "Add whole-number engineer review days default5 for future cycles.",
+          "mechanism": "PPAP Operating Policy.Engineer Review Days field"
+        },
+        {
+          "path": "configurationRows.35",
+          "requiredChange": "Add whole-number management review days default5 for future cycles.",
+          "mechanism": "PPAP Operating Policy.Management Review Days field"
+        },
+        {
+          "path": "configurationRows.36",
+          "requiredChange": "Add read-only fixed14 drawing-review days populated by policy creation.",
+          "mechanism": "PPAP Operating Policy.Drawing Review Days field"
+        },
+        {
+          "path": "configurationRows.37",
+          "requiredChange": "Add required single shared administrator-group reference without an inverse.",
+          "mechanism": "PPAP Operating Policy.PPAP Administrators M:1 link"
+        },
+        {
+          "path": "configurationRows.38",
+          "requiredChange": "Add optional single management-pool reference, needed for safety issue.",
+          "mechanism": "PPAP Operating Policy.Default Management Approver Pool M:1 link"
+        },
+        {
+          "path": "configurationRows.39",
+          "requiredChange": "Add required shared model engineer library-role reference, not memberships.",
+          "mechanism": "PPAP Operating Policy.Model Engineer Role M:1 link"
+        },
+        {
+          "path": "configurationRows.40",
+          "requiredChange": "Add required shared running-change engineer library-role reference.",
+          "mechanism": "PPAP Operating Policy.Running Change Engineer Role M:1 link"
+        },
+        {
+          "path": "configurationRows.41",
+          "requiredChange": "Add required shared process-change engineer library-role reference.",
+          "mechanism": "PPAP Operating Policy.Process Change Engineer Role M:1 link"
+        },
+        {
+          "path": "configurationRows.42",
+          "requiredChange": "Create active NEW_MODEL entry named Model change with Sort10.",
+          "mechanism": "PPAP Type NEW_MODEL reference record"
+        },
+        {
+          "path": "configurationRows.43",
+          "requiredChange": "Create active RUNNING_CHANGE entry named Running change with Sort20.",
+          "mechanism": "PPAP Type RUNNING_CHANGE reference record"
+        },
+        {
+          "path": "configurationRows.44",
+          "requiredChange": "Create active PROCESS_CHANGE entry named Process change with Sort30.",
+          "mechanism": "PPAP Type PROCESS_CHANGE reference record"
+        },
+        {
+          "path": "configurationRows.45",
+          "requiredChange": "Create active SUPPLIER pattern named Supplier submission with Sort10.",
+          "mechanism": "PPAP Work Pattern SUPPLIER reference record"
+        },
+        {
+          "path": "configurationRows.46",
+          "requiredChange": "Create active INTERNAL pattern named Internal engineering work with Sort20.",
+          "mechanism": "PPAP Work Pattern INTERNAL reference record"
+        },
+        {
+          "path": "configurationRows.47",
+          "requiredChange": "Create active INSPECTION pattern named Inspection-team work with Sort30.",
+          "mechanism": "PPAP Work Pattern INSPECTION reference record"
+        },
+        {
+          "path": "configurationRows.48",
+          "requiredChange": "Create active JOINT pattern named Joint inspection with Sort40.",
+          "mechanism": "PPAP Work Pattern JOINT reference record"
+        },
+        {
+          "path": "configurationRows.49",
+          "requiredChange": "Create active TEXT answer type named Text with Sort10.",
+          "mechanism": "PPAP Answer Type TEXT reference record"
+        },
+        {
+          "path": "configurationRows.50",
+          "requiredChange": "Create active NUMBER answer type named Number with Sort20.",
+          "mechanism": "PPAP Answer Type NUMBER reference record"
+        },
+        {
+          "path": "configurationRows.51",
+          "requiredChange": "Create active BOOLEAN answer type named Yes or no with Sort30.",
+          "mechanism": "PPAP Answer Type BOOLEAN reference record"
+        },
+        {
+          "path": "configurationRows.52",
+          "requiredChange": "Create active DATE answer type named Calendar date with Sort40.",
+          "mechanism": "PPAP Answer Type DATE reference record"
+        },
+        {
+          "path": "configurationRows.53",
+          "requiredChange": "Create the one complete default policy with known numeric values and supplied references before activation.",
+          "mechanism": "PPAP_DEFAULT Operating Policy record and activation validation"
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Create localizable concrete list types with audit/security and one distinct control per field.",
+          "mechanism": "Seven catalogue object settings and administration forms"
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Load only supplied SIA catalogue values using their stable Codes and approved labels/order.",
+          "mechanism": "Category/phase/stage/exception reference-value configuration"
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Enforce integer/range rules, fixed14 and complete unique default activation.",
+          "mechanism": "Operating Policy ordinary validation and read-only controls"
+        }
+      ]
+    },
+    {
+      "id": "IMP-05",
+      "taskHash": "37a7e72d2e39ca5ed76bf505197cf2e3f15d642506e1982129e0cb91fa8bba6f",
+      "renderedTaskHash": "a6b68c398ddebdc237f7100c3e379a6676939afcf39b078f6dac90dbc60120ce",
+      "evidenceReview": "Read all thirty-eight field/list rows, setup scope, named predecessor outputs and result checks against the Element/Answer model. The assignment sets fields and ordinary controls only; generation, submission, role resolution and deep record/file permissions keep their separate owners. Exact shared role/person connections remain local inputs.",
+      "languageReview": "The assignment describes separate work areas and what each actor can edit, while preserving exact field/stage names including Engineer Review. Conditional rows state matching answer type, optional visibility and clearing. The working-file wording was narrowed to saved evidence rather than a mechanical doubled phrase.",
+      "meaningReview": "Reconciled M:1 references and inverse lists, required/protected/exclusion/addition rules, stored date fields and baseline preservation, scope/team eligibility and current versus approved snapshot pointers. Checked text8000, finite numeric answers, nullable Boolean FALSE, calendar Date and one Element+Question Version working record.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Create Element and working Answer fields and ordinary controls, with actual role and answer conditions inline.",
+          "mechanism": "Element/Answer field configuration and native forms"
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add required owning PPAP link, immutable assignment and read-only Elements list.",
+          "mechanism": "PPAP Element.PPAP M:1 link and form control"
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add required exact Requirement Version link that cannot follow latest on correction.",
+          "mechanism": "PPAP Element.Requirement Version M:1 link"
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add optional matrix-row version link required only for generated template work.",
+          "mechanism": "PPAP Element.Template Requirement Version M:1 link"
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add2000-character addition reason required for a governed non-template addition.",
+          "mechanism": "PPAP Element.Setup Addition Reason field and conditional form action"
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add required applicability Boolean, editable only before issue and protected from waiver.",
+          "mechanism": "PPAP Element.Required? field and Draft control"
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add read-only protection Boolean from requirement and applicable row mandates.",
+          "mechanism": "PPAP Element.Protected? field and setup-action write restriction"
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add2000-character reason mandatory when excluded and cleared when required in Draft.",
+          "mechanism": "PPAP Element.Exclusion Reason field and conditional form actions"
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add exact Work Pattern catalogue link with active filter and no inverse.",
+          "mechanism": "PPAP Element.Work Pattern M:1 link and selector"
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add scoped exact entity link for supplier/configured role routing.",
+          "mechanism": "PPAP Element.Routing Entity M:1 link"
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add role reference resolved from exact entity and library role, with no fallback.",
+          "mechanism": "PPAP Element.Assigned Role M:1 link and protected selector"
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add team reference for INSPECTION/JOINT, clearing/hiding when inapplicable.",
+          "mechanism": "PPAP Element.Assigned Team M:1 link and conditional control"
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add optional eligible person link with internal-owner default and permitted reassignment.",
+          "mechanism": "PPAP Element.Assigned Person M:1 link and selection control"
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add phase catalogue link allowing only controlled open connected moves after issue.",
+          "mechanism": "PPAP Element.Schedule Phase M:1 link and controlled editing"
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add signed integer offset from matrix row or0 for additions, frozen on issue.",
+          "mechanism": "PPAP Element.Offset Days field and Draft control"
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Add stored read-only calculated calendar date from matching model cell plus offset.",
+          "mechanism": "PPAP Element.Calculated Due Date field"
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Add optional engineer manual calendar date with reason and explicit override behavior.",
+          "mechanism": "PPAP Element.Manual Due Date field and change control"
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Add effective date required on every required element before issue, with past-date warning.",
+          "mechanism": "PPAP Element.Effective Due Date field and form rules"
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Add frozen issued date copied once from effective date, never recomputed.",
+          "mechanism": "PPAP Element.Issued Baseline Due Date field"
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Add2000-character internal reason for manual/bulk/connection date changes and audit.",
+          "mechanism": "PPAP Element.Date Change Reason field and conditional requiredness"
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Add separate read-only engineer-review calendar date for each submit cycle.",
+          "mechanism": "PPAP Element.Engineer Review Due Date field"
+        },
+        {
+          "path": "configurationRows.20",
+          "requiredChange": "Add2000-character working comment editable by current assignee before submission.",
+          "mechanism": "PPAP Element.Submission Comment field and Work In Progress form"
+        },
+        {
+          "path": "configurationRows.21",
+          "requiredChange": "Add native working files editable only in permitted work without deleting saved evidence.",
+          "mechanism": "PPAP Element.Working Files attachment control"
+        },
+        {
+          "path": "configurationRows.22",
+          "requiredChange": "Add read-only current-submission reference to exact saved evidence.",
+          "mechanism": "PPAP Element.Current Submission M:1 link"
+        },
+        {
+          "path": "configurationRows.23",
+          "requiredChange": "Add read-only last-approved reference retained during correction.",
+          "mechanism": "PPAP Element.Latest Approved Snapshot M:1 link"
+        },
+        {
+          "path": "configurationRows.24",
+          "requiredChange": "Add2000-character assignee-visible feedback required on Return Element.",
+          "mechanism": "PPAP Element.Review Feedback field and return control"
+        },
+        {
+          "path": "configurationRows.25",
+          "requiredChange": "Add2000-character reason mandatory for non-engineering reopen before closure.",
+          "mechanism": "PPAP Element.Correction Reason field and reopen control"
+        },
+        {
+          "path": "configurationRows.26",
+          "requiredChange": "Add UTC/timezone-enabled first complete supplier event, never overwritten.",
+          "mechanism": "PPAP Element.First Complete Submission At timestamp field"
+        },
+        {
+          "path": "configurationRows.27",
+          "requiredChange": "Add frozen original deadline captured at first complete supplier submission.",
+          "mechanism": "PPAP Element.First Submission Issued Due Date field"
+        },
+        {
+          "path": "configurationRows.28",
+          "requiredChange": "Add frozen effective deadline captured at the same first supplier event.",
+          "mechanism": "PPAP Element.First Submission Effective Due Date field"
+        },
+        {
+          "path": "configurationRows.29",
+          "requiredChange": "Add timezone-enabled retention timestamp that does not imply supplier submission.",
+          "mechanism": "PPAP Element.Retained At timestamp field"
+        },
+        {
+          "path": "configurationRows.30",
+          "requiredChange": "Add fixed required working-answer owner link and native Answers list.",
+          "mechanism": "PPAP Answer.Element M:1 link and inverse navigation"
+        },
+        {
+          "path": "configurationRows.31",
+          "requiredChange": "Add fixed required exact question-version link with one answer per element/question.",
+          "mechanism": "PPAP Answer.Question Version M:1 link and uniqueness rule"
+        },
+        {
+          "path": "configurationRows.32",
+          "requiredChange": "Add8000-character TEXT answer with matching-type visibility and requiredness only when mandated.",
+          "mechanism": "PPAP Answer.Answer - Text field and typed form actions"
+        },
+        {
+          "path": "configurationRows.33",
+          "requiredChange": "Add finite NUMBER answer without silent rounding and with matching-type visibility.",
+          "mechanism": "PPAP Answer.Answer - Number field and typed form actions"
+        },
+        {
+          "path": "configurationRows.34",
+          "requiredChange": "Add nullable BOOLEAN answer where FALSE is complete and NULL unanswered.",
+          "mechanism": "PPAP Answer.Answer - Yes or No field and typed form actions"
+        },
+        {
+          "path": "configurationRows.35",
+          "requiredChange": "Add calendar DATE answer with matching-type visibility, preserving optional questions.",
+          "mechanism": "PPAP Answer.Answer - Date field and typed form actions"
+        },
+        {
+          "path": "configurationRows.36",
+          "requiredChange": "Add read-only PPAP.Elements navigation using the existing declaring new link only.",
+          "mechanism": "PPAP.Elements inverse list over PPAP Element.PPAP"
+        },
+        {
+          "path": "configurationRows.37",
+          "requiredChange": "Add read-only working Answers navigation without another stored relationship.",
+          "mechanism": "PPAP Element.Answers inverse list over PPAP Answer.Element"
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Show the matching typed field, preserve optional visibility and clear nonmatching working values only.",
+          "mechanism": "PPAP Answer form show/require/clear actions keyed by Answer Type.Code"
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Enforce working answer/requirement uniqueness without adding duplicate workflow/audit records.",
+          "mechanism": "Element/Answer unique-key and native-record configuration"
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Apply only the stated Draft/open control edits and protect approved/first-event evidence from work-form edits.",
+          "mechanism": "PPAP Element stage-aware ordinary field controls"
+        }
+      ]
+    },
+    {
+      "id": "IMP-06",
+      "taskHash": "a8143077b8b32f681c1ea2cf01a091a82c64d259bbaab04fcdca7fec703721d2",
+      "renderedTaskHash": "31372214d3fafb84a9e508b710325a79673edc82c494b9bac20065f7a6be083c",
+      "evidenceReview": "Reviewed the fourteen evidence snapshot fields, six frozen-answer fields and three relevant inverse navigations across the model/plan owner split. Every submitted answer/file remains separate from working content. Supplier actor identity and rejected-file access/protection are supplied inputs rather than assumed native behavior.",
+      "languageReview": "The task explains saved evidence and lineage separately from editable working content. Read-only actor/time facts and conditional compatibility/nonlatest reasons are understandable without source references; exact Snapshot object names and Question Version fields remain intact.",
+      "meaningReview": "Checked unique Element+Sequence, independent native files, source link without ACL widening, required actual submit actor, one-time mutually exclusive review facts and exact typed source mappings for Submit/Retain. Native copy actions own writes; field forms and related lists own no duplicate workflow or file table.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Create protected evidence and frozen-answer field/control structures while leaving content copying to named actions.",
+          "mechanism": "Evidence Snapshot/Answer field and historical form configuration"
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add required fixed Element ownership and read-only snapshot navigation.",
+          "mechanism": "PPAP Evidence Snapshot.Element M:1 link"
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add integer sequence allocated under Element lock with unique element/sequence.",
+          "mechanism": "PPAP Evidence Snapshot.Sequence field and action-only control"
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add2000-character comment copied once from the submitted working comment.",
+          "mechanism": "PPAP Evidence Snapshot.Submission Comment field"
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add independent native file collection with fixed submitted bytes/metadata.",
+          "mechanism": "PPAP Evidence Snapshot.Files attachment collection"
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add optional internal immediate-source lineage link without source-record access grants.",
+          "mechanism": "PPAP Evidence Snapshot.Reused From self-reference"
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add2000-character compatibility confirmation required only for retention source links.",
+          "mechanism": "PPAP Evidence Snapshot.Compatibility Confirmation field"
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add2000-character reason required for a nonlatest eligible source selection.",
+          "mechanism": "PPAP Evidence Snapshot.Nonlatest Selection Reason field"
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add write-once timezone-enabled Submit/Retain action timestamp.",
+          "mechanism": "PPAP Evidence Snapshot.Submitted At field"
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add required actual submit/retain actor link, waiting on supplier identity connection.",
+          "mechanism": "PPAP Evidence Snapshot.Submitted By M:1 link"
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add timezone-enabled approval stamp retained when its element reopens.",
+          "mechanism": "PPAP Evidence Snapshot.Approved At field"
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add actual engineer approval/retention actor link with no direct editor.",
+          "mechanism": "PPAP Evidence Snapshot.Approved By M:1 link"
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add one-time rejected timestamp distinct from approved content.",
+          "mechanism": "PPAP Evidence Snapshot.Rejected At field"
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add2000-character current-return feedback while preserving internal rejected history.",
+          "mechanism": "PPAP Evidence Snapshot.Review Feedback field"
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add fixed frozen-answer owner link and read-only Answers navigation.",
+          "mechanism": "PPAP Evidence Answer.Evidence Snapshot M:1 link"
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Add exact source question-version reference unique within its snapshot.",
+          "mechanism": "PPAP Evidence Answer.Question Version M:1 link"
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Add fixed8000-character typed TEXT copy from working/source/reconciled answer.",
+          "mechanism": "PPAP Evidence Answer.Answer - Text field and copy-only control"
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Add fixed finite NUMBER copy without coercing changed source answer types.",
+          "mechanism": "PPAP Evidence Answer.Answer - Number field and copy-only control"
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Add fixed nullable BOOLEAN copy preserving FALSE versus unanswered.",
+          "mechanism": "PPAP Evidence Answer.Answer - Yes or No field and copy-only control"
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Add fixed calendar DATE copy while retaining exact question version.",
+          "mechanism": "PPAP Evidence Answer.Answer - Date field and copy-only control"
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Add read-only historical snapshot list over the declaring Element link.",
+          "mechanism": "PPAP Element.Evidence Snapshots inverse list"
+        },
+        {
+          "path": "configurationRows.20",
+          "requiredChange": "Add read-only frozen-answer list over the declaring snapshot link.",
+          "mechanism": "PPAP Evidence Snapshot.Answers inverse list"
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Separate saved submissions from Working Files/answers and preserve source question/version/sequence.",
+          "mechanism": "Evidence historical forms and read-only source/working navigation"
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Restrict direct content edits while permitting named write-once action decision stamps.",
+          "mechanism": "Evidence field/form editing restrictions and action-only decision controls"
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Keep rejected history internal and expose only current supplier-safe feedback.",
+          "mechanism": "Evidence historical views and internal lineage navigation"
+        }
+      ]
+    },
+    {
+      "id": "IMP-29",
+      "taskHash": "0275fab91250a071fdbd1f514994d65076836757835aa1176abc728fab2981ee",
+      "renderedTaskHash": "fc630361d9a2ef025eab93eec2c867908fd06ed8974319acdba1560873b7859c",
+      "evidenceReview": "Read all thread/post fields, native M:N recipient storage and inverse lists against the chosen immutable-thread-audience design. Confirmed the user later required all discussion read only after approval/cancellation, suppliers forced external audience and text required even for file posts. Native actor/file protection remains local supplied information.",
+      "languageReview": "The title, scope, row controls and four steps describe who can post, when text/files become fixed and how corrections use new replies. Internal/external visibility, recipient eligibility and closed behavior are stated directly; exact record/field names and native types are retained.",
+      "meaningReview": "Checked Subject255, Body8000, Internal Only? TRUE for internal/default and forcedFALSE for supplier, optional same-thread Reply To, actual timezone-enabled Posted At and native Employee actor/recipients. Field/form ownership is distinct from record ACL and delivery owners; no discussion workflow tasks are created.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Create fixed-audience append-only thread/post fields and actions, with closure/recipient conditions inline.",
+          "mechanism": "Discussion Thread/Post configuration and native posting actions"
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add required fixed PPAP ownership and read-only discussion navigation.",
+          "mechanism": "PPAP Discussion Thread.PPAP M:1 link"
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add required255-character subject editable only before first post.",
+          "mechanism": "PPAP Discussion Thread.Subject field and form control"
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add audience Boolean defaultTRUE for internal and forcedFALSE for supplier, fixed after first post.",
+          "mechanism": "PPAP Discussion Thread.Internal Only? field and form actions"
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add native M:N eligible recipient selection without granting access or new junction attributes.",
+          "mechanism": "PPAP Discussion Thread.Notification Recipients native link"
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add fixed required Thread ownership with read-only Posts navigation.",
+          "mechanism": "PPAP Discussion Post.Thread M:1 link"
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add optional fixed reply link limited to a visible post in the same thread.",
+          "mechanism": "PPAP Discussion Post.Reply To self-reference"
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add required nonblank8000-character body, immutable after posting even with files.",
+          "mechanism": "PPAP Discussion Post.Body field and posting validation"
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add native attachment preparation then freeze all file additions/deletions at Post.",
+          "mechanism": "PPAP Discussion Post.Attachments native collection"
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add required actual actor link without invented supplier-to-employee conversion.",
+          "mechanism": "PPAP Discussion Post.Posted By M:1 field"
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add action-only UTC/timezone-enabled posted timestamp, leaving preparation unposted.",
+          "mechanism": "PPAP Discussion Post.Posted At field"
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add read-only thread navigation over the declaring PPAP relationship.",
+          "mechanism": "PPAP.Discussion Threads inverse list"
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add read-only post navigation over the declaring Thread relationship.",
+          "mechanism": "PPAP Discussion Thread.Posts inverse list"
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Add authorized open-package Start Discussion/Post Reply with subject/body and same-thread validation.",
+          "mechanism": "Proposed Start Discussion and Post Reply object actions"
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Force suppliers external and freeze subject/audience at first post, inheriting audience on replies.",
+          "mechanism": "Thread audience form conditions and posting checks"
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Recheck access/recipients, stamp actual actor/time and freeze content before publishing event.",
+          "mechanism": "Post action ordered validation/write and native event connection"
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Deny posted edits/deletion/new files and all posting after closure; corrections are new replies.",
+          "mechanism": "Post edit restrictions and PPAP-closure conditions"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "contractVersion": 1,
+  "passed": true,
+  "scope": [
+    "IMP-01",
+    "IMP-03",
+    "IMP-04",
+    "IMP-31"
+  ],
+  "unreviewedTaskIds": [],
+  "errors": [],
+  "limits": "Automated wording, rendering and review-freshness checks plus recorded semantic review; not independent proof of configuration correctness or tenant verification."
+}

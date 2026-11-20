@@ -1,0 +1,670 @@
+{
+  "version": 1,
+  "tasks": [
+    {
+      "id": "IMP-01",
+      "evidenceReview": "Compared the 25 proposed non-catalogue identities with the target 50-object inventory and preserved baseline. None replaces APQP_PPAPAbstractObject or an external SRM/inspection/identity object. The separate workflows and Target Configuration? marker are genuine additions; historical PPAP/APQP workflow definitions are reuse. The supported initial-stage/schema assignment method remains a supplied technical input rather than an assigned verification task.",
+      "languageReview": "Read the heading, objective, scope, all 25 record-type rows, three workflow rows, marker instructions, role rationale and result checks with references hidden. Reread the corrected current workflow rows: initial Draft, Work In Progress and Engineering Review are explicit, and Review Complete is a completed termination. Business purposes explain the structures without treating later process actions as part of this routine setup.",
+      "meaningReview": "Reconciled independent business inheritance, native audit/security flags, attachment-enabled evidence-bearing records, native workflows only for Element/Drawing Review, and the locked FALSE/TRUE marker. The task creates structure, while target creation owns writing TRUE and later tasks own workflow decisions; it does not rebuild the existing PPAP/base or add custom state.",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Create the 25 target-owned record structures, three native workflow structures and discriminator needed by later field and process work.",
+          "mechanism": "New PPAP record-type metadata and native workflow definitions; retained concrete PPAP receives only the marker."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Create the independent PPAP Requirement authoring record with audited, secured instruction attachments.",
+          "mechanism": "PPAP Requirement object setup; native audit/security and attachment settings."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Create a separate protected requirement publication record capable of holding copied instruction files.",
+          "mechanism": "PPAP Requirement Version object setup with native attachments, audit and security."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Create the typed-question authoring record without a separate custom workflow or ordinary attachments.",
+          "mechanism": "PPAP Question concrete object metadata; field ownership comes in the question assignment."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Create the independent immutable question component record used by requirement publication.",
+          "mechanism": "PPAP Question Version object metadata with native audit/security; no separate business workflow."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Create the stable target template authoring record without absorbing the shared Project Framework template.",
+          "mechanism": "New PPAP Template concrete object in the existing PPAP product area."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Create the published template record so later operations can select a complete fixed matrix.",
+          "mechanism": "PPAP Template Version object setup; later publication operation populates it."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Create a template-to-requirement authoring association capable of carrying applicability and scheduling fields.",
+          "mechanism": "PPAP Template Requirement concrete object, with no business inheritance."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Create the immutable published matrix-row record retaining the exact requirement version.",
+          "mechanism": "PPAP Template Requirement Version object metadata; later field/publication assignments supply its links."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Create the policy record used by configurable reminder and review settings.",
+          "mechanism": "PPAP Operating Policy object setup with native audit/security, not a custom reminder engine."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Create the model/program summary record used by schedule and build-event links.",
+          "mechanism": "PPAP Model Change independent concrete object with native audit/security."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Create the model-phase-manufacturing-stage milestone record separately from physical build events.",
+          "mechanism": "PPAP Model Date object setup; its later fields establish the matrix key."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Create a physical build-event record separate from the scheduling matrix.",
+          "mechanism": "PPAP Build Event concrete object metadata with native audit/security."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Create the accepted operational release-context record and enable supporting source attachments.",
+          "mechanism": "PPAP Engineering Release object setup; no change to isolated Product Integration objects."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Create the per-part classification and source-mapping component for accepted releases.",
+          "mechanism": "PPAP Engineering Release Part independent object; later source links define ownership."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Create the initial drawing-review business record and enable its native workflow.",
+          "mechanism": "PPAP Drawing Review object metadata with workflow enabled, native audit and security."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Create the selected-part association record for criticality snapshots and part-specific warrant masses.",
+          "mechanism": "PPAP Part independent concrete object; no retyping of inherited Product."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Create a separate depot-context association without changing manufacturing approval scope.",
+          "mechanism": "PPAP Shipping Depot concrete object metadata; no supplier-master duplication."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Create independently routed element work with native workflow and editable working attachments.",
+          "mechanism": "PPAP Element object setup with workflow, attachments, audit and security enabled."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Create working typed-answer records whose preparation changes can be audited.",
+          "mechanism": "PPAP Answer independent object setup; no artificial answer workflow/status object."
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Create the independent evidence container required for copied multi-file submissions and lineage.",
+          "mechanism": "PPAP Evidence Snapshot object with native attachments/audit/security; publication is not represented by mutable shared files."
+        },
+        {
+          "path": "configurationRows.20",
+          "requiredChange": "Create saved typed-answer components for each immutable evidence snapshot.",
+          "mechanism": "PPAP Evidence Answer concrete object with native audit/security and no custom workflow."
+        },
+        {
+          "path": "configurationRows.21",
+          "requiredChange": "Create the operational association holding specialist result/version references and acceptance facts.",
+          "mechanism": "PPAP Inspection Result Link independent object; specialist measurement records remain external."
+        },
+        {
+          "path": "configurationRows.22",
+          "requiredChange": "Create a PPAP/build-event association to an externally owned new-model pilot program.",
+          "mechanism": "PPAP Pilot Program Link independent object setup, without recreating Pilot Part Data."
+        },
+        {
+          "path": "configurationRows.23",
+          "requiredChange": "Create discussion thread records with an independently governed immutable audience boundary.",
+          "mechanism": "PPAP Discussion Thread object; later posting/security rules enforce audience rather than workflow tasks."
+        },
+        {
+          "path": "configurationRows.24",
+          "requiredChange": "Create posted discussion records that hold body, files and optional reply links.",
+          "mechanism": "PPAP Discussion Post object with native attachments/audit/security enabled."
+        },
+        {
+          "path": "configurationRows.25",
+          "requiredChange": "Create only Draft, In Progress and Management Review target stages with Approved completed and Cancelled cancelled outcomes, keeping historical workflows separate.",
+          "mechanism": "New target PPAP native workflow metadata; Draft is the required initial stage."
+        },
+        {
+          "path": "configurationRows.26",
+          "requiredChange": "Create Work In Progress and Engineer Review with Approved/Cancelled native element outcomes and no active excluded-row workflow.",
+          "mechanism": "PPAP Element native workflow; Work In Progress is the required initial stage."
+        },
+        {
+          "path": "configurationRows.27",
+          "requiredChange": "Create Engineering Review as the first drawing-review stage and Review Complete as successful completion, without a transport-error stage.",
+          "mechanism": "PPAP Drawing Review native workflow definition with completed termination."
+        },
+        {
+          "path": "configurationRows.28",
+          "requiredChange": "Add the required hidden Boolean marker with legacy FALSE and target-create TRUE behavior and no later ordinary edits.",
+          "mechanism": "PPAP.Target Configuration? field metadata; the separately owned target-create action is its sole TRUE writer."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Restrict the new marker so historical records remain on the old branch and only target creation can select TRUE.",
+          "mechanism": "Marker field/control permissions and named target-create write allowlist; no operational migration assignment."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Make the new workflow identities available without rebinding historical or APQP instances.",
+          "mechanism": "Separate native workflow/stage setup consumed later by the target creation connection."
+        }
+      ],
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "taskHash": "d1f5af532c97615318ef1f6d033b141850d784ece76034f8ca3f8dbec48f2c71",
+      "renderedTaskHash": "56fa1a1468b32fc759020470d7bba75fdd8922f1568e728197a0155ca5f38aad"
+    },
+    {
+      "id": "IMP-03",
+      "evidenceReview": "Compared the two existing modifications with baseline-model.json: SubmissionDate has the Task.Workflow.DueDate default and remains required Date with timezone capture off; DisplayField calculates from Product/Product.Name and exports no maximum. The task preserves historical branches, identity, owner, settings and Task/APQP links. New facility/drawing/part/depot controls are target additions, not retyped inherited Product/Supplier/Location fields. Source, role, visibility, PCR and executable-expression bindings remain narrow supplied inputs.",
+      "languageReview": "Read the complete JSON and rendered assignment without its reference block, then reread the current Type row locked at Issue and the narrow IN-05/IN-08 additions. Every selected-part field and inverse list has its own row. The warrant example makes NULL, zero metal mass and the upper bound understandable; display/default changes preserve their explicit technical values and historical branches.",
+      "meaningReview": "Reconciled all 32 field/list rows against the target field contract, including M:1 target counts, inverse suppression, four inverse lists, source-release-part equality, unknown criticality, kg masses and 6-decimal display without storage rounding. Field setup owns preparation controls/copies; issue/finalization own server-side gates, responsibility owns the ProjectOwner selector, and launch creation owns initial source/owner/date population. Dependencies supply type/policy/template/source structures.",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add the target scope and per-part warrant controls and change only the proved display/due defaults without rebuilding compatibility fields.",
+          "mechanism": "PPAP/PPAP Part/PPAP Shipping Depot field and form configuration plus two targeted legacy field modifications."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add the required active PPAP Type selector, initially empty, editable only in Draft and locked at Issue.",
+          "mechanism": "PPAP.Type M:1 field with inverse disabled, active-selection filter and Draft/issued control rules."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add a manufacturing-facility selector required before Issue and distinct from platform Location or legacy supplier profile.",
+          "mechanism": "PPAP.Manufacturing Facility M:1 to external Supplier Facility; Draft selection control and issue requiredness."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add the authoritative drawing-revision link, allowing validated Draft selection but no issued retargeting.",
+          "mechanism": "PPAP.Drawing Revision M:1 to Operational Drawing Revision with inverse disabled."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add accepted engineering-release provenance for every origin and expose its PPAP reverse list without duplicate storage.",
+          "mechanism": "PPAP.Engineering Release M:1 and PPAP Engineering Release.PPAPs inverse; controlled source-selection rule."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add a read-only 100-character Drawing Number copied from accepted release at source selection and locked at issue.",
+          "mechanism": "PPAP.Drawing Number text field; source-selection population and control requiredness."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add a read-only 100-character revision code populated from accepted release rather than an editable override.",
+          "mechanism": "PPAP.Drawing Revision Code text field and source-selection copy."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add the optional read-only initial-review provenance relationship and its review-side PPAP list.",
+          "mechanism": "PPAP.Drawing Review M:1 and PPAP Drawing Review.PPAPs inverse; Launch PPAP supplies the value."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add the optional internal-only link to the originating MOC PCR, populated by the authorized decision adapter.",
+          "mechanism": "PPAP.Originating PCR M:1, inverse disabled; exact external PCR binding supplied separately."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add informational replacement lineage selectable in Draft only from relevant cancelled PPAP work.",
+          "mechanism": "PPAP.Replaces PPAP self-reference with inverse disabled and post-Issue lock."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add the FALSE-default required service-purpose flag without treating it as a supplier status override.",
+          "mechanism": "PPAP.Service Parts Only? Boolean and Draft purpose-validation control; central capability adapter remains authoritative."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add the required shared visibility-classification selector controlled by designated visibility managers.",
+          "mechanism": "PPAP.Visibility Classification M:1 with inverse disabled; security assignment owns authorized handover enforcement."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add the target template selector limited to active published templates matching Type and prevent switching while generated elements remain.",
+          "mechanism": "PPAP.Template M:1 and Draft selector/change restriction; existing ProjectTemplate is not repurposed."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add a read-only exact template-version reference required before Issue and never automatically refreshed later.",
+          "mechanism": "PPAP.Template Version M:1 with inverse disabled; Initialize Elements owns pinned-version population."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add the required read-only policy link bound to the one active target operating policy during creation.",
+          "mechanism": "PPAP.Operating Policy M:1, inverse disabled; target creation action supplies the selected policy."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Add the exact routing-entity selection used to find an internal engineer role, retaining issued context without hierarchy fallback.",
+          "mechanism": "PPAP.Engineer Routing Entity M:1 to Supplier Abstract and Draft/pre-Issue control rules."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Add the read-only resolved engineer-specific role relationship and require it before Issue.",
+          "mechanism": "PPAP.Engineer Role M:1 to Supplier Specific Role; responsibility operation resolves entity plus type-specific library role."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Add the immutable owning PPAP reference for every selected-part row and its source-backed reverse list.",
+          "mechanism": "PPAP Part.PPAP M:1 plus PPAP.Parts inverse; authorized create handler binds once."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Add a required operational-part selector limited to active drawing-associated parts eligible for the selected facility.",
+          "mechanism": "PPAP Part.Part M:1 with inverse disabled and validated Draft selection."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Add matched per-part source provenance and reject mismatched part, release or revision before accepting its flags.",
+          "mechanism": "PPAP Part.Source Release Part M:1; selection handler checks exact three-way equality before copying."
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Add a required read-only 100-character part-number snapshot copied from the matched release-part record.",
+          "mechanism": "PPAP Part.Part Number text field and Select Part source copy."
+        },
+        {
+          "path": "configurationRows.20",
+          "requiredChange": "Add a read-only 255-character part-description snapshot for the historical warrant/certificate.",
+          "mechanism": "PPAP Part.Part Description text field and Select Part source copy."
+        },
+        {
+          "path": "configurationRows.21",
+          "requiredChange": "Add nullable authoritative safety classification that cannot be manually overridden and must be explicit before Issue.",
+          "mechanism": "PPAP Part.Important Safety? Boolean populated by matched source selection and frozen at Issue."
+        },
+        {
+          "path": "configurationRows.22",
+          "requiredChange": "Add nullable authoritative quality classification, preserving unknown rather than defaulting FALSE.",
+          "mechanism": "PPAP Part.Important Quality? Boolean populated from Source Release Part and locked at Issue."
+        },
+        {
+          "path": "configurationRows.23",
+          "requiredChange": "Add nullable authoritative regulated classification required before Issue, with no PPAP-level override.",
+          "mechanism": "PPAP Part.Regulated? Boolean and source-selection copy/issue lock."
+        },
+        {
+          "path": "configurationRows.24",
+          "requiredChange": "Add supplier-entered actual mass in kg, initially unknown, finite and greater than zero before final submission.",
+          "mechanism": "PPAP Part.Average Actual Mass (kg) Float control, six-decimal display and final-submission/correction edit rules."
+        },
+        {
+          "path": "configurationRows.25",
+          "requiredChange": "Add supplier-entered metal mass in kg with explicit zero allowed, unknown left NULL and value no greater than actual mass.",
+          "mechanism": "PPAP Part.Average Metal Mass (kg) Float control and paired mass validation/correction rules."
+        },
+        {
+          "path": "configurationRows.26",
+          "requiredChange": "Add the creation-bound owning PPAP relationship for each contextual shipping-depot row.",
+          "mechanism": "PPAP Shipping Depot.PPAP M:1 plus PPAP.Shipping Depots inverse; no subsequent user reassignment."
+        },
+        {
+          "path": "configurationRows.27",
+          "requiredChange": "Add the eligible contextual depot selector with unique PPAP/depot pairing and no change to manufacturing approval scope.",
+          "mechanism": "PPAP Shipping Depot.Shipping Depot M:1 to Supplier Facility, inverse disabled; governed depot filter and uniqueness rule."
+        },
+        {
+          "path": "configurationRows.28",
+          "requiredChange": "Expose selected part rows as a read-only navigation list over their existing owning link.",
+          "mechanism": "PPAP.Parts inverse 1:M from PPAP Part.PPAP; no duplicate stored relationship."
+        },
+        {
+          "path": "configurationRows.29",
+          "requiredChange": "Expose linked shipping-depot rows through a read-only related-record list.",
+          "mechanism": "PPAP.Shipping Depots inverse from PPAP Shipping Depot.PPAP with record/file access checks."
+        },
+        {
+          "path": "configurationRows.30",
+          "requiredChange": "Expose PPAPs already linked to an accepted engineering release without creating a second link.",
+          "mechanism": "PPAP Engineering Release.PPAPs inverse from PPAP.Engineering Release."
+        },
+        {
+          "path": "configurationRows.31",
+          "requiredChange": "Expose PPAPs already launched from a drawing review as secured navigation only.",
+          "mechanism": "PPAP Drawing Review.PPAPs inverse from PPAP.Drawing Review."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Arrange Draft scope controls and label the retained Project Owner as the internal SIA PPAP Engineer.",
+          "mechanism": "Target Draft native form sections and caption override; the existing ProjectOwner relationship is reused."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Reject mismatched selected-part provenance and copy only matched identity/criticality source values.",
+          "mechanism": "Proposed Select Part selection handler on the Draft preparation path and its exact part/release/revision checks."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Make issued scope and authoritative flags read only and keep contextual depot selection from granting facility access.",
+          "mechanism": "Draft/issued control rules on scope/part selectors; security enforcement remains separately owned."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Show supplier mass controls only while editable, apply exact kg bounds and retain NULL without exposing internal management content.",
+          "mechanism": "Part-warrant form validation and stage visibility; finalization owns the final server-side completeness check."
+        },
+        {
+          "path": "modifications.0",
+          "requiredChange": "Replace the target unconditional Task.Workflow.DueDate default with engineer input or authorized one-time APQP copy while preserving legacy behavior.",
+          "mechanism": "PPAP Due Date / SubmissionDate default branch on the verified existing field, with supported expression input."
+        },
+        {
+          "path": "modifications.1",
+          "requiredChange": "Replace target Product-based labels with the ordered NULL-safe record/drawing/revision label and set the proposed 512-character capacity.",
+          "mechanism": "Existing PPAP DisplayField continuing calculation and maximum-length settings, preserving historical Product branch."
+        }
+      ],
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "taskHash": "53b1c96961081a0c7660c0745dfe4edd006c0cc9aaebb70ab87a3d293ec35df2",
+      "renderedTaskHash": "4387d21ffc6047fe6f294f34c3a3b489d55932c96b4ea7e3b0765252f1a8c2f8"
+    },
+    {
+      "id": "IMP-04",
+      "evidenceReview": "Compared this decision-field setup with the target PPAP field contract and the retained PPAP Completion Date declaration. The stamps, frozen labels, management pool and cancellation/replacement facts are additions; PPAPCompDate is reused rather than rebuilt. Confirmed that actual population belongs to Issue, Confirm Scope, source correction, approval/cancellation and certificate assignments. Conditional safety controls require the PPAP Part/Operating Policy outputs of IMP-03; role/actor/label bindings must remain task-local inputs.",
+      "languageReview": "Read every decision-field row and rendered stage/control instruction without references, then reread the current corrected Approved At and three frozen-label rows. The text now states a successful save and fixed approval evidence rather than the broken generic phrase. Comments, reason conditions and read-only actor/time facts use recognizable business language. The new IMP-03 predecessor and IN-05 description supply the actual safety/policy/role dependencies.",
+      "meaningReview": "Reviewed each NULL/default, conditional requiredness, Date versus timezone-enabled Date/Time, inverse-disabled person/group relationships, approval-cycle timing and certificate-reference restrictions. No additional approval separation or e-signature is introduced; an eligible internal engineer may be the final approver. This task sets fields/controls only and does not duplicate consequential action writes or security mechanisms.",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add the decision/hold/certificate-evidence fields and stage-aware controls while preserving the existing completion-date field.",
+          "mechanism": "PPAP field metadata and native form controls; process tasks remain the sole automatic writers."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Add a governed management-pool selector required before Issue when any included part is important-safety.",
+          "mechanism": "PPAP.Management Approver Pool M:1 to Group, inverse disabled, with conditional safety requiredness."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Add selection of one currently eligible management approver before safety completion, allowing the internal engineer if eligible.",
+          "mechanism": "PPAP.Final Management Approver M:1 to Employee and pool-filtered stage controls; no automatic bypass."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Add a read-only original overall due-date fact, initially NULL and populated once on issue.",
+          "mechanism": "PPAP.Issued Overall Due Date Date field; Issue copies existing PPAP Due Date."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Add a write-once issue timestamp preserving server time with timezone support.",
+          "mechanism": "PPAP.Issued At Date/Time field; Issue action owns population."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Add the actual authenticated issue actor as a read-only optional employee reference.",
+          "mechanism": "PPAP.Issued By M:1 to Employee, inverse disabled; Issue writer."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Add a read-only supplier scope-confirmation timestamp without making mass data part of this checkpoint.",
+          "mechanism": "PPAP.Scope Confirmed At timezone-enabled Date/Time; Confirm Scope action writes once."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Add the actual supplier confirmation actor after the supported external-user mapping is supplied.",
+          "mechanism": "PPAP.Scope Confirmed By M:1 to Employee, inverse disabled; authenticated Confirm Scope writer."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Add a FALSE-default finalization hold only for classification corrections applicable to the original issued context.",
+          "mechanism": "PPAP.Replacement Required? Boolean; source-correction handler sets it, finalization consumes it."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Add the read-only mandatory explanation of a replacement hold and preserve it through cancellation.",
+          "mechanism": "PPAP.Replacement Reason text up to 2000 characters, conditional on Replacement Required?=TRUE."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Add the current management submission/resubmission timestamp while retaining prior cycle history natively.",
+          "mechanism": "PPAP.Management Submitted At timezone-enabled Date/Time; Complete PPAP writes at management-stage entry."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Add a separate current management review target calculated from local submission date and configured review days.",
+          "mechanism": "PPAP.Management Review Due Date Date field; Complete PPAP owns calculation, stage/history controls own visibility."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Add internal-only management return feedback, mandatory for Return for More Information and preserved in history.",
+          "mechanism": "PPAP.Management Return Comment text up to 2000 characters with action-specific requiredness and supplier exclusion."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Add mandatory cancellation explanation editable only through the authorized Cancel PPAP path.",
+          "mechanism": "PPAP.Cancellation Reason text up to 2000 characters; cancellation action validates before cascade."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Add a read-only cancellation timestamp written only after outstanding work stops successfully.",
+          "mechanism": "PPAP.Cancelled At timezone-enabled Date/Time; cancellation cascade writer."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Add the actual authorized cancellation actor without permitting ordinary post-event edits.",
+          "mechanism": "PPAP.Cancelled By M:1 to Employee, inverse disabled; successful cancellation writer."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Add a write-once approval timestamp for both non-safety completion and management approval, saved with final output facts.",
+          "mechanism": "PPAP.Approved At timezone-enabled Date/Time populated by the approval completion operation."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Add the actual approving actor, using the internal engineer for non-safety and selected eligible approver for safety.",
+          "mechanism": "PPAP.Approved By M:1 to Employee with inverse disabled and action-only population."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Add the 255-character approved facility label captured at approval and fixed for rendering retries.",
+          "mechanism": "PPAP.Approved Manufacturing Facility Label text field; approval action copies the supplied native display source."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Add the approved supplier/company label independently from later mutable master names.",
+          "mechanism": "PPAP.Approved Supplier Label text up to 255 characters; approval source binding from facility company is supplied."
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Add the actual authority label captured with Approved By so later person-name changes cannot alter the certificate.",
+          "mechanism": "PPAP.Approved Authority Label text up to 255 characters; write-once approval population."
+        },
+        {
+          "path": "configurationRows.20",
+          "requiredChange": "Add a read-only unique opaque certificate reference visible only within authorized approved-record access.",
+          "mechanism": "PPAP.Certificate Reference text up to 100 characters; controlled approval/certificate operation allocates it."
+        },
+        {
+          "path": "configurationRows.21",
+          "requiredChange": "Add the protected native PDF attachment collection and preserve one active issued artifact's original bytes.",
+          "mechanism": "PPAP.Approval Certificate native attachment collection; renderer owns population and reference-based retry."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Hide management return content from suppliers and require feedback only at the internal return action.",
+          "mechanism": "Management Return Comment stage/audience controls; Return for More Information owns the consequential validation/write."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Require cancellation/replacement reasons in their stated conditions and prevent direct edits to action-stamped facts.",
+          "mechanism": "Native field/control requiredness plus direct-update restrictions on decision timestamps, actors and labels."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Use audited fields and action history without adding another Save writer or exposing closed/interim/withdrawal controls.",
+          "mechanism": "Native audit and stage/control configuration; the approval/cancellation tasks retain write ownership."
+        }
+      ],
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "taskHash": "09d8fc8deaaca9400ee6936f58444188270e3382705a770b831213c7bb322611",
+      "renderedTaskHash": "fc2a51063727f31657fa88b9e02ca8db188e9d14399edf02c8c303a20facb6a4"
+    },
+    {
+      "id": "IMP-31",
+      "evidenceReview": "Rechecked the four named handlers and GUID/package pointers against workflow-automation.md and exported flows. Role Creation writes the legacy template-role helper; Set Phase Field & Task Creation performs three phase/generation operations; Initialize PPAP When Task<>NULL copies the named task values; Clear IMDS Field clears the obsolete companion text. Copy Values on Create and Create PPAP only fills DefId and is correctly excluded from assigned changes.",
+      "languageReview": "Read the eight operative units and rendered assignment with source links hidden. The task explains why old project generation must stop for marked target records, identifies each real handler by its actual name, and states the missing supported typed connection narrowly. The Senior Consultant role matches cross-object ordering risk; no platform-processing permission setup is assigned.",
+      "meaningReview": "The four target-only early checks preserve FALSE historical/APQP branches and do not change inherited fields, counters or unreachable listeners. The separate Create Target PPAP Draft task owns marker-before-default timing and workflow assignment, avoiding a duplicate initializer or recursion. IMP-01 supplies the marker and stage identities; unknown subtype access is an external method input rather than fabricated syntax.",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add narrowly scoped target exclusions to the existing creation/generation handlers without reconstructing shared Project Framework behavior.",
+          "mechanism": "Target-only branches in the four explicitly named Action Handlers, using the supplied typed PPAP marker access."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Place a tested target-marker branch before every listed legacy write, with FALSE preserving historical/APQP behavior.",
+          "mechanism": "Shared/PPAP Action Handler branch conditions using native typed lookup supplied under the connection input."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Make legacy handlers consume the marker without creating another target initializer or re-entering target creation.",
+          "mechanism": "Read-only guard logic; Create Target PPAP Draft remains the sole marker/workflow initializer."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Limit modified automation to reachable target paths and leave the misleadingly named DefId-copy action unchanged.",
+          "mechanism": "Four-handler change boundary; no new changes to excluded listener actions or Copy Values on Create and Create PPAP."
+        },
+        {
+          "path": "modifications.0",
+          "requiredChange": "Skip the template-role helper write for marked target PPAP while retaining the original Role Creation branch.",
+          "mechanism": "Role Creation existing Action Handler e75c1108-299d-4ecf-83bd-0a91ea2b79be; target check before its write."
+        },
+        {
+          "path": "modifications.1",
+          "requiredChange": "Bypass phase initialization, stage-following phase update and template generation trigger for target PPAP.",
+          "mechanism": "Set Phase Field & Task Creation existing Action Handler d5da1088-aa43-4014-857e-8c50a19e6857; early target exclusion."
+        },
+        {
+          "path": "modifications.2",
+          "requiredChange": "Stop task-derived legacy context/template copies from initializing marked target PPAP or inferring its authoritative scope.",
+          "mechanism": "Initialize PPAP When Task<>NULL Action Handler fc0d5679-5d86-4c11-b026-f76ff4d28eae; target bypass only."
+        },
+        {
+          "path": "modifications.3",
+          "requiredChange": "Stop obsolete IMDSOther clearing on target records without changing the old IMDS branch.",
+          "mechanism": "Clear IMDS Field Action Handler 6578b2b3-e10d-4ce5-b286-a003ba3606bd; target exclusion."
+        }
+      ],
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "taskHash": "214b751dc5b34cd6b5b5bc6b84c87ceb231805bcf717f104281f462eed61754c",
+      "renderedTaskHash": "072ffb1acafba108ef2bc3b9211edea29b22804e548c57aeed42c9bf5e1984a7"
+    },
+    {
+      "id": "IMP-34",
+      "evidenceReview": "Checked APQP_PPAP_Detail, APQP_APQP_Detail and ProjectFwk_Task_Detail names/GUIDs against view-inventory.csv. The PPAP view really requires singular Product/legacy template and has PSW/contributor/task/EditReadOnly paths. The Task.PPAPs inverse supports multiple links whereas RelatedPPAP is singular. This task only renders the preceding actions/fields/security; open/closed reporting views and process writes remain separately owned.",
+      "languageReview": "Read the scope, all three view changes, four workspace steps and rendered metadata with traceability hidden. Reread the current corrected acceptance wording: the screen uses governed scope controls and applies Draft/Issue requirements, allowing incomplete Draft preparation. Native responsive controls, English labels and named visible outcomes are understandable. The native-layout role is Senior Associate, with separate security/process outputs already provided.",
+      "meaningReview": "Reconciled the 40 historical-only declarations against the retained eight active PPAP fields and 27 unchanged base declarations. Removal is target UI/dependency use, never schema deletion. Stage containers distinguish Draft, issued work, element engineer review, Management Review and closed history; internal management feedback never appears to suppliers. Listed predecessor outputs provide actual fields/actions/history/security, not staffing or verification dependencies.",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Replace target-only legacy view panels with connected scope/warrant/element/evidence/discussion controls and narrow originating navigation.",
+          "mechanism": "Conditional target branches in the three verified native views; historical rendering and server-side security remain separate."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Assemble the already configured scope, routing, schedule, work/review, history, warrant, certificate and discussion controls without new stored collections.",
+          "mechanism": "Target PPAP native view sections and relationship-grid navigation consuming the named predecessor outputs."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Show only stage-appropriate user actions and keep internal management returns hidden behind supplier pending/in-progress presentation.",
+          "mechanism": "Native stage containers and authorized action links on the PPAP/element views."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Remove legacy-only fields, interim/PSW controls and old task counters from target rendering while preserving historical metadata and locks.",
+          "mechanism": "Target branch view/control removal and suppression of EditReadOnly bypasses; existing schema is retained."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Provide native responsive, accessible English layouts and permission-aware downloads on connected desktop/tablet/phone views.",
+          "mechanism": "Native sections/grids, labels, keyboard navigation, validation messages and secured action/download links."
+        },
+        {
+          "path": "modifications.0",
+          "requiredChange": "Replace Product/template-required legacy PPAP detail controls only for the marked target branch and retain historic rendering.",
+          "mechanism": "APQP_PPAP_Detail existing native view ee3fad4b-3787-45b3-a463-9f6f9ba01364; Target Configuration? branch."
+        },
+        {
+          "path": "modifications.1",
+          "requiredChange": "Expose authorized target launch/navigation and linked outcomes without altering APQP gate/task behavior.",
+          "mechanism": "APQP_APQP_Detail existing view e008a361-a8c3-4d36-8df6-3ff2434d6d75; narrow originating links."
+        },
+        {
+          "path": "modifications.2",
+          "requiredChange": "Show the authorized multiple-PPAP collection and individual approved/cancelled outcomes instead of a latest singular shortcut.",
+          "mechanism": "ProjectFwk_Task_Detail existing view 5a653e69-a761-46f0-a507-1df9b5f53895; Task.PPAPs inverse navigation."
+        }
+      ],
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "taskHash": "7c1d2e4d57aba05bebeaa57efc5826f2b0200643fb6757fda0cd581e00228c3e",
+      "renderedTaskHash": "454cecbc9a71d88782545394165f2df73b7ddf54168245e32e926c53f946f5b2"
+    }
+  ]
+}

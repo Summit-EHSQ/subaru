@@ -1,0 +1,3660 @@
+{
+  "schemaVersion": "1.1",
+  "reviewDate": "2026-11-19",
+  "scope": "Independent read-only comparison of field/grid coverage, logical types, reference targets and default-detail-form declarations. No API or credential access.",
+  "evidence": {
+    "expectedPath": "C:\\Users\\DaveMcLean\\OneDrive - Summit EHSQ Inc\\Documents\\GitHub\\subaru\\tmp\\prodintegration-api-audit-2026-11-19\\expected-contract.json",
+    "actualPath": "C:\\Users\\DaveMcLean\\OneDrive - Summit EHSQ Inc\\Documents\\GitHub\\subaru\\tmp\\prodintegration-api-audit-2026-11-19\\evidence\\all-objects-with-fields.json",
+    "expectedSha256": "B29A3D3E0913D452D74563A2DC9738ED4E9FE9BDF0D47079BA013B5B5FC444B1",
+    "actualSha256": "9087C22AA377B13C1EF83E7F24B1AC7E8E1FFD39636D96E95771A78DE8954634",
+    "detailedPath": "C:\\Users\\DaveMcLean\\OneDrive - Summit EHSQ Inc\\Documents\\GitHub\\subaru\\tmp\\prodintegration-api-audit-2026-11-19\\evidence\\all-objects-detailed.json",
+    "detailedSha256": "D32036ECF09A93F9950506A8153B5DF674427772E8E714990F3F49F301734BAF"
+  },
+  "summary": {
+    "moduleObjectsReturned": 13,
+    "expectedBusinessObjects": 11,
+    "matchedBusinessObjects": 11,
+    "excludedNativeManyToManyMapObjects": 2,
+    "expectedFieldGridRows": 68,
+    "matchedFieldGridRows": 67,
+    "missingFields": 1,
+    "unexpectedBusinessFields": 1,
+    "expectedScalarRows": 50,
+    "matchedScalarRows": 49,
+    "matchedReferenceAndInverseRows": 18,
+    "confirmedWrongLogicalTypesOrTargets": 0,
+    "objectCaptionGaps": 1,
+    "expectedUnconditionalRequiredRows": 40,
+    "presentRequiredRowsWithBaseIsRequiredFalse": 39,
+    "missingUnconditionalRequiredRows": 1,
+    "expectedReceivingScreenReadOnlyRows": 61,
+    "presentRowsWithBaseIsReadOnlyFalse": 60,
+    "missingReadOnlyRows": 1,
+    "businessObjectsWithNullSuperType": 11,
+    "businessObjectsWithEmptyReturnedValidationRules": 11,
+    "presentExpectedRowsWithDefaultFormControls": 67,
+    "presentUnconditionalRequiredRowsWithFormMandatoryTrue": 39,
+    "presentUnconditionalRequiredRowsWithoutFormMandatoryTrue": 0,
+    "presentReadOnlyExpectedRowsWithExplicitDefaultFormOverride": 1,
+    "presentReadOnlyExpectedRowsWithoutBaseOrExplicitDefaultFormRestriction": 59,
+    "conditionalFieldsWithoutObservedConditionalRule": 3,
+    "requirednessInterpretation": "39 present required fields are optional at base metadata level but mandatory on default detail forms. Do not report these as 39 blanket requiredness failures. API/persistence enforcement is unverified. The 40th expected required field is missing (Include All Facilities?).",
+    "readOnlyInterpretation": "61 expected source/inverse receiving-screen read-only rows: 1 missing, 1 present with EditReadOnly=true (latest-feed flag), 59 present without base or explicit default-form read-only restriction. Runtime rights/control defaults remain unverified. Separate locale/state-dependent cases are listed."
+  },
+  "namingFindings": [
+    {
+      "expectedObjectCaption": "BOMECS Part API Recod",
+      "actualObjectCaption": "BOMECS API Record",
+      "actualSystemName": "ProdIntegration_BOMECSAPIRecordObject",
+      "classification": "Object identity alias accepted only for audit comparison; exact required naming is not implemented"
+    }
+  ],
+  "missingFields": [
+    {
+      "object": "BOMECS Part API Recod",
+      "actualObject": "BOMECS API Record",
+      "actualSystemName": "ProdIntegration_BOMECSAPIRecordObject",
+      "field": "Include All Facilities?",
+      "expectedKind": "scalar",
+      "expectedLogicalType": "Yes/No",
+      "requiredContract": "Y",
+      "sourceSection": "5.1"
+    }
+  ],
+  "unexpectedBusinessFields": [
+    {
+      "object": "BOMECS Part API Recod",
+      "actualCaption": "Include All Families?",
+      "actualSystemName": "InclAllFamilies",
+      "actualId": "7282fa22-753a-4028-ac4d-d194f624f04c",
+      "actualType": "Yes/No",
+      "classification": "Unexpected business field, not a match for a differently named expected field"
+    }
+  ],
+  "wrongLogicalTypesOrReferenceTargets": [],
+  "objectCoverage": [
+    {
+      "expectedCaption": "BOMECS Part API Recod",
+      "actualCaption": "BOMECS API Record",
+      "actualSystemName": "ProdIntegration_BOMECSAPIRecordObject",
+      "actualId": "79ac6837-4646-47ce-be48-9bf0dbb8752e",
+      "expectedFieldGridRows": 20,
+      "matchedFieldGridRows": 19,
+      "missingFields": [
+        "Include All Facilities?"
+      ],
+      "actualNonSystemFieldRows": 20,
+      "requiredFieldsWithBaseFlagFalse": [
+        "Source System",
+        "External ID",
+        "Part Number",
+        "Active?",
+        "Name",
+        "Raw Payload"
+      ],
+      "actualSuperType": null,
+      "validationRuleCount": 0
+    },
+    {
+      "expectedCaption": "Program Reference",
+      "actualCaption": "Program Reference",
+      "actualSystemName": "ProdIntegration_PrograReferenceObject",
+      "actualId": "4ffa4a70-ce44-4304-8657-22fc76762cbc",
+      "expectedFieldGridRows": 4,
+      "matchedFieldGridRows": 4,
+      "missingFields": [],
+      "actualNonSystemFieldRows": 4,
+      "requiredFieldsWithBaseFlagFalse": [
+        "Source System",
+        "External ID",
+        "Name",
+        "Active?"
+      ],
+      "actualSuperType": null,
+      "validationRuleCount": 0
+    },
+    {
+      "expectedCaption": "Supplier Reference",
+      "actualCaption": "Supplier Reference",
+      "actualSystemName": "ProdIntegration_SuppliReferenceObject",
+      "actualId": "1144bbd6-a03a-44d1-b82e-c7c1a6e9f6db",
+      "expectedFieldGridRows": 4,
+      "matchedFieldGridRows": 4,
+      "missingFields": [],
+      "actualNonSystemFieldRows": 4,
+      "requiredFieldsWithBaseFlagFalse": [
+        "Source System",
+        "External ID",
+        "Name",
+        "Active?"
+      ],
+      "actualSuperType": null,
+      "validationRuleCount": 0
+    },
+    {
+      "expectedCaption": "Part Revision Reference",
+      "actualCaption": "Part Revision Reference",
+      "actualSystemName": "ProdIntegration_RevisiReferenceObject",
+      "actualId": "1146aad8-abe2-4f7f-8810-651d3ca1affe",
+      "expectedFieldGridRows": 5,
+      "matchedFieldGridRows": 5,
+      "missingFields": [],
+      "actualNonSystemFieldRows": 5,
+      "requiredFieldsWithBaseFlagFalse": [
+        "Part",
+        "External ID",
+        "Name",
+        "Active?",
+        "Included in Latest Part Feed?"
+      ],
+      "actualSuperType": null,
+      "validationRuleCount": 0
+    },
+    {
+      "expectedCaption": "Product Family",
+      "actualCaption": "Product Family",
+      "actualSystemName": "ProdIntegration_ProductFamilyObject",
+      "actualId": "d7ee3e7a-24b6-4fef-8601-29a7a5a497ac",
+      "expectedFieldGridRows": 7,
+      "matchedFieldGridRows": 7,
+      "missingFields": [],
+      "actualNonSystemFieldRows": 7,
+      "requiredFieldsWithBaseFlagFalse": [
+        "Source System",
+        "Name",
+        "Active?"
+      ],
+      "actualSuperType": null,
+      "validationRuleCount": 0
+    },
+    {
+      "expectedCaption": "Part Flag",
+      "actualCaption": "Part Flag",
+      "actualSystemName": "ProdIntegration_PartFlagObject",
+      "actualId": "a2b1511e-e849-4fc5-9017-0573c56b95b6",
+      "expectedFieldGridRows": 5,
+      "matchedFieldGridRows": 5,
+      "missingFields": [],
+      "actualNonSystemFieldRows": 5,
+      "requiredFieldsWithBaseFlagFalse": [
+        "Source System",
+        "Code",
+        "Name",
+        "Active?"
+      ],
+      "actualSuperType": null,
+      "validationRuleCount": 0
+    },
+    {
+      "expectedCaption": "Part Tag",
+      "actualCaption": "Part Tag",
+      "actualSystemName": "ProdIntegration_PartTagObject",
+      "actualId": "b4ee3dde-44c2-4f7d-921e-34bd6959f595",
+      "expectedFieldGridRows": 2,
+      "matchedFieldGridRows": 2,
+      "missingFields": [],
+      "actualNonSystemFieldRows": 2,
+      "requiredFieldsWithBaseFlagFalse": [
+        "Source System",
+        "Value"
+      ],
+      "actualSuperType": null,
+      "validationRuleCount": 0
+    },
+    {
+      "expectedCaption": "Part Supplier Relationship",
+      "actualCaption": "Part Supplier Relationship",
+      "actualSystemName": "ProdIntegration_SupRelationshipObject",
+      "actualId": "a693a3a6-60f4-4e53-8e58-91c526b47186",
+      "expectedFieldGridRows": 3,
+      "matchedFieldGridRows": 3,
+      "missingFields": [],
+      "actualNonSystemFieldRows": 3,
+      "requiredFieldsWithBaseFlagFalse": [
+        "Part",
+        "Supplier"
+      ],
+      "actualSuperType": null,
+      "validationRuleCount": 0
+    },
+    {
+      "expectedCaption": "Supplier Relationship Role",
+      "actualCaption": "Supplier Relationship Role",
+      "actualSystemName": "ProdIntegration_RelationshiRoleObject",
+      "actualId": "26cecc1a-79a5-482e-a034-da8ffef217ad",
+      "expectedFieldGridRows": 4,
+      "matchedFieldGridRows": 4,
+      "missingFields": [],
+      "actualNonSystemFieldRows": 4,
+      "requiredFieldsWithBaseFlagFalse": [
+        "Code",
+        "Name",
+        "Active?"
+      ],
+      "actualSuperType": null,
+      "validationRuleCount": 0
+    },
+    {
+      "expectedCaption": "Engineering Change Number",
+      "actualCaption": "Engineering Change Number",
+      "actualSystemName": "ProdIntegration_EngChangeNumberObject",
+      "actualId": "546890c4-66f1-4c44-8818-30a59643e5e1",
+      "expectedFieldGridRows": 5,
+      "matchedFieldGridRows": 5,
+      "missingFields": [],
+      "actualNonSystemFieldRows": 5,
+      "requiredFieldsWithBaseFlagFalse": [
+        "Source System",
+        "External ID",
+        "Name",
+        "Active?"
+      ],
+      "actualSuperType": null,
+      "validationRuleCount": 0
+    },
+    {
+      "expectedCaption": "Engineering Change Scope",
+      "actualCaption": "Engineering Change Scope",
+      "actualSystemName": "ProdIntegration_EngiChangeScopeObject",
+      "actualId": "fe34e943-377f-4f81-85dd-9d9c3acd804d",
+      "expectedFieldGridRows": 9,
+      "matchedFieldGridRows": 9,
+      "missingFields": [],
+      "actualNonSystemFieldRows": 9,
+      "requiredFieldsWithBaseFlagFalse": [
+        "Engineering Change Number",
+        "Raw Payload"
+      ],
+      "actualSuperType": null,
+      "validationRuleCount": 0
+    }
+  ],
+  "conditionalRequirednessChecks": [
+    {
+      "object": "Product Family",
+      "field": "External ID",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": false,
+      "declaredConditionOrExpressionAttributes": [],
+      "fieldValidationRuleCount": 0,
+      "objectValidationRuleCount": 0,
+      "expectedRule": "Required for nested descriptors, optional for standalone native-identity creation; a null value may be populated once, then immutable.",
+      "classification": "Conditional enforcement not evidenced; absence of unconditional IsMandatory is not itself an error",
+      "apiReceiveBehavior": "Unverified"
+    },
+    {
+      "object": "Product Family",
+      "field": "Raw Payload",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": false,
+      "declaredConditionOrExpressionAttributes": [],
+      "fieldValidationRuleCount": 0,
+      "objectValidationRuleCount": 0,
+      "expectedRule": "Required on standalone family receives; nested descriptors do not overwrite the latest standalone body.",
+      "classification": "Conditional enforcement not evidenced; absence of unconditional IsMandatory is not itself an error",
+      "apiReceiveBehavior": "Unverified"
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Part",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": false,
+      "declaredConditionOrExpressionAttributes": [],
+      "fieldValidationRuleCount": 0,
+      "objectValidationRuleCount": 0,
+      "expectedRule": "Required if Revision is populated; enforce Revision.Part=Part, with same-source resolution.",
+      "classification": "Conditional enforcement not evidenced; absence of unconditional IsMandatory is not itself an error",
+      "apiReceiveBehavior": "Unverified"
+    }
+  ],
+  "positiveFindings": [
+    "All 11 expected business objects are represented in the module after applying the one explicit BOMECS identity alias.",
+    "Every matched scalar has the expected simple logical type; Raw Payload Text is primitive-type compatible but capacity/binding remains unverified.",
+    "All 18 expected reference/inverse fields exist and their Type.Id identifies the correct local target object.",
+    "All 11 business-object SuperType values are null, consistent with no business inheritance.",
+    "BOMECS DisplayProperty is the Name field, as specified.",
+    "Two additional module objects are native Programs/Tags M:N maps and do not count as additional business objects.",
+    "All 67 present expected fields/grids have controls in their object default detail form.",
+    "All 39 present fields with unconditional requiredness have IsMandatory=true on their default detail form. The unexpected Include All Families? control is also mandatory, but is not credited as Include All Facilities?.",
+    "Part Revision Reference.Included in Latest Part Feed? explicitly has EditReadOnly=true on the default detail form despite base IsReadOnly=false."
+  ],
+  "keyValidationNuances": [
+    "External ID is a legitimate business identity field on relevant objects and must not be excluded merely because its system name ends in ID.",
+    "Native record Id is not a substitute for Source System + External ID, Part + External ID, Source System + Code/Value, Part + Supplier, or local Role.Code uniqueness.",
+    "All returned object and field ValidationRules collections are empty. Default forms nevertheless declare unconditional mandatory inputs; no conditional, same-source, Revision.Part or composite-key enforcement is evidenced. Empty validation arrays do not prove that receive-service checks or database constraints are absent.",
+    "Product Family External ID is optional for standalone native-identity creation but required for nested descriptor resolution; it can be populated once then becomes immutable. Unconditional IsRequired=false alone is acceptable.",
+    "Product Family Raw Payload is required only for standalone family receives. Unconditional IsRequired=false alone is acceptable.",
+    "Engineering Change Scope.Part is required when Revision is populated; enforce Revision.Part=Part. It is not unconditionally required.",
+    "Engineering Change Scope identity uses six fields with null equality. The returned native primary-key metadata and empty ValidationRules do not establish enforcement of that provisional composite key.",
+    "Part Supplier Relationship key is Part + Supplier; optional Role is not a key component and replay must not create a duplicate unassigned membership."
+  ],
+  "unverifiedFromThisProjection": [
+    "Text limits and decimal precision/scale are absent from these base projections; absence or null does not imply unlimited capacity or a match.",
+    "Notes/Description/Comment long-text capacity and complete Raw Payload 1 MiB UTF-8 capacity/binding remain unverified.",
+    "Type.Id establishes reference target identity; multiplicity, exact reverse pairing, relation storage and generated component filters need reference/relation metadata.",
+    "Default-form IsMandatory=true documents form requiredness for all39 present unconditional-required fields; it does not establish API/database persisted requiredness.",
+    "For59 present rows expected read-only on receiving screens, neither the base flag nor an explicit default-form override provides the restriction. Runtime rights, inherited control defaults and other screens remain unverified.",
+    "Field EditPermission and ViewPermission are null throughout the returned detailed projection; null does not mean public or unrestricted access. Effective security inheritance was not evaluated.",
+    "The Revisions grid has no filter/condition declared in Content. The required latest-feed default filter is not evidenced; generated grid component metadata and runtime results were not inspected.",
+    "The three conditional-requiredness cases have optional default controls and no returned conditional validation declarations. Receive-service enforcement remains unverified.",
+    "State-based or locale-based immutability/editability remains unverified for Family.External ID, Role.Code, Part Flag.Name and inactive Part Supplier Relationship.Role.",
+    "Uniqueness/index definitions, receive-service validation, native defaults, partial-update behavior, retention and transaction behavior are outside the inspected evidence."
+  ],
+  "ignoredMapObjects": [
+    {
+      "caption": "BOMECS API Record to Part Tag Map",
+      "systemName": "ProdIntegration_BOMECSAPIRecordTagsToProdIntegration_PartTagMapObject",
+      "id": "e84c6e88-a4c4-472c-99e0-42c05abbad9d"
+    },
+    {
+      "caption": "BOMECS API Record to Program Reference Map",
+      "systemName": "ProdIntegration_BOMECSAPIRecordProgramsToProdIntegration_PrograReferenceMapObject",
+      "id": "a1afde18-b3e1-4e82-a6f6-3f93925ddead"
+    }
+  ],
+  "requirednessLayeredReview": [
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Source System",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "External ID",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Part Number",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Active?",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Name",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Raw Payload",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Program Reference",
+      "field": "Source System",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Program Reference",
+      "field": "External ID",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Program Reference",
+      "field": "Name",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Program Reference",
+      "field": "Active?",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Supplier Reference",
+      "field": "Source System",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Supplier Reference",
+      "field": "External ID",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Supplier Reference",
+      "field": "Name",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Supplier Reference",
+      "field": "Active?",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Part Revision Reference",
+      "field": "Part",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Part Revision Reference",
+      "field": "External ID",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Part Revision Reference",
+      "field": "Name",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Part Revision Reference",
+      "field": "Active?",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Part Revision Reference",
+      "field": "Included in Latest Part Feed?",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Product Family",
+      "field": "Source System",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Product Family",
+      "field": "Name",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Product Family",
+      "field": "Active?",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Part Flag",
+      "field": "Source System",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Part Flag",
+      "field": "Code",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Part Flag",
+      "field": "Name",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Part Flag",
+      "field": "Active?",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Part Tag",
+      "field": "Source System",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Part Tag",
+      "field": "Value",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Part Supplier Relationship",
+      "field": "Part",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Part Supplier Relationship",
+      "field": "Supplier",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Supplier Relationship Role",
+      "field": "Code",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Supplier Relationship Role",
+      "field": "Name",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Supplier Relationship Role",
+      "field": "Active?",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Engineering Change Number",
+      "field": "Source System",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Engineering Change Number",
+      "field": "External ID",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Engineering Change Number",
+      "field": "Name",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Engineering Change Number",
+      "field": "Active?",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Engineering Change Number",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Raw Payload",
+      "baseIsRequired": false,
+      "defaultDetailIsMandatory": true,
+      "classification": "Required on the default detail form; no UI requiredness gap evidenced",
+      "apiPersistenceRequiredness": "Unverified; form IsMandatory does not establish API or database requiredness"
+    }
+  ],
+  "receivingReadOnlyNotEvidenced": [
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Source System",
+      "systemName": "SourceSystem",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "External ID",
+      "systemName": "ExternalID",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Part Number",
+      "systemName": "PartNumber",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Part Name",
+      "systemName": "PartName",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Future Part Name",
+      "systemName": "FuturePartName",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "LS Part Number",
+      "systemName": "LSPartNumber",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "LE Part Number",
+      "systemName": "LEPartNumber",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Unit Cost",
+      "systemName": "UnitCost",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Drawing Number",
+      "systemName": "DrawingNumber",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Active?",
+      "systemName": "Active",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Name",
+      "systemName": "Name",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Programs",
+      "systemName": "Programs",
+      "kind": "declaring_reference",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Flag",
+      "systemName": "Flag",
+      "kind": "declaring_reference",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Supplier Relationships",
+      "systemName": "SuRelationships",
+      "kind": "inverse_navigation",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Revisions",
+      "systemName": "Revisions",
+      "kind": "inverse_navigation",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Tags",
+      "systemName": "Tags",
+      "kind": "declaring_reference",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Notes",
+      "systemName": "Notes",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Product Family",
+      "systemName": "ProductFamily",
+      "kind": "declaring_reference",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Raw Payload",
+      "systemName": "RawPayload",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Program Reference",
+      "field": "Source System",
+      "systemName": "SourceSystem",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Program Reference",
+      "field": "External ID",
+      "systemName": "ExternalID",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Program Reference",
+      "field": "Name",
+      "systemName": "Name",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Program Reference",
+      "field": "Active?",
+      "systemName": "Active",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Supplier Reference",
+      "field": "Source System",
+      "systemName": "SourceSystem",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Supplier Reference",
+      "field": "External ID",
+      "systemName": "ExternalID",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Supplier Reference",
+      "field": "Name",
+      "systemName": "Name",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Supplier Reference",
+      "field": "Active?",
+      "systemName": "Active",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Part Revision Reference",
+      "field": "Part",
+      "systemName": "Part",
+      "kind": "declaring_reference",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Part Revision Reference",
+      "field": "External ID",
+      "systemName": "ExternalID",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Part Revision Reference",
+      "field": "Name",
+      "systemName": "Name",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Part Revision Reference",
+      "field": "Active?",
+      "systemName": "Active",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Product Family",
+      "field": "Source System",
+      "systemName": "SourceSystem",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Product Family",
+      "field": "External ID",
+      "systemName": "ExternalID",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Product Family",
+      "field": "Name",
+      "systemName": "Name",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Product Family",
+      "field": "Notes",
+      "systemName": "Notes",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Product Family",
+      "field": "Active?",
+      "systemName": "Active",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Product Family",
+      "field": "Part Numbers",
+      "systemName": "PartNumbers",
+      "kind": "inverse_navigation",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Product Family",
+      "field": "Raw Payload",
+      "systemName": "RawPayload",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Part Flag",
+      "field": "Source System",
+      "systemName": "SourceSystem",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Part Flag",
+      "field": "Code",
+      "systemName": "Code",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Part Flag",
+      "field": "Active?",
+      "systemName": "Active",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Part Tag",
+      "field": "Source System",
+      "systemName": "SourceSystem",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Part Tag",
+      "field": "Value",
+      "systemName": "Value",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Part Supplier Relationship",
+      "field": "Part",
+      "systemName": "Part",
+      "kind": "declaring_reference",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Part Supplier Relationship",
+      "field": "Supplier",
+      "systemName": "Supplier",
+      "kind": "declaring_reference",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Engineering Change Number",
+      "field": "Source System",
+      "systemName": "SourceSystem",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Engineering Change Number",
+      "field": "External ID",
+      "systemName": "ExternalID",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Engineering Change Number",
+      "field": "Name",
+      "systemName": "Name",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Engineering Change Number",
+      "field": "Active?",
+      "systemName": "Active",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Engineering Change Number",
+      "field": "Scopes",
+      "systemName": "Scopes",
+      "kind": "inverse_navigation",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Engineering Change Number",
+      "systemName": "EngChangeNumber",
+      "kind": "declaring_reference",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Supplier",
+      "systemName": "Supplier",
+      "kind": "declaring_reference",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Part",
+      "systemName": "Part",
+      "kind": "declaring_reference",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Revision",
+      "systemName": "Revision",
+      "kind": "declaring_reference",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Product Family",
+      "systemName": "ProductFamily",
+      "kind": "declaring_reference",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Program",
+      "systemName": "Program",
+      "kind": "declaring_reference",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Description",
+      "systemName": "Description",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Comment",
+      "systemName": "Comment",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Raw Payload",
+      "systemName": "RawPayload",
+      "kind": "scalar",
+      "baseIsReadOnly": false,
+      "explicitFormReadOnlyOverrideObserved": false,
+      "classification": "Read-only receiving-screen restriction not evidenced in returned base metadata or default-form declaration",
+      "limit": "Actual runtime permissions, inherited control defaults and other receiving screens were not exercised"
+    }
+  ],
+  "formFieldReview": [
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Source System",
+      "systemName": "SourceSystem",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "SourceSystem",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "External ID",
+      "systemName": "ExternalID",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "ExternalID",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Part Number",
+      "systemName": "PartNumber",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "PartNumber",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Part Name",
+      "systemName": "PartName",
+      "kind": "scalar",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "PartName"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Future Part Name",
+      "systemName": "FuturePartName",
+      "kind": "scalar",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "FuturePartName"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "LS Part Number",
+      "systemName": "LSPartNumber",
+      "kind": "scalar",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "LSPartNumber"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "LE Part Number",
+      "systemName": "LEPartNumber",
+      "kind": "scalar",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "LEPartNumber"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Unit Cost",
+      "systemName": "UnitCost",
+      "kind": "scalar",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "UnitCost"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Drawing Number",
+      "systemName": "DrawingNumber",
+      "kind": "scalar",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "DrawingNumber"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Active?",
+      "systemName": "Active",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Active",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Name",
+      "systemName": "Name",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Name",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Programs",
+      "systemName": "Programs",
+      "kind": "declaring_reference",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "GridSection",
+          "attributes": {
+            "DisplayMode": "view,edit",
+            "For": "Programs",
+            "ID": "ProgramsGridSection"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Flag",
+      "systemName": "Flag",
+      "kind": "declaring_reference",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Flag"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Supplier Relationships",
+      "systemName": "SuRelationships",
+      "kind": "inverse_navigation",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "GridSection",
+          "attributes": {
+            "For": "SuRelationships",
+            "ID": "SuRelationshipsGridSection",
+            "DisplayMode": "view, edit"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Revisions",
+      "systemName": "Revisions",
+      "kind": "inverse_navigation",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "GridSection",
+          "attributes": {
+            "For": "Revisions",
+            "ID": "RevisionsGridSection",
+            "DisplayMode": "view, edit"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Tags",
+      "systemName": "Tags",
+      "kind": "declaring_reference",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "GridSection",
+          "attributes": {
+            "DisplayMode": "view,edit",
+            "For": "Tags",
+            "ID": "TagsGridSection"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Notes",
+      "systemName": "Notes",
+      "kind": "scalar",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Notes"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Product Family",
+      "systemName": "ProductFamily",
+      "kind": "declaring_reference",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "ProductFamily"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Include All Facilities?",
+      "presentInMetadata": false,
+      "presentOnDefaultDetailForm": false,
+      "reason": "Expected business field absent; similarly named Include All Families? is not credited"
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Raw Payload",
+      "systemName": "RawPayload",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "RawPayload",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Program Reference",
+      "field": "Source System",
+      "systemName": "SourceSystem",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "SourceSystem",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Program Reference",
+      "field": "External ID",
+      "systemName": "ExternalID",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "ExternalID",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Program Reference",
+      "field": "Name",
+      "systemName": "Name",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Name",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Program Reference",
+      "field": "Active?",
+      "systemName": "Active",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Active",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Supplier Reference",
+      "field": "Source System",
+      "systemName": "SourceSystem",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "SourceSystem",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Supplier Reference",
+      "field": "External ID",
+      "systemName": "ExternalID",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "ExternalID",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Supplier Reference",
+      "field": "Name",
+      "systemName": "Name",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Name",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Supplier Reference",
+      "field": "Active?",
+      "systemName": "Active",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Active",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Part Revision Reference",
+      "field": "Part",
+      "systemName": "Part",
+      "kind": "declaring_reference",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Part",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Part Revision Reference",
+      "field": "External ID",
+      "systemName": "ExternalID",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "ExternalID",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Part Revision Reference",
+      "field": "Name",
+      "systemName": "Name",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Name",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Part Revision Reference",
+      "field": "Active?",
+      "systemName": "Active",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Active",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Part Revision Reference",
+      "field": "Included in Latest Part Feed?",
+      "systemName": "iLatestPartFeed",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": true,
+      "formReadOnlyExpressions": [
+        {
+          "attribute": "EditReadOnly",
+          "value": "true"
+        }
+      ],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "iLatestPartFeed",
+            "IsMandatory": "true",
+            "EditReadOnly": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        },
+        {
+          "attribute": "EditReadOnly",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Product Family",
+      "field": "Source System",
+      "systemName": "SourceSystem",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "SourceSystem",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Product Family",
+      "field": "External ID",
+      "systemName": "ExternalID",
+      "kind": "scalar",
+      "requiredContract": "Conditional",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "ExternalID"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Product Family",
+      "field": "Name",
+      "systemName": "Name",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Name",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Product Family",
+      "field": "Notes",
+      "systemName": "Notes",
+      "kind": "scalar",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Notes"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Product Family",
+      "field": "Active?",
+      "systemName": "Active",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Active",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Product Family",
+      "field": "Part Numbers",
+      "systemName": "PartNumbers",
+      "kind": "inverse_navigation",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "GridSection",
+          "attributes": {
+            "For": "PartNumbers",
+            "ID": "PartNumbersGridSection",
+            "displayMode": "view,edit"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Product Family",
+      "field": "Raw Payload",
+      "systemName": "RawPayload",
+      "kind": "scalar",
+      "requiredContract": "Conditional",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "RawPayload"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Part Flag",
+      "field": "Source System",
+      "systemName": "SourceSystem",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "SourceSystem",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Part Flag",
+      "field": "Code",
+      "systemName": "Code",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Code",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Part Flag",
+      "field": "Name",
+      "systemName": "Name",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": null,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Name",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Part Flag",
+      "field": "Active?",
+      "systemName": "Active",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Active",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Part Flag",
+      "field": "Sort",
+      "systemName": "Sort",
+      "kind": "scalar",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": false,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Sort"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Part Tag",
+      "field": "Source System",
+      "systemName": "SourceSystem",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "SourceSystem",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Part Tag",
+      "field": "Value",
+      "systemName": "Value",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Value",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Part Supplier Relationship",
+      "field": "Part",
+      "systemName": "Part",
+      "kind": "declaring_reference",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Part",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Part Supplier Relationship",
+      "field": "Supplier",
+      "systemName": "Supplier",
+      "kind": "declaring_reference",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Supplier",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Part Supplier Relationship",
+      "field": "Role",
+      "systemName": "Role",
+      "kind": "declaring_reference",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": false,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Role"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Supplier Relationship Role",
+      "field": "Code",
+      "systemName": "Code",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": false,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Code",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Supplier Relationship Role",
+      "field": "Name",
+      "systemName": "Name",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": false,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Name",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Supplier Relationship Role",
+      "field": "Active?",
+      "systemName": "Active",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": false,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Active",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Supplier Relationship Role",
+      "field": "Sort",
+      "systemName": "Sort",
+      "kind": "scalar",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": false,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Sort"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Engineering Change Number",
+      "field": "Source System",
+      "systemName": "SourceSystem",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "SourceSystem",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Engineering Change Number",
+      "field": "External ID",
+      "systemName": "ExternalID",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "ExternalID",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Engineering Change Number",
+      "field": "Name",
+      "systemName": "Name",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Name",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Engineering Change Number",
+      "field": "Active?",
+      "systemName": "Active",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Active",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Engineering Change Number",
+      "field": "Scopes",
+      "systemName": "Scopes",
+      "kind": "inverse_navigation",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "GridSection",
+          "attributes": {
+            "For": "Scopes",
+            "ID": "ScopesGridSection",
+            "DisplayMode": "view,edit"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Engineering Change Number",
+      "systemName": "EngChangeNumber",
+      "kind": "declaring_reference",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "EngChangeNumber",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Supplier",
+      "systemName": "Supplier",
+      "kind": "declaring_reference",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Supplier"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Part",
+      "systemName": "Part",
+      "kind": "declaring_reference",
+      "requiredContract": "Conditional",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Part"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Revision",
+      "systemName": "Revision",
+      "kind": "declaring_reference",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Revision"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Product Family",
+      "systemName": "ProductFamily",
+      "kind": "declaring_reference",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "ProductFamily"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Program",
+      "systemName": "Program",
+      "kind": "declaring_reference",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Program"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Description",
+      "systemName": "Description",
+      "kind": "scalar",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Description"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Comment",
+      "systemName": "Comment",
+      "kind": "scalar",
+      "requiredContract": "N",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": false,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "Comment"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    },
+    {
+      "object": "Engineering Change Scope",
+      "field": "Raw Payload",
+      "systemName": "RawPayload",
+      "kind": "scalar",
+      "requiredContract": "Y",
+      "expectedHumanReadOnly": true,
+      "presentInMetadata": true,
+      "presentOnDefaultDetailForm": true,
+      "baseIsRequired": false,
+      "formIsMandatoryTrue": true,
+      "baseIsReadOnly": false,
+      "formExplicitReadOnlyTrue": false,
+      "formReadOnlyExpressions": [],
+      "controlDeclarations": [
+        {
+          "control": "Field",
+          "attributes": {
+            "For": "RawPayload",
+            "IsMandatory": "true"
+          }
+        }
+      ],
+      "formConditionOrFilterAttributes": [
+        {
+          "attribute": "IsMandatory",
+          "value": "true"
+        }
+      ],
+      "returnedFieldValidationRuleCount": 0,
+      "fieldEditPermission": null,
+      "fieldViewPermission": null
+    }
+  ],
+  "defaultDetailForms": [
+    {
+      "object": "BOMECS Part API Recod",
+      "actualCaption": "BOMECS API Record",
+      "defaultDetailViewName": "ProdIntegration_BOMECSAPIRecordObjectDetailView",
+      "defaultDetailViewId": "0a695916-5cce-4d79-a1e8-9b7ac74701e1",
+      "totalOwnerFieldOrGridControls": 20,
+      "expectedControlsMatched": 19,
+      "formHasFilterFlag": false,
+      "explicitReadOnlyAttributeCount": 0,
+      "nonEmptyObjectValidationRules": 0,
+      "nonEmptyFieldValidationRuleCollections": 0,
+      "nonNullEditPermissions": 0,
+      "nonNullViewPermissions": 0,
+      "decodedSerializedDataDefinitionContainsFilter": false
+    },
+    {
+      "object": "Program Reference",
+      "actualCaption": "Program Reference",
+      "defaultDetailViewName": "ProdIntegration_PrograReferenceObjectDetailView",
+      "defaultDetailViewId": "28624f8f-4976-4921-bcce-5ed65ee02cbc",
+      "totalOwnerFieldOrGridControls": 4,
+      "expectedControlsMatched": 4,
+      "formHasFilterFlag": false,
+      "explicitReadOnlyAttributeCount": 0,
+      "nonEmptyObjectValidationRules": 0,
+      "nonEmptyFieldValidationRuleCollections": 0,
+      "nonNullEditPermissions": 0,
+      "nonNullViewPermissions": 0,
+      "decodedSerializedDataDefinitionContainsFilter": false
+    },
+    {
+      "object": "Supplier Reference",
+      "actualCaption": "Supplier Reference",
+      "defaultDetailViewName": "ProdIntegration_SuppliReferenceObjectDetailView",
+      "defaultDetailViewId": "4d398139-c5ed-4185-b32a-cd924c3cd682",
+      "totalOwnerFieldOrGridControls": 4,
+      "expectedControlsMatched": 4,
+      "formHasFilterFlag": false,
+      "explicitReadOnlyAttributeCount": 0,
+      "nonEmptyObjectValidationRules": 0,
+      "nonEmptyFieldValidationRuleCollections": 0,
+      "nonNullEditPermissions": 0,
+      "nonNullViewPermissions": 0,
+      "decodedSerializedDataDefinitionContainsFilter": false
+    },
+    {
+      "object": "Part Revision Reference",
+      "actualCaption": "Part Revision Reference",
+      "defaultDetailViewName": "ProdIntegration_RevisiReferenceObjectDetailView",
+      "defaultDetailViewId": "c71b007f-f401-495a-873c-da03c3490a16",
+      "totalOwnerFieldOrGridControls": 5,
+      "expectedControlsMatched": 5,
+      "formHasFilterFlag": false,
+      "explicitReadOnlyAttributeCount": 1,
+      "nonEmptyObjectValidationRules": 0,
+      "nonEmptyFieldValidationRuleCollections": 0,
+      "nonNullEditPermissions": 0,
+      "nonNullViewPermissions": 0,
+      "decodedSerializedDataDefinitionContainsFilter": false
+    },
+    {
+      "object": "Product Family",
+      "actualCaption": "Product Family",
+      "defaultDetailViewName": "ProdIntegration_ProductFamilyObjectDetailView",
+      "defaultDetailViewId": "19828655-ff5b-4d5c-b330-39aa15a004ce",
+      "totalOwnerFieldOrGridControls": 7,
+      "expectedControlsMatched": 7,
+      "formHasFilterFlag": false,
+      "explicitReadOnlyAttributeCount": 0,
+      "nonEmptyObjectValidationRules": 0,
+      "nonEmptyFieldValidationRuleCollections": 0,
+      "nonNullEditPermissions": 0,
+      "nonNullViewPermissions": 0,
+      "decodedSerializedDataDefinitionContainsFilter": false
+    },
+    {
+      "object": "Part Flag",
+      "actualCaption": "Part Flag",
+      "defaultDetailViewName": "ProdIntegration_PartFlagObjectDetailView",
+      "defaultDetailViewId": "9e67c98d-e138-4b38-a916-bb4323c371a0",
+      "totalOwnerFieldOrGridControls": 5,
+      "expectedControlsMatched": 5,
+      "formHasFilterFlag": false,
+      "explicitReadOnlyAttributeCount": 0,
+      "nonEmptyObjectValidationRules": 0,
+      "nonEmptyFieldValidationRuleCollections": 0,
+      "nonNullEditPermissions": 0,
+      "nonNullViewPermissions": 0,
+      "decodedSerializedDataDefinitionContainsFilter": false
+    },
+    {
+      "object": "Part Tag",
+      "actualCaption": "Part Tag",
+      "defaultDetailViewName": "ProdIntegration_PartTagObjectDetailView",
+      "defaultDetailViewId": "1d82eab4-a9fa-451c-8dff-ce8c14678efb",
+      "totalOwnerFieldOrGridControls": 2,
+      "expectedControlsMatched": 2,
+      "formHasFilterFlag": false,
+      "explicitReadOnlyAttributeCount": 0,
+      "nonEmptyObjectValidationRules": 0,
+      "nonEmptyFieldValidationRuleCollections": 0,
+      "nonNullEditPermissions": 0,
+      "nonNullViewPermissions": 0,
+      "decodedSerializedDataDefinitionContainsFilter": false
+    },
+    {
+      "object": "Part Supplier Relationship",
+      "actualCaption": "Part Supplier Relationship",
+      "defaultDetailViewName": "ProdIntegration_SupRelationshipObjectDetailView",
+      "defaultDetailViewId": "2e232f4b-767e-4dd9-b07a-100d85ecb338",
+      "totalOwnerFieldOrGridControls": 3,
+      "expectedControlsMatched": 3,
+      "formHasFilterFlag": false,
+      "explicitReadOnlyAttributeCount": 0,
+      "nonEmptyObjectValidationRules": 0,
+      "nonEmptyFieldValidationRuleCollections": 0,
+      "nonNullEditPermissions": 0,
+      "nonNullViewPermissions": 0,
+      "decodedSerializedDataDefinitionContainsFilter": false
+    },
+    {
+      "object": "Supplier Relationship Role",
+      "actualCaption": "Supplier Relationship Role",
+      "defaultDetailViewName": "ProdIntegration_RelationshiRoleObjectDetailView",
+      "defaultDetailViewId": "8c2d0d6b-cc9c-42fe-b403-4eff35861bd0",
+      "totalOwnerFieldOrGridControls": 4,
+      "expectedControlsMatched": 4,
+      "formHasFilterFlag": false,
+      "explicitReadOnlyAttributeCount": 0,
+      "nonEmptyObjectValidationRules": 0,
+      "nonEmptyFieldValidationRuleCollections": 0,
+      "nonNullEditPermissions": 0,
+      "nonNullViewPermissions": 0,
+      "decodedSerializedDataDefinitionContainsFilter": false
+    },
+    {
+      "object": "Engineering Change Number",
+      "actualCaption": "Engineering Change Number",
+      "defaultDetailViewName": "ProdIntegration_EngChangeNumberObjectDetailView",
+      "defaultDetailViewId": "49b38781-3e0c-4b57-87e1-d9242fe50998",
+      "totalOwnerFieldOrGridControls": 5,
+      "expectedControlsMatched": 5,
+      "formHasFilterFlag": false,
+      "explicitReadOnlyAttributeCount": 0,
+      "nonEmptyObjectValidationRules": 0,
+      "nonEmptyFieldValidationRuleCollections": 0,
+      "nonNullEditPermissions": 0,
+      "nonNullViewPermissions": 0,
+      "decodedSerializedDataDefinitionContainsFilter": false
+    },
+    {
+      "object": "Engineering Change Scope",
+      "actualCaption": "Engineering Change Scope",
+      "defaultDetailViewName": "ProdIntegration_EngiChangeScopeObjectDetailView",
+      "defaultDetailViewId": "9aa0d8a2-df91-4d06-a250-c686fb263ad1",
+      "totalOwnerFieldOrGridControls": 9,
+      "expectedControlsMatched": 9,
+      "formHasFilterFlag": false,
+      "explicitReadOnlyAttributeCount": 0,
+      "nonEmptyObjectValidationRules": 0,
+      "nonEmptyFieldValidationRuleCollections": 0,
+      "nonNullEditPermissions": 0,
+      "nonNullViewPermissions": 0,
+      "decodedSerializedDataDefinitionContainsFilter": false
+    }
+  ],
+  "gridReview": [
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Programs",
+      "kind": "declaring_reference",
+      "gridControlPresent": true,
+      "controlDeclarations": [
+        {
+          "control": "GridSection",
+          "attributes": {
+            "DisplayMode": "view,edit",
+            "For": "Programs",
+            "ID": "ProgramsGridSection"
+          }
+        }
+      ],
+      "filterOrConditionDeclarations": [],
+      "expectedDefaultFilter": null,
+      "classification": "No additional default filter is prescribed for this row",
+      "readOnlyNavigationContract": false,
+      "explicitReadOnlyOverrideObserved": false
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Supplier Relationships",
+      "kind": "inverse_navigation",
+      "gridControlPresent": true,
+      "controlDeclarations": [
+        {
+          "control": "GridSection",
+          "attributes": {
+            "For": "SuRelationships",
+            "ID": "SuRelationshipsGridSection",
+            "DisplayMode": "view, edit"
+          }
+        }
+      ],
+      "filterOrConditionDeclarations": [],
+      "expectedDefaultFilter": null,
+      "classification": "No additional default filter is prescribed for this row",
+      "readOnlyNavigationContract": true,
+      "explicitReadOnlyOverrideObserved": false
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Revisions",
+      "kind": "inverse_navigation",
+      "gridControlPresent": true,
+      "controlDeclarations": [
+        {
+          "control": "GridSection",
+          "attributes": {
+            "For": "Revisions",
+            "ID": "RevisionsGridSection",
+            "DisplayMode": "view, edit"
+          }
+        }
+      ],
+      "filterOrConditionDeclarations": [],
+      "expectedDefaultFilter": "Included in Latest Part Feed?=TRUE",
+      "classification": "Required Revisions default filter not declared in inspected grid Content; other generated component metadata or runtime behavior not verified",
+      "readOnlyNavigationContract": true,
+      "explicitReadOnlyOverrideObserved": false
+    },
+    {
+      "object": "BOMECS Part API Recod",
+      "field": "Tags",
+      "kind": "declaring_reference",
+      "gridControlPresent": true,
+      "controlDeclarations": [
+        {
+          "control": "GridSection",
+          "attributes": {
+            "DisplayMode": "view,edit",
+            "For": "Tags",
+            "ID": "TagsGridSection"
+          }
+        }
+      ],
+      "filterOrConditionDeclarations": [],
+      "expectedDefaultFilter": null,
+      "classification": "No additional default filter is prescribed for this row",
+      "readOnlyNavigationContract": false,
+      "explicitReadOnlyOverrideObserved": false
+    },
+    {
+      "object": "Product Family",
+      "field": "Part Numbers",
+      "kind": "inverse_navigation",
+      "gridControlPresent": true,
+      "controlDeclarations": [
+        {
+          "control": "GridSection",
+          "attributes": {
+            "For": "PartNumbers",
+            "ID": "PartNumbersGridSection",
+            "displayMode": "view,edit"
+          }
+        }
+      ],
+      "filterOrConditionDeclarations": [],
+      "expectedDefaultFilter": null,
+      "classification": "No additional default filter is prescribed for this row",
+      "readOnlyNavigationContract": true,
+      "explicitReadOnlyOverrideObserved": false
+    },
+    {
+      "object": "Engineering Change Number",
+      "field": "Scopes",
+      "kind": "inverse_navigation",
+      "gridControlPresent": true,
+      "controlDeclarations": [
+        {
+          "control": "GridSection",
+          "attributes": {
+            "For": "Scopes",
+            "ID": "ScopesGridSection",
+            "DisplayMode": "view,edit"
+          }
+        }
+      ],
+      "filterOrConditionDeclarations": [],
+      "expectedDefaultFilter": null,
+      "classification": "No additional default filter is prescribed for this row",
+      "readOnlyNavigationContract": true,
+      "explicitReadOnlyOverrideObserved": false
+    }
+  ],
+  "stateOrLocaleDependentReadOnlyChecks": [
+    {
+      "object": "Product Family",
+      "field": "External ID",
+      "rule": "May populate null once, then immutable",
+      "observed": "Base IsReadOnly=false and no EditReadOnly/condition declaration on default field control",
+      "classification": "Conditional immutability not evidenced; do not impose unconditional create-time read-only merely to satisfy the later state"
+    },
+    {
+      "object": "Supplier Relationship Role",
+      "field": "Code",
+      "rule": "Editable before first use, immutable after first use",
+      "observed": "IsMandatory=true; base IsReadOnly=false; no form read-only condition or returned validation rule",
+      "classification": "State-based immutability not evidenced; current editability alone is not a universal violation"
+    },
+    {
+      "object": "Part Flag",
+      "field": "Name",
+      "rule": "Importer controls source-locale label; approved translations editable by administration groups",
+      "observed": "IsMandatory=true; base IsReadOnly=false; no locale-specific restriction observed",
+      "classification": "Locale-specific behavior unverified; do not flatten to unconditional read-only"
+    },
+    {
+      "object": "Part Supplier Relationship",
+      "field": "Role",
+      "rule": "New selections Active?=TRUE; existing inactive reference retained read-only",
+      "observed": "Optional form field, base IsReadOnly=false, no form conditional/read-only/filter declaration",
+      "classification": "Reference subtype filter settings and inactive-state behavior unverified"
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "info": {
+    "_postman_id": "b8b63f68-8df5-4293-872e-9e8b5f13063a",
+    "name": "Product Integration - Engineering Change Number",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Native Intelex Object Data API examples for the SIA-SummitDEV development tenant. Exact object and field system names come from the read-only ProdIntegration audit on 2026-11-19.\n\nImport and select the included environment. Set apiKey locally, set the verified sourceSystem namespace where required, and review the illustrative values. The exported API key is blank.\n\nPOST creates a new native record, not a source-key upsert. On success it stores the native Id in the shared environment for PATCH and related-object bindings. To PATCH a pre-existing record, set the object-specific ID variable manually and send PATCH alone. Each POST clears its old saved ID before sending so a failed create cannot cause a subsequent PATCH to target a stale record.\n\nRelated IDs are native data-record GUIDs, not source ExternalID values or metadata IDs. Every referenced source-owned record must use the same source namespace. Omitted properties in PATCH are preserved; these examples do not clear relationships or demonstrate native M:N replacement semantics.\n\nRawPayload values are illustrative complete source documents/rows serialized as Unicode text. They do not execute the PMAPI-PART, PMAPI-FAMILY, or PMAPI-ECN receive logic. These native CRUD calls do not implement compound-key upserts, association reconciliation, conditional validation, source immutability, or multi-object transactions.\n\nThe requests were generated and validated without sending any POST or PATCH to the tenant. Previously identified tenant configuration gaps remain. The two physical M:N map objects are implementation objects and have no separate collections.\n\nAPI syntax: https://developers.intelex.com/ . Collection format: https://schema.postman.com/collection/json/v2.1.0/draft-07/docs/index.html .\n\nObject: Engineering Change Number\nSystem name: ProdIntegration_EngChangeNumberObject\nRecord ID variable: engineeringChangeNumberId\n\nScopes is inverse navigation and is omitted. SourceSystem and ExternalID remain unchanged. These calls do not perform a workflow release or approval."
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "ApiKey {{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "POST - Create new record",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "(function () {",
+              "  function stop(message) { console.error(message); pm.execution.skipRequest(); }",
+              "  if (!pm.environment.get(\"apiBaseUrl\")) return stop(\"Import and select the supplied SIA-SummitDEV environment first.\");",
+              "  const template = pm.request.url.toString() + \"\\n\" + (pm.request.body && pm.request.body.raw || \"\");",
+              "  const names = Array.from(new Set([\"apiKey\", ...Array.from(template.matchAll(/\\{\\{([^{}]+)\\}\\}/g), match => match[1])]));",
+              "  const missing = names.filter(name => !String(pm.variables.get(name) == null ? \"\" : pm.variables.get(name)).trim());",
+              "  if (missing.length) return stop(\"Set these environment variables before sending: \" + missing.join(\", \"));",
+              "  const baseUrl = String(pm.variables.get(\"apiBaseUrl\"));",
+              "  if (!/^https:\\/\\/[^\\s?#]+\\/api\\/v2$/.test(baseUrl)) return stop(\"apiBaseUrl must be an HTTPS application API root ending in /api/v2, without a trailing slash.\");",
+              "  const guid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;",
+              "  const invalidIds = names.filter(name => /Id$/.test(name) && !guid.test(String(pm.variables.get(name))));",
+              "  if (invalidIds.length) return stop(\"Use native Intelex record GUIDs for: \" + invalidIds.join(\", \") + \". Do not use source ExternalID values or object metadata IDs.\");",
+              "  try { JSON.parse(pm.variables.replaceIn(pm.request.body.raw)); }",
+              "  catch (error) { return stop(\"The body is not valid JSON after variable substitution. Check values containing quotes or backslashes.\"); }",
+              "  pm.environment.set(\"engineeringChangeNumberId\", \"\");",
+              "  // Prevent a later PATCH from using a stale ID when this POST fails.",
+              "})();"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Record created (HTTP 201)\", function () { pm.expect(pm.response.code).to.eql(201); });",
+              "if (pm.response.code === 201) {",
+              "  let body = null;",
+              "  try { body = pm.response.json(); } catch (error) { /* Location can carry the new record URL. */ }",
+              "  const record = body && body.value && !Array.isArray(body.value) ? body.value : body;",
+              "  const location = pm.response.headers.get(\"Location\") || (record && record[\"@odata.id\"]) || \"\";",
+              "  const match = String(location).match(/\\(([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\\)/i);",
+              "  const id = record && record.Id || match && match[1];",
+              "  const valid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(String(id || \"\"));",
+              "  pm.test(\"Response provides a native Intelex record Id\", function () { pm.expect(valid).to.eql(true); });",
+              "  if (valid) pm.environment.set(\"engineeringChangeNumberId\", String(id));",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json; charset=utf-8",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"SourceSystem\": \"{{sourceSystem}}\",\n  \"ExternalID\": \"{{examplePrefix}}-ECN\",\n  \"Name\": \"{{examplePrefix}}-ECN-NUMBER\",\n  \"Active\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{apiBaseUrl}}/object/ProdIntegration_EngChangeNumberObject",
+        "description": "Creates one Engineering Change Number record. On HTTP 201, saves the returned native Id as engineeringChangeNumberId.\n\nScopes is inverse navigation and is omitted. SourceSystem and ExternalID remain unchanged. These calls do not perform a workflow release or approval."
+      },
+      "response": []
+    },
+    {
+      "name": "PATCH - Patch existing record",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "(function () {",
+              "  function stop(message) { console.error(message); pm.execution.skipRequest(); }",
+              "  if (!pm.environment.get(\"apiBaseUrl\")) return stop(\"Import and select the supplied SIA-SummitDEV environment first.\");",
+              "  const template = pm.request.url.toString() + \"\\n\" + (pm.request.body && pm.request.body.raw || \"\");",
+              "  const names = Array.from(new Set([\"apiKey\", ...Array.from(template.matchAll(/\\{\\{([^{}]+)\\}\\}/g), match => match[1])]));",
+              "  const missing = names.filter(name => !String(pm.variables.get(name) == null ? \"\" : pm.variables.get(name)).trim());",
+              "  if (missing.length) return stop(\"Set these environment variables before sending: \" + missing.join(\", \"));",
+              "  const baseUrl = String(pm.variables.get(\"apiBaseUrl\"));",
+              "  if (!/^https:\\/\\/[^\\s?#]+\\/api\\/v2$/.test(baseUrl)) return stop(\"apiBaseUrl must be an HTTPS application API root ending in /api/v2, without a trailing slash.\");",
+              "  const guid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;",
+              "  const invalidIds = names.filter(name => /Id$/.test(name) && !guid.test(String(pm.variables.get(name))));",
+              "  if (invalidIds.length) return stop(\"Use native Intelex record GUIDs for: \" + invalidIds.join(\", \") + \". Do not use source ExternalID values or object metadata IDs.\");",
+              "  try { JSON.parse(pm.variables.replaceIn(pm.request.body.raw)); }",
+              "  catch (error) { return stop(\"The body is not valid JSON after variable substitution. Check values containing quotes or backslashes.\"); }",
+              "})();"
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Record patched (HTTP 200 or 204)\", function () { pm.expect([200, 204]).to.include(pm.response.code); });",
+              "// A successful HTTP 204 has no JSON body to parse."
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json; charset=utf-8",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"Name\": \"{{examplePrefix}}-ECN-NUMBER-UPDATED\",\n  \"Active\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{apiBaseUrl}}/object/ProdIntegration_EngChangeNumberObject({{engineeringChangeNumberId}})",
+        "description": "Updates the native record identified by engineeringChangeNumberId. Populate this variable from POST or enter an existing native record Id. Identity fields are preserved.\n\nScopes is inverse navigation and is omitted. SourceSystem and ExternalID remain unchanged. These calls do not perform a workflow release or approval."
+      },
+      "response": []
+    }
+  ]
+}

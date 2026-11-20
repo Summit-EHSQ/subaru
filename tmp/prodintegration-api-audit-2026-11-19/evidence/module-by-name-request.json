@@ -1,0 +1,9 @@
+{
+  "method": "GET",
+  "url": "https://preprod-na.intelex.com/Login3/SIA-SummitDEV/api/v2/object/SysModuleEntity?$filter=Name%20eq%20%27ProdIntegration%27&$top=10",
+  "status": 400,
+  "contentType": "application/json; odata.metadata=minimal",
+  "responseBytes": 123,
+  "evidenceFile": "C:\\Users\\DaveMcLean\\OneDrive - Summit EHSQ Inc\\Documents\\GitHub\\subaru\\tmp\\prodintegration-api-audit-2026-11-19\\evidence\\module-by-name.json",
+  "observedAtUtc": "2026-11-19T19:51:57.8784018Z"
+}

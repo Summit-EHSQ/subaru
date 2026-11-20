@@ -1,0 +1,9 @@
+ConvertTo-SecureString : The 'ConvertTo-SecureString' command was found in the module 'Microsoft.PowerShell.Security', 
+but the module could not be loaded. For more information, run 'Import-Module Microsoft.PowerShell.Security'.
+At C:\Users\DaveMcLean\OneDrive - Summit EHSQ 
+Inc\Documents\GitHub\subaru\tmp\prodintegration-api-audit-2026-11-19\request-key.ps1:52 char:26
++         $taskSecureKey = ConvertTo-SecureString -String ($taskKeyBox. ...
++                          ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (ConvertTo-SecureString:String) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : CouldNotAutoloadMatchingModule
+ 

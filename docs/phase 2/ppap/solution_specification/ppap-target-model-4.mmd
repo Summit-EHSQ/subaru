@@ -1,0 +1,15 @@
+classDiagram
+direction LR
+class thread["PPAP Discussion Thread"]
+class post["PPAP Discussion Post"]
+class ppap["PPAP"]
+class employee["Employee"]
+<<external>> employee
+class project["Project Framework Project"]
+<<abstract>> project
+<<external>> project
+thread "0..*" --> "1" ppap : PPAP
+thread "0..*" --> "0..*" employee : Notification Recipients
+post "0..*" --> "1" thread : Thread
+post "0..*" --> "0..1" post : Reply To
+post "0..*" --> "1" employee : Posted By

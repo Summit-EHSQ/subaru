@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-17",
+  "result": "PASS (static design reconciliation only)",
+  "objects": 50,
+  "active_field_rows": 335,
+  "external_authority_objects": 17,
+  "proposed_catalogues": 7,
+  "active_confirmed_decisions": 42,
+  "superseded_decisions": 1,
+  "diagram_partitions": 4,
+  "diagram_nodes_covered": 50,
+  "object_sections": 50,
+  "checks": {
+    "unique_object_and_field_names": true,
+    "all_requiredness_enumerations": true,
+    "one_field_row_per_active_declaration": true,
+    "all_designed_inverses_reuse_reference": true,
+    "catalogue_inverses_disabled": true,
+    "catalogue_active_filter_stated": true,
+    "no_missing_inheritance_base_or_cycle": true,
+    "baseline_read_only": true
+  },
+  "errors": [],
+  "limitations": [
+    "Static consistency checks do not prove executable Intelex formulas, native schema binding, runtime permissions or transactional guarantees.",
+    "SIA library/procedure/matrix content pending PPAP-INPUT-001; no source-backed target library seed reconciliation is claimed.",
+    "External native object/field IDs and operational payload contract need tenant/source-owner verification.",
+    "Mermaid structural validation here; parser validation recorded separately when available."
+  ]
+}

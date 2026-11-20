@@ -1,0 +1,9 @@
+{
+  "method": "GET",
+  "url": "https://preprod-na.intelex.com/Login3/SIA-SummitDEV/api/v2/object/SysModuleEntity(d4d16046-89c1-41c4-921d-923a112f835a)/Objects(79ac6837-4646-47ce-be48-9bf0dbb8752e)/ObjectProperties?$filter=Name%20eq%20%27Flag%27&$expand=*",
+  "status": 200,
+  "contentType": "application/json; odata.metadata=minimal",
+  "responseBytes": 3879,
+  "evidenceFile": "C:\\Users\\DaveMcLean\\OneDrive - Summit EHSQ Inc\\Documents\\GitHub\\subaru\\tmp\\prodintegration-api-audit-2026-11-19\\evidence\\flag-field-expanded.json",
+  "observedAtUtc": "2026-11-19T19:54:53.4241417Z"
+}

@@ -1,0 +1,145 @@
+{
+  "outputDir": "C:\\Users\\DaveMcLean\\OneDrive - Summit EHSQ Inc\\Documents\\GitHub\\subaru\\outputs\\01a1f54f-prodintegration-postman",
+  "collections": [
+    {
+      "file": "01_Supplier_Relationship_Role.postman_collection.json",
+      "object": "Supplier Relationship Role",
+      "actualCaption": "Supplier Relationship Role",
+      "systemName": "ProdIntegration_RelationshiRoleObject",
+      "idVariable": "supplierRelationshipRoleId",
+      "methods": [
+        "POST",
+        "PATCH"
+      ]
+    },
+    {
+      "file": "02_Part_Flag.postman_collection.json",
+      "object": "Part Flag",
+      "actualCaption": "Part Flag",
+      "systemName": "ProdIntegration_PartFlagObject",
+      "idVariable": "partFlagId",
+      "methods": [
+        "POST",
+        "PATCH"
+      ]
+    },
+    {
+      "file": "03_Part_Tag.postman_collection.json",
+      "object": "Part Tag",
+      "actualCaption": "Part Tag",
+      "systemName": "ProdIntegration_PartTagObject",
+      "idVariable": "partTagId",
+      "methods": [
+        "POST",
+        "PATCH"
+      ]
+    },
+    {
+      "file": "04_Program_Reference.postman_collection.json",
+      "object": "Program Reference",
+      "actualCaption": "Program Reference",
+      "systemName": "ProdIntegration_PrograReferenceObject",
+      "idVariable": "programReferenceId",
+      "methods": [
+        "POST",
+        "PATCH"
+      ]
+    },
+    {
+      "file": "05_Supplier_Reference.postman_collection.json",
+      "object": "Supplier Reference",
+      "actualCaption": "Supplier Reference",
+      "systemName": "ProdIntegration_SuppliReferenceObject",
+      "idVariable": "supplierReferenceId",
+      "methods": [
+        "POST",
+        "PATCH"
+      ]
+    },
+    {
+      "file": "06_Product_Family.postman_collection.json",
+      "object": "Product Family",
+      "actualCaption": "Product Family",
+      "systemName": "ProdIntegration_ProductFamilyObject",
+      "idVariable": "productFamilyId",
+      "methods": [
+        "POST",
+        "PATCH"
+      ]
+    },
+    {
+      "file": "07_BOMECS_API_Record.postman_collection.json",
+      "object": "BOMECS Part API Recod",
+      "actualCaption": "BOMECS API Record",
+      "systemName": "ProdIntegration_BOMECSAPIRecordObject",
+      "idVariable": "bomecsPartId",
+      "methods": [
+        "POST",
+        "PATCH"
+      ]
+    },
+    {
+      "file": "08_Part_Revision_Reference.postman_collection.json",
+      "object": "Part Revision Reference",
+      "actualCaption": "Part Revision Reference",
+      "systemName": "ProdIntegration_RevisiReferenceObject",
+      "idVariable": "partRevisionReferenceId",
+      "methods": [
+        "POST",
+        "PATCH"
+      ]
+    },
+    {
+      "file": "09_Part_Supplier_Relationship.postman_collection.json",
+      "object": "Part Supplier Relationship",
+      "actualCaption": "Part Supplier Relationship",
+      "systemName": "ProdIntegration_SupRelationshipObject",
+      "idVariable": "partSupplierRelationshipId",
+      "methods": [
+        "POST",
+        "PATCH"
+      ]
+    },
+    {
+      "file": "10_Engineering_Change_Number.postman_collection.json",
+      "object": "Engineering Change Number",
+      "actualCaption": "Engineering Change Number",
+      "systemName": "ProdIntegration_EngChangeNumberObject",
+      "idVariable": "engineeringChangeNumberId",
+      "methods": [
+        "POST",
+        "PATCH"
+      ]
+    },
+    {
+      "file": "11_Engineering_Change_Scope.postman_collection.json",
+      "object": "Engineering Change Scope",
+      "actualCaption": "Engineering Change Scope",
+      "systemName": "ProdIntegration_EngiChangeScopeObject",
+      "idVariable": "engineeringChangeScopeId",
+      "methods": [
+        "POST",
+        "PATCH"
+      ]
+    }
+  ],
+  "requestCount": 22,
+  "environmentVariables": [
+    "apiBaseUrl",
+    "apiKey",
+    "sourceSystem",
+    "examplePrefix",
+    "partTagValue",
+    "supplierRelationshipRoleId",
+    "partFlagId",
+    "partTagId",
+    "programReferenceId",
+    "supplierReferenceId",
+    "productFamilyId",
+    "bomecsPartId",
+    "partRevisionReferenceId",
+    "partSupplierRelationshipId",
+    "engineeringChangeNumberId",
+    "engineeringChangeScopeId"
+  ]
+}

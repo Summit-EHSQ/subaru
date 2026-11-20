@@ -1,0 +1,96 @@
+# Business-language contract
+
+## Audience and application
+
+Write for business stakeholders and Intelex configuration consultants who understand the established Intelex terms **Object** and **Record**. Use Object for a configured entity and Record for an individual instance; do not substitute "record type" or "type of record" for Object. Preserve exact configured names and technical identifiers. Apply this contract to the whole plan: opening, summary, task titles/categories/objectives/scopes, field and change tables, ordered instructions, deliverables, role reasons, result checks, supplied inputs, waiting explanations, dependency notes and coverage. A readable summary does not compensate for opaque detailed assignments.
+
+Technical names and expressions remain precise. The goal is understandable implementation instructions, not removal of implementation detail.
+
+## Required writing pattern
+
+1. Start with the business result, then identify the setting or action that produces it.
+2. Use direct verbs: Create, Set up, Configure, Add, Change, Show, Hide, Require, Clear, Calculate, Copy, Prevent or Remove. Use the displayed business name first; follow it with the internal name when the consultant needs it to locate the element.
+3. Explain an unfamiliar technical term at its first meaningful use only when the explanation helps the intended reader. Retain established Intelex terminology, including Object and Record, without replacing it with plain-language proxies. For example, a read-only related-record list shows links already stored elsewhere. Keep an actual Action Handler or workflow action name when that is the configured mechanism.
+4. Use connected sentences describing actor, trigger, condition, change and outcome. Divide a long step when it contains independently understandable operations, while preserving consequential ordering.
+5. Preserve exact types, limits, defaults, conditions, selectors, field paths, permissions, timing and failure behavior. Where the value is missing, name what is missing and the configuration it prevents. Never replace a missing formula with an invented one.
+6. Use the business wording in both summary and detail. The summary copies the canonical objective and scope verbatim; it is not an abbreviated interpretation.
+7. Put source/requirement references in Specification references. A reader hiding that block must still know exactly what to build and how its result will be demonstrated.
+
+Do not replace this review with a reading-grade score, word blacklist or generic instruction to “make it accessible.” Exact component names, identifiers and supported expressions can contain technical words without constituting unclear prose.
+
+## Translate the meaning, not just the noun
+
+| Engineering shorthand | Business-friendly implementation wording |
+|---|---|
+| Atomic transaction | Save the entry and related summaries together; if any part fails, keep all previous values. |
+| Idempotent retry | Running it again must not create another record or add the same amount twice. |
+| Concurrency control | Prevent simultaneous updates from producing conflicting totals; retain any required lock order in the build instruction. |
+| Upsert | Create the record if none exists for the stated key; otherwise update that record. |
+| Persist a snapshot | Copy and save the values when the record is created; later master changes must not replace them automatically. |
+| Recompute aggregates | Recalculate the totals from the matching entries and replace the previous totals. |
+| Inverse grid | A read-only list of records already connected through the named link; do not store another relationship. |
+| Runtime binding | The supported way Intelex will run the named action or connect it to the existing process. |
+| Record-scope predicate | The rule deciding which records a user may see or change. |
+| Denominator/normalizer | The hours or other total used to divide the count, and the number used to scale the rate; retain their exact supplied values or unresolved status. |
+| Schema | Object and field configuration, or file columns and formatting, depending on context. |
+| Downstream consumers | The records, calculations or reports that use the result. |
+| Completion/error gate | Prevent the result from appearing current while a required update is unfinished or has failed. |
+
+These are examples of faithful explanations, not a replacement glossary applied blindly. Do not rename an existing configured element, broaden a rule or introduce these mechanisms when the current requirement does not need them.
+
+## Task content
+
+- **Title:** one imperative business outcome on one line. Avoid invented compound labels such as “exact-head checks” or an identifier-only title. Preserve configured names where needed.
+- **Objective:** normally one clear sentence explaining why the configuration is needed.
+- **Detailed scope:** a short paragraph naming the actual additions/changes/removals, their boundaries and the important conditions. A field table expands values rather than replacing this paragraph. Do not put only a requirement ID or a direction to another document here.
+- **Deliverable:** tangible changed configuration—records, screens, fields, links, checks, processes or reports. Evidence inventories, meeting notes, discovery outcomes and preservation-only work are not deliverables.
+- **Why this role is recommended:** explain the judgment and consequence of failure in familiar terms. Use the minimum capable role from the planning standard, not automatically the highest role.
+- **Build instructions:** a numbered list. Give exact steps before a save, completion or other consequential action where order matters. Use recognizable labels before internal names. Reference an earlier task only to consume its named output, not to transfer the current task's instructions to it.
+- **How to check the result:** observable behavior at the changed execution point. State the valid result and relevant rejection/failure behavior. Avoid “matches the specification,” technical test names without outcomes and checks that only record existing values. Add only checks that distinguish the actual change; no arbitrary quota or formal test workstream.
+
+## Field and feature rows
+
+Use one directly configured field, related-record list, feature or independently configured condition per row. Do not combine independent fields in a “Code / Name / Description” row. Unchanged supporting fields belong in coverage/context, not fictitious additions.
+
+For a field row, retain all applicable details:
+
+- displayed name, internal name and owning object;
+- exact platform type, known length/precision/time-zone setting, or explicit missing setting;
+- required, optional or the complete condition for requiredness;
+- default, source and timing, distinguishing an initial copy from a continuing calculation;
+- permitted editor and read-only behavior;
+- visibility and selection limits;
+- what happens to an existing value when a condition changes—retain, clear, force, reject or allow an authorized correction;
+- for relationships, the target Object, allowed number of linked Records, declaring relationship field and whether a reverse list is enabled;
+- the named process/earlier-task output responsible for automatic population, when applicable.
+
+Explain types in familiar language while retaining the actual setting: “Text, up to 100 characters”; “A number allowing decimals (Float/System.Double)”; “A calendar date (Date), with time-zone capture turned off.” Unknown text capacity is not unlimited text. An integer code must not become text merely to simplify the prose. A readonly stored total must not become a continuously calculated field.
+
+For an existing change, give its named location, supported before value and required after value. Do not assert live editor behavior from a metadata flag alone. Pair every evidence ID with the verified name at that occurrence, for example `Result (E123)`.
+
+## External inputs and task readiness
+
+Each global input has a stable `IN-01` style ID, a short business title and a complete explanation. State:
+
+1. what information or decision is needed;
+2. why it matters to the business/build;
+3. which configuration is waiting;
+4. who supplies it, only when ownership is known; otherwise name the type of information, without fabricating an individual or team assignment.
+
+For technical capability results, say that the technical team needs to supply the supported method; do not make a business stakeholder interpret method signatures. Exact identifiers stay in the consuming build instructions when needed. Retain known limitations such as a source-environment setting that cannot be assumed portable.
+
+The task-local explanation narrows the request to that task. Include both its input ID and operative description; a bare ID is insufficient. Do not copy the complete global paragraph into unrelated tasks.
+
+Readiness text must distinguish:
+
+- **Ready:** no missing external information; separately state any earlier build tasks still needed.
+- **Partly waiting:** identify the affected settings and explicitly name the work that can proceed. Do not use a blanket “parts can proceed” when every executable instruction needs the missing input.
+- **Waiting:** say that the task cannot start, or cannot complete its build, and name the exact missing input. Do not imply an existing interface or service is present when the evidence does not identify one.
+
+“Work needed first” means build dependencies. “Information needed for this task” means supplied inputs. Keep them distinct. Input IDs, migration, staffing, reviewers and release timing never become technical dependency tasks.
+
+## Language-only revision review
+
+A full language rewrite requires full-plan content review. Preserve task IDs, role choices, dependency edges, supplied-input IDs, configuration ownership and scope unless the user also requests substantive changes. Compare exact field settings, defaults, formulas, mappings and lifecycle rules before and after. Keep the build JSON and Markdown synchronized.
+
+Do not renew review hashes simply because a vocabulary replacement completed. Read the rewritten assignments without source references, check that each condition and outcome survived, and record task-specific reasons for the review decision. Report any actual design difference separately rather than hiding it as an editorial change.

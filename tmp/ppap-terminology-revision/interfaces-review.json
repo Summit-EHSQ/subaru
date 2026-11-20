@@ -1,0 +1,495 @@
+{
+  "version": 1,
+  "tasks": [
+    {
+      "id": "IMP-12",
+      "evidenceReview": "Freshly reread all 38 field rows, four build instructions, input/dependency blocks and rendered task with references hidden. The before/current leaf comparison changes only the IMP-01 predecessor description and Candidate Manufacturing Facilities native-map wording. Source provenance, accepted locks, unknown classifications and released-specification requirements retain their earlier evidence and supplied-input limits.",
+      "languageReview": "Objects now names the configuration output from IMP-01, while individual saved source records retain record wording. The M:N row now says native link storage without a new Object, which clearly distinguishes platform association storage from an additional user-configured Object. No field, action or permission name was replaced.",
+      "meaningReview": "Rechecked the native Supplier Facility M:N link, inverse disabled, no association attributes, optional contextual selection and Accepted At freeze. Text/date lengths, nullable source flags, fixed fourteen-day review, reason clearing and released-version conditions remain unchanged. Previously authored unit notes were retained only after this complete reread.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "taskHash": "ce475c97557c8cd7c82c48ba4eb72f616a4fe7c644eedf6e5adb50777070d0f7",
+      "renderedTaskHash": "42510f011815e1b7fcee26fe764a163bd5aca6ca91a6efccce3510e09021e6c7",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Create internal source and review fields/forms with authoritative provenance before any supplier release.",
+          "mechanism": "New Engineering Release/Part and Drawing Review field and form configuration."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Store the required source-system namespace, limited to 100 characters, and prevent changes after acceptance.",
+          "mechanism": "Engineering Release.Source System text field and accepted-record read-only rule."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Store the required 255-character upstream release key without treating its label as revision ordering.",
+          "mechanism": "Engineering Release.Source Release Key text field and acceptance lock."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Retain optional ECS reference text, up to 100 characters, without using it as an ordinal revision.",
+          "mechanism": "Engineering Release.ECS Number field with accepted-context protection."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Keep required drawing-number source text within 100 characters and freeze the accepted identity.",
+          "mechanism": "Engineering Release.Drawing Number field and source form editing condition."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Keep the explicit drawing revision code within 100 characters and prevent later accepted-record edits.",
+          "mechanism": "Engineering Release.Drawing Revision Code field and acceptance read-only condition."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Store the authoritative release calendar date that anchors the fourteen-day review deadline.",
+          "mechanism": "Engineering Release.Drawing Release Date field with policy-zone date meaning."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Require one mapped operational drawing revision and retain no reverse consumer list on that external target.",
+          "mechanism": "Engineering Release.Drawing Revision M:1 selector and supplied native target binding."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Require one active PPAP Type for new source selection and retain existing inactive references.",
+          "mechanism": "Engineering Release.Change Type M:1 field with Active? selection filter and disabled inverse."
+        },
+        {
+          "path": "configurationRows.8",
+          "requiredChange": "Require the exact source supplier entity needed for review routing without substituting creator identity.",
+          "mechanism": "Engineering Release.Routing Entity M:1 to Supplier Abstract and source acceptance rule."
+        },
+        {
+          "path": "configurationRows.9",
+          "requiredChange": "Configure contextual candidate facilities using the native Supplier Facility M:N link without creating an additional Object.",
+          "mechanism": "Engineering Release.Candidate Manufacturing Facilities native M:N storage; inverse disabled and accepted-context lock."
+        },
+        {
+          "path": "configurationRows.10",
+          "requiredChange": "Default manual provenance to FALSE and let the controlled intake path set TRUE with source evidence.",
+          "mechanism": "Engineering Release.Manual Intake? system-controlled Boolean field."
+        },
+        {
+          "path": "configurationRows.11",
+          "requiredChange": "Retain the 64-character SHA-256 content fingerprint computed from the supplied normalized payload.",
+          "mechanism": "Engineering Release.Content Fingerprint text field populated by the intake Action Handler."
+        },
+        {
+          "path": "configurationRows.12",
+          "requiredChange": "Link a genuine same-event correction to its prior source context without changing accepted records.",
+          "mechanism": "Engineering Release.Corrects Release optional self-reference with inverse disabled."
+        },
+        {
+          "path": "configurationRows.13",
+          "requiredChange": "Preserve received source files through native attachments and make accepted files read only.",
+          "mechanism": "Engineering Release.Source Evidence native attachment control and acceptance protection."
+        },
+        {
+          "path": "configurationRows.14",
+          "requiredChange": "Record successful complete source acceptance as a timezone-enabled timestamp written by the accepting operation.",
+          "mechanism": "Engineering Release.Accepted At system timestamp field."
+        },
+        {
+          "path": "configurationRows.15",
+          "requiredChange": "Require each source-part row to identify one release and show it through that release existing link.",
+          "mechanism": "Engineering Release Part.Engineering Release M:1 with release.Parts inverse list."
+        },
+        {
+          "path": "configurationRows.16",
+          "requiredChange": "Require the mapped operational Part identity and freeze it with the accepted source graph.",
+          "mechanism": "Engineering Release Part.Part M:1 field using the supplied operational target."
+        },
+        {
+          "path": "configurationRows.17",
+          "requiredChange": "Keep required 100-character source part-number text for later PPAP scope copying.",
+          "mechanism": "Engineering Release Part.Part Number field populated before acceptance."
+        },
+        {
+          "path": "configurationRows.18",
+          "requiredChange": "Retain the optional 255-character source part description for historical package meaning.",
+          "mechanism": "Engineering Release Part.Part Description field with acceptance read-only condition."
+        },
+        {
+          "path": "configurationRows.19",
+          "requiredChange": "Preserve important-safety as NULL until an authoritative explicit Boolean is available; never provide a PPAP override.",
+          "mechanism": "Engineering Release Part.Important Safety? nullable Boolean and Issue-required source condition."
+        },
+        {
+          "path": "configurationRows.20",
+          "requiredChange": "Preserve important-quality as unknown rather than FALSE until the authoritative source supplies its value.",
+          "mechanism": "Engineering Release Part.Important Quality? nullable Boolean with accepted-context protection."
+        },
+        {
+          "path": "configurationRows.21",
+          "requiredChange": "Preserve regulated classification as an explicit source Boolean or unknown, required before package Issue.",
+          "mechanism": "Engineering Release Part.Regulated? nullable Boolean field and source-only editing."
+        },
+        {
+          "path": "configurationRows.22",
+          "requiredChange": "Bind the initial review to exactly one source release without permitting later reassignment.",
+          "mechanism": "Drawing Review.Engineering Release M:1 field and release.Drawing Reviews inverse list."
+        },
+        {
+          "path": "configurationRows.23",
+          "requiredChange": "Store the internally eligible review engineer without defaulting missing routing to the creator.",
+          "mechanism": "Drawing Review.Responsible Engineer M:1 to Employee and routed population."
+        },
+        {
+          "path": "configurationRows.24",
+          "requiredChange": "Retain the exact supplier entity copied from source for the review responsibility calculation.",
+          "mechanism": "Drawing Review.Routing Entity read-only M:1 to Supplier Abstract."
+        },
+        {
+          "path": "configurationRows.25",
+          "requiredChange": "Copy the source change type to the review and use stable type codes for engineer-role choice.",
+          "mechanism": "Drawing Review.Change Type read-only M:1 with catalogue inverse disabled."
+        },
+        {
+          "path": "configurationRows.26",
+          "requiredChange": "Store the resolved exact-entity internal role and require the assigned engineer to be its current member.",
+          "mechanism": "Drawing Review.Engineer Role M:1 to shared Supplier Specific Role."
+        },
+        {
+          "path": "configurationRows.27",
+          "requiredChange": "Retain the release-date plus fixed policy review-days deadline as a read-only calendar date.",
+          "mechanism": "Drawing Review.Due Date field populated by Accept Release."
+        },
+        {
+          "path": "configurationRows.28",
+          "requiredChange": "Bind the current operating policy used to calculate initial review responsibility and deadline.",
+          "mechanism": "Drawing Review.Operating Policy required read-only M:1 field."
+        },
+        {
+          "path": "configurationRows.29",
+          "requiredChange": "Default the review determination to PPAP required and allow the responsible engineer to decide while open.",
+          "mechanism": "Drawing Review.PPAP Required? Boolean default TRUE and review-stage edit condition."
+        },
+        {
+          "path": "configurationRows.30",
+          "requiredChange": "Require an active exception for a no-PPAP decision and clear it if the open review returns to PPAP required.",
+          "mechanism": "Drawing Review.Exception Reason catalogue selector and conditional form/Save rule."
+        },
+        {
+          "path": "configurationRows.31",
+          "requiredChange": "Require a meaningful no-PPAP rationale within 2000 characters and preserve it on closure.",
+          "mechanism": "Drawing Review.Decision Rationale text field with no-PPAP mandatory condition."
+        },
+        {
+          "path": "configurationRows.32",
+          "requiredChange": "Allow reconciliation only to an already-created package for the same source change and intended scope.",
+          "mechanism": "Drawing Review.Already Created PPAP optional M:1 selector and same-change validation."
+        },
+        {
+          "path": "configurationRows.33",
+          "requiredChange": "Default inspection-specification review need to TRUE and allow its responsible engineer to decide applicability.",
+          "mechanism": "Drawing Review.Inspection Specification Review Required? Boolean field."
+        },
+        {
+          "path": "configurationRows.34",
+          "requiredChange": "Capture the explicit inspection-content disposition without replacing the released-version completion checkpoint.",
+          "mechanism": "Drawing Review.Inspection Specification Disposition text control and completion requiredness."
+        },
+        {
+          "path": "configurationRows.35",
+          "requiredChange": "Require a released, correctly scoped specification version when review is required, leaving NULL only with nonapplicability rationale.",
+          "mechanism": "Drawing Review.Released Inspection Specification Version conditional M:1 and completion check."
+        },
+        {
+          "path": "configurationRows.36",
+          "requiredChange": "Show source-part children through their existing declaring release relationship without duplicate storage.",
+          "mechanism": "Engineering Release.Parts inverse 1:M navigation over source-part.Engineering Release."
+        },
+        {
+          "path": "configurationRows.37",
+          "requiredChange": "Show initial reviews through their declaring source-release relationship with read-only navigation.",
+          "mechanism": "Engineering Release.Drawing Reviews inverse 1:M over Drawing Review.Engineering Release."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Lock the complete source/part graph when Accepted At is populated and require replacement context for a correction.",
+          "mechanism": "Accepted-record field/form read-only rules and Corrects Release relationship."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Display unknown criticality without a FALSE default and keep authoritative editing outside PPAP preparation.",
+          "mechanism": "Nullable criticality controls and removal of local override inputs."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Require evidence and governed identity fields for restricted manual preparation without expanding facility authorization.",
+          "mechanism": "Manual intake form conditions and candidate-facility contextual selection."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Configure no-PPAP reason controls and the applicable released-specification selector on the review form.",
+          "mechanism": "Drawing Review conditional show/mandatory/clear view actions."
+        }
+      ]
+    },
+    {
+      "id": "IMP-18",
+      "evidenceReview": "Freshly reread the complete current JSON and rendered Draft-creation assignment against its before snapshot. Its sole task-level revision is IMP-01 provides the new Objects; creation steps, native methods, source/role dependencies and three task-local supplied inputs are identical.",
+      "languageReview": "The predecessor paragraph now consistently distinguishes Objects supplied earlier from the Draft record created by this assignment. The launch result, field names, overall-date alternatives, supplier secrecy and failure outcomes remain clear in the complete rendered instructions.",
+      "meaningReview": "Rechecked target marker ordering before legacy generation, separate Draft workflow, required APQP Settings/Location, role-selected Project Owner, accepted source-part copying and one new-model context. No field/default/security/retry rule or prerequisite edge changed; the unchanged unit notes still describe these actual operations.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "taskHash": "63410e8bf25d17bf7abb3532a722069db699990d15e45d25fb044dca163bb291",
+      "renderedTaskHash": "f836b72f95a268cc27d38e995e606163db735d404e532fca0fdfedd1c4e75286",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add one controlled target Draft creation operation shared by review, fallback and originating applications.",
+          "mechanism": "Create Target PPAP Draft Action Handler using supplied launch correlation."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Validate authorized launch identity and intended facility/drawing/parts before creating a single scoped Draft.",
+          "mechanism": "Create Target PPAP Draft precreation validation and launch-key lock."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Set the target discriminator before legacy processing and bind the separate Draft workflow and compatibility settings.",
+          "mechanism": "Supported creation ordering for Target Configuration?, target schema and required native references."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Populate authoritative scope and source references with a supplied overall date and one active operating policy.",
+          "mechanism": "Draft creation defaults and PPAP Part generation from matched accepted source parts."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Require one governing model/stage for new-model work while retaining internal Draft access and empty decision/output facts.",
+          "mechanism": "NEW_MODEL creation validation and initial Draft field/security conditions."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Prevent partial Drafts and duplicate part rows on failure while giving new changes their own work.",
+          "mechanism": "Native protected creation/retry correlation and new source-event selection."
+        }
+      ]
+    },
+    {
+      "id": "IMP-24",
+      "evidenceReview": "Freshly reread all eight result-link rows, three instructions, result checks and waiting/dependency blocks in current JSON and Markdown. The only before/current task change is the IMP-01 Objects predecessor wording. Inspection target identifiers and native result/artifact methods remain supplied inputs, with no new adjacent-application work.",
+      "languageReview": "Objects correctly describes the new configuration made available by IMP-01; result records, native audit and saved evidence copies retain appropriate record language. Exact Engineer Review and Retain Evidence names remain intact, and the artifact alternative is still explained in ordinary business terms.",
+      "meaningReview": "Verified unchanged one-element/result references, 255-character version texts, FALSE acceptance default, engineer-only acceptance, conditional rejection explanation and snapshot-specific frozen links. Required results alone gate approval; external mutable result data still requires a controlled artifact. All retained instruction notes were reread against those exact rows.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "taskHash": "d481c4ab93c48af281d45bba79fc92d8a719e8656c1f6c15ce7da3f648152c38",
+      "renderedTaskHash": "8b5041d3a58187ee09243e3b4eda13da3e6079f14f32c725ff26a5d1974deae0",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add scoped inspection-version links and engineer acceptance while retaining immutable result meaning.",
+          "mechanism": "PPAP Inspection Result Link fields and PPAP-side link/acceptance operation."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Bind each result link permanently to one element and provide its read-only inspection-results collection.",
+          "mechanism": "Inspection Result Link.Element M:1 plus Element.Inspection Results inverse navigation."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Allow only authorized working-stage result selection and freeze the specific result context on submission.",
+          "mechanism": "Inspection Result Link.Inspection Result selector with Work In Progress edit rule."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Store the required exact specification-version identifier without using a mutable latest pointer.",
+          "mechanism": "Specification Version Reference 255-character system-populated text field."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Store the exact result version and require a controlled evidence artifact when the external result can change.",
+          "mechanism": "Result Version Reference field and Submit/Retain artifact-copy connection."
+        },
+        {
+          "path": "configurationRows.4",
+          "requiredChange": "Default acceptance to FALSE and restrict its change to the responsible engineer review or explicit retention action.",
+          "mechanism": "Accepted? Boolean and Engineer Review/Retain Evidence action authorization."
+        },
+        {
+          "path": "configurationRows.5",
+          "requiredChange": "Require a rejection explanation while preserving acceptance history and locking signed-off links.",
+          "mechanism": "Acceptance Comment 2000-character field, conditional requirement and native audit."
+        },
+        {
+          "path": "configurationRows.6",
+          "requiredChange": "Connect submitted result links to their exact evidence snapshot and keep decided links fixed.",
+          "mechanism": "Inspection Result Link.Evidence Snapshot system M:1 and fresh correction-link creation."
+        },
+        {
+          "path": "configurationRows.7",
+          "requiredChange": "Display linked result rows through the declaring element relationship without duplicate storage.",
+          "mechanism": "Element.Inspection Results inverse 1:M read-only related-record list."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Validate the intended element drawing/part scope before recording result and specification-version references.",
+          "mechanism": "Authorized result-link creation action and scope validation."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Preserve approved result meaning with a stable version or frozen artifact linked to the current evidence snapshot.",
+          "mechanism": "Submit/Retain result copy operation and snapshot-specific link binding."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Require engineer acceptance and a rejection comment only for results relied on by required elements.",
+          "mechanism": "Result acceptance action, native actor/time audit and element preapproval check."
+        }
+      ]
+    },
+    {
+      "id": "IMP-25",
+      "evidenceReview": "Freshly reread the four pilot association rows and three launch instructions with source references hidden, then compared current JSON with the before snapshot. Only the IMP-01 predecessor sentence changes record types to Objects. Supplied pilot operation/token and native replay/save methods remain narrow blockers.",
+      "languageReview": "The Objects predecessor term is consistent with configuration setup, while program links and individual returned pilot records remain described as records. The complete assignment still makes NEW_MODEL, same-model Build Event and no automatic pilot creation understandable without following a source link.",
+      "meaningReview": "Confirmed unchanged required PPAP/Build Event/Pilot Program references, PPAP inverse navigation, type/model/part checks and one program link per explicit successful launch. Running/process types remain denied and no shipment/measurement build enters scope. Retained unit notes correspond to the unchanged settings and actions.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "taskHash": "3577b501284e641d6ba881a03c0a2a73ad023f45bfcbbbb836cf9a0d20fdb667",
+      "renderedTaskHash": "1dddcf726925e4618d97a847b10359f2432e0e19bef2e86f2458b6a8434f7024",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add deliberate PPAP-side pilot launch limited to the governing new-model build-event context.",
+          "mechanism": "Launch Pilot Program action and PPAP Pilot Program Link relationship fields."
+        },
+        {
+          "path": "configurationRows.0",
+          "requiredChange": "Bind the program association permanently to its owning PPAP and expose only inverse navigation there.",
+          "mechanism": "Pilot Program Link.PPAP M:1 and PPAP.Pilot Programs read-only inverse."
+        },
+        {
+          "path": "configurationRows.1",
+          "requiredChange": "Require an event of the same model when selecting the physical context for pilot launch.",
+          "mechanism": "Pilot Program Link.Build Event M:1 selector and same-model validation."
+        },
+        {
+          "path": "configurationRows.2",
+          "requiredChange": "Save the external program returned by a successful explicit launch exactly once.",
+          "mechanism": "Pilot Program Link.Pilot Program system-populated M:1 field."
+        },
+        {
+          "path": "configurationRows.3",
+          "requiredChange": "Show existing linked pilot programs without adding a duplicate stored relationship.",
+          "mechanism": "PPAP.Pilot Programs inverse 1:M over Pilot Program Link.PPAP."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Restrict launch to the responsible engineer on NEW_MODEL and validate event and intended part scope.",
+          "mechanism": "Launch Pilot Program prelaunch role/type/model/part checks."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Call the supplied pilot operation and store one returned program association per explicit correlation.",
+          "mechanism": "PPAP-side pilot adapter with native repeat-safe launch/result persistence."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Deny running/process launches and prevent source review from automatically creating pilot execution.",
+          "mechanism": "Launch Pilot Program visibility/action conditions and release-scope guard."
+        }
+      ]
+    },
+    {
+      "id": "IMP-32",
+      "evidenceReview": "Freshly reread the whole security assignment, its named package-flag modification, seven instructions and complete supplied-input/predecessor blocks. Before/current comparison shows only the IMP-01 Objects wording changed. The package audit/security flags and unverified inherited grants are still stated accurately; native enforcement/principals remain inputs.",
+      "languageReview": "Objects now refers to earlier configured types without replacing record-level access terminology. The task retains explicit supplier/internal roles, pre-PPAP source/review permissions and direct-file access wording. Its scope still describes business access rather than setup of platform processing permissions.",
+      "meaningReview": "Rechecked unchanged full authorization intersection, Draft secrecy, record/file/actor restrictions, independent pre-PPAP source security, issued/closed locks and visibility-only handover. No role, permission, scope, dependency or owner changed. Prior per-instruction notes remain valid after the complete current reread, rather than being renewed from a word substitution alone.",
+      "checks": {
+        "standaloneInstructions": true,
+        "exactValuesIncluded": true,
+        "dependenciesDescribeOutputs": true,
+        "inputsAreLocalAndNarrow": true,
+        "acceptanceDescribesChanges": true,
+        "businessLanguageThroughout": true,
+        "technicalMeaningPreserved": true,
+        "coverageOwnershipReviewed": true
+      },
+      "taskHash": "2ad1bba649585bfc92b483d2f2e0a46d2dcb1ff61314afc3af564fddfcecbfd6",
+      "renderedTaskHash": "baffabad51a0279c7ed5d3c605fb7b8a905a812fb5eeef263c181272487c671f",
+      "instructions": [
+        {
+          "path": "scope",
+          "requiredChange": "Add target PPAP record, field and file restrictions with audited visibility-only handover.",
+          "mechanism": "Native target security/audit configuration and authorized classification-handover action."
+        },
+        {
+          "path": "steps.0",
+          "requiredChange": "Require the complete authorization intersection and keep Draft content inaccessible to suppliers.",
+          "mechanism": "Target account/object/record/entity/classification/capability/stage permission rules."
+        },
+        {
+          "path": "steps.1",
+          "requiredChange": "Give issued supplier coordinators only their permitted scope, work, masses and external discussion.",
+          "mechanism": "Supplier coordinator record/field/action grants and internal/rejected-history exclusions."
+        },
+        {
+          "path": "steps.2",
+          "requiredChange": "Separate engineer, management and inspection powers so task ownership or admin membership cannot imply approval authority.",
+          "mechanism": "Business-role stage/action permission matrix and governed approver-pool check."
+        },
+        {
+          "path": "steps.3",
+          "requiredChange": "Secure PPAP descendants through owning context and secure source/review records through their own authorized pre-PPAP context.",
+          "mechanism": "Native record/file inheritance or supplied equivalent rules plus explicit source/review ACLs."
+        },
+        {
+          "path": "steps.4",
+          "requiredChange": "Prevent locked-scope and closed-content changes while retaining fresh authorized open correction and history.",
+          "mechanism": "Issued/closed field/action restrictions and frozen evidence/attachment protection."
+        },
+        {
+          "path": "steps.5",
+          "requiredChange": "Allow audited visibility-only handover without altering criticality, stage, accountability or approved content.",
+          "mechanism": "Authorized Visibility Classification handover action using supplied safe-update method."
+        },
+        {
+          "path": "steps.6",
+          "requiredChange": "Apply the same security on direct and export paths while reusing native infrastructure without new processing permissions.",
+          "mechanism": "Record/field/file enforcement on API/import, URL, search, export and relationship navigation."
+        },
+        {
+          "path": "modifications.0",
+          "requiredChange": "Enable governed audit/security on retained PPAP without assuming inherited grants are absent or rebuilding shared security.",
+          "mechanism": "PPAP APQP_PPAPAbstractObject audit/security metadata with supplied target/historical access rules."
+        }
+      ]
+    }
+  ]
+}
